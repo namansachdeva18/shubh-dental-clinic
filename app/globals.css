@@ -1132,17 +1132,23 @@ select.form-control {
 
 /* ===== iOS & MOBILE PERFORMANCE FIXES ===== */
 @media (max-width: 768px) {
-  /* Disable heavy animated background blurs on mobile to prevent iOS WebKit GPU crashes */
-  .innovative-bg-wrapper,
-  .implant-bg-wrapper,
-  .scanner-bg-wrapper,
-  .skyalign-bg-vectors,
+  /* Remove heavy filters on mobile to prevent iOS WebKit GPU crashes while keeping animations visible */
+  .blob-container, 
   .animated-orb-1, .animated-orb-2, .animated-orb-3,
   .bg-glow-orb,
-  .interactive-bg,
-  .blob-container,
-  .particles,
-  .point-cloud {
-    display: none !important;
+  [class*="blob"] {
+    filter: none !important;
+  }
+  
+  /* Remove backdrop-filters on animated elements to save GPU memory */
+  .glass-shape {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+  }
+  
+  /* Ensure animations don't use heavy filters */
+  .point-cloud, .particles {
+    filter: none !important;
   }
 }

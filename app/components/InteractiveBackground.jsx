@@ -24,12 +24,12 @@ export default function InteractiveBackground() {
       className="interactive-bg"
     >
       <style dangerouslySetInnerHTML={{ __html: `
-        /* Disable on small screens to save battery & CPU */
+        /* Optimize on small screens to save battery & prevent iOS crashes */
         @media (max-width: 768px) {
           .interactive-bg .animated-orb-1,
           .interactive-bg .animated-orb-2,
           .interactive-bg .animated-orb-3,
-          .interactive-bg .bg-particles { display: none; }
+          .interactive-bg .bg-particles div { filter: none !important; }
         }
 
         @keyframes float-orb-1 {
