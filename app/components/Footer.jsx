@@ -14,11 +14,10 @@ export default function Footer() {
           <StaggerItem className="footer-brand-col" variant="fadeUp">
             <div className="footer-brand-header">
               <img src="/logo.webp?v=2" alt="Shubh Dental Clinic Logo" style={{ width: '45px', height: '45px', objectFit: 'contain', background: '#fff', borderRadius: '8px', padding: '4px' }} />
-              <div>
-                <h3 className="footer-brand-title font-heading">
-                  Shubh Orthodontic & Dental
-                </h3>
-                <span className="footer-brand-sub">Clinic & Smile Center</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0px' }}>
+                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>Dr. S.K. Yadav's</span>
+                <span style={{ fontFamily: '"Dancing Script", cursive', fontSize: '1.75rem', fontWeight: 700, color: '#fff', whiteSpace: 'nowrap', lineHeight: '1' }}>Shubh Orthodontic & Dental Clinic</span>
+                <span style={{ fontStyle: 'italic', fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', marginTop: '2px' }}>A Multi Speciality Dental Care Center</span>
               </div>
             </div>
 
