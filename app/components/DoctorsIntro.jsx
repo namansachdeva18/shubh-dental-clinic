@@ -181,12 +181,12 @@ export default function DoctorsIntro() {
               {/* Floating Doctor Name Tooltips */}
               <div className="doc-tag-tooltip tag-left">
                 <span className="dot-pulse"></span>
-                <span className="tag-text">Prof. Dr. S. K. Yadav</span>
+                <span className="tag-text">Dr (Prof.) S. K. Yadav</span>
               </div>
               
               <div className="doc-tag-tooltip tag-right">
                 <span className="dot-pulse"></span>
-                <span className="tag-text">Dr. Achla B. Yadav</span>
+                <span className="tag-text">Dr (Prof.) Achla Yadav</span>
               </div>
             </div>
           </motion.div>
@@ -224,8 +224,8 @@ export default function DoctorsIntro() {
             </div>
 
             <div className="doctor-card-body">
-              <h3 className="doctor-card-name">Prof. Dr. S. K. Yadav</h3>
-              <div className="doctor-card-role">BDS, MDS (Orthodontics) · Fellow WFO (USA) · Ex-Sr. Resident PGI Chandigarh</div>
+              <h3 className="doctor-card-name">Dr (Prof.) S. K. Yadav</h3>
+              <div className="doctor-card-role">BDS, MDS</div>
               
               <p className="doctor-card-bio">
                  Haryana's premier <strong>Orthodontist and Dentofacial Orthopedics Specialist</strong> with over 20 years of expertise. Renowned for publishing <strong>43 scientific papers</strong> (247+ citations, h-index 8) and authoring <strong>2 academic research books in Germany</strong>. Pioneered micro-implant anchorage and invisalign aligner therapy in Rohtak.
@@ -234,11 +234,14 @@ export default function DoctorsIntro() {
               <div className="cv-divider"></div>
               
               <ul className="doctor-card-creds">
-                <li><GraduationCap size={16} /><span><strong>MDS (Orthodontics)</strong> — Ex-Senior Resident, PGI Chandigarh</span></li>
-                <li><Award size={16} /><span><strong>Fellow WFO (USA)</strong> — World Federation of Orthodontists</span></li>
-                <li><Award size={16} /><span><strong>IOS Endorsed</strong> — Indian Orthodontic Society</span></li>
-                <li><BookOpen size={16} /><span><strong>43 Research Papers &amp; 2 Books</strong> — Cited 247+ times worldwide</span></li>
-                <li><CheckCircle size={16} /><span><strong>Certified Provider</strong> — Invisalign® &amp; Damon® Self-Ligating Braces</span></li>
+                <li><Award size={16} /><span><strong>Fellow WFO (USA)</strong></span></li>
+                <li><CheckCircle size={16} /><span><strong>Braces and Implants Specialist</strong></span></li>
+                <li><CheckCircle size={16} /><span><strong>Consultant Invisalign Provider</strong></span></li>
+                <li><CheckCircle size={16} /><span><strong>Certified Implantologist</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Ex. SR PGI Chandigarh</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Ex. Consultant ESI Hospital, Bhiwani</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Ex. Dental Surgeon ECHS, Rewari</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Ex. Prof. DJ Dental College</strong></span></li>
               </ul>
               
               <Link href="/doctors/dr-sk-yadav" className="btn btn-outline cv-btn">
@@ -275,8 +278,8 @@ export default function DoctorsIntro() {
             </div>
 
             <div className="doctor-card-body">
-              <h3 className="doctor-card-name">Dr. Achla Bharti Yadav</h3>
-              <div className="doctor-card-role">BDS, MDS (Oral Pathology), MIAOMP · Certified Cosmetic Dentist · Ex-Asst. Prof. PGI Rohtak</div>
+              <h3 className="doctor-card-name">Dr (Prof.) Achla Yadav</h3>
+              <div className="doctor-card-role">BDS, MDS, MIAOMP</div>
               
               <p className="doctor-card-bio">
                 Distinguished Professor &amp; Oral Pathologist with <strong>64 published papers, 407+ global citations (h-index 12)</strong> and <strong>2 published academic books</strong>. A pioneer in 2026 AI-powered deep learning (YOLOv8) for early oral cancer and pre-cancer lesion detection, ensuring unparalleled diagnostic precision for patients.
@@ -285,11 +288,11 @@ export default function DoctorsIntro() {
               <div className="cv-divider"></div>
 
               <ul className="doctor-card-creds">
-                <li><GraduationCap size={16} /><span><strong>MDS (Oral Pathology), MIAOMP</strong> — Ex-Assistant Professor, PGI Rohtak</span></li>
-                <li><Cpu size={16} /><span><strong>AI Dentistry Pioneer (2026)</strong> — YOLOv8 Deep Learning for Oral Lesions</span></li>
-                <li><Award size={16} /><span><strong>407+ Global Citations (h-index 12)</strong> — 64 Peer-Reviewed Publications</span></li>
-                <li><BookOpen size={16} /><span><strong>2 Academic Books Published</strong> — Lambert Academic Publishing, Germany</span></li>
-                <li><Sparkles size={16} /><span><strong>Certified Cosmetic Dentist</strong> — Smile Design, Veneers &amp; Pathology</span></li>
+                <li><CheckCircle size={16} /><span><strong>Consultant Oral Pathologist</strong></span></li>
+                <li><CheckCircle size={16} /><span><strong>Certified Cosmetic Dentist</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Ex. Asst. Professor PGI Rohtak</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Ex. Dental Surgeon ECHS, Rewari</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Ex. Prof. DJ Dental College</strong></span></li>
               </ul>
               
               <Link href="/doctors/dr-achita-yadav" className="btn btn-outline cv-btn">

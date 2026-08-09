@@ -53,7 +53,7 @@ export default function Hero() {
 
             {/* Supporting paragraph */}
             <motion.p className="hs-desc" variants={fadeUp}>
-              Haryana’s <strong>most awarded</strong> orthodontic centre, led by <strong>Prof. Dr. S. K. Yadav</strong> — <strong>Ex-PGI Chandigarh</strong>, Fellow WFO (USA). Offering <strong>self-ligating Damon® braces</strong>, <strong>Invisalign® &amp; SkyAlign™ clear aligners</strong>, <strong>same-day dental implants</strong>, and <strong>porcelain veneers</strong> with <strong>cutting-edge 3D digital planning</strong> — all under one roof in Rohtak.
+              Haryana’s <strong>most awarded</strong> orthodontic centre, led by <strong>Dr (Prof.) S. K. Yadav</strong> — <strong>Ex-PGI Chandigarh</strong>, Fellow WFO (USA). Offering <strong>self-ligating Damon® braces</strong>, <strong>Invisalign® &amp; SkyAlign™ clear aligners</strong>, <strong>same-day dental implants</strong>, and <strong>porcelain veneers</strong> with <strong>cutting-edge 3D digital planning</strong> — all under one roof in Rohtak.
             </motion.p>
 
             {/* CTAs */}
@@ -132,17 +132,17 @@ export default function Hero() {
                 {[
                   {
                     src: '/hero/portraits/doctor-sumit.webp',
-                    alt: 'Dr. Sumit K. Yadav',
-                    name: 'Dr. Sumit K. Yadav',
-                    role: 'Orthodontist & Implant Specialist',
-                    tags: 'Braces · Aligners · Implants',
+                    alt: 'Dr (Prof.) S. K. Yadav',
+                    name: 'Dr (Prof.) S. K. Yadav',
+                    role: 'BDS, MDS, Fellow WFO (USA)',
+                    tags: 'Braces & Implants Specialist',
                   },
                   {
                     src: '/hero/portraits/doctor-achla.webp',
-                    alt: 'Dr. Achla B. Yadav',
-                    name: 'Dr. Achla B. Yadav',
-                    role: 'Professor & Diagnostic Specialist',
-                    tags: 'Oral Pathology · AI Screening',
+                    alt: 'Dr (Prof.) Achla Yadav',
+                    name: 'Dr (Prof.) Achla Yadav',
+                    role: 'BDS, MDS, MIAOMP',
+                    tags: 'Consultant Oral Pathologist',
                   },
                 ].map((dr, i) => (
                   <div key={i} className={`hs-doc-row ${i > 0 ? 'hs-doc-row--bordered' : ''}`}>

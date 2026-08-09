@@ -44,10 +44,10 @@ export default function DrSKYadavPage() {
             <motion.div initial="hidden" animate="show" variants={staggerContainer} style={{ color: '#fff' }}>
               <motion.div variants={fadeUp} className="section-badge badge-gold" style={{ border: '1px solid rgba(214, 122, 65, 0.3)' }}>🥇 Chief Orthodontist &amp; Implantologist</motion.div>
               <motion.h1 variants={fadeUp} style={{ color: '#fff', fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.5rem, 4vw, 4rem)', fontWeight: 800, marginBottom: '0.5rem', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
-                Prof. Dr. S. K. Yadav
+                Dr (Prof.) S. K. Yadav
               </motion.h1>
               <motion.div variants={fadeUp} style={{ fontSize: '1.15rem', color: 'var(--accent-gold-light)', fontWeight: 600, marginBottom: '1.5rem', letterSpacing: '0.02em' }}>
-                MDS (Orthodontics) · Ex-PGI Chandigarh · Fellow WFO (USA) · IOS Endorsed
+                BDS, MDS
               </motion.div>
               <motion.p variants={fadeUp} style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
                 With over 20 years of clinical and academic excellence, Prof. Dr. S. K. Yadav is Haryana's leading authority on orthodontics and dentofacial orthopaedics. He has published <strong>43 scientific papers (247+ global citations)</strong>, authored <strong>2 research books in Germany</strong>, and transformed over 20,000 smiles.
@@ -145,29 +145,66 @@ export default function DrSKYadavPage() {
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
                     <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
-                      <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
-                    </div>
-                    <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>MDS (Orthodontics)</strong>
-                      <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Ex-Senior Resident, PGI Chandigarh</span>
-                    </div>
-                  </li>
-                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
-                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
                       <Award size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Fellow WFO (USA) &amp; IOS</strong>
-                      <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>World Federation of Orthodontists</span>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Fellow WFO (USA)</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
                     <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
-                      <BookOpen size={24} style={{ color: 'var(--accent-gold)' }} />
+                      <CheckCircle size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>43 Publications &amp; 2 Books</strong>
-                      <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>247+ Citations (h-index 8)</span>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Braces and Implants Specialist</strong>
+                    </div>
+                  </li>
+                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
+                      <CheckCircle size={24} style={{ color: 'var(--accent-gold)' }} />
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Consultant Invisalign Provider</strong>
+                    </div>
+                  </li>
+                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
+                      <CheckCircle size={24} style={{ color: 'var(--accent-gold)' }} />
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Certified Implantologist</strong>
+                    </div>
+                  </li>
+                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
+                      <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. SR PGI Chandigarh</strong>
+                    </div>
+                  </li>
+                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
+                      <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Consultant ESI Hospital, Bhiwani</strong>
+                    </div>
+                  </li>
+                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
+                      <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Dental Surgeon ECHS, Rewari</strong>
+                    </div>
+                  </li>
+                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
+                      <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Prof. DJ Dental College</strong>
                     </div>
                   </li>
                 </ul>

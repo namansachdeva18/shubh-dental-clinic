@@ -44,10 +44,10 @@ export default function DrAchitaYadavPage() {
             <motion.div initial="hidden" animate="show" variants={staggerContainer} style={{ color: '#fff' }}>
               <motion.div variants={fadeUp} className="section-badge badge-gold" style={{ border: '1px solid rgba(214, 122, 65, 0.3)' }}>🤖 AI Oral Pathology &amp; Smile Design</motion.div>
               <motion.h1 variants={fadeUp} style={{ color: '#fff', fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.5rem, 4vw, 4rem)', fontWeight: 800, marginBottom: '0.5rem', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
-                Dr. Achla Bharti Yadav
+                Dr (Prof.) Achla Yadav
               </motion.h1>
               <motion.div variants={fadeUp} style={{ fontSize: '1.15rem', color: 'var(--accent-gold-light)', fontWeight: 600, marginBottom: '1.5rem', letterSpacing: '0.02em' }}>
-                BDS, MDS (Oral Pathology), MIAOMP · Certified Cosmetic Dentist · Ex-Asst. Prof. PGI Rohtak
+                BDS, MDS, MIAOMP
               </motion.div>
               <motion.p variants={fadeUp} style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
                 Professor &amp; Senior Oral Pathologist with <strong>64 peer-reviewed publications</strong>, <strong>407+ global citations (h-index 12)</strong>, and <strong>2 academic books published in Germany</strong>. A pioneer in 2026 AI deep learning (YOLOv8) for automated oral cancer screening and aesthetic digital smile design.
@@ -145,38 +145,42 @@ export default function DrAchitaYadavPage() {
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
                     <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
-                      <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
+                      <CheckCircle size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>MDS (Oral Pathology), MIAOMP</strong>
-                      <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Ex-Assistant Professor, PGI Rohtak</span>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Consultant Oral Pathologist</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
                     <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
-                      <Cpu size={24} style={{ color: 'var(--accent-gold)' }} />
-                    </div>
-                    <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>AI Dentistry Pioneer (2026)</strong>
-                      <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>YOLOv8 Deep Learning for Oral Lesions</span>
-                    </div>
-                  </li>
-                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
-                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
-                      <BookOpen size={24} style={{ color: 'var(--accent-gold)' }} />
-                    </div>
-                    <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>64 Papers &amp; 2 Books</strong>
-                      <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>407+ Global Citations (h-index 12)</span>
-                    </div>
-                  </li>
-                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
-                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
-                      <Sparkles size={24} style={{ color: 'var(--accent-gold)' }} />
+                      <CheckCircle size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
                       <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Certified Cosmetic Dentist</strong>
-                      <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Aesthetic Smile Design &amp; Veneers</span>
+                    </div>
+                  </li>
+                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
+                      <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Asst. Professor PGI Rohtak</strong>
+                    </div>
+                  </li>
+                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
+                      <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Dental Surgeon ECHS, Rewari</strong>
+                    </div>
+                  </li>
+                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
+                      <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Prof. DJ Dental College</strong>
                     </div>
                   </li>
                 </ul>
