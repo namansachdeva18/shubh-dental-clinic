@@ -117,9 +117,10 @@ export default function DoctorsIntro() {
               </div>
 
               <div style={{ display: 'flex', gap: '1rem', marginTop: '1.75rem', flexWrap: 'wrap' }}>
-                <Link href="#book" className="btn btn-gold" style={{ width: 'fit-content' }}>
+                <Link href="#book" className="btn btn-gold" style={{ width: 'fit-content', whiteSpace: 'nowrap' }}>
                   <CheckCircle size={16} aria-hidden="true" />
-                  Schedule Specialist Consultation
+                  <span className="hide-mobile">Schedule Specialist Consultation</span>
+                  <span className="show-mobile">Schedule Consultation</span>
                 </Link>
               </div>
             </div>
@@ -833,7 +834,10 @@ export default function DoctorsIntro() {
           .doctor-card-body { padding: 1.5rem; }
           .doctors-trust-strip { padding: 1.5rem; }
           .accreditations-bar { padding: 1rem; }
+          .hide-mobile { display: none !important; }
+          .show-mobile { display: inline !important; }
         }
+        .show-mobile { display: none; }
       `}} />
     </section>
   );
