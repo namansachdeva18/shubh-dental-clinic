@@ -667,7 +667,7 @@ export default function ImplantsHero() {
           .implants-stats-banner { grid-template-columns: repeat(2, 1fr); display: grid; gap: 1.25rem; padding: 1.5rem; }
           .stat-banner-divider { display: none; }
           .implant-pills-grid { grid-template-columns: repeat(2, 1fr); }
-          .implant-detail-box { grid-template-columns: 1fr; padding: 2rem 1.5rem; gap: 1.75rem; }
+          .implant-detail-box { grid-template-columns: minmax(0, 1fr); padding: 2rem 1.5rem; gap: 1.75rem; }
           .implants-results-wrapper { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
           .warranty-banner { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
         }

@@ -992,7 +992,7 @@ export default function AlignerHero() {
           .aligner-stats-banner { flex-wrap: wrap; gap: 1.5rem; justify-content: center; padding: 1.5rem; }
           .stat-banner-divider { display: none; }
           .aligner-pills-grid { grid-template-columns: repeat(2, 1fr); }
-          .aligner-detail-box { grid-template-columns: 1fr; padding: 2rem; }
+          .aligner-detail-box { grid-template-columns: minmax(0, 1fr); padding: 2rem; }
           .aligner-results-wrapper { grid-template-columns: 1fr; padding: 2rem; }
           .material-grid { grid-template-columns: repeat(2, 1fr); }
           .location-cards-grid { grid-template-columns: repeat(2, 1fr); }
