@@ -25,13 +25,22 @@ export default function DrSKYadavPage() {
 
   return (
     <>
-      <section ref={heroRef} className="doctor-profile-hero" style={{ background: 'linear-gradient(135deg, var(--bg-dark), #1A0C08)', padding: '6rem 0 5rem', overflow: 'hidden', position: 'relative' }}>
+      <style dangerouslySetInnerHTML={{ __html: `
+        .doc-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .doc-bio-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; }
+        .doc-hero-section { padding: 6rem 0 5rem; }
+        @media (max-width: 1024px) {
+          .doc-hero-grid, .doc-bio-grid { grid-template-columns: 1fr; gap: 3rem; }
+          .doc-hero-section { padding: 6rem 0 7.5rem; } /* Extra padding for mobile sticky nav */
+        }
+      `}} />
+      <section ref={heroRef} className="doctor-profile-hero doc-hero-section" style={{ background: 'linear-gradient(135deg, var(--bg-dark), #1A0C08)', overflow: 'hidden', position: 'relative' }}>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <Link href="/doctors" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent-gold-light)', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', marginBottom: '2rem' }}>
             ← Back to All Specialists
           </Link>
           
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+          <div className="doc-hero-grid">
             <motion.div initial="hidden" animate="show" variants={staggerContainer} style={{ color: '#fff' }}>
               <motion.div variants={fadeUp} className="section-badge badge-gold" style={{ border: '1px solid rgba(214, 122, 65, 0.3)' }}>🥇 Chief Orthodontist &amp; Implantologist</motion.div>
               <motion.h1 variants={fadeUp} style={{ color: '#fff', fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.5rem, 4vw, 4rem)', fontWeight: 800, marginBottom: '0.5rem', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
@@ -88,7 +97,7 @@ export default function DrSKYadavPage() {
 
       <section className="section" style={{ background: 'var(--bg-primary)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '4rem' }}>
+          <div className="doc-bio-grid">
             
             {/* Bio & Academic Output */}
             <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}>
