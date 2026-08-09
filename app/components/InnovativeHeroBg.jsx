@@ -1,14 +1,20 @@
 'use client';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function InnovativeHeroBg() {
   const { scrollY } = useScroll();
 
-  // Parallax effects for different elements
-  const y1 = useTransform(scrollY, [0, 1000], [0, -200]);
-  const y2 = useTransform(scrollY, [0, 1000], [0, 250]);
-  const y3 = useTransform(scrollY, [0, 1000], [0, -150]);
+  // Raw Parallax effects tied to scroll
+  const rawY1 = useTransform(scrollY, [0, 1000], [0, -200]);
+  const rawY2 = useTransform(scrollY, [0, 1000], [0, 250]);
+  const rawY3 = useTransform(scrollY, [0, 1000], [0, -150]);
+
+  // Apply physics-based smoothing to completely eliminate scroll stutter on mobile
+  const smoothConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
+  const y1 = useSpring(rawY1, smoothConfig);
+  const y2 = useSpring(rawY2, smoothConfig);
+  const y3 = useSpring(rawY3, smoothConfig);
 
   return (
     <div className="innovative-bg-wrapper" aria-hidden="true">
