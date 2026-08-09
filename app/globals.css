@@ -1129,3 +1129,20 @@ select.form-control {
   border: none;
   display: block;
 }
+
+/* ===== iOS & MOBILE PERFORMANCE FIXES ===== */
+@media (max-width: 768px) {
+  /* Disable heavy animated background blurs on mobile to prevent iOS WebKit GPU crashes */
+  .innovative-bg-wrapper,
+  .implant-bg-wrapper,
+  .scanner-bg-wrapper,
+  .skyalign-bg-vectors,
+  .animated-orb-1, .animated-orb-2, .animated-orb-3,
+  .bg-glow-orb,
+  .interactive-bg,
+  .blob-container,
+  .particles,
+  .point-cloud {
+    display: none !important;
+  }
+}
