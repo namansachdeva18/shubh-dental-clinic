@@ -148,7 +148,7 @@ export default function DrAchitaYadavPage() {
                       <CheckCircle size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Consultant Oral Pathologist</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Consultant Specialist in Oral Pathology</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -156,7 +156,7 @@ export default function DrAchitaYadavPage() {
                       <CheckCircle size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Certified Cosmetic Dentist</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Certified Expert in Cosmetic Dentistry</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -164,7 +164,7 @@ export default function DrAchitaYadavPage() {
                       <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Asst. Professor PGI Rohtak</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Former Assistant Professor, PGI Rohtak</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -172,7 +172,7 @@ export default function DrAchitaYadavPage() {
                       <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Dental Surgeon ECHS, Rewari</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Former Dental Surgeon, ECHS (Rewari)</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -180,7 +180,7 @@ export default function DrAchitaYadavPage() {
                       <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Prof. DJ Dental College</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Former Professor, DJ College of Dental Sciences</strong>
                     </div>
                   </li>
                 </ul>

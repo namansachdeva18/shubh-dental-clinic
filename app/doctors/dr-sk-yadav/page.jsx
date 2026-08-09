@@ -148,7 +148,7 @@ export default function DrSKYadavPage() {
                       <Award size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Fellow WFO (USA)</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Fellow of the WFO (USA)</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -156,7 +156,7 @@ export default function DrSKYadavPage() {
                       <CheckCircle size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Braces and Implants Specialist</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Specialist in Orthodontics &amp; Dental Implants</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -164,7 +164,7 @@ export default function DrSKYadavPage() {
                       <CheckCircle size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Consultant Invisalign Provider</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Certified Consultant Invisalign® Provider</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -172,7 +172,7 @@ export default function DrSKYadavPage() {
                       <CheckCircle size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Certified Implantologist</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Certified Clinical Implantologist</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -180,7 +180,7 @@ export default function DrSKYadavPage() {
                       <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. SR PGI Chandigarh</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Former Senior Resident, PGI Chandigarh</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -188,7 +188,7 @@ export default function DrSKYadavPage() {
                       <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Consultant ESI Hospital, Bhiwani</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Former Consultant, ESI Hospital (Bhiwani)</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -196,7 +196,7 @@ export default function DrSKYadavPage() {
                       <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Dental Surgeon ECHS, Rewari</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Former Dental Surgeon, ECHS (Rewari)</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -204,7 +204,7 @@ export default function DrSKYadavPage() {
                       <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Prof. DJ Dental College</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Former Professor, DJ College of Dental Sciences</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -212,7 +212,7 @@ export default function DrSKYadavPage() {
                       <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Worked as adjunct Professor and PG guide at UCMS, NEPAL</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Adjunct Professor &amp; PG Guide, UCMS (Nepal)</strong>
                     </div>
                   </li>
                 </ul>

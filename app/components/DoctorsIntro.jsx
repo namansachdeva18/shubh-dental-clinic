@@ -234,15 +234,15 @@ export default function DoctorsIntro() {
               <div className="cv-divider"></div>
               
               <ul className="doctor-card-creds">
-                <li><Award size={16} /><span><strong>Fellow WFO (USA)</strong></span></li>
-                <li><CheckCircle size={16} /><span><strong>Braces and Implants Specialist</strong></span></li>
-                <li><CheckCircle size={16} /><span><strong>Consultant Invisalign Provider</strong></span></li>
-                <li><CheckCircle size={16} /><span><strong>Certified Implantologist</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Ex. SR PGI Chandigarh</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Ex. Consultant ESI Hospital, Bhiwani</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Ex. Dental Surgeon ECHS, Rewari</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Ex. Prof. DJ Dental College</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Worked as adjunct Professor and PG guide at UCMS, NEPAL</strong></span></li>
+                <li><Award size={16} /><span><strong>Fellow of the World Federation of Orthodontists (WFO, USA)</strong></span></li>
+                <li><CheckCircle size={16} /><span><strong>Specialist in Orthodontics &amp; Dental Implants</strong></span></li>
+                <li><CheckCircle size={16} /><span><strong>Certified Consultant Invisalign® Provider</strong></span></li>
+                <li><CheckCircle size={16} /><span><strong>Certified Clinical Implantologist</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Former Senior Resident, PGI Chandigarh</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Former Consultant, ESI Hospital (Bhiwani)</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Former Dental Surgeon, ECHS (Rewari)</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Former Professor, DJ College of Dental Sciences</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Adjunct Professor &amp; PG Guide, UCMS (Nepal)</strong></span></li>
               </ul>
               
               <Link href="/doctors/dr-sk-yadav" className="btn btn-outline cv-btn">
@@ -289,11 +289,11 @@ export default function DoctorsIntro() {
               <div className="cv-divider"></div>
 
               <ul className="doctor-card-creds">
-                <li><CheckCircle size={16} /><span><strong>Consultant Oral Pathologist</strong></span></li>
-                <li><CheckCircle size={16} /><span><strong>Certified Cosmetic Dentist</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Ex. Asst. Professor PGI Rohtak</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Ex. Dental Surgeon ECHS, Rewari</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Ex. Prof. DJ Dental College</strong></span></li>
+                <li><CheckCircle size={16} /><span><strong>Consultant Specialist in Oral Pathology</strong></span></li>
+                <li><CheckCircle size={16} /><span><strong>Certified Expert in Cosmetic Dentistry</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Former Assistant Professor, PGI Rohtak</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Former Dental Surgeon, ECHS (Rewari)</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Former Professor, DJ College of Dental Sciences</strong></span></li>
               </ul>
               
               <Link href="/doctors/dr-achita-yadav" className="btn btn-outline cv-btn">
