@@ -207,6 +207,14 @@ export default function DrSKYadavPage() {
                       <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Prof. DJ Dental College</strong>
                     </div>
                   </li>
+                  <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                    <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
+                      <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Worked as adjunct Professor and PG guide at UCMS, NEPAL</strong>
+                    </div>
+                  </li>
                 </ul>
               </motion.div>
 

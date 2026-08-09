@@ -242,6 +242,7 @@ export default function DoctorsIntro() {
                 <li><GraduationCap size={16} /><span><strong>Ex. Consultant ESI Hospital, Bhiwani</strong></span></li>
                 <li><GraduationCap size={16} /><span><strong>Ex. Dental Surgeon ECHS, Rewari</strong></span></li>
                 <li><GraduationCap size={16} /><span><strong>Ex. Prof. DJ Dental College</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>Worked as adjunct Professor and PG guide at UCMS, NEPAL</strong></span></li>
               </ul>
               
               <Link href="/doctors/dr-sk-yadav" className="btn btn-outline cv-btn">
