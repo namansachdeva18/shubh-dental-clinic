@@ -88,7 +88,7 @@ export default function Header() {
             {/* Logo */}
             <Link href="/" className="nav-logo" aria-label="Shubh Orthodontic & Dental Clinic — Home">
               <div className="logo-icon-wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', padding: '0' }}>
-                <Image src="/logo.webp" alt="Shubh Dental Clinic Logo" width={64} height={64} priority style={{ objectFit: 'contain' }} />
+                <Image src="/logo.webp?v=2" alt="Shubh Dental Clinic Logo" width={64} height={64} priority style={{ objectFit: 'contain' }} />
               </div>
               <div className="logo-text" style={{ gap: '0px' }}>
                 <span className="logo-dr-name" style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)' }}>Dr. S.K. Yadav's</span>
@@ -165,7 +165,7 @@ export default function Header() {
             <div className="mobile-nav-header">
               <Link href="/" className="nav-logo" onClick={() => setMobileOpen(false)}>
                 <div className="logo-icon-wrap" style={{ width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent' }}>
-                  <Image src="/logo.webp" alt="Logo" width={44} height={44} style={{ objectFit: 'contain' }} />
+                  <Image src="/logo.webp?v=2" alt="Logo" width={44} height={44} style={{ objectFit: 'contain' }} />
                 </div>
                 <div className="logo-text" style={{ gap: '0px' }}>
                   <span style={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--text-secondary)' }}>Dr. S.K. Yadav's</span>
