@@ -107,6 +107,7 @@ export default function InnovativeHeroBg() {
           position: absolute;
           border-radius: 50%;
           mix-blend-mode: multiply;
+          will-change: transform;
         }
         .blob-1 {
           width: 650px;
@@ -126,7 +127,7 @@ export default function InnovativeHeroBg() {
         /* 2. ANIMATED GRID */
         .animated-grid {
           position: absolute;
-          inset: 0;
+          inset: -100px; /* Make it slightly larger so edges don't show when moving */
           background-size: 60px 60px;
           background-image: 
             linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
@@ -134,11 +135,12 @@ export default function InnovativeHeroBg() {
           mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
           -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
           transform: perspective(500px) rotateX(60deg) scale(2.5) translateY(-100px);
-          animation: gridMove 20s linear infinite;
+          animation: gridMove 5s linear infinite;
+          will-change: transform;
         }
         @keyframes gridMove {
-          0% { background-position: 0 0; }
-          100% { background-position: 0 60px; }
+          0% { transform: perspective(500px) rotateX(60deg) scale(2.5) translateY(-100px); }
+          100% { transform: perspective(500px) rotateX(60deg) scale(2.5) translateY(-40px); }
         }
 
         /* 3. GLASSMORPHISM SHAPES */
@@ -192,6 +194,7 @@ export default function InnovativeHeroBg() {
           border-radius: 50%;
           opacity: 0.3;
           animation: floatParticle linear infinite;
+          will-change: transform, opacity;
         }
         @keyframes floatParticle {
           0% { transform: translateY(100vh) scale(0); opacity: 0; }
