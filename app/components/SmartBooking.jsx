@@ -194,9 +194,10 @@ export default function SmartBooking() {
                     </div>
                   </div>
 
-                  <button type="submit" className="btn-submit-booking">
+                  <button type="submit" className="btn-submit-booking" style={{ whiteSpace: 'nowrap' }}>
                     <Send size={18} />
-                    <span>Confirm & Book on WhatsApp</span>
+                    <span className="hide-mobile">Confirm & Book on WhatsApp</span>
+                    <span className="show-mobile">Confirm Booking</span>
                   </button>
                 </form>
               )}
@@ -427,10 +428,6 @@ export default function SmartBooking() {
           transition: opacity 0.2s ease;
         }
 
-        .input-box input, .input-box select {
-          padding-left: 2.4rem;
-        }
-
         .input-group input, .input-group select {
           width: 100%;
           padding: 0.75rem 0.85rem;
@@ -442,6 +439,10 @@ export default function SmartBooking() {
           background: #FDFBF9;
           color: #110805;
           box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .input-group .input-box input, .input-group .input-box select {
+          padding-left: 2.4rem;
         }
 
         .input-group input:focus, .input-group select:focus {
@@ -553,6 +554,12 @@ export default function SmartBooking() {
             padding: 2.5rem 1.5rem;
           }
         }
+
+        @media (max-width: 640px) {
+          .hide-mobile { display: none !important; }
+          .show-mobile { display: inline !important; }
+        }
+        .show-mobile { display: none; }
       `}} />
     </section>
   );
