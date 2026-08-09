@@ -275,7 +275,7 @@ export default function DoctorsIntro() {
                   />
                 </div>
               </div>
-              <div className="doctor-card-badge glow-badge">🤖 AI Oral Cancer Researcher · h-index 12</div>
+              <div className="doctor-card-badge glow-badge">✨ Certified Cosmetic &amp; Aesthetic Dentist</div>
             </div>
 
             <div className="doctor-card-body">

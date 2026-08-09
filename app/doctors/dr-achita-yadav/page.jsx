@@ -42,7 +42,7 @@ export default function DrAchitaYadavPage() {
           
           <div className="doc-hero-grid">
             <motion.div initial="hidden" animate="show" variants={staggerContainer} style={{ color: '#fff' }}>
-              <motion.div variants={fadeUp} className="section-badge badge-gold" style={{ border: '1px solid rgba(214, 122, 65, 0.3)' }}>🤖 AI Oral Pathology &amp; Smile Design</motion.div>
+              <motion.div variants={fadeUp} className="section-badge badge-gold" style={{ border: '1px solid rgba(214, 122, 65, 0.3)' }}>✨ Certified Cosmetic &amp; Aesthetic Dentist</motion.div>
               <motion.h1 variants={fadeUp} style={{ color: '#fff', fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.5rem, 4vw, 4rem)', fontWeight: 800, marginBottom: '0.5rem', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
                 Dr (Prof.) Achla Yadav
               </motion.h1>
