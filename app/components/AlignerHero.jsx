@@ -344,7 +344,7 @@ export default function AlignerHero() {
                     </div>
                   </div>
 
-                  <Link href="#book" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: '1.5rem', whiteSpace: 'nowrap' }}>
+                  <Link href="#book" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: '1.5rem', textAlign: 'center' }}>
                     <span className="hide-mobile">Reserve {activeAligner.name.split(' ')[0]} Consultation</span>
                     <span className="show-mobile">Reserve Consultation</span>
                   </Link>
@@ -485,7 +485,7 @@ export default function AlignerHero() {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-            <Link href="#book" className="btn btn-gold" style={{ display: 'inline-flex', padding: '1rem 2.2rem', fontSize: '1rem', gap: '0.6rem', whiteSpace: 'nowrap' }}>
+            <Link href="#book" className="btn btn-gold" style={{ display: 'inline-flex', padding: '1rem 2.2rem', fontSize: '1rem', gap: '0.6rem', textAlign: 'center' }}>
               <span className="hide-mobile">Book Priority Aligner Scan in Your City</span>
               <span className="show-mobile">Book Priority Scan</span> <ArrowRight size={18} />
             </Link>

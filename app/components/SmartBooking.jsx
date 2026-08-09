@@ -194,7 +194,7 @@ export default function SmartBooking() {
                     </div>
                   </div>
 
-                  <button type="submit" className="btn-submit-booking" style={{ whiteSpace: 'nowrap' }}>
+                  <button type="submit" className="btn-submit-booking">
                     <Send size={18} />
                     <span className="hide-mobile">Confirm & Book on WhatsApp</span>
                     <span className="show-mobile">Confirm Booking</span>

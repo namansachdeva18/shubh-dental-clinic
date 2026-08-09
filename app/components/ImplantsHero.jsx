@@ -241,7 +241,7 @@ export default function ImplantsHero() {
                     </div>
                   </div>
 
-                  <Link href="#book" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: '1.5rem', whiteSpace: 'nowrap' }}>
+                  <Link href="#book" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: '1.5rem', textAlign: 'center' }}>
                     <span className="hide-mobile">Book {activePkg.name.split(' ')[0]} Consultation</span>
                     <span className="show-mobile">Book Consultation</span>
                   </Link>

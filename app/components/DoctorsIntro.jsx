@@ -117,7 +117,7 @@ export default function DoctorsIntro() {
               </div>
 
               <div style={{ display: 'flex', gap: '1rem', marginTop: '1.75rem', flexWrap: 'wrap' }}>
-                <Link href="#book" className="btn btn-gold" style={{ width: 'fit-content', whiteSpace: 'nowrap' }}>
+                <Link href="#book" className="btn btn-gold" style={{ width: 'fit-content' }}>
                   <CheckCircle size={16} aria-hidden="true" />
                   <span className="hide-mobile">Schedule Specialist Consultation</span>
                   <span className="show-mobile">Schedule Consultation</span>
@@ -241,7 +241,7 @@ export default function DoctorsIntro() {
                 <li><CheckCircle size={16} /><span><strong>Certified Provider</strong> — Invisalign® &amp; Damon® Self-Ligating Braces</span></li>
               </ul>
               
-              <Link href="/doctors/dr-sk-yadav" className="btn btn-outline cv-btn" style={{ whiteSpace: 'nowrap' }}>
+              <Link href="/doctors/dr-sk-yadav" className="btn btn-outline cv-btn">
                 <span className="hide-mobile">Explore Research &amp; CV Profile</span>
                 <span className="show-mobile">Explore Profile</span> <ArrowRight size={15} />
               </Link>
@@ -292,7 +292,7 @@ export default function DoctorsIntro() {
                 <li><Sparkles size={16} /><span><strong>Certified Cosmetic Dentist</strong> — Smile Design, Veneers &amp; Pathology</span></li>
               </ul>
               
-              <Link href="/doctors/dr-achita-yadav" className="btn btn-outline cv-btn" style={{ whiteSpace: 'nowrap' }}>
+              <Link href="/doctors/dr-achita-yadav" className="btn btn-outline cv-btn">
                 <span className="hide-mobile">Explore Research &amp; CV Profile</span>
                 <span className="show-mobile">Explore Profile</span> <ArrowRight size={15} />
               </Link>
