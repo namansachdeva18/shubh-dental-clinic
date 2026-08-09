@@ -241,8 +241,9 @@ export default function ImplantsHero() {
                     </div>
                   </div>
 
-                  <Link href="#book" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: '1.5rem' }}>
-                    Book {activePkg.name.split(' ')[0]} Consultation
+                  <Link href="#book" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: '1.5rem', whiteSpace: 'nowrap' }}>
+                    <span className="hide-mobile">Book {activePkg.name.split(' ')[0]} Consultation</span>
+                    <span className="show-mobile">Book Consultation</span>
                   </Link>
                 </div>
               </div>
@@ -682,11 +683,14 @@ export default function ImplantsHero() {
           .implant-pill-btn div:first-child { font-size: 0.86rem !important; line-height: 1.2; }
           .implant-pill-btn div:last-child { font-size: 0.68rem !important; }
           
-          .implant-detail-box { padding: 1.25rem 1rem; border-radius: 20px; }
+          .implant-detail-box { padding: 1.25rem 1rem; border-radius: 20px; overflow: hidden; }
           .implant-spec-card { padding: 1.25rem 1rem; }
           .spec-row { grid-template-columns: 1fr 1fr; gap: 0.85rem; }
           .spec-highlight { font-size: 1rem; }
+          .hide-mobile { display: none !important; }
+          .show-mobile { display: inline !important; }
         }
+        .show-mobile { display: none; }
       `}} />
     </section>
   );
