@@ -499,7 +499,7 @@ export default function Testimonials() {
           flex: 0 0 420px;
           max-width: 440px;
           display: flex;
-          transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
           cursor: pointer;
           position: relative;
         }

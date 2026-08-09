@@ -252,6 +252,7 @@ export default function ClinicTour() {
         /* Image Cards */
         .clinic-image-card {
           height: 220px;
+          width: 330px;
           border-radius: 20px;
           overflow: hidden;
           flex-shrink: 0;
@@ -332,6 +333,7 @@ export default function ClinicTour() {
           .clinic-tour-wrapper { padding: 3.5rem 0; }
           .clinic-image-card {
             height: 180px;
+            width: 270px;
           }
           .tour-title {
             font-size: 2rem;
