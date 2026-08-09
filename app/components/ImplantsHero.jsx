@@ -139,7 +139,7 @@ export default function ImplantsHero() {
             Replace Missing Teeth with <span className="text-gradient-copper">Same-Day Implants</span>
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.1rem', lineHeight: 1.7 }}>
-            Led by <span className="text-highlight">Dr. Achla Bharti Yadav</span> (MDS Prosthodontics &amp; Oral Specialist, <span className="text-highlight">Ex-PGI Rohtak</span>) &amp; <span className="text-highlight">Prof. Dr. S. K. Yadav</span>. Over <span className="text-highlight">3,000+ implants placed</span> with a <span className="text-highlight">98.4% success rate</span>.
+            Led by <span className="text-highlight">Dr (Prof.) S. K. Yadav</span> (Certified Clinical Implantologist, <span className="text-highlight">Ex-SR PGI Chandigarh</span>). Over <span className="text-highlight">3,000+ implants placed</span> with a <span className="text-highlight">98.4% success rate</span>.
           </p>
         </div>
 
