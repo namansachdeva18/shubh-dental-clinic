@@ -13,7 +13,7 @@ export default function Footer() {
           {/* Brand Info */}
           <StaggerItem className="footer-brand-col" variant="fadeUp">
             <div className="footer-brand-header">
-              <div className="footer-brand-logo font-heading">S</div>
+              <img src="/logo.webp" alt="Shubh Dental Clinic Logo" style={{ width: '45px', height: '45px', objectFit: 'contain', background: '#fff', borderRadius: '8px', padding: '4px' }} />
               <div>
                 <h3 className="footer-brand-title font-heading">
                   Shubh Orthodontic & Dental
@@ -44,6 +44,7 @@ export default function Footer() {
             <h4 className="footer-col-title font-heading">Quick Links</h4>
             <ul className="footer-links-list">
               <li><a href="#about"><ChevronRight size={13} className="link-arrow" />About Doctors</a></li>
+              <li><Link href="/dental-tourism"><ChevronRight size={13} className="link-arrow" />Dental Tourism (NRI)</Link></li>
               <li><a href="#booking"><ChevronRight size={13} className="link-arrow" />Book Appointment</a></li>
               <li><a href="#testimonials"><ChevronRight size={13} className="link-arrow" />Patient Reviews</a></li>
               <li><a href="#faq"><ChevronRight size={13} className="link-arrow" />FAQs</a></li>

@@ -136,6 +136,7 @@ export default function Header() {
               <Link href="/doctors" className="nav-link">Specialists</Link>
               <Link href="/about" className="nav-link">About</Link>
               <Link href="/gallery" className="nav-link">Gallery</Link>
+              <Link href="/dental-tourism" className="nav-link">Dental Tourism (NRI)</Link>
               <Link href="/blog" className="nav-link">Blog</Link>
               <Link href="/contact" className="nav-link">Contact</Link>
 
@@ -204,6 +205,7 @@ export default function Header() {
               <Link href="/doctors" className="mob-nav-link" onClick={() => setMobileOpen(false)}>Specialists</Link>
               <Link href="/about" className="mob-nav-link" onClick={() => setMobileOpen(false)}>About</Link>
               <Link href="/gallery" className="mob-nav-link" onClick={() => setMobileOpen(false)}>Gallery</Link>
+              <Link href="/dental-tourism" className="mob-nav-link" onClick={() => setMobileOpen(false)}>Dental Tourism (NRI)</Link>
               <Link href="/blog" className="mob-nav-link" onClick={() => setMobileOpen(false)}>Blog</Link>
               <Link href="/contact" className="mob-nav-link" onClick={() => setMobileOpen(false)}>Contact</Link>
 
