@@ -1,0 +1,25 @@
+{
+  "name": "Shubh Orthodontic & Dental Clinic",
+  "short_name": "Shubh Dental",
+  "description": "Premier Orthodontic & Dental Clinic in Rohtak, Haryana. Prof. Dr. S. K. Yadav — Invisalign, Braces, Implants & Smile Makeovers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FCFBF8",
+  "theme_color": "#4A2518",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["health", "medical"],
+  "lang": "en-IN"
+}

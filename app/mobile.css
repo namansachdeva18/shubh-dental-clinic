@@ -1,0 +1,269 @@
+/* =====================================================
+   MOBILE RESPONSIVE OVERRIDES
+   Breakpoints: 1300px | 1024px | 768px | 480px
+   ===================================================== */
+
+/* ===== HEADER ===== */
+@media (max-width: 1300px) {
+  .nav-desktop { display: none !important; }
+  .hamburger { display: flex !important; }
+  .header-cta-desktop { display: none !important; }
+}
+
+@media (max-width: 768px) {
+  .top-bar { display: none; }
+  :root {
+    --header-height: 70px;
+    --section-pad-y: 40px;
+    --section-pad-y-lg: 64px;
+  }
+  .mobile-bottom-bar { display: block; }
+  main { padding-bottom: 80px; }
+}
+
+/* ===== HERO ===== */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-image-col {
+    order: -1;
+    height: 55vw;
+    min-height: 300px;
+    max-height: 500px;
+  }
+  .hero-content-col {
+    padding: 2.5rem var(--container-pad) !important;
+  }
+  .hero-stats-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image-col { height: 260px; }
+  .hero-stats-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  .hero-cta-group {
+    flex-direction: column !important;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===== DOCTORS INTRO ===== */
+@media (max-width: 1024px) {
+  .doctors-banner-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .doctors-banner-image {
+    height: 400px;
+  }
+  .doctor-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== TREATMENT NAVIGATOR ===== */
+@media (max-width: 1024px) {
+  .treatment-nav-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .treatment-nav-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* ===== SERVICES ===== */
+@media (max-width: 768px) {
+  .services-featured-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== ALIGNER / IMPLANTS HERO ===== */
+@media (max-width: 1024px) {
+  .flagship-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .flagship-benefits-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .flagship-benefits-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== ABOUT SECTION ===== */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ===== SMILE MAKEOVER ===== */
+@media (max-width: 1024px) {
+  .makeover-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .makeover-bento {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .makeover-bento {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== PATIENT GALLERY ===== */
+@media (max-width: 1024px) {
+  .gallery-masonry {
+    columns: 2 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery-masonry {
+    columns: 1 !important;
+  }
+}
+
+/* ===== CLINIC GALLERY ===== */
+@media (max-width: 768px) {
+  .coverflow-card {
+    width: 280px !important;
+    height: 200px !important;
+  }
+}
+
+/* ===== TESTIMONIALS ===== */
+@media (max-width: 768px) {
+  .review-card {
+    min-width: 290px !important;
+    max-width: 290px !important;
+  }
+}
+
+/* ===== SMART BOOKING ===== */
+@media (max-width: 1024px) {
+  .booking-layout {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .treatment-select-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .time-slots-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ===== CONTACT SECTION ===== */
+@media (max-width: 1024px) {
+  .contact-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== FOOTER ===== */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== DOCTOR CARDS ===== */
+@media (max-width: 768px) {
+  .doctor-card-photo {
+    height: 300px !important;
+  }
+}
+
+/* ===== TREATMENT PAGES ===== */
+@media (max-width: 1024px) {
+  .treatment-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .treatment-sidebar {
+    position: static !important;
+    order: -1;
+  }
+}
+
+/* ===== PREMIUM SECTIONS ===== */
+@media (max-width: 1024px) {
+  .premium-editorial-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== GENERAL MOBILE ===== */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: block !important; }
+
+  .container { padding: 0 1rem; }
+  h1 { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+  h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+
+  .section { padding: 48px 0; }
+  .section-sm { padding: 32px 0; }
+  .section-header { margin-bottom: 2rem; }
+
+  .btn { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
+  .btn-lg { padding: 0.85rem 2rem; }
+
+  .steps-bar { gap: 0; }
+  .step-line { max-width: 40px; }
+}
+
+@media (max-width: 480px) {
+  :root { --container-pad: 1rem; }
+  .floating-card { transform: scale(0.85); }
+}
+
+/* ===== SAFE AREA FOR MOBILE ===== */
+@supports (padding: max(0px)) {
+  .mobile-bottom-bar {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* ===== PREVENT HORIZONTAL SCROLL ===== */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ===== TAP TARGETS ===== */
+@media (max-width: 768px) {
+  button, a, .accordion-trigger, .mobile-bar-btn {
+    min-height: 44px;
+  }
+}
