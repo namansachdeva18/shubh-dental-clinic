@@ -68,11 +68,11 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon-logo.png', type: 'image/png', sizes: '512x512' },
-      { url: '/favicon-logo.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon-logo.png?v=2', type: 'image/png', sizes: '512x512' },
+      { url: '/favicon-logo.png?v=2', type: 'image/png', sizes: '32x32' },
     ],
-    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
-    shortcut: '/favicon-logo.png',
+    apple: [{ url: '/apple-touch-icon.png?v=2', sizes: '180x180' }],
+    shortcut: '/favicon-logo.png?v=2',
   },
   alternates: {
     canonical: 'https://www.shubhdentalclinicrohtak.in',
@@ -95,9 +95,9 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <link rel="dns-prefetch" href="https://maps.gstatic.com" />
         {/* Favicons */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon-logo.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+        <link rel="icon" href="/favicon-logo.png?v=2" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
         {/* Geo Meta — Local SEO */}
         <meta name="geo.region" content="IN-HR" />
         <meta name="geo.placename" content="Rohtak" />

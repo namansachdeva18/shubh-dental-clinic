@@ -140,7 +140,7 @@ export default function ContactSection() {
             </div>
             <iframe
               title="Shubh Orthodontic & Dental Clinic Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3493.5356910609346!2d76.6044113!3d28.8955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d850a55555555%3A0x808581e285d8519e!2sShubh%20Orthodontic%20%26%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3493.5356910609346!2d76.6044113!3d28.8955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d8526ff0b9379%3A0xb15b60e3947148d7!2sShubh%20Orthodontic%20%26%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}

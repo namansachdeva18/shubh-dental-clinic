@@ -171,7 +171,7 @@ export default function Hero() {
                 transition={{ delay: 1.0, duration: 0.8, ease: 'easeOut' }}
               >
                 <div className="hs-sa-img">
-                  <Image src="/hero/products/skyalign-case.png" alt="SkyAlign Clear Aligners" fill
+                  <Image src="/invisalign.webp?v=2" alt="SkyAlign Clear Aligners" fill
                     style={{ objectFit: 'contain' }} sizes="56px"
                     onError={(e) => { e.target.style.display = 'none'; }} />
                 </div>
