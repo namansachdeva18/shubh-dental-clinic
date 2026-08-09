@@ -7,12 +7,12 @@ import { Menu, X, Phone, MapPin, Clock, ChevronDown, Calendar, MessageCircle, Bo
 const NAV_TREATMENTS = [
   { group: 'Orthodontics', items: [
     { name: 'Dental Braces', href: '/treatments/dental-braces' },
-    { name: 'Invisalign / Clear Aligners', href: '/treatments/invisalign-clear-aligners' },
+    { name: 'Invisalign® Clear Aligners', href: '/treatments/invisalign-clear-aligners' },
+    { name: 'SkyAlign™ In-House Aligners', href: '/treatments/invisalign-clear-aligners' },
     { name: 'Lingual Braces', href: '/treatments/lingual-braces' },
-    { name: 'Ceramic Braces', href: '/treatments/dental-braces' },
   ]},
   { group: 'Implantology', items: [
-    { name: 'Dental Implants', href: '/treatments/dental-implants' },
+    { name: 'Same-Day Dental Implants', href: '/treatments/dental-implants' },
     { name: 'Full Mouth Implants', href: '/treatments/dental-implants' },
     { name: 'Implant-Supported Dentures', href: '/treatments/dental-implants' },
   ]},
