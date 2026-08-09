@@ -241,8 +241,9 @@ export default function DoctorsIntro() {
                 <li><CheckCircle size={16} /><span><strong>Certified Provider</strong> — Invisalign® &amp; Damon® Self-Ligating Braces</span></li>
               </ul>
               
-              <Link href="/doctors/dr-sk-yadav" className="btn btn-outline cv-btn">
-                <span>Explore Research &amp; CV Profile</span> <ArrowRight size={15} />
+              <Link href="/doctors/dr-sk-yadav" className="btn btn-outline cv-btn" style={{ whiteSpace: 'nowrap' }}>
+                <span className="hide-mobile">Explore Research &amp; CV Profile</span>
+                <span className="show-mobile">Explore Profile</span> <ArrowRight size={15} />
               </Link>
             </div>
           </motion.article>
@@ -291,8 +292,9 @@ export default function DoctorsIntro() {
                 <li><Sparkles size={16} /><span><strong>Certified Cosmetic Dentist</strong> — Smile Design, Veneers &amp; Pathology</span></li>
               </ul>
               
-              <Link href="/doctors/dr-achita-yadav" className="btn btn-outline cv-btn">
-                <span>Explore Research &amp; CV Profile</span> <ArrowRight size={15} />
+              <Link href="/doctors/dr-achita-yadav" className="btn btn-outline cv-btn" style={{ whiteSpace: 'nowrap' }}>
+                <span className="hide-mobile">Explore Research &amp; CV Profile</span>
+                <span className="show-mobile">Explore Profile</span> <ArrowRight size={15} />
               </Link>
             </div>
           </motion.article>

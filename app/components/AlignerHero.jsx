@@ -344,8 +344,9 @@ export default function AlignerHero() {
                     </div>
                   </div>
 
-                  <Link href="#book" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: '1.5rem' }}>
-                    Reserve {activeAligner.name.split(' ')[0]} Consultation
+                  <Link href="#book" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: '1.5rem', whiteSpace: 'nowrap' }}>
+                    <span className="hide-mobile">Reserve {activeAligner.name.split(' ')[0]} Consultation</span>
+                    <span className="show-mobile">Reserve Consultation</span>
                   </Link>
                 </div>
               </div>
@@ -999,10 +1000,14 @@ export default function AlignerHero() {
         @media (max-width: 640px) {
           .aligner-hero-section { padding: 3.5rem 0; }
           .aligner-pills-grid { grid-template-columns: 1fr; }
+          .aligner-detail-box { padding: 1.5rem; overflow: hidden; }
           .material-grid { grid-template-columns: 1fr; }
           .spec-row { grid-template-columns: 1fr; }
           .location-cards-grid { grid-template-columns: 1fr; }
+          .hide-mobile { display: none !important; }
+          .show-mobile { display: inline !important; }
         }
+        .show-mobile { display: none; }
       `}} />
     </section>
   );
