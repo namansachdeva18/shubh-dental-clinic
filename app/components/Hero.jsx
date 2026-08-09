@@ -53,7 +53,7 @@ export default function Hero() {
 
             {/* Supporting paragraph */}
             <motion.p className="hs-desc" variants={fadeUp}>
-              Haryana’s <span className="text-highlight">most awarded</span> orthodontic centre, led by <mark className="hs-hl hs-hl--gold">Prof. Dr. S. K. Yadav</mark> — <span className="text-highlight">Ex-PGI Chandigarh</span>, Fellow WFO (USA). Offering <mark className="hs-hl">self-ligating Damon® braces</mark>, <mark className="hs-hl hs-hl--primary">Invisalign® &amp; SkyAlign™ clear aligners</mark>, <mark className="hs-hl">same-day dental implants</mark>, and <mark className="hs-hl">porcelain veneers</mark> with <span className="text-highlight">cutting-edge 3D digital planning</span> — all under one roof in Rohtak.
+              Haryana’s <strong>most awarded</strong> orthodontic centre, led by <strong>Prof. Dr. S. K. Yadav</strong> — <strong>Ex-PGI Chandigarh</strong>, Fellow WFO (USA). Offering <strong>self-ligating Damon® braces</strong>, <strong>Invisalign® &amp; SkyAlign™ clear aligners</strong>, <strong>same-day dental implants</strong>, and <strong>porcelain veneers</strong> with <strong>cutting-edge 3D digital planning</strong> — all under one roof in Rohtak.
             </motion.p>
 
             {/* CTAs */}
