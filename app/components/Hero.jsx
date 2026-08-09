@@ -923,7 +923,7 @@ export default function Hero() {
         @media (max-width: 768px) {
           /* ─ Mobile App Layout ─ */
           .hs-root {
-            padding: 84px 0 40px;
+            padding: 84px 0 100px;
             min-height: auto;
           }
 
