@@ -879,6 +879,7 @@ export default function SkyAlignSection() {
           }
           .step-connector { display: none; }
           .skyalign-offer-banner { padding: 2rem; }
+          .offer-cta-group { flex-direction: column; }
         }
       `}} />
     </section>
