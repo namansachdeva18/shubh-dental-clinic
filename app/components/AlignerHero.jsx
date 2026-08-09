@@ -485,8 +485,9 @@ export default function AlignerHero() {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-            <Link href="#book" className="btn btn-gold" style={{ display: 'inline-flex', padding: '1rem 2.2rem', fontSize: '1rem', gap: '0.6rem' }}>
-              Book Priority Aligner Scan in Your City <ArrowRight size={18} />
+            <Link href="#book" className="btn btn-gold" style={{ display: 'inline-flex', padding: '1rem 2.2rem', fontSize: '1rem', gap: '0.6rem', whiteSpace: 'nowrap' }}>
+              <span className="hide-mobile">Book Priority Aligner Scan in Your City</span>
+              <span className="show-mobile">Book Priority Scan</span> <ArrowRight size={18} />
             </Link>
           </div>
         </div>
