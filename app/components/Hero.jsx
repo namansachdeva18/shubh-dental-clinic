@@ -235,7 +235,7 @@ export default function Hero() {
                 <div className="logo-img-container">
                   <Image src="/osstem-implant.jpeg" alt="Osstem Implant Provider" fill style={{ objectFit: 'contain' }} />
                 </div>
-                <span className="logo-card-label">Osstem Implant Provider</span>
+                <span className="logo-card-label">Certified IMPLANTOLOGIST</span>
               </div>
             </div>
 
