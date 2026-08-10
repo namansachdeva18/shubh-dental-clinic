@@ -89,8 +89,8 @@ const CLINICAL_CASES = [
     id: 'implant-case-2',
     label: 'Full Arch Rehabilitation',
     duration: 'Same Day Fixed',
-    beforeSrc: '/implants/371D3CEC-9809-4544-9196-0D1DAE262322.png',
-    afterSrc: '/implants/42C48DEA-EF04-4CBD-B18C-85C738617326.png',
+    beforeSrc: '/implants/fullarch-before.webp',
+    afterSrc: '/implants/fullarch-after.webp',
     beforeAlt: 'Full arch implant treatment',
     afterAlt: 'Full arch implant treatment',
     details: 'All-on-4® computer guided immediate loading for complete upper jaw rehabilitation.'
