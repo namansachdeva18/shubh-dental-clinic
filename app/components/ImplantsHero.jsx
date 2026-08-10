@@ -87,13 +87,23 @@ const CLINICAL_CASES = [
   },
   {
     id: 'implant-case-2',
-    label: 'Full Arch Rehabilitation',
+    label: 'Full Mouth Rehab',
     duration: 'Same Day Fixed',
     beforeSrc: '/fullarch-before.webp',
     afterSrc: '/fullarch-after.webp',
-    beforeAlt: 'Full arch implant treatment',
-    afterAlt: 'Full arch implant treatment',
-    details: 'All-on-4® computer guided immediate loading for complete upper jaw rehabilitation.'
+    beforeAlt: 'Full mouth rehabilitation implant treatment',
+    afterAlt: 'Full mouth rehabilitation implant treatment',
+    details: 'All-on-4® computer guided immediate loading for complete upper and lower jaw rehabilitation.'
+  },
+  {
+    id: 'implant-case-3',
+    label: 'Immediate Extraction Implant',
+    duration: 'Single Visit',
+    beforeSrc: '/front-before.webp',
+    afterSrc: '/front-after.webp',
+    beforeAlt: 'Immediate extraction and implant placement',
+    afterAlt: 'Immediate extraction and implant placement',
+    details: 'Painless tooth extraction and single-visit immediate titanium implant placement.'
   }
 ];
 
