@@ -261,7 +261,7 @@ export default function ImplantsHero() {
               Same-Day Implant Transformations
             </h3>
             <p style={{ color: 'rgba(255,255,255,0.75)', lineHeight: 1.7, fontSize: '1rem', marginBottom: '1.5rem' }}>
-              Inspect authentic patient cases treated by <span className="text-highlight">Dr. Achla Bharti Yadav</span> using <span className="text-highlight">3D guided computer planning</span> and <span className="text-highlight">German ceramic crowns</span>.
+              Inspect authentic patient cases treated by <span className="text-highlight">Dr. (Prof.) S. K. Yadav</span> using <span className="text-highlight">3D guided computer planning</span> and <span className="text-highlight">German ceramic crowns</span>.
             </p>
 
             {/* Case Selector Tabs */}
@@ -284,12 +284,12 @@ export default function ImplantsHero() {
             {/* Doctor Card */}
             <div className="doctor-trust-card" style={{ marginTop: '2rem' }}>
               <div className="doctor-trust-img">
-                <Image src="/dr-achita-yadav.webp" alt="Dr. Achla Bharti Yadav — Implantologist Rohtak" fill style={{ objectFit: 'cover', objectPosition: 'top' }} sizes="100px" />
+                <Image src="/dr-sk-yadav.webp" alt="Dr. S. K. Yadav — Implantologist Rohtak" fill style={{ objectFit: 'cover', objectPosition: 'top' }} sizes="100px" />
               </div>
               <div>
-                <div style={{ fontWeight: 800, color: '#fff', fontSize: '1rem' }}>Dr. Achla Bharti Yadav</div>
+                <div style={{ fontWeight: 800, color: '#fff', fontSize: '1rem' }}>Dr. (Prof.) S. K. Yadav</div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--accent-gold-light)', margin: '0.1rem 0 0.4rem' }}>
-                  MDS · Oral &amp; Cosmetic Specialist · Ex-PGI Rohtak
+                  Certified Clinical Implantologist · Ex-SR PGI Chandigarh
                 </div>
                 <div style={{ display: 'flex', gap: '0.2rem' }}>
                   {[...Array(5)].map((_, i) => (
@@ -309,7 +309,7 @@ export default function ImplantsHero() {
                 afterAlt={selectedCase.afterAlt}
               />
               <div className="implant-slider-caption">
-                Slide to compare · Same Day Implant Procedure by Dr. Achla Bharti Yadav
+                Slide to compare · Same Day Implant Procedure by Dr. (Prof.) S. K. Yadav
               </div>
             </div>
           </div>

@@ -56,7 +56,7 @@ export default function SplashScreen() {
             >
               <div className="splash-logo-glow" />
               <Image
-                src="/logo.webp"
+                src="/logo.webp?v=2"
                 alt="Shubh Orthodontic & Dental Clinic Logo"
                 width={110}
                 height={110}
