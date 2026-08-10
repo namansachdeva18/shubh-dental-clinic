@@ -92,7 +92,7 @@ export default function InnovativeHeroBg() {
         ))}
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .innovative-bg-wrapper {
           position: absolute;
           inset: 0;
@@ -214,7 +214,7 @@ export default function InnovativeHeroBg() {
           .shape-tooth { left: -10%; }
           .shape-braces { right: -10%; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }
