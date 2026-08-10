@@ -180,7 +180,7 @@ export const treatments = [
       { q: 'How do I maintain dental implants?', a: 'Treat them like natural teeth — brush twice daily, floss daily, and attend regular check-ups.' },
     ],
     limitations: ['Multiple appointments over several months', 'Surgery not suitable for everyone', 'Higher upfront cost', 'Smoking significantly reduces success rate'],
-    technologyUsed: ['3D CBCT Scanning', 'Computer-Guided Surgery', 'Titanium Implants (Nobel Biocare, Straumann)', 'CAD/CAM Crowns'],
+    technologyUsed: ['3D CBCT Scanning', 'Computer-Guided Surgery', 'Titanium Implants (Osstem, Straumann)', 'CAD/CAM Crowns'],
     recoveryTimeline: '3–7 days for initial healing. Full osseointegration 3–6 months.',
     successFactors: ['Good oral hygiene', 'No smoking', 'Controlled medical conditions', 'Regular follow-ups'],
     whenToVisit: 'As soon as possible after losing a tooth — bone loss begins within weeks of extraction.',
