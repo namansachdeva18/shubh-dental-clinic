@@ -114,6 +114,16 @@ const CLINICAL_CASES = [
     beforeAlt: 'Pre-op dental scan',
     afterAlt: 'Post-op final crown restoration',
     details: 'Flapless computer guided precision implant with natural enamel shade matching.'
+  },
+  {
+    id: 'implant-case-5',
+    label: 'Molar Implant Restoration',
+    duration: 'Immediate Loading',
+    beforeSrc: '/implants/692FBE7A-1031-4187-81F4-170F58B0EE3C.png',
+    afterSrc: '/implants/42C48DEA-EF04-4CBD-B18C-85C738617326.png',
+    beforeAlt: 'Pre-op molar area',
+    afterAlt: 'Post-op molar zirconia crown',
+    details: 'Custom 3D guided computer placement for molar tooth restoration.'
   }
 ];
 
