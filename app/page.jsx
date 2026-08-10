@@ -83,6 +83,7 @@ export default function HomePage() {
       <Hero />
       <ReviewsTicker />
       <DoctorsIntro />
+      <Testimonials />
       <TreatmentNavigator />
       <AlignerHero />
       <SkyAlignSection />
@@ -90,7 +91,6 @@ export default function HomePage() {
       <KidsDentistry />
       <PatientGallery />
       <ClinicTour />
-      <Testimonials />
       <AboutSection />
       <SmartBooking />
       <FAQSection />
