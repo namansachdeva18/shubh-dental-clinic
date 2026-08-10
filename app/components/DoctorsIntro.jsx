@@ -842,6 +842,39 @@ export default function DoctorsIntro() {
           .accreditations-bar { padding: 1rem; }
           .hide-mobile { display: none !important; }
           .show-mobile { display: inline !important; }
+          
+          /* Fix floating badge overlap */
+          .floating-photo-badge {
+            padding: 0.5rem 0.75rem;
+            gap: 0.5rem;
+          }
+          .floating-photo-badge .badge-icon {
+            font-size: 1.1rem;
+          }
+          .floating-photo-badge strong {
+            font-size: 0.75rem;
+          }
+          .floating-photo-badge span {
+            font-size: 0.65rem;
+          }
+          .badge-top-right {
+            top: 15px;
+            right: 15px;
+            max-width: 85%;
+          }
+          .badge-bottom-left {
+            bottom: 15px;
+            left: 15px;
+            max-width: 85%;
+          }
+          .tag-right {
+            top: 100px;
+            right: 15px;
+          }
+          .tag-left {
+            bottom: 105px;
+            left: 15px;
+          }
         }
         .show-mobile { display: none; }
       `}} />
