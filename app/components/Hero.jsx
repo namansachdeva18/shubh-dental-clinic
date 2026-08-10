@@ -230,6 +230,13 @@ export default function Hero() {
                 </div>
                 <span className="logo-card-label">Fellow WFO USA</span>
               </div>
+
+              <div className="accreditation-logo-card">
+                <div className="logo-img-container">
+                  <Image src="/osstem-implant.jpeg" alt="Osstem Implant Provider" fill style={{ objectFit: 'contain' }} />
+                </div>
+                <span className="logo-card-label">Osstem Implant Provider</span>
+              </div>
             </div>
 
             <div className="accreditations-academic-strip">
@@ -774,13 +781,18 @@ export default function Hero() {
         }
 
         .accreditations-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: stretch;
           gap: 24px;
           margin-bottom: 2.5rem;
         }
 
         .accreditation-logo-card {
+          flex: 1 1 calc(20% - 24px);
+          min-width: 170px;
+          max-width: 240px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -800,6 +812,7 @@ export default function Hero() {
         .accreditation-logo-card:nth-child(2) { animation: floatLogoCard 6s ease-in-out infinite 1.5s; }
         .accreditation-logo-card:nth-child(3) { animation: floatLogoCard 6s ease-in-out infinite 3.0s; }
         .accreditation-logo-card:nth-child(4) { animation: floatLogoCard 6s ease-in-out infinite 4.5s; }
+        .accreditation-logo-card:nth-child(5) { animation: floatLogoCard 6s ease-in-out infinite 2.25s; }
 
         @keyframes floatLogoCard {
           0%, 100% { transform: translateY(0); }
@@ -1000,7 +1013,6 @@ export default function Hero() {
             padding: 2.5rem 0 2rem;
           }
           .accreditations-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
             gap: 16px !important;
           }
           .accreditations-bar-v2 {
@@ -1017,8 +1029,8 @@ export default function Hero() {
             justify-content: center;
           }
           @media (max-width: 500px) {
-            .accreditations-grid {
-              grid-template-columns: 1fr !important;
+            .accreditation-logo-card {
+              min-width: 100% !important;
             }
           }
 
