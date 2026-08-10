@@ -25,16 +25,17 @@ export default function Testimonials() {
   const [visibleCount, setVisibleCount] = useState(12);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [viewMode, setViewMode] = useState('coverflow'); // 'coverflow' | 'marquee' | 'grid'
+  const effectiveViewMode = activeFilter === 'All Reviews' ? viewMode : 'grid';
   const [coverflowIndex, setCoverflowIndex] = useState(0);
 
   // Automated 3D Coverflow Auto-Slide (every 5 seconds if active)
   useEffect(() => {
-    if (viewMode !== 'coverflow' || !isAutoPlaying) return;
+    if (effectiveViewMode !== 'coverflow' || !isAutoPlaying) return;
     const timer = setInterval(() => {
       setCoverflowIndex((prev) => (prev + 1) % reviews.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [viewMode, isAutoPlaying]);
+  }, [effectiveViewMode, isAutoPlaying]);
 
   // Filter & Search Logic
   const filteredReviews = useMemo(() => {
@@ -117,7 +118,7 @@ export default function Testimonials() {
         </div>
 
         {/* --- 3D COVERFLOW SHOWCASE DECK MODE --- */}
-        {viewMode === 'coverflow' && (
+        {effectiveViewMode === 'coverflow' && (
           <div className="coverflow-deck-wrapper">
             
             <div className="coverflow-deck-stage">
@@ -186,7 +187,7 @@ export default function Testimonials() {
         )}
 
         {/* --- 60fps INFINITE MARQUEE STREAM MODE --- */}
-        {viewMode === 'marquee' && (
+        {effectiveViewMode === 'marquee' && (
           <div className="reviews-display-area auto-scroll-enabled">
             <div className="desktop-masonry">
               <div className="masonry-column col-scroll-up">
@@ -209,9 +210,9 @@ export default function Testimonials() {
         )}
 
         {/* --- FULL GALLERY GRID MODE --- */}
-        {viewMode === 'grid' && (
+        {effectiveViewMode === 'grid' && (
           <div className="reviews-display-area">
-            <div className="desktop-masonry">
+            <div className="desktop-masonry" style={displayedReviews.length < 3 ? { display: 'flex', justifyContent: 'center', flexWrap: 'wrap' } : {}}>
               <div className="masonry-column">
                 {displayedReviews.filter((_, i) => i % 3 === 0).map((r) => (
                   <ReviewCard key={`gr1-${r.id}`} review={r} />
@@ -232,7 +233,7 @@ export default function Testimonials() {
         )}
 
         {/* Load More Button */}
-        {hasMore && viewMode !== 'coverflow' && (
+        {hasMore && effectiveViewMode !== 'coverflow' && (
           <div className="text-center" style={{ marginTop: '3rem' }}>
             <button
               onClick={() => setVisibleCount((prev) => prev + 6)}
