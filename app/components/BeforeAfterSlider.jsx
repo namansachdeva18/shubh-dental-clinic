@@ -43,7 +43,7 @@ export default function BeforeAfterSlider({ beforeSrc, afterSrc, beforeAlt = 'Be
       aria-valuemax={100}
       aria-label="Before and after comparison slider"
       tabIndex={0}
-      style={{ userSelect: 'none', cursor: 'col-resize', position: 'relative', height: 320, borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}
+      style={{ userSelect: 'none', cursor: 'col-resize', position: 'relative', width: '100%', aspectRatio: '4 / 3', minHeight: '260px', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}
     >
       {/* After (base) */}
       <div style={{ position: 'absolute', inset: 0 }}>

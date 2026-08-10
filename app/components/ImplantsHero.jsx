@@ -696,6 +696,12 @@ export default function ImplantsHero() {
           .implant-detail-box { padding: 1.25rem 1rem; border-radius: 20px; overflow: hidden; }
           .implant-spec-card { padding: 1.25rem 1rem; }
           .spec-row { grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+          
+          .implants-results-wrapper { padding: 1.25rem 0.85rem; border-radius: 20px; gap: 1.5rem; }
+          .case-selector-tabs { flex-direction: column; gap: 0.5rem; width: 100%; }
+          .case-tab-btn { width: 100%; text-align: center; padding: 0.65rem 1rem; font-size: 0.85rem; }
+          .implant-slider-wrap { border-radius: 16px; width: 100%; }
+          .implant-slider-caption { font-size: 0.72rem; padding: 0.6rem; line-height: 1.4; }
           .spec-highlight { font-size: 1rem; }
           .hide-mobile { display: none !important; }
           .show-mobile { display: inline !important; }
