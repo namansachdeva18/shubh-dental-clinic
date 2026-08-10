@@ -876,8 +876,121 @@ export const treatments = [
       'Recovery': '1–2 weeks',
     },
     relatedTreatments: ['dental-implants', 'crowns-and-bridges'],
-    alternatives: ['All-on-4 Dental Implants'],
   },
+  {
+    id: 'skyalign-clear-aligners',
+    title: 'SkyAlign™ Clear Aligners',
+    subtitle: 'Premium In-House Clear Aligners by Prof. Dr. S. K. Yadav',
+    doctor: 'Prof. Dr. S. K. Yadav',
+    doctorSlug: 'dr-sk-yadav',
+    duration: '6–12 months',
+    recovery: 'None',
+    cost: '₹45,000 – ₹1,20,000',
+    costRange: 'Direct from our in-house lab',
+    riskLevel: 'Very Low',
+    category: 'Orthodontics',
+    icon: '💎',
+    slug: 'skyalign-clear-aligners',
+    overview: 'SkyAlign™ is our proprietary, premium clear aligner system designed and manufactured entirely in-house at Shubh Orthodontic & Dental Clinic. By eliminating third-party international lab fees, we offer PGI-tier clinical precision and German medical-grade clear polymers at a fraction of the cost of imported brands. Every single tray is personally designed and approved by Prof. Dr. S. K. Yadav, ensuring a 100% precise fit.',
+    symptoms: [
+      'Crowded or overlapping teeth', 'Gaps between teeth', 'Relapse from previous braces',
+      'Desire for discreet orthodontic treatment', 'Looking for an affordable, high-quality invisible braces alternative'
+    ],
+    idealFor: 'Adults and teenagers wanting virtually invisible teeth straightening with direct specialist supervision and without the premium markup of international brands.',
+    notIdealFor: 'Severe skeletal discrepancies or patients who will not commit to wearing aligners for 20-22 hours a day.',
+    benefits: [
+      { icon: '✓', title: 'Completely Invisible', desc: 'Made from premium German ultra-clear medical-grade polymers' },
+      { icon: '✓', title: 'Direct Specialist Control', desc: 'Prof. Dr. S.K. Yadav designs every movement, not a remote lab technician' },
+      { icon: '✓', title: 'Cost-Effective', desc: 'No international shipping or third-party lab fees added to your cost' },
+      { icon: '✓', title: 'Faster Replacements', desc: 'Lost a tray? We can print a replacement in hours, not weeks' },
+      { icon: '✓', title: 'Precision Fit', desc: 'In-house 3D printing ensures micron-level accuracy' }
+    ],
+    process: [
+      { step: 1, title: '3D Intraoral Scanning', desc: 'A quick, comfortable digital scan creates a highly accurate 3D model of your teeth.' },
+      { step: 2, title: 'Digital Treatment Planning', desc: 'Dr. Yadav maps out the precise movement of every tooth on our advanced software.' },
+      { step: 3, title: 'In-House Fabrication', desc: 'Your custom series of aligners are 3D printed and thermoformed in our clinic lab.' },
+      { step: 4, title: 'Fitting & Delivery', desc: 'You receive your SkyAlign trays along with a custom storage case and instructions.' },
+      { step: 5, title: 'Regular Monitoring', desc: 'Brief check-ups every 6-8 weeks to ensure your smile is tracking perfectly.' }
+    ],
+    faqs: [
+      { q: 'How does SkyAlign compare to Invisalign?', a: 'SkyAlign uses comparable medical-grade materials and 3D technology. The main difference is that SkyAlign is manufactured in-house, cutting out international lab fees, making it more affordable while keeping the design strictly under Dr. Yadav\'s expert control.' },
+      { q: 'How long do I need to wear them daily?', a: 'For the best and fastest results, you should wear your SkyAlign trays for 20-22 hours a day, removing them only to eat, drink (anything other than water), brush, and floss.' }
+    ],
+    limitations: ['Requires strict 20-22 hour daily wear compliance'],
+    technologyUsed: ['3D Intraoral Scanners', 'Advanced CAD/CAM Software', 'Medical-Grade Thermoforming Polymers', 'High-Res 3D Printers'],
+    recoveryTimeline: 'No recovery needed. Mild pressure for the first day of a new tray is normal.',
+    successFactors: ['Wearing aligners 20-22 hours daily', 'Using provided chewies for a tight fit'],
+    whenToVisit: 'Whenever you are ready to discreetly straighten your smile with premium local expertise.',
+    appointmentCount: 'Check-ups every 6-8 weeks',
+    doctorRecommendation: '"By bringing the aligner manufacturing in-house with SkyAlign, we take complete control of the quality and precision, delivering stunning results while saving our patients from unnecessary international markups." — Prof. Dr. S. K. Yadav',
+    beforeAfterSlots: 3,
+    treatmentSnapshot: {
+      'Duration': '6–12 months',
+      'Wear Time': '20–22 hrs/day',
+      'Specialist': 'Prof. Dr. S. K. Yadav',
+      'Origin': 'In-House Lab',
+      'Material': 'German Polymers'
+    },
+    relatedTreatments: ['invisalign-clear-aligners', 'dental-braces'],
+    alternatives: ['Invisalign® Clear Aligners', 'Ceramic Braces']
+  },
+  {
+    id: 'same-day-dental-implants',
+    title: 'Same-Day Dental Implants',
+    subtitle: 'Extract, Implant, and Get Your New Tooth in Just One Visit',
+    doctor: 'Prof. Dr. S. K. Yadav',
+    doctorSlug: 'dr-sk-yadav',
+    duration: '1 visit (24-72 Hours for final crown)',
+    recovery: '3-5 days',
+    cost: '₹35,000 – ₹85,000',
+    costRange: 'Depends on implant brand and crown material',
+    riskLevel: 'Low-Medium',
+    category: 'Implantology',
+    icon: '⚡',
+    slug: 'same-day-dental-implants',
+    overview: 'Same-Day Dental Implants (also known as immediate loading implants) is a revolutionary protocol that allows us to extract a failing tooth, place a premium titanium implant, and attach a temporary crown all in a single appointment. Prof. Dr. S. K. Yadav utilizes advanced 3D CBCT scanning and computer-guided surgery to ensure absolute precision, so you never have to leave our clinic with a missing tooth.',
+    symptoms: [
+      'Severely decayed tooth that cannot be saved', 'Tooth fractured at the gum line', 'Recent trauma causing tooth loss',
+      'Impending tooth extraction in the aesthetic zone (front teeth)'
+    ],
+    idealFor: 'Patients with a failing or recently lost front tooth who have sufficient, healthy jawbone and want to avoid the embarrassment of a visible gap during the healing months.',
+    notIdealFor: 'Patients with severe active gum disease, significant bone loss requiring major grafting first, or heavy smokers.',
+    benefits: [
+      { icon: '✓', title: 'Immediate Results', desc: 'Walk in with a bad tooth, walk out with a beautiful, fixed replacement' },
+      { icon: '✓', title: 'Single Surgery', desc: 'Combines extraction and implant placement, saving you time and discomfort' },
+      { icon: '✓', title: 'Preserves Gum Tissue', desc: 'Immediate placement helps maintain the natural shape of your gums' },
+      { icon: '✓', title: 'No Awkward Gaps', desc: 'You never have to go a single day without a tooth' },
+      { icon: '✓', title: 'High Success Rate', desc: 'When planned with 3D CBCT, success rates are comparable to traditional implants' }
+    ],
+    process: [
+      { step: 1, title: '3D CBCT Scan & Planning', desc: 'A high-res 3D scan maps your jawbone. Virtual surgery is planned on the computer.' },
+      { step: 2, title: 'Gentle Extraction', desc: 'If a tooth is present, it is carefully removed to preserve the surrounding bone.' },
+      { step: 3, title: 'Guided Implant Placement', desc: 'The titanium implant is placed precisely into the socket.' },
+      { step: 4, title: 'Immediate Crown Attachment', desc: 'A custom-made temporary crown is attached to the implant immediately.' },
+      { step: 5, title: 'Final Crown (Months Later)', desc: 'After the implant fully fuses with the bone (3-4 months), the final permanent porcelain crown is placed.' }
+    ],
+    faqs: [
+      { q: 'Can anyone get a same-day implant?', a: 'Not everyone is a candidate. It requires adequate bone density and healthy gums. Dr. Yadav will assess your 3D CBCT scan to determine if it\'s safe and predictable for your specific case.' },
+      { q: 'Can I eat normally right away?', a: 'You will need to stick to a soft diet for the first few weeks to allow the implant to heal without excessive force. You should avoid biting hard foods directly with the new temporary crown.' }
+    ],
+    limitations: ['Requires excellent initial bone stability', 'Must stick to a soft diet during the initial healing phase', 'Slightly higher cost due to immediate custom provisional crown'],
+    technologyUsed: ['3D CBCT Scanner', 'Computer-Guided Surgical Stents', 'Premium Tapered Implants', 'CAD/CAM Provisional Crowns'],
+    recoveryTimeline: 'Mild swelling or discomfort for 3-5 days. Pain is usually well managed with over-the-counter medication.',
+    successFactors: ['Adhering strictly to a soft diet', 'Excellent oral hygiene', 'Not smoking'],
+    whenToVisit: 'If you have been told a tooth needs extraction, consult us BEFORE it is removed to see if immediate placement is an option.',
+    appointmentCount: '1 main surgery visit + follow-ups',
+    doctorRecommendation: '"The psychological benefit of same-day implants is massive. Nobody wants to walk around with a missing front tooth for six months. With our technology, we can safely bypass that wait." — Prof. Dr. S. K. Yadav',
+    beforeAfterSlots: 2,
+    treatmentSnapshot: {
+      'Visits': '1 (for extraction + implant)',
+      'Specialist': 'Prof. Dr. S. K. Yadav',
+      'Technology': '3D CBCT Guided',
+      'Anaesthesia': 'Local',
+      'Recovery': '3-5 days'
+    },
+    relatedTreatments: ['dental-implants', 'crowns-and-bridges', 'smile-makeover'],
+    alternatives: ['Traditional Dental Implants', 'Dental Bridge', 'Removable Flipper']
+  }
 ];
 
 export const treatmentCategories = [

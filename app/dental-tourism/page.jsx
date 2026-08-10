@@ -45,15 +45,15 @@ export default function DentalTourism() {
               <motion.div variants={fadeUp} className="section-badge badge-gold" style={{ marginBottom: '1.5rem', display: 'inline-flex' }}>
                 <Plane size={16} style={{ marginRight: '8px' }} /> Premium Dental Tourism
               </motion.div>
-              <motion.h1 variants={fadeUp} style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(3rem, 5vw, 5rem)', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.1, marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>
+              <motion.h1 variants={fadeUp} style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.3rem, 8vw, 4.5rem)', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.1, marginBottom: '1.5rem', letterSpacing: '-0.02em', wordBreak: 'break-word' }}>
                 World-Class Dentistry, <br/><span style={{ color: 'var(--accent-color)' }}>Closer to Home.</span>
               </motion.h1>
-              <motion.p variants={fadeUp} style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '2.5rem', maxWidth: '600px' }}>
+              <motion.p variants={fadeUp} style={{ fontSize: 'clamp(1rem, 4vw, 1.25rem)', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '2.5rem', maxWidth: '600px', padding: '0 0.5rem' }}>
                 For our NRI and international patients: Experience <strong style={{ color: 'var(--accent-color)' }}>PGI-tier clinical excellence</strong>, <strong style={{ color: 'var(--accent-color)' }}>premium international materials</strong>, and <strong style={{ color: 'var(--accent-color)' }}>priority scheduling</strong> at a <strong style={{ color: 'var(--accent-color)' }}>fraction of global costs</strong>.
               </motion.p>
-              <motion.div variants={fadeUp} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-                <a href="#consult" className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1.1rem' }}>
-                  <Video size={20} /> Book Virtual Consultation
+              <motion.div variants={fadeUp} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+                <a href="#consult" className="btn btn-primary" style={{ padding: '1rem 1.25rem', fontSize: '1rem', whiteSpace: 'normal', textAlign: 'center', height: 'auto', lineHeight: '1.3' }}>
+                  <Video size={20} style={{ flexShrink: 0 }} /> Book Virtual Consultation
                 </a>
               </motion.div>
             </motion.div>
