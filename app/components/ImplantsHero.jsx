@@ -94,6 +94,16 @@ const CLINICAL_CASES = [
     beforeAlt: 'Full arch implant treatment',
     afterAlt: 'Full arch implant treatment',
     details: 'All-on-4® computer guided immediate loading for complete upper jaw rehabilitation.'
+  },
+  {
+    id: 'implant-case-3',
+    label: 'Multiple Teeth Replacement',
+    duration: 'Zirconia Bridge',
+    beforeSrc: '/implants/371D3CEC-9809-4544-9196-0D1DAE262322.png',
+    afterSrc: '/implants/42C48DEA-EF04-4CBD-B18C-85C738617326.png',
+    beforeAlt: 'Multiple missing teeth',
+    afterAlt: 'Replaced with Zirconia Bridge',
+    details: 'Seamless integration of Osstem implants with a premium German Zirconia ceramic bridge.'
   }
 ];
 
