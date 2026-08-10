@@ -868,11 +868,12 @@ export default function DoctorsIntro() {
             max-width: 85%;
           }
           .tag-right {
-            top: 100px;
+            top: auto;
+            bottom: 150px;
             right: 15px;
           }
           .tag-left {
-            bottom: 105px;
+            bottom: 110px;
             left: 15px;
           }
         }
