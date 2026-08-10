@@ -89,8 +89,8 @@ const CLINICAL_CASES = [
     id: 'implant-case-2',
     label: 'Full Arch Rehabilitation',
     duration: 'Same Day Fixed',
-    beforeSrc: '/implants/fullarch-before.webp',
-    afterSrc: '/implants/fullarch-after.webp',
+    beforeSrc: '/implants/371D3CEC-9809-4544-9196-0D1DAE262322.png',
+    afterSrc: '/implants/42C48DEA-EF04-4CBD-B18C-85C738617326.png',
     beforeAlt: 'Full arch implant treatment',
     afterAlt: 'Full arch implant treatment',
     details: 'All-on-4® computer guided immediate loading for complete upper jaw rehabilitation.'
@@ -100,10 +100,20 @@ const CLINICAL_CASES = [
     label: 'Multiple Teeth Replacement',
     duration: 'Zirconia Bridge',
     beforeSrc: '/implants/371D3CEC-9809-4544-9196-0D1DAE262322.png',
-    afterSrc: '/implants/42C48DEA-EF04-4CBD-B18C-85C738617326.png',
+    afterSrc: '/implants/692FBE7A-1031-4187-81F4-170F58B0EE3C.png',
     beforeAlt: 'Multiple missing teeth',
     afterAlt: 'Replaced with Zirconia Bridge',
     details: 'Seamless integration of Osstem implants with a premium German Zirconia ceramic bridge.'
+  },
+  {
+    id: 'implant-case-4',
+    label: 'Single Tooth Precision Implant',
+    duration: 'Flapless Guided',
+    beforeSrc: '/19A48E73-E9D0-4038-BC74-E72F3A97AF75.png',
+    afterSrc: '/EE3F4F48-1139-497D-9B2A-B9635E871A46.png',
+    beforeAlt: 'Pre-op dental scan',
+    afterAlt: 'Post-op final crown restoration',
+    details: 'Flapless computer guided precision implant with natural enamel shade matching.'
   }
 ];
 
