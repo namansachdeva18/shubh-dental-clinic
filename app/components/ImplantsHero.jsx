@@ -79,8 +79,8 @@ const CLINICAL_CASES = [
     id: 'implant-case-1',
     label: 'Same-Day Front Tooth Implant',
     duration: '24 Hours',
-    beforeSrc: '/implants/front-before.webp',
-    afterSrc: '/implants/front-after.webp',
+    beforeSrc: '/implants/371D3CEC-9809-4544-9196-0D1DAE262322.png',
+    afterSrc: '/implants/42C48DEA-EF04-4CBD-B18C-85C738617326.png',
     beforeAlt: 'Immediate implant showing missing front tooth',
     afterAlt: 'Immediate implant showing missing front tooth',
     details: 'Immediate implant placement & immediate Zirconia crown load in just 24 hours.'
@@ -89,8 +89,8 @@ const CLINICAL_CASES = [
     id: 'implant-case-2',
     label: 'Full Arch Rehabilitation',
     duration: 'Same Day Fixed',
-    beforeSrc: '/implants/fullarch-before.webp',
-    afterSrc: '/implants/fullarch-after.webp',
+    beforeSrc: '/implants/371D3CEC-9809-4544-9196-0D1DAE262322.png',
+    afterSrc: '/implants/692FBE7A-1031-4187-81F4-170F58B0EE3C.png',
     beforeAlt: 'Full arch implant treatment',
     afterAlt: 'Full arch implant treatment',
     details: 'All-on-4® computer guided immediate loading for complete upper jaw rehabilitation.'
