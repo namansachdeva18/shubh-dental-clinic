@@ -2,7 +2,8 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Award, ArrowRight, ShieldCheck, CheckCircle2, Star, GraduationCap, Sparkles, MapPin, BadgeCheck, Users, Globe, Gem } from 'lucide-react';
+import Link from 'next/link';
+import { Award, ArrowRight, ShieldCheck, CheckCircle2, Star, GraduationCap, Sparkles, MapPin, BadgeCheck, Users, Globe, Gem, Tag } from 'lucide-react';
 import InnovativeHeroBg from './InnovativeHeroBg';
 import AnimatedCounter from './AnimatedCounter';
 
@@ -40,6 +41,22 @@ export default function Hero() {
               <span>Rohtak, Haryana &mdash; Haryana&apos;s Most Trusted Dental Clinic</span>
             </motion.div>
 
+            {/* Special Offer Ribbon (Mobile & Desktop) */}
+            <motion.div variants={fadeUp} className="hs-offer-ribbon-wrap">
+              <Link href="/special-offer" className="hs-offer-ribbon" aria-label="Limited-time dental care special offer">
+                <span className="hs-offer-chip">
+                  <Tag size={11} /> 20% OFF
+                </span>
+                <span className="hs-offer-text">
+                  Limited-Time Offer · Up to 20% OFF + Free 3D Scan
+                </span>
+                <span className="hs-offer-action">
+                  <span>Claim</span>
+                  <ArrowRight size={12} />
+                </span>
+              </Link>
+            </motion.div>
+
             {/* SEO-Optimised Headline */}
             <motion.h1 className="hs-headline" variants={fadeUp}>
               Best Orthodontist &amp;<br />
@@ -54,13 +71,13 @@ export default function Hero() {
 
             {/* Supporting paragraph */}
             <motion.p className="hs-desc" variants={fadeUp}>
-              Get the confident smile you&apos;ve always wanted with personalized, expert care led by <strong>Dr (Prof.) S. K. Yadav</strong>. We offer comfortable, cutting-edge treatments including <strong>Invisalign®</strong>, <strong>SkyAlign™ clear aligners</strong>, <strong>same-day dental implants</strong>, and <strong>porcelain veneers</strong> — all designed around your comfort and goals.
+              Get the confident smile you&apos;ve always wanted with personalized, expert care led by <strong>Dr (Prof.) S. K. Yadav</strong>. We offer <strong>In-Clinic &amp; Online Video Consultations</strong> for <strong>Invisalign®</strong>, <strong>SkyAlign™ aligners</strong>, <strong>same-day implants</strong>, and <strong>smile makeovers</strong>.
             </motion.p>
 
             {/* CTAs */}
             <motion.div className="hs-ctas" variants={fadeUp}>
               <a href="#book" className="hs-btn-primary">
-                Reserve Free Consultation
+                Book Consult (In-Clinic / Video)
                 <ArrowRight size={18} strokeWidth={2.5} />
               </a>
               <a href="#treatments" className="hs-btn-secondary">
@@ -76,25 +93,29 @@ export default function Hero() {
                 <span className="hs-trust-label">Certified &amp; Recognised By</span>
               </div>
               <div className="hs-trust-badges">
-                <div className="hs-trust-badge hs-badge-invisalign">
-                  <Sparkles size={14} className="hs-badge-icon" />
-                  <span>Invisalign® Provider</span>
+                <div className="hs-trust-row hs-trust-row-1">
+                  <div className="hs-trust-badge hs-badge-invisalign" title="Certified Invisalign Provider">
+                    <img src="/invisalign-logo.png" alt="Invisalign Logo" className="hs-badge-img" />
+                    <span>Invisalign® Provider</span>
+                  </div>
+                  <div className="hs-trust-badge hs-badge-wfo" title="Fellow World Federation of Orthodontists USA">
+                    <img src="/wfo-logo.png" alt="WFO USA Logo" className="hs-badge-img" />
+                    <span>WFO USA Fellow</span>
+                  </div>
+                  <div className="hs-trust-badge hs-badge-damon" title="Official Damon Braces Provider">
+                    <img src="/damon-logo.png" alt="Damon Braces Logo" className="hs-badge-img" />
+                    <span>Damon® Provider</span>
+                  </div>
                 </div>
-                <div className="hs-trust-badge hs-badge-wfo">
-                  <Globe size={14} className="hs-badge-icon" />
-                  <span>WFO USA Fellow</span>
-                </div>
-                <div className="hs-trust-badge hs-badge-damon">
-                  <Gem size={14} className="hs-badge-icon" />
-                  <span>Damon® Provider</span>
-                </div>
-                <div className="hs-trust-badge hs-badge-osstem">
-                  <ShieldCheck size={14} className="hs-badge-icon" />
-                  <span>Osstem® Implants Certified</span>
-                </div>
-                <div className="hs-trust-badge hs-badge-ios">
-                  <BadgeCheck size={14} className="hs-badge-icon" />
-                  <span>IOS Endorsed</span>
+                <div className="hs-trust-row hs-trust-row-2">
+                  <div className="hs-trust-badge hs-badge-osstem" title="Osstem Implants Certified Provider">
+                    <img src="/osstem-implant.jpeg" alt="Osstem Implants Logo" className="hs-badge-img" />
+                    <span>Osstem® Implants Certified</span>
+                  </div>
+                  <div className="hs-trust-badge hs-badge-ios" title="Indian Orthodontic Society Endorsed">
+                    <img src="/ios-logo.png" alt="IOS Logo" className="hs-badge-img" />
+                    <span>IOS Endorsed</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -116,7 +137,7 @@ export default function Hero() {
 
                 <div className="hs-stat-content">
                   <div className="hs-stat-val">
-                    <AnimatedCounter target={20000} suffix="+" duration={2200} />
+                    <AnimatedCounter target={350000} suffix="+" duration={2200} />
                   </div>
                   <div className="hs-stat-label">PATIENTS IMPACTED</div>
                   <div className="hs-stat-sub">Across Haryana &amp; NCR</div>
@@ -328,7 +349,7 @@ export default function Hero() {
           min-height: auto;
           display: flex;
           align-items: center;
-          padding: 2.5rem 0 3.5rem;
+          padding: 1.25rem 0 2.5rem;
           overflow: hidden;
         }
 
@@ -388,7 +409,61 @@ export default function Hero() {
           border: 1px solid rgba(214, 122, 65, 0.25);
           padding: 6px 14px;
           border-radius: 99px;
-          margin-bottom: 24px;
+          margin-bottom: 10px;
+        }
+
+        /* Special Offer Ribbon */
+        .hs-offer-ribbon-wrap {
+          margin-bottom: 14px;
+        }
+        .hs-offer-ribbon {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: linear-gradient(135deg, #110805 0%, #2A150B 50%, #1A0B06 100%);
+          border: 1px solid rgba(214, 122, 65, 0.4);
+          padding: 5px 12px 5px 6px;
+          border-radius: 99px;
+          text-decoration: none;
+          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.18);
+          transition: all 0.25s ease;
+          width: fit-content;
+          max-width: 100%;
+        }
+        .hs-offer-ribbon:hover {
+          transform: translateY(-2px);
+          border-color: #FF924A;
+          box-shadow: 0 6px 20px rgba(214, 122, 65, 0.28);
+        }
+        .hs-offer-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          background: linear-gradient(135deg, #E66A1F 0%, #D67A41 100%);
+          color: #FFFFFF;
+          font-size: 0.68rem;
+          font-weight: 800;
+          padding: 3px 8px;
+          border-radius: 99px;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+        .hs-offer-text {
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #FFFFFF;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .hs-offer-action {
+          display: inline-flex;
+          align-items: center;
+          gap: 3px;
+          font-size: 0.72rem;
+          font-weight: 800;
+          color: #FF9F59;
+          margin-left: 4px;
         }
 
         /* Headline */
@@ -553,6 +628,12 @@ export default function Hero() {
 
         .hs-trust-badges {
           display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .hs-trust-row {
+          display: flex;
           align-items: center;
           gap: 8px;
           flex-wrap: wrap;
@@ -586,13 +667,18 @@ export default function Hero() {
           color: #B85922;
         }
 
-        .hs-badge-icon {
+        .hs-badge-img {
+          height: 16px;
+          width: auto;
+          max-width: 26px;
+          object-fit: contain;
+          border-radius: 2px;
           flex-shrink: 0;
           transition: transform 0.25s ease;
         }
 
-        .hs-trust-badge:hover .hs-badge-icon {
-          transform: scale(1.2);
+        .hs-trust-badge:hover .hs-badge-img {
+          transform: scale(1.15);
         }
 
         /* Color accents for each badge */
@@ -1286,21 +1372,27 @@ export default function Hero() {
         @media (max-width: 768px) {
           /* ─ Mobile App Layout ─ */
           .hs-root {
-            padding: 84px 0 100px;
+            padding: 0.75rem 0 2rem !important;
             min-height: auto;
           }
 
           .hs-grid {
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 20px;
           }
 
           .hs-left { align-items: flex-start; text-align: left; }
 
+          .hs-location-pill {
+            margin-bottom: 10px !important;
+            font-size: 0.72rem !important;
+            padding: 4px 10px !important;
+          }
+
           .hs-headline {
-            font-size: clamp(2.2rem, 9vw, 3.2rem);
-            margin-bottom: 12px;
+            font-size: clamp(2rem, 8.5vw, 2.8rem);
+            margin-bottom: 10px;
           }
 
           .hs-desc { max-width: 100%; font-size: 0.95rem; }
@@ -1356,6 +1448,65 @@ export default function Hero() {
             position: absolute;
             top: 14px;
             left: 14px;
+          }
+
+          /* Trust Badges Mobile (3 Above, 2 Down Symmetrical Layout) */
+          .hs-trust-strip {
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            width: 100%;
+          }
+          .hs-trust-badges {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 6px !important;
+            width: 100% !important;
+          }
+          .hs-trust-row {
+            display: flex !important;
+            gap: 6px !important;
+            width: 100% !important;
+          }
+          .hs-trust-row-1 {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 5px !important;
+          }
+          .hs-trust-row-2 {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 6px !important;
+            width: 85% !important;
+            margin: 0 auto !important;
+          }
+          .hs-trust-badge {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 5px 6px !important;
+            font-size: 0.67rem !important;
+            gap: 4px !important;
+            white-space: nowrap !important;
+            text-align: center !important;
+            border-radius: 99px !important;
+          }
+          .hs-badge-img {
+            height: 13px !important;
+            max-width: 18px !important;
+          }
+          @media (max-width: 420px) {
+            .hs-trust-row-2 {
+              width: 100% !important;
+            }
+            .hs-trust-badge {
+              padding: 4px 3px !important;
+              font-size: 0.61rem !important;
+              gap: 3px !important;
+            }
+            .hs-badge-img {
+              height: 11px !important;
+              max-width: 15px !important;
+            }
           }
 
           /* Accreditations Mobile */

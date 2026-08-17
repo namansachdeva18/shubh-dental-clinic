@@ -150,7 +150,7 @@ export default function PatientGallery() {
   );
 
   return (
-    <section className="section patient-gallery-section" aria-label="Patient Smile Transformations">
+    <section id="gallery" className="section patient-gallery-section" aria-label="Patient Smile Transformations">
       {/* Background Vectors & Subtle Animations */}
       <div className="patient-bg-vectors" aria-hidden="true">
         <div className="patient-vector-grid" />
@@ -183,21 +183,21 @@ export default function PatientGallery() {
               <div className="chip-icon-orb">
                 <Star size={13} fill="#D67A41" stroke="none" />
               </div>
-              <span>5.0 Rated Patient Smiles</span>
+              <span>5.0★ Rated</span>
             </div>
 
             <div className="cool-chip">
               <div className="chip-icon-orb">
                 <Camera size={13} />
               </div>
-              <span>100% Real Patient Photos</span>
+              <span>100% Real Photos</span>
             </div>
 
             <div className="cool-chip">
               <div className="chip-icon-orb">
                 <Award size={13} />
               </div>
-              <span>PGI Specialist Mastery</span>
+              <span>PGI Specialists</span>
             </div>
           </div>
         </div>
@@ -450,7 +450,7 @@ export default function PatientGallery() {
       <style dangerouslySetInnerHTML={{ __html: `
         .patient-gallery-section {
           background: linear-gradient(180deg, #FFFFFF 0%, #FAF8F5 50%, #FAF6F0 100%);
-          padding: 5rem 0;
+          padding: 3rem 0;
           position: relative;
           overflow: hidden;
         }
@@ -1194,30 +1194,84 @@ export default function PatientGallery() {
         }
 
         @media (max-width: 768px) {
+          .patient-gallery-section {
+            padding: 2.75rem 1rem !important;
+          }
+          .cool-gallery-title {
+            font-size: 1.75rem !important;
+            margin-bottom: 0.65rem !important;
+          }
+          .cool-chips-row {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            justify-content: center !important;
+            gap: 0.35rem !important;
+            margin: 0.85rem auto 1.25rem !important;
+            width: 100% !important;
+          }
+          .cool-chip {
+            padding: 0.28rem 0.55rem !important;
+            font-size: 0.68rem !important;
+            gap: 0.3rem !important;
+            white-space: nowrap !important;
+            border-radius: 99px !important;
+          }
+          .chip-icon-orb {
+            width: 18px !important;
+            height: 18px !important;
+          }
+          .chip-icon-orb svg {
+            width: 10px !important;
+            height: 10px !important;
+          }
           .gallery-filter-pill {
-            padding: 0.45rem 1rem;
-            font-size: 0.8rem;
+            padding: 0.4rem 0.85rem;
+            font-size: 0.76rem;
+          }
+          .collage-marquees-wrapper {
+            margin-top: 1rem !important;
+          }
+          .collage-marquees-container {
+            gap: 0.5rem !important;
           }
           .compact-patient-card {
-            width: 150px;
-            height: 120px;
-            border-radius: 14px;
+            width: 115px !important;
+            height: 85px !important;
+            border-radius: 12px !important;
           }
-          .compact-card-name {
-            font-size: 0.8rem;
+          .compact-card-overlay {
+            padding: 0.4rem !important;
           }
           .compact-card-treatment {
-            font-size: 0.6rem;
+            font-size: 0.52rem !important;
           }
           .collage-marquee-track {
-            gap: 0.5rem;
+            gap: 0.45rem;
           }
           .collage-marquee-group {
-            gap: 0.5rem;
-            padding-right: 0.5rem;
+            gap: 0.45rem;
+            padding-right: 0.45rem;
           }
           .scroll-left-slow, .scroll-right-slow {
-            animation-duration: 30s;
+            animation-duration: 25s;
+          }
+          /* Hide 3rd row on mobile so the whole gallery fits effortlessly in 1 viewport */
+          .collage-marquee-row:nth-child(3) {
+            display: none !important;
+          }
+        }
+        @media (max-width: 420px) {
+          .cool-chips-row {
+            gap: 0.25rem !important;
+          }
+          .cool-chip {
+            padding: 0.22rem 0.45rem !important;
+            font-size: 0.62rem !important;
+          }
+          .compact-patient-card {
+            width: 105px !important;
+            height: 78px !important;
           }
         }
       `}} />

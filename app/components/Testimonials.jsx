@@ -69,7 +69,8 @@ export default function Testimonials() {
   const nextIdx = (coverflowIndex + 1) % coverflowCount;
 
   return (
-    <section className="section testimonials-section" aria-label="Patient Testimonials & Google Reviews">
+    <section id="testimonials" className="section testimonials-section" aria-label="Patient Testimonials & Google Reviews">
+      <div id="reviews" style={{ position: 'relative', top: '-80px', height: '0', pointerEvents: 'none' }} />
       <div className="container" style={{ position: 'relative', zIndex: 10 }}>
         
         {/* Section Header */}
@@ -80,12 +81,11 @@ export default function Testimonials() {
           </div>
 
           <h2 className="cool-gallery-title">
-            Real Patient
-            <span className="cool-title-highlight">5-Star Testimonials</span>
+            Real Patient <span className="cool-title-highlight">5-Star Testimonials</span>
           </h2>
           
-          <p style={{ color: '#2A150D', fontSize: '1.1rem', maxWidth: '750px', margin: '0.8rem auto 1.5rem', lineHeight: 1.7, fontWeight: 500 }}>
-            Read authentic, unedited Google Reviews from patients who achieved their dream smile at <strong style={{ color: '#0E0604', fontWeight: 800 }}>Shubh Orthodontic &amp; Dental Clinic</strong>.
+          <p className="testimonials-subtitle">
+            Authentic, unedited Google Reviews from real patients at <strong style={{ color: '#0E0604', fontWeight: 800 }}>Shubh Orthodontic &amp; Dental Clinic</strong>.
           </p>
         </ScrollReveal>
 
@@ -258,18 +258,20 @@ export default function Testimonials() {
           )}
         </div>
 
-        {/* --- MOBILE NATIVE SWIPEABLE CAROUSEL (SHOWN ONLY ON MOBILE) --- */}
+        {/* --- MOBILE CONTINUOUS MOVING ROTATING STREAM --- */}
         <div className="show-mobile mobile-testimonials-container">
-          <div className="mobile-reviews-track">
-            {filteredReviews.slice(0, 10).map((r, idx) => (
-              <div key={`mob-${r.id || idx}`} className="mobile-review-item">
-                <ReviewCard review={r} />
-              </div>
-            ))}
+          <div className="mobile-reviews-marquee-wrap">
+            <div className="mobile-reviews-marquee-track">
+              {[...filteredReviews.slice(0, 8), ...filteredReviews.slice(0, 8)].map((r, idx) => (
+                <div key={`mob-${r.id || idx}-${idx}`} className="mobile-review-item">
+                  <ReviewCard review={r} />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mobile-carousel-hint">
-            <span className="swipe-arrow">←</span> Swipe to explore real patient stories <span className="swipe-arrow">→</span>
+            <span className="swipe-arrow">✦</span> Continuously updated live patient reviews <span className="swipe-arrow">✦</span>
           </div>
 
           {/* Quick Google Review Link */}
@@ -303,7 +305,7 @@ export default function Testimonials() {
           background: #FAF9F6;
           position: relative;
           overflow: hidden;
-          padding: 4rem 0 6rem;
+          padding: 3rem 0 3.5rem;
         }
 
         /* LIVE MARQUEE STREAM TICKER */
@@ -733,23 +735,31 @@ export default function Testimonials() {
           margin-top: 1.5rem;
           width: 100%;
         }
-        .mobile-reviews-track {
-          display: flex;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;
-          gap: 1rem;
-          padding: 0.5rem 1rem 1rem;
+        .mobile-reviews-marquee-wrap {
+          overflow: hidden;
+          width: 100%;
+          padding: 0.5rem 0 0.85rem;
           margin: 0 -1rem;
+          mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
         }
-        .mobile-reviews-track::-webkit-scrollbar {
-          display: none;
+        .mobile-reviews-marquee-track {
+          display: flex;
+          gap: 1.1rem;
+          width: max-content;
+          animation: mobMarqueeContinuous 38s linear infinite;
+        }
+        .mobile-reviews-marquee-track:hover,
+        .mobile-reviews-marquee-track:active {
+          animation-play-state: paused;
+        }
+        @keyframes mobMarqueeContinuous {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
         .mobile-review-item {
-          flex: 0 0 calc(100vw - 3.5rem);
-          max-width: 350px;
-          scroll-snap-align: center;
+          flex: 0 0 310px;
+          max-width: 320px;
           display: flex;
         }
         .mobile-review-item .google-review-card {
@@ -805,22 +815,56 @@ export default function Testimonials() {
           }
         }
 
+        .testimonials-subtitle {
+          color: #2A150D;
+          font-size: 1.05rem;
+          max-width: 750px;
+          margin: 0.65rem auto 1.25rem;
+          line-height: 1.6;
+          font-weight: 500;
+        }
+
         @media (max-width: 768px) {
           .testimonials-section {
-            padding: 2.25rem 0 3rem !important;
+            padding: 1.85rem 0 2.25rem !important;
           }
           .cool-gallery-title {
-            font-size: clamp(1.6rem, 6vw, 2.2rem) !important;
+            font-size: 1.65rem !important;
+            line-height: 1.2 !important;
+            margin-bottom: 0.35rem !important;
+          }
+          .testimonials-subtitle {
+            font-size: 0.86rem !important;
+            line-height: 1.45 !important;
+            margin: 0.35rem auto 0.65rem !important;
+            padding: 0 0.5rem;
           }
           .testimonials-filter-bar-wrapper {
-            padding: 0 0.5rem 0.5rem !important;
+            padding: 0 0.5rem 0.25rem !important;
+            margin-bottom: 0.5rem !important;
           }
           .testimonials-filter-bar {
-            margin: 1rem auto 0 !important;
-            gap: 0.45rem !important;
+            margin: 0.5rem auto 0 !important;
+            gap: 0.35rem !important;
           }
           .filter-pill {
-            padding: 0.45rem 1rem !important;
+            padding: 0.35rem 0.85rem !important;
+            font-size: 0.76rem !important;
+          }
+          .mobile-testimonials-container {
+            margin-top: 0.75rem !important;
+          }
+          .mobile-reviews-track {
+            gap: 0.75rem !important;
+            padding: 0.25rem 0.75rem 0.5rem !important;
+            margin: 0 -0.75rem !important;
+          }
+          .mobile-review-item {
+            flex: 0 0 85vw !important;
+            max-width: 320px !important;
+          }
+          .google-trust-cta-btn {
+            padding: 0.5rem 1rem !important;
             font-size: 0.78rem !important;
           }
           .hide-mobile { display: none !important; }

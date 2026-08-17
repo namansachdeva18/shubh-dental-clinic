@@ -17,7 +17,7 @@ export default function BookingModal() {
   // Listen for hash changes to open the modal
   useEffect(() => {
     const checkHash = () => {
-      if (window.location.hash === '#book') {
+      if (window.location.hash === '#standard-book') {
         setIsOpen(true);
       } else {
         setIsOpen(false);
@@ -30,21 +30,8 @@ export default function BookingModal() {
     // Listen for hash changes
     window.addEventListener('hashchange', checkHash);
     
-    // Intercept clicks on links that point to #book
-    const handleClick = (e) => {
-      const target = e.target.closest('a');
-      if (target && target.getAttribute('href') === '#book') {
-        e.preventDefault();
-        window.history.pushState(null, '', '#book');
-        setIsOpen(true);
-      }
-    };
-    
-    document.addEventListener('click', handleClick);
-
     return () => {
       window.removeEventListener('hashchange', checkHash);
-      document.removeEventListener('click', handleClick);
     };
   }, []);
 
@@ -145,10 +132,10 @@ export default function BookingModal() {
                 <>
                   <div className="bm-header">
                     <div className="bm-badge">
-                      <Sparkles size={14} /> Priority Booking
+                      <Sparkles size={14} /> Priority Booking · In-Clinic &amp; Online
                     </div>
                     <h2>Reserve Your <span className="text-gradient-copper">Consultation</span></h2>
-                    <p>Take the first step towards your perfect smile. Fill out the form below and our care coordinator will confirm your appointment.</p>
+                    <p>In-Clinic Visit (Rohtak) &amp; <strong>Online Video Consultations</strong> available with senior MDS specialists.</p>
                   </div>
 
                   <motion.form 
@@ -199,12 +186,13 @@ export default function BookingModal() {
                           onChange={handleChange}
                           className={formData.treatment === "" ? "placeholder-active" : ""}
                         >
-                          <option value="" disabled>Select Treatment Interest *</option>
-                          <option value="invisalign">Invisalign® Clear Aligners</option>
+                          <option value="" disabled>Select Consultation / Treatment *</option>
+                          <option value="online-video-consult">📹 Online Video Consultation (All Treatments)</option>
+                          <option value="invisalign">Invisalign® Clear Aligners (In-Clinic / Online)</option>
                           <option value="damon">Damon® System Braces</option>
                           <option value="implants">Dental Implants</option>
                           <option value="smile-makeover">Smile Makeover / Veneers</option>
-                          <option value="general">General Consultation</option>
+                          <option value="general">In-Clinic Dental Checkup (Rohtak)</option>
                         </select>
                       </div>
                     </motion.div>

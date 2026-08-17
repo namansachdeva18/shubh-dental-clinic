@@ -18,7 +18,7 @@ import { m } from 'framer-motion';
 
 const variants = {
   fadeUp: {
-    hidden: { opacity: 0, y: 28 },
+    hidden: { opacity: 0, y: 18 },
     show:   { opacity: 1, y: 0 },
   },
   fadeIn: {
@@ -26,15 +26,15 @@ const variants = {
     show:   { opacity: 1 },
   },
   scaleReveal: {
-    hidden: { opacity: 0, scale: 0.96 },
+    hidden: { opacity: 0, scale: 0.98 },
     show:   { opacity: 1, scale: 1 },
   },
   slideLeft: {
-    hidden: { opacity: 0, x: -28 },
+    hidden: { opacity: 0, x: -18 },
     show:   { opacity: 1, x: 0 },
   },
   slideRight: {
-    hidden: { opacity: 0, x: 28 },
+    hidden: { opacity: 0, x: 18 },
     show:   { opacity: 1, x: 0 },
   },
 };
@@ -43,8 +43,8 @@ export default function ScrollReveal({
   children,
   variant  = 'fadeUp',
   delay    = 0,
-  duration = 0.55,
-  margin   = '-80px',
+  duration = 0.24,
+  margin   = '0px',
   className,
   style,
   as = 'div',
@@ -54,7 +54,7 @@ export default function ScrollReveal({
   return (
     <Tag
       className={className}
-      style={style}
+      style={{ ...style, willChange: 'transform, opacity' }}
       variants={variants[variant]}
       initial="hidden"
       whileInView="show"
@@ -64,7 +64,6 @@ export default function ScrollReveal({
         delay,
         ease: [0.16, 1, 0.3, 1],
       }}
-      style={{ ...style, willChange: 'transform, opacity' }}
     >
       {children}
     </Tag>
@@ -72,19 +71,13 @@ export default function ScrollReveal({
 }
 
 /**
- * STAGGER CONTAINER — Stagger-animates its direct children.
- *
- * Usage:
- *   <StaggerReveal stagger={0.07}>
- *     <StaggerItem>Card 1</StaggerItem>
- *     <StaggerItem>Card 2</StaggerItem>
- *   </StaggerReveal>
+ * STAGGER CONTAINER — Stagger-animates its direct children instantly.
  */
 export function StaggerReveal({
   children,
-  stagger  = 0.08,
+  stagger  = 0.03,
   delay    = 0,
-  margin   = '-80px',
+  margin   = '0px',
   className,
   style,
 }) {
@@ -121,7 +114,7 @@ export function StaggerItem({
     hidden: variants[variant].hidden,
     show: {
       ...variants[variant].show,
-      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+      transition: { duration: 0.35, ease: [0.2, 0.9, 0.3, 1] },
     },
   };
 

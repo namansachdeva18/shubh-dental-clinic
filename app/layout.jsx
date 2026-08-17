@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import InteractiveBackground from './components/InteractiveBackground';
 import BookingModal from './components/BookingModal';
+import OfferModal from './components/OfferModal';
 import SplashScreen from './components/SplashScreen';
 import WhatsAppFAB from './components/WhatsAppFAB';
 import StickyMobileActionBar from './components/StickyMobileActionBar';
@@ -20,7 +21,7 @@ export const metadata = {
     default: 'Shubh Orthodontic & Dental Clinic | Best Orthodontist & Dentist in Rohtak',
     template: '%s | Shubh Orthodontic & Dental Clinic Rohtak',
   },
-  description: 'Best Orthodontist & Dental Clinic in Rohtak, Haryana. Prof. Dr. S. K. Yadav — MDS Orthodontics, Ex-PGI Chandigarh, Certified Invisalign & SkyAlign™ Provider, Fellow WFO USA. 5,000+ braces & clear aligner cases. Dental implants, smile makeovers, kids dentistry. Visiting centres in Delhi, Gurugram, Panipat & Sonepat.',
+  description: 'Best Orthodontist & Dental Clinic in Rohtak, Haryana. Prof. Dr. S. K. Yadav — MDS Orthodontics, Ex-PGI Chandigarh, Certified Invisalign & SkyAlign™ Provider, Fellow WFO USA. 35,000+ braces cases, 27,000+ dental implants, 3,50,000+ patients treated. Clear aligners, smile makeovers, kids dentistry. Visiting centres in Delhi, Gurugram, Panipat & Sonepat.',
   keywords: ['best orthodontist rohtak', 'dentist rohtak', 'invisalign rohtak', 'skyalign rohtak', 'dental implants rohtak', 'braces rohtak haryana', 'same day implants rohtak', 'clear aligners rohtak', 'smile makeover rohtak', 'lingual braces haryana', 'teeth whitening rohtak', 'Dr SK Yadav orthodontist', 'dental clinic rohtak', 'dental tourism rohtak', 'NRI dental care haryana'],
   authors: [{ name: 'Prof. Dr. S. K. Yadav', url: 'https://www.shubhdentalclinicrohtak.in/doctors/dr-sk-yadav' }],
   creator: 'Shubh Orthodontic and Dental Clinic',
@@ -34,7 +35,7 @@ export const metadata = {
     type: 'website',
     url: 'https://www.shubhdentalclinicrohtak.in',
     title: 'Shubh Orthodontic & Dental Clinic | Rohtak\'s Premier Orthodontic Specialists',
-    description: 'Prof. Dr. S. K. Yadav — MDS Orthodontics, Ex-PGI Chandigarh. Invisalign, Braces, Implants & Smile Makeovers. 5,000+ cases. 5.0★ Google Rating.',
+    description: 'Prof. Dr. S. K. Yadav — MDS Orthodontics, Ex-PGI Chandigarh. Invisalign, Braces, Implants & Smile Makeovers. 35,000+ cases, 27,000+ implants, 3,50,000+ patients. 5.0★ Google Rating.',
     images: [{
       url: 'https://www.shubhdentalclinicrohtak.in/hero-image.webp',
       width: 1200,
@@ -104,6 +105,7 @@ export default function RootLayout({ children }) {
           <main id="main-content">{children}</main>
           <Footer />
           <BookingModal />
+          <OfferModal />
           <WhatsAppFAB />
         </Providers>
       </body>

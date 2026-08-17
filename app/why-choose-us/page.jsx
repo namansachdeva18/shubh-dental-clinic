@@ -2,8 +2,8 @@ import AboutSection from '../components/AboutSection';
 import SmartBooking from '../components/SmartBooking';
 
 export const metadata = {
-  title: 'Why Choose Shubh Dental Clinic Rohtak | PGI-Trained Specialists, 5,000+ Cases',
-  description: "Discover why 20,000+ patients trust Shubh Orthodontic & Dental Clinic Rohtak. PGI-trained specialists, 5,000+ orthodontic cases, 3,000+ implants, in-house 3D lab, 654+ research citations, and 0% EMI. Rohtak's most trusted dental clinic.",
+  title: 'Why Choose Shubh Dental Clinic Rohtak | PGI-Trained Specialists, 35,000+ Cases',
+  description: "Discover why 3,50,000+ patients trust Shubh Orthodontic & Dental Clinic Rohtak. PGI-trained specialists, 35,000+ orthodontic cases, 27,000+ implants, in-house 3D lab, 654+ research citations, and 0% EMI. Rohtak's most trusted dental clinic.",
   keywords: [
     'best dental clinic Rohtak',
     'why choose Shubh dental clinic',
@@ -18,15 +18,15 @@ export const metadata = {
     canonical: 'https://www.shubhdentalclinicrohtak.in/why-choose-us',
   },
   openGraph: {
-    title: 'Why Choose Shubh Dental Clinic Rohtak | PGI Experts · 5,000+ Cases · 5.0★',
-    description: 'PGI-trained specialists, in-house 3D lab, 3,000+ implants placed, 654+ research citations. Experience world-class dentistry in Rohtak, Haryana.',
+    title: 'Why Choose Shubh Dental Clinic Rohtak | PGI Experts · 35,000+ Cases · 5.0★',
+    description: 'PGI-trained specialists, in-house 3D lab, 27,000+ implants placed, 654+ research citations. Experience world-class dentistry in Rohtak, Haryana.',
     url: 'https://www.shubhdentalclinicrohtak.in/why-choose-us',
     images: [{ url: 'https://www.shubhdentalclinicrohtak.in/hero-image.webp', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Why Choose Shubh Dental Clinic | Rohtak\'s Most Trusted Orthodontic Center',
-    description: '5,000+ cases. 3,000+ implants. PGI-trained. 5.0★ Google Rating. See why patients travel from Delhi & Gurgaon to visit us.',
+    description: '35,000+ braces cases. 27,000+ implants. 3,50,000+ patients treated. PGI-trained. 5.0★ Google Rating. See why patients travel from Delhi & Gurgaon to visit us.',
     images: ['https://www.shubhdentalclinicrohtak.in/hero-image.webp'],
   },
 };
@@ -36,7 +36,7 @@ const SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'Why Choose Shubh Orthodontic & Dental Clinic Rohtak',
-  description: 'Reasons to choose Shubh Dental Clinic — PGI-trained specialists, 5,000+ orthodontic cases, 3,000+ dental implants, in-house 3D lab, 0% EMI, and 654+ global research citations.',
+  description: 'Reasons to choose Shubh Dental Clinic — PGI-trained specialists, 35,000+ orthodontic cases, 27,000+ dental implants, in-house 3D lab, 0% EMI, and 654+ global research citations.',
   url: 'https://www.shubhdentalclinicrohtak.in/why-choose-us',
   mainEntity: {
     '@type': 'Dentist',
@@ -118,7 +118,7 @@ export default function WhyChooseUsPage() {
             margin: '0 auto 2rem',
             lineHeight: 1.75,
           }}>
-            20,000+ patients. PGI-trained specialists. 5,000+ orthodontic cases. 3,000+ implants.
+            3,50,000+ patients treated. PGI-trained specialists. 35,000+ orthodontic cases. 27,000+ implants.
             World-class technology in the heart of Rohtak, Haryana.
           </p>
 

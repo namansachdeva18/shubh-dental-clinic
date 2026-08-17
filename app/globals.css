@@ -14,6 +14,8 @@ html {
   font-family: var(--font-body, 'Plus Jakarta Sans'), sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -1034,26 +1036,30 @@ select.form-control {
   left: 0;
   right: 0;
   z-index: var(--z-sticky);
-  background: #FEF8F3; /* Light cream background */
-  border-radius: 28px 28px 0 0;
-  padding: 1.25rem 0.5rem;
-  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  background: rgba(254, 248, 243, 0.96); /* Cream luxury glassmorphism */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1.5px solid rgba(214, 122, 65, 0.22);
+  border-radius: 24px 24px 0 0;
+  padding: 0.75rem 0.35rem;
+  padding-bottom: calc(0.6rem + env(safe-area-inset-bottom));
+  box-shadow: 0 -8px 25px rgba(74, 37, 24, 0.08);
 }
 
 .mobile-bottom-bar-inner {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  max-width: 500px;
+  align-items: center;
+  max-width: 520px;
   margin: 0 auto;
+  gap: 2px;
 }
 
 .mobile-bar-divider {
-  width: 2px;
-  height: 28px;
-  background: rgba(94, 74, 66, 0.2);
-  margin-top: 15px;
+  width: 1px;
+  height: 22px;
+  background: rgba(94, 74, 66, 0.15);
+  flex-shrink: 0;
 }
 
 .mobile-bar-btn {
@@ -1061,42 +1067,88 @@ select.form-control {
   flex: 1;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  color: #3D2C23; /* Dark brown text */
-  font-size: 0.7rem;
-  font-weight: 600;
-  line-height: 1.2;
+  gap: 0.25rem;
+  color: #3D2C23;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.15;
   text-align: center;
-  transition: transform var(--transition-fast);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
   text-decoration: none;
+  position: relative;
+  min-width: 0;
 }
 
-.mobile-bar-btn:hover, .mobile-bar-btn:active {
-  transform: translateY(-2px);
+.mobile-bar-btn:active {
+  transform: scale(0.92);
 }
 
 .icon-wrapper {
-  width: 44px;
-  height: 44px;
-  background: rgba(214, 122, 65, 0.15); /* Light orange fill */
-  border: 1px solid #D38C44; /* Orange outline */
+  width: 38px;
+  height: 38px;
+  background: #FFFFFF;
+  border: 1px solid rgba(214, 122, 65, 0.25);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #D38C44;
+  color: #D67A41;
+  box-shadow: 0 2px 8px rgba(74, 37, 24, 0.04);
+  position: relative;
+  transition: all 0.25s ease;
 }
 
-.icon-wrapper svg {
-  width: 22px;
-  height: 22px;
+.mobile-bar-btn:active .icon-wrapper {
+  background: #FFF2E8;
+  border-color: #D67A41;
 }
 
-.mobile-bar-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
+.icon-wa-wrapper {
+  background: #E8FDF0;
+  border-color: rgba(37, 211, 102, 0.4);
+}
+
+.icon-ig-wrapper {
+  background: #FDF2F7;
+  border-color: rgba(225, 48, 108, 0.3);
+}
+
+/* Micro-animations */
+.wa-beacon-pulse {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  animation: waBeaconAnim 2s infinite;
+}
+
+@keyframes waBeaconAnim {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { transform: scale(1.2); box-shadow: 0 0 0 6px rgba(37, 211, 102, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.call-beacon-pulse {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #D67A41;
+  box-shadow: 0 0 0 0 rgba(214, 122, 65, 0.6);
+  animation: callBeaconAnim 2.2s infinite;
+}
+
+@keyframes callBeaconAnim {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(214, 122, 65, 0.6); }
+  70% { transform: scale(1.2); box-shadow: 0 0 0 6px rgba(214, 122, 65, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(214, 122, 65, 0); }
 }
 
 .domain-pill {

@@ -42,29 +42,29 @@ export default function DrAchitaYadavPage() {
           
           <div className="doc-hero-grid">
             <motion.div initial="hidden" animate="show" variants={staggerContainer} style={{ color: '#fff' }}>
-              <motion.div variants={fadeUp} className="section-badge badge-gold" style={{ border: '1px solid rgba(214, 122, 65, 0.3)' }}>✨ Certified Cosmetic &amp; Aesthetic Dentist</motion.div>
+              <motion.div variants={fadeUp} className="section-badge badge-gold" style={{ border: '1px solid rgba(214, 122, 65, 0.3)' }}>✨ Certified Cosmetic Dentist &amp; Smile Makeover Specialist</motion.div>
               <motion.h1 variants={fadeUp} style={{ color: '#fff', fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.5rem, 4vw, 4rem)', fontWeight: 800, marginBottom: '0.5rem', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
                 Dr (Prof.) Achla Yadav
               </motion.h1>
               <motion.div variants={fadeUp} style={{ fontSize: '1.15rem', color: 'var(--accent-gold-light)', fontWeight: 600, marginBottom: '1.5rem', letterSpacing: '0.02em' }}>
-                BDS, MDS, MIAOMP
+                BDS, MDS, MFOMP
               </motion.div>
               <motion.p variants={fadeUp} style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
-                Professor &amp; Senior Oral Pathologist with <strong>64 peer-reviewed publications</strong>, <strong>407+ global citations (h-index 12)</strong>, and <strong>2 academic books published in Germany</strong>. A pioneer in 2026 AI deep learning (YOLOv8) for automated oral cancer screening and aesthetic digital smile design.
+                Dr. (Prof.) Achla Yadav is a premier <strong>Cosmetic Dentist &amp; Consultant Oral Pathologist</strong> with over 18 years of clinical and academic mastery. Having served as a <strong>Professor at Panjab University</strong>, <strong>Dental Surgeon at ESIC (Hisar)</strong>, and <strong>Professor at DJ Dental College</strong>, she has crafted over <strong>15,000+ cosmetic smiles</strong> and treated over <strong>3,50,000+ patients</strong> with gentle, pain-free dental care.
               </motion.p>
               
               <motion.div variants={fadeUp} style={{ display: 'flex', gap: '2.5rem', marginBottom: '3rem', paddingBottom: '2rem', borderBottom: '1px solid rgba(255,255,255,0.12)', flexWrap: 'wrap' }}>
                 <div>
-                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-gold)' }}>407+</div>
-                  <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Citations</div>
+                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-gold)' }}>18+</div>
+                  <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Years Exp.</div>
                 </div>
                 <div>
-                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-gold)' }}>64</div>
-                  <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Publications</div>
+                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-gold)' }}>15,000+</div>
+                  <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Cosmetic Smiles</div>
                 </div>
                 <div>
-                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-gold)' }}>12</div>
-                  <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>h-index</div>
+                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-gold)' }}>3,50,000+</div>
+                  <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Patients Treated</div>
                 </div>
                 <div>
                   <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-gold)' }}>5.0★</div>
@@ -87,7 +87,7 @@ export default function DrAchitaYadavPage() {
                    <div style={{ position: 'absolute', bottom: '10%', right: '-5%', color: 'var(--accent-gold)', fontSize: '1.5rem' }}>✦</div>
                 </div>
                 <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%', overflow: 'hidden', animation: 'organicMorphHero 12s ease-in-out infinite alternate-reverse', boxShadow: '0 30px 60px rgba(0, 0, 0, 0.4)' }}>
-                  <Image src="/dr-achita-yadav.webp" alt="Dr. Achla Bharti Yadav" fill sizes="(max-width: 1024px) 100vw, 50vw" style={{ objectFit: 'cover', objectPosition: 'top' }} priority />
+                  <Image src="/dr-achita-yadav.webp" alt="Dr. (Prof.) Achla Yadav" fill sizes="(max-width: 1024px) 100vw, 50vw" style={{ objectFit: 'cover', objectPosition: 'top' }} priority />
                 </div>
               </div>
             </motion.div>
@@ -102,33 +102,33 @@ export default function DrAchitaYadavPage() {
             {/* Bio */}
             <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}>
               <motion.h2 variants={fadeUp} style={{ fontFamily: 'var(--font-heading)', fontSize: '2.5rem', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>
-                Academic &amp; Diagnostic Biography
+                Clinical &amp; Academic Biography
               </motion.h2>
               <motion.div variants={fadeUp} className="prose" style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '1.05rem' }}>
                 <p style={{ marginBottom: '1.5rem' }}>
-                  Dr. Achla Bharti Yadav is a distinguished Professor in <strong>Oral Pathology &amp; Diagnostic Sciences</strong>. She served as an Assistant Professor at <strong>PGI Rohtak</strong> and holds a Master of Dental Surgery (MDS) in Oral Pathology, alongside membership in the prestigious Indian Association of Oral and Maxillofacial Pathologists (MIAOMP).
+                  <strong>Dr. (Prof.) Achla Yadav</strong> is a distinguished <strong>Consultant Oral Pathologist and Certified Cosmetic Dentist</strong> with over 18 years of clinical experience. She holds a Master of Dental Surgery (MDS) in Oral Pathology (MFOMP) and has dedicated her practice to precision smile aesthetics, porcelain veneers, cosmetic restorations, and gentle pediatric dentistry.
                 </p>
                 <p style={{ marginBottom: '1.5rem' }}>
-                  With an outstanding academic record, Dr. Achla has authored <strong>64 peer-reviewed research papers</strong> cited over <strong>407 times globally</strong> (h-index 12) across international journals in the USA, Australia, Spain, and India. She has also written <strong>2 research textbooks</strong> published by Lambert Academic Publishing in Germany.
+                  Her esteemed career spans premier academic and government institutions, having served as a <strong>Professor at Panjab University</strong>, <strong>Dental Surgeon at ESIC Hospital (Hisar)</strong>, and <strong>Professor at DJ Dental College</strong>. Her deep clinical acumen ensures every aesthetic transformation is biologically sound, durable, and natural-looking.
                 </p>
                 <p style={{ marginBottom: '1.5rem' }}>
-                  Dr. Achla is at the global forefront of <strong>2026 AI-assisted dental diagnostics</strong>, actively publishing research on YOLOv8 deep learning neural networks for automated detection and grading of oral epithelial dysplasia and pre-malignant lesions. In clinical practice, she delivers precision cosmetic dentistry, porcelain veneers, and painless oral treatments.
+                  In addition to crafting thousands of radiant smiles, Dr. Achla is an active researcher who has authored <strong>64 international publications</strong> and <strong>2 academic textbooks</strong> in Germany, alongside pioneering 2026 AI deep-learning diagnostic screening for oral soft-tissue health.
                 </p>
               </motion.div>
 
               <motion.h3 variants={fadeUp} style={{ fontFamily: 'var(--font-heading)', fontSize: '1.8rem', margin: '3rem 0 1.5rem', color: 'var(--text-primary)' }}>
-                Diagnostic &amp; Clinical Specialties
+                Clinical &amp; Aesthetic Specialties
               </motion.h3>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
                 {[
-                  'AI Oral Cancer & OPMD Screening',
-                  'Oral Histopathology & Biopsy',
-                  'Premalignant Lesion Diagnostics',
-                  'Porcelain Veneers & Smile Makeover',
-                  'Certified Cosmetic Dentistry',
-                  'Salivary Gland Pathology',
-                  'Forensic Odontology',
-                  'Painless Root Canal & Restorations'
+                  'Porcelain E-Max Veneers',
+                  'Digital Smile Makeovers',
+                  'Cosmetic Teeth Whitening',
+                  'Composite Aesthetic Bonding',
+                  'Consultant Oral Pathology (MFOMP)',
+                  'AI Oral Health & Soft-Tissue Screening',
+                  'Gentle Pediatric Dentistry',
+                  'Painless Aesthetic Restorations'
                 ].map((skill, i) => (
                   <motion.div key={i} variants={fadeUp} whileHover={{ x: 5 }} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', background: '#fff', padding: '1rem', borderRadius: 'var(--radius-md)', boxShadow: '0 5px 15px rgba(74, 37, 24, 0.04)', border: '1px solid var(--border-color)' }}>
                     <CheckCircle size={20} style={{ color: 'var(--accent-gold)', flexShrink: 0 }} />
@@ -141,14 +141,15 @@ export default function DrAchitaYadavPage() {
             {/* Sidebar */}
             <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}>
               <motion.div variants={fadeUp} style={{ background: '#fff', padding: '2.5rem', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-color)', marginBottom: '2rem', boxShadow: '0 15px 35px rgba(74, 37, 24, 0.05)' }}>
-                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>Academic Credentials</h3>
+                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>Clinical Credentials</h3>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
                     <div style={{ background: 'var(--accent-light)', padding: '0.75rem', borderRadius: '50%' }}>
                       <CheckCircle size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Consultant Specialist in Oral Pathology</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Certified Cosmetic Dentist</strong>
+                      <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Smile Makeovers &amp; Porcelain Veneers</span>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -156,7 +157,8 @@ export default function DrAchitaYadavPage() {
                       <CheckCircle size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Certified Expert in Cosmetic Dentistry</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Consultant Oral Pathologist</strong>
+                      <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>BDS, MDS, MFOMP</span>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -164,7 +166,7 @@ export default function DrAchitaYadavPage() {
                       <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Former Assistant Professor, PGI Rohtak</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Professor, Panjab University</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -172,7 +174,7 @@ export default function DrAchitaYadavPage() {
                       <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Former Dental Surgeon, ECHS (Rewari)</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Dental Surgeon, ESIC (Hisar)</strong>
                     </div>
                   </li>
                   <li style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
@@ -180,16 +182,16 @@ export default function DrAchitaYadavPage() {
                       <GraduationCap size={24} style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Former Professor, DJ College of Dental Sciences</strong>
+                      <strong style={{ display: 'block', fontSize: '1.05rem', color: 'var(--text-primary)' }}>Ex. Professor, DJ Dental College</strong>
                     </div>
                   </li>
                 </ul>
               </motion.div>
 
               <motion.div variants={fadeUp} style={{ background: 'linear-gradient(135deg, var(--bg-dark), #1A0C08)', padding: '2.5rem', borderRadius: 'var(--radius-xl)', border: '1px solid rgba(214, 122, 65, 0.2)', boxShadow: '0 20px 40px rgba(74, 37, 24, 0.15)', textAlign: 'center' }}>
-                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', marginBottom: '1rem', color: '#fff' }}>Consultation &amp; Diagnosis</h3>
+                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', marginBottom: '1rem', color: '#fff' }}>Consultation &amp; Smile Design</h3>
                 <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.7, marginBottom: '2rem' }}>
-                  Schedule a consultation with Dr. Achla Bharti Yadav for oral pathology diagnosis, pre-cancer screening, veneers, or cosmetic smile design.
+                  Schedule a smile makeover consultation with Dr. (Prof.) Achla Yadav for porcelain veneers, cosmetic dentistry, or gentle oral care.
                 </p>
                 <a href="#book" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center' }}>Book Appointment</a>
               </motion.div>

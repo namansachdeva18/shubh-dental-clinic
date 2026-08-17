@@ -12,15 +12,19 @@ export default function FAQSection() {
   const faqs = [
     {
       q: 'Who is the best orthodontist in Rohtak?',
-      a: <><span className="text-highlight">Prof. Dr. S. K. Yadav</span> at Shubh Orthodontic &amp; Dental Clinic is widely regarded as the best orthodontist in Rohtak, Haryana. He holds an <span className="text-highlight">MDS in Orthodontics from PGI Chandigarh</span>, is a Certified Invisalign® Provider and a Fellow of the World Federation of Orthodontists (WFO, USA). With over 5,000+ completed braces and aligner cases and a 5.0-star Google rating, you are in the most trusted hands in Haryana.</>
+      a: <><span className="text-highlight">Prof. Dr. S. K. Yadav</span> at Shubh Orthodontic &amp; Dental Clinic is widely regarded as the best orthodontist in Rohtak, Haryana. He holds an <span className="text-highlight">MDS in Orthodontics from PGI Chandigarh</span>, is a Certified Invisalign® Provider and a Fellow of the World Federation of Orthodontists (WFO, USA). With over 35,000+ completed braces and aligner cases, 27,000+ implants, and a 5.0-star Google rating, you are in the most trusted hands in Haryana.</>
     },
     {
       q: 'How much do braces cost in Rohtak?',
       a: <>At Shubh Dental Clinic Rohtak, braces cost ranges from <span className="text-highlight">₹25,000 for standard metal braces</span> to <span className="text-highlight">₹55,000–₹1,20,000 for Damon® self-ligating ceramic braces</span>. Clear aligners (SkyAlign™) start from ₹45,000. Invisalign® comprehensive starts from ₹1,50,000. <span className="text-highlight">0% interest EMI is available</span> on all treatments to make premium care accessible.</>
     },
     {
+      q: 'Do you offer Online Video Consultations for outstation or NRI patients?',
+      a: <>Yes! We provide <span className="text-highlight">1-on-1 Online Video Consultations</span> with <span className="text-highlight">Prof. Dr. S. K. Yadav</span> and our senior specialists via WhatsApp Video and Zoom. Patients from across Haryana, NCR, outstation states, and international NRIs (USA, UK, UAE, Australia) can discuss smile concerns, review X-rays/photos, receive a customized treatment plan, and book prior slots before travelling to Rohtak.</>
+    },
+    {
       q: 'Why should I choose Prof. Dr. S. K. Yadav for my braces or clear aligners?',
-      a: <><span className="text-highlight">Prof. Dr. S. K. Yadav</span> holds an MDS in Orthodontics from PGI Chandigarh with <span className="text-highlight">over 20 years of clinical experience</span>. He is a <span className="text-highlight">Certified Invisalign® &amp; SkyAlign™ Provider</span> and a Fellow of the World Federation of Orthodontists (WFO, USA). With <span className="text-highlight">5,000+ completed braces and aligners cases</span>, you receive elite, specialized orthodontic care.</>
+      a: <><span className="text-highlight">Prof. Dr. S. K. Yadav</span> holds an MDS in Orthodontics from PGI Chandigarh with <span className="text-highlight">over 20 years of clinical experience</span>. He is a <span className="text-highlight">Certified Invisalign® &amp; SkyAlign™ Provider</span> and a Fellow of the World Federation of Orthodontists (WFO, USA). With <span className="text-highlight">35,000+ completed braces and aligners cases</span>, you receive elite, specialized orthodontic care.</>
     },
     {
       q: 'What is SkyAlign™ and how is it different from Invisalign®?',
@@ -143,7 +147,7 @@ export default function FAQSection() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .faq-section-wrapper {
-          padding: 6rem 1.5rem;
+          padding: 3rem 1.5rem;
           background: #FFFFFF;
           position: relative;
         }
@@ -155,7 +159,7 @@ export default function FAQSection() {
 
         .faq-header {
           text-align: center;
-          margin-bottom: 3.5rem;
+          margin-bottom: 1.75rem;
         }
 
         .faq-badge {

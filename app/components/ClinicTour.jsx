@@ -53,7 +53,8 @@ export default function ClinicTour() {
   };
 
   return (
-    <section className="clinic-tour-wrapper">
+    <section id="tour" className="clinic-tour-wrapper">
+      <div id="clinic-tour" style={{ position: 'relative', top: '-80px', height: '0', pointerEvents: 'none' }} />
       {/* Background Graphic Elements */}
       <div className="tour-bg-glow-1"></div>
       <div className="tour-bg-glow-2"></div>
@@ -132,7 +133,7 @@ export default function ClinicTour() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .clinic-tour-wrapper {
-          padding: 6rem 0;
+          padding: 3.5rem 0;
           background: #110805;
           position: relative;
           overflow: hidden;
@@ -140,7 +141,7 @@ export default function ClinicTour() {
 
         .tour-header {
           max-width: 800px;
-          margin: 0 auto 3.5rem;
+          margin: 0 auto 1.75rem;
           padding: 0 1.5rem;
           text-align: center;
           position: relative;

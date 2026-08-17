@@ -331,17 +331,17 @@ export default function TreatmentNavigator() {
         .bento-treatments-section {
           background: #FAF8F5;
           position: relative;
-          padding: 4.5rem 0;
+          padding: 3rem 0;
         }
 
         .bento-header {
-          margin-bottom: 1.75rem !important;
+          margin-bottom: 1.5rem !important;
         }
         .bento-header-desc {
           font-size: 1rem;
           color: #6E5448;
           max-width: 600px;
-          margin: 0.5rem auto 0;
+          margin: 0.35rem auto 0;
         }
 
         /* FILTER BAR */
@@ -351,7 +351,7 @@ export default function TreatmentNavigator() {
           justify-content: center;
           gap: 0.5rem;
           flex-wrap: wrap;
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
         }
         .t-filter-pill {
           background: #FFFFFF;

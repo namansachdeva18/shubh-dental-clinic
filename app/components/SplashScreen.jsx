@@ -11,21 +11,30 @@ const dancingScript = Dancing_Script({
 });
 
 export default function SplashScreen() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-    document.body.style.overflow = 'hidden';
+    // Check if user already saw splash in this session
+    try {
+      const alreadySeen = sessionStorage.getItem('shubh_splash_seen');
+      if (alreadySeen) {
+        setShowSplash(false);
+        return;
+      }
+      setShowSplash(true);
+      sessionStorage.setItem('shubh_splash_seen', '1');
+    } catch {
+      setShowSplash(true);
+    }
 
     const timer = setTimeout(() => {
       setShowSplash(false);
-      document.body.style.overflow = '';
-    }, 3400);
+    }, 1100);
 
     return () => {
       clearTimeout(timer);
-      document.body.style.overflow = '';
     };
   }, []);
 
@@ -36,9 +45,10 @@ export default function SplashScreen() {
       {showSplash && (
         <motion.div
           className="splash-overlay"
+          onClick={() => setShowSplash(false)}
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.04, filter: 'blur(14px)' }}
-          transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={{ duration: 0.35, ease: [0.2, 0.9, 0.3, 1] }}
         >
           {/* Animated background particles / aura */}
           <div className="splash-aura splash-aura-1" />

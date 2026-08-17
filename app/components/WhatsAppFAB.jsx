@@ -308,9 +308,8 @@ export default function WhatsAppFAB() {
           100% { transform: scale(1.5); opacity: 0; }
         }
 
-        @media (max-width: 480px) {
-          .fab-group { bottom: 20px; right: 16px; }
-          .fab-panel { width: 270px; }
+        @media (max-width: 768px) {
+          .fab-group { display: none !important; }
         }
       `}} />
     </>

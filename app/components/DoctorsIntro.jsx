@@ -1,886 +1,635 @@
 'use client';
-import { useRef } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { GraduationCap, Award, CheckCircle, ArrowRight, ShieldCheck, BookOpen, Cpu, Sparkles } from 'lucide-react';
-import AnimatedCounter from './AnimatedCounter';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  ShieldCheck, Award, GraduationCap, CheckCircle2, 
+  ArrowRight, BookOpen, Star, Sparkles, Cpu, Calendar, MessageSquare, Phone
+} from 'lucide-react';
 
-export default function DoctorsIntro({ hideCards = false }) {
-  const containerRef = useRef(null);
+const DOCTORS = [
+  {
+    id: 'dr-sk-yadav',
+    name: 'Dr. (Prof.) S. K. Yadav',
+    degrees: 'BDS, MDS · Fellow IAFO (USA) · Fellow WFO (USA)',
+    role: 'Consultant Orthodontist & Braces / Invisalign Specialist',
+    badge: '🏅 Certified Invisalign® Provider · Ex-SR PGI Chandigarh',
+    photo: '/dr-sk-yadav.webp',
+    alt: 'Dr. (Prof.) S. K. Yadav — Consultant Orthodontist & Implant Specialist',
+    tagline: '20+ years of clinical mastery in braces, clear aligners, dental implants, and smile transformations.',
+    stats: [
+      { val: '35,000+', label: 'Braces Cases' },
+      { val: '27,000+', label: 'Implants Placed' },
+      { val: '3,50,000+', label: 'Patients Treated' }
+    ],
+    highlights: [
+      'Ex. Senior Resident, PGI Chandigarh',
+      'Ex. Consultant, PGI Haryana (Bhiwani)',
+      'Ex. Dental Surgeon, ESIC (Hisar) · Ex. Prof. DJ Dental College',
+      'Certified Invisalign® & Damon® Self-Ligating System Provider'
+    ],
+    link: '/doctors/dr-sk-yadav'
+  },
+  {
+    id: 'dr-achla-yadav',
+    name: 'Dr. (Prof.) Achla Yadav',
+    degrees: 'BDS, MDS, MFOMP',
+    role: 'Consultant Oral Pathologist & Certified Cosmetic Dentist',
+    badge: '✨ Certified Cosmetic Dentist & Smile Makeover Specialist',
+    photo: '/dr-achita-yadav.webp',
+    alt: 'Dr. (Prof.) Achla Yadav — Consultant Oral Pathologist & Certified Cosmetic Dentist',
+    tagline: '18+ years of clinical excellence in cosmetic smile design, porcelain veneers, painless restorations, and oral health.',
+    stats: [
+      { val: '18+', label: 'Years Experience' },
+      { val: '15,000+', label: 'Cosmetic Smiles' },
+      { val: '3,50,000+', label: 'Patients Treated' }
+    ],
+    highlights: [
+      'Certified Cosmetic Dentist & Smile Makeover Specialist',
+      'Consultant Oral Pathologist (MDS, MFOMP)',
+      'Ex. Professor, Panjab University',
+      'Ex. Dental Surgeon, ESIC (Hisar) · Ex. Prof. DJ Dental College'
+    ],
+    link: '/doctors/dr-achita-yadav'
+  }
+];
 
-  // Framer Motion Variants
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.1 }
-    }
-  };
+const DoctorVectors = {
+  pgiProfessor: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 3L2 8l10 5 10-5-10-5z" stroke="#D67A41" />
+      <path d="M6 10.5v5c0 1.5 2.7 3.5 6 3.5s6-2 6-3.5v-5" stroke="#F4B382" />
+      <path d="M20 9v7M12 13v8" stroke="#D67A41" />
+    </svg>
+  ),
+  evidenceBased: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 18h8M3 22h18M14 22a7 7 0 1 0 0-14h-1M9 14h2M9 12a2 2 0 1 1-2-2" stroke="#D67A41" />
+      <path d="M10 2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h2z" stroke="#F4B382" />
+    </svg>
+  ),
+  masterCases: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2C8 2 6 4.5 6 8c0 3 2 5.5 3.5 7.5V20c0 1.1.9 2 2.5 2s2.5-.9 2.5-2v-4.5C16 13.5 18 11 18 8c0-3.5-2-6-6-6z" stroke="#D67A41" />
+      <path d="M9 8l2 2 4-4" stroke="#10B981" strokeWidth="2" />
+    </svg>
+  ),
+  aiDiagnostics: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="4" width="16" height="16" rx="2" stroke="#D67A41" />
+      <rect x="9" y="9" width="6" height="6" stroke="#F4B382" />
+      <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" stroke="#D67A41" />
+    </svg>
+  )
+};
 
-  const fadeUp = {
-    hidden: { y: 40, opacity: 0 },
-    show: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 60, damping: 20 } }
-  };
+const WHAT_PATIENTS_GET = [
+  {
+    Icon: DoctorVectors.pgiProfessor,
+    title: 'Direct Care by PGI Professors',
+    desc: 'You are personally diagnosed and treated by senior specialists, never delegated to junior trainees.'
+  },
+  {
+    Icon: DoctorVectors.evidenceBased,
+    title: 'Evidence-Based Treatments',
+    desc: 'Over 107+ internationally published research papers ensuring proven, biologically safe protocols.'
+  },
+  {
+    Icon: DoctorVectors.masterCases,
+    title: '35,000+ Proven Cases',
+    desc: 'Decades of hands-on clinical mastery handling complex braces, aligners, and 27,000+ implants.'
+  },
+  {
+    Icon: DoctorVectors.aiDiagnostics,
+    title: 'AI Diagnostics & 3D Imaging',
+    desc: 'Cutting-edge AI-assisted screening and 3D digital telemetry for pinpoint clinical accuracy.'
+  }
+];
 
-  const scaleIn = {
-    hidden: { scale: 0.94, opacity: 0 },
-    show: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 80, damping: 25 } }
-  };
+export default function DoctorsIntro() {
+  const [selectedDoctor, setSelectedDoctor] = useState('dr-sk-yadav');
+  const activeDoc = DOCTORS.find(d => d.id === selectedDoctor) || DOCTORS[0];
 
-  const accreditations = [
-    { name: "Indian Orthodontic Society", label: "IOS Endorsed Orthodontist", badge: "🏅 IOS Endorsed" },
-    { name: "Invisalign® Aligners", label: "Certified Invisalign® Provider", badge: "✨ Invisalign® Certified" },
-    { name: "Osstem® Implants", label: "Certified Osstem® Implantologist", badge: "🛡️ Osstem® Certified" },
-    { name: "Damon® System", label: "Official Damon® Braces Provider", badge: "💎 Damon® Provider" },
-    { name: "WFO USA", label: "Fellow, World Federation of Orthodontists", badge: "🌐 WFO USA Fellow" },
-    { name: "PGI Chandigarh", label: "Ex-Senior Resident, PGI Chandigarh", badge: "🎓 Ex-PGI Chandigarh" },
-    { name: "PGI Rohtak", label: "Ex-Assistant Professor, PGI Rohtak", badge: "🏛️ Ex-PGI Rohtak Faculty" }
-  ];
+  const whatsappUrl = 'https://wa.me/918685048414?text=' + encodeURIComponent(
+    'Hi! I would like to schedule a Specialist Consultation with Dr. S. K. Yadav / Dr. Achla Yadav.'
+  );
 
   return (
-    <section className="section doctors-section-wrapper" ref={containerRef} aria-label="Meet the Doctors">
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+    <section id="doctors" className="doctors-section-root" aria-label="Our Specialist Doctors">
+      <div id="about-doctors" style={{ position: 'relative', top: '-80px', height: '0', pointerEvents: 'none' }} />
+      <div className="doctors-container">
         
-        {/* Section Header */}
-        <motion.div 
-          className="section-header"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-          style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 4rem' }}
-        >
-          <motion.div variants={fadeUp} className="section-badge badge-gold" style={{ margin: '0 auto 1rem', display: 'inline-flex' }}>
-            <ShieldCheck size={14} aria-hidden="true" />
-            Haryana's Most Trusted Dental Specialists
-          </motion.div>
-          <motion.h2 variants={fadeUp} style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem', lineHeight: 1.15 }}>
-            Decades of Clinical Mastery &amp; <span className="text-gradient-copper">Real Patient Results</span>
-          </motion.h2>
-          <motion.p variants={fadeUp} style={{ fontFamily: 'var(--font-body)', fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-            With <strong>5,000+ orthodontic cases</strong>, <strong>3,000+ dental implants</strong> and over <strong>20 years of hands-on clinical practice</strong>, our PGI-trained specialists bring rare expertise directly to you in Rohtak. Backed by globally recognised research — so your treatment is always evidence-based.
-          </motion.p>
-        </motion.div>
-
-        {/* Combined Banner */}
-        <motion.div 
-          className="doctors-banner"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
-        >
-          <motion.div variants={scaleIn} className="doctors-banner-left">
-            {/* Background Aura */}
-            <div className="aura-wrapper">
-              <div className="aura-orb orb-1"></div>
-              <div className="aura-orb orb-2"></div>
-              <div className="aura-orb orb-3"></div>
-              <div className="aura-noise"></div>
-              {Array.from({ length: 12 }, (_, i) => (
-                <div key={i} className="floating-star" aria-hidden="true" style={{
-                  left: `${(i * 29 + 5) % 94}%`,
-                  top: `${(i * 41 + 11) % 90}%`,
-                  animationDelay: `${(i * 0.4) % 5}s`,
-                  animationDuration: `${4 + (i * 0.3) % 4}s`
-                }}>✦</div>
-              ))}
-            </div>
-
-            <div className="doctors-banner-content">
-              <div className="pill-badge pill-gold" style={{ marginBottom: '1rem', width: 'fit-content' }}>🏆 20+ Years Combined Clinical Mastery</div>
-              <h3 className="doctors-banner-title">
-                Prof. Dr. S. K. Yadav <br />
-                <span style={{ color: 'var(--accent-gold)' }}>&amp;</span> Dr. Achla Bharti Yadav
-              </h3>
-              <p className="doctors-banner-desc">
-                Trained at <strong>PGI Chandigarh</strong> and <strong>PGI Rohtak</strong> — India's most elite institutions — our founders bring <strong>5,000+ orthodontic cases</strong>, <strong>3,000+ implants placed</strong>, and <strong>AI-powered oral cancer screening</strong> to Rohtak. What you get is the kind of precision and experience usually reserved for major metro cities, delivered with genuine compassion.
-              </p>
-              
-              <div className="doctors-banner-stats">
-                <div className="db-stat">
-                  <div className="db-stat-value"><AnimatedCounter target={5000} suffix="+" /></div>
-                  <div className="db-stat-label">Braces Cases</div>
-                </div>
-                <div className="db-stat">
-                  <div className="db-stat-value"><AnimatedCounter target={3000} suffix="+" /></div>
-                  <div className="db-stat-label">Implants Placed</div>
-                </div>
-                <div className="db-stat">
-                  <div className="db-stat-value"><AnimatedCounter target={20000} suffix="+" /></div>
-                  <div className="db-stat-label">Happy Patients</div>
-                </div>
-                <div className="db-stat">
-                  <div className="db-stat-value">5.0★</div>
-                  <div className="db-stat-label">Google Rating</div>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', gap: '1rem', marginTop: '1.75rem', flexWrap: 'wrap' }}>
-                <Link href="#book" className="btn btn-gold" style={{ width: 'fit-content' }}>
-                  <CheckCircle size={16} aria-hidden="true" />
-                  <span className="hide-mobile">Schedule Specialist Consultation</span>
-                  <span className="show-mobile">Schedule Consultation</span>
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            variants={scaleIn} 
-            className="doctors-banner-right"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 200, damping: 20 }}
-          >
-            {/* Animated Glow Halo Background */}
-            <div className="photo-halo-bg"></div>
-            
-            {/* Main Photo Frame */}
-            <div className="innovative-photo-frame">
-              <Image
-                src="/doctors-combined.webp"
-                alt="Prof. Dr. S. K. Yadav and Dr. Achla Bharti Yadav"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                priority
-              />
-              <div className="image-overlay-warm"></div>
-
-
-
-              {/* Shimmer Light Sweep */}
-              <div className="photo-shimmer-sweep" aria-hidden="true"></div>
-
-              {/* Top-Right Floating Glass Badge */}
-              <motion.div 
-                className="floating-photo-badge badge-top-right"
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="badge-icon">🎓</span>
-                <div>
-                  <strong>PGI Chandigarh &amp; Rohtak</strong>
-                  <span>Alumni &amp; Published Faculty</span>
-                </div>
-              </motion.div>
-
-              {/* Bottom-Left Floating Glass Badge */}
-              <motion.div 
-                  className="floating-photo-badge badge-bottom-left"
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                >
-                  <span className="badge-icon">🦷</span>
-                  <div>
-                    <strong>5,000+ Cases · 3,000+ Implants</strong>
-                    <span>Real Expertise. Real Results.</span>
-                  </div>
-                </motion.div>
-
-              {/* Floating Doctor Name Tooltips */}
-              <div className="doc-tag-tooltip tag-left">
-                <span className="dot-pulse"></span>
-                <span className="tag-text">Dr (Prof.) S. K. Yadav</span>
-              </div>
-              
-              <div className="doc-tag-tooltip tag-right">
-                <span className="dot-pulse"></span>
-                <span className="tag-text">Dr (Prof.) Achla Yadav</span>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-
-
-
-        {/* Individual Doctor Cards */}
-        {!hideCards && (
-          <div className="doctor-cards-grid" style={{ marginTop: '4rem' }}>
-          
-          {/* Card 1 — Prof. Dr. S. K. Yadav */}
-          <motion.article 
-            className="doctor-card" 
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={fadeUp}
-            whileHover={{ y: -6 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            <div className="doctor-card-photo">
-              <div className="organic-wrapper">
-                <div className="organic-outline"></div>
-                <div className="organic-image">
-                  <Image
-                    src="/dr-sk-yadav.webp"
-                    alt="Prof. Dr. S. K. Yadav — Consultant Orthodontist & Implant Specialist"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 400px"
-                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                  />
-                </div>
-              </div>
-              <div className="doctor-card-badge glow-badge">🏅 IOS Endorsed · Invisalign® &amp; Damon® Provider</div>
-            </div>
-
-            <div className="doctor-card-body">
-              <h3 className="doctor-card-name">Dr (Prof.) S. K. Yadav</h3>
-              <div className="doctor-card-role">BDS, MDS</div>
-              
-              <p className="doctor-card-bio">
-                Haryana's leading <strong>Orthodontist &amp; Implant Specialist</strong> with 20+ years of clinical practice. Has personally treated <strong>5,000+ braces patients</strong> and placed <strong>3,000+ dental implants</strong> — bringing PGI-Chandigarh's gold standard of care to Rohtak. One of Haryana's <strong>few Certified Invisalign® Providers</strong> and a pioneer of lingual braces &amp; micro-implant techniques in the region.
-              </p>
-              
-              <div className="cv-divider"></div>
-              
-              <ul className="doctor-card-creds">
-                <li><CheckCircle size={16} /><span><strong>5,000+ Orthodontic Cases Treated</strong> — braces, Invisalign &amp; lingual</span></li>
-                <li><CheckCircle size={16} /><span><strong>3,000+ Dental Implants Placed</strong> — including same-day &amp; complex cases</span></li>
-                <li><CheckCircle size={16} /><span><strong>Certified Invisalign® Provider</strong> — one of the few in Haryana</span></li>
-                <li><Award size={16} /><span><strong>Fellow, World Federation of Orthodontists (WFO, USA)</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>MDS — PGI Chandigarh</strong> (India's premier medical institute)</span></li>
-                <li><GraduationCap size={16} /><span><strong>Former Senior Resident, PGI Chandigarh</strong></span></li>
-                <li><BookOpen size={16} /><span><strong>43 Research Papers · 247+ Citations</strong> — globally published</span></li>
-                <li><GraduationCap size={16} /><span><strong>Former Professor, DJ College of Dental Sciences</strong></span></li>
-              </ul>
-              
-              <Link href="/doctors/dr-sk-yadav" className="btn btn-outline cv-btn">
-                <span className="hide-mobile">Explore Research &amp; CV Profile</span>
-                <span className="show-mobile">Explore Profile</span> <ArrowRight size={15} />
-              </Link>
-            </div>
-          </motion.article>
-
-          {/* Card 2 — Dr. Achla Bharti Yadav */}
-          <motion.article 
-            className="doctor-card" 
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={fadeUp}
-            whileHover={{ y: -6 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            <div className="doctor-card-photo">
-              <div className="organic-wrapper">
-                <div className="organic-outline"></div>
-                <div className="organic-image">
-                  <Image
-                    src="/dr-achita-yadav.webp"
-                    alt="Dr. Achla Bharti Yadav — Professor, Oral Pathologist & AI Cancer Screening Specialist"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 400px"
-                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                  />
-                </div>
-              </div>
-              <div className="doctor-card-badge glow-badge">✨ Certified Cosmetic &amp; Aesthetic Dentist</div>
-            </div>
-
-            <div className="doctor-card-body">
-              <h3 className="doctor-card-name">Dr (Prof.) Achla Yadav</h3>
-              <div className="doctor-card-role">BDS, MDS, MIAOMP</div>
-              
-              <p className="doctor-card-bio">
-                A specialist you can trust for early detection and cosmetic brilliance. Dr. Achla's <strong>AI-powered oral cancer screening</strong> (using YOLOv8 deep learning) catches pre-cancer lesions most clinics miss. With a PGI Rohtak background and expertise in <strong>cosmetic dentistry and smile makeovers</strong>, she helps patients look and feel their absolute best.
-              </p>
-
-              <div className="cv-divider"></div>
-
-              <ul className="doctor-card-creds">
-                <li><Cpu size={16} /><span><strong>AI-Powered Oral Cancer Screening</strong> — early detection using YOLOv8 deep learning</span></li>
-                <li><CheckCircle size={16} /><span><strong>Cosmetic Dentistry &amp; Smile Makeover Specialist</strong> — veneers, whitening, bonding</span></li>
-                <li><CheckCircle size={16} /><span><strong>Oral Pathology Consultant</strong> — diagnosis, biopsy &amp; soft-tissue expertise</span></li>
-                <li><GraduationCap size={16} /><span><strong>MDS — PGI Rohtak</strong> (Former Assistant Professor)</span></li>
-                <li><BookOpen size={16} /><span><strong>64 Research Papers · 407+ Citations</strong> — h-index 12</span></li>
-                <li><GraduationCap size={16} /><span><strong>Former Dental Surgeon, ECHS (Rewari)</strong></span></li>
-              </ul>
-              
-              <Link href="/doctors/dr-achita-yadav" className="btn btn-outline cv-btn">
-                <span className="hide-mobile">Explore Research &amp; CV Profile</span>
-                <span className="show-mobile">Explore Profile</span> <ArrowRight size={15} />
-              </Link>
-            </div>
-          </motion.article>
-
+        {/* SECTION HEADER */}
+        <div className="doctors-header">
+          <div className="doctors-pill-badge">
+            <ShieldCheck size={14} className="shield-icon" aria-hidden="true" />
+            <span>Haryana's Most Trusted Dental Specialists</span>
           </div>
-        )}
 
-        {/* End of Doctors Section */}
+          <h2 className="doctors-title font-heading">
+            Decades of Clinical Mastery &amp; <br />
+            <span className="copper-gradient">Real Patient Results</span>
+          </h2>
+
+          <p className="doctors-subtitle">
+            With <strong>35,000+ braces &amp; aligner cases</strong>, <strong>27,000+ dental implants</strong>, and over <strong>3,50,000+ patients treated</strong>, our PGI-trained specialists bring rare clinical expertise directly to you in Rohtak.
+          </p>
+        </div>
+
+        {/* 1. WHAT PATIENTS GET (4-PILLAR VALUE GRID) */}
+        <div className="what-patients-get-grid">
+          {WHAT_PATIENTS_GET.map((item, idx) => (
+            <div key={idx} className="wpg-card">
+              <div className="wpg-icon-box" aria-hidden="true">
+                <item.Icon />
+              </div>
+              <div className="wpg-text">
+                <h3 className="wpg-title">{item.title}</h3>
+                <p className="wpg-desc">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* 2. INTERACTIVE SPECIALIST SHOWCASE */}
+        <div className="specialist-showcase-card">
+          <div className="doctor-toggle-bar" role="tablist">
+            {DOCTORS.map((doc) => (
+              <button
+                key={doc.id}
+                type="button"
+                role="tab"
+                aria-selected={selectedDoctor === doc.id}
+                className={`doctor-tab-btn ${selectedDoctor === doc.id ? 'is-active' : ''}`}
+                onClick={() => setSelectedDoctor(doc.id)}
+              >
+                <span>{doc.name}</span>
+                <span className="tab-doc-role">{doc.id === 'dr-sk-yadav' ? 'Orthodontics & Implants' : 'Oral Pathology & Cosmetics'}</span>
+              </button>
+            ))}
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeDoc.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="specialist-detail-layout"
+            >
+              {/* Doctor Avatar & Quick Stats */}
+              <div className="specialist-photo-col">
+                <div className="specialist-avatar-wrap">
+                  <Image
+                    src={activeDoc.photo}
+                    alt={activeDoc.alt}
+                    fill
+                    sizes="(max-width: 768px) 180px, 260px"
+                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                    priority
+                  />
+                </div>
+
+                <div className="specialist-mini-stats">
+                  {activeDoc.stats.map((s, i) => (
+                    <div key={i} className="s-mini-stat">
+                      <strong>{s.val}</strong>
+                      <span>{s.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Doctor Information & Credentials */}
+              <div className="specialist-info-col">
+                <span className="specialist-badge-tag">{activeDoc.badge}</span>
+                <h3 className="specialist-name font-heading">{activeDoc.name}</h3>
+                <p className="specialist-degrees">{activeDoc.degrees}</p>
+                <p className="specialist-tagline">{activeDoc.tagline}</p>
+
+                <div className="specialist-highlights-list">
+                  {activeDoc.highlights.map((h, idx) => (
+                    <div key={idx} className="specialist-highlight-item">
+                      <CheckCircle2 size={16} className="check-icon-gold" aria-hidden="true" />
+                      <span>{h}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="specialist-video-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#ECFDF5', border: '1px solid rgba(16, 185, 129, 0.3)', color: '#0E744A', padding: '4px 12px', borderRadius: '99px', fontSize: '0.74rem', fontWeight: '700', marginBottom: '1rem', width: 'fit-content' }}>
+                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981' }} />
+                  <span>📹 In-Clinic Visits &amp; 1-on-1 Online Video Consultations Available</span>
+                </div>
+
+                <div className="specialist-actions-row">
+                  <a href="#book" className="btn-doc-primary">
+                    <Calendar size={16} aria-hidden="true" />
+                    <span>Book In-Clinic / Online Consult</span>
+                  </a>
+
+                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-doc-wa">
+                    <MessageSquare size={16} aria-hidden="true" />
+                    <span>WhatsApp</span>
+                  </a>
+
+                  <Link href={activeDoc.link} className="btn-doc-profile">
+                    <span>View Full Credentials →</span>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
       </div>
 
+      {/* LUXURY COMPACT CSS */}
       <style dangerouslySetInnerHTML={{ __html: `
-        .doctors-section-wrapper {
-          background: var(--bg-primary);
+        .doctors-section-root {
+          background: #FAF8F5;
+          color: #2D2420;
+          padding: 3rem 1.5rem;
           position: relative;
           overflow: hidden;
-          padding: 6rem 0;
-        }
-        
-        /* --- PRESTIGIOUS GOLDEN AURA BACKGROUND --- */
-        .aura-wrapper {
-          position: absolute;
-          inset: 0;
-          overflow: hidden;
-          z-index: 0;
-          background: #110805;
-        }
-        .aura-orb {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(50px);
-          opacity: 0.5;
-          animation: floatAura 20s infinite alternate ease-in-out;
-        }
-        .orb-1 {
-          width: 300px; height: 300px;
-          background: rgba(214, 122, 65, 0.25);
-          top: -10%; left: -10%;
-        }
-        .orb-2 {
-          width: 400px; height: 400px;
-          background: rgba(201, 168, 76, 0.15);
-          bottom: -20%; right: -10%;
-          animation-delay: -5s;
-          animation-duration: 25s;
-        }
-        .orb-3 {
-          width: 250px; height: 250px;
-          background: rgba(74, 37, 24, 0.4);
-          top: 30%; left: 30%;
-          animation-delay: -10s;
-          animation-duration: 30s;
-        }
-        @keyframes floatAura {
-          0% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(40px, -40px) scale(1.1); }
-          66% { transform: translate(-30px, 30px) scale(0.9); }
-          100% { transform: translate(0, 0) scale(1); }
-        }
-        .aura-noise {
-          position: absolute;
-          inset: 0;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-          opacity: 0.15;
-          mix-blend-mode: overlay;
-          z-index: 1;
-        }
-        .floating-star {
-          position: absolute;
-          color: var(--accent-gold);
-          font-size: 10px;
-          opacity: 0;
-          z-index: 2;
-          animation: twinkleStar linear infinite;
-        }
-        @keyframes twinkleStar {
-          0% { opacity: 0; transform: translateY(0) scale(0.5) rotate(0deg); }
-          50% { opacity: 0.9; transform: translateY(-30px) scale(1.3) rotate(180deg); }
-          100% { opacity: 0; transform: translateY(-60px) scale(0.5) rotate(360deg); }
+          box-sizing: border-box;
+          width: 100%;
+          border-top: 1px solid rgba(214, 122, 65, 0.15);
+          border-bottom: 1px solid rgba(214, 122, 65, 0.15);
         }
 
-        .doctors-banner-content {
+        .doctors-container {
+          max-width: 1200px;
+          margin: 0 auto;
           position: relative;
-          z-index: 10;
+          z-index: 2;
+          width: 100%;
+          box-sizing: border-box;
         }
-        
-        .doctors-banner {
-          display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: 0;
-          border-radius: var(--radius-xl);
-          overflow: hidden;
-          box-shadow: 0 30px 60px rgba(74, 37, 24, 0.15);
-          margin-bottom: 3rem;
-          min-height: 450px;
-          border: 1px solid rgba(214, 122, 65, 0.2);
+
+        /* ── HEADER ──────────────────────────────────── */
+        .doctors-header {
+          text-align: center;
+          max-width: 820px;
+          margin: 0 auto 1.75rem;
         }
-        .doctors-banner-left {
-          background: #110805;
-          padding: 4rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          gap: 1.5rem;
-          position: relative;
-        }
-        .doctors-banner-title {
-          font-family: var(--font-heading);
-          font-size: clamp(1.8rem, 3vw, 2.5rem);
+        .doctors-pill-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          background: rgba(214, 122, 65, 0.12);
+          color: #B85D26;
+          border: 1px solid rgba(214, 122, 65, 0.28);
+          padding: 0.35rem 0.95rem;
+          border-radius: 99px;
+          font-size: 0.75rem;
           font-weight: 800;
-          color: #fff;
-          line-height: 1.2;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          margin-bottom: 0.85rem;
+        }
+        .shield-icon {
+          color: #D67A41;
+        }
+
+        .doctors-title {
+          font-size: clamp(2rem, 3.8vw, 2.9rem);
+          font-weight: 800;
+          color: #110805;
+          line-height: 1.18;
+          margin-bottom: 0.85rem;
           letter-spacing: -0.02em;
         }
-        .doctors-banner-desc {
-          font-size: 1.05rem;
-          color: rgba(255,255,255,0.8);
-          line-height: 1.8;
-        }
-        .doctors-banner-desc strong { color: var(--accent-gold-light); font-weight: 700; }
-        
-        .doctors-banner-stats {
-          display: flex;
-          gap: 2rem;
-          margin-top: 1rem;
-          padding-top: 1.5rem;
-          border-top: 1px solid rgba(255,255,255,0.12);
-          flex-wrap: wrap;
-        }
-        .db-stat-value {
-          font-family: var(--font-heading);
-          font-size: 1.8rem;
-          font-weight: 800;
-          color: var(--accent-gold);
-          text-shadow: 0 0 20px rgba(214, 122, 65, 0.3);
-        }
-        .db-stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.65); margin-top: 0.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-        
-        .doctors-banner-right {
-          position: relative;
-          min-height: 440px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 1rem;
+        .copper-gradient {
+          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
 
-        /* --- INNOVATIVE PHOTO FRAME & ANIMATIONS --- */
-        .photo-halo-bg {
-          position: absolute;
-          inset: 5%;
-          background: radial-gradient(circle, rgba(214, 122, 65, 0.35) 0%, rgba(201, 168, 76, 0.15) 50%, transparent 80%);
-          filter: blur(40px);
-          z-index: 0;
-          animation: pulseHalo 6s ease-in-out infinite alternate;
+        .doctors-subtitle {
+          font-size: 1.02rem;
+          color: #554A44;
+          line-height: 1.65;
+          margin: 0 auto;
         }
-        @keyframes pulseHalo {
-          0% { opacity: 0.4; transform: scale(0.95); }
-          100% { opacity: 0.8; transform: scale(1.08); }
+        .doctors-subtitle strong {
+          color: #B85D26;
         }
 
-        .innovative-photo-frame {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          min-height: 420px;
-          border-radius: 28px;
-          overflow: hidden;
-          z-index: 1;
-          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(214, 122, 65, 0.3);
-          background: #110805;
-        }
-
-        /* Laser Scan Line Animation */
-        .laser-scan-beam {
-          position: absolute;
-          left: 0;
-          right: 0;
-          height: 3px;
-          background: linear-gradient(90deg, transparent 0%, rgba(214, 122, 65, 0.2) 20%, var(--accent-gold) 50%, rgba(214, 122, 65, 0.2) 80%, transparent 100%);
-          box-shadow: 0 0 15px var(--accent-gold), 0 0 30px rgba(214, 122, 65, 0.8);
-          z-index: 5;
-          animation: scanVertical 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-          pointer-events: none;
-        }
-        @keyframes scanVertical {
-          0% { top: -5%; opacity: 0; }
-          10% { opacity: 1; }
-          90% { opacity: 1; }
-          100% { top: 105%; opacity: 0; }
-        }
-
-        /* Shimmer Sweep Animation */
-        .photo-shimmer-sweep {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.12) 50%, transparent 60%);
-          z-index: 4;
-          animation: shimmerSweep 8s infinite;
-          pointer-events: none;
-        }
-        @keyframes shimmerSweep {
-          0% { transform: translateX(-100%); }
-          30% { transform: translateX(100%); }
-          100% { transform: translateX(100%); }
-        }
-
-        /* Floating Glass Badges */
-        .floating-photo-badge {
-          position: absolute;
-          z-index: 10;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          background: rgba(17, 8, 5, 0.82);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid rgba(214, 122, 65, 0.4);
-          padding: 0.75rem 1.1rem;
-          border-radius: 20px;
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 15px rgba(214, 122, 65, 0.15);
-        }
-        .floating-photo-badge .badge-icon {
-          font-size: 1.4rem;
-        }
-        .floating-photo-badge strong {
-          display: block;
-          font-size: 0.85rem;
-          color: #fff;
-          font-family: var(--font-heading);
-          line-height: 1.2;
-        }
-        .floating-photo-badge span {
-          font-size: 0.72rem;
-          color: var(--accent-gold-light);
-          font-weight: 500;
-        }
-
-        .badge-top-right {
-          top: 20px;
-          right: 20px;
-        }
-        .badge-bottom-left {
-          bottom: 25px;
-          left: 20px;
-        }
-
-        /* Interactive Doctor Tooltip Tags */
-        .doc-tag-tooltip {
-          position: absolute;
-          z-index: 10;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          background: rgba(0, 0, 0, 0.75);
-          backdrop-filter: blur(8px);
-          border: 1px solid rgba(255, 255, 255, 0.25);
-          padding: 0.4rem 0.85rem;
-          border-radius: 30px;
-          box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-          transition: transform 0.3s ease;
-        }
-        .doc-tag-tooltip:hover {
-          transform: scale(1.05);
-          border-color: var(--accent-gold);
-        }
-        .tag-left {
-          bottom: 90px;
-          left: 25px;
-        }
-        .tag-right {
-          top: 85px;
-          right: 25px;
-        }
-        .dot-pulse {
-          width: 8px;
-          height: 8px;
-          background: var(--accent-gold);
-          border-radius: 50%;
-          box-shadow: 0 0 10px var(--accent-gold);
-          animation: dotPulse 2s infinite;
-        }
-        @keyframes dotPulse {
-          0% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.5); opacity: 0.5; }
-          100% { transform: scale(1); opacity: 1; }
-        }
-        .tag-text {
-          font-size: 0.78rem;
-          font-weight: 700;
-          color: #fff;
-          letter-spacing: 0.02em;
-        }
-
-        .image-overlay-warm {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to right, rgba(26,12,8,0.3) 0%, transparent 40%),
-                      linear-gradient(to top, rgba(26,12,8,0.5) 0%, transparent 35%);
-          z-index: 2;
-          pointer-events: none;
-        }
-
-
-
-        /* --- DOCTOR CARDS GRID --- */
-        .doctor-cards-grid {
+        /* ── WHAT PATIENTS GET GRID ──────────────────── */
+        .what-patients-get-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 3rem;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1rem;
+          margin-bottom: 2.25rem;
         }
-        .doctor-card {
-          background: var(--bg-card);
-          border-radius: var(--radius-xl);
-          overflow: hidden;
-          box-shadow: 0 20px 40px rgba(74, 37, 24, 0.08);
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          display: flex;
-          flex-direction: column;
-        }
-        .doctor-card-photo {
-          position: relative;
-          height: 360px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: linear-gradient(to bottom, var(--accent-light) 0%, transparent 100%);
-          padding: 2rem 2rem 1rem;
-        }
-        
-        .organic-wrapper {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          max-width: 260px;
-          max-height: 260px;
-        }
-        .organic-outline {
-          position: absolute;
-          inset: -12px;
-          border: 1px solid var(--accent-gold-light);
-          border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-          animation: organicMorph 8s ease-in-out infinite alternate;
-          pointer-events: none;
-        }
-        .organic-outline::before, .organic-outline::after {
-          content: "✦";
-          position: absolute;
-          color: var(--accent-gold);
-          animation: twinkleStar 3s infinite alternate;
-        }
-        .organic-outline::before { top: 5%; left: 0%; font-size: 1.5rem; }
-        .organic-outline::after { bottom: 10%; right: -5%; font-size: 1.2rem; animation-delay: 1.5s; }
-        
-        .organic-image {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-          overflow: hidden;
-          animation: organicMorph 8s ease-in-out infinite alternate-reverse;
-          box-shadow: 0 15px 35px rgba(74, 37, 24, 0.12);
-        }
-        @keyframes organicMorph {
-          0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-          100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-        }
-
-        .glow-badge {
-          position: absolute;
-          bottom: -15px;
-          z-index: 10;
-          background: rgba(26,12,8,0.92) !important;
-          color: var(--accent-gold-light) !important;
-          border: 1px solid rgba(214, 122, 65, 0.4);
-          box-shadow: 0 10px 20px rgba(214, 122, 65, 0.25);
-          backdrop-filter: blur(12px);
-          font-size: 0.78rem !important;
-          padding: 0.5rem 1.1rem !important;
-          border-radius: 30px;
-        }
-
-        .doctor-card-body { padding: 2.5rem; display: flex; flex-direction: column; flex-grow: 1; }
-        
-        .doctor-card-name {
-          font-family: var(--font-heading);
-          font-size: 1.6rem;
-          margin-bottom: 0.35rem;
-          color: var(--text-primary);
-          font-weight: 800;
-        }
-        .doctor-card-role {
-          font-size: 0.88rem;
-          font-weight: 700;
-          color: var(--accent-gold-dark);
-          line-height: 1.5;
-          margin-bottom: 1.25rem;
-        }
-        .doctor-card-bio {
-          font-size: 0.95rem;
-          line-height: 1.8;
-          color: var(--text-secondary);
-        }
-        
-        .cv-divider {
-          width: 100%;
-          height: 1px;
-          background: linear-gradient(90deg, var(--border-color) 0%, transparent 100%);
-          margin: 1.5rem 0;
-        }
-
-        .doctor-card-creds {
-          display: flex;
-          flex-direction: column;
-          gap: 0.9rem;
-          margin-bottom: 2rem;
-          list-style: none;
-          padding: 0;
-        }
-        .doctor-card-creds li {
+        .wpg-card {
+          background: #FFFFFF;
+          border: 1px solid rgba(214, 122, 65, 0.16);
+          border-radius: 20px;
+          padding: 1.25rem 1.15rem;
           display: flex;
           align-items: flex-start;
-          gap: 0.75rem;
-          font-size: 0.9rem;
-          color: var(--text-dark);
-          line-height: 1.5;
+          gap: 0.85rem;
+          box-shadow: 0 4px 16px rgba(74, 37, 24, 0.03);
+          transition: transform 0.25s ease, border-color 0.25s ease;
         }
-        .doctor-card-creds li svg { 
-          color: var(--accent-gold); 
-          flex-shrink: 0; 
-          margin-top: 2px;
-          filter: drop-shadow(0 2px 4px rgba(214, 122, 65, 0.3));
+        .wpg-card:hover {
+          transform: translateY(-2px);
+          border-color: rgba(214, 122, 65, 0.35);
+          box-shadow: 0 8px 22px rgba(74, 37, 24, 0.06);
         }
-
-        /* Highlight Important Points in Doctor Cards */
-        .doctor-card-creds li span strong {
-          background: linear-gradient(120deg, rgba(214, 122, 65, 0.15) 0%, rgba(201, 168, 76, 0.25) 100%);
-          color: var(--accent-gold-dark);
-          padding: 0.1rem 0.4rem;
-          border-radius: 4px;
+        .wpg-icon-box {
+          width: 42px;
+          height: 42px;
+          border-radius: 12px;
+          background: rgba(214, 122, 65, 0.1);
           border: 1px solid rgba(214, 122, 65, 0.25);
-          margin-right: 0.15rem;
-          display: inline-block;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          box-shadow: 0 3px 10px rgba(74, 37, 24, 0.04);
+        }
+        .wpg-title {
+          font-size: 0.94rem;
           font-weight: 800;
+          color: #110805;
+          margin-bottom: 0.25rem;
         }
-        
-        .cv-btn {
-          margin-top: auto;
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 1rem 1.5rem;
-          font-size: 0.9rem;
-          border-color: rgba(214, 122, 65, 0.3);
-          color: var(--text-primary);
-          border-radius: var(--radius-md);
-          font-weight: 600;
-          transition: all 0.3s ease;
-        }
-        .cv-btn:hover {
-          background: var(--accent-gold);
-          border-color: var(--accent-gold);
-          color: #fff;
-          box-shadow: 0 10px 20px rgba(214, 122, 65, 0.3);
+        .wpg-desc {
+          font-size: 0.82rem;
+          color: #554A44;
+          line-height: 1.5;
+          margin: 0;
         }
 
-        .doctors-trust-strip {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          background: linear-gradient(135deg, var(--bg-dark), #2a150b, #1A0C08, #1a0f08);
-          background-size: 300% 300%;
-          animation: trustGradient 12s ease infinite;
-          border-radius: var(--radius-lg);
-          padding: 1.5rem 3rem;
-          margin-top: 4rem;
-          box-shadow: 0 20px 40px rgba(74, 37, 24, 0.15);
-          border: 1px solid rgba(214, 122, 65, 0.2);
-          position: relative;
-          overflow: hidden;
-        }
-        
-        .doctors-trust-strip::after {
-          content: '';
-          position: absolute;
-          top: 0; left: -150%;
-          width: 50%; height: 100%;
-          background: linear-gradient(to right, transparent, rgba(214, 122, 65, 0.15), transparent);
-          transform: skewX(-25deg);
-          animation: sweepShine 8s infinite;
-          pointer-events: none;
+        /* ── SPECIALIST SHOWCASE CARD ────────────────── */
+        .specialist-showcase-card {
+          background: linear-gradient(145deg, #1A0D08 0%, #2D1710 100%);
+          border: 1.5px solid rgba(214, 122, 65, 0.28);
+          border-radius: 28px;
+          padding: 2rem;
+          color: #FFFFFF;
+          box-shadow: 0 20px 50px rgba(17, 8, 5, 0.18);
+          margin-bottom: 2.25rem;
         }
 
-        @keyframes trustGradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-
-        @keyframes sweepShine {
-          0% { left: -100%; }
-          20% { left: 200%; }
-          100% { left: 200%; }
-        }
-        .trust-strip-item {
+        .doctor-toggle-bar {
           display: flex;
-          align-items: center;
           gap: 0.75rem;
-          font-size: 0.95rem;
+          background: rgba(0, 0, 0, 0.35);
+          padding: 0.45rem;
+          border-radius: 18px;
+          border: 1px solid rgba(214, 122, 65, 0.22);
+          margin-bottom: 1.75rem;
+        }
+        .doctor-tab-btn {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.65rem;
+          padding: 0.85rem 1.25rem;
+          border-radius: 14px;
+          border: none;
+          background: transparent;
+          color: rgba(255, 255, 255, 0.75);
+          font-size: 0.94rem;
+          font-weight: 800;
+          cursor: pointer;
+          transition: all 0.25s ease;
+          flex-wrap: wrap;
+        }
+        .doctor-tab-btn.is-active {
+          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
+          color: #FFFFFF;
+          box-shadow: 0 4px 18px rgba(214, 122, 65, 0.4);
+        }
+        .tab-doc-role {
+          font-size: 0.76rem;
           font-weight: 700;
-          color: var(--accent-gold-light);
-        }
-        .trust-strip-icon { 
-          font-size: 1.25rem; 
-          filter: drop-shadow(0 0 8px rgba(214, 122, 65, 0.5)); 
-          display: inline-block;
-          animation: pulseIcon 3s ease-in-out infinite alternate;
-        }
-        @keyframes pulseIcon {
-          0% { filter: drop-shadow(0 0 4px rgba(214, 122, 65, 0.3)); transform: scale(0.95); }
-          100% { filter: drop-shadow(0 0 12px rgba(214, 122, 65, 0.8)); transform: scale(1.05); }
-        }
-        .trust-strip-divider {
-          width: 1px;
-          height: 30px;
-          background: rgba(214, 122, 65, 0.2);
+          background: rgba(0, 0, 0, 0.3);
+          padding: 0.15rem 0.55rem;
+          border-radius: 99px;
+          color: #F4B382;
         }
 
+        .specialist-detail-layout {
+          display: grid;
+          grid-template-columns: 260px 1fr;
+          gap: 2.5rem;
+          align-items: center;
+        }
+
+        /* Photo & Stats */
+        .specialist-photo-col {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1.15rem;
+        }
+        .specialist-avatar-wrap {
+          position: relative;
+          width: 220px;
+          height: 250px;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 2.5px solid #D67A41;
+          box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+        .specialist-mini-stats {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.5rem;
+          width: 100%;
+          background: rgba(0,0,0,0.3);
+          border: 1px solid rgba(214, 122, 65, 0.2);
+          border-radius: 14px;
+          padding: 0.65rem 0.5rem;
+          text-align: center;
+        }
+        .s-mini-stat strong {
+          display: block;
+          font-size: 0.95rem;
+          font-weight: 900;
+          color: #F4B382;
+        }
+        .s-mini-stat span {
+          display: block;
+          font-size: 0.65rem;
+          color: rgba(255,255,255,0.7);
+          text-transform: uppercase;
+          margin-top: 2px;
+        }
+
+        /* Info & Credentials */
+        .specialist-badge-tag {
+          display: inline-block;
+          background: rgba(16, 185, 129, 0.18);
+          color: #34D399;
+          border: 1px solid rgba(16, 185, 129, 0.35);
+          padding: 0.25rem 0.75rem;
+          border-radius: 99px;
+          font-size: 0.74rem;
+          font-weight: 800;
+          margin-bottom: 0.6rem;
+        }
+        .specialist-name {
+          font-size: 1.7rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin-bottom: 0.25rem;
+        }
+        .specialist-degrees {
+          font-size: 0.88rem;
+          color: #F4B382;
+          font-weight: 600;
+          margin-bottom: 0.75rem;
+        }
+        .specialist-tagline {
+          font-size: 0.92rem;
+          color: rgba(255, 255, 255, 0.85);
+          line-height: 1.6;
+          margin-bottom: 1.25rem;
+        }
+
+        .specialist-highlights-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.65rem;
+          margin-bottom: 1.5rem;
+        }
+        .specialist-highlight-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.65rem;
+          font-size: 0.88rem;
+          color: rgba(255, 255, 255, 0.92);
+          line-height: 1.45;
+        }
+        .check-icon-gold {
+          color: #D67A41;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+
+        .specialist-actions-row {
+          display: flex;
+          align-items: center;
+          gap: 0.85rem;
+          flex-wrap: wrap;
+        }
+        .btn-doc-primary {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
+          color: #FFFFFF;
+          padding: 0.85rem 1.4rem;
+          border-radius: 12px;
+          font-weight: 800;
+          font-size: 0.9rem;
+          text-decoration: none;
+          box-shadow: 0 6px 20px rgba(214, 122, 65, 0.35);
+          transition: all 0.25s ease;
+        }
+        .btn-doc-primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 25px rgba(214, 122, 65, 0.5);
+        }
+
+        .btn-doc-wa {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          background: rgba(37, 211, 102, 0.15);
+          color: #25D366;
+          border: 1px solid rgba(37, 211, 102, 0.3);
+          padding: 0.75rem 1.25rem;
+          border-radius: 12px;
+          font-weight: 700;
+          font-size: 0.86rem;
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+        .btn-doc-wa:hover {
+          background: rgba(37, 211, 102, 0.25);
+        }
+
+        .btn-doc-profile {
+          color: #F4B382;
+          font-size: 0.85rem;
+          font-weight: 700;
+          text-decoration: none;
+          transition: color 0.2s ease;
+          margin-left: 0.5rem;
+        }
+        .btn-doc-profile:hover {
+          color: #FFFFFF;
+        }
+
+        /* ── RESPONSIVE RULES ────────────────────────── */
         @media (max-width: 1024px) {
-          .doctors-banner { display: flex; flex-direction: column-reverse; }
-          .doctors-banner-left { padding: 3rem 2rem; }
-          .doctor-cards-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-          .doctors-trust-strip { flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
-          .trust-strip-divider { display: none; }
+          .what-patients-get-grid { grid-template-columns: repeat(2, 1fr); }
+          .specialist-detail-layout { grid-template-columns: 1fr; gap: 1.75rem; text-align: center; }
+          .specialist-photo-col { margin: 0 auto; }
+          .specialist-highlights-list { text-align: left; }
+          .specialist-actions-row { justify-content: center; }
         }
-        @media (max-width: 640px) {
-          .doctors-section-wrapper { padding: 3.5rem 0; }
-          .doctors-banner-left { padding: 2.5rem 1.5rem; }
-          .db-stat-value { font-size: 1.5rem; }
-          .doctor-card-body { padding: 1.5rem; }
-          .doctors-trust-strip { padding: 1.5rem; }
-          .accreditations-bar { padding: 1rem; }
-          .hide-mobile { display: none !important; }
-          .show-mobile { display: inline !important; }
-          
-          /* Fix floating badge overlap */
-          .floating-photo-badge {
-            padding: 0.5rem 0.75rem;
-            gap: 0.5rem;
+
+        @media (max-width: 768px) {
+          .doctors-section-root {
+            padding: 2.75rem 1rem;
           }
-          .floating-photo-badge .badge-icon {
-            font-size: 1.1rem;
+          .doctors-header {
+            margin-bottom: 1.75rem;
           }
-          .floating-photo-badge strong {
-            font-size: 0.75rem;
+          .doctors-title {
+            font-size: 1.75rem;
           }
-          .floating-photo-badge span {
-            font-size: 0.65rem;
+          .doctors-subtitle {
+            font-size: 0.92rem;
           }
-          .badge-top-right {
-            top: 15px;
-            right: 15px;
-            max-width: 85%;
+          .what-patients-get-grid {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
           }
-          .badge-bottom-left {
-            bottom: 15px;
-            left: 15px;
-            max-width: 85%;
+          .specialist-showcase-card {
+            padding: 1.25rem 1rem;
+            border-radius: 22px;
+            margin-bottom: 0;
           }
-          .tag-right {
-            top: auto;
-            bottom: 150px;
-            right: 15px;
+          .doctor-toggle-bar {
+            flex-direction: column;
+            gap: 0.4rem;
           }
-          .tag-left {
-            bottom: 110px;
-            left: 15px;
+          .doctor-tab-btn {
+            padding: 0.65rem 0.85rem;
+            font-size: 0.85rem;
+            justify-content: space-between;
+          }
+          .specialist-avatar-wrap {
+            width: 180px;
+            height: 200px;
+          }
+          .specialist-name {
+            font-size: 1.4rem;
+          }
+          .specialist-actions-row {
+            justify-content: center;
+          }
+          .btn-doc-primary, .btn-doc-wa {
+            display: none !important;
+          }
+          .btn-doc-profile {
+            margin-left: 0;
+            font-size: 0.88rem;
           }
         }
-        .show-mobile { display: none; }
       `}} />
     </section>
   );

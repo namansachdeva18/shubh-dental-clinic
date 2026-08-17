@@ -27,7 +27,7 @@ const SCHEMA_LOCAL_BUSINESS = {
   '@id': 'https://www.shubhdentalclinicrohtak.in',
   name: 'Shubh Orthodontic and Dental Clinic',
   alternateName: 'Shubh Dental Clinic Rohtak',
-  description: 'Best Orthodontist & Dental Clinic in Rohtak, Haryana. Prof. Dr. S. K. Yadav — MDS Orthodontics, Ex-PGI Chandigarh, Certified Invisalign Provider, Fellow WFO USA. 5,000+ braces cases, dental implants, smile makeovers. Clear aligners, same-day implants, veneers, kids dentistry.',
+  description: 'Best Orthodontist & Dental Clinic in Rohtak, Haryana. Prof. Dr. S. K. Yadav — MDS Orthodontics, Ex-PGI Chandigarh, Certified Invisalign Provider, Fellow WFO USA. 35,000+ braces cases, 27,000+ dental implants, 3,50,000+ patients treated. Clear aligners, same-day implants, veneers, kids dentistry.',
   url: 'https://www.shubhdentalclinicrohtak.in',
   telephone: ['+91-8685048414', '01262-469393'],
   email: 'sky20083@gmail.com',
@@ -83,7 +83,7 @@ const SCHEMA_FAQ = {
     {
       '@type': 'Question',
       name: 'Who is the best orthodontist in Rohtak?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Prof. Dr. S. K. Yadav at Shubh Orthodontic & Dental Clinic is widely considered the best orthodontist in Rohtak, Haryana. He holds an MDS in Orthodontics from PGI Chandigarh, is a Certified Invisalign Provider, Fellow WFO USA, and has completed over 5,000+ braces and aligner cases with a 5.0-star Google rating.' }
+      acceptedAnswer: { '@type': 'Answer', text: 'Prof. Dr. S. K. Yadav at Shubh Orthodontic & Dental Clinic is widely considered the best orthodontist in Rohtak, Haryana. He holds an MDS in Orthodontics from PGI Chandigarh, is a Certified Invisalign Provider, Fellow WFO USA, and has completed over 35,000+ braces and aligner cases with a 5.0-star Google rating.' }
     },
     {
       '@type': 'Question',
@@ -126,31 +126,35 @@ export default function HomePage() {
       <ReviewsTicker />
 
       {/* Quick Navigation */}
-      <section className="container" style={{ paddingTop: '3rem', paddingBottom: '1rem' }}>
+      <section className="container" style={{ paddingTop: '2.5rem', paddingBottom: '1rem' }}>
         <QuickNavBar />
       </section>
 
-      {/* WHAT WE DO — Treatments */}
-      <TreatmentNavigator />
+      {/* 1. FLAGSHIP SPECIALIZATIONS */}
       <AlignerHero />
       <ImplantsHero />
       <KidsDentistry />
 
-      {/* NICHE AUDIENCE — Dental Tourism / NRI */}
+      {/* 2. COMPREHENSIVE ALL-TREATMENT DIRECTORY */}
+      <TreatmentNavigator />
+
+      {/* 3. NICHE AUDIENCE — Dental Tourism & NRI Care */}
       <DentalTourism />
 
-      {/* WHO WE ARE — Doctors & About */}
+      {/* 4. CLINICAL MASTERY — Senior Doctors */}
       <DoctorsIntro hideCards={true} />
+
+      {/* 5. CLINICAL & HOSPITAL TECHNOLOGY STANDARDS */}
       <AboutSection />
 
-      {/* PROOF — Gallery & Reviews */}
+      {/* 6. VERIFIED PROOF — Smile Gallery & Reviews */}
       <PatientGallery />
       <Testimonials />
 
-      {/* CONFIDENCE — Clinic */}
+      {/* 7. STERILE OPERATORY & CLINIC TOUR */}
       <ClinicTour />
 
-      {/* ACTION */}
+      {/* 8. RESERVATION & REASSURANCE */}
       <SmartBooking />
       <FAQSection />
       <ContactSection />

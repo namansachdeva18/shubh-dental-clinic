@@ -50,7 +50,7 @@ export default function DrSKYadavPage() {
                 BDS, MDS
               </motion.div>
               <motion.p variants={fadeUp} style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
-                With over 20 years of clinical and academic excellence, Prof. Dr. S. K. Yadav is Haryana's leading authority on orthodontics and dentofacial orthopaedics. He has published <strong>43 scientific papers (247+ global citations)</strong>, authored <strong>2 research books in Germany</strong>, and transformed over 20,000 smiles.
+                With over 20 years of clinical and academic excellence, Prof. Dr. S. K. Yadav is Haryana's leading authority on orthodontics and dentofacial orthopaedics. He has published <strong>43 scientific papers (247+ global citations)</strong>, authored <strong>2 research books in Germany</strong>, and treated over <strong>3,50,000+ patients</strong> (including <strong>35,000+ braces cases</strong> and <strong>27,000+ dental implants</strong>).
               </motion.p>
               
               <motion.div variants={fadeUp} style={{ display: 'flex', gap: '2.5rem', marginBottom: '3rem', paddingBottom: '2rem', borderBottom: '1px solid rgba(255,255,255,0.12)', flexWrap: 'wrap' }}>

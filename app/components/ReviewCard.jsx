@@ -178,13 +178,13 @@ export default function ReviewCard({ review }) {
       {/* Doctor Attribution & Joy Delight Score Footer */}
       <div className="cute-card-footer">
         <div className="cute-doctor-attribution">
-          <span className="cute-doc-icon">👨‍⚕️</span>
+          <CheckCircle2 size={13} color="#D67A41" />
           <span>{review.doctor ? `Treated by ${review.doctor}` : 'Shubh Dental Specialist Care'}</span>
         </div>
 
         <div className="cute-delight-badge">
           <Heart size={11} fill="#EF4444" color="#EF4444" />
-          <span>100% Smile Delight</span>
+          <span>100% Delight</span>
         </div>
       </div>
 
@@ -464,6 +464,39 @@ export default function ReviewCard({ review }) {
           border-radius: 99px;
           font-size: 0.68rem;
           font-weight: 800;
+        }
+
+        @media (max-width: 768px) {
+          .cute-review-card {
+            padding: 1.1rem 1.15rem !important;
+            border-radius: 20px !important;
+          }
+          .cute-avatar {
+            width: 38px !important;
+            height: 38px !important;
+            font-size: 0.85rem !important;
+          }
+          .cute-patient-name {
+            font-size: 0.95rem !important;
+          }
+          .cute-treatment-tag {
+            font-size: 0.68rem !important;
+            padding: 0.15rem 0.5rem !important;
+          }
+          .cute-quote-body {
+            margin: 0.5rem 0 !important;
+          }
+          .cute-quote-text {
+            font-size: 0.85rem !important;
+            line-height: 1.45 !important;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          .cute-card-footer {
+            padding-top: 0.5rem !important;
+          }
         }
       `}} />
     </article>

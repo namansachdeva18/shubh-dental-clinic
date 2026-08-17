@@ -2,34 +2,36 @@
 import { useState } from 'react';
 import { 
   Calendar, Clock, User, Phone, CheckCircle2, MessageSquare, 
-  ShieldCheck, Sparkles, Send, Star, Award, ChevronRight, Check
+  ShieldCheck, Sparkles, Send, Star, Award, ChevronRight, Check,
+  Stethoscope, Sun, Moon, Zap, UserCheck, Video, MapPin
 } from 'lucide-react';
 import ScrollReveal, { StaggerReveal, StaggerItem } from './ScrollReveal';
 
 const TREATMENTS = [
-  { id: 'aligners', label: 'Clear Aligners', icon: '✨', badge: 'Popular' },
-  { id: 'braces', label: 'Damon® Braces', icon: '💎' },
-  { id: 'implants', label: 'Dental Implants', icon: '🛡️', badge: 'Painless' },
-  { id: 'rct', label: 'Root Canal (RCT)', icon: '🦷' },
-  { id: 'makeover', label: 'Smile Makeover', icon: '👑' },
-  { id: 'checkup', label: 'Dental Checkup', icon: '🩺' },
+  { id: 'aligners', label: 'Clear Aligners', Icon: Sparkles, badge: 'Popular' },
+  { id: 'braces', label: 'Damon® Braces', Icon: Award },
+  { id: 'implants', label: 'Dental Implants', Icon: ShieldCheck, badge: 'Painless' },
+  { id: 'rct', label: 'Root Canal (RCT)', Icon: CheckCircle2 },
+  { id: 'makeover', label: 'Smile Makeover', Icon: Star },
+  { id: 'checkup', label: 'Dental Checkup', Icon: Stethoscope },
 ];
 
 const DOCTORS = [
-  { id: 'sk', name: 'Prof. Dr. S. K. Yadav', role: 'MDS (PGI Chandigarh) · Orthodontics', icon: '👨‍⚕️' },
-  { id: 'achla', name: 'Dr. Achla Bharti Yadav', role: 'MDS (PGI Rohtak) · Cosmetic & Oral', icon: '👩‍⚕️' },
-  { id: 'any', name: 'Earliest Available Specialist', role: 'Fastest appointment confirmation', icon: '⚡' },
+  { id: 'sk', name: 'Prof. Dr. S. K. Yadav', role: 'MDS (PGI Chandigarh) · Orthodontics', Icon: UserCheck },
+  { id: 'achla', name: 'Dr. Achla Bharti Yadav', role: 'MDS (PGI Rohtak) · Cosmetic & Oral', Icon: UserCheck },
+  { id: 'any', name: 'Earliest Available Specialist', role: 'Fastest appointment confirmation', Icon: Zap },
 ];
 
 const TIME_SLOTS = [
-  { id: 'morning', label: 'Morning', time: '10:00 AM – 01:00 PM', icon: '☀️' },
-  { id: 'evening', label: 'Evening', time: '04:00 PM – 08:00 PM', icon: '🌙' },
+  { id: 'morning', label: 'Morning', time: '10:00 AM – 01:00 PM', Icon: Sun },
+  { id: 'evening', label: 'Evening', time: '04:00 PM – 08:00 PM', Icon: Moon },
 ];
 
 export default function SmartBooking() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
+    mode: 'In-Clinic Visit (Rohtak)',
     treatment: 'Clear Aligners',
     doctor: 'Prof. Dr. S. K. Yadav',
     date: '',
@@ -41,14 +43,15 @@ export default function SmartBooking() {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
     
-    const msg = `Hello Shubh Dental Clinic! I would like to reserve my consultation slot.\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Treatment: ${formData.treatment}\n👨‍⚕️ Preferred Doctor: ${formData.doctor}\n📅 Preferred Date: ${formData.date || 'Earliest Available'}\n⏰ Preferred Slot: ${formData.time}`;
+    const msg = `Hello Shubh Dental Clinic! I would like to reserve my consultation slot.\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n📍 Mode: ${formData.mode}\n✨ Treatment: ${formData.treatment}\n👨‍⚕️ Preferred Doctor: ${formData.doctor}\n📅 Preferred Date: ${formData.date || 'Earliest Available'}\n⏰ Preferred Slot: ${formData.time}`;
     const url = `https://wa.me/918685048414?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
     setSubmitted(true);
   };
 
   return (
-    <section id="booking" className="smart-booking-section">
+    <section id="book" className="smart-booking-section">
+      <div id="booking" style={{ position: 'relative', top: '-80px', height: '0', pointerEvents: 'none' }} />
       <div className="smart-booking-container">
         
         <div className="booking-card-wrapper">
@@ -97,6 +100,16 @@ export default function SmartBooking() {
                   <div>
                     <h4 className="b-perk-title">0% Interest EMI Available</h4>
                     <p className="b-perk-desc">Custom financing for braces, aligners, and implants.</p>
+                  </div>
+                </div>
+
+                <div className="b-perk-card">
+                  <div className="b-perk-icon" style={{ background: '#ECFDF5', color: '#10B981' }}>
+                    <Video size={18} />
+                  </div>
+                  <div>
+                    <h4 className="b-perk-title">Online Video Consultation Available</h4>
+                    <p className="b-perk-desc">Virtual smile assessment for outstation &amp; NRI patients worldwide.</p>
                   </div>
                 </div>
               </StaggerItem>
@@ -153,9 +166,38 @@ export default function SmartBooking() {
                     </div>
                   </div>
 
-                  {/* 1. Treatment Selector */}
+                  {/* Consultation Mode Selector */}
+                  <div className="form-field-block" style={{ marginBottom: '1rem' }}>
+                    <label className="field-block-label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span>1. Consultation Mode</span>
+                      <span style={{ fontSize: '0.72rem', color: '#10B981', fontWeight: '700' }}>In-Clinic or Video</span>
+                    </label>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem' }}>
+                      <button
+                        type="button"
+                        onClick={() => setFormData({ ...formData, mode: 'In-Clinic Visit (Rohtak)' })}
+                        className={`treatment-chip ${formData.mode === 'In-Clinic Visit (Rohtak)' ? 'treatment-chip--active' : ''}`}
+                        style={{ padding: '0.6rem 0.75rem', justifyContent: 'center' }}
+                      >
+                        <MapPin size={14} />
+                        <span className="t-chip-label" style={{ fontSize: '0.8rem' }}>In-Clinic (Rohtak)</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setFormData({ ...formData, mode: 'Online Video Consultation' })}
+                        className={`treatment-chip ${formData.mode === 'Online Video Consultation' ? 'treatment-chip--active' : ''}`}
+                        style={{ padding: '0.6rem 0.75rem', justifyContent: 'center' }}
+                      >
+                        <Video size={14} color="#10B981" />
+                        <span className="t-chip-label" style={{ fontSize: '0.8rem' }}>Video Consultation</span>
+                        <span className="t-chip-badge" style={{ background: '#ECFDF5', color: '#0E744A', fontSize: '0.65rem' }}>Live</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* 2. Treatment Selector */}
                   <div className="form-field-block">
-                    <label className="field-block-label">1. Select Required Care</label>
+                    <label className="field-block-label">2. Select Required Care</label>
                     <div className="treatment-chips-grid">
                       {TREATMENTS.map((t) => (
                         <button
@@ -164,7 +206,7 @@ export default function SmartBooking() {
                           onClick={() => setFormData({ ...formData, treatment: t.label })}
                           className={`treatment-chip ${formData.treatment === t.label ? 'treatment-chip--active' : ''}`}
                         >
-                          <span className="t-chip-icon">{t.icon}</span>
+                          <span className="t-chip-icon"><t.Icon size={15} /></span>
                           <span className="t-chip-label">{t.label}</span>
                           {t.badge && <span className="t-chip-badge">{t.badge}</span>}
                         </button>
@@ -214,7 +256,7 @@ export default function SmartBooking() {
                           onClick={() => setFormData({ ...formData, doctor: d.name })}
                           className={`doctor-select-card ${formData.doctor === d.name ? 'doctor-card--active' : ''}`}
                         >
-                          <span className="d-card-icon">{d.icon}</span>
+                          <span className="d-card-icon"><d.Icon size={18} /></span>
                           <div className="d-card-info">
                             <span className="d-card-name">{d.name}</span>
                             <span className="d-card-role">{d.role}</span>
@@ -253,7 +295,7 @@ export default function SmartBooking() {
                             onClick={() => setFormData({ ...formData, time: `${s.label} (${s.time})` })}
                             className={`time-slot-btn ${formData.time.includes(s.label) ? 'time-slot--active' : ''}`}
                           >
-                            <span>{s.icon}</span>
+                            <span className="time-slot-icon"><s.Icon size={14} /></span>
                             <span>{s.label}</span>
                           </button>
                         ))}

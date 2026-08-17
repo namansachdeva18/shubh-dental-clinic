@@ -45,7 +45,8 @@ const stagger = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { stag
 
 export default function DentalTourism() {
   return (
-    <section id="dental-tourism" className="dental-tourism-section" aria-label="Dental Tourism and NRI Care">
+    <section id="tourism" className="dental-tourism-section" aria-label="Dental Tourism and NRI Care">
+      <div id="dental-tourism" style={{ position: 'relative', top: '-80px', height: '0', pointerEvents: 'none' }} />
       
       {/* Background ambient lighting */}
       <div className="dt-ambient-1" aria-hidden="true" />
@@ -159,21 +160,21 @@ export default function DentalTourism() {
         >
           <div className="dt-cta-compact-left">
             <span className="dt-cta-prompt">Planning your visit from abroad or another state?</span>
-            <span className="dt-cta-subtext">Get your free virtual scan assessment &amp; customized itinerary.</span>
+            <span className="dt-cta-subtext">📹 <strong>Free 1-on-1 Online Video Consultation</strong> &amp; custom treatment plan before you travel.</span>
           </div>
           <div className="dt-cta-compact-btns">
-            <Link href="/dental-tourism" className="dt-btn-action-primary">
-              <span>Plan Treatment</span>
+            <a href="#book" className="dt-btn-action-primary">
+              <span>Book Video Consult</span>
               <ArrowRight size={15} />
-            </Link>
+            </a>
             <a
-              href="https://wa.me/918685048414?text=Hi! I'm an NRI / outstation patient interested in dental treatment at Shubh Dental Clinic."
+              href="https://wa.me/918685048414?text=Hi! I'm an NRI / outstation patient interested in booking an Online Video Consultation with Dr. S. K. Yadav."
               target="_blank"
               rel="noopener noreferrer"
               className="dt-btn-action-wa"
             >
               <PhoneCall size={15} />
-              <span>NRI WhatsApp Desk</span>
+              <span>NRI Video Desk</span>
             </a>
           </div>
         </motion.div>
@@ -183,7 +184,7 @@ export default function DentalTourism() {
       <style dangerouslySetInnerHTML={{ __html: `
         .dental-tourism-section {
           background: #FAF8F5;
-          padding: 4.5rem 0;
+          padding: 3rem 0;
           position: relative;
           overflow: hidden;
         }
@@ -215,7 +216,7 @@ export default function DentalTourism() {
         .dt-header {
           text-align: center;
           max-width: 780px;
-          margin: 0 auto 2.25rem;
+          margin: 0 auto 1.75rem;
         }
         .dt-badge {
           display: inline-flex;

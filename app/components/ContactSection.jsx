@@ -160,8 +160,8 @@ export default function ContactSection() {
             </motion.div>
 
             {/* Quick Action Buttons */}
-            <motion.div variants={fadeUp} className="contact-actions-row">
-              <a href="tel:+918685048414" className="btn-action-call">
+            <motion.div className="contact-actions-grid" variants={fadeUp}>
+              <a href="tel:+918685048414" className="cs-btn-action-call">
                 <Phone size={17} />
                 <span>Call Clinic Directly</span>
               </a>
@@ -169,7 +169,7 @@ export default function ContactSection() {
                 href="https://wa.me/918685048414"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-action-wa"
+                className="cs-btn-action-wa"
               >
                 <MessageSquare size={17} />
                 <span>WhatsApp Desk</span>
@@ -263,7 +263,7 @@ export default function ContactSection() {
                   <iframe
                     title="Shubh Orthodontic & Dental Clinic Google Maps Location"
                     src={mapMode === 'satellite' 
-                      ? "https://maps.google.com/maps?q=Shubh%20Orthodontic%20%26%20Dental%20Clinic%20Rohtak&t=k&z=17&ie=UTF8&iwloc=&output=embed"
+                      ? "https://maps.google.com/maps?q=Shubh%20Orthodontic%20%26%20Dental%20Clinic%20Rohtak&t=k&z=17&ie=UTF8&iwloc=near&output=embed"
                       : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3493.5356910609346!2d76.6044113!3d28.8955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d8526ff0b9379%3A0xb15b60e3947148d7!2sShubh%20Orthodontic%20%26%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                     }
                     width="100%"
@@ -273,18 +273,6 @@ export default function ContactSection() {
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />
-
-                  {/* Pulsing Beacon Floating Card */}
-                  <div className="map-beacon-overlay">
-                    <div className="beacon-pulse-ring" />
-                    <div className="beacon-card">
-                      <div className="beacon-icon">📍</div>
-                      <div className="beacon-text">
-                        <strong>Shubh Dental Clinic</strong>
-                        <span>Lane 9 Corner, Delhi Bypass</span>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               )}
 
@@ -317,7 +305,7 @@ export default function ContactSection() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .contact-section-wrapper {
-          padding: 5.5rem 1.5rem;
+          padding: 3rem 1.5rem;
           background: #FAF8F5;
           position: relative;
           overflow: hidden;
@@ -356,7 +344,7 @@ export default function ContactSection() {
 
         .contact-header {
           text-align: center;
-          margin-bottom: 3.5rem;
+          margin-bottom: 1.75rem;
         }
 
         .contact-badge {
@@ -599,7 +587,13 @@ export default function ContactSection() {
           gap: 1rem;
         }
 
-        .btn-action-call, .btn-action-wa {
+        .contact-actions-grid, .contact-actions-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+        }
+
+        .cs-btn-action-call, .cs-btn-action-wa {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -613,23 +607,23 @@ export default function ContactSection() {
           transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .btn-action-call {
+        .cs-btn-action-call {
           background: linear-gradient(135deg, #130A06 0%, #261309 100%);
           color: #FFFFFF;
           border: 1px solid rgba(255,255,255,0.12);
           box-shadow: 0 8px 20px rgba(17, 8, 5, 0.15);
         }
-        .btn-action-call:hover {
+        .cs-btn-action-call:hover {
           transform: translateY(-2px);
           box-shadow: 0 12px 25px rgba(17, 8, 5, 0.25);
         }
 
-        .btn-action-wa {
+        .cs-btn-action-wa {
           background: linear-gradient(135deg, #25D366 0%, #1DA851 100%);
           color: #FFFFFF;
           box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
         }
-        .btn-action-wa:hover {
+        .cs-btn-action-wa:hover {
           transform: translateY(-2px);
           box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
         }

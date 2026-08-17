@@ -1,924 +1,664 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, Sparkles, CheckCircle2, ShieldCheck, Cpu, ArrowRight, Eye, RefreshCw, Zap, Award, MapPin } from 'lucide-react';
-import BeforeAfterSlider from './BeforeAfterSlider';
-import AnimatedCounter from './AnimatedCounter';
+import { 
+  Sparkles, CheckCircle2, ShieldCheck, ArrowRight, 
+  Calendar, MessageSquare, Phone, Clock, Award, Star, Eye, Zap
+} from 'lucide-react';
 
-const ALIGNER_TYPES = [
+const ALIGNER_OPTIONS = [
+  {
+    id: 'invisalign',
+    name: 'Invisalign® Clear Aligners',
+    badge: '🌐 Global Gold Standard',
+    tagline: 'The world\'s #1 orthodontic aligner system for mild to complex malocclusions.',
+    price: 'Starting ₹85,000',
+    timeline: '6–18 Months',
+    benefits: [
+      'Patented SmartTrack® multi-layer elastic material',
+      'iTero® 3D digital outcome simulation on Day 1',
+      'Engineered for complex bite rotations & crowding',
+      'Includes original Vivera® retention trays'
+    ],
+    ctaText: 'Explore Invisalign® Details',
+    link: '/treatments/invisalign-clear-aligners'
+  },
   {
     id: 'skyalign',
     name: 'SkyAlign™ Clear Aligners',
-    subtitle: 'In-House Orthodontist-Engineered',
     badge: '★ Best Value & In-House Precision',
-    tagline: 'Custom-crafted in our Rohtak laboratory under direct supervision of Prof. Dr. S. K. Yadav.',
-    features: [
-      'Fast 4–12 month treatment timeline',
-      'Ultra-clear medical grade German polymer',
-      'Direct in-clinic doctor monitoring (no remote middleman)',
-      'Up to 40% more cost-effective than international brands',
-      'Instant replacement aligners if lost'
+    tagline: 'Engineered in our Rohtak lab under direct supervision of Prof. Dr. S. K. Yadav.',
+    price: 'Starting ₹45,000',
+    timeline: '4–12 Months',
+    benefits: [
+      'Custom 3D-printed in Rohtak — zero shipping delay',
+      'Ultra-clear German medical-grade polymer',
+      'Same-day replacement if aligners are misplaced',
+      'Up to 40% more affordable than international brands'
     ],
-    idealFor: 'Mild to moderate crowding, gap closure & post-braces relapse.',
-    duration: '4–12 Months',
-    price: '₹45,000 – ₹95,000',
-    logo: null
-  },
-  {
-    id: 'invisalign-full',
-    name: 'Invisalign® Comprehensive',
-    subtitle: 'Global Gold Standard for Complex Cases',
-    badge: '🌐 International Gold Standard',
-    tagline: 'The world\'s most advanced clear aligner system for complete arch alignment.',
-    features: [
-      'Patented SmartTrack® multi-layer elastic polymer',
-      'SmartForce® micro-attachments for complex tooth rotation',
-      'Unlimited aligner trays until perfect result achieved',
-      'iTero® 3D digital outcome simulator',
-      'Vivera® custom retention system'
-    ],
-    idealFor: 'Severe crowding, overbites, underbites, crossbites & complex rotations.',
-    duration: '6–18 Months',
-    price: '₹1,50,000 – ₹2,50,000',
-    logo: '/invisalign-logo.png'
-  },
-  {
-    id: 'damon-braces',
-    name: 'Damon® System Braces',
-    subtitle: 'Official Damon® Provider · Self-Ligating System',
-    badge: '💎 Official Damon® Provider',
-    tagline: 'Frictionless self-ligating technology — faster tooth movement, fewer appointments, and superior facial aesthetics.',
-    features: [
-      'Slide mechanism eliminates elastic ties & friction',
-      'Available in Damon® Clear (virtually invisible) & Metal',
-      'Faster treatment — up to 6 months faster than traditional braces',
-      'Lighter biological forces for significantly enhanced comfort',
-      'Easier hygiene maintenance — no elastic bands to trap plaque'
-    ],
-    idealFor: 'Patients seeking maximum comfort and fastest fixed orthodontic tooth movement.',
-    duration: '10–18 Months',
-    price: '₹55,000 – ₹1,20,000',
-    logo: '/damon-logo.png'
-  },
-  {
-    id: 'invisalign-express',
-    name: 'Invisalign® Express / Lite',
-    subtitle: 'Rapid Touch-Up & Minor Alignment',
-    badge: '⚡ Quick 3–6 Month Fix',
-    tagline: 'Targeted alignment for front teeth spacing, minor crowding, or pre-wedding touch-ups.',
-    features: [
-      'Rapid results in as little as 12 to 24 weeks',
-      'Uses official SmartTrack® aligner material',
-      'Fixed tray package (up to 14 aligner sets)',
-      'Ideal for wedding preps & professional events',
-      'Includes complimentary professional teeth whitening'
-    ],
-    idealFor: 'Minor front teeth crowding, small gaps, or smile touch-ups.',
-    duration: '3–6 Months',
-    price: '₹85,000 – ₹1,30,000',
-    logo: '/invisalign-logo.png'
-  },
-  {
-    id: 'invisalign-teen',
-    name: 'Invisalign® First & Teen',
-    subtitle: 'Designed for Growing Smiles',
-    badge: '👦 Kids & Teenagers',
-    tagline: 'Specialized clear aligners engineered for developing jaws and erupting teeth.',
-    features: [
-      'Blue compliance indicator dots fade with proper wear time',
-      'Eruption tabs accommodate growing adult molars',
-      '6 complimentary replacement aligners included',
-      'Safer for sports & active school lifestyles',
-      'No wire emergencies during exam seasons'
-    ],
-    idealFor: 'Children aged 7–12 (Phase 1) & teenagers aged 13–19.',
-    duration: '6–15 Months',
-    price: '₹1,20,000 – ₹2,10,000',
-    logo: '/invisalign-logo.png'
+    ctaText: 'Explore SkyAlign™ Details',
+    link: '/treatments/skyalign-clear-aligners'
   }
 ];
 
-const CLINICAL_CASES = [
+const AlignerVectors = {
+  scan3D: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2" stroke="#D67A41" />
+      <path d="M12 7c-2.8 0-5 1.5-5 3.5 0 2.8 2.5 4.5 5 6.5 2.5-2 5-3.7 5-6.5 0-2-2.2-3.5-5-3.5z" stroke="#F4B382" />
+      <circle cx="12" cy="11" r="1.5" fill="#D67A41" />
+    </svg>
+  ),
+  invisible: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 10.5C4 7 7.5 4 12 4s8 3 8 6.5c0 3-2 5.5-4 6.5-.8.4-1.5 1.2-1.5 2v1h-5v-1c0-.8-.7-1.6-1.5-2-2-1-4-3.5-4-6.5z" stroke="#D67A41" />
+      <path d="M8 10c1-1 2.5-1.5 4-1.5s3 .5 4 1.5M9.5 13.5c1.2.5 3.8.5 5 0" stroke="#F4B382" />
+    </svg>
+  ),
+  specialist: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 3L2 8l10 5 10-5-10-5z" stroke="#D67A41" />
+      <path d="M6 10.5v5c0 1.5 2.7 3.5 6 3.5s6-2 6-3.5v-5" stroke="#F4B382" />
+      <path d="M20 9v7M12 13v8" stroke="#D67A41" />
+    </svg>
+  ),
+  emi: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="5" width="20" height="14" rx="3" stroke="#D67A41" />
+      <path d="M2 10h20M6 15h4M16 15h2" stroke="#F4B382" />
+      <circle cx="12" cy="15" r="1.2" fill="#10B981" />
+    </svg>
+  )
+};
+
+const WHAT_YOU_GET = [
   {
-    id: 'case-1',
-    label: 'Severe Crowding',
-    duration: '6 Months',
-    beforeSrc: '/case-1-before.webp',
-    afterSrc: '/case-1-after.webp',
-    beforeAlt: 'Before aligner treatment showing severe lower crowding',
-    afterAlt: 'After aligner treatment showing perfectly aligned smile',
-    details: 'Fixed severe front tooth overlap & rotations using SkyAlign™ in 6 months.'
+    Icon: AlignerVectors.scan3D,
+    title: 'Free 3D Smile Preview',
+    desc: 'See your future smile simulation on a 3D digital screen before starting treatment.'
   },
   {
-    id: 'case-2',
-    label: 'Front Gap Spacing',
-    duration: '4 Months',
-    beforeSrc: '/patient-braces.webp',
-    afterSrc: '/patient-braces.webp',
-    beforeAlt: 'Aligners showing gap between front teeth',
-    afterAlt: 'Aligners showing gap completely closed',
-    details: 'Closed 3.5mm midline gap using Invisalign® Lite in just 16 weeks.'
+    Icon: AlignerVectors.invisible,
+    title: '100% Invisible & Removable',
+    desc: 'No metal brackets or wires. Easily remove to eat your favorite food and brush normally.'
+  },
+  {
+    Icon: AlignerVectors.specialist,
+    title: 'PGI Specialist Monitoring',
+    desc: 'Planned and monitored directly by Prof. Dr. S. K. Yadav (Ex-PGI Chandigarh, Fellow WFO USA).'
+  },
+  {
+    Icon: AlignerVectors.emi,
+    title: '0% Interest EMI Available',
+    desc: 'Simple monthly installments spread across your active treatment with zero hidden fees.'
   }
-];
-
-const MATERIAL_HIGHLIGHTS = [
-  { icon: Cpu, title: 'iTero® 3D Scan', desc: 'No messy impressions; instant 3D digital jaw mapping' },
-  { icon: ShieldCheck, title: 'SmartTrack® Polymer', desc: '0.75mm ultra-thin, tear-resistant medical grade clarity' },
-  { icon: Eye, title: '99% Invisible', desc: 'Virtually undetectable in professional & social settings' },
-  { icon: RefreshCw, title: 'Removable Fit', desc: 'Take out to enjoy all your favorite foods & maintain hygiene' }
-];
-
-const LOCATION_CENTRES = [
-  {
-    name: 'Rohtak (Main Clinic)',
-    badge: '🏛️ Main Super-Specialty Center',
-    clinic: 'Shubh Orthodontic & Dental Clinic',
-    address: 'Tilak Nagar Lane 9, Delhi Bypass Road, Rohtak 124001',
-    main: true
-  },
-  {
-    name: 'Delhi Centre',
-    badge: '📍 NCR Visiting Center',
-    clinic: 'Nu Smile Dental Clinic',
-    address: '204 Deepak Plaza, DC Chowk Market, Sector 9, Rohini, Delhi 110085'
-  },
-  {
-    name: 'Gurugram Centre',
-    badge: '📍 NCR Visiting Center',
-    clinic: 'Dental Destination',
-    address: 'Kenwood-05 (G.F.), Malibu Town, Sector 47, Gurgaon'
-  },
-  {
-    name: 'Panipat Centre',
-    badge: '📍 Regional Center',
-    clinic: 'Dental Studio',
-    address: '194-L, Model Town, Panipat 132103 (Haryana)'
-  },
-  {
-    name: 'Sonepat Centre',
-    badge: '📍 Regional Center',
-    clinic: 'Navjeevan Dental Clinic',
-    address: 'Parbhu Nagar Mandi, Near Suri Petrol Pump, Mirch Mandi, Sonipat, Haryana 131001'
-  },
-  {
-    name: 'Fatehabad Centre',
-    badge: '📍 Regional Center',
-    clinic: 'Shree Sai Complete Dental Care Centre',
-    address: 'SCF 9, Model Town, Fatehabad, Haryana 125050'
-  },
 ];
 
 export default function AlignerHero() {
-  const [selectedType, setSelectedType] = useState('skyalign');
-  const [selectedCase, setSelectedCase] = useState(CLINICAL_CASES[0]);
-  const sectionRef = useRef(null);
+  const [selectedSystem, setSelectedSystem] = useState('invisalign');
+  const activeSystem = ALIGNER_OPTIONS.find(o => o.id === selectedSystem) || ALIGNER_OPTIONS[0];
 
-  const activeAligner = ALIGNER_TYPES.find(a => a.id === selectedType) || ALIGNER_TYPES[0];
+  const whatsappUrl = 'https://wa.me/918685048414?text=' + encodeURIComponent(
+    'Hi Dr. Yadav! I would like to check my candidacy and book a 3D Digital Scan for Clear Aligners at Shubh Dental Clinic.'
+  );
 
   return (
-    <section className="section aligner-hero-section" ref={sectionRef} aria-label="Invisalign and Clear Aligners">
-      
-      {/* 3D Scanner Background Animation */}
-      <div className="scanner-bg-wrapper">
-        <div className="scanner-grid grid-top"></div>
-        <div className="scanner-grid grid-bottom"></div>
-        <div className="scanner-laser hide-mobile"></div>
+    <section id="aligners" className="aligner-section-root" aria-label="Clear Aligners and Invisalign">
+      <div id="braces" style={{ position: 'relative', top: '-80px', height: '0', pointerEvents: 'none' }} />
+      <div className="aligner-container">
         
-        {/* Animated Glow Halo Orbs */}
-        <div className="bg-glow-orb orb-gold-1" />
-        <div className="bg-glow-orb orb-gold-2 hide-mobile" />
-
-        {/* Rotating Vector Graphic Circles - Desktop Only */}
-        <div className="bg-graphic-ring ring-1 hide-mobile" aria-hidden="true">
-          <svg viewBox="0 0 200 200" fill="none">
-            <circle cx="100" cy="100" r="90" stroke="rgba(214, 122, 65, 0.6)" strokeWidth="2" strokeDasharray="10 6" />
-            <circle cx="100" cy="100" r="70" stroke="rgba(234, 167, 124, 0.5)" strokeWidth="1.5" />
-          </svg>
-        </div>
-        <div className="bg-graphic-ring ring-2 hide-mobile" aria-hidden="true">
-          <svg viewBox="0 0 200 200" fill="none">
-            <circle cx="100" cy="100" r="85" stroke="rgba(214, 122, 65, 0.55)" strokeWidth="1.8" strokeDasharray="14 10" />
-            <circle cx="100" cy="100" r="55" stroke="rgba(234, 167, 124, 0.4)" strokeWidth="1.5" />
-          </svg>
-        </div>
-
-        <div className="point-cloud hide-mobile">
-          {Array.from({ length: 30 }, (_, i) => (
-            <div key={i} className="point-particle" style={{
-              left: `${(i * 19 + 5) % 95}%`,
-              top: `${(i * 31 + 11) % 90}%`,
-              '--delay': `${(i * 0.3) % 5}s`,
-              '--duration': `${2 + (i * 0.4) % 4}s`
-            }}></div>
-          ))}
-        </div>
-        <div className="scanner-vignette"></div>
-      </div>
-
-      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-        
-        {/* Main Header */}
-        <div className="section-header text-center aligner-main-header">
-          <div className="section-badge badge-gold" style={{ display: 'inline-flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
-            <Sparkles size={15} />
-            Certified Invisalign® &amp; SkyAlign™ Provider — Rohtak
+        {/* SECTION HEADER */}
+        <div className="aligner-header">
+          <div className="aligner-pill-badge">
+            <Sparkles size={14} className="sparkle-icon" aria-hidden="true" />
+            <span>Invisible Smile Transformation</span>
           </div>
-          <h2 className="aligner-section-title">
-            Invisalign® &amp; Clear Aligners in Rohtak —{' '}
-            <span className="text-gradient-copper">Invisible Teeth Straightening</span>
+
+          <h2 className="aligner-title font-heading">
+            Straighten Your Teeth <br />
+            <span className="copper-gradient">Without Braces or Wires</span>
           </h2>
-          <p className="aligner-section-desc">
-            Over <strong>5,000+ clear aligner transformations</strong> completed by <strong>Prof. Dr. S. K. Yadav</strong>. Choose between in-house <strong>SkyAlign™</strong> aligners or <strong>Invisalign®</strong>.
+
+          <p className="aligner-subtitle">
+            Say goodbye to painful metal brackets. Get a perfectly aligned smile using crystal-clear, removable aligners designed by <strong>Prof. Dr. S. K. Yadav (35,000+ completed cases)</strong>.
           </p>
         </div>
 
-        {/* PROMINENT COUNTERS STRIP */}
-        <div className="aligner-stats-banner">
-          <div className="stat-banner-item">
-            <div className="stat-banner-val"><AnimatedCounter target={11000} suffix="+" /></div>
-            <div className="stat-banner-lbl">Clear Aligner Cases</div>
-          </div>
-          <div className="stat-banner-divider"></div>
-          <div className="stat-banner-item">
-            <div className="stat-banner-val"><AnimatedCounter target={9000} suffix="+" /></div>
-            <div className="stat-banner-lbl">Total Braces &amp; Aligners</div>
-          </div>
-          <div className="stat-banner-divider"></div>
-          <div className="stat-banner-item">
-            <div className="stat-banner-val">5.0★</div>
-            <div className="stat-banner-lbl">Google Rating (114+ Reviews)</div>
-          </div>
-          <div className="stat-banner-divider"></div>
-          <div className="stat-banner-item">
-            <div className="stat-banner-val"><AnimatedCounter target={20} suffix="+" /></div>
-            <div className="stat-banner-lbl">Years Orthodontic Mastery</div>
-          </div>
+        {/* 1. WHAT CUSTOMERS WILL GET (VALUE PILLARS) */}
+        <div className="what-you-get-grid">
+          {WHAT_YOU_GET.map((item, idx) => (
+            <div key={idx} className="wyg-card">
+              <div className="wyg-icon-box" aria-hidden="true">
+                <item.Icon />
+              </div>
+              <div className="wyg-text">
+                <h3 className="wyg-title">{item.title}</h3>
+                <p className="wyg-desc">{item.desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* 1. ALL ALIGNER TYPES TABS */}
-        <div className="aligner-systems-container">
-          <div className="aligner-type-header">
-            <h3 className="aligner-type-heading">
-              Our Clear Aligner Systems &amp; Packages
-            </h3>
-            <span className="aligner-type-hint">
-              Select a system to compare features, pricing &amp; timeline:
-            </span>
-          </div>
-
-          {/* Aligner Selection Pills */}
-          <div className="aligner-pills-grid">
-            {ALIGNER_TYPES.map((type) => (
+        {/* 2. CHOOSE YOUR SYSTEM (SKYALIGN vs INVISALIGN) */}
+        <div className="aligner-comparison-card">
+          <div className="system-toggle-bar" role="tablist">
+            {ALIGNER_OPTIONS.map((opt) => (
               <button
-                key={type.id}
-                onClick={() => setSelectedType(type.id)}
-                className={`aligner-pill-btn ${selectedType === type.id ? 'active-pill' : ''}`}
+                key={opt.id}
+                type="button"
+                role="tab"
+                aria-selected={selectedSystem === opt.id}
+                className={`system-tab-btn ${selectedSystem === opt.id ? 'is-active' : ''}`}
+                onClick={() => setSelectedSystem(opt.id)}
               >
-                <div className="pill-name">
-                  {type.name.split(' ')[0]}
-                </div>
-                <div className="pill-sub hide-mobile">
-                  {type.subtitle}
-                </div>
+                <span>{opt.name}</span>
+                <span className="tab-price-hint">{opt.price}</span>
               </button>
             ))}
           </div>
 
-          {/* Aligner Detail Showcase Card */}
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeAligner.id}
-              initial={{ opacity: 0, y: 15 }}
+              key={activeSystem.id}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-              className="aligner-detail-box"
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="system-detail-content"
             >
-              <div className="aligner-detail-left">
-                <div className="detail-top-row">
-                  <div className="pill-badge pill-gold" style={{ width: 'fit-content', margin: 0 }}>
-                    {activeAligner.badge}
-                  </div>
-                  {activeAligner.logo && (
-                    <div className="detail-logo-wrap hide-mobile">
-                      <Image src={activeAligner.logo} alt={activeAligner.name} fill style={{ objectFit: 'contain', objectPosition: 'right' }} />
-                    </div>
-                  )}
-                </div>
-                <h4 className="detail-system-name">
-                  {activeAligner.name}
-                </h4>
-                <p className="detail-system-tagline">
-                  {activeAligner.tagline}
-                </p>
+              <div className="system-info-col">
+                <span className="system-badge-tag">{activeSystem.badge}</span>
+                <h3 className="system-name font-heading">{activeSystem.name}</h3>
+                <p className="system-tagline">{activeSystem.tagline}</p>
 
-                <div className="detail-advantages-label">
-                  Key Advantages:
-                </div>
-                <ul className="aligner-feature-list">
-                  {activeAligner.features.slice(0, 4).map((feat, idx) => (
-                    <li key={idx} className={idx >= 3 ? 'hide-mobile' : ''}>
-                      <CheckCircle2 size={18} style={{ color: 'var(--accent-gold)', flexShrink: 0 }} />
-                      <span>{feat}</span>
-                    </li>
+                <div className="system-benefits-list">
+                  {activeSystem.benefits.map((b, i) => (
+                    <div key={i} className="system-benefit-item">
+                      <CheckCircle2 size={16} className="check-icon" aria-hidden="true" />
+                      <span>{b}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
 
-              <div className="aligner-detail-right">
-                <div className="aligner-spec-card">
-                  <div className="hide-mobile">
-                    <div className="spec-label">Ideal Candidates</div>
-                    <div className="spec-val">{activeAligner.idealFor}</div>
-                    <div className="spec-divider"></div>
+              <div className="system-cta-col">
+                <div className="system-meta-box">
+                  <div className="meta-row">
+                    <span className="meta-label">Treatment Time</span>
+                    <strong className="meta-val">⚡ {activeSystem.timeline}</strong>
                   </div>
-                  
-                  <div className="spec-row">
-                    <div>
-                      <div className="spec-label">Estimated Duration</div>
-                      <div className="spec-highlight">{activeAligner.duration}</div>
-                    </div>
-                    <div>
-                      <div className="spec-label">Investment Range</div>
-                      <div className="spec-highlight">{activeAligner.price}</div>
-                    </div>
+                  <div className="meta-row">
+                    <span className="meta-label">Estimated Investment</span>
+                    <strong className="meta-val gold-cost">{activeSystem.price}</strong>
                   </div>
-
-                  <Link href="#book" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: '1.25rem', textAlign: 'center' }}>
-                    <span className="hide-mobile">Reserve {activeAligner.name.split(' ')[0]} Consultation</span>
-                    <span className="show-mobile">Reserve Consultation</span>
-                  </Link>
+                  <div className="meta-emi-tag">
+                    <span>💳 0% Interest Monthly EMI Available</span>
+                  </div>
                 </div>
+
+                <div className="aligner-video-note" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#ECFDF5', border: '1px solid rgba(16, 185, 129, 0.3)', color: '#0E744A', padding: '4px 10px', borderRadius: '99px', fontSize: '0.74rem', fontWeight: '700', marginBottom: '0.75rem', width: 'fit-content' }}>
+                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981' }} />
+                  <span>📹 Virtual 3D Assessment &amp; Video Consult Available</span>
+                </div>
+
+                <div className="system-action-buttons">
+                  <a href="#book" className="btn-aligner-primary">
+                    <Calendar size={16} aria-hidden="true" />
+                    <span>Book 3D Scan / Video Consult</span>
+                  </a>
+                  
+                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-aligner-wa">
+                    <MessageSquare size={16} aria-hidden="true" />
+                    <span>WhatsApp Doctor</span>
+                  </a>
+                </div>
+
+                <Link href={activeSystem.link} className="btn-system-learn-more">
+                  <span>{activeSystem.ctaText} →</span>
+                </Link>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* 2. CLINICAL RESULTS & BEFORE/AFTER SECTION - DESKTOP SHOWCASE (HIDDEN ON MOBILE TO PREVENT REDUNDANCY) */}
-        <div className="aligner-results-wrapper hide-mobile">
-          <div className="results-left">
-            <div className="section-badge badge-gold" style={{ width: 'fit-content', marginBottom: '0.75rem' }}>
-              📸 Clinical Verification
-            </div>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', color: '#fff', fontWeight: 800, marginBottom: '1rem' }}>
-              Verified Aligner Results
-            </h3>
-            <p style={{ color: 'rgba(255,255,255,0.75)', lineHeight: 1.7, fontSize: '1rem', marginBottom: '1.5rem' }}>
-              Drag the interactive slider below to inspect real tooth movement achieved by <strong>Prof. Dr. S. K. Yadav</strong> without braces or metal wires.
-            </p>
-
-            {/* Case Selector Tabs */}
-            <div className="case-selector-tabs">
-              {CLINICAL_CASES.map((c) => (
-                <button
-                  key={c.id}
-                  onClick={() => setSelectedCase(c)}
-                  className={`case-tab-btn ${selectedCase.id === c.id ? 'active-case' : ''}`}
-                >
-                  {c.label} ({c.duration})
-                </button>
-              ))}
-            </div>
-
-            <p style={{ fontSize: '0.88rem', color: 'var(--accent-gold-light)', fontStyle: 'italic', marginTop: '1rem' }}>
-              &ldquo;{selectedCase.details}&rdquo;
-            </p>
-
-            {/* Doctor Trust Card */}
-            <div className="doctor-trust-card" style={{ marginTop: '2rem' }}>
-              <div className="doctor-trust-img">
-                <Image src="/dr-sk-yadav.webp" alt="Prof. Dr. S. K. Yadav" fill style={{ objectFit: 'cover', objectPosition: 'top' }} sizes="100px" />
-              </div>
-              <div>
-                <div style={{ fontWeight: 800, color: '#fff', fontSize: '1rem' }}>Prof. Dr. S. K. Yadav</div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--accent-gold-light)', margin: '0.1rem 0 0.4rem' }}>
-                  MDS (Orthodontics) · Ex-PGI Chandigarh · Fellow WFO (USA)
-                </div>
-                <div style={{ display: 'flex', gap: '0.2rem' }}>
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} fill="#F59E0B" stroke="none" />
-                  ))}
-                </div>
-              </div>
-            </div>
+        {/* 3. QUICK TRUST RIBBON */}
+        <div className="aligner-trust-strip">
+          <div className="trust-cell">
+            <strong>35,000+</strong>
+            <span>Smiles Transformed</span>
           </div>
-
-          <div className="results-right">
-            <div className="aligner-slider-wrap">
-              <BeforeAfterSlider
-                beforeSrc={selectedCase.beforeSrc}
-                afterSrc={selectedCase.afterSrc}
-                beforeAlt={selectedCase.beforeAlt}
-                afterAlt={selectedCase.afterAlt}
-              />
-              <div className="aligner-slider-caption">
-                Slide left/right to compare · Treatment by Prof. Dr. S. K. Yadav
-              </div>
-            </div>
+          <div className="trust-divider" />
+          <div className="trust-cell">
+            <strong>5.0 ★</strong>
+            <span>Google Rating (114+ Reviews)</span>
+          </div>
+          <div className="trust-divider" />
+          <div className="trust-cell">
+            <strong>Ex-PGI</strong>
+            <span>Senior Specialist Care</span>
+          </div>
+          <div className="trust-divider" />
+          <div className="trust-cell">
+            <strong>0% EMI</strong>
+            <span>No Cost Installments</span>
           </div>
         </div>
 
-
       </div>
 
+      {/* LUXURY COMPACT CSS */}
       <style dangerouslySetInnerHTML={{ __html: `
-        .aligner-hero-section {
-          background: #0A0705;
+        .aligner-section-root {
+          background: linear-gradient(180deg, #0D0705 0%, #170C08 100%);
+          color: #FFFFFF;
+          padding: 3rem 1.5rem;
           position: relative;
           overflow: hidden;
-          padding: 5rem 0;
+          box-sizing: border-box;
+          width: 100%;
         }
-
-        /* 3D SCANNER BACKGROUND */
-        .scanner-bg-wrapper {
+        .aligner-section-root::before {
+          content: '';
           position: absolute;
-          inset: 0;
-          z-index: 0;
-          pointer-events: none;
-          overflow: hidden;
-        }
-        .scanner-grid {
-          position: absolute;
-          left: -50%; right: -50%;
-          width: 200%; height: 200%;
-          background-image: 
-            linear-gradient(rgba(214, 122, 65, 0.18) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(214, 122, 65, 0.18) 1px, transparent 1px);
-          background-size: 45px 45px;
-          transform-style: preserve-3d;
-        }
-        .grid-top { top: -100%; animation: scanGridTop 20s linear infinite; }
-        .grid-bottom { bottom: -100%; animation: scanGridBottom 20s linear infinite; }
-
-        @keyframes scanGridTop {
-          0% { transform: perspective(800px) rotateX(75deg) translateY(0); }
-          100% { transform: perspective(800px) rotateX(75deg) translateY(45px); }
-        }
-        @keyframes scanGridBottom {
-          0% { transform: perspective(800px) rotateX(-75deg) translateY(0); }
-          100% { transform: perspective(800px) rotateX(-75deg) translateY(-45px); }
-        }
-
-        .scanner-laser {
-          position: absolute;
-          top: -10%; bottom: -10%;
-          width: 3px;
-          background: #D67A41;
-          box-shadow: 0 0 25px 4px #D67A41, 0 0 60px 8px rgba(214, 122, 65, 0.8);
-          animation: laserSweep 7s ease-in-out infinite alternate;
-          z-index: 2; opacity: 0.85;
-        }
-        @keyframes laserSweep {
-          0% { left: -10%; opacity: 0; }
-          10% { opacity: 0.85; }
-          90% { opacity: 0.85; }
-          100% { left: 110%; opacity: 0; }
-        }
-
-        /* ANIMATED BACKGROUND GRAPHICS & HALO ORBS */
-        .bg-glow-orb {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(70px);
-          pointer-events: none;
-          z-index: 1;
-        }
-        .orb-gold-1 {
-          width: 500px;
-          height: 500px;
-          background: radial-gradient(circle, rgba(214, 122, 65, 0.55) 0%, rgba(201, 168, 76, 0.2) 70%, transparent 100%);
-          top: -10%;
-          left: -10%;
-          animation: floatOrbSlow 16s ease-in-out infinite alternate;
-        }
-        .orb-gold-2 {
-          width: 600px;
-          height: 600px;
-          background: radial-gradient(circle, rgba(201, 168, 76, 0.45) 0%, rgba(214, 122, 65, 0.15) 70%, transparent 100%);
-          bottom: -15%;
+          top: -20%;
           right: -10%;
-          animation: floatOrbSlow 20s ease-in-out infinite alternate-reverse;
-        }
-        @keyframes floatOrbSlow {
-          0% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(45px, -35px) scale(1.15); }
-          100% { transform: translate(-35px, 35px) scale(0.9); }
-        }
-
-        .bg-graphic-ring {
-          position: absolute;
-          pointer-events: none;
-          z-index: 1;
-          opacity: 0.95;
-        }
-        .ring-1 {
-          top: -5%;
-          left: -5%;
-          width: 440px;
-          height: 440px;
-          animation: rotateRing 35s linear infinite;
-        }
-        .ring-2 {
-          bottom: -5%;
-          right: -5%;
-          width: 520px;
-          height: 520px;
-          animation: rotateRing 45s linear infinite reverse;
-        }
-        @keyframes rotateRing {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        .point-cloud { position: absolute; inset: 0; z-index: 1; }
-        .point-particle {
-          position: absolute;
-          width: 4px; height: 4px;
+          width: 50vw;
+          height: 50vw;
+          background: radial-gradient(circle, rgba(214, 122, 65, 0.15) 0%, transparent 70%);
           border-radius: 50%;
-          background: #EAA77C;
-          box-shadow: 0 0 12px #D67A41;
-          opacity: 0;
-          animation: pointPulse var(--duration) var(--delay) infinite ease-in-out;
-        }
-        @keyframes pointPulse {
-          0%, 100% { opacity: 0; transform: scale(0.5) translateY(0); }
-          50% { opacity: 0.9; transform: scale(1.6) translateY(-12px); }
-        }
-        .scanner-vignette {
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle at center, transparent 30%, rgba(10, 7, 5, 0.65) 90%);
-          z-index: 3;
+          pointer-events: none;
         }
 
-        /* HEADER */
-        .aligner-main-header {
-          max-width: 850px;
-          margin: 0 auto 3rem;
-        }
-        .aligner-section-title {
-          font-size: clamp(2rem, 3.8vw, 3.2rem);
-          color: #fff;
-          font-weight: 800;
-          line-height: 1.15;
-          margin-bottom: 1rem;
-        }
-        .aligner-section-desc {
-          color: rgba(255,255,255,0.8);
-          font-size: 1.05rem;
-          line-height: 1.7;
-        }
-
-        /* STATS BANNER STRIP */
-        .aligner-stats-banner {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          background: rgba(255, 255, 255, 0.03);
-          backdrop-filter: blur(16px);
-          border: 1px solid rgba(214, 122, 65, 0.25);
-          border-radius: 24px;
-          padding: 1.75rem 3rem;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        .stat-banner-item { text-align: center; }
-        .stat-banner-val {
-          font-family: var(--font-heading);
-          font-size: 2.2rem;
-          font-weight: 800;
-          color: var(--accent-gold-light);
-          line-height: 1.1;
-          text-shadow: 0 0 15px rgba(214, 122, 65, 0.3);
-        }
-        .stat-banner-lbl {
-          font-size: 0.8rem;
-          color: rgba(255, 255, 255, 0.65);
-          margin-top: 0.3rem;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-        .stat-banner-divider {
-          width: 1px; height: 40px;
-          background: rgba(214, 122, 65, 0.2);
-        }
-
-        /* ALIGNER TYPE SELECTION */
-        .aligner-systems-container {
-          margin-top: 3.5rem;
-          margin-bottom: 3.5rem;
-        }
-        .aligner-type-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          margin-bottom: 1.5rem;
-          flex-wrap: wrap;
-          gap: 1rem;
-        }
-        .aligner-type-heading {
-          font-family: var(--font-heading);
-          color: #fff;
-          font-size: 1.8rem;
-          fontWeight: 800;
-        }
-        .aligner-type-hint {
-          font-size: 0.9rem;
-          color: var(--accent-gold-light);
-        }
-        .aligner-pills-grid {
-          display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          gap: 1rem;
-          margin-bottom: 1.5rem;
-        }
-        .aligner-pill-btn {
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 18px;
-          padding: 1.25rem 1rem;
-          text-align: left;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          outline: none;
-        }
-        .pill-name {
-          font-weight: 800;
-          font-size: 1.05rem;
-          color: rgba(255,255,255,0.85);
-        }
-        .pill-sub {
-          font-size: 0.78rem;
-          color: rgba(255,255,255,0.5);
-          margin-top: 0.2rem;
-        }
-        .active-pill .pill-name {
-          color: #fff;
-        }
-        .active-pill .pill-sub {
-          color: var(--accent-gold-light);
-        }
-        .aligner-pill-btn:hover {
-          background: rgba(255, 255, 255, 0.07);
-          border-color: rgba(214, 122, 65, 0.4);
-        }
-        .active-pill {
-          background: linear-gradient(135deg, rgba(214, 122, 65, 0.25), rgba(26, 12, 8, 0.8)) !important;
-          border-color: var(--accent-gold) !important;
-          box-shadow: 0 10px 25px rgba(214, 122, 65, 0.2) !important;
-        }
-
-        /* DETAIL CARD */
-        .aligner-detail-box {
-          display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: 3rem;
-          background: rgba(17, 8, 5, 0.85);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(214, 122, 65, 0.3);
-          border-radius: 28px;
-          padding: 3rem;
-          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
-        .detail-top-row {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
-          flex-wrap: wrap;
-          margin-bottom: 1rem;
-        }
-        .detail-logo-wrap {
+        .aligner-container {
+          max-width: 1200px;
+          margin: 0 auto;
           position: relative;
-          width: 180px;
-          height: 50px;
-          flex-shrink: 0;
+          z-index: 2;
+          width: 100%;
+          box-sizing: border-box;
         }
-        .detail-system-name {
-          font-family: var(--font-heading);
-          font-size: 1.8rem;
-          color: #fff;
+
+        /* ── HEADER ──────────────────────────────────── */
+        .aligner-header {
+          text-align: center;
+          max-width: 800px;
+          margin: 0 auto 1.75rem;
+        }
+        .aligner-pill-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          background: rgba(214, 122, 65, 0.18);
+          color: #F4B382;
+          border: 1px solid rgba(214, 122, 65, 0.35);
+          padding: 0.35rem 0.95rem;
+          border-radius: 99px;
+          font-size: 0.75rem;
           font-weight: 800;
-          margin-bottom: 0.5rem;
-        }
-        .detail-system-tagline {
-          color: rgba(255,255,255,0.8);
-          font-size: 1.05rem;
-          line-height: 1.6;
-          margin-bottom: 1.5rem;
-        }
-        .detail-advantages-label {
-          font-size: 0.85rem;
+          letter-spacing: 0.05em;
           text-transform: uppercase;
-          letter-spacing: 0.08em;
-          color: var(--accent-gold-light);
+          margin-bottom: 0.85rem;
+        }
+        .sparkle-icon {
+          color: #D67A41;
+        }
+
+        .aligner-title {
+          font-size: clamp(2rem, 3.8vw, 2.9rem);
           font-weight: 800;
-          margin-bottom: 0.8rem;
+          color: #FFFFFF;
+          line-height: 1.18;
+          margin-bottom: 0.85rem;
+          letter-spacing: -0.02em;
         }
-        .aligner-feature-list {
-          list-style: none;
-          padding: 0; margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 0.85rem;
+        .copper-gradient {
+          background: linear-gradient(135deg, #D67A41 0%, #F4B382 50%, #EAA77C 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
-        .aligner-feature-list li {
+
+        .aligner-subtitle {
+          font-size: 1.02rem;
+          color: rgba(255, 255, 255, 0.82);
+          line-height: 1.65;
+          margin: 0 auto;
+        }
+        .aligner-subtitle strong {
+          color: #F4B382;
+        }
+
+        /* ── WHAT YOU GET GRID ───────────────────────── */
+        .what-you-get-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1rem;
+          margin-bottom: 2.25rem;
+        }
+        .wyg-card {
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(214, 122, 65, 0.2);
+          border-radius: 20px;
+          padding: 1.25rem 1.15rem;
           display: flex;
           align-items: flex-start;
-          gap: 0.75rem;
-          font-size: 0.95rem;
-          color: rgba(255, 255, 255, 0.85);
-          line-height: 1.5;
+          gap: 0.85rem;
+          backdrop-filter: blur(10px);
+          transition: transform 0.25s ease, border-color 0.25s ease;
         }
-
-        .aligner-spec-card {
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 20px;
-          padding: 2rem;
+        .wyg-card:hover {
+          transform: translateY(-2px);
+          border-color: rgba(214, 122, 65, 0.45);
+          background: rgba(255, 255, 255, 0.06);
         }
-        .spec-label {
-          font-size: 0.78rem;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          color: rgba(255, 255, 255, 0.5);
-          font-weight: 600;
+        .wyg-icon-box {
+          width: 42px;
+          height: 42px;
+          border-radius: 12px;
+          background: rgba(214, 122, 65, 0.14);
+          border: 1px solid rgba(214, 122, 65, 0.28);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .wyg-title {
+          font-size: 0.94rem;
+          font-weight: 800;
+          color: #FFFFFF;
           margin-bottom: 0.25rem;
         }
-        .spec-val {
-          font-size: 0.95rem;
-          color: #fff;
-          font-weight: 600;
+        .wyg-desc {
+          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.7);
           line-height: 1.5;
-        }
-        .spec-divider {
-          height: 1px;
-          background: rgba(255, 255, 255, 0.1);
-          margin: 1.25rem 0;
-        }
-        .spec-row {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1.5rem;
-        }
-        .spec-highlight {
-          font-family: var(--font-heading);
-          font-size: 1.2rem;
-          font-weight: 800;
-          color: var(--accent-gold-light);
+          margin: 0;
         }
 
-        /* CLINICAL RESULTS WRAPPER (DESKTOP) */
-        .aligner-results-wrapper {
-          display: grid;
-          grid-template-columns: 1fr 1.1fr;
-          gap: 3.5rem;
-          align-items: center;
-          background: rgba(255, 255, 255, 0.02);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+        /* ── COMPARISON DETAIL CARD ──────────────────── */
+        .aligner-comparison-card {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1.5px solid rgba(214, 122, 65, 0.28);
           border-radius: 28px;
-          padding: 3rem;
+          padding: 2rem;
+          margin-bottom: 2.25rem;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
         }
 
-        .case-selector-tabs {
+        .system-toggle-bar {
           display: flex;
           gap: 0.75rem;
-          flex-wrap: wrap;
+          background: rgba(0, 0, 0, 0.3);
+          padding: 0.45rem;
+          border-radius: 18px;
+          border: 1px solid rgba(214, 122, 65, 0.2);
+          margin-bottom: 1.75rem;
         }
-        .case-tab-btn {
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          color: rgba(255, 255, 255, 0.7);
-          padding: 0.5rem 1.1rem;
-          border-radius: 30px;
-          font-size: 0.85rem;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-        .active-case {
-          background: var(--accent-gold) !important;
-          color: #fff !important;
-          border-color: var(--accent-gold) !important;
-          box-shadow: 0 5px 15px rgba(214, 122, 65, 0.3) !important;
-        }
-
-        .doctor-trust-card {
+        .system-tab-btn {
+          flex: 1;
           display: flex;
           align-items: center;
-          gap: 1rem;
-          background: rgba(0, 0, 0, 0.4);
-          border: 1px solid rgba(214, 122, 65, 0.3);
-          border-radius: 18px;
-          padding: 1rem;
+          justify-content: center;
+          gap: 0.65rem;
+          padding: 0.85rem 1.25rem;
+          border-radius: 14px;
+          border: none;
+          background: transparent;
+          color: rgba(255, 255, 255, 0.75);
+          font-size: 0.92rem;
+          font-weight: 800;
+          cursor: pointer;
+          transition: all 0.25s ease;
+          flex-wrap: wrap;
         }
-        .doctor-trust-img {
-          width: 54px; height: 54px;
-          border-radius: 50%;
-          overflow: hidden;
-          position: relative;
-          border: 2px solid var(--accent-gold);
+        .system-tab-btn.is-active {
+          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
+          color: #FFFFFF;
+          box-shadow: 0 4px 18px rgba(214, 122, 65, 0.4);
+        }
+        .tab-price-hint {
+          font-size: 0.76rem;
+          font-weight: 700;
+          background: rgba(0, 0, 0, 0.25);
+          padding: 0.15rem 0.55rem;
+          border-radius: 99px;
+          color: #FFF;
+        }
+
+        .system-detail-content {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 2.5rem;
+          align-items: center;
+        }
+
+        .system-badge-tag {
+          display: inline-block;
+          background: rgba(16, 185, 129, 0.15);
+          color: #34D399;
+          border: 1px solid rgba(16, 185, 129, 0.3);
+          padding: 0.25rem 0.75rem;
+          border-radius: 99px;
+          font-size: 0.74rem;
+          font-weight: 800;
+          margin-bottom: 0.6rem;
+        }
+
+        .system-name {
+          font-size: 1.6rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin-bottom: 0.4rem;
+        }
+        .system-tagline {
+          font-size: 0.92rem;
+          color: rgba(255, 255, 255, 0.8);
+          line-height: 1.55;
+          margin-bottom: 1.25rem;
+        }
+
+        .system-benefits-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+        .system-benefit-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.65rem;
+          font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.9);
+          line-height: 1.45;
+        }
+        .check-icon {
+          color: #D67A41;
           flex-shrink: 0;
+          margin-top: 2px;
         }
 
-        .aligner-slider-wrap {
+        .system-meta-box {
+          background: rgba(0, 0, 0, 0.3);
+          border: 1px solid rgba(214, 122, 65, 0.25);
           border-radius: 20px;
-          overflow: hidden;
-          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-          border: 1px solid rgba(214, 122, 65, 0.2);
+          padding: 1.35rem 1.5rem;
+          margin-bottom: 1.25rem;
         }
-        .aligner-slider-caption {
-          font-size: 0.75rem;
-          color: rgba(255, 255, 255, 0.5);
+        .meta-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.5rem 0;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+        .meta-row:last-of-type {
+          border-bottom: none;
+        }
+        .meta-label {
+          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.7);
+        }
+        .meta-val {
+          font-size: 0.96rem;
+          font-weight: 800;
+          color: #FFFFFF;
+        }
+        .gold-cost {
+          color: #F4B382 !important;
+          font-size: 1.15rem !important;
+        }
+        .meta-emi-tag {
+          margin-top: 0.75rem;
+          padding-top: 0.65rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          font-size: 0.76rem;
+          font-weight: 700;
+          color: #34D399;
           text-align: center;
-          padding: 0.75rem;
-          background: rgba(0, 0, 0, 0.6);
         }
 
-        /* =====================================================
-           RESPONSIVE BREAKPOINTS: TABLET & MOBILE
-           ===================================================== */
+        .system-action-buttons {
+          display: flex;
+          flex-direction: column;
+          gap: 0.65rem;
+          margin-bottom: 0.85rem;
+        }
+        .btn-aligner-primary {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
+          color: #FFFFFF;
+          padding: 0.85rem 1.4rem;
+          border-radius: 12px;
+          font-weight: 800;
+          font-size: 0.92rem;
+          text-decoration: none;
+          box-shadow: 0 6px 20px rgba(214, 122, 65, 0.35);
+          transition: all 0.25s ease;
+        }
+        .btn-aligner-primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 25px rgba(214, 122, 65, 0.5);
+        }
+
+        .btn-aligner-wa {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          background: rgba(37, 211, 102, 0.15);
+          color: #25D366;
+          border: 1px solid rgba(37, 211, 102, 0.3);
+          padding: 0.75rem 1.25rem;
+          border-radius: 12px;
+          font-weight: 700;
+          font-size: 0.88rem;
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+        .btn-aligner-wa:hover {
+          background: rgba(37, 211, 102, 0.25);
+        }
+
+        .btn-system-learn-more {
+          display: block;
+          text-align: center;
+          color: #F4B382;
+          font-size: 0.82rem;
+          font-weight: 700;
+          text-decoration: none;
+          transition: color 0.2s ease;
+        }
+        .btn-system-learn-more:hover {
+          color: #FFFFFF;
+        }
+
+        /* ── TRUST STRIP ─────────────────────────────── */
+        .aligner-trust-strip {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(214, 122, 65, 0.2);
+          border-radius: 20px;
+          padding: 1.25rem 2rem;
+        }
+        .trust-cell {
+          text-align: center;
+        }
+        .trust-cell strong {
+          display: block;
+          font-size: 1.2rem;
+          font-weight: 900;
+          color: #F4B382;
+          font-family: var(--font-heading);
+        }
+        .trust-cell span {
+          display: block;
+          font-size: 0.74rem;
+          color: rgba(255, 255, 255, 0.7);
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          margin-top: 0.2rem;
+        }
+        .trust-divider {
+          width: 1px;
+          height: 32px;
+          background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* ── RESPONSIVE RULES ────────────────────────── */
         @media (max-width: 1024px) {
-          .aligner-stats-banner { flex-wrap: wrap; gap: 1.5rem; justify-content: center; padding: 1.5rem; }
-          .stat-banner-divider { display: none; }
-          .aligner-pills-grid { grid-template-columns: repeat(3, 1fr); }
-          .aligner-detail-box { grid-template-columns: minmax(0, 1fr); padding: 2rem; }
-          .aligner-results-wrapper { grid-template-columns: 1fr; padding: 2rem; }
+          .what-you-get-grid { grid-template-columns: repeat(2, 1fr); }
+          .system-detail-content { grid-template-columns: 1fr; gap: 1.75rem; }
         }
 
         @media (max-width: 768px) {
-          .aligner-hero-section { padding: 2.25rem 0 !important; }
-          .aligner-main-header { margin-bottom: 1.25rem !important; }
-          .aligner-section-title { font-size: 1.55rem !important; line-height: 1.25 !important; margin-bottom: 0.6rem !important; }
-          .aligner-section-desc { font-size: 0.88rem !important; line-height: 1.5 !important; }
-
-          /* Stats banner on mobile: compact 2x2 grid */
-          .aligner-stats-banner {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-            padding: 0.85rem 1rem !important;
-            gap: 0.75rem !important;
-            border-radius: 16px !important;
-            margin-bottom: 1.5rem !important;
+          .aligner-section-root {
+            padding: 2.75rem 1rem;
           }
-          .stat-banner-divider { display: none !important; }
-          .stat-banner-item { border: none !important; padding: 0 !important; text-align: center !important; }
-          .stat-banner-val { font-size: 1.35rem !important; }
-          .stat-banner-lbl { font-size: 0.65rem !important; margin-top: 0.15rem !important; }
-
-          /* Aligner systems container */
-          .aligner-systems-container { margin-top: 1.5rem !important; margin-bottom: 1.5rem !important; }
-          .aligner-type-header { margin-bottom: 0.75rem !important; }
-          .aligner-type-heading { font-size: 1.25rem !important; }
-          .aligner-type-hint { display: none !important; }
-
-          /* Horizontal scroll pill track */
-          .aligner-pills-grid {
-            display: flex !important;
-            flex-direction: row !important;
-            overflow-x: auto !important;
-            -webkit-overflow-scrolling: touch !important;
-            scrollbar-width: none !important;
-            gap: 0.5rem !important;
-            padding-bottom: 4px !important;
-            margin-bottom: 0.85rem !important;
+          .aligner-header {
+            margin-bottom: 1.75rem;
           }
-          .aligner-pills-grid::-webkit-scrollbar { display: none; }
-          .aligner-pill-btn {
-            flex-shrink: 0 !important;
-            white-space: nowrap !important;
-            padding: 0.6rem 0.9rem !important;
-            border-radius: 12px !important;
+          .aligner-title {
+            font-size: 1.75rem;
           }
-          .pill-name { font-size: 0.85rem !important; font-weight: 700 !important; }
-
-          /* Compact detail box */
-          .aligner-detail-box {
-            grid-template-columns: 1fr !important;
-            gap: 1rem !important;
-            padding: 1.15rem !important;
-            border-radius: 16px !important;
+          .aligner-subtitle {
+            font-size: 0.92rem;
           }
-          .detail-system-name { font-size: 1.25rem !important; margin-bottom: 0.3rem !important; }
-          .detail-system-tagline { font-size: 0.82rem !important; line-height: 1.4 !important; margin-bottom: 0.85rem !important; }
-          .detail-advantages-label { font-size: 0.72rem !important; margin-bottom: 0.4rem !important; }
-          .aligner-feature-list { gap: 0.5rem !important; }
-          .aligner-feature-list li { font-size: 0.8rem !important; gap: 0.45rem !important; }
-
-          .aligner-spec-card {
-            padding: 0.85rem 1rem !important;
-            border-radius: 12px !important;
+          .what-you-get-grid {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
           }
-          .spec-row { gap: 0.5rem !important; }
-          .spec-label { font-size: 0.65rem !important; }
-          .spec-highlight { font-size: 1rem !important; }
-
-          .hide-mobile { display: none !important; }
-          .show-mobile { display: inline !important; }
+          .aligner-comparison-card {
+            padding: 1.25rem 1rem;
+            border-radius: 22px;
+          }
+          .system-toggle-bar {
+            flex-direction: column;
+            gap: 0.4rem;
+          }
+          .system-tab-btn {
+            padding: 0.65rem 0.85rem;
+            font-size: 0.85rem;
+            justify-content: space-between;
+          }
+          .system-name {
+            font-size: 1.35rem;
+          }
+          .system-detail-content {
+            gap: 1.25rem;
+          }
+          .system-action-buttons {
+            display: none !important;
+          }
+          .aligner-trust-strip {
+            display: none !important;
+          }
         }
-        .show-mobile { display: none; }
       `}} />
     </section>
   );

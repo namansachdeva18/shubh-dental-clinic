@@ -2,7 +2,8 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, Phone, MapPin, Clock, ChevronDown, Calendar, MessageCircle, BookMarked, PhoneCall, Sparkles, UserCheck, Image as ImageIcon, Building } from 'lucide-react';
+import { Menu, X, Phone, MapPin, Clock, ChevronDown, Calendar, MessageCircle, BookMarked, PhoneCall, Sparkles, UserCheck, Image as ImageIcon, Building, Tag } from 'lucide-react';
+import OfferBanner from './OfferBanner';
 
 const NAV_TREATMENTS = [
   {
@@ -67,6 +68,7 @@ export default function Header() {
 
   return (
     <>
+      <OfferBanner />
       <header className={`site-header${scrolled ? ' scrolled' : ''}`} aria-label="Site header">
         
         {/* Top Announcement Bar */}
@@ -75,10 +77,15 @@ export default function Header() {
             <div className="top-bar-left">
               <span className="top-bar-item">
                 <MapPin size={12} aria-hidden="true" />
-                Tilak Nagar Lane 9, Delhi Bypass Road, Rohtak 124001
+                Tilak Nagar, Rohtak
               </span>
               <span className="top-bar-divider" />
-              <span className="top-bar-item">
+              <a href="#book" className="top-bar-item top-bar-video-badge" style={{ color: '#FFB380', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px', fontWeight: '700' }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#25D366', display: 'inline-block' }} />
+                📹 Online Video Consultation Available
+              </a>
+              <span className="top-bar-divider hide-mobile" />
+              <span className="top-bar-item hide-mobile">
                 <Clock size={12} aria-hidden="true" />
                 Mon–Sat: 9:30 AM – 8:00 PM
               </span>
@@ -226,6 +233,12 @@ export default function Header() {
               <Link href="/blog" className="nav-link">Blog</Link>
               <Link href="/contact" className="nav-link">Contact</Link>
 
+              {/* Special Offer Badge Pill (Matching Reference) */}
+              <Link href="/special-offer" className="nav-offer-pill-btn" aria-label="Limited-time special dental offer">
+                <Tag size={13} className="nav-offer-icon" />
+                <span>Special Offer</span>
+              </Link>
+
               {/* Header CTA Button */}
               <a href="#book" className="btn-header-reserve" aria-label="Book an appointment">
                 <Calendar size={14} aria-hidden="true" />
@@ -264,6 +277,30 @@ export default function Header() {
             </div>
 
             <nav className="mobile-nav-links" aria-label="Mobile navigation links">
+              {/* Featured Mobile Special Offer Banner Card */}
+              <Link 
+                href="/special-offer" 
+                className="mob-drawer-offer-card" 
+                onClick={() => setMobileOpen(false)}
+              >
+                <div className="mob-offer-card-top">
+                  <span className="mob-offer-tag">
+                    <Tag size={11} /> LIMITED-TIME OFFER
+                  </span>
+                  <span className="mob-offer-badge">UP TO 20% OFF</span>
+                </div>
+                <h4 className="mob-offer-title font-heading">
+                  Special Dental Care Offer
+                </h4>
+                <p className="mob-offer-desc">
+                  Save on Aligners, Braces &amp; Implants + Free 3D Digital Scan.
+                </p>
+                <div className="mob-offer-cta">
+                  <span>Claim Offer Online</span>
+                  <ArrowRight size={13} />
+                </div>
+              </Link>
+
               <Link href="/" className="mob-nav-link" onClick={() => setMobileOpen(false)}>Home</Link>
 
               <button
@@ -313,30 +350,24 @@ export default function Header() {
       {/* Mobile Sticky Bottom Action Bar */}
       <div className="mobile-bottom-bar" aria-label="Quick contact bar">
         <div className="mobile-bottom-bar-inner">
-          <a href="#book" className="mobile-bar-btn" aria-label="Book appointment">
-            <div className="icon-wrapper">
-              <BookMarked aria-hidden="true" strokeWidth={1.5} />
+          
+          {/* 1. Book Consult */}
+          <a href="#book" className="mobile-bar-btn" aria-label="Book consultation">
+            <div className="icon-wrapper icon-book-wrapper">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#D67A41" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+                <path d="M9 16l2 2 4-4" stroke="#10B981" strokeWidth="2.2"/>
+              </svg>
             </div>
             <span>Book<br />Consult</span>
           </a>
 
           <div className="mobile-bar-divider" />
 
-          <a
-            href="https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mobile-bar-btn"
-            aria-label="Get directions"
-          >
-            <div className="icon-wrapper">
-              <MapPin aria-hidden="true" strokeWidth={1.5} />
-            </div>
-            <span>Clinic<br />Map</span>
-          </a>
-
-          <div className="mobile-bar-divider" />
-
+          {/* 2. WhatsApp Chat (with pulse beacon) */}
           <a
             href="https://api.whatsapp.com/send/?phone=918685048414&text=Hi!%20I%20would%20like%20to%20book%20an%20appointment%20at%20Shubh%20Orthodontic%20%26%20Dental%20Clinic."
             target="_blank"
@@ -344,20 +375,82 @@ export default function Header() {
             className="mobile-bar-btn"
             aria-label="WhatsApp clinic"
           >
-            <div className="icon-wrapper">
-              <MessageCircle aria-hidden="true" strokeWidth={1.5} />
+            <div className="icon-wrapper icon-wa-wrapper">
+              <span className="wa-beacon-pulse" />
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                <path fill="#25D366" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2Z"/>
+                <path fill="#FFFFFF" d="M17.52 14.33C17.22 14.18 15.75 13.45 15.48 13.35C15.2 13.25 15 13.2 14.81 13.5C14.61 13.8 14.04 14.47 13.86 14.67C13.69 14.87 13.51 14.9 13.21 14.75C12.92 14.6 11.96 14.28 10.83 13.27C9.94 12.48 9.35 11.51 9.17 11.21C9 10.91 9.15 10.75 9.3 10.6C9.43 10.47 9.6 10.25 9.75 10.08C9.9 9.9 9.95 9.77 10.05 9.57C10.15 9.37 10.1 9.2 10.02 9.05C9.95 8.9 9.37 7.48 9.13 6.9C8.9 6.33 8.66 6.41 8.49 6.4C8.32 6.39 8.13 6.39 7.93 6.39C7.73 6.39 7.41 6.46 7.14 6.76C6.87 7.06 6.1 7.78 6.1 9.25C6.1 10.72 7.17 12.14 7.32 12.34C7.47 12.54 9.42 15.53 12.41 16.82C13.12 17.13 13.68 17.31 14.12 17.45C14.84 17.68 15.49 17.65 16.01 17.57C16.59 17.48 17.8 16.84 18.05 16.14C18.3 15.44 18.3 14.84 18.22 14.72C18.15 14.59 17.97 14.51 17.67 14.36"/>
+              </svg>
             </div>
             <span>WhatsApp<br />Chat</span>
           </a>
 
           <div className="mobile-bar-divider" />
 
-          <a href="tel:+918685048414" className="mobile-bar-btn" aria-label="Call clinic">
-            <div className="icon-wrapper">
-              <PhoneCall aria-hidden="true" strokeWidth={1.5} />
+          {/* 3. Call Now */}
+          <a href="tel:+918685048414" className="mobile-bar-btn" aria-label="Call clinic directly">
+            <div className="icon-wrapper icon-call-wrapper">
+              <span className="call-beacon-pulse" />
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#D67A41" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
             </div>
-            <span>Call<br />Doctor</span>
+            <span>Call<br />Now</span>
           </a>
+
+          <div className="mobile-bar-divider" />
+
+          {/* 4. Instagram Profile */}
+          <a
+            href="https://www.instagram.com/dr.s.k._yadav_orthodontist"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mobile-bar-btn"
+            aria-label="Instagram profile and cases"
+          >
+            <div className="icon-wrapper icon-ig-wrapper">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                <defs>
+                  <linearGradient id="igBarGradSubtle" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#FED373" />
+                    <stop offset="0.25" stopColor="#F15245" />
+                    <stop offset="0.5" stopColor="#D92E7F" />
+                    <stop offset="0.75" stopColor="#9B36B7" />
+                    <stop offset="1" stopColor="#515ECF" />
+                  </linearGradient>
+                </defs>
+                <rect x="2" y="2" width="20" height="20" rx="5.5" fill="url(#igBarGradSubtle)"/>
+                <circle cx="12" cy="12" r="4.5" stroke="#FFFFFF" strokeWidth="1.8"/>
+                <circle cx="17.5" cy="6.5" r="1.2" fill="#FFFFFF"/>
+              </svg>
+            </div>
+            <span>Instagram<br />Profile</span>
+          </a>
+
+          <div className="mobile-bar-divider" />
+
+          {/* 5. Official Google Maps */}
+          <a
+            href="https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mobile-bar-btn"
+            aria-label="Google Maps directions to clinic"
+          >
+            <div className="icon-wrapper icon-map-wrapper">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                {/* Official Multi-Color Google Maps Pin */}
+                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22S19 14.25 19 9C19 5.13 15.87 2 12 2Z" fill="#EA4335"/>
+                <path d="M12 2C10.5 2 9.1 2.5 8 3.3L12 11.5L16 3.3C14.9 2.5 13.5 2 12 2Z" fill="#EA4335"/>
+                <path d="M5 9C5 11.5 6.4 14.5 8.5 17.5L12 11.5L8 3.3C6.2 4.7 5 6.7 5 9Z" fill="#FBBC04"/>
+                <path d="M12 22C12 22 8.5 17.5 8.5 17.5L12 11.5L15.5 17.5C15.5 17.5 12 22 12 22Z" fill="#34A853"/>
+                <path d="M19 9C19 6.7 17.8 4.7 16 3.3L12 11.5L15.5 17.5C17.6 14.5 19 11.5 19 9Z" fill="#4285F4"/>
+                <circle cx="12" cy="9" r="2.8" fill="#FFFFFF"/>
+              </svg>
+            </div>
+            <span>Google<br />Maps</span>
+          </a>
+
         </div>
       </div>
 
@@ -428,11 +521,13 @@ export default function Header() {
           align-items: center;
           gap: 0.65rem;
           text-decoration: none;
-          flex-shrink: 0;
+          min-width: 0;
+          flex: 1;
+          max-width: 100%;
         }
         .logo-icon-wrap {
-          width: 44px;
-          height: 44px;
+          width: 42px;
+          height: 42px;
           border-radius: 12px;
           display: flex;
           align-items: center;
@@ -442,26 +537,33 @@ export default function Header() {
         .logo-text {
           display: flex;
           flex-direction: column;
+          min-width: 0;
         }
         .logo-dr-name {
-          font-size: 0.68rem;
+          font-size: 0.66rem;
           font-weight: 700;
           color: #8A7063;
           letter-spacing: 0.02em;
+          line-height: 1.2;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         .logo-name {
           font-family: var(--font-heading, sans-serif);
           font-weight: 900;
-          font-size: 1.08rem;
+          font-size: clamp(0.88rem, 2.5vw, 1.08rem);
           color: #0E0604;
           line-height: 1.15;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.01em;
+          word-break: break-word;
         }
         .logo-tagline {
           font-size: 0.64rem;
           color: #D67A41;
           font-weight: 700;
           margin-top: 1px;
+          white-space: nowrap;
         }
 
         .nav-desktop {
@@ -598,6 +700,44 @@ export default function Header() {
           font-weight: 500;
         }
 
+        /* SPECIAL OFFER NAV PILL */
+        .nav-offer-pill-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          background: #FFF3EB;
+          border: 1.5px solid rgba(214, 122, 65, 0.4);
+          color: #B85922;
+          padding: 0.45rem 0.85rem;
+          border-radius: 99px;
+          font-size: 0.78rem;
+          font-weight: 800;
+          text-decoration: none;
+          white-space: nowrap;
+          transition: all 0.2s ease;
+          box-shadow: 0 2px 8px rgba(214, 122, 65, 0.12);
+        }
+        .nav-offer-pill-btn:hover {
+          background: #D67A41;
+          color: #FFFFFF;
+          border-color: #D67A41;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(214, 122, 65, 0.25);
+        }
+        .nav-offer-icon {
+          color: currentColor;
+        }
+
+        .mob-nav-offer-link {
+          background: #FFF3EB !important;
+          border: 1px solid rgba(214, 122, 65, 0.3) !important;
+          border-radius: 12px !important;
+          padding: 0.75rem 1rem !important;
+          color: #B85922 !important;
+          font-weight: 800 !important;
+          margin-bottom: 0.5rem !important;
+        }
+
         /* HEADER CTA */
         .btn-header-reserve {
           display: inline-flex;
@@ -657,6 +797,68 @@ export default function Header() {
           flex-direction: column;
           gap: 0.75rem;
         }
+        .mob-drawer-offer-card {
+          display: flex;
+          flex-direction: column;
+          gap: 0.35rem;
+          background: linear-gradient(135deg, #110805 0%, #2A150B 60%, #1A0B06 100%);
+          border: 1.5px solid rgba(214, 122, 65, 0.4);
+          border-radius: 18px;
+          padding: 1.1rem 1.15rem;
+          text-decoration: none;
+          color: #FFFFFF;
+          margin-bottom: 1.25rem;
+          box-shadow: 0 8px 24px rgba(214, 122, 65, 0.2);
+          transition: transform 0.2s ease;
+        }
+        .mob-drawer-offer-card:active {
+          transform: scale(0.98);
+        }
+        .mob-offer-card-top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.2rem;
+        }
+        .mob-offer-tag {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          font-size: 0.65rem;
+          font-weight: 800;
+          color: #FFB380;
+          letter-spacing: 0.05em;
+        }
+        .mob-offer-badge {
+          background: linear-gradient(135deg, #E66A1F 0%, #D67A41 100%);
+          color: #FFFFFF;
+          font-size: 0.62rem;
+          font-weight: 900;
+          padding: 0.15rem 0.55rem;
+          border-radius: 99px;
+          letter-spacing: 0.04em;
+        }
+        .mob-offer-title {
+          font-size: 1.05rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin: 0;
+        }
+        .mob-offer-desc {
+          font-size: 0.78rem;
+          color: rgba(255, 255, 255, 0.8);
+          line-height: 1.4;
+          margin: 0;
+        }
+        .mob-offer-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.76rem;
+          font-weight: 800;
+          color: #FF9F59;
+          margin-top: 0.35rem;
+        }
         .mob-nav-link {
           font-size: 1.05rem;
           font-weight: 800;
@@ -708,8 +910,162 @@ export default function Header() {
         }
         @media (max-width: 768px) {
           .top-bar { display: none !important; }
-          .nav-main-inner { height: 62px; }
-          .logo-tagline { display: none; }
+          .nav-main-inner { height: auto; min-height: 64px; padding: 0.45rem 0; }
+          .logo-name { font-size: 0.94rem; line-height: 1.15; }
+          .logo-dr-name { font-size: 0.62rem; line-height: 1.2; }
+          .logo-tagline { display: block; font-size: 0.6rem; line-height: 1.2; color: #D67A41; font-weight: 700; margin-top: 1px; }
+          
+          .mobile-bottom-bar {
+            display: block !important;
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 9999 !important;
+            background: rgba(255, 255, 255, 0.97) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border-top: 1.5px solid rgba(214, 122, 65, 0.22) !important;
+            border-radius: 26px 26px 0 0 !important;
+            padding: 0.65rem 0.35rem !important;
+            padding-bottom: max(0.6rem, env(safe-area-inset-bottom)) !important;
+            box-shadow: 0 -8px 30px rgba(45, 24, 16, 0.12) !important;
+          }
+          .mobile-bottom-bar-inner {
+            display: flex !important;
+            justify-content: space-around !important;
+            align-items: center !important;
+            max-width: 520px !important;
+            margin: 0 auto !important;
+            gap: 2px !important;
+          }
+          .mobile-bar-divider {
+            width: 1px !important;
+            height: 24px !important;
+            background: rgba(94, 74, 66, 0.12) !important;
+            flex-shrink: 0 !important;
+          }
+          .mobile-bar-btn {
+            display: flex !important;
+            flex: 1 !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 0.25rem !important;
+            color: #2D1E17 !important;
+            font-size: 0.65rem !important;
+            font-weight: 700 !important;
+            line-height: 1.15 !important;
+            text-align: center !important;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            cursor: pointer !important;
+            text-decoration: none !important;
+            position: relative !important;
+            min-width: 0 !important;
+          }
+          .mobile-bar-btn:active {
+            transform: scale(0.92) !important;
+          }
+          .icon-wrapper {
+            width: 40px !important;
+            height: 40px !important;
+            background: #FFFFFF !important;
+            border: 1px solid rgba(214, 122, 65, 0.22) !important;
+            border-radius: 13px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-shadow: 0 2px 8px rgba(74, 37, 24, 0.05) !important;
+            position: relative !important;
+            transition: all 0.25s ease !important;
+          }
+          .icon-book-wrapper {
+            background: #FFFDFC !important;
+            border-color: rgba(214, 122, 65, 0.25) !important;
+          }
+          .icon-wa-wrapper {
+            background: #F4FDF7 !important;
+            border-color: rgba(37, 211, 102, 0.3) !important;
+          }
+          .icon-call-wrapper {
+            background: #FFF8F3 !important;
+            border-color: rgba(214, 122, 65, 0.3) !important;
+          }
+          .icon-ig-wrapper {
+            background: #FEF9FB !important;
+            border-color: rgba(217, 46, 127, 0.25) !important;
+          }
+          .icon-map-wrapper {
+            background: #F8FAFF !important;
+            border-color: rgba(66, 133, 244, 0.25) !important;
+          }
+          .wa-beacon-pulse {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #25D366;
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            animation: waBeaconAnim 2s infinite;
+          }
+          .call-beacon-pulse {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #FF7E33;
+            box-shadow: 0 0 0 0 rgba(230, 106, 31, 0.8);
+            animation: callBeaconAnim 2s infinite;
+          }
+
+          @keyframes phoneRingContinuous {
+            0% { transform: rotate(0deg) scale(1); }
+            4% { transform: rotate(-22deg) scale(1.15); }
+            8% { transform: rotate(22deg) scale(1.15); }
+            12% { transform: rotate(-18deg) scale(1.15); }
+            16% { transform: rotate(18deg) scale(1.15); }
+            20% { transform: rotate(-10deg) scale(1.08); }
+            24% { transform: rotate(10deg) scale(1.08); }
+            28% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(0deg) scale(1); }
+          }
+          .icon-call-wrapper svg {
+            animation: phoneRingContinuous 2.2s infinite ease-in-out !important;
+            transform-origin: center center !important;
+            display: block !important;
+          }
+
+          @keyframes waIconContinuous {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+          }
+          .icon-wa-wrapper svg {
+            animation: waIconContinuous 2s infinite ease-in-out !important;
+            transform-origin: center center !important;
+          }
+
+          @keyframes waBeaconAnim {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+          }
+          @keyframes callBeaconAnim {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 126, 51, 0.8); }
+            70% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(255, 126, 51, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 126, 51, 0); }
+          }
+        }
+        @media (max-width: 420px) {
+          .logo-name { font-size: 0.86rem; line-height: 1.15; }
+          .logo-dr-name { font-size: 0.58rem; }
+          .logo-tagline { font-size: 0.56rem; }
+          .logo-icon-wrap { width: 36px; height: 36px; }
+          .icon-wrapper { width: 35px !important; height: 35px !important; border-radius: 10px !important; }
+          .mobile-bar-btn { font-size: 0.62rem !important; }
         }
       `}} />
     </>
