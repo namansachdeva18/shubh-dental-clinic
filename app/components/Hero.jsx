@@ -1472,37 +1472,25 @@ export default function Hero() {
             max-height: none;
             width: 100%;
           }
-          .hs-clinic-img-wrap { border-radius: 18px; }
-
-          /* Float cards become inline blocks below image */
+          /* Hide floating overlay cards on mobile view */
           .hs-doctor-panel {
-            position: relative;
-            bottom: auto;
-            left: auto;
-            width: 100%;
-            animation: none;
-            border-radius: 16px;
+            display: none !important;
           }
           .hs-skyalign-card {
-            position: relative;
-            top: auto;
-            right: auto;
-            width: 100%;
-            animation: none;
-            border-radius: 16px;
+            display: none !important;
           }
 
-          /* On mobile, stack stage as column */
+          /* On mobile, stage displays clean clinic image */
           .hs-stage {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            position: relative;
+            width: 100%;
             height: auto;
           }
           .hs-clinic-img-wrap {
             position: relative;
-            height: 280px;
+            height: 240px;
             inset: auto;
+            border-radius: 18px;
           }
           .hs-google-pill {
             position: absolute;
