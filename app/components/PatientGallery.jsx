@@ -731,7 +731,7 @@ export default function PatientGallery() {
           margin-top: 2rem;
           position: relative;
           overflow: hidden;
-          width: 100vw;
+          width: 100%;
           max-width: 100%;
         }
 

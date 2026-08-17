@@ -1384,12 +1384,20 @@ export default function Hero() {
           .hs-root {
             padding: 0.75rem 0 2rem !important;
             min-height: auto;
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: clip !important;
+          }
+          .hs-glow-left, .hs-glow-right {
+            display: none !important;
           }
 
           .hs-grid {
             display: flex;
             flex-direction: column;
             gap: 20px;
+            width: 100% !important;
+            max-width: 100% !important;
           }
 
           .hs-left { align-items: flex-start; text-align: left; width: 100%; max-width: 100%; }

@@ -140,7 +140,7 @@ body, p, .hs-desc, .hs-tagline, .hs-ctas, .hs-stat span, .hs-doc-info strong, .h
 
 /* ===== RESET & BASE ===== */
 *, *::before, *::after {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   margin: 0;
   padding: 0;
 }
@@ -149,6 +149,9 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   font-size: 16px;
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
 }
 
 body {
@@ -158,16 +161,36 @@ body {
   color: var(--text-primary);
   background-color: var(--bg-primary);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  position: relative !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1300px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad, 1.5rem);
+  padding-right: var(--container-pad, 1.5rem);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    max-width: 100% !important;
+  }
 }
 
 img, video {
   max-width: 100%;
   height: auto;
   display: block;
-  /* Prevent layout shift during image load */
   image-rendering: auto;
 }
 

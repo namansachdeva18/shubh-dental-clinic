@@ -181,8 +181,9 @@ export default function ClinicTour() {
 
         .marquee-container {
           position: relative;
-          width: 100vw;
+          width: 100%;
           max-width: 100%;
+          overflow: hidden;
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
