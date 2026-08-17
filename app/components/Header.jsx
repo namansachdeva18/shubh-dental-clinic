@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, Phone, MapPin, Clock, ChevronDown, Calendar, MessageCircle, BookMarked, PhoneCall, Sparkles, UserCheck, Image as ImageIcon, Building, Tag } from 'lucide-react';
+import { Menu, X, Phone, MapPin, Clock, ChevronDown, Calendar, MessageCircle, BookMarked, PhoneCall, Sparkles, UserCheck, Image as ImageIcon, Building, Tag, ArrowRight } from 'lucide-react';
 import OfferBanner from './OfferBanner';
 
 const NAV_TREATMENTS = [
