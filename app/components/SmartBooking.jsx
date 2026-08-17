@@ -119,41 +119,43 @@ export default function SmartBooking() {
             </StaggerReveal>
 
             {/* Right Interactive Form Column */}
-            <ScrollReveal className="booking-form-wrap" variant="slideRight" delay={0.2} duration={0.6}>
+            <ScrollReveal className="booking-form-wrap" animation="fadeUp" delay={0.2}>
               {submitted ? (
                 <div className="form-success-card">
                   <div className="success-icon-wrap">
                     <CheckCircle2 size={42} />
                   </div>
-                  <h3 className="success-title font-heading">Slot Reserved Successfully!</h3>
+                  <h3 className="success-title">Consultation Requested!</h3>
                   <p className="success-desc">
-                    Thank you, <strong>{formData.name}</strong>! WhatsApp has opened with your reservation details. Our clinical desk is confirming your preferred timing.
+                    Thank you, <strong>{formData.name}</strong>. Our clinical coordinator will confirm your preferred appointment slot with <strong>{formData.doctor}</strong> via WhatsApp shortly.
                   </p>
-                  <button onClick={() => setSubmitted(false)} className="btn-reset-form">
+                  <button 
+                    type="button" 
+                    className="btn-reset-form"
+                    onClick={() => setSubmitted(false)}
+                  >
                     Book Another Appointment
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="booking-form-interactive">
                   
-                  {/* Form Top Banner */}
                   <div className="interactive-form-header">
                     <div>
-                      <div className="form-eyebrow-live">
-                        <span className="live-pulse-green" />
-                        <span>Doctors Available for Booking</span>
-                      </div>
-                      <h3 className="form-interactive-title">Quick Appointment</h3>
+                      <span className="form-eyebrow-live">
+                        <span className="live-pulse-green" /> Live Booking
+                      </span>
+                      <h3 className="form-interactive-title">Select Treatment &amp; Slot</h3>
                     </div>
                     <div className="form-rating-badge">
                       <Star size={13} fill="#F59E0B" color="#F59E0B" />
-                      <span>5.0★ Verified</span>
+                      <span>4.9 / 5.0 (2,400+ Reviews)</span>
                     </div>
                   </div>
 
-                  {/* 1. Treatment Chip Selector */}
+                  {/* 1. Treatment Selector */}
                   <div className="form-field-block">
-                    <label className="field-block-label">1. Select Treatment</label>
+                    <label className="field-block-label">1. Select Required Care</label>
                     <div className="treatment-chips-grid">
                       {TREATMENTS.map((t) => (
                         <button
@@ -170,10 +172,10 @@ export default function SmartBooking() {
                     </div>
                   </div>
 
-                  {/* 2. Patient Name & Phone Inputs */}
+                  {/* 2. Patient Details */}
                   <div className="form-inputs-row">
                     <div className="fancy-input-group">
-                      <label className="fancy-input-label">Your Full Name *</label>
+                      <label className="fancy-input-label">Full Name *</label>
                       <div className="fancy-input-box">
                         <User size={17} className="fancy-input-icon" />
                         <input
@@ -285,32 +287,40 @@ export default function SmartBooking() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .smart-booking-section {
-          padding: 5rem 1.5rem;
+          padding: 3.5rem 1.5rem;
           background: #FAF8F5;
           position: relative;
+          box-sizing: border-box;
+          width: 100%;
         }
 
         .smart-booking-container {
-          max-width: 1240px;
+          max-width: 1200px;
           margin: 0 auto;
+          box-sizing: border-box;
+          width: 100%;
         }
 
         .booking-card-wrapper {
           background: linear-gradient(145deg, #130A06 0%, #261309 100%);
-          border-radius: 36px;
-          padding: 3.5rem 3rem;
+          border-radius: 32px;
+          padding: 2.75rem 2.25rem;
           color: #FFFFFF;
           box-shadow: 0 30px 80px rgba(17, 8, 5, 0.28);
           border: 1.5px solid rgba(214, 122, 65, 0.25);
           position: relative;
           overflow: hidden;
+          box-sizing: border-box;
+          width: 100%;
         }
 
         .booking-grid {
           display: grid;
           grid-template-columns: 0.95fr 1.25fr;
-          gap: 3.5rem;
+          gap: 2.5rem;
           align-items: flex-start;
+          box-sizing: border-box;
+          width: 100%;
         }
 
         /* LEFT INFO COLUMN */
@@ -339,7 +349,7 @@ export default function SmartBooking() {
 
         .booking-headline {
           font-family: var(--font-heading, 'Outfit', sans-serif);
-          font-size: clamp(2rem, 3.5vw, 2.75rem);
+          font-size: clamp(1.85rem, 3vw, 2.5rem);
           font-weight: 900;
           color: #FFFFFF;
           line-height: 1.2;
@@ -354,17 +364,17 @@ export default function SmartBooking() {
         }
 
         .booking-sub {
-          font-size: 0.95rem;
+          font-size: 0.92rem;
           color: #D1C5C0;
           line-height: 1.65;
-          margin-bottom: 2rem;
+          margin-bottom: 1.75rem;
         }
 
         .booking-perks-list {
           display: flex;
           flex-direction: column;
-          gap: 0.9rem;
-          margin-bottom: 2.25rem;
+          gap: 0.85rem;
+          margin-bottom: 2rem;
         }
 
         .b-perk-card {
@@ -375,6 +385,7 @@ export default function SmartBooking() {
           border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 16px;
           padding: 0.85rem 1rem;
+          box-sizing: border-box;
         }
 
         .b-perk-icon {
@@ -391,14 +402,14 @@ export default function SmartBooking() {
         }
 
         .b-perk-title {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           font-weight: 800;
           color: #FFFFFF;
           margin-bottom: 0.15rem;
         }
 
         .b-perk-desc {
-          font-size: 0.76rem;
+          font-size: 0.75rem;
           color: #A89B95;
           margin: 0;
           line-height: 1.4;
@@ -441,18 +452,23 @@ export default function SmartBooking() {
         /* RIGHT FORM COLUMN (INTERACTIVE & LUXURIOUS) */
         .booking-form-wrap {
           background: #FFFFFF;
-          border-radius: 28px;
-          padding: 2.25rem;
+          border-radius: 26px;
+          padding: 1.85rem 1.6rem;
           color: #110805;
           box-shadow: 0 25px 60px rgba(17, 8, 5, 0.35);
           border: 1px solid rgba(214, 122, 65, 0.2);
           position: relative;
+          box-sizing: border-box;
+          width: 100%;
+          min-width: 0;
         }
 
         .booking-form-interactive {
           display: flex;
           flex-direction: column;
-          gap: 1.25rem;
+          gap: 1.15rem;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         .interactive-form-header {
@@ -462,6 +478,7 @@ export default function SmartBooking() {
           padding-bottom: 0.85rem;
           border-bottom: 1.5px solid rgba(74, 37, 24, 0.08);
           gap: 1rem;
+          flex-wrap: wrap;
         }
 
         .form-eyebrow-live {
@@ -485,7 +502,7 @@ export default function SmartBooking() {
 
         .form-interactive-title {
           font-family: var(--font-heading);
-          font-size: 1.3rem;
+          font-size: 1.2rem;
           font-weight: 900;
           color: #0E0604;
           margin: 0;
@@ -509,7 +526,9 @@ export default function SmartBooking() {
         .form-field-block {
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
+          gap: 0.45rem;
+          width: 100%;
+          box-sizing: border-box;
         }
         .field-block-label {
           font-size: 0.74rem;
@@ -522,24 +541,28 @@ export default function SmartBooking() {
         .treatment-chips-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 0.5rem;
+          gap: 0.45rem;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         .treatment-chip {
           display: flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.35rem;
           background: #FAF8F5;
           border: 1.5px solid rgba(74, 37, 24, 0.1);
           border-radius: 12px;
-          padding: 0.6rem 0.75rem;
-          font-size: 0.78rem;
+          padding: 0.55rem 0.65rem;
+          font-size: 0.76rem;
           font-weight: 700;
           color: #38241C;
           cursor: pointer;
           transition: all 0.2s ease;
           position: relative;
           text-align: left;
+          min-width: 0;
+          box-sizing: border-box;
         }
         .treatment-chip:hover {
           border-color: #D67A41;
@@ -553,35 +576,37 @@ export default function SmartBooking() {
           box-shadow: 0 4px 12px rgba(214, 122, 65, 0.15);
         }
         .t-chip-icon {
-          font-size: 0.95rem;
+          font-size: 0.9rem;
+          flex-shrink: 0;
         }
         .t-chip-label {
           flex: 1;
-          white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          white-space: nowrap;
         }
         .t-chip-badge {
-          font-size: 0.6rem;
-          background: #D67A41;
-          color: #fff;
-          padding: 0.05rem 0.35rem;
-          border-radius: 4px;
-          font-weight: 800;
+          display: none;
         }
 
-        /* 2. INPUTS ROW */
+        /* 2. FORM INPUTS */
         .form-inputs-row {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 0.85rem;
+          gap: 0.75rem;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         .fancy-input-group {
           display: flex;
           flex-direction: column;
           gap: 0.35rem;
+          min-width: 0;
+          width: 100%;
+          box-sizing: border-box;
         }
+
         .fancy-input-label {
           font-size: 0.72rem;
           font-weight: 800;
@@ -594,7 +619,10 @@ export default function SmartBooking() {
           position: relative;
           display: flex;
           align-items: center;
+          width: 100%;
+          box-sizing: border-box;
         }
+
         .fancy-input-icon {
           position: absolute;
           left: 0.85rem;
@@ -613,15 +641,16 @@ export default function SmartBooking() {
 
         .fancy-input-box input {
           width: 100%;
-          padding: 0.75rem 0.85rem 0.75rem 2.4rem;
-          border-radius: 14px;
+          padding: 0.7rem 0.8rem 0.7rem 2.4rem;
+          border-radius: 12px;
           border: 1.5px solid rgba(74, 37, 24, 0.12);
           background: #FAF8F5;
-          font-size: 0.88rem;
+          font-size: 0.86rem;
           font-weight: 600;
           color: #110805;
           outline: none;
           transition: all 0.25s ease;
+          box-sizing: border-box;
         }
         .fancy-input-box input:focus {
           background: #FFFFFF;
@@ -634,6 +663,8 @@ export default function SmartBooking() {
           display: flex;
           flex-direction: column;
           gap: 0.45rem;
+          width: 100%;
+          box-sizing: border-box;
         }
         .doctor-select-card {
           display: flex;
@@ -647,6 +678,8 @@ export default function SmartBooking() {
           cursor: pointer;
           transition: all 0.2s ease;
           position: relative;
+          width: 100%;
+          box-sizing: border-box;
         }
         .doctor-select-card:hover {
           background: #FFF8F0;
@@ -661,15 +694,22 @@ export default function SmartBooking() {
           display: flex;
           flex-direction: column;
           flex-grow: 1;
+          min-width: 0;
         }
         .d-card-name {
           font-size: 0.82rem;
           font-weight: 800;
           color: #110805;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
         .d-card-role {
           font-size: 0.68rem;
           color: #7A5B4C;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
         .d-card-check {
           width: 18px;
@@ -687,28 +727,32 @@ export default function SmartBooking() {
         .time-slot-toggle {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 0.4rem;
+          gap: 0.35rem;
           background: #FAF8F5;
-          padding: 4px;
-          border-radius: 14px;
+          padding: 3px;
+          border-radius: 12px;
           border: 1.5px solid rgba(74, 37, 24, 0.1);
-          height: 44px;
+          height: 42px;
           align-items: center;
+          width: 100%;
+          box-sizing: border-box;
         }
         .time-slot-btn {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.35rem;
+          gap: 0.3rem;
           background: transparent;
           border: none;
           border-radius: 10px;
           height: 100%;
-          font-size: 0.78rem;
+          font-size: 0.75rem;
           font-weight: 700;
           color: #6E5448;
           cursor: pointer;
           transition: all 0.2s ease;
+          white-space: nowrap;
+          padding: 0 0.3rem;
         }
         .time-slot--active {
           background: #FFFFFF !important;
@@ -723,10 +767,10 @@ export default function SmartBooking() {
           background: linear-gradient(135deg, #D67A41 0%, #B85C24 100%);
           color: #FFFFFF;
           border: none;
-          border-radius: 16px;
-          padding: 0.95rem 1.5rem;
+          border-radius: 14px;
+          padding: 0.9rem 1.4rem;
           font-family: var(--font-heading);
-          font-size: 0.96rem;
+          font-size: 0.94rem;
           font-weight: 800;
           display: flex;
           align-items: center;
@@ -736,6 +780,8 @@ export default function SmartBooking() {
           box-shadow: 0 10px 25px rgba(214, 122, 65, 0.38);
           transition: all 0.3s ease;
           overflow: hidden;
+          width: 100%;
+          box-sizing: border-box;
         }
         .btn-confirm-appointment:hover {
           transform: translateY(-2px);
@@ -810,10 +856,10 @@ export default function SmartBooking() {
         }
 
         /* RESPONSIVE BREAKPOINTS */
-        @media (max-width: 1024px) {
+        @media (max-width: 1100px) {
           .booking-grid {
             grid-template-columns: 1fr;
-            gap: 2.5rem;
+            gap: 2.25rem;
           }
           .treatment-chips-grid {
             grid-template-columns: repeat(3, 1fr);
@@ -822,14 +868,14 @@ export default function SmartBooking() {
 
         @media (max-width: 768px) {
           .smart-booking-section {
-            padding: 2.25rem 0 5rem !important; /* Extra bottom padding so mobile floating bar never obstructs */
+            padding: 2rem 0.75rem 5rem !important;
           }
           .booking-card-wrapper {
-            padding: 1.25rem 1rem !important;
+            padding: 1.5rem 1.15rem !important;
             border-radius: 22px !important;
           }
           .booking-form-wrap {
-            padding: 1.25rem 1rem !important;
+            padding: 1.35rem 1.1rem !important;
             border-radius: 20px !important;
           }
           .treatment-chips-grid {
@@ -837,7 +883,7 @@ export default function SmartBooking() {
             gap: 0.4rem !important;
           }
           .treatment-chip {
-            padding: 0.5rem 0.6rem !important;
+            padding: 0.5rem 0.55rem !important;
             font-size: 0.74rem !important;
           }
           .form-inputs-row {
