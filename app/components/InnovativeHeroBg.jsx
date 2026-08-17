@@ -210,9 +210,9 @@ export default function InnovativeHeroBg() {
         }
 
         @media (max-width: 768px) {
-          .glass-shape { transform: scale(0.6); }
-          .shape-tooth { left: -10%; }
-          .shape-braces { right: -10%; }
+          .glass-shape { display: none !important; }
+          .blob-1 { width: 320px; height: 320px; left: -80px; top: -50px; }
+          .blob-2 { width: 280px; height: 280px; right: -50px; bottom: -50px; }
         }
       `}} />
     </div>

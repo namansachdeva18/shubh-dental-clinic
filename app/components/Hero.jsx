@@ -402,7 +402,7 @@ export default function Hero() {
           gap: 8px;
           font-size: 0.8rem;
           font-weight: 800;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.05em;
           text-transform: uppercase;
           color: #B85922;
           background: rgba(214, 122, 65, 0.1);
@@ -410,11 +410,18 @@ export default function Hero() {
           padding: 6px 14px;
           border-radius: 99px;
           margin-bottom: 10px;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+        .hs-location-pill span {
+          line-height: 1.35;
         }
 
         /* Special Offer Ribbon */
         .hs-offer-ribbon-wrap {
           margin-bottom: 14px;
+          max-width: 100%;
+          width: 100%;
         }
         .hs-offer-ribbon {
           display: inline-flex;
@@ -429,6 +436,7 @@ export default function Hero() {
           transition: all 0.25s ease;
           width: fit-content;
           max-width: 100%;
+          box-sizing: border-box;
         }
         .hs-offer-ribbon:hover {
           transform: translateY(-2px);
@@ -447,14 +455,15 @@ export default function Hero() {
           border-radius: 99px;
           letter-spacing: 0.04em;
           text-transform: uppercase;
+          flex-shrink: 0;
         }
         .hs-offer-text {
           font-size: 0.78rem;
           font-weight: 700;
           color: #FFFFFF;
-          white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          min-width: 0;
         }
         .hs-offer-action {
           display: inline-flex;
@@ -463,7 +472,8 @@ export default function Hero() {
           font-size: 0.72rem;
           font-weight: 800;
           color: #FF9F59;
-          margin-left: 4px;
+          margin-left: auto;
+          flex-shrink: 0;
         }
 
         /* Headline */
@@ -1382,26 +1392,68 @@ export default function Hero() {
             gap: 20px;
           }
 
-          .hs-left { align-items: flex-start; text-align: left; }
+          .hs-left { align-items: flex-start; text-align: left; width: 100%; max-width: 100%; }
 
           .hs-location-pill {
-            margin-bottom: 10px !important;
-            font-size: 0.72rem !important;
-            padding: 4px 10px !important;
+            margin-bottom: 8px !important;
+            font-size: 0.68rem !important;
+            padding: 5px 10px !important;
+            border-radius: 12px !important;
+            display: flex !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+
+          .hs-offer-ribbon-wrap {
+            margin-bottom: 12px !important;
+            width: 100% !important;
+          }
+
+          .hs-offer-ribbon {
+            display: flex !important;
+            width: 100% !important;
+            justify-content: space-between !important;
+            padding: 4px 8px 4px 5px !important;
+            box-sizing: border-box !important;
+          }
+
+          .hs-offer-text {
+            font-size: 0.7rem !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            flex: 1 !important;
+            min-width: 0 !important;
           }
 
           .hs-headline {
-            font-size: clamp(2rem, 8.5vw, 2.8rem);
+            font-size: clamp(2rem, 8.5vw, 2.7rem);
             margin-bottom: 10px;
+            width: 100%;
+            word-break: break-word;
           }
 
-          .hs-desc { max-width: 100%; font-size: 0.95rem; }
+          .hs-tagline {
+            font-size: 1.05rem !important;
+            margin: 0 0 14px !important;
+            border-left-width: 3px !important;
+            padding-left: 10px !important;
+            width: 100%;
+            word-break: break-word;
+          }
 
-          .hs-ctas { flex-direction: column; align-items: stretch; }
+          .hs-desc {
+            max-width: 100%;
+            font-size: 0.9rem !important;
+            line-height: 1.6 !important;
+            word-break: break-word;
+          }
+
+          .hs-ctas { flex-direction: column; align-items: stretch; width: 100%; }
           .hs-btn-primary {
             justify-content: center;
-            padding: 20px;
-            font-size: 1.05rem;
+            padding: 16px 20px;
+            font-size: 1rem;
           }
           .hs-btn-ghost { justify-content: center; }
 
