@@ -141,15 +141,6 @@ export default function KidsDentistry() {
                 </motion.div>
               ))}
             </div>
-
-            <div className="kids-cta-banner">
-              <div className="kids-cta-content">
-                <h3>Ready for a fun visit?</h3>
-                <a href="#contact" className="btn-kids-premium">
-                  Book Kid's Appointment
-                </a>
-              </div>
-            </div>
           </div>
 
           {/* Animated Photo Gallery Column */}
@@ -620,6 +611,43 @@ export default function KidsDentistry() {
             left: 50%;
             margin-left: 65px;
           }
+        }
+        }
+
+        @media (max-width: 768px) {
+          .premium-kids-section { padding: 2rem 1rem !important; }
+          
+          /* Hide huge photo col entirely on mobile */
+          .kids-photo-col { display: none !important; }
+          
+          .kids-title { font-size: clamp(1.6rem, 6vw, 2.2rem) !important; margin-bottom: 1rem !important; }
+          .kids-intro-content { padding: 1.25rem !important; margin-bottom: 1.5rem !important; }
+          .kids-subtitle { font-size: 1rem !important; margin-bottom: 1rem !important; line-height: 1.5 !important; }
+          .kids-info-text { display: none !important; } /* Hide verbose paragraph */
+          
+          /* Convert vertical features to horizontal swipe track */
+          .kids-features-card-dark {
+            padding: 1rem !important;
+            margin-bottom: 1.5rem !important;
+            flex-direction: row !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            scrollbar-width: none !important;
+            gap: 0.75rem !important;
+          }
+          .kids-features-card-dark::-webkit-scrollbar { display: none; }
+          
+          .dark-feature-item {
+            flex-shrink: 0 !important;
+            white-space: nowrap !important;
+            padding: 0.6rem 0.85rem !important;
+            font-size: 0.85rem !important;
+          }
+          .dark-feature-icon { width: 20px !important; height: 20px !important; }
+          .dark-feature-icon svg { width: 12px; height: 12px; }
+          
+          .kids-cta-banner { padding: 1.25rem !important; margin: 0 !important; }
+          .btn-kids-premium { width: 100% !important; justify-content: center !important; }
         }
       `}} />
     </section>

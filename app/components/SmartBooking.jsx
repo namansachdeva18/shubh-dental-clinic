@@ -1,16 +1,39 @@
 'use client';
 import { useState } from 'react';
-import { Calendar, Clock, User, Phone, CheckCircle, MessageSquare, ShieldCheck, Sparkles, Send } from 'lucide-react';
+import { 
+  Calendar, Clock, User, Phone, CheckCircle2, MessageSquare, 
+  ShieldCheck, Sparkles, Send, Star, Award, ChevronRight, Check
+} from 'lucide-react';
 import ScrollReveal, { StaggerReveal, StaggerItem } from './ScrollReveal';
+
+const TREATMENTS = [
+  { id: 'aligners', label: 'Clear Aligners', icon: '✨', badge: 'Popular' },
+  { id: 'braces', label: 'Damon® Braces', icon: '💎' },
+  { id: 'implants', label: 'Dental Implants', icon: '🛡️', badge: 'Painless' },
+  { id: 'rct', label: 'Root Canal (RCT)', icon: '🦷' },
+  { id: 'makeover', label: 'Smile Makeover', icon: '👑' },
+  { id: 'checkup', label: 'Dental Checkup', icon: '🩺' },
+];
+
+const DOCTORS = [
+  { id: 'sk', name: 'Prof. Dr. S. K. Yadav', role: 'MDS (PGI Chandigarh) · Orthodontics', icon: '👨‍⚕️' },
+  { id: 'achla', name: 'Dr. Achla Bharti Yadav', role: 'MDS (PGI Rohtak) · Cosmetic & Oral', icon: '👩‍⚕️' },
+  { id: 'any', name: 'Earliest Available Specialist', role: 'Fastest appointment confirmation', icon: '⚡' },
+];
+
+const TIME_SLOTS = [
+  { id: 'morning', label: 'Morning', time: '10:00 AM – 01:00 PM', icon: '☀️' },
+  { id: 'evening', label: 'Evening', time: '04:00 PM – 08:00 PM', icon: '🌙' },
+];
 
 export default function SmartBooking() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    treatment: 'Clear Aligners / Invisalign',
+    treatment: 'Clear Aligners',
     doctor: 'Prof. Dr. S. K. Yadav',
     date: '',
-    time: '10:00 AM'
+    time: 'Morning (10:00 AM - 01:00 PM)'
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -18,7 +41,7 @@ export default function SmartBooking() {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
     
-    const msg = `Hello Shubh Dental Clinic! I would like to book an appointment.\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n🦷 Treatment: ${formData.treatment}\n👨‍⚕️ Doctor: ${formData.doctor}\n📅 Preferred Date: ${formData.date || 'Earliest Available'}\n⏰ Time: ${formData.time}`;
+    const msg = `Hello Shubh Dental Clinic! I would like to reserve my consultation slot.\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Treatment: ${formData.treatment}\n👨‍⚕️ Preferred Doctor: ${formData.doctor}\n📅 Preferred Date: ${formData.date || 'Earliest Available'}\n⏰ Preferred Slot: ${formData.time}`;
     const url = `https://wa.me/918685048414?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
     setSubmitted(true);
@@ -31,39 +54,49 @@ export default function SmartBooking() {
         <div className="booking-card-wrapper">
           <div className="booking-grid">
             
-            {/* Left Info Column */}
+            {/* Left Info Column (Desktop authority showcase) */}
             <StaggerReveal className="booking-info" stagger={0.1} delay={0.1}>
               <StaggerItem className="booking-tag" variant="fadeUp">
-                <Sparkles size={14} />
-                <span>Instant Consultation</span>
+                <span className="booking-live-dot" />
+                <span>Instant Consultation Desk</span>
               </StaggerItem>
 
               <StaggerItem className="booking-headline" variant="fadeUp">
-                Schedule Your <span className="gold-text">Smile Consultation</span>
+                Reserve Your <span className="gold-text">VIP Smile Consultation</span>
               </StaggerItem>
 
               <StaggerItem className="booking-sub" variant="fadeUp">
-                Book directly with our senior specialists. Receive a personalized treatment roadmap with 0% interest EMI options.
+                Consult directly with our PGI-trained specialists in Rohtak &amp; NCR. Get a comprehensive 3D digital assessment and transparent 0% EMI plans.
               </StaggerItem>
 
-              <StaggerItem className="booking-perks" variant="fadeUp">
-                <div className="perk-item">
-                  <div className="perk-icon">
-                    <CheckCircle size={18} />
+              <StaggerItem className="booking-perks-list" variant="fadeUp">
+                <div className="b-perk-card">
+                  <div className="b-perk-icon">
+                    <CheckCircle2 size={18} />
                   </div>
                   <div>
-                    <h4 className="perk-title">Priority Consultation</h4>
-                    <p className="perk-desc">Scheduled patients skip waiting room delays.</p>
+                    <h4 className="b-perk-title">Zero Waiting Room Delay</h4>
+                    <p className="b-perk-desc">Pre-booked priority time slot with senior specialists.</p>
                   </div>
                 </div>
 
-                <div className="perk-item">
-                  <div className="perk-icon">
+                <div className="b-perk-card">
+                  <div className="b-perk-icon">
+                    <Sparkles size={18} />
+                  </div>
+                  <div>
+                    <h4 className="b-perk-title">Free 3D Digital Scan Preview</h4>
+                    <p className="b-perk-desc">Visual simulation of your future smile before starting.</p>
+                  </div>
+                </div>
+
+                <div className="b-perk-card">
+                  <div className="b-perk-icon">
                     <ShieldCheck size={18} />
                   </div>
                   <div>
-                    <h4 className="perk-title">3D Digital Assessment</h4>
-                    <p className="perk-desc">Includes visual smile preview for clear aligners.</p>
+                    <h4 className="b-perk-title">0% Interest EMI Available</h4>
+                    <p className="b-perk-desc">Custom financing for braces, aligners, and implants.</p>
                   </div>
                 </div>
               </StaggerItem>
@@ -80,38 +113,69 @@ export default function SmartBooking() {
                   className="btn-direct-whatsapp"
                 >
                   <MessageSquare size={15} />
-                  <span>WhatsApp Booking</span>
+                  <span>Direct WhatsApp</span>
                 </a>
               </StaggerItem>
             </StaggerReveal>
 
-            {/* Right Form Column */}
+            {/* Right Interactive Form Column */}
             <ScrollReveal className="booking-form-wrap" variant="slideRight" delay={0.2} duration={0.6}>
               {submitted ? (
-                <div className="form-success">
+                <div className="form-success-card">
                   <div className="success-icon-wrap">
-                    <CheckCircle size={36} />
+                    <CheckCircle2 size={42} />
                   </div>
-                  <h3 className="success-title font-heading">Booking Request Received!</h3>
+                  <h3 className="success-title font-heading">Slot Reserved Successfully!</h3>
                   <p className="success-desc">
-                    Thank you, <strong>{formData.name}</strong>. WhatsApp has opened to confirm your appointment. Our reception desk will contact you shortly.
+                    Thank you, <strong>{formData.name}</strong>! WhatsApp has opened with your reservation details. Our clinical desk is confirming your preferred timing.
                   </p>
                   <button onClick={() => setSubmitted(false)} className="btn-reset-form">
-                    Book Another Slot
+                    Book Another Appointment
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="booking-form">
-                  <div className="form-header">
-                    <h3 className="form-header-title font-heading">Online Slot Reservation</h3>
-                    <span className="form-header-[#badge]">Instant Confirmation</span>
+                <form onSubmit={handleSubmit} className="booking-form-interactive">
+                  
+                  {/* Form Top Banner */}
+                  <div className="interactive-form-header">
+                    <div>
+                      <div className="form-eyebrow-live">
+                        <span className="live-pulse-green" />
+                        <span>Doctors Available for Booking</span>
+                      </div>
+                      <h3 className="form-interactive-title">Quick Appointment</h3>
+                    </div>
+                    <div className="form-rating-badge">
+                      <Star size={13} fill="#F59E0B" color="#F59E0B" />
+                      <span>5.0★ Verified</span>
+                    </div>
                   </div>
 
-                  <div className="form-row">
-                    <div className="input-group">
-                      <label>Your Name *</label>
-                      <div className="input-box">
-                        <User size={16} className="input-icon" />
+                  {/* 1. Treatment Chip Selector */}
+                  <div className="form-field-block">
+                    <label className="field-block-label">1. Select Treatment</label>
+                    <div className="treatment-chips-grid">
+                      {TREATMENTS.map((t) => (
+                        <button
+                          key={t.id}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, treatment: t.label })}
+                          className={`treatment-chip ${formData.treatment === t.label ? 'treatment-chip--active' : ''}`}
+                        >
+                          <span className="t-chip-icon">{t.icon}</span>
+                          <span className="t-chip-label">{t.label}</span>
+                          {t.badge && <span className="t-chip-badge">{t.badge}</span>}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 2. Patient Name & Phone Inputs */}
+                  <div className="form-inputs-row">
+                    <div className="fancy-input-group">
+                      <label className="fancy-input-label">Your Full Name *</label>
+                      <div className="fancy-input-box">
+                        <User size={17} className="fancy-input-icon" />
                         <input
                           type="text"
                           required
@@ -122,14 +186,14 @@ export default function SmartBooking() {
                       </div>
                     </div>
 
-                    <div className="input-group">
-                      <label>Phone Number *</label>
-                      <div className="input-box">
-                        <Phone size={16} className="input-icon" />
+                    <div className="fancy-input-group">
+                      <label className="fancy-input-label">WhatsApp Phone Number *</label>
+                      <div className="fancy-input-box">
+                        <span className="phone-prefix">+91</span>
                         <input
                           type="tel"
                           required
-                          placeholder="e.g. 9812345678"
+                          placeholder="98123 45678"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         />
@@ -137,40 +201,38 @@ export default function SmartBooking() {
                     </div>
                   </div>
 
-                  <div className="form-row">
-                    <div className="input-group">
-                      <label>Select Treatment</label>
-                      <select
-                        value={formData.treatment}
-                        onChange={(e) => setFormData({ ...formData, treatment: e.target.value })}
-                      >
-                        <option>Clear Aligners / Invisalign</option>
-                        <option>Metal & Ceramic Braces</option>
-                        <option>Dental Implants</option>
-                        <option>Root Canal Treatment</option>
-                        <option>Smile Makeover & Veneers</option>
-                        <option>General Dental Checkup</option>
-                      </select>
-                    </div>
-
-                    <div className="input-group">
-                      <label>Specialist Doctor</label>
-                      <select
-                        value={formData.doctor}
-                        onChange={(e) => setFormData({ ...formData, doctor: e.target.value })}
-                      >
-                        <option>Prof. Dr. S. K. Yadav (Orthodontics)</option>
-                        <option>Dr. Achla Bharti Yadav (Cosmetic)</option>
-                        <option>Any Available Specialist</option>
-                      </select>
+                  {/* 3. Specialist Doctor Selector */}
+                  <div className="form-field-block">
+                    <label className="field-block-label">2. Specialist Doctor</label>
+                    <div className="doctor-select-pills">
+                      {DOCTORS.map((d) => (
+                        <button
+                          key={d.id}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, doctor: d.name })}
+                          className={`doctor-select-card ${formData.doctor === d.name ? 'doctor-card--active' : ''}`}
+                        >
+                          <span className="d-card-icon">{d.icon}</span>
+                          <div className="d-card-info">
+                            <span className="d-card-name">{d.name}</span>
+                            <span className="d-card-role">{d.role}</span>
+                          </div>
+                          {formData.doctor === d.name && (
+                            <div className="d-card-check">
+                              <Check size={12} strokeWidth={3} />
+                            </div>
+                          )}
+                        </button>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="form-row">
-                    <div className="input-group">
-                      <label>Preferred Date</label>
-                      <div className="input-box">
-                        <Calendar size={16} className="input-icon" />
+                  {/* 4. Date & Time Slot */}
+                  <div className="form-inputs-row">
+                    <div className="fancy-input-group">
+                      <label className="fancy-input-label">Preferred Date</label>
+                      <div className="fancy-input-box">
+                        <Calendar size={17} className="fancy-input-icon" />
                         <input
                           type="date"
                           value={formData.date}
@@ -179,26 +241,39 @@ export default function SmartBooking() {
                       </div>
                     </div>
 
-                    <div className="input-group">
-                      <label>Preferred Slot</label>
-                      <div className="input-box">
-                        <Clock size={16} className="input-icon" />
-                        <select
-                          value={formData.time}
-                          onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                        >
-                          <option>10:00 AM - 01:00 PM (Morning)</option>
-                          <option>04:00 PM - 08:00 PM (Evening)</option>
-                        </select>
+                    <div className="fancy-input-group">
+                      <label className="fancy-input-label">Preferred Slot</label>
+                      <div className="time-slot-toggle">
+                        {TIME_SLOTS.map((s) => (
+                          <button
+                            key={s.id}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, time: `${s.label} (${s.time})` })}
+                            className={`time-slot-btn ${formData.time.includes(s.label) ? 'time-slot--active' : ''}`}
+                          >
+                            <span>{s.icon}</span>
+                            <span>{s.label}</span>
+                          </button>
+                        ))}
                       </div>
                     </div>
                   </div>
 
-                  <button type="submit" className="btn-submit-booking">
+                  {/* Submit Button */}
+                  <button type="submit" className="btn-confirm-appointment">
+                    <div className="btn-glow-shimmer" />
                     <Send size={18} />
-                    <span className="hide-mobile">Confirm & Book on WhatsApp</span>
-                    <span className="show-mobile">Confirm Booking</span>
+                    <span>Confirm &amp; Reserve My Consultation</span>
                   </button>
+
+                  <div className="form-trust-footer">
+                    <span>🔒 100% Confidential</span>
+                    <span>•</span>
+                    <span>⚡ Zero Advance Payment</span>
+                    <span>•</span>
+                    <span>📍 Rohtak Clinic</span>
+                  </div>
+
                 </form>
               )}
             </ScrollReveal>
@@ -210,66 +285,70 @@ export default function SmartBooking() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .smart-booking-section {
-          padding: 6rem 1.5rem;
-          background: linear-gradient(180deg, #FAF9F6 0%, #FFFFFF 100%);
+          padding: 5rem 1.5rem;
+          background: #FAF8F5;
           position: relative;
         }
 
         .smart-booking-container {
-          max-width: 1200px;
+          max-width: 1240px;
           margin: 0 auto;
         }
 
         .booking-card-wrapper {
-          background: linear-gradient(135deg, #110805 0%, #2A150B 100%);
-          border-radius: 32px;
+          background: linear-gradient(145deg, #130A06 0%, #261309 100%);
+          border-radius: 36px;
           padding: 3.5rem 3rem;
           color: #FFFFFF;
-          box-shadow: 0 30px 70px rgba(17, 8, 5, 0.25);
-          border: 1px solid rgba(214, 122, 65, 0.25);
+          box-shadow: 0 30px 80px rgba(17, 8, 5, 0.28);
+          border: 1.5px solid rgba(214, 122, 65, 0.25);
+          position: relative;
+          overflow: hidden;
         }
 
         .booking-grid {
           display: grid;
-          grid-template-columns: 1fr 1.2fr;
+          grid-template-columns: 0.95fr 1.25fr;
           gap: 3.5rem;
-          align-items: center;
+          align-items: flex-start;
         }
 
+        /* LEFT INFO COLUMN */
         .booking-tag {
           display: inline-flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.5rem;
           background: rgba(214, 122, 65, 0.15);
           color: #D67A41;
           padding: 0.35rem 1rem;
           border-radius: 99px;
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 800;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.06em;
           text-transform: uppercase;
           border: 1px solid rgba(214, 122, 65, 0.3);
           margin-bottom: 1.25rem;
-          box-shadow: 0 0 15px rgba(214, 122, 65, 0.15);
-          animation: pulseBadge 3s infinite alternate ease-in-out;
         }
-
-        @keyframes pulseBadge {
-          0% { box-shadow: 0 0 10px rgba(214, 122, 65, 0.1); }
-          100% { box-shadow: 0 0 25px rgba(214, 122, 65, 0.3); }
+        .booking-live-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #10B981;
+          box-shadow: 0 0 8px #10B981;
         }
 
         .booking-headline {
           font-family: var(--font-heading, 'Outfit', sans-serif);
-          font-size: 2.3rem;
-          font-weight: 800;
+          font-size: clamp(2rem, 3.5vw, 2.75rem);
+          font-weight: 900;
           color: #FFFFFF;
-          line-height: 1.25;
+          line-height: 1.2;
           margin-bottom: 1rem;
+          letter-spacing: -0.02em;
         }
 
         .gold-text {
-          background: linear-gradient(135deg, #D67A41 0%, #C9A84C 100%);
+          background: linear-gradient(135deg, #D67A41 0%, #F4B382 50%, #C9A84C 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
@@ -281,75 +360,75 @@ export default function SmartBooking() {
           margin-bottom: 2rem;
         }
 
-        .booking-perks {
+        .booking-perks-list {
           display: flex;
           flex-direction: column;
-          gap: 1rem;
-          margin-bottom: 2rem;
+          gap: 0.9rem;
+          margin-bottom: 2.25rem;
         }
 
-        .perk-item {
+        .b-perk-card {
           display: flex;
           align-items: flex-start;
           gap: 0.85rem;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 16px;
+          padding: 0.85rem 1rem;
         }
 
-        .perk-icon {
-          width: 38px;
-          height: 38px;
-          border-radius: 12px;
-          background: linear-gradient(135deg, rgba(214, 122, 65, 0.2), rgba(214, 122, 65, 0.05));
+        .b-perk-icon {
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: rgba(214, 122, 65, 0.2);
           color: #D67A41;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          margin-top: 2px;
-          border: 1px solid rgba(214, 122, 65, 0.3);
-          box-shadow: 0 4px 15px rgba(214, 122, 65, 0.15);
+          border: 1px solid rgba(214, 122, 65, 0.35);
         }
 
-        .perk-title {
-          font-size: 0.92rem;
-          font-weight: 700;
+        .b-perk-title {
+          font-size: 0.9rem;
+          font-weight: 800;
           color: #FFFFFF;
-          margin-bottom: 0.1rem;
+          margin-bottom: 0.15rem;
         }
 
-        .perk-desc {
-          font-size: 0.78rem;
+        .b-perk-desc {
+          font-size: 0.76rem;
           color: #A89B95;
+          margin: 0;
+          line-height: 1.4;
         }
 
         .booking-direct-actions {
           display: flex;
-          gap: 1rem;
+          gap: 0.85rem;
           flex-wrap: wrap;
-          padding-top: 1.5rem;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn-direct-call, .btn-direct-whatsapp {
           display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.45rem;
           padding: 0.65rem 1.1rem;
-          border-radius: 12px;
+          border-radius: 99px;
           font-size: 0.82rem;
           font-weight: 700;
           text-decoration: none;
-          transition: all 0.3s ease;
+          transition: all 0.25s ease;
         }
-
         .btn-direct-call {
-          background: rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.08);
           color: #FFFFFF;
           border: 1px solid rgba(255, 255, 255, 0.15);
         }
         .btn-direct-call:hover {
-          background: rgba(255, 255, 255, 0.2);
+          background: rgba(255, 255, 255, 0.15);
         }
-
         .btn-direct-whatsapp {
           background: rgba(37, 211, 102, 0.15);
           color: #25D366;
@@ -359,207 +438,417 @@ export default function SmartBooking() {
           background: rgba(37, 211, 102, 0.25);
         }
 
-        /* FORM */
+        /* RIGHT FORM COLUMN (INTERACTIVE & LUXURIOUS) */
         .booking-form-wrap {
-          background: #FFFCF9;
-          border-radius: 24px;
-          padding: 2.25rem 2rem;
+          background: #FFFFFF;
+          border-radius: 28px;
+          padding: 2.25rem;
           color: #110805;
-          box-shadow: 0 25px 60px rgba(17, 8, 5, 0.4), 0 0 0 1px rgba(214, 122, 65, 0.1) inset;
+          box-shadow: 0 25px 60px rgba(17, 8, 5, 0.35);
+          border: 1px solid rgba(214, 122, 65, 0.2);
           position: relative;
         }
 
-        .form-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 1.5rem;
-        }
-
-        .form-header-title {
-          font-size: 1.25rem;
-          font-weight: 800;
-          color: #110805;
-        }
-
-        .form-header-[#badge] {
-          font-size: 0.72rem;
-          color: #888;
-        }
-
-        .booking-form {
+        .booking-form-interactive {
           display: flex;
           flex-direction: column;
-          gap: 1.1rem;
+          gap: 1.25rem;
         }
 
-        .form-row {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
+        .interactive-form-header {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          padding-bottom: 0.85rem;
+          border-bottom: 1.5px solid rgba(74, 37, 24, 0.08);
           gap: 1rem;
         }
 
-        .input-group {
-          display: flex;
-          flex-direction: column;
-          gap: 0.4rem;
+        .form-eyebrow-live {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.7rem;
+          font-weight: 800;
+          color: #059669;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          margin-bottom: 0.2rem;
+        }
+        .live-pulse-green {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #10B981;
+          box-shadow: 0 0 6px #10B981;
         }
 
-        .input-group label {
+        .form-interactive-title {
+          font-family: var(--font-heading);
+          font-size: 1.3rem;
+          font-weight: 900;
+          color: #0E0604;
+          margin: 0;
+        }
+
+        .form-rating-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          background: #FFFBF0;
+          border: 1px solid rgba(245, 158, 11, 0.3);
+          color: #B45309;
+          padding: 0.22rem 0.6rem;
+          border-radius: 99px;
           font-size: 0.72rem;
           font-weight: 800;
-          color: #554A44;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
+          flex-shrink: 0;
         }
 
-        .input-box {
+        /* 1. TREATMENT CHIPS GRID */
+        .form-field-block {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        .field-block-label {
+          font-size: 0.74rem;
+          font-weight: 800;
+          color: #6E5448;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .treatment-chips-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.5rem;
+        }
+
+        .treatment-chip {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          background: #FAF8F5;
+          border: 1.5px solid rgba(74, 37, 24, 0.1);
+          border-radius: 12px;
+          padding: 0.6rem 0.75rem;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #38241C;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          position: relative;
+          text-align: left;
+        }
+        .treatment-chip:hover {
+          border-color: #D67A41;
+          background: #FFF8F0;
+        }
+        .treatment-chip--active {
+          background: linear-gradient(135deg, #FFF5EB 0%, #FFEEDD 100%) !important;
+          border-color: #D67A41 !important;
+          color: #7A340F !important;
+          font-weight: 800 !important;
+          box-shadow: 0 4px 12px rgba(214, 122, 65, 0.15);
+        }
+        .t-chip-icon {
+          font-size: 0.95rem;
+        }
+        .t-chip-label {
+          flex: 1;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .t-chip-badge {
+          font-size: 0.6rem;
+          background: #D67A41;
+          color: #fff;
+          padding: 0.05rem 0.35rem;
+          border-radius: 4px;
+          font-weight: 800;
+        }
+
+        /* 2. INPUTS ROW */
+        .form-inputs-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.85rem;
+        }
+
+        .fancy-input-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.35rem;
+        }
+        .fancy-input-label {
+          font-size: 0.72rem;
+          font-weight: 800;
+          color: #6E5448;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+
+        .fancy-input-box {
           position: relative;
           display: flex;
           align-items: center;
         }
-
-        .input-icon {
+        .fancy-input-icon {
           position: absolute;
           left: 0.85rem;
           color: #D67A41;
-          opacity: 0.8;
+          opacity: 0.75;
           pointer-events: none;
-          transition: opacity 0.2s ease;
         }
-
-        .input-group input, .input-group select {
-          width: 100%;
-          padding: 0.75rem 0.85rem;
-          border-radius: 12px;
-          border: 1px solid rgba(214, 122, 65, 0.2);
-          font-size: 0.9rem;
-          outline: none;
-          transition: all 0.3s ease;
-          background: #FDFBF9;
-          color: #110805;
-          box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .input-group .input-box input, .input-group .input-box select {
-          padding-left: 2.4rem;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-          border-color: #D67A41;
-          background: #FFFFFF;
-          box-shadow: 0 0 0 4px rgba(214, 122, 65, 0.15), inset 0 2px 4px rgba(0,0,0,0.02);
-        }
-        
-        .input-group input:focus + .input-icon, .input-box:focus-within .input-icon {
-          opacity: 1;
-        }
-
-        .btn-submit-booking {
-          margin-top: 0.75rem;
-          width: 100%;
-          background: linear-gradient(135deg, #D67A41 0%, #C9A84C 100%);
-          color: #FFFFFF;
-          padding: 1rem 1.5rem;
-          border-radius: 14px;
-          font-family: var(--font-heading, 'Outfit', sans-serif);
-          font-size: 1.05rem;
+        .phone-prefix {
+          position: absolute;
+          left: 0.85rem;
+          font-size: 0.85rem;
           font-weight: 800;
-          border: none;
+          color: #7A340F;
+          pointer-events: none;
+        }
+
+        .fancy-input-box input {
+          width: 100%;
+          padding: 0.75rem 0.85rem 0.75rem 2.4rem;
+          border-radius: 14px;
+          border: 1.5px solid rgba(74, 37, 24, 0.12);
+          background: #FAF8F5;
+          font-size: 0.88rem;
+          font-weight: 600;
+          color: #110805;
+          outline: none;
+          transition: all 0.25s ease;
+        }
+        .fancy-input-box input:focus {
+          background: #FFFFFF;
+          border-color: #D67A41;
+          box-shadow: 0 0 0 3px rgba(214, 122, 65, 0.15);
+        }
+
+        /* 3. DOCTOR SELECT CARDS */
+        .doctor-select-pills {
+          display: flex;
+          flex-direction: column;
+          gap: 0.45rem;
+        }
+        .doctor-select-card {
+          display: flex;
+          align-items: center;
+          gap: 0.65rem;
+          background: #FAF8F5;
+          border: 1.5px solid rgba(74, 37, 24, 0.1);
+          border-radius: 12px;
+          padding: 0.55rem 0.85rem;
+          text-align: left;
           cursor: pointer;
+          transition: all 0.2s ease;
+          position: relative;
+        }
+        .doctor-select-card:hover {
+          background: #FFF8F0;
+          border-color: #D67A41;
+        }
+        .doctor-card--active {
+          background: linear-gradient(135deg, #FFF5EB 0%, #FFEEDD 100%) !important;
+          border-color: #D67A41 !important;
+        }
+        .d-card-icon { font-size: 1.1rem; flex-shrink: 0; }
+        .d-card-info {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+        }
+        .d-card-name {
+          font-size: 0.82rem;
+          font-weight: 800;
+          color: #110805;
+        }
+        .d-card-role {
+          font-size: 0.68rem;
+          color: #7A5B4C;
+        }
+        .d-card-check {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: #D67A41;
+          color: #FFFFFF;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.6rem;
-          box-shadow: 0 10px 25px rgba(214, 122, 65, 0.35);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          flex-shrink: 0;
+        }
+
+        /* 4. TIME SLOT TOGGLE */
+        .time-slot-toggle {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.4rem;
+          background: #FAF8F5;
+          padding: 4px;
+          border-radius: 14px;
+          border: 1.5px solid rgba(74, 37, 24, 0.1);
+          height: 44px;
+          align-items: center;
+        }
+        .time-slot-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.35rem;
+          background: transparent;
+          border: none;
+          border-radius: 10px;
+          height: 100%;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #6E5448;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .time-slot--active {
+          background: #FFFFFF !important;
+          color: #7A340F !important;
+          font-weight: 800 !important;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        /* SUBMIT BUTTON */
+        .btn-confirm-appointment {
           position: relative;
+          background: linear-gradient(135deg, #D67A41 0%, #B85C24 100%);
+          color: #FFFFFF;
+          border: none;
+          border-radius: 16px;
+          padding: 0.95rem 1.5rem;
+          font-family: var(--font-heading);
+          font-size: 0.96rem;
+          font-weight: 800;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.55rem;
+          cursor: pointer;
+          box-shadow: 0 10px 25px rgba(214, 122, 65, 0.38);
+          transition: all 0.3s ease;
           overflow: hidden;
         }
-        
-        .btn-submit-booking::after {
-          content: '';
+        .btn-confirm-appointment:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 15px 35px rgba(214, 122, 65, 0.48);
+        }
+        .btn-confirm-appointment:active {
+          transform: scale(0.98);
+        }
+        .btn-glow-shimmer {
           position: absolute;
-          top: 0;
-          left: -150%;
-          width: 50%;
-          height: 100%;
-          background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+          top: 0; left: -100%;
+          width: 50%; height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
           transform: skewX(-25deg);
-          animation: buttonShimmer 4s infinite;
+          animation: btnShimmer 3.5s infinite;
+        }
+        @keyframes btnShimmer {
+          0% { left: -100%; }
+          25% { left: 200%; }
+          100% { left: 200%; }
         }
 
-        @keyframes buttonShimmer {
-          0% { left: -150%; }
-          15% { left: 150%; }
-          100% { left: 150%; }
+        .form-trust-footer {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          font-size: 0.7rem;
+          font-weight: 700;
+          color: #8A7063;
+          flex-wrap: wrap;
         }
 
-        .btn-submit-booking:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 15px 30px rgba(214, 122, 65, 0.45);
-        }
-
-        .form-success {
+        /* SUCCESS CARD */
+        .form-success-card {
           text-align: center;
-          padding: 2rem 1rem;
+          padding: 2.5rem 1.5rem;
         }
-
         .success-icon-wrap {
-          width: 60px;
-          height: 60px;
+          width: 64px;
+          height: 64px;
           border-radius: 50%;
-          background: rgba(16, 185, 129, 0.15);
+          background: rgba(16, 185, 129, 0.12);
           color: #10B981;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin: 0 auto 1.25rem auto;
+          margin: 0 auto 1.25rem;
+          border: 2px solid rgba(16, 185, 129, 0.3);
         }
-
         .success-title {
-          font-size: 1.5rem;
-          font-weight: 800;
-          color: #110805;
+          font-size: 1.4rem;
+          font-weight: 900;
+          color: #0E0604;
           margin-bottom: 0.5rem;
         }
-
         .success-desc {
-          font-size: 0.9rem;
-          color: #666;
+          font-size: 0.88rem;
+          color: #66544C;
           line-height: 1.6;
           margin-bottom: 1.5rem;
         }
-
         .btn-reset-form {
           background: #D67A41;
           color: #FFFFFF;
           border: none;
           padding: 0.65rem 1.4rem;
-          border-radius: 12px;
-          font-weight: 700;
+          border-radius: 99px;
+          font-weight: 800;
           font-size: 0.85rem;
           cursor: pointer;
         }
 
-        @media (max-width: 992px) {
+        /* RESPONSIVE BREAKPOINTS */
+        @media (max-width: 1024px) {
           .booking-grid {
             grid-template-columns: 1fr;
             gap: 2.5rem;
           }
-          .form-row {
-            grid-template-columns: 1fr;
-          }
-          .booking-card-wrapper {
-            padding: 2.5rem 1.5rem;
+          .treatment-chips-grid {
+            grid-template-columns: repeat(3, 1fr);
           }
         }
 
-        @media (max-width: 640px) {
-          .hide-mobile { display: none !important; }
-          .show-mobile { display: inline !important; }
+        @media (max-width: 768px) {
+          .smart-booking-section {
+            padding: 2.25rem 0 5rem !important; /* Extra bottom padding so mobile floating bar never obstructs */
+          }
+          .booking-card-wrapper {
+            padding: 1.25rem 1rem !important;
+            border-radius: 22px !important;
+          }
+          .booking-form-wrap {
+            padding: 1.25rem 1rem !important;
+            border-radius: 20px !important;
+          }
+          .treatment-chips-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.4rem !important;
+          }
+          .treatment-chip {
+            padding: 0.5rem 0.6rem !important;
+            font-size: 0.74rem !important;
+          }
+          .form-inputs-row {
+            grid-template-columns: 1fr !important;
+            gap: 0.75rem !important;
+          }
+          .btn-confirm-appointment {
+            padding: 0.85rem 1.25rem !important;
+            font-size: 0.88rem !important;
+          }
         }
-        .show-mobile { display: none; }
       `}} />
     </section>
   );

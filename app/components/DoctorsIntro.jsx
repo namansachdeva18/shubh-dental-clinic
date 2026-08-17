@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { GraduationCap, Award, CheckCircle, ArrowRight, ShieldCheck, BookOpen, Cpu, Sparkles } from 'lucide-react';
 import AnimatedCounter from './AnimatedCounter';
 
-export default function DoctorsIntro() {
+export default function DoctorsIntro({ hideCards = false }) {
   const containerRef = useRef(null);
 
   // Framer Motion Variants
@@ -31,6 +31,7 @@ export default function DoctorsIntro() {
   const accreditations = [
     { name: "Indian Orthodontic Society", label: "IOS Endorsed Orthodontist", badge: "🏅 IOS Endorsed" },
     { name: "Invisalign® Aligners", label: "Certified Invisalign® Provider", badge: "✨ Invisalign® Certified" },
+    { name: "Osstem® Implants", label: "Certified Osstem® Implantologist", badge: "🛡️ Osstem® Certified" },
     { name: "Damon® System", label: "Official Damon® Braces Provider", badge: "💎 Damon® Provider" },
     { name: "WFO USA", label: "Fellow, World Federation of Orthodontists", badge: "🌐 WFO USA Fellow" },
     { name: "PGI Chandigarh", label: "Ex-Senior Resident, PGI Chandigarh", badge: "🎓 Ex-PGI Chandigarh" },
@@ -52,13 +53,13 @@ export default function DoctorsIntro() {
         >
           <motion.div variants={fadeUp} className="section-badge badge-gold" style={{ margin: '0 auto 1rem', display: 'inline-flex' }}>
             <ShieldCheck size={14} aria-hidden="true" />
-            India's Premier Dental Experts &amp; Published Researchers
+            Haryana's Most Trusted Dental Specialists
           </motion.div>
           <motion.h2 variants={fadeUp} style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem', lineHeight: 1.15 }}>
-            Academic Excellence &amp; <span className="text-gradient-copper">Global Research Impact</span>
+            Decades of Clinical Mastery &amp; <span className="text-gradient-copper">Real Patient Results</span>
           </motion.h2>
-          <motion.p variants={fadeUp} style={{ fontFamily: 'var(--font-space-grotesk)', fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-            Led by PGI Chandigarh &amp; PGI Rohtak alumni with <strong>107+ scientific publications</strong> and <strong>654+ global citations</strong>. Entrust your smile to Haryana’s most distinguished orthodontic and diagnostic specialists.
+          <motion.p variants={fadeUp} style={{ fontFamily: 'var(--font-body)', fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+            With <strong>5,000+ orthodontic cases</strong>, <strong>3,000+ dental implants</strong> and over <strong>20 years of hands-on clinical practice</strong>, our PGI-trained specialists bring rare expertise directly to you in Rohtak. Backed by globally recognised research — so your treatment is always evidence-based.
           </motion.p>
         </motion.div>
 
@@ -94,17 +95,17 @@ export default function DoctorsIntro() {
                 <span style={{ color: 'var(--accent-gold)' }}>&amp;</span> Dr. Achla Bharti Yadav
               </h3>
               <p className="doctors-banner-desc">
-                Trained at prestigious institutes like <strong>PGI Chandigarh</strong> and <strong>PGI Rohtak</strong>, our founders combine internationally recognized scientific research with compassionate clinical care. From complex orthodontics and implants to AI-powered oral screening, experience dentistry at its highest standard.
+                Trained at <strong>PGI Chandigarh</strong> and <strong>PGI Rohtak</strong> — India's most elite institutions — our founders bring <strong>5,000+ orthodontic cases</strong>, <strong>3,000+ implants placed</strong>, and <strong>AI-powered oral cancer screening</strong> to Rohtak. What you get is the kind of precision and experience usually reserved for major metro cities, delivered with genuine compassion.
               </p>
               
               <div className="doctors-banner-stats">
                 <div className="db-stat">
-                  <div className="db-stat-value"><AnimatedCounter target={654} suffix="+" /></div>
-                  <div className="db-stat-label">Global Citations</div>
+                  <div className="db-stat-value"><AnimatedCounter target={5000} suffix="+" /></div>
+                  <div className="db-stat-label">Braces Cases</div>
                 </div>
                 <div className="db-stat">
-                  <div className="db-stat-value"><AnimatedCounter target={107} suffix="+" /></div>
-                  <div className="db-stat-label">Publications</div>
+                  <div className="db-stat-value"><AnimatedCounter target={3000} suffix="+" /></div>
+                  <div className="db-stat-label">Implants Placed</div>
                 </div>
                 <div className="db-stat">
                   <div className="db-stat-value"><AnimatedCounter target={20000} suffix="+" /></div>
@@ -167,16 +168,16 @@ export default function DoctorsIntro() {
 
               {/* Bottom-Left Floating Glass Badge */}
               <motion.div 
-                className="floating-photo-badge badge-bottom-left"
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              >
-                <span className="badge-icon">✨</span>
-                <div>
-                  <strong>654+ Citations · 107 Pubs</strong>
-                  <span>World-Class Academic Excellence</span>
-                </div>
-              </motion.div>
+                  className="floating-photo-badge badge-bottom-left"
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                >
+                  <span className="badge-icon">🦷</span>
+                  <div>
+                    <strong>5,000+ Cases · 3,000+ Implants</strong>
+                    <span>Real Expertise. Real Results.</span>
+                  </div>
+                </motion.div>
 
               {/* Floating Doctor Name Tooltips */}
               <div className="doc-tag-tooltip tag-left">
@@ -195,7 +196,8 @@ export default function DoctorsIntro() {
 
 
         {/* Individual Doctor Cards */}
-        <div className="doctor-cards-grid" style={{ marginTop: '4rem' }}>
+        {!hideCards && (
+          <div className="doctor-cards-grid" style={{ marginTop: '4rem' }}>
           
           {/* Card 1 — Prof. Dr. S. K. Yadav */}
           <motion.article 
@@ -228,21 +230,20 @@ export default function DoctorsIntro() {
               <div className="doctor-card-role">BDS, MDS</div>
               
               <p className="doctor-card-bio">
-                 Haryana's premier <strong>Orthodontist and Dentofacial Orthopedics Specialist</strong> with over 20 years of expertise. Renowned for publishing <strong>43 scientific papers</strong> (247+ citations, h-index 8) and authoring <strong>2 academic research books in Germany</strong>. Pioneered micro-implant anchorage and invisalign aligner therapy in Rohtak.
+                Haryana's leading <strong>Orthodontist &amp; Implant Specialist</strong> with 20+ years of clinical practice. Has personally treated <strong>5,000+ braces patients</strong> and placed <strong>3,000+ dental implants</strong> — bringing PGI-Chandigarh's gold standard of care to Rohtak. One of Haryana's <strong>few Certified Invisalign® Providers</strong> and a pioneer of lingual braces &amp; micro-implant techniques in the region.
               </p>
               
               <div className="cv-divider"></div>
               
               <ul className="doctor-card-creds">
-                <li><Award size={16} /><span><strong>Fellow of the World Federation of Orthodontists (WFO, USA)</strong></span></li>
-                <li><CheckCircle size={16} /><span><strong>Specialist in Orthodontics &amp; Dental Implants</strong></span></li>
-                <li><CheckCircle size={16} /><span><strong>Certified Consultant Invisalign® Provider</strong></span></li>
-                <li><CheckCircle size={16} /><span><strong>Certified Clinical Implantologist</strong></span></li>
+                <li><CheckCircle size={16} /><span><strong>5,000+ Orthodontic Cases Treated</strong> — braces, Invisalign &amp; lingual</span></li>
+                <li><CheckCircle size={16} /><span><strong>3,000+ Dental Implants Placed</strong> — including same-day &amp; complex cases</span></li>
+                <li><CheckCircle size={16} /><span><strong>Certified Invisalign® Provider</strong> — one of the few in Haryana</span></li>
+                <li><Award size={16} /><span><strong>Fellow, World Federation of Orthodontists (WFO, USA)</strong></span></li>
+                <li><GraduationCap size={16} /><span><strong>MDS — PGI Chandigarh</strong> (India's premier medical institute)</span></li>
                 <li><GraduationCap size={16} /><span><strong>Former Senior Resident, PGI Chandigarh</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Former Consultant, ESI Hospital (Bhiwani)</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Former Dental Surgeon, ECHS (Rewari)</strong></span></li>
+                <li><BookOpen size={16} /><span><strong>43 Research Papers · 247+ Citations</strong> — globally published</span></li>
                 <li><GraduationCap size={16} /><span><strong>Former Professor, DJ College of Dental Sciences</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Adjunct Professor &amp; PG Guide, UCMS (Nepal)</strong></span></li>
               </ul>
               
               <Link href="/doctors/dr-sk-yadav" className="btn btn-outline cv-btn">
@@ -283,17 +284,18 @@ export default function DoctorsIntro() {
               <div className="doctor-card-role">BDS, MDS, MIAOMP</div>
               
               <p className="doctor-card-bio">
-                Distinguished Professor &amp; Oral Pathologist with <strong>64 published papers, 407+ global citations (h-index 12)</strong> and <strong>2 published academic books</strong>. A pioneer in 2026 AI-powered deep learning (YOLOv8) for early oral cancer and pre-cancer lesion detection, ensuring unparalleled diagnostic precision for patients.
+                A specialist you can trust for early detection and cosmetic brilliance. Dr. Achla's <strong>AI-powered oral cancer screening</strong> (using YOLOv8 deep learning) catches pre-cancer lesions most clinics miss. With a PGI Rohtak background and expertise in <strong>cosmetic dentistry and smile makeovers</strong>, she helps patients look and feel their absolute best.
               </p>
 
               <div className="cv-divider"></div>
 
               <ul className="doctor-card-creds">
-                <li><CheckCircle size={16} /><span><strong>Consultant Specialist in Oral Pathology</strong></span></li>
-                <li><CheckCircle size={16} /><span><strong>Certified Expert in Cosmetic Dentistry</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Former Assistant Professor, PGI Rohtak</strong></span></li>
+                <li><Cpu size={16} /><span><strong>AI-Powered Oral Cancer Screening</strong> — early detection using YOLOv8 deep learning</span></li>
+                <li><CheckCircle size={16} /><span><strong>Cosmetic Dentistry &amp; Smile Makeover Specialist</strong> — veneers, whitening, bonding</span></li>
+                <li><CheckCircle size={16} /><span><strong>Oral Pathology Consultant</strong> — diagnosis, biopsy &amp; soft-tissue expertise</span></li>
+                <li><GraduationCap size={16} /><span><strong>MDS — PGI Rohtak</strong> (Former Assistant Professor)</span></li>
+                <li><BookOpen size={16} /><span><strong>64 Research Papers · 407+ Citations</strong> — h-index 12</span></li>
                 <li><GraduationCap size={16} /><span><strong>Former Dental Surgeon, ECHS (Rewari)</strong></span></li>
-                <li><GraduationCap size={16} /><span><strong>Former Professor, DJ College of Dental Sciences</strong></span></li>
               </ul>
               
               <Link href="/doctors/dr-achita-yadav" className="btn btn-outline cv-btn">
@@ -303,7 +305,8 @@ export default function DoctorsIntro() {
             </div>
           </motion.article>
 
-        </div>
+          </div>
+        )}
 
         {/* End of Doctors Section */}
       </div>

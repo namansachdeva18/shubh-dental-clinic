@@ -1,7 +1,21 @@
 /* =====================================================
-   MOBILE RESPONSIVE OVERRIDES
+   MOBILE RESPONSIVE LUXURY SYSTEM — Anti-Scroll-Fatigue Architecture
+   Target: Ultra-Attractive, Compact, High-Density, Non-Overwhelming
    Breakpoints: 1300px | 1024px | 768px | 480px
    ===================================================== */
+
+/* ===== PREVENT HORIZONTAL SCROLL ===== */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ===== SAFE AREA ===== */
+@supports (padding: max(0px)) {
+  .mobile-bottom-bar {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+}
 
 /* ===== HEADER ===== */
 @media (max-width: 1300px) {
@@ -13,257 +27,363 @@
 @media (max-width: 768px) {
   .top-bar { display: none; }
   :root {
-    --header-height: 70px;
-    --section-pad-y: 40px;
-    --section-pad-y-lg: 64px;
+    --header-height: 64px;
+    --section-pad-y: 28px;
+    --section-pad-y-lg: 36px;
   }
   .mobile-bottom-bar { display: block; }
-  main { padding-bottom: 80px; }
+  main { padding-bottom: 70px; }
 }
 
-/* ===== HERO ===== */
-@media (max-width: 1024px) {
+/* ===== GENERAL MOBILE SPACING & LUXURY PROPORTIONS ===== */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: block !important; }
+  .container { padding: 0 1rem; }
+  
+  h1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+  h2 { font-size: clamp(1.45rem, 5.5vw, 1.85rem); }
+  
+  .section { padding: 2.25rem 0 !important; }
+  .section-sm { padding: 1.5rem 0 !important; }
+  .section-header { margin-bottom: 1.25rem !important; }
+  .btn { padding: 0.7rem 1.35rem; font-size: 0.86rem; }
+  .btn-lg { padding: 0.8rem 1.6rem; font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+  :root { --container-pad: 0.85rem; }
+}
+
+/* ===== HERO MOBILE REFINEMENT ===== */
+@media (max-width: 768px) {
   .hero-grid {
     grid-template-columns: 1fr !important;
+    min-height: auto !important;
   }
-  .hero-image-col {
-    order: -1;
-    height: 55vw;
-    min-height: 300px;
-    max-height: 500px;
-  }
+  .hero-image-col { display: none !important; }
   .hero-content-col {
-    padding: 2.5rem var(--container-pad) !important;
+    padding: 1.75rem 1rem 1.25rem !important;
   }
-  .hero-stats-strip {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
+  .hs-headline { font-size: clamp(1.85rem, 7.5vw, 2.5rem) !important; line-height: 1.2 !important; }
+  .hs-tagline { font-size: 0.88rem !important; line-height: 1.55 !important; }
 
-@media (max-width: 480px) {
-  .hero-image-col { height: 260px; }
-  .hero-stats-strip {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.75rem !important;
+  /* Stats strip: horizontal scroll chips on mobile */
+  .hs-stats-strip {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 0.5rem !important;
+    grid-template-columns: none !important;
+    padding-bottom: 4px;
+    margin: 1rem 0 !important;
   }
-  .hero-cta-group {
+  .hs-stats-strip::-webkit-scrollbar { display: none; }
+
+  .hs-stat-cell {
+    padding: 0.75rem 0.85rem !important;
+    border-radius: 14px !important;
+    background: #FFFFFF !important;
+    border: 1px solid rgba(214, 122, 65, 0.18) !important;
+    box-shadow: 0 4px 12px rgba(74, 37, 24, 0.04) !important;
+    flex-shrink: 0;
+  }
+
+  /* Trust badges: wrap cleanly */
+  .hs-trust-badges {
+    gap: 5px !important;
+  }
+  .hs-trust-badge {
+    font-size: 0.7rem !important;
+    padding: 5px 10px !important;
+    background: #FFFFFF !important;
+    color: #2D1810 !important;
+    border: 1px solid rgba(74, 37, 24, 0.1) !important;
+  }
+
+  /* CTA buttons */
+  .hs-ctas {
     flex-direction: column !important;
+    gap: 8px !important;
   }
-  .hero-cta-group .btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* ===== DOCTORS INTRO ===== */
-@media (max-width: 1024px) {
-  .doctors-banner-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .doctors-banner-image {
-    height: 400px;
-  }
-  .doctor-cards-grid {
-    grid-template-columns: 1fr !important;
+  .hs-btn-primary, .hs-btn-secondary {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.85rem 1.25rem !important;
   }
 }
 
-/* ===== TREATMENT NAVIGATOR ===== */
-@media (max-width: 1024px) {
-  .treatment-nav-grid {
-    grid-template-columns: repeat(4, 1fr) !important;
-  }
-}
-
-@media (max-width: 640px) {
-  .treatment-nav-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-
-/* ===== SERVICES ===== */
+/* ===== REVIEWS TICKER ===== */
 @media (max-width: 768px) {
-  .services-featured-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .services-grid {
-    grid-template-columns: 1fr !important;
+  .ticker-section, [class*="ticker"] {
+    padding: 0.65rem 0 !important;
   }
 }
 
-/* ===== ALIGNER / IMPLANTS HERO ===== */
-@media (max-width: 1024px) {
-  .flagship-grid {
-    grid-template-columns: 1fr !important;
+/* ===== QUICK NAV BAR ===== */
+@media (max-width: 768px) {
+  .qnb-root { margin-bottom: 0 !important; padding: 0 0 0.25rem !important; }
+  .qnb-track {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding-bottom: 2px !important;
+    gap: 0.45rem !important;
+    justify-content: flex-start !important;
   }
-  .flagship-benefits-grid {
+  .qnb-track::-webkit-scrollbar { display: none; }
+  .qnb-item {
+    flex-shrink: 0 !important;
+    padding: 0.45rem 0.75rem !important;
+    border-radius: 12px !important;
+  }
+  .qnb-name { font-size: 0.75rem !important; }
+  .qnb-icon-box { width: 24px !important; height: 24px !important; font-size: 0.85rem !important; }
+}
+
+/* ===== TREATMENT NAVIGATOR — 2-COLUMN LUXURY BENTO ===== */
+@media (max-width: 768px) {
+  .bento-treatments-section { padding: 2rem 0 !important; }
+  .bento-header { margin-bottom: 0.85rem !important; }
+  .bento-header-desc { font-size: 0.84rem !important; margin-bottom: 0.5rem !important; }
+  
+  .bento-treatments-grid {
     grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.6rem !important;
+  }
+  .bento-treatment-card {
+    padding: 0.95rem 0.8rem !important;
+    min-height: 135px !important;
+    border-radius: 16px !important;
+  }
+  .treatment-vector-icon {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 10px !important;
+  }
+  .vector-svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  .treatment-title {
+    font-size: 0.84rem !important;
+    line-height: 1.2 !important;
+  }
+  .treatment-cta-row {
+    margin-top: 0.4rem !important;
+    padding-top: 0.35rem !important;
+    font-size: 0.65rem !important;
   }
 }
 
-@media (max-width: 480px) {
-  .flagship-benefits-grid {
+/* ===== ALIGNER HERO COMPACT ===== */
+@media (max-width: 768px) {
+  .aligner-hero-section {
+    padding: 2rem 0 !important;
+  }
+  .aligner-results-wrapper {
+    display: none !important;
+  }
+  .aligner-pills-grid {
+    gap: 0.35rem !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    padding-bottom: 4px;
+    scrollbar-width: none !important;
+  }
+  .aligner-pills-grid::-webkit-scrollbar { display: none; }
+  .aligner-pill-btn {
+    flex-shrink: 0 !important;
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.76rem !important;
+  }
+  .aligner-detail-box {
+    padding: 1.25rem 1rem !important;
+    border-radius: 20px !important;
+  }
+  .aligner-spec-card {
+    padding: 1rem !important;
+    border-radius: 16px !important;
+  }
+}
+
+/* ===== IMPLANTS HERO ===== */
+@media (max-width: 768px) {
+  .implants-compact-section {
+    padding: 2rem 0 !important;
+  }
+  .implants-compact-grid {
     grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .implants-mini-stats {
+    gap: 0.75rem !important;
+    padding: 0.85rem !important;
+    border-radius: 14px !important;
+  }
+}
+
+/* ===== KIDS DENTISTRY ===== */
+@media (max-width: 768px) {
+  .kids-section,
+  [class*="kids-dentistry"],
+  [class*="KidsDentistry"] {
+    padding: 2rem 0 !important;
+  }
+  .kids-hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .kids-cards-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.6rem !important;
+  }
+}
+
+/* ===== DENTAL TOURISM ===== */
+@media (max-width: 768px) {
+  .dental-tourism-section { padding: 2rem 0 !important; }
+  .dt-stats-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 0.85rem !important;
+    gap: 0.6rem !important;
+  }
+  .dt-cta-bar {
+    padding: 1rem !important;
+    border-radius: 16px !important;
   }
 }
 
 /* ===== ABOUT SECTION ===== */
-@media (max-width: 1024px) {
-  .about-grid {
+@media (max-width: 768px) {
+  .about-section,
+  [class*="about-section"] {
+    padding: 2rem 0 !important;
+  }
+  .about-grid-layout {
     grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
   }
-  .about-stats-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+  .usps-bento-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.6rem !important;
   }
-}
-
-/* ===== SMILE MAKEOVER ===== */
-@media (max-width: 1024px) {
-  .makeover-grid {
-    grid-template-columns: 1fr !important;
+  .usp-bento-card {
+    padding: 0.95rem 0.85rem !important;
+    border-radius: 16px !important;
   }
-  .makeover-bento {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .makeover-bento {
-    grid-template-columns: 1fr !important;
+  .usp-card-title {
+    font-size: 0.84rem !important;
   }
 }
 
 /* ===== PATIENT GALLERY ===== */
-@media (max-width: 1024px) {
-  .gallery-masonry {
-    columns: 2 !important;
-  }
-}
-
-@media (max-width: 640px) {
-  .gallery-masonry {
-    columns: 1 !important;
-  }
-}
-
-/* ===== CLINIC GALLERY ===== */
 @media (max-width: 768px) {
-  .coverflow-card {
-    width: 280px !important;
-    height: 200px !important;
+  .patient-gallery-section {
+    padding: 2rem 0 !important;
+  }
+  .cool-gallery-title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem) !important;
+  }
+  .compact-patient-card {
+    width: 140px !important;
+    height: 180px !important;
+    border-radius: 16px !important;
   }
 }
 
-/* ===== TESTIMONIALS ===== */
+/* ===== TESTIMONIALS CAROUSEL ===== */
 @media (max-width: 768px) {
-  .review-card {
-    min-width: 290px !important;
-    max-width: 290px !important;
+  .testimonials-section {
+    padding: 2rem 0 !important;
+  }
+  .mobile-review-item {
+    max-width: 320px !important;
+  }
+}
+
+/* ===== CLINIC TOUR ===== */
+@media (max-width: 768px) {
+  .clinic-tour-wrapper { padding: 2.25rem 0 !important; }
+  .clinic-image-card {
+    height: 150px !important;
+    width: 220px !important;
+    border-radius: 16px !important;
+  }
+  .tour-title {
+    font-size: 1.75rem !important;
   }
 }
 
 /* ===== SMART BOOKING ===== */
-@media (max-width: 1024px) {
-  .booking-layout {
-    grid-template-columns: 1fr !important;
+@media (max-width: 768px) {
+  .smart-booking-section {
+    padding: 2.25rem 0 4.5rem !important;
+  }
+  .booking-card-wrapper {
+    padding: 1.25rem 1rem !important;
+    border-radius: 22px !important;
+  }
+  .treatment-chips-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.4rem !important;
   }
 }
 
-@media (max-width: 640px) {
-  .treatment-select-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+/* ===== FAQ SECTION ===== */
+@media (max-width: 768px) {
+  .faq-section-wrapper {
+    padding: 2rem 1rem !important;
   }
-  .time-slots-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+  .faq-cta-bar {
+    padding: 1.25rem !important;
+    border-radius: 16px !important;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .mobile-hidden {
+    display: none !important;
+  }
+  .btn-show-more-faq {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #FAF8F5;
+    border: 1.5px solid rgba(214, 122, 65, 0.25);
+    color: #7A340F;
+    padding: 0.65rem 1.4rem;
+    border-radius: 99px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    cursor: pointer;
+    margin: 1.25rem auto 0;
+    transition: all 0.2s ease;
   }
 }
 
-/* ===== CONTACT SECTION ===== */
-@media (max-width: 1024px) {
-  .contact-card-grid {
-    grid-template-columns: 1fr !important;
+/* ===== CONTACT & MAP ===== */
+@media (max-width: 768px) {
+  .contact-section-wrapper {
+    padding: 2rem 1rem 4.5rem !important;
+  }
+  .innovative-map-showcase {
+    padding: 0.85rem !important;
+    border-radius: 22px !important;
+  }
+  .map-screen-frame {
+    min-height: 340px !important;
   }
 }
 
 /* ===== FOOTER ===== */
-@media (max-width: 1024px) {
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
 @media (max-width: 640px) {
   .footer-grid {
     grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
   }
-}
-
-/* ===== DOCTOR CARDS ===== */
-@media (max-width: 768px) {
-  .doctor-card-photo {
-    height: 300px !important;
-  }
-}
-
-/* ===== TREATMENT PAGES ===== */
-@media (max-width: 1024px) {
-  .treatment-layout {
-    grid-template-columns: 1fr !important;
-  }
-  .treatment-sidebar {
-    position: static !important;
-    order: -1;
-  }
-}
-
-/* ===== PREMIUM SECTIONS ===== */
-@media (max-width: 1024px) {
-  .premium-editorial-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* ===== GENERAL MOBILE ===== */
-@media (max-width: 768px) {
-  .hide-mobile { display: none !important; }
-  .show-mobile { display: block !important; }
-
-  .container { padding: 0 1rem; }
-  h1 { font-size: clamp(1.75rem, 7vw, 2.5rem); }
-  h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
-
-  .section { padding: 48px 0; }
-  .section-sm { padding: 32px 0; }
-  .section-header { margin-bottom: 2rem; }
-
-  .btn { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
-  .btn-lg { padding: 0.85rem 2rem; }
-
-  .steps-bar { gap: 0; }
-  .step-line { max-width: 40px; }
-}
-
-@media (max-width: 480px) {
-  :root { --container-pad: 1rem; }
-  .floating-card { transform: scale(0.85); }
-}
-
-/* ===== SAFE AREA FOR MOBILE ===== */
-@supports (padding: max(0px)) {
-  .mobile-bottom-bar {
-    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
-  }
-}
-
-/* ===== PREVENT HORIZONTAL SCROLL ===== */
-html, body {
-  overflow-x: hidden;
-  max-width: 100%;
-}
-
-/* ===== TAP TARGETS ===== */
-@media (max-width: 768px) {
-  button, a, .accordion-trigger, .mobile-bar-btn {
-    min-height: 44px;
-  }
+  .footer-brand-section { margin-bottom: 1rem; }
 }

@@ -3,8 +3,34 @@
    Design System: Earthy Luxury Clinical Boutique
    ===================================================== */
 
-/* Fonts are loaded via next/font/google in layout.jsx for optimal performance */
-/* DO NOT add @import url() for Google Fonts here — it causes double downloads */
+/* Fonts are imported manually due to next/font/google download failures in dev environment */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* -----------------------------------------------------
+   Base Typography & Font Rendering – Premium Feel
+   ----------------------------------------------------- */
+html {
+  /* Primary body font */
+  font-family: var(--font-body, 'Plus Jakarta Sans'), sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: var(--text-primary);
+}
+
+/* Headings use the bold luxury Outfit font */
+h1, h2, h3, h4, h5, h6, .hs-headline, .hs-tagline {
+  font-family: var(--font-heading, 'Outfit'), sans-serif;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+}
+
+/* Secondary text and UI elements use Plus Jakarta Sans */
+body, p, .hs-desc, .hs-tagline, .hs-ctas, .hs-stat span, .hs-doc-info strong, .hs-doc-info span {
+  font-family: var(--font-body, 'Plus Jakarta Sans'), sans-serif;
+}
 
 
 
@@ -48,7 +74,9 @@
 
   /* Fonts */
   --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-space-grotesk: 'Plus Jakarta Sans', sans-serif;
+  --font-accent: 'Outfit', sans-serif;
 
   /* Shadows - Warm Soft Luxury with Copper Tints */
   --shadow-xs: 0 2px 5px rgba(74, 37, 24, 0.04);
@@ -314,7 +342,7 @@ h5 { font-size: 1.1rem; }
 h6 { font-size: 1rem; }
 
 p {
-  font-family: var(--font-space-grotesk), sans-serif;
+  font-family: var(--font-body), sans-serif;
   line-height: 1.7;
 }
 

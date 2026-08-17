@@ -2,9 +2,10 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Award, ArrowRight, ShieldCheck, CheckCircle2, Star, GraduationCap, Sparkles, MapPin, BadgeCheck } from 'lucide-react';
+import { Award, ArrowRight, ShieldCheck, CheckCircle2, Star, GraduationCap, Sparkles, MapPin, BadgeCheck, Users, Globe, Gem } from 'lucide-react';
 import InnovativeHeroBg from './InnovativeHeroBg';
 import AnimatedCounter from './AnimatedCounter';
+
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -36,49 +37,161 @@ export default function Hero() {
             {/* Location pill */}
             <motion.div className="hs-location-pill" variants={fadeUp}>
               <MapPin size={13} />
-              <span>Rohtak’s Best Orthodontist &amp; Dental Implant Specialist</span>
+              <span>Rohtak, Haryana &mdash; Haryana&apos;s Most Trusted Dental Clinic</span>
             </motion.div>
 
-            {/* Headline */}
+            {/* SEO-Optimised Headline */}
             <motion.h1 className="hs-headline" variants={fadeUp}>
-              Rohtak’s #1 Braces,<br />
-              Implants &amp;<br />
-              <span className="hs-headline-accent">Invisalign® Clinic.</span>
+              Best Orthodontist &amp;<br />
+              Dental Clinic in<br />
+              <span className="hs-headline-accent">Rohtak, Haryana.</span>
             </motion.h1>
 
             {/* Tagline */}
             <motion.p className="hs-tagline" variants={fadeUp}>
-              Specialist orthodontist &amp; implant surgeon in Rohtak — <strong className="hs-tag-accent">Damon® braces</strong>, <strong className="hs-tag-accent">Invisalign®</strong>, <strong className="hs-tag-accent">dental implants</strong> &amp; <strong className="hs-tag-accent">full smile makeovers</strong>.
+              Experience pain-free, advanced dentistry — from <strong className="hs-tag-accent">invisible aligners</strong> to <strong className="hs-tag-accent">permanent implants</strong> &amp; <strong className="hs-tag-accent">full smile makeovers</strong>.
             </motion.p>
 
             {/* Supporting paragraph */}
             <motion.p className="hs-desc" variants={fadeUp}>
-              Haryana’s <strong>most awarded</strong> orthodontic centre, led by <strong>Dr (Prof.) S. K. Yadav</strong> — <strong>Ex-PGI Chandigarh</strong>, Fellow WFO (USA). Offering <strong>self-ligating Damon® braces</strong>, <strong>Invisalign® &amp; SkyAlign™ clear aligners</strong>, <strong>same-day dental implants</strong>, and <strong>porcelain veneers</strong> with <strong>cutting-edge 3D digital planning</strong> — all under one roof in Rohtak.
+              Get the confident smile you&apos;ve always wanted with personalized, expert care led by <strong>Dr (Prof.) S. K. Yadav</strong>. We offer comfortable, cutting-edge treatments including <strong>Invisalign®</strong>, <strong>SkyAlign™ clear aligners</strong>, <strong>same-day dental implants</strong>, and <strong>porcelain veneers</strong> — all designed around your comfort and goals.
             </motion.p>
 
             {/* CTAs */}
             <motion.div className="hs-ctas" variants={fadeUp}>
               <a href="#book" className="hs-btn-primary">
-                Reserve Your Consultation
+                Reserve Free Consultation
                 <ArrowRight size={18} strokeWidth={2.5} />
+              </a>
+              <a href="#treatments" className="hs-btn-secondary">
+                Explore Treatments
+                <ArrowRight size={16} strokeWidth={2} />
               </a>
             </motion.div>
 
-            {/* Micro-stats strip */}
-            <motion.div className="hs-stats" variants={fadeUp}>
-              <div className="hs-stat hs-stat-glow">
-                <strong><AnimatedCounter target="20" suffix="+" duration={2500} /></strong>
-                <span>Years Clinical Mastery</span>
+            {/* Certification & Recognition Trust Badges */}
+            <motion.div className="hs-trust-strip" variants={fadeUp}>
+              <div className="hs-trust-header">
+                <span className="hs-trust-dot" />
+                <span className="hs-trust-label">Certified &amp; Recognised By</span>
               </div>
-              <div className="hs-stat hs-stat-glow">
-                <strong><AnimatedCounter target="20000" suffix="+" duration={3000} /></strong>
-                <span>Smiles Transformed</span>
-              </div>
-              <div className="hs-stat hs-stat-glow">
-                <strong><AnimatedCounter target="654" suffix="+" duration={3500} /></strong>
-                <span>Global Academic Citations</span>
+              <div className="hs-trust-badges">
+                <div className="hs-trust-badge hs-badge-invisalign">
+                  <Sparkles size={14} className="hs-badge-icon" />
+                  <span>Invisalign® Provider</span>
+                </div>
+                <div className="hs-trust-badge hs-badge-wfo">
+                  <Globe size={14} className="hs-badge-icon" />
+                  <span>WFO USA Fellow</span>
+                </div>
+                <div className="hs-trust-badge hs-badge-damon">
+                  <Gem size={14} className="hs-badge-icon" />
+                  <span>Damon® Provider</span>
+                </div>
+                <div className="hs-trust-badge hs-badge-osstem">
+                  <ShieldCheck size={14} className="hs-badge-icon" />
+                  <span>Osstem® Implants Certified</span>
+                </div>
+                <div className="hs-trust-badge hs-badge-ios">
+                  <BadgeCheck size={14} className="hs-badge-icon" />
+                  <span>IOS Endorsed</span>
+                </div>
               </div>
             </motion.div>
+
+            {/* Micro-stats strip: 4 Luxury Clinical Impact Cards */}
+            <motion.div className="hs-stats-innovative" variants={fadeUp}>
+              
+              {/* Card 1: Patients Impacted */}
+              <div className="hs-stat-cell hs-stat-patients">
+                <div className="hs-stat-top">
+                  <div className="hs-stat-icon-wrapper">
+                    <div className="hs-stat-icon-box">
+                      <Users size={19} strokeWidth={2.2} />
+                    </div>
+                    <div className="hs-stat-ambient-glow" />
+                  </div>
+                  <span className="hs-stat-pill-badge">#1 IN HARYANA</span>
+                </div>
+
+                <div className="hs-stat-content">
+                  <div className="hs-stat-val">
+                    <AnimatedCounter target={20000} suffix="+" duration={2200} />
+                  </div>
+                  <div className="hs-stat-label">PATIENTS IMPACTED</div>
+                  <div className="hs-stat-sub">Across Haryana &amp; NCR</div>
+                </div>
+                <div className="hs-stat-shine" />
+              </div>
+
+              {/* Card 2: Clinical Mastery */}
+              <div className="hs-stat-cell hs-stat-mastery">
+                <div className="hs-stat-top">
+                  <div className="hs-stat-icon-wrapper">
+                    <div className="hs-stat-icon-box">
+                      <Award size={19} strokeWidth={2.2} />
+                    </div>
+                    <div className="hs-stat-ambient-glow" />
+                  </div>
+                  <span className="hs-stat-pill-badge">PGI GOLD</span>
+                </div>
+
+                <div className="hs-stat-content">
+                  <div className="hs-stat-val">
+                    <AnimatedCounter target={20} suffix="+" duration={2000} /> <span className="hs-stat-unit">Yrs</span>
+                  </div>
+                  <div className="hs-stat-label">CLINICAL MASTERY</div>
+                  <div className="hs-stat-sub">Ex-PGI Senior Resident</div>
+                </div>
+                <div className="hs-stat-shine" />
+              </div>
+
+              {/* Card 3: Clinic Rating */}
+              <div className="hs-stat-cell hs-stat-rating">
+                <div className="hs-stat-top">
+                  <div className="hs-stat-icon-wrapper">
+                    <div className="hs-stat-icon-box">
+                      <Star size={19} fill="currentColor" strokeWidth={0} />
+                    </div>
+                    <div className="hs-stat-ambient-glow" />
+                  </div>
+                  <span className="hs-stat-pill-badge">GOOGLE 5.0</span>
+                </div>
+
+                <div className="hs-stat-content">
+                  <div className="hs-stat-val">
+                    5.0<span className="hs-stat-star">★</span>
+                  </div>
+                  <div className="hs-stat-label">CLINIC RATING</div>
+                  <div className="hs-stat-sub">114+ Verified 5★ Reviews</div>
+                </div>
+                <div className="hs-stat-shine" />
+              </div>
+
+              {/* Card 4: Success Rate */}
+              <div className="hs-stat-cell hs-stat-success">
+                <div className="hs-stat-top">
+                  <div className="hs-stat-icon-wrapper">
+                    <div className="hs-stat-icon-box">
+                      <ShieldCheck size={19} strokeWidth={2.2} />
+                    </div>
+                    <div className="hs-stat-ambient-glow" />
+                  </div>
+                  <span className="hs-stat-pill-badge">CERTIFIED</span>
+                </div>
+
+                <div className="hs-stat-content">
+                  <div className="hs-stat-val">
+                    <AnimatedCounter target={99.4} suffix="%" duration={2500} isDecimal={true} />
+                  </div>
+                  <div className="hs-stat-label">SUCCESS RATE</div>
+                  <div className="hs-stat-sub">Braces, Aligners &amp; Implants</div>
+                </div>
+                <div className="hs-stat-shine" />
+              </div>
+
+            </motion.div>
+
 
           </motion.div>
 
@@ -188,76 +301,6 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* ================================================================
-          ACCREDITATIONS & ACADEMIC FELLOWSHIPS (below hero, floating cards)
-      ================================================================ */}
-      <section className="hs-accreditations-section">
-        <div className="container">
-          <motion.div
-            className="accreditations-bar-v2"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="accreditations-title">Official Accreditations &amp; Academic Fellowships</div>
-            
-            <div className="accreditations-grid">
-              <div className="accreditation-logo-card">
-                <div className="logo-img-container">
-                  <Image src="/ios-logo.png" alt="Indian Orthodontic Society Endorsed" fill style={{ objectFit: 'contain' }} />
-                </div>
-                <span className="logo-card-label">IOS Endorsed Orthodontist</span>
-              </div>
-
-              <div className="accreditation-logo-card">
-                <div className="logo-img-container">
-                  <Image src="/invisalign-logo.png" alt="Invisalign Provider" fill style={{ objectFit: 'contain' }} />
-                </div>
-                <span className="logo-card-label">Certified Invisalign® Provider</span>
-              </div>
-
-              <div className="accreditation-logo-card">
-                <div className="logo-img-container">
-                  <Image src="/damon-logo.png" alt="Damon Braces Provider" fill style={{ objectFit: 'contain' }} />
-                </div>
-                <span className="logo-card-label">Official Damon® Provider</span>
-              </div>
-
-              <div className="accreditation-logo-card">
-                <div className="logo-img-container">
-                  <Image src="/wfo-logo.png" alt="World Federation of Orthodontists" fill style={{ objectFit: 'contain' }} />
-                </div>
-                <span className="logo-card-label">Fellow WFO USA</span>
-              </div>
-
-              <div className="accreditation-logo-card">
-                <div className="logo-img-container">
-                  <Image src="/osstem-implant.jpeg" alt="Osstem Implant Provider" fill style={{ objectFit: 'contain' }} />
-                </div>
-                <span className="logo-card-label">Certified IMPLANTOLOGIST</span>
-              </div>
-            </div>
-
-            <div className="accreditations-academic-strip">
-              <div className="academic-badge-chip">
-                <div className="academic-badge-shimmer"></div>
-                <div className="academic-badge-content">
-                  <span className="academic-badge-icon">🎓</span>
-                  <span className="academic-badge-text">Ex-Senior Resident, PGI Chandigarh</span>
-                </div>
-              </div>
-              <div className="academic-badge-chip">
-                <div className="academic-badge-shimmer"></div>
-                <div className="academic-badge-content">
-                  <span className="academic-badge-icon">🏛️</span>
-                  <span className="academic-badge-text">Ex-Assistant Professor, PGI Rohtak Faculty</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* ================================================================
           CSS
@@ -282,10 +325,10 @@ export default function Hero() {
         .hs-root {
           position: relative;
           background: transparent;
-          min-height: 100vh;
+          min-height: auto;
           display: flex;
           align-items: center;
-          padding: 100px 0 60px;
+          padding: 2.5rem 0 3.5rem;
           overflow: hidden;
         }
 
@@ -320,8 +363,8 @@ export default function Hero() {
           position: relative;
           z-index: 1;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 64px;
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 3.5rem;
           align-items: center;
         }
 
@@ -350,11 +393,11 @@ export default function Hero() {
 
         /* Headline */
         .hs-headline {
-          font-family: var(--font-space-grotesk), sans-serif;
+          font-family: var(--font-heading), sans-serif;
           font-size: clamp(2.8rem, 3.8vw, 4.6rem);
-          font-weight: 700;
+          font-weight: 800;
           line-height: 1.06;
-          letter-spacing: -0.03em;
+          letter-spacing: -0.035em;
           color: var(--hs-primary);
           margin: 0 0 16px;
         }
@@ -367,9 +410,9 @@ export default function Hero() {
 
         /* Tagline */
         .hs-tagline {
-          font-family: var(--font-space-grotesk), sans-serif;
+          font-family: var(--font-body), sans-serif;
           font-size: 1.3rem;
-          font-weight: 500;
+          font-weight: 600;
           color: #2A1A14;
           margin: 0 0 24px;
           letter-spacing: -0.015em;
@@ -385,7 +428,7 @@ export default function Hero() {
 
         /* Description */
         .hs-desc {
-          font-family: var(--font-space-grotesk), sans-serif;
+          font-family: var(--font-body), sans-serif;
           font-size: 1.1rem;
           line-height: 1.85;
           color: #4A3E37;
@@ -427,7 +470,7 @@ export default function Hero() {
           align-items: center;
           gap: 16px;
           flex-wrap: wrap;
-          margin-bottom: 48px;
+          margin-bottom: 28px;
         }
 
         .hs-btn-primary {
@@ -453,6 +496,122 @@ export default function Hero() {
           background: #000;
         }
 
+        .hs-btn-secondary {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: var(--hs-primary);
+          border: 2px solid var(--hs-primary);
+          padding: 16px 30px;
+          border-radius: 99px;
+          font-size: 0.95rem;
+          font-weight: 700;
+          letter-spacing: -0.01em;
+          text-decoration: none;
+          transition: all 0.25s cubic-bezier(0.25,1,0.5,1);
+          white-space: nowrap;
+          backdrop-filter: blur(10px);
+        }
+        .hs-btn-secondary:hover {
+          background: var(--hs-primary);
+          color: #fff;
+          transform: translateY(-2px);
+          box-shadow: 0 12px 30px rgba(214,122,65,0.3);
+        }
+
+        /* ── Certification Trust Badge Strip ── */
+        .hs-trust-strip {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-top: 1.75rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .hs-trust-header {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+        }
+
+        .hs-trust-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #D67A41;
+          box-shadow: 0 0 8px rgba(214, 122, 65, 0.7);
+        }
+
+        .hs-trust-label {
+          font-family: var(--font-body, sans-serif);
+          font-size: 0.7rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: #6E5B54;
+        }
+
+        .hs-trust-badges {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+
+        .hs-trust-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(255, 255, 255, 0.92);
+          border: 1px solid rgba(74, 37, 24, 0.1);
+          color: #2D1810;
+          padding: 6px 14px;
+          border-radius: 99px;
+          font-family: var(--font-body, sans-serif);
+          font-size: 0.76rem;
+          font-weight: 700;
+          letter-spacing: 0.01em;
+          box-shadow: 0 2px 8px rgba(74, 37, 24, 0.04);
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          cursor: default;
+        }
+
+        .hs-trust-badge:hover {
+          transform: translateY(-2px);
+          background: #FFFFFF;
+          border-color: rgba(214, 122, 65, 0.4);
+          box-shadow: 0 8px 20px rgba(214, 122, 65, 0.14);
+          color: #B85922;
+        }
+
+        .hs-badge-icon {
+          flex-shrink: 0;
+          transition: transform 0.25s ease;
+        }
+
+        .hs-trust-badge:hover .hs-badge-icon {
+          transform: scale(1.2);
+        }
+
+        /* Color accents for each badge */
+        .hs-badge-invisalign .hs-badge-icon {
+          color: #D67A41;
+        }
+        .hs-badge-wfo .hs-badge-icon {
+          color: #2475AC;
+        }
+        .hs-badge-damon .hs-badge-icon {
+          color: #813C9E;
+        }
+        .hs-badge-osstem .hs-badge-icon {
+          color: #059669;
+        }
+        .hs-badge-ios .hs-badge-icon {
+          color: #C67607;
+        }
+
         .hs-btn-ghost {
           display: inline-flex;
           align-items: center;
@@ -473,65 +632,228 @@ export default function Hero() {
           text-decoration-color: var(--hs-accent);
         }
 
-        /* Stats */
-        .hs-stats {
-          display: flex;
-          align-items: stretch;
-          gap: 1.15rem;
+        /* ── Luxury Clinical Stat Cards ── */
+        .hs-stats-innovative {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
           margin-top: 2rem;
           width: 100%;
         }
-        .hs-stat {
-          flex: 1;
+
+        .hs-stat-cell {
+          position: relative;
           display: flex;
           flex-direction: column;
-          align-items: center;
-          text-align: center;
-          position: relative;
-          background: rgba(255, 255, 255, 0.75);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border: 1.5px solid rgba(122, 52, 15, 0.18);
-          border-radius: 24px;
-          padding: 1.35rem 0.85rem;
-          box-shadow: 0 8px 24px rgba(122, 52, 15, 0.04);
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          align-items: flex-start;
+          gap: 0.75rem;
+          background: linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(253, 249, 244, 0.92) 100%);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(214, 122, 65, 0.16);
+          border-radius: 20px;
+          padding: 1.15rem 1.25rem 1.1rem;
+          box-shadow: 0 10px 30px -4px rgba(74, 37, 24, 0.05), 0 2px 6px -1px rgba(74, 37, 24, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+          overflow: hidden;
           cursor: default;
         }
-        .hs-stat:hover {
-          transform: translateY(-5px);
-          border-color: rgba(122, 52, 15, 0.45);
-          box-shadow: 0 18px 40px rgba(122, 52, 15, 0.14);
-          background: rgba(255, 255, 255, 0.9);
+
+        .hs-stat-cell::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 20px;
+          padding: 1px;
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(214, 122, 65, 0.25) 45%, transparent 80%);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
         }
-        .hs-stat-glow strong {
+
+        .hs-stat-cell:hover {
+          transform: translateY(-5px) scale(1.015);
+          border-color: rgba(214, 122, 65, 0.45);
+          box-shadow: 0 20px 42px -6px rgba(214, 122, 65, 0.18), 0 0 0 1px rgba(214, 122, 65, 0.3);
+          background: #FFFFFF;
+        }
+
+        /* Top Bar of each Card: Icon + Pill Badge */
+        .hs-stat-top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+        }
+
+        .hs-stat-icon-wrapper {
           position: relative;
-          display: inline-block;
-          font-family: var(--font-heading, Georgia, serif);
-          font-size: 2.25rem;
-          font-weight: 900;
-          background: linear-gradient(135deg, #7A340F 0%, #D67A41 50%, #B85C24 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          line-height: 1;
-          letter-spacing: -0.02em;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
         }
-        .hs-stat span {
-          font-size: 0.8rem;
-          color: #110805;
+
+        .hs-stat-icon-box {
+          width: 42px;
+          height: 42px;
+          border-radius: 13px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+          position: relative;
+          z-index: 2;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .hs-stat-ambient-glow {
+          position: absolute;
+          inset: -4px;
+          border-radius: 16px;
+          opacity: 0.15;
+          filter: blur(8px);
+          transition: opacity 0.35s ease, filter 0.35s ease;
+          z-index: 1;
+        }
+
+        .hs-stat-cell:hover .hs-stat-icon-box {
+          transform: scale(1.1) rotate(4deg);
+        }
+        .hs-stat-cell:hover .hs-stat-ambient-glow {
+          opacity: 0.65;
+          filter: blur(12px);
+        }
+
+        .hs-stat-pill-badge {
+          font-family: var(--font-body, sans-serif);
+          font-size: 0.63rem;
           font-weight: 800;
-          margin-top: 6px;
-          line-height: 1.35;
-          letter-spacing: 0.02em;
+          letter-spacing: 0.06em;
+          padding: 3px 8px;
+          border-radius: 99px;
+          background: rgba(74, 37, 24, 0.04);
+          color: #7A6963;
+          border: 1px solid rgba(74, 37, 24, 0.08);
+          transition: all 0.3s ease;
+        }
+
+        .hs-stat-cell:hover .hs-stat-pill-badge {
+          background: rgba(214, 122, 65, 0.1);
+          color: #B85922;
+          border-color: rgba(214, 122, 65, 0.25);
+        }
+
+        /* Color Variations for the 4 Cards */
+        .hs-stat-patients .hs-stat-icon-box {
+          background: linear-gradient(135deg, rgba(214, 122, 65, 0.16), rgba(214, 122, 65, 0.04));
+          color: #D67A41;
+          border: 1px solid rgba(214, 122, 65, 0.25);
+        }
+        .hs-stat-patients .hs-stat-ambient-glow {
+          background: #D67A41;
+        }
+
+        .hs-stat-mastery .hs-stat-icon-box {
+          background: linear-gradient(135deg, rgba(184, 89, 34, 0.16), rgba(184, 89, 34, 0.04));
+          color: #B85922;
+          border: 1px solid rgba(184, 89, 34, 0.25);
+        }
+        .hs-stat-mastery .hs-stat-ambient-glow {
+          background: #B85922;
+        }
+
+        .hs-stat-rating .hs-stat-icon-box {
+          background: linear-gradient(135deg, rgba(245, 158, 11, 0.16), rgba(245, 158, 11, 0.04));
+          color: #F59E0B;
+          border: 1px solid rgba(245, 158, 11, 0.25);
+        }
+        .hs-stat-rating .hs-stat-ambient-glow {
+          background: #F59E0B;
+        }
+
+        .hs-stat-success .hs-stat-icon-box {
+          background: linear-gradient(135deg, rgba(39, 174, 96, 0.16), rgba(39, 174, 96, 0.04));
+          color: #27AE60;
+          border: 1px solid rgba(39, 174, 96, 0.25);
+        }
+        .hs-stat-success .hs-stat-ambient-glow {
+          background: #27AE60;
+        }
+
+        /* Content & Numbers */
+        .hs-stat-content {
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+          width: 100%;
+        }
+
+        .hs-stat-val {
+          font-family: var(--font-heading, 'Outfit', sans-serif);
+          font-size: 1.85rem;
+          font-weight: 900;
+          color: #1A0C06;
+          line-height: 1;
+          letter-spacing: -0.035em;
+          font-variant-numeric: tabular-nums;
+          display: flex;
+          align-items: baseline;
+        }
+
+        .hs-stat-unit {
+          font-size: 1.05rem;
+          font-weight: 700;
+          color: #7A6963;
+          margin-left: 3px;
+        }
+
+        .hs-stat-star {
+          font-size: 1.35rem;
+          color: #F59E0B;
+          margin-left: 2px;
+        }
+
+        .hs-stat-label {
+          font-family: var(--font-body, sans-serif);
+          font-size: 0.68rem;
+          color: #381E15;
+          font-weight: 800;
           text-transform: uppercase;
+          letter-spacing: 0.06em;
+          white-space: nowrap;
+          margin-top: 1px;
+        }
+
+        .hs-stat-sub {
+          font-family: var(--font-body, sans-serif);
+          font-size: 0.74rem;
+          color: #7A6963;
+          font-weight: 600;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        /* Top shine ray */
+        .hs-stat-shine {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+          opacity: 0.8;
+          pointer-events: none;
         }
 
         /* ── RIGHT ───────────────────────────────────────────────── */
         .hs-right {
-          height: 82vh;
-          min-height: 560px;
-          max-height: 780px;
+          height: clamp(480px, 52vh, 620px);
+          min-height: 460px;
+          max-height: 640px;
           position: relative;
         }
         .hs-stage {
@@ -546,7 +868,7 @@ export default function Hero() {
           inset: 0;
           border-radius: var(--hs-r-lg);
           overflow: hidden;
-          box-shadow: 0 40px 100px rgba(26,18,8,0.14);
+          box-shadow: 0 30px 80px rgba(26,18,8,0.12);
           will-change: transform;
         }
         .hs-img-vignette {
@@ -573,14 +895,14 @@ export default function Hero() {
         /* ── GOOGLE PILL ─────────────────────────────────────────── */
         .hs-google-pill {
           position: absolute;
-          top: 24px;
-          left: 24px;
+          top: 20px;
+          left: 20px;
           z-index: 3;
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          padding: 10px 18px;
-          background: rgba(255,255,255,0.95);
+          padding: 8px 16px;
+          background: rgba(255,255,255,0.96);
           border-radius: 99px;
           box-shadow: 0 8px 24px rgba(26,18,8,0.12);
           border: 1px solid rgba(255,255,255,0.8);
@@ -603,12 +925,12 @@ export default function Hero() {
         /* ── DOCTOR PANEL ────────────────────────────────────────── */
         .hs-doctor-panel {
           position: absolute;
-          bottom: 28px;
-          left: -32px;
+          bottom: 20px;
+          left: -16px;
           z-index: 3;
-          width: 300px;
-          padding: 20px 22px 16px;
-          background: rgba(255,255,255,0.92);
+          width: 280px;
+          padding: 14px 18px 12px;
+          background: rgba(255,255,255,0.95);
           backdrop-filter: blur(32px);
           -webkit-backdrop-filter: blur(32px);
           border: 1px solid rgba(255,255,255,0.7);
@@ -759,7 +1081,7 @@ export default function Hero() {
         }
         
         .accreditations-title {
-          font-family: var(--font-space-grotesk), sans-serif;
+          font-family: var(--font-heading), sans-serif;
           font-size: 0.85rem;
           font-weight: 700;
           text-transform: uppercase;
@@ -838,7 +1160,7 @@ export default function Hero() {
         }
 
         .logo-card-label {
-          font-family: var(--font-space-grotesk), sans-serif;
+          font-family: var(--font-heading), sans-serif;
           font-size: 0.85rem;
           font-weight: 700;
           color: var(--hs-primary);
@@ -920,15 +1242,43 @@ export default function Hero() {
         }
 
         /* ── RESPONSIVE ──────────────────────────────────────────── */
-        @media (max-width: 1150px) {
-          .hs-grid { grid-template-columns: 1fr; gap: 48px; }
+        @media (min-width: 993px) and (max-width: 1366px) {
+          .hs-root {
+            padding: 2rem 0 3rem;
+          }
+          .hs-grid {
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 2.25rem;
+          }
+          .hs-headline {
+            font-size: clamp(2.3rem, 3.2vw, 3.2rem);
+          }
+          .hs-desc {
+            font-size: 0.98rem;
+            margin-bottom: 24px;
+          }
+          .hs-right {
+            height: 480px;
+            min-height: 440px;
+          }
+          .hs-doctor-panel {
+            left: 0;
+            bottom: 14px;
+            width: 260px;
+            padding: 12px 14px;
+          }
+          .hs-skyalign-card {
+            right: 0;
+            top: 14px;
+          }
+        }
+
+        @media (max-width: 992px) {
+          .hs-grid { grid-template-columns: 1fr; gap: 40px; }
           .hs-left { text-align: center; align-items: center; }
           .hs-desc { max-width: 600px; }
-          .hs-stats { justify-content: center; }
-
-          .hs-right { height: 65vw; min-height: 400px; max-height: 560px; }
-
-          /* Reposition floating cards for tablet */
+          .hs-stats-innovative { justify-content: center; }
+          .hs-right { height: 60vw; min-height: 380px; max-height: 520px; }
           .hs-doctor-panel { left: 16px; width: 280px; }
           .hs-skyalign-card { right: 16px; }
         }
@@ -1035,19 +1385,44 @@ export default function Hero() {
           }
 
           /* Stats mobile */
-          .hs-stats {
-            gap: 12px;
-            flex-wrap: wrap;
+          .hs-stats-innovative {
+            gap: 10px;
+            grid-template-columns: repeat(2, 1fr);
           }
-          .hs-stat {
-            padding: 0.85rem 0.4rem !important;
+          .hs-stat-cell {
+            padding: 0.85rem 0.85rem;
+            gap: 0.7rem;
+            border-radius: 16px;
           }
-          .hs-stat strong {
+          .hs-stat-icon-box {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+          }
+          .hs-stat-val {
             font-size: 1.35rem;
           }
+          .hs-stat-label {
+            font-size: 0.62rem;
+          }
+          .hs-stat-sub {
+            font-size: 0.65rem;
+          }
           @media (max-width: 480px) {
-            .hs-stats {
-              flex-direction: column !important;
+            .hs-stats-innovative {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 8px;
+            }
+            .hs-stat-cell {
+              padding: 0.75rem 0.75rem;
+              gap: 0.6rem;
+            }
+            .hs-stat-icon-box {
+              width: 34px;
+              height: 34px;
+            }
+            .hs-stat-val {
+              font-size: 1.22rem;
             }
           }
         }

@@ -1,24 +1,47 @@
 'use client';
-import { MapPin, Phone, Mail, Clock, MessageSquare, Navigation, ExternalLink } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { 
+  MapPin, Phone, Mail, Clock, MessageSquare, Navigation, 
+  ExternalLink, Sparkles, Star, Car, Compass, CheckCircle2, 
+  Copy, Check, ArrowUpRight
+} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+  hidden: { opacity: 0, y: 25 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
 };
 
+const LANDMARKS = [
+  { icon: '🏫', title: 'Opp. Swami Nitanand School', desc: 'Direct landmark right across the lane' },
+  { icon: '🛣️', title: 'Delhi Bypass Chowk', desc: 'Just 2 mins from the main bypass junction' },
+  { icon: '🅿️', title: 'Free On-Premises Parking', desc: 'Spacious hassle-free car & two-wheeler parking' },
+  { icon: '🚉', title: 'Rohtak Junction Railway', desc: 'Approx 8-10 mins drive (4.2 km)' }
+];
+
 export default function ContactSection() {
+  const [copied, setCopied] = useState(false);
+  const [mapMode, setMapMode] = useState('map'); // 'map' | 'satellite' | 'landmarks'
+
+  const handleCopyAddress = () => {
+    const address = "Shubh Orthodontic & Dental Clinic, Tilak Nagar, Lane 9 Corner, Opposite Swami Nitanand Public School, Delhi Bypass Road, Rohtak, Haryana 124001";
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(address);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
+  };
+
   return (
     <section id="contact" className="contact-section-wrapper">
       
-      {/* Background Vectors & Glowing Orbs */}
+      {/* Ambient Glows */}
       <div className="contact-bg-elements" aria-hidden="true">
-        <div className="contact-bg-grid" />
         <div className="contact-glow-orb orb-left" />
         <div className="contact-glow-orb orb-right" />
       </div>
@@ -29,19 +52,19 @@ export default function ContactSection() {
         <motion.div 
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={fadeUp}
           className="contact-header text-center"
         >
           <div className="contact-badge">
-            <MapPin size={14} />
-            <span>Visit Our Clinic</span>
+            <span className="live-clinic-dot" />
+            <span>CLINIC LOCATION &amp; APPOINTMENTS</span>
           </div>
-          <h2 className="contact-title">
-            Get in Touch & <span className="gold-gradient-text">Location</span>
+          <h2 className="contact-title font-heading">
+            Visit Our <span className="gold-gradient-text">World-Class Clinic</span>
           </h2>
           <p className="contact-subtitle">
-            Conveniently located on Delhi Bypass Road, Rohtak with ample parking space and modern digital dental facilities.
+            Conveniently situated on Delhi Bypass Road, Rohtak — accessible within minutes from Model Town, D-Park, and Delhi-NCR express routes.
           </p>
         </motion.div>
 
@@ -51,103 +74,241 @@ export default function ContactSection() {
           <motion.div 
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-80px" }}
             variants={staggerContainer}
             className="contact-details-col"
           >
             
-            {/* Address Box */}
-            <motion.div variants={fadeUp} className="contact-info-card glass-card">
+            {/* Address Card with Copy Action */}
+            <motion.div variants={fadeUp} className="contact-info-card">
               <div className="card-icon-wrap icon-primary">
                 <MapPin size={22} />
               </div>
               <div className="card-info-content">
-                <h3 className="card-info-title font-heading">Clinic Address</h3>
+                <div className="card-info-header">
+                  <h3 className="card-info-title font-heading">Clinic Address</h3>
+                  <button 
+                    onClick={handleCopyAddress}
+                    className="btn-copy-address"
+                    title="Copy full address"
+                  >
+                    {copied ? <Check size={13} color="#10B981" /> : <Copy size={13} />}
+                    <span>{copied ? 'Copied!' : 'Copy'}</span>
+                  </button>
+                </div>
                 <p className="card-info-text">
                   Tilak Nagar, Lane 9 Corner, Opposite Swami Nitanand Public School, Delhi Bypass Road, Rohtak, Haryana 124001
                 </p>
-                <a
-                  href="https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-map-directions"
-                >
-                  <Navigation size={13} />
-                  <span>Get Directions on Google Maps</span>
-                  <ExternalLink size={12} />
-                </a>
-              </div>
-            </motion.div>
-
-            {/* Phone & Email Box */}
-            <motion.div variants={fadeUp} className="contact-info-card glass-card">
-              <div className="card-icon-wrap icon-gold">
-                <Phone size={22} />
-              </div>
-              <div className="card-info-content">
-                <h3 className="card-info-title font-heading">Phone & Appointments</h3>
-                <p className="card-info-text">Mobile: <strong className="text-highlight">+91 8685048414</strong></p>
-                <p className="card-info-text">Landline: <strong className="text-highlight">01262-469393</strong></p>
-
-                <div className="email-sub-box">
-                  <Mail size={16} className="email-icon" />
-                  <span>sky20083@gmail.com</span>
+                <div className="card-action-links">
+                  <a
+                    href="https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-map-directions"
+                  >
+                    <Navigation size={14} />
+                    <span>Get Live GPS Directions</span>
+                    <ArrowUpRight size={14} />
+                  </a>
                 </div>
               </div>
             </motion.div>
 
-            {/* Timings Box */}
-            <motion.div variants={fadeUp} className="contact-info-card glass-card">
+            {/* Phone & Email Box */}
+            <motion.div variants={fadeUp} className="contact-info-card">
+              <div className="card-icon-wrap icon-gold">
+                <Phone size={22} />
+              </div>
+              <div className="card-info-content">
+                <h3 className="card-info-title font-heading">Direct Helpline &amp; WhatsApp</h3>
+                <div className="phone-numbers-list">
+                  <div className="phone-item">
+                    <span className="phone-label">Primary Mobile:</span>
+                    <a href="tel:+918685048414" className="phone-link">+91 8685048414</a>
+                  </div>
+                  <div className="phone-item">
+                    <span className="phone-label">Clinic Landline:</span>
+                    <a href="tel:01262469393" className="phone-link">01262-469393</a>
+                  </div>
+                </div>
+
+                <div className="email-sub-box">
+                  <Mail size={15} className="email-icon" />
+                  <a href="mailto:sky20083@gmail.com" className="email-link">sky20083@gmail.com</a>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Timings Box with Live Open Pill */}
+            <motion.div variants={fadeUp} className="contact-info-card">
               <div className="card-icon-wrap icon-dark">
                 <Clock size={22} />
               </div>
               <div className="card-info-content">
-                <h3 className="card-info-title font-heading">Clinic Timings</h3>
-                <p className="card-info-text"><strong>Mon – Sat:</strong> 09:30 AM – 08:00 PM</p>
-                <p className="card-info-text"><strong>Sunday:</strong> By Appointment Only</p>
+                <div className="card-info-header">
+                  <h3 className="card-info-title font-heading">Consultation Timings</h3>
+                  <span className="live-open-pill">
+                    <span className="pulse-green-dot" />
+                    <span>Open Today</span>
+                  </span>
+                </div>
+                <p className="card-info-text">
+                  <strong>Mon – Sat:</strong> 09:30 AM – 08:00 PM<br />
+                  <strong>Sunday:</strong> By Appointment Only (Pre-booked)
+                </p>
               </div>
             </motion.div>
 
             {/* Quick Action Buttons */}
             <motion.div variants={fadeUp} className="contact-actions-row">
-              <a href="tel:+918685048414" className="btn-action-call premium-shadow">
-                <Phone size={18} />
-                <span>Call Clinic</span>
+              <a href="tel:+918685048414" className="btn-action-call">
+                <Phone size={17} />
+                <span>Call Clinic Directly</span>
               </a>
               <a
                 href="https://wa.me/918685048414"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-action-wa premium-shadow"
+                className="btn-action-wa"
               >
-                <MessageSquare size={18} />
-                <span>WhatsApp</span>
+                <MessageSquare size={17} />
+                <span>WhatsApp Desk</span>
               </a>
             </motion.div>
 
           </motion.div>
 
-          {/* Map Column */}
+          {/* Innovated Map Showcase Column */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="contact-map-col premium-shadow"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="innovative-map-showcase"
           >
-            <div className="map-overlay-badge">
-              <Navigation size={14} /> Shubh Dental Clinic
+            
+            {/* Map Top Interactive HUD Bar */}
+            <div className="map-hud-header">
+              <div className="clinic-hud-title">
+                <div className="hud-pin-icon">
+                  <MapPin size={16} />
+                </div>
+                <div>
+                  <h4 className="hud-name font-heading">Shubh Dental Clinic</h4>
+                  <span className="hud-stars">⭐ 5.0 Rating · 114+ Google Reviews</span>
+                </div>
+              </div>
+
+              {/* View Switcher Buttons */}
+              <div className="map-view-pills">
+                <button
+                  type="button"
+                  onClick={() => setMapMode('map')}
+                  className={`view-pill ${mapMode === 'map' ? 'view-pill--active' : ''}`}
+                >
+                  <Compass size={13} />
+                  <span>Map</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMapMode('satellite')}
+                  className={`view-pill ${mapMode === 'satellite' ? 'view-pill--active' : ''}`}
+                >
+                  <span>🛰️ Satellite</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMapMode('landmarks')}
+                  className={`view-pill ${mapMode === 'landmarks' ? 'view-pill--active' : ''}`}
+                >
+                  <Car size={13} />
+                  <span>Landmarks</span>
+                </button>
+              </div>
             </div>
-            <iframe
-              title="Shubh Orthodontic & Dental Clinic Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3493.5356910609346!2d76.6044113!3d28.8955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d8526ff0b9379%3A0xb15b60e3947148d7!2sShubh%20Orthodontic%20%26%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+
+            {/* Map Screen Area */}
+            <div className="map-screen-frame">
+              
+              {mapMode === 'landmarks' ? (
+                /* Landmarks Visual Card Mode */
+                <div className="landmarks-guide-panel">
+                  <h4 className="landmarks-panel-title font-heading">Nearby Key Landmarks &amp; Driving Routes</h4>
+                  <div className="landmarks-cards-grid">
+                    {LANDMARKS.map((lm, i) => (
+                      <div key={i} className="landmark-item-card">
+                        <span className="landmark-emoji">{lm.icon}</span>
+                        <div>
+                          <strong className="lm-title">{lm.title}</strong>
+                          <p className="lm-desc">{lm.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <a
+                    href="https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-open-google-maps"
+                  >
+                    <Navigation size={16} />
+                    <span>Open in Google Maps App for Turn-by-Turn Navigation</span>
+                    <ArrowUpRight size={16} />
+                  </a>
+                </div>
+              ) : (
+                /* Interactive Google Map Iframe */
+                <div className="map-iframe-wrapper">
+                  <iframe
+                    title="Shubh Orthodontic & Dental Clinic Google Maps Location"
+                    src={mapMode === 'satellite' 
+                      ? "https://maps.google.com/maps?q=Shubh%20Orthodontic%20%26%20Dental%20Clinic%20Rohtak&t=k&z=17&ie=UTF8&iwloc=&output=embed"
+                      : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3493.5356910609346!2d76.6044113!3d28.8955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d8526ff0b9379%3A0xb15b60e3947148d7!2sShubh%20Orthodontic%20%26%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                    }
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+
+                  {/* Pulsing Beacon Floating Card */}
+                  <div className="map-beacon-overlay">
+                    <div className="beacon-pulse-ring" />
+                    <div className="beacon-card">
+                      <div className="beacon-icon">📍</div>
+                      <div className="beacon-text">
+                        <strong>Shubh Dental Clinic</strong>
+                        <span>Lane 9 Corner, Delhi Bypass</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Bottom Quick Map Action Bar */}
+              <div className="map-bottom-cta-strip">
+                <div className="map-strip-info">
+                  <Car size={15} className="map-strip-icon" />
+                  <span>Ample Parking Space Available</span>
+                </div>
+
+                <a
+                  href="https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-strip-navigate"
+                >
+                  <Navigation size={14} />
+                  <span>Start Live Navigation</span>
+                  <ArrowUpRight size={14} />
+                </a>
+              </div>
+
+            </div>
+
           </motion.div>
 
         </div>
@@ -156,8 +317,8 @@ export default function ContactSection() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .contact-section-wrapper {
-          padding: 7rem 1.5rem;
-          background: #FAF9F6;
+          padding: 5.5rem 1.5rem;
+          background: #FAF8F5;
           position: relative;
           overflow: hidden;
         }
@@ -169,34 +330,25 @@ export default function ContactSection() {
           z-index: 0;
         }
 
-        .contact-bg-grid {
-          position: absolute;
-          inset: 0;
-          background-image: 
-            linear-gradient(rgba(214, 122, 65, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(214, 122, 65, 0.05) 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-
         .contact-glow-orb {
           position: absolute;
           border-radius: 50%;
-          filter: blur(80px);
-          opacity: 0.6;
+          filter: blur(90px);
+          opacity: 0.5;
         }
         .orb-left {
           width: 500px; height: 500px;
           bottom: -100px; left: -150px;
-          background: radial-gradient(circle, rgba(214, 122, 65, 0.15) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(214, 122, 65, 0.18) 0%, transparent 70%);
         }
         .orb-right {
           width: 600px; height: 600px;
           top: -100px; right: -200px;
-          background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(201, 168, 76, 0.12) 0%, transparent 70%);
         }
 
         .contact-container {
-          max-width: 1200px;
+          max-width: 1240px;
           margin: 0 auto;
           position: relative;
           z-index: 10;
@@ -204,39 +356,52 @@ export default function ContactSection() {
 
         .contact-header {
           text-align: center;
-          margin-bottom: 4rem;
+          margin-bottom: 3.5rem;
         }
 
         .contact-badge {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          background: rgba(214, 122, 65, 0.1);
+          background: rgba(214, 122, 65, 0.12);
           color: #D67A41;
-          padding: 0.5rem 1.25rem;
+          padding: 0.4rem 1.1rem;
           border-radius: 99px;
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 800;
           letter-spacing: 0.06em;
           text-transform: uppercase;
           border: 1px solid rgba(214, 122, 65, 0.25);
-          margin-bottom: 1.25rem;
-          box-shadow: 0 4px 15px rgba(214, 122, 65, 0.08);
+          margin-bottom: 1rem;
+        }
+
+        .live-clinic-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #10B981;
+          box-shadow: 0 0 8px #10B981;
         }
 
         .contact-title {
-          font-family: var(--font-heading, 'Outfit', sans-serif);
-          font-size: clamp(2.2rem, 4vw, 3.2rem);
-          font-weight: 800;
-          color: #110805;
-          margin-bottom: 1rem;
+          font-size: clamp(2.2rem, 4vw, 3rem);
+          font-weight: 900;
+          color: #0E0604;
+          margin-bottom: 0.75rem;
           line-height: 1.15;
+          letter-spacing: -0.02em;
+        }
+
+        .gold-gradient-text {
+          background: linear-gradient(135deg, #D67A41 0%, #B85C24 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
 
         .contact-subtitle {
-          font-size: 1.05rem;
-          color: #554A44;
-          max-width: 600px;
+          font-size: 1.02rem;
+          color: #66544C;
+          max-width: 620px;
           margin: 0 auto;
           line-height: 1.6;
         }
@@ -244,50 +409,48 @@ export default function ContactSection() {
         .contact-grid {
           display: grid;
           grid-template-columns: 1fr 1.3fr;
-          gap: 3rem;
+          gap: 2.75rem;
           align-items: stretch;
         }
 
         .contact-details-col {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1.25rem;
         }
 
+        /* PORCELAIN INFO CARDS */
         .contact-info-card {
-          background: rgba(255, 255, 255, 0.8);
-          backdrop-filter: blur(15px);
-          -webkit-backdrop-filter: blur(15px);
+          background: #FFFFFF;
           border-radius: 24px;
-          padding: 1.75rem;
-          border: 1px solid rgba(255, 255, 255, 0.6);
-          box-shadow: 0 15px 35px rgba(17, 8, 5, 0.04), 0 5px 15px rgba(214, 122, 65, 0.03);
+          padding: 1.65rem;
+          border: 1.5px solid rgba(74, 37, 24, 0.08);
+          box-shadow: 0 10px 30px rgba(74, 37, 24, 0.04);
           display: flex;
           align-items: flex-start;
           gap: 1.25rem;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .contact-info-card:hover {
           transform: translateY(-3px);
-          box-shadow: 0 20px 45px rgba(17, 8, 5, 0.06), 0 10px 25px rgba(214, 122, 65, 0.05);
+          border-color: rgba(214, 122, 65, 0.35);
+          box-shadow: 0 16px 40px rgba(74, 37, 24, 0.08);
         }
 
         .card-icon-wrap {
-          width: 52px;
-          height: 52px;
+          width: 48px;
+          height: 48px;
           border-radius: 16px;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          box-shadow: inset 0 2px 4px rgba(255,255,255,0.5);
         }
 
         .icon-primary {
           background: linear-gradient(135deg, rgba(214, 122, 65, 0.15) 0%, rgba(214, 122, 65, 0.05) 100%);
           color: #D67A41;
-          border: 1px solid rgba(214, 122, 65, 0.2);
+          border: 1px solid rgba(214, 122, 65, 0.25);
         }
 
         .icon-gold {
@@ -299,24 +462,56 @@ export default function ContactSection() {
         .icon-dark {
           background: linear-gradient(135deg, rgba(17, 8, 5, 0.1) 0%, rgba(17, 8, 5, 0.02) 100%);
           color: #110805;
-          border: 1px solid rgba(17, 8, 5, 0.1);
+          border: 1px solid rgba(17, 8, 5, 0.15);
         }
 
         .card-info-content {
           flex: 1;
         }
 
+        .card-info-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.35rem;
+        }
+
         .card-info-title {
-          font-size: 1.15rem;
-          font-weight: 800;
-          color: #110805;
-          margin-bottom: 0.4rem;
+          font-size: 1.1rem;
+          font-weight: 900;
+          color: #0E0604;
+          margin: 0;
+        }
+
+        .btn-copy-address {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          background: #FAF8F5;
+          border: 1px solid rgba(74, 37, 24, 0.12);
+          border-radius: 99px;
+          padding: 0.2rem 0.6rem;
+          font-size: 0.7rem;
+          font-weight: 700;
+          color: #6E5448;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .btn-copy-address:hover {
+          background: #FFF5EB;
+          border-color: #D67A41;
+          color: #D67A41;
         }
 
         .card-info-text {
-          font-size: 0.95rem;
+          font-size: 0.92rem;
           color: #4A3A33;
           line-height: 1.6;
+          margin: 0;
+        }
+
+        .card-action-links {
+          margin-top: 0.65rem;
         }
 
         .btn-map-directions {
@@ -324,39 +519,84 @@ export default function ContactSection() {
           align-items: center;
           gap: 0.4rem;
           color: #D67A41;
-          font-size: 0.85rem;
+          font-size: 0.84rem;
           font-weight: 800;
-          margin-top: 0.75rem;
           text-decoration: none;
-          padding: 0.35rem 0;
-          border-bottom: 1.5px solid transparent;
           transition: all 0.2s ease;
         }
         .btn-map-directions:hover {
           color: #B85922;
-          border-bottom-color: #B85922;
+          transform: translateX(2px);
+        }
+
+        .phone-numbers-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          margin: 0.35rem 0;
+        }
+        .phone-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.92rem;
+        }
+        .phone-label {
+          color: #8A7063;
+          font-size: 0.8rem;
+          font-weight: 700;
+        }
+        .phone-link {
+          color: #0E0604;
+          font-weight: 800;
+          text-decoration: none;
+          transition: color 0.2s ease;
+        }
+        .phone-link:hover {
+          color: #D67A41;
         }
 
         .email-sub-box {
           display: flex;
           align-items: center;
-          gap: 0.6rem;
-          margin-top: 1rem;
-          padding-top: 1rem;
-          border-top: 1px dashed rgba(214, 122, 65, 0.25);
-          font-size: 0.9rem;
-          color: #110805;
+          gap: 0.5rem;
+          margin-top: 0.75rem;
+          padding-top: 0.75rem;
+          border-top: 1.5px dashed rgba(214, 122, 65, 0.2);
+          font-size: 0.88rem;
           font-weight: 700;
         }
-        .email-icon {
-          color: #D67A41;
+        .email-icon { color: #D67A41; }
+        .email-link {
+          color: #0E0604;
+          text-decoration: none;
+        }
+        .email-link:hover { color: #D67A41; }
+
+        .live-open-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          background: #EDFCF4;
+          color: #0E7A53;
+          border: 1px solid rgba(14, 122, 83, 0.2);
+          padding: 0.2rem 0.6rem;
+          border-radius: 99px;
+          font-size: 0.7rem;
+          font-weight: 800;
+        }
+        .pulse-green-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #10B981;
+          box-shadow: 0 0 6px #10B981;
         }
 
         .contact-actions-row {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 1.25rem;
-          margin-top: 0.5rem;
+          gap: 1rem;
         }
 
         .btn-action-call, .btn-action-wa {
@@ -364,66 +604,276 @@ export default function ContactSection() {
           align-items: center;
           justify-content: center;
           gap: 0.5rem;
-          padding: 1rem 1.25rem;
+          padding: 0.95rem 1.25rem;
           border-radius: 16px;
-          font-family: var(--font-heading, 'Outfit', sans-serif);
-          font-size: 1rem;
+          font-family: var(--font-heading);
+          font-size: 0.94rem;
           font-weight: 800;
           text-decoration: none;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .btn-action-call {
-          background: linear-gradient(135deg, #2A150B 0%, #110805 100%);
+          background: linear-gradient(135deg, #130A06 0%, #261309 100%);
           color: #FFFFFF;
-          border: 1px solid rgba(255,255,255,0.1);
+          border: 1px solid rgba(255,255,255,0.12);
+          box-shadow: 0 8px 20px rgba(17, 8, 5, 0.15);
+        }
+        .btn-action-call:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 25px rgba(17, 8, 5, 0.25);
         }
 
         .btn-action-wa {
           background: linear-gradient(135deg, #25D366 0%, #1DA851 100%);
           color: #FFFFFF;
-          border: 1px solid rgba(255,255,255,0.2);
+          box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+        .btn-action-wa:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
         }
 
-        .premium-shadow {
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0,0,0,0.06);
-        }
-
-        .btn-action-call:hover, .btn-action-wa:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18), 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .contact-map-col {
-          border-radius: 32px;
-          overflow: hidden;
-          border: 4px solid #FFFFFF;
-          min-height: 500px;
+        /* INNOVATED MAP SHOWCASE COLUMN */
+        .innovative-map-showcase {
           background: #FFFFFF;
+          border-radius: 32px;
+          padding: 1.25rem;
+          border: 2px solid rgba(214, 122, 65, 0.25);
+          box-shadow: 0 20px 50px rgba(74, 37, 24, 0.08);
+          display: flex;
+          flex-direction: column;
           position: relative;
         }
 
-        .map-overlay-badge {
-          position: absolute;
-          top: 1.5rem;
-          left: 1.5rem;
-          background: rgba(255,255,255,0.9);
-          backdrop-filter: blur(10px);
-          padding: 0.6rem 1.25rem;
-          border-radius: 99px;
-          font-family: var(--font-heading);
-          font-weight: 800;
-          font-size: 0.9rem;
-          color: #110805;
+        .map-hud-header {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
-          box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-          z-index: 10;
-          border: 1px solid rgba(255,255,255,1);
+          justify-content: space-between;
+          padding-bottom: 1rem;
+          border-bottom: 1.5px solid rgba(74, 37, 24, 0.06);
+          margin-bottom: 1rem;
+          gap: 1rem;
+          flex-wrap: wrap;
         }
-        .map-overlay-badge svg {
-          color: #D67A41;
+
+        .clinic-hud-title {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+        }
+        .hud-pin-icon {
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: linear-gradient(135deg, #D67A41 0%, #B85C24 100%);
+          color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          box-shadow: 0 4px 12px rgba(214, 122, 65, 0.3);
+        }
+        .hud-name {
+          font-size: 1.02rem;
+          font-weight: 900;
+          color: #0E0604;
+          margin: 0;
+          line-height: 1.2;
+        }
+        .hud-stars {
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: #8A7063;
+        }
+
+        .map-view-pills {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          background: #FAF8F5;
+          padding: 4px;
+          border-radius: 99px;
+          border: 1px solid rgba(74, 37, 24, 0.1);
+        }
+        .view-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          background: transparent;
+          border: none;
+          padding: 0.35rem 0.75rem;
+          border-radius: 99px;
+          font-size: 0.74rem;
+          font-weight: 800;
+          color: #6E5448;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .view-pill--active {
+          background: #FFFFFF;
+          color: #7A340F;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        /* MAP SCREEN FRAME */
+        .map-screen-frame {
+          border-radius: 22px;
+          overflow: hidden;
+          background: #FAF8F5;
+          position: relative;
+          min-height: 440px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+        }
+
+        .map-iframe-wrapper {
+          position: relative;
+          width: 100%;
+          flex-grow: 1;
+          min-height: 380px;
+        }
+
+        /* FLOATING BEACON OVERLAY */
+        .map-beacon-overlay {
+          position: absolute;
+          top: 1.25rem;
+          left: 1.25rem;
+          z-index: 10;
+          pointer-events: none;
+        }
+        .beacon-card {
+          display: flex;
+          align-items: center;
+          gap: 0.65rem;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(12px);
+          padding: 0.6rem 1rem;
+          border-radius: 16px;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+          border: 1.5px solid rgba(255, 255, 255, 0.9);
+        }
+        .beacon-icon { font-size: 1.2rem; }
+        .beacon-text {
+          display: flex;
+          flex-direction: column;
+        }
+        .beacon-text strong {
+          font-size: 0.85rem;
+          font-weight: 900;
+          color: #0E0604;
+        }
+        .beacon-text span {
+          font-size: 0.72rem;
+          color: #6E5448;
+          font-weight: 600;
+        }
+
+        /* LANDMARKS GUIDE PANEL */
+        .landmarks-guide-panel {
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+          height: 100%;
+          justify-content: space-between;
+        }
+        .landmarks-panel-title {
+          font-size: 1.1rem;
+          font-weight: 900;
+          color: #0E0604;
+          margin: 0;
+        }
+        .landmarks-cards-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.85rem;
+        }
+        .landmark-item-card {
+          background: #FFFFFF;
+          border: 1.5px solid rgba(74, 37, 24, 0.08);
+          border-radius: 16px;
+          padding: 1rem;
+          display: flex;
+          align-items: flex-start;
+          gap: 0.65rem;
+          box-shadow: 0 4px 12px rgba(74, 37, 24, 0.02);
+        }
+        .landmark-emoji { font-size: 1.3rem; flex-shrink: 0; }
+        .lm-title {
+          display: block;
+          font-size: 0.85rem;
+          font-weight: 800;
+          color: #0E0604;
+          margin-bottom: 0.15rem;
+        }
+        .lm-desc {
+          font-size: 0.75rem;
+          color: #6E5448;
+          line-height: 1.4;
+          margin: 0;
+        }
+
+        .btn-open-google-maps {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          background: linear-gradient(135deg, #110805 0%, #2A150B 100%);
+          color: #FFFFFF;
+          padding: 0.85rem 1.25rem;
+          border-radius: 14px;
+          font-family: var(--font-heading);
+          font-size: 0.86rem;
+          font-weight: 800;
+          text-decoration: none;
+          box-shadow: 0 6px 18px rgba(17, 8, 5, 0.15);
+          transition: all 0.2s ease;
+        }
+        .btn-open-google-maps:hover {
+          background: #D67A41;
+          transform: translateY(-2px);
+        }
+
+        /* BOTTOM CTA STRIP */
+        .map-bottom-cta-strip {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background: #FFFFFF;
+          padding: 0.75rem 1rem;
+          border-top: 1.5px solid rgba(74, 37, 24, 0.08);
+          gap: 0.75rem;
+          flex-wrap: wrap;
+        }
+        .map-strip-info {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #6E5448;
+        }
+        .map-strip-icon { color: #10B981; }
+
+        .btn-strip-navigate {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          background: linear-gradient(135deg, #D67A41 0%, #B85C24 100%);
+          color: #FFFFFF;
+          padding: 0.45rem 0.95rem;
+          border-radius: 99px;
+          font-size: 0.78rem;
+          font-weight: 800;
+          text-decoration: none;
+          box-shadow: 0 4px 12px rgba(214, 122, 65, 0.25);
+          transition: all 0.2s ease;
+        }
+        .btn-strip-navigate:hover {
+          transform: scale(1.04);
+          box-shadow: 0 6px 16px rgba(214, 122, 65, 0.35);
         }
 
         @media (max-width: 992px) {
@@ -431,13 +881,43 @@ export default function ContactSection() {
             grid-template-columns: 1fr;
             gap: 2.5rem;
           }
-          .contact-map-col {
-            min-height: 400px;
+          .landmarks-cards-grid {
+            grid-template-columns: 1fr;
           }
         }
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
+          .contact-section-wrapper {
+            padding: 3rem 1rem 4.5rem !important;
+          }
+          .contact-info-card {
+            padding: 1.25rem 1rem !important;
+            border-radius: 20px !important;
+          }
           .contact-actions-row {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr !important;
+          }
+          .innovative-map-showcase {
+            padding: 0.85rem !important;
+            border-radius: 24px !important;
+          }
+          .map-hud-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+          }
+          .map-view-pills {
+            width: 100% !important;
+            justify-content: space-between !important;
+          }
+          .view-pill {
+            flex: 1 !important;
+            justify-content: center !important;
+          }
+          .map-bottom-cta-strip {
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+          .btn-strip-navigate {
+            justify-content: center !important;
           }
         }
       `}} />

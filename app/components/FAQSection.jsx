@@ -7,32 +7,65 @@ import ScrollReveal, { StaggerReveal, StaggerItem } from './ScrollReveal';
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0);
+  const [showAll, setShowAll] = useState(false);
 
   const faqs = [
     {
+      q: 'Who is the best orthodontist in Rohtak?',
+      a: <><span className="text-highlight">Prof. Dr. S. K. Yadav</span> at Shubh Orthodontic &amp; Dental Clinic is widely regarded as the best orthodontist in Rohtak, Haryana. He holds an <span className="text-highlight">MDS in Orthodontics from PGI Chandigarh</span>, is a Certified Invisalign® Provider and a Fellow of the World Federation of Orthodontists (WFO, USA). With over 5,000+ completed braces and aligner cases and a 5.0-star Google rating, you are in the most trusted hands in Haryana.</>
+    },
+    {
+      q: 'How much do braces cost in Rohtak?',
+      a: <>At Shubh Dental Clinic Rohtak, braces cost ranges from <span className="text-highlight">₹25,000 for standard metal braces</span> to <span className="text-highlight">₹55,000–₹1,20,000 for Damon® self-ligating ceramic braces</span>. Clear aligners (SkyAlign™) start from ₹45,000. Invisalign® comprehensive starts from ₹1,50,000. <span className="text-highlight">0% interest EMI is available</span> on all treatments to make premium care accessible.</>
+    },
+    {
       q: 'Why should I choose Prof. Dr. S. K. Yadav for my braces or clear aligners?',
-      a: <><span className="text-highlight">Prof. Dr. S. K. Yadav</span> holds an MDS in Orthodontics from PGI Chandigarh with <span className="text-highlight">over 20 years of clinical experience</span>. He is a <span className="text-highlight">Certified Invisalign &amp; SkyAlign Provider</span> and a Fellow of the World Federation of Orthodontists (WFO, USA). With <span className="text-highlight">over 5,000+ completed braces and aligners cases</span>, you receive elite, specialized orthodontic care.</>
+      a: <><span className="text-highlight">Prof. Dr. S. K. Yadav</span> holds an MDS in Orthodontics from PGI Chandigarh with <span className="text-highlight">over 20 years of clinical experience</span>. He is a <span className="text-highlight">Certified Invisalign® &amp; SkyAlign™ Provider</span> and a Fellow of the World Federation of Orthodontists (WFO, USA). With <span className="text-highlight">5,000+ completed braces and aligners cases</span>, you receive elite, specialized orthodontic care.</>
+    },
+    {
+      q: 'What is SkyAlign™ and how is it different from Invisalign®?',
+      a: <><span className="text-highlight">SkyAlign™</span> is our exclusive in-house clear aligner system manufactured at Shubh Dental Clinic under direct supervision of Prof. Dr. S. K. Yadav. Made from <span className="text-highlight">ultra-clear German medical polymer</span>, SkyAlign™ delivers the same clinical results as international brands at <span className="text-highlight">up to 40% lower cost</span>, with faster turnaround and no third-party delays. Invisalign® is the global gold standard for complex cases and uses patented SmartTrack® material.</>
     },
     {
       q: 'What is the difference between Clear Aligners and traditional metal braces?',
-      a: <>Clear aligners (like Invisalign &amp; SkyAlign) are <span className="text-highlight">transparent, removable, and virtually invisible plastic trays</span>. They allow you to eat whatever you like and maintain easy oral hygiene. Traditional braces use <span className="text-highlight">metal or ceramic brackets bonded to teeth</span>. Both effectively straighten teeth, and Dr. Yadav will recommend the best fit for your lifestyle.</>
+      a: <>Clear aligners (like Invisalign® &amp; SkyAlign™) are <span className="text-highlight">transparent, removable, and virtually invisible plastic trays</span>. They allow you to eat whatever you like and maintain easy oral hygiene. Traditional braces use <span className="text-highlight">metal or ceramic brackets bonded to teeth</span>. Both effectively straighten teeth, and Dr. Yadav will recommend the best fit for your lifestyle and case complexity.</>
     },
     {
       q: 'Is root canal treatment (RCT) painful at Shubh Dental Clinic?',
-      a: <>Not at all! We use modern rotary endodontics and gentle local anesthesia techniques that make Root Canal Treatment <span className="text-highlight">100% painless and fast</span>, usually completed in just <span className="text-highlight">1 or 2 comfortable visits</span>.</>
+      a: <>Not at all! We use modern rotary endodontics and gentle local anesthesia techniques that make Root Canal Treatment <span className="text-highlight">100% painless and fast</span>, usually completed in just <span className="text-highlight">1 or 2 comfortable visits</span>. Most patients are surprised by how stress-free the procedure is at our clinic.</>
     },
     {
       q: 'Are dental implants safe and long-lasting?',
-      a: <>Yes, dental implants have a <span className="text-highlight">success rate of over 98%</span>. They act as <span className="text-highlight">permanent natural root replacements</span> for missing teeth. Made of biocompatible titanium, implants can <span className="text-highlight">last a lifetime</span> with proper care.</>
+      a: <>Yes, dental implants have a <span className="text-highlight">success rate of over 98.4%</span> at our clinic. We use 3D CBCT-guided flapless surgery for pin-point precision. All implants use <span className="text-highlight">biocompatible titanium with 10-year warranty metal-free Zirconia crowns</span>, and can <span className="text-highlight">last a lifetime</span> with proper care. Walk in with missing teeth — walk out with fixed teeth in 24 hours.</>
+    },
+    {
+      q: 'Do you offer same-day dental implants in Rohtak?',
+      a: <>Yes! Shubh Orthodontic &amp; Dental Clinic offers <span className="text-highlight">immediate loading same-day dental implants</span> in Rohtak. Using advanced flapless 3D CBCT-guided surgery, patients can walk in with missing teeth and walk out with fixed, fully functional temporary teeth <span className="text-highlight">within 24 hours</span> — no stitches, minimal discomfort.</>
     },
     {
       q: 'Do you offer 0% Interest EMI options for treatments?',
-      a: <>Yes! We offer <span className="text-highlight">flexible, interest-free (0% EMI) payment options</span> for clear aligners, orthodontic braces, dental implants, and full smile makeovers to <span className="text-highlight">make premium care accessible</span>.</>
+      a: <>Yes! We offer <span className="text-highlight">flexible, interest-free (0% EMI) payment options</span> for clear aligners, orthodontic braces, dental implants, and full smile makeovers to <span className="text-highlight">make premium international-quality care accessible</span> to every patient in Rohtak and across Haryana.</>
     },
     {
-      q: 'Where is Shubh Orthodontic & Dental Clinic located in Rohtak?',
-      a: <>We are located at Tilak Nagar, Lane 9 Corner, Opposite Swami Nitanand Public School, Delhi Bypass Road, Rohtak, Haryana. You can search <span className="text-highlight">"Shubh Orthodontic &amp; Dental Clinic" on Google Maps</span> for easy direct navigation.</>
-    }
+      q: 'Is the clinic suitable for children?',
+      a: <><span className="text-highlight">Dr. Achla Bharti Yadav</span> specialises in gentle, pain-free paediatric dentistry for children aged 3–16 years. We offer anxiety-free milk tooth treatments, <span className="text-highlight">preventive sealants, fluoride therapy</span>, and early orthodontic interceptive treatment in a <span className="text-highlight">completely child-friendly and calm environment</span>.</>
+    },
+    {
+      q: 'Do you serve NRI or overseas patients for dental treatment?',
+      a: <>Absolutely. We have served patients from <span className="text-highlight">UAE, UK, USA, Canada, Australia, and 18+ countries</span>. Our team can coordinate your treatment plan by email or WhatsApp before your arrival in India, and schedule all appointments within your stay. We also have <span className="text-highlight">visiting centres in Delhi and Gurugram</span> for added convenience.</>
+    },
+    {
+      q: 'What technology does Shubh Dental Clinic use?',
+      a: <>Shubh Dental Clinic is equipped with <span className="text-highlight">3D CBCT Digital X-Ray Scanner, iTero® 3D digital impressions, AI-powered Digital Smile Design (DSD), Diode laser for gum contouring</span>, hospital-grade autoclave sterilization, and rotary endodontic systems for painless RCTs. Our in-house SkyAlign™ aligner lab also provides same-day aligner fabrication.</>
+    },
+    {
+      q: 'Where is Shubh Orthodontic &amp; Dental Clinic located in Rohtak?',
+      a: <>We are located at <span className="text-highlight">Tilak Nagar, Lane 9 Corner, Opposite Swami Nitanand Public School, Delhi Bypass Road, Rohtak, Haryana 124001</span>. You can search <span className="text-highlight">"Shubh Orthodontic &amp; Dental Clinic" on Google Maps</span> for easy direct navigation. Ample parking is available on premises.</>
+    },
+    {
+      q: 'Do you see patients on Sundays?',
+      a: <>The clinic is open <span className="text-highlight">Monday through Saturday, 9:30 AM – 8:00 PM</span>. Sunday appointments are available <span className="text-highlight">by prior scheduling only</span>. WhatsApp us on +91 8685048414 to book a Sunday slot with advance notice.</>
+    },
   ];
 
   return (
@@ -56,11 +89,14 @@ export default function FAQSection() {
         {/* Accordion List */}
         <StaggerReveal className="faq-list" stagger={0.08} delay={0.1}>
           {faqs.map((faq, idx) => {
+            // On mobile, hide FAQs beyond index 4 if not showAll
+            const isHiddenMobile = !showAll && idx > 4;
+            
             const isOpen = openIndex === idx;
             return (
               <StaggerItem
                 key={idx}
-                className={`faq-item ${isOpen ? 'faq-item-open' : ''}`}
+                className={`faq-item ${isOpen ? 'faq-item-open' : ''} ${isHiddenMobile ? 'mobile-hidden' : ''}`}
                 variant="fadeUp"
               >
                 <button
@@ -91,6 +127,17 @@ export default function FAQSection() {
             );
           })}
         </StaggerReveal>
+
+        {/* Mobile Show More Button */}
+        {!showAll && faqs.length > 5 && (
+          <div className="mobile-faq-show-more">
+            <button onClick={() => setShowAll(true)} className="btn-show-more-faq">
+              Show All {faqs.length} FAQs <ChevronDown size={14} />
+            </button>
+          </div>
+        )}
+
+
 
       </div>
 
@@ -220,6 +267,105 @@ export default function FAQSection() {
           .faq-q-text {
             font-size: 0.95rem;
           }
+          .faq-cta-bar { flex-direction: column; text-align: center; gap: 1.5rem; }
+          .faq-cta-actions { justify-content: center; }
+        }
+
+        /* FAQ CTA BAR */
+        .faq-cta-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 2rem;
+          margin-top: 3rem;
+          background: linear-gradient(135deg, #110805 0%, #2A150B 100%);
+          border-radius: 20px;
+          padding: 1.75rem 2rem;
+          border: 1px solid rgba(214, 122, 65, 0.25);
+          box-shadow: 0 20px 50px rgba(17,8,5,0.15);
+          flex-wrap: wrap;
+        }
+        .faq-cta-text {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          flex: 1;
+          min-width: 200px;
+        }
+        .faq-cta-emoji { font-size: 2rem; flex-shrink: 0; }
+        .faq-cta-title {
+          font-family: var(--font-heading);
+          font-size: 1.1rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin-bottom: 0.2rem;
+        }
+        .faq-cta-sub {
+          font-size: 0.85rem;
+          color: rgba(255,255,255,0.65);
+        }
+        .faq-cta-actions {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+          flex-shrink: 0;
+        }
+        .faq-btn-wa {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: linear-gradient(135deg, #25D366 0%, #1DA851 100%);
+          color: #fff;
+          padding: 0.85rem 1.5rem;
+          border-radius: 12px;
+          font-family: var(--font-heading);
+          font-size: 0.9rem;
+          font-weight: 800;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          box-shadow: 0 8px 20px rgba(37,211,102,0.3);
+        }
+        .faq-btn-wa:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(37,211,102,0.45); }
+        .faq-btn-call {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: rgba(255,255,255,0.1);
+          color: #FFFFFF;
+          border: 1.5px solid rgba(255,255,255,0.2);
+          padding: 0.85rem 1.5rem;
+          border-radius: 12px;
+          font-family: var(--font-heading);
+          font-size: 0.9rem;
+          font-weight: 700;
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+        .faq-btn-call:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+        /* Mobile Show More Logic */
+        .mobile-hidden { display: none !important; }
+        .mobile-faq-show-more {
+          text-align: center;
+          margin: 1.5rem 0 2rem;
+        }
+        .btn-show-more-faq {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: rgba(214, 122, 65, 0.08);
+          border: 1px solid rgba(214, 122, 65, 0.2);
+          color: #B85922;
+          padding: 0.75rem 1.5rem;
+          border-radius: 99px;
+          font-family: var(--font-heading);
+          font-size: 0.9rem;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        .btn-show-more-faq:hover {
+          background: rgba(214, 122, 65, 0.15);
         }
       `}} />
     </section>

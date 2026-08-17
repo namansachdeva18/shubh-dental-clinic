@@ -1,33 +1,18 @@
 import './globals.css';
 import './mobile.css';
-import { Outfit, Inter, Space_Grotesk } from 'next/font/google';
+// Fonts removed from next/font/google due to download failures causing CSS build crashes.
+// Fonts are now imported via standard @import in globals.css.
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import InteractiveBackground from './components/InteractiveBackground';
 import BookingModal from './components/BookingModal';
 import SplashScreen from './components/SplashScreen';
+import WhatsAppFAB from './components/WhatsAppFAB';
+import StickyMobileActionBar from './components/StickyMobileActionBar';
 import { Providers } from './providers';
 
-const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-heading',
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
-});
+// Font variables removed – fonts are applied globally via globals.css
 
 export const metadata = {
   metadataBase: new URL('https://www.shubhdentalclinicrohtak.in'),
@@ -35,8 +20,8 @@ export const metadata = {
     default: 'Shubh Orthodontic & Dental Clinic | Best Orthodontist & Dentist in Rohtak',
     template: '%s | Shubh Orthodontic & Dental Clinic Rohtak',
   },
-  description: 'Prof. Dr. S. K. Yadav — MDS Orthodontics, Ex-PGI Chandigarh, Certified Invisalign Provider. 5,000+ braces cases, dental implants, smile makeovers in Rohtak, Haryana. Also available in Delhi, Gurgaon, Panipat.',
-  keywords: ['orthodontist rohtak', 'dentist rohtak', 'invisalign rohtak', 'dental implants rohtak', 'braces rohtak', 'lingual braces haryana', 'teeth whitening rohtak', 'smile makeover rohtak', 'Dr SK Yadav orthodontist'],
+  description: 'Best Orthodontist & Dental Clinic in Rohtak, Haryana. Prof. Dr. S. K. Yadav — MDS Orthodontics, Ex-PGI Chandigarh, Certified Invisalign & SkyAlign™ Provider, Fellow WFO USA. 5,000+ braces & clear aligner cases. Dental implants, smile makeovers, kids dentistry. Visiting centres in Delhi, Gurugram, Panipat & Sonepat.',
+  keywords: ['best orthodontist rohtak', 'dentist rohtak', 'invisalign rohtak', 'skyalign rohtak', 'dental implants rohtak', 'braces rohtak haryana', 'same day implants rohtak', 'clear aligners rohtak', 'smile makeover rohtak', 'lingual braces haryana', 'teeth whitening rohtak', 'Dr SK Yadav orthodontist', 'dental clinic rohtak', 'dental tourism rohtak', 'NRI dental care haryana'],
   authors: [{ name: 'Prof. Dr. S. K. Yadav', url: 'https://www.shubhdentalclinicrohtak.in/doctors/dr-sk-yadav' }],
   creator: 'Shubh Orthodontic and Dental Clinic',
   publisher: 'Shubh Orthodontic and Dental Clinic',
@@ -87,11 +72,12 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en">
       <head>
         {/* Resource Hints — These tell the browser to connect to external servers early */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <link rel="dns-prefetch" href="https://maps.gstatic.com" />
         {/* Favicons */}
@@ -118,6 +104,7 @@ export default function RootLayout({ children }) {
           <main id="main-content">{children}</main>
           <Footer />
           <BookingModal />
+          <WhatsAppFAB />
         </Providers>
       </body>
     </html>

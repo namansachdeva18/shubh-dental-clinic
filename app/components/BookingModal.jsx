@@ -415,7 +415,7 @@ export default function BookingModal() {
               background: #FFFFFF;
               border: 1px solid rgba(0,0,0,0.1);
               border-radius: 16px;
-              font-family: var(--font-space-grotesk);
+              font-family: var(--font-body);
               font-size: 1rem;
               color: #1A0C06;
               font-weight: 600;

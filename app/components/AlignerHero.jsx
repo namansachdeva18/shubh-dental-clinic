@@ -184,27 +184,27 @@ export default function AlignerHero() {
       <div className="scanner-bg-wrapper">
         <div className="scanner-grid grid-top"></div>
         <div className="scanner-grid grid-bottom"></div>
-        <div className="scanner-laser"></div>
+        <div className="scanner-laser hide-mobile"></div>
         
         {/* Animated Glow Halo Orbs */}
         <div className="bg-glow-orb orb-gold-1" />
-        <div className="bg-glow-orb orb-gold-2" />
+        <div className="bg-glow-orb orb-gold-2 hide-mobile" />
 
-        {/* Rotating Vector Graphic Circles */}
-        <div className="bg-graphic-ring ring-1" aria-hidden="true">
+        {/* Rotating Vector Graphic Circles - Desktop Only */}
+        <div className="bg-graphic-ring ring-1 hide-mobile" aria-hidden="true">
           <svg viewBox="0 0 200 200" fill="none">
             <circle cx="100" cy="100" r="90" stroke="rgba(214, 122, 65, 0.6)" strokeWidth="2" strokeDasharray="10 6" />
             <circle cx="100" cy="100" r="70" stroke="rgba(234, 167, 124, 0.5)" strokeWidth="1.5" />
           </svg>
         </div>
-        <div className="bg-graphic-ring ring-2" aria-hidden="true">
+        <div className="bg-graphic-ring ring-2 hide-mobile" aria-hidden="true">
           <svg viewBox="0 0 200 200" fill="none">
             <circle cx="100" cy="100" r="85" stroke="rgba(214, 122, 65, 0.55)" strokeWidth="1.8" strokeDasharray="14 10" />
             <circle cx="100" cy="100" r="55" stroke="rgba(234, 167, 124, 0.4)" strokeWidth="1.5" />
           </svg>
         </div>
 
-        <div className="point-cloud">
+        <div className="point-cloud hide-mobile">
           {Array.from({ length: 30 }, (_, i) => (
             <div key={i} className="point-particle" style={{
               left: `${(i * 19 + 5) % 95}%`,
@@ -220,16 +220,17 @@ export default function AlignerHero() {
       <div className="container" style={{ position: 'relative', zIndex: 10 }}>
         
         {/* Main Header */}
-        <div className="section-header text-center" style={{ maxWidth: '850px', margin: '0 auto 3.5rem' }}>
-          <div className="section-badge badge-gold" style={{ display: 'inline-flex', gap: '0.5rem', marginBottom: '1rem' }}>
+        <div className="section-header text-center aligner-main-header">
+          <div className="section-badge badge-gold" style={{ display: 'inline-flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
             <Sparkles size={15} />
-            Haryana&apos;s Premier Certified Invisalign® &amp; SkyAlign™ Center
+            Certified Invisalign® &amp; SkyAlign™ Provider — Rohtak
           </div>
-          <h2 style={{ fontSize: 'clamp(2.2rem, 4vw, 3.4rem)', color: '#fff', fontWeight: 800, lineHeight: 1.15, marginBottom: '1.25rem' }}>
-            Straighten Your Teeth <span className="text-gradient-copper">Completely Invisibly</span>
+          <h2 className="aligner-section-title">
+            Invisalign® &amp; Clear Aligners in Rohtak —{' '}
+            <span className="text-gradient-copper">Invisible Teeth Straightening</span>
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.1rem', lineHeight: 1.7 }}>
-            Over <strong>11,000+ clear aligner transformations</strong> completed by <strong>Prof. Dr. S. K. Yadav</strong>. Choose between our in-house <strong>SkyAlign™</strong> aligners or the global standard <strong>Invisalign®</strong>.
+          <p className="aligner-section-desc">
+            Over <strong>5,000+ clear aligner transformations</strong> completed by <strong>Prof. Dr. S. K. Yadav</strong>. Choose between in-house <strong>SkyAlign™</strong> aligners or <strong>Invisalign®</strong>.
           </p>
         </div>
 
@@ -257,12 +258,12 @@ export default function AlignerHero() {
         </div>
 
         {/* 1. ALL ALIGNER TYPES TABS */}
-        <div style={{ marginTop: '4rem', marginBottom: '4rem' }}>
+        <div className="aligner-systems-container">
           <div className="aligner-type-header">
-            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>
+            <h3 className="aligner-type-heading">
               Our Clear Aligner Systems &amp; Packages
             </h3>
-            <span style={{ fontSize: '0.9rem', color: 'var(--accent-gold-light)' }}>
+            <span className="aligner-type-hint">
               Select a system to compare features, pricing &amp; timeline:
             </span>
           </div>
@@ -275,10 +276,10 @@ export default function AlignerHero() {
                 onClick={() => setSelectedType(type.id)}
                 className={`aligner-pill-btn ${selectedType === type.id ? 'active-pill' : ''}`}
               >
-                <div style={{ fontWeight: 800, fontSize: '1.05rem', color: selectedType === type.id ? '#fff' : 'rgba(255,255,255,0.85)' }}>
-                  {type.name}
+                <div className="pill-name">
+                  {type.name.split(' ')[0]}
                 </div>
-                <div style={{ fontSize: '0.78rem', color: selectedType === type.id ? 'var(--accent-gold-light)' : 'rgba(255,255,255,0.5)', marginTop: '0.2rem' }}>
+                <div className="pill-sub hide-mobile">
                   {type.subtitle}
                 </div>
               </button>
@@ -296,29 +297,29 @@ export default function AlignerHero() {
               className="aligner-detail-box"
             >
               <div className="aligner-detail-left">
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+                <div className="detail-top-row">
                   <div className="pill-badge pill-gold" style={{ width: 'fit-content', margin: 0 }}>
                     {activeAligner.badge}
                   </div>
                   {activeAligner.logo && (
-                    <div style={{ position: 'relative', width: '200px', height: '60px', flexShrink: 0 }}>
+                    <div className="detail-logo-wrap hide-mobile">
                       <Image src={activeAligner.logo} alt={activeAligner.name} fill style={{ objectFit: 'contain', objectPosition: 'right' }} />
                     </div>
                   )}
                 </div>
-                <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.8rem', color: '#fff', fontWeight: 800, marginBottom: '0.5rem' }}>
+                <h4 className="detail-system-name">
                   {activeAligner.name}
                 </h4>
-                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.05rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                <p className="detail-system-tagline">
                   {activeAligner.tagline}
                 </p>
 
-                <div style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-gold-light)', fontWeight: 800, marginBottom: '0.8rem' }}>
+                <div className="detail-advantages-label">
                   Key Advantages:
                 </div>
                 <ul className="aligner-feature-list">
-                  {activeAligner.features.map((feat, idx) => (
-                    <li key={idx}>
+                  {activeAligner.features.slice(0, 4).map((feat, idx) => (
+                    <li key={idx} className={idx >= 3 ? 'hide-mobile' : ''}>
                       <CheckCircle2 size={18} style={{ color: 'var(--accent-gold)', flexShrink: 0 }} />
                       <span>{feat}</span>
                     </li>
@@ -328,10 +329,11 @@ export default function AlignerHero() {
 
               <div className="aligner-detail-right">
                 <div className="aligner-spec-card">
-                  <div className="spec-label">Ideal Candidates</div>
-                  <div className="spec-val">{activeAligner.idealFor}</div>
-                  
-                  <div className="spec-divider"></div>
+                  <div className="hide-mobile">
+                    <div className="spec-label">Ideal Candidates</div>
+                    <div className="spec-val">{activeAligner.idealFor}</div>
+                    <div className="spec-divider"></div>
+                  </div>
                   
                   <div className="spec-row">
                     <div>
@@ -344,7 +346,7 @@ export default function AlignerHero() {
                     </div>
                   </div>
 
-                  <Link href="#book" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: '1.5rem', textAlign: 'center' }}>
+                  <Link href="#book" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: '1.25rem', textAlign: 'center' }}>
                     <span className="hide-mobile">Reserve {activeAligner.name.split(' ')[0]} Consultation</span>
                     <span className="show-mobile">Reserve Consultation</span>
                   </Link>
@@ -354,8 +356,8 @@ export default function AlignerHero() {
           </AnimatePresence>
         </div>
 
-        {/* 2. CLINICAL RESULTS & BEFORE/AFTER SECTION */}
-        <div className="aligner-results-wrapper">
+        {/* 2. CLINICAL RESULTS & BEFORE/AFTER SECTION - DESKTOP SHOWCASE (HIDDEN ON MOBILE TO PREVENT REDUNDANCY) */}
+        <div className="aligner-results-wrapper hide-mobile">
           <div className="results-left">
             <div className="section-badge badge-gold" style={{ width: 'fit-content', marginBottom: '0.75rem' }}>
               📸 Clinical Verification
@@ -418,79 +420,6 @@ export default function AlignerHero() {
           </div>
         </div>
 
-        {/* 3. PRODUCT & TECHNOLOGY HIGHLIGHTS */}
-        <div style={{ marginTop: '5rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#fff', fontSize: '1.8rem', fontWeight: 800, marginBottom: '0.5rem' }}>
-              Advanced Product &amp; Material Technology
-            </h3>
-            <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.98rem' }}>
-              Every aligner set is digitally simulated with 3D CAD/CAM software to guarantee comfortable, predictable tooth movement.
-            </p>
-          </div>
-
-          <div className="material-grid">
-            {MATERIAL_HIGHLIGHTS.map((mat, i) => {
-              const IconComp = mat.icon;
-              return (
-                <div key={i} className="material-card">
-                  <div className="material-icon-wrap">
-                    <IconComp size={24} />
-                  </div>
-                  <h4 style={{ color: '#fff', fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.4rem' }}>{mat.title}</h4>
-                  <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>{mat.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* 4. MULTI-CITY CONSULTATION BANNER & CREATIVE LOCATION CARDS */}
-        <div className="multi-city-section" style={{ marginTop: '5rem' }}>
-          <div className="multi-city-header" style={{ marginBottom: '2.5rem', textAlign: 'center' }}>
-            <div style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-gold-light)', fontWeight: 800, marginBottom: '0.5rem' }}>
-              Orthodontic Consultations Beyond Rohtak
-            </div>
-            <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', color: '#fff', fontWeight: 800, marginBottom: '0.75rem' }}>
-              Visiting Centres Across <span className="text-gradient-copper">Haryana &amp; NCR</span>
-            </h4>
-            <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1rem', maxWidth: '650px', margin: '0 auto', lineHeight: 1.6 }}>
-              Prof. Dr. S. K. Yadav offers specialized clear aligner consultations by prior appointment at the following premier visiting centers:
-            </p>
-          </div>
-
-          <div className="location-cards-grid">
-            {LOCATION_CENTRES.map((loc, i) => (
-              <div key={i} className={`location-creative-card ${loc.main ? 'location-card-main' : ''}`}>
-                <div className="loc-card-header">
-                  <span className="loc-badge">{loc.badge}</span>
-                  <div className="loc-pulse-dot-wrap">
-                    <span className="loc-pulse-dot" />
-                  </div>
-                </div>
-
-                <h5 className="loc-title">{loc.name}</h5>
-                <div className="loc-clinic-name">{loc.clinic}</div>
-                <div className="loc-address-box">
-                  <MapPin size={15} className="loc-pin-icon" />
-                  <span>{loc.address}</span>
-                </div>
-                
-                <div className="loc-status-row">
-                  <span className="loc-live-indicator" />
-                  <span>Appointments Available</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-            <Link href="#book" className="btn btn-gold" style={{ display: 'inline-flex', padding: '1rem 2.2rem', fontSize: '1rem', gap: '0.6rem', textAlign: 'center' }}>
-              <span className="hide-mobile">Book Priority Aligner Scan in Your City</span>
-              <span className="show-mobile">Book Priority Scan</span> <ArrowRight size={18} />
-            </Link>
-          </div>
-        </div>
 
       </div>
 
@@ -499,7 +428,7 @@ export default function AlignerHero() {
           background: #0A0705;
           position: relative;
           overflow: hidden;
-          padding: 6rem 0;
+          padding: 5rem 0;
         }
 
         /* 3D SCANNER BACKGROUND */
@@ -624,6 +553,24 @@ export default function AlignerHero() {
           z-index: 3;
         }
 
+        /* HEADER */
+        .aligner-main-header {
+          max-width: 850px;
+          margin: 0 auto 3rem;
+        }
+        .aligner-section-title {
+          font-size: clamp(2rem, 3.8vw, 3.2rem);
+          color: #fff;
+          font-weight: 800;
+          line-height: 1.15;
+          margin-bottom: 1rem;
+        }
+        .aligner-section-desc {
+          color: rgba(255,255,255,0.8);
+          font-size: 1.05rem;
+          line-height: 1.7;
+        }
+
         /* STATS BANNER STRIP */
         .aligner-stats-banner {
           display: flex;
@@ -659,6 +606,10 @@ export default function AlignerHero() {
         }
 
         /* ALIGNER TYPE SELECTION */
+        .aligner-systems-container {
+          margin-top: 3.5rem;
+          margin-bottom: 3.5rem;
+        }
         .aligner-type-header {
           display: flex;
           justify-content: space-between;
@@ -666,6 +617,16 @@ export default function AlignerHero() {
           margin-bottom: 1.5rem;
           flex-wrap: wrap;
           gap: 1rem;
+        }
+        .aligner-type-heading {
+          font-family: var(--font-heading);
+          color: #fff;
+          font-size: 1.8rem;
+          fontWeight: 800;
+        }
+        .aligner-type-hint {
+          font-size: 0.9rem;
+          color: var(--accent-gold-light);
         }
         .aligner-pills-grid {
           display: grid;
@@ -683,6 +644,22 @@ export default function AlignerHero() {
           transition: all 0.3s ease;
           outline: none;
         }
+        .pill-name {
+          font-weight: 800;
+          font-size: 1.05rem;
+          color: rgba(255,255,255,0.85);
+        }
+        .pill-sub {
+          font-size: 0.78rem;
+          color: rgba(255,255,255,0.5);
+          margin-top: 0.2rem;
+        }
+        .active-pill .pill-name {
+          color: #fff;
+        }
+        .active-pill .pill-sub {
+          color: var(--accent-gold-light);
+        }
         .aligner-pill-btn:hover {
           background: rgba(255, 255, 255, 0.07);
           border-color: rgba(214, 122, 65, 0.4);
@@ -693,6 +670,7 @@ export default function AlignerHero() {
           box-shadow: 0 10px 25px rgba(214, 122, 65, 0.2) !important;
         }
 
+        /* DETAIL CARD */
         .aligner-detail-box {
           display: grid;
           grid-template-columns: 1.2fr 1fr;
@@ -704,7 +682,41 @@ export default function AlignerHero() {
           padding: 3rem;
           box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
-
+        .detail-top-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          flex-wrap: wrap;
+          margin-bottom: 1rem;
+        }
+        .detail-logo-wrap {
+          position: relative;
+          width: 180px;
+          height: 50px;
+          flex-shrink: 0;
+        }
+        .detail-system-name {
+          font-family: var(--font-heading);
+          font-size: 1.8rem;
+          color: #fff;
+          font-weight: 800;
+          margin-bottom: 0.5rem;
+        }
+        .detail-system-tagline {
+          color: rgba(255,255,255,0.8);
+          font-size: 1.05rem;
+          line-height: 1.6;
+          margin-bottom: 1.5rem;
+        }
+        .detail-advantages-label {
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: var(--accent-gold-light);
+          font-weight: 800;
+          margin-bottom: 0.8rem;
+        }
         .aligner-feature-list {
           list-style: none;
           padding: 0; margin: 0;
@@ -758,7 +770,7 @@ export default function AlignerHero() {
           color: var(--accent-gold-light);
         }
 
-        /* CLINICAL RESULTS WRAPPER */
+        /* CLINICAL RESULTS WRAPPER (DESKTOP) */
         .aligner-results-wrapper {
           display: grid;
           grid-template-columns: 1fr 1.1fr;
@@ -825,186 +837,84 @@ export default function AlignerHero() {
           background: rgba(0, 0, 0, 0.6);
         }
 
-        /* MATERIAL HIGHLIGHTS */
-        .material-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.5rem;
-        }
-        .material-card {
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 20px;
-          padding: 1.75rem 1.5rem;
-          transition: all 0.3s ease;
-        }
-        .material-card:hover {
-          background: rgba(255, 255, 255, 0.07);
-          transform: translateY(-4px);
-          border-color: rgba(214, 122, 65, 0.3);
-        }
-        .material-icon-wrap {
-          width: 48px; height: 48px;
-          border-radius: 50%;
-          background: rgba(214, 122, 65, 0.15);
-          color: var(--accent-gold-light);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 1rem;
-        }
-
-        /* MULTI CITY BANNER */
-        .multi-city-banner {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          background: linear-gradient(135deg, rgba(214, 122, 65, 0.15) 0%, rgba(17, 8, 5, 0.95) 100%);
-          border: 1px solid rgba(214, 122, 65, 0.3);
-          border-radius: 24px;
-          padding: 2.5rem 3rem;
-          gap: 2rem;
-        }
-        .city-chips-row {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.6rem;
-        }
-        .city-chip {
-          background: rgba(255, 255, 255, 0.08);
-          color: #fff;
-          font-size: 0.85rem;
-          font-weight: 600;
-          padding: 0.4rem 1rem;
-          border-radius: 20px;
-          border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        /* LOCATION CREATIVE CARDS GRID */
-        .location-cards-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
-        }
-        .location-creative-card {
-          background: rgba(255, 255, 255, 0.03);
-          backdrop-filter: blur(16px);
-          border: 1px solid rgba(214, 122, 65, 0.2);
-          border-radius: 24px;
-          padding: 1.75rem 1.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                      border-color 0.35s ease,
-                      box-shadow 0.35s ease;
-          position: relative;
-          overflow: hidden;
-        }
-        .location-card-main {
-          background: linear-gradient(135deg, rgba(214, 122, 65, 0.18) 0%, rgba(17, 8, 5, 0.95) 100%);
-          border-color: rgba(214, 122, 65, 0.5);
-          box-shadow: 0 15px 35px rgba(214, 122, 65, 0.15);
-        }
-        .location-creative-card:hover {
-          transform: translateY(-6px);
-          border-color: var(--accent-gold);
-          box-shadow: 0 20px 40px rgba(214, 122, 65, 0.25);
-        }
-        .loc-card-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 1rem;
-        }
-        .loc-badge {
-          font-size: 0.75rem;
-          font-weight: 700;
-          color: var(--accent-gold-light);
-          background: rgba(214, 122, 65, 0.12);
-          border: 1px solid rgba(214, 122, 65, 0.25);
-          padding: 0.35rem 0.75rem;
-          border-radius: 20px;
-        }
-        .loc-pulse-dot-wrap {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .loc-pulse-dot {
-          width: 8px; height: 8px;
-          border-radius: 50%;
-          background: var(--accent-gold);
-          box-shadow: 0 0 10px var(--accent-gold);
-          animation: locPulse 2s infinite;
-        }
-        @keyframes locPulse {
-          0%, 100% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.5); opacity: 0.4; }
-        }
-        .loc-title {
-          font-family: var(--font-heading);
-          font-size: 1.25rem;
-          font-weight: 800;
-          color: #ffffff;
-          margin-bottom: 0.25rem;
-        }
-        .loc-clinic-name {
-          font-size: 0.9rem;
-          font-weight: 700;
-          color: var(--accent-gold-light);
-          margin-bottom: 0.75rem;
-        }
-        .loc-address-box {
-          display: flex;
-          align-items: flex-start;
-          gap: 0.5rem;
-          font-size: 0.85rem;
-          color: rgba(255, 255, 255, 0.75);
-          line-height: 1.5;
-          margin-bottom: 1.25rem;
-          background: rgba(0, 0, 0, 0.25);
-          padding: 0.75rem 0.85rem;
-          border-radius: 14px;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .loc-pin-icon {
-          color: var(--accent-gold);
-          flex-shrink: 0;
-          margin-top: 2px;
-        }
-        .loc-status-row {
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-size: 0.75rem;
-          font-weight: 600;
-          color: #4ADE80;
-        }
-        .loc-live-indicator {
-          width: 6px; height: 6px;
-          border-radius: 50%;
-          background: #4ADE80;
-          box-shadow: 0 0 8px #4ADE80;
-        }
-
+        /* =====================================================
+           RESPONSIVE BREAKPOINTS: TABLET & MOBILE
+           ===================================================== */
         @media (max-width: 1024px) {
           .aligner-stats-banner { flex-wrap: wrap; gap: 1.5rem; justify-content: center; padding: 1.5rem; }
           .stat-banner-divider { display: none; }
-          .aligner-pills-grid { grid-template-columns: repeat(2, 1fr); }
+          .aligner-pills-grid { grid-template-columns: repeat(3, 1fr); }
           .aligner-detail-box { grid-template-columns: minmax(0, 1fr); padding: 2rem; }
           .aligner-results-wrapper { grid-template-columns: 1fr; padding: 2rem; }
-          .material-grid { grid-template-columns: repeat(2, 1fr); }
-          .location-cards-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        @media (max-width: 640px) {
-          .aligner-hero-section { padding: 3.5rem 0; }
-          .aligner-pills-grid { grid-template-columns: 1fr; }
-          .aligner-detail-box { padding: 1.5rem; overflow: hidden; }
-          .material-grid { grid-template-columns: 1fr; }
-          .spec-row { grid-template-columns: 1fr; }
-          .location-cards-grid { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+          .aligner-hero-section { padding: 2.25rem 0 !important; }
+          .aligner-main-header { margin-bottom: 1.25rem !important; }
+          .aligner-section-title { font-size: 1.55rem !important; line-height: 1.25 !important; margin-bottom: 0.6rem !important; }
+          .aligner-section-desc { font-size: 0.88rem !important; line-height: 1.5 !important; }
+
+          /* Stats banner on mobile: compact 2x2 grid */
+          .aligner-stats-banner {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            padding: 0.85rem 1rem !important;
+            gap: 0.75rem !important;
+            border-radius: 16px !important;
+            margin-bottom: 1.5rem !important;
+          }
+          .stat-banner-divider { display: none !important; }
+          .stat-banner-item { border: none !important; padding: 0 !important; text-align: center !important; }
+          .stat-banner-val { font-size: 1.35rem !important; }
+          .stat-banner-lbl { font-size: 0.65rem !important; margin-top: 0.15rem !important; }
+
+          /* Aligner systems container */
+          .aligner-systems-container { margin-top: 1.5rem !important; margin-bottom: 1.5rem !important; }
+          .aligner-type-header { margin-bottom: 0.75rem !important; }
+          .aligner-type-heading { font-size: 1.25rem !important; }
+          .aligner-type-hint { display: none !important; }
+
+          /* Horizontal scroll pill track */
+          .aligner-pills-grid {
+            display: flex !important;
+            flex-direction: row !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            scrollbar-width: none !important;
+            gap: 0.5rem !important;
+            padding-bottom: 4px !important;
+            margin-bottom: 0.85rem !important;
+          }
+          .aligner-pills-grid::-webkit-scrollbar { display: none; }
+          .aligner-pill-btn {
+            flex-shrink: 0 !important;
+            white-space: nowrap !important;
+            padding: 0.6rem 0.9rem !important;
+            border-radius: 12px !important;
+          }
+          .pill-name { font-size: 0.85rem !important; font-weight: 700 !important; }
+
+          /* Compact detail box */
+          .aligner-detail-box {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+            padding: 1.15rem !important;
+            border-radius: 16px !important;
+          }
+          .detail-system-name { font-size: 1.25rem !important; margin-bottom: 0.3rem !important; }
+          .detail-system-tagline { font-size: 0.82rem !important; line-height: 1.4 !important; margin-bottom: 0.85rem !important; }
+          .detail-advantages-label { font-size: 0.72rem !important; margin-bottom: 0.4rem !important; }
+          .aligner-feature-list { gap: 0.5rem !important; }
+          .aligner-feature-list li { font-size: 0.8rem !important; gap: 0.45rem !important; }
+
+          .aligner-spec-card {
+            padding: 0.85rem 1rem !important;
+            border-radius: 12px !important;
+          }
+          .spec-row { gap: 0.5rem !important; }
+          .spec-label { font-size: 0.65rem !important; }
+          .spec-highlight { font-size: 1rem !important; }
+
           .hide-mobile { display: none !important; }
           .show-mobile { display: inline !important; }
         }
