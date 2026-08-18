@@ -35,6 +35,7 @@ export default function Footer() {
               <img src="/wfo-logo.png" alt="World Federation of Orthodontists" className="footer-logo-img" />
               <img src="/invisalign-logo.png" alt="Certified Invisalign Provider" className="footer-logo-img" />
               <img src="/damon-logo.png" alt="Damon Braces Provider" className="footer-logo-img" />
+              <img src="/osstem-implant.jpeg" alt="Osstem Implant System Certified" className="footer-logo-img" />
             </div>
           </StaggerItem>
 
@@ -183,8 +184,8 @@ export default function Footer() {
           display: flex;
           align-items: center;
           gap: 10px;
-          margin-top: 1.8rem;
-          flex-wrap: wrap;
+          margin-top: 1.25rem;
+          width: 100%;
         }
 
         .footer-logo-img {
@@ -193,8 +194,8 @@ export default function Footer() {
           object-fit: contain;
           background: #FFFFFF;
           padding: 4px 6px;
-          border-radius: 6px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          border-radius: 8px;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.15);
           transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
         }
 
@@ -297,8 +298,72 @@ export default function Footer() {
         }
 
         @media (max-width: 576px) {
+          .footer-root {
+            padding: 2rem 0.85rem 1rem !important;
+          }
           .footer-top-grid {
             grid-template-columns: 1fr;
+            gap: 1.25rem !important;
+          }
+          .footer-brand-header {
+            gap: 0.65rem !important;
+            margin-bottom: 0.5rem !important;
+          }
+          .footer-brand-header img {
+            width: 36px !important;
+            height: 36px !important;
+          }
+          .footer-brand-header span:nth-child(1) {
+            font-size: 0.72rem !important;
+          }
+          .footer-brand-header span:nth-child(2) {
+            font-size: 1.15rem !important;
+          }
+          .footer-brand-header span:nth-child(3) {
+            font-size: 0.7rem !important;
+          }
+          .footer-brand-desc {
+            font-size: 0.76rem !important;
+            line-height: 1.45 !important;
+            margin-bottom: 0.65rem !important;
+          }
+          .footer-open-pill {
+            font-size: 0.68rem !important;
+            padding: 0.22rem 0.65rem !important;
+            margin-bottom: 0.5rem !important;
+          }
+          .footer-logos-row {
+            display: grid !important;
+            grid-template-columns: repeat(5, 1fr) !important;
+            gap: 0.3rem !important;
+            width: 100% !important;
+            margin-top: 0.5rem !important;
+          }
+          .footer-logo-img {
+            width: 100% !important;
+            height: 30px !important;
+            padding: 2px 3px !important;
+            border-radius: 6px !important;
+          }
+          .footer-col-title {
+            margin-bottom: 0.65rem !important;
+            font-size: 0.74rem !important;
+          }
+          .footer-links-list {
+            gap: 0.45rem !important;
+          }
+          .footer-links-list a, .footer-links-list span {
+            font-size: 0.78rem !important;
+          }
+          .footer-contact-items {
+            gap: 0.55rem !important;
+          }
+          .contact-item {
+            font-size: 0.76rem !important;
+          }
+          .footer-bottom-bar {
+            padding-top: 1.25rem !important;
+            font-size: 0.7rem !important;
           }
         }
       `}} />

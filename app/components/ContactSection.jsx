@@ -195,7 +195,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h4 className="hud-name font-heading">Shubh Dental Clinic</h4>
-                  <span className="hud-stars">⭐ 5.0 Rating · 114+ Google Reviews</span>
+                  <span className="hud-stars">⭐ 5.0 Rating · Verified Google Reviews</span>
                 </div>
               </div>
 
@@ -263,8 +263,8 @@ export default function ContactSection() {
                   <iframe
                     title="Shubh Orthodontic & Dental Clinic Google Maps Location"
                     src={mapMode === 'satellite' 
-                      ? "https://maps.google.com/maps?q=Shubh%20Orthodontic%20%26%20Dental%20Clinic%20Rohtak&t=k&z=17&ie=UTF8&iwloc=near&output=embed"
-                      : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3493.5356910609346!2d76.6044113!3d28.8955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d8526ff0b9379%3A0xb15b60e3947148d7!2sShubh%20Orthodontic%20%26%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                      ? "https://maps.google.com/maps?q=28.8955,76.6044113&t=k&z=17&ie=UTF8&iwloc=&output=embed"
+                      : "https://maps.google.com/maps?q=28.8955,76.6044113&t=m&z=17&ie=UTF8&iwloc=&output=embed"
                     }
                     width="100%"
                     height="100%"
@@ -881,22 +881,98 @@ export default function ContactSection() {
         }
         @media (max-width: 640px) {
           .contact-section-wrapper {
-            padding: 3rem 1rem 4.5rem !important;
+            padding: 1.5rem 0.75rem 2rem !important;
+          }
+          .contact-header {
+            margin-bottom: 1.15rem !important;
+          }
+          .contact-badge {
+            margin-bottom: 0.5rem !important;
+            padding: 0.25rem 0.75rem !important;
+            font-size: 0.68rem !important;
+          }
+          .contact-title {
+            font-size: 1.45rem !important;
+            margin-bottom: 0.4rem !important;
+          }
+          .contact-subtitle {
+            font-size: 0.8rem !important;
+            line-height: 1.4 !important;
+          }
+          .contact-details-col {
+            gap: 0.65rem !important;
           }
           .contact-info-card {
-            padding: 1.25rem 1rem !important;
-            border-radius: 20px !important;
+            padding: 0.75rem 0.85rem !important;
+            border-radius: 14px !important;
+            gap: 0.65rem !important;
+            align-items: center !important;
           }
-          .contact-actions-row {
-            grid-template-columns: 1fr !important;
+          .card-icon-wrap {
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 10px !important;
+          }
+          .card-icon-wrap svg {
+            width: 16px !important;
+            height: 16px !important;
+          }
+          .card-info-header {
+            margin-bottom: 0.15rem !important;
+          }
+          .card-info-title {
+            font-size: 0.86rem !important;
+          }
+          .btn-copy-address {
+            padding: 0.15rem 0.45rem !important;
+            font-size: 0.65rem !important;
+          }
+          .card-info-text {
+            font-size: 0.76rem !important;
+            line-height: 1.35 !important;
+          }
+          .card-action-links {
+            margin-top: 0.35rem !important;
+          }
+          .btn-map-directions {
+            font-size: 0.74rem !important;
+          }
+          .phone-numbers-list {
+            gap: 0.15rem !important;
+            margin: 0.2rem 0 !important;
+          }
+          .phone-item {
+            font-size: 0.78rem !important;
+          }
+          .phone-label {
+            font-size: 0.7rem !important;
+          }
+          .email-sub-box {
+            margin-top: 0.35rem !important;
+            padding-top: 0.35rem !important;
+            font-size: 0.76rem !important;
+          }
+          .live-open-pill {
+            padding: 0.12rem 0.45rem !important;
+            font-size: 0.64rem !important;
+          }
+          .contact-actions-grid, .contact-actions-row {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 0.5rem !important;
+          }
+          .cs-btn-action-call, .cs-btn-action-wa {
+            padding: 0.65rem 0.8rem !important;
+            font-size: 0.78rem !important;
+            border-radius: 12px !important;
           }
           .innovative-map-showcase {
-            padding: 0.85rem !important;
-            border-radius: 24px !important;
+            padding: 0.75rem !important;
+            border-radius: 18px !important;
           }
           .map-hud-header {
             flex-direction: column !important;
             align-items: flex-start !important;
+            gap: 0.5rem !important;
           }
           .map-view-pills {
             width: 100% !important;
@@ -905,13 +981,18 @@ export default function ContactSection() {
           .view-pill {
             flex: 1 !important;
             justify-content: center !important;
+            font-size: 0.7rem !important;
+            padding: 0.28rem 0.5rem !important;
           }
           .map-bottom-cta-strip {
             flex-direction: column !important;
             align-items: stretch !important;
+            gap: 0.4rem !important;
           }
           .btn-strip-navigate {
             justify-content: center !important;
+            font-size: 0.74rem !important;
+            padding: 0.4rem 0.8rem !important;
           }
         }
       `}} />

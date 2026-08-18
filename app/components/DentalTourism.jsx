@@ -593,28 +593,9 @@ export default function DentalTourism() {
             padding: 0.05rem 0.35rem !important;
           }
 
-          /* Compact CTA */
+          /* Compact CTA hidden on mobile view */
           .dt-cta-compact {
-            padding: 1.25rem 1rem !important;
-            border-radius: 16px !important;
-            gap: 1rem !important;
-          }
-          .dt-cta-prompt {
-            font-size: 0.95rem !important;
-          }
-          .dt-cta-subtext {
-            font-size: 0.75rem !important;
-          }
-          .dt-cta-compact-btns {
-            flex-direction: column !important;
-            gap: 0.5rem !important;
-            width: 100% !important;
-          }
-          .dt-btn-action-primary, .dt-btn-action-wa {
-            width: 100% !important;
-            justify-content: center !important;
-            padding: 0.75rem 1rem !important;
-            font-size: 0.82rem !important;
+            display: none !important;
           }
         }
       `}} />

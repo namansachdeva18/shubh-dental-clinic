@@ -184,7 +184,7 @@ export default function Hero() {
                     5.0<span className="hs-stat-star">★</span>
                   </div>
                   <div className="hs-stat-label">CLINIC RATING</div>
-                  <div className="hs-stat-sub">114+ Verified 5★ Reviews</div>
+                  <div className="hs-stat-sub">Verified 5★ Google Reviews</div>
                 </div>
                 <div className="hs-stat-shine" />
               </div>

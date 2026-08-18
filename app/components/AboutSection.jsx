@@ -320,25 +320,7 @@ export default function AboutSection() {
         /* ── RESPONSIVE MOBILE ───────────────────────── */
         @media (max-width: 768px) {
           .wcu-section {
-            padding: 3.5rem 1.2rem;
-          }
-          .wcu-header {
-            margin-bottom: 2rem;
-          }
-          .wcu-cards-grid {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-          }
-          .wcu-card {
-            padding: 1.5rem;
-            border-radius: 20px;
-          }
-          .wcu-card-title {
-            font-size: 1.08rem;
-          }
-          .wcu-card-detail {
-            font-size: 0.86rem;
-            margin-bottom: 1.15rem;
+            display: none !important;
           }
         }
       `}} />

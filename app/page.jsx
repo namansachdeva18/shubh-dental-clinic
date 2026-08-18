@@ -132,8 +132,8 @@ export default function HomePage() {
 
       {/* 1. FLAGSHIP SPECIALIZATIONS */}
       <AlignerHero />
-      <ImplantsHero />
       <KidsDentistry />
+      <ImplantsHero />
 
       {/* 2. COMPREHENSIVE ALL-TREATMENT DIRECTORY */}
       <TreatmentNavigator />

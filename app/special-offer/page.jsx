@@ -226,7 +226,7 @@ export default function SpecialOfferPage() {
               </div>
               <div className="trust-chip">
                 <Star size={14} className="chip-icon gold" />
-                <span>5.0-Star Google Rating (114+ Reviews)</span>
+                <span>5.0-Star Google Rating (Verified Reviews)</span>
               </div>
               <div className="trust-chip">
                 <Award size={14} className="chip-icon" />

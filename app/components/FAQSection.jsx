@@ -6,7 +6,7 @@ import { accordionContent } from '../lib/motion';
 import ScrollReveal, { StaggerReveal, StaggerItem } from './ScrollReveal';
 
 export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(-1);
   const [showAll, setShowAll] = useState(false);
 
   const faqs = [
@@ -264,15 +264,79 @@ export default function FAQSection() {
         }
 
         @media (max-width: 768px) {
-          .faq-section-wrapper { padding: 3.5rem 1.5rem; }
+          .faq-section-wrapper { padding: 1.25rem 0.85rem !important; }
+          .faq-header { margin-bottom: 1rem !important; }
+          .faq-badge {
+            padding: 0.25rem 0.75rem !important;
+            font-size: 0.68rem !important;
+            margin-bottom: 0.5rem !important;
+          }
           .faq-title {
-            font-size: 1.85rem;
+            font-size: 1.45rem !important;
+            margin-bottom: 0.35rem !important;
+          }
+          .faq-subtitle {
+            font-size: 0.78rem !important;
+            line-height: 1.4 !important;
+          }
+          .faq-list {
+            gap: 0.5rem !important;
+          }
+          .faq-item {
+            border-radius: 14px !important;
+          }
+          .faq-question-btn {
+            padding: 0.85rem 0.95rem !important;
+            gap: 0.6rem !important;
           }
           .faq-q-text {
-            font-size: 0.95rem;
+            font-size: 0.86rem !important;
+            line-height: 1.3 !important;
           }
-          .faq-cta-bar { flex-direction: column; text-align: center; gap: 1.5rem; }
-          .faq-cta-actions { justify-content: center; }
+          .faq-chevron-wrap {
+            width: 26px !important;
+            height: 26px !important;
+          }
+          .faq-chevron-wrap svg {
+            width: 14px !important;
+            height: 14px !important;
+          }
+          .faq-answer-body {
+            padding: 0 0.95rem 0.95rem !important;
+            padding-top: 0.65rem !important;
+          }
+          .faq-answer-body p {
+            font-size: 0.78rem !important;
+            line-height: 1.5 !important;
+          }
+          .text-highlight {
+            padding: 0.1rem 0.35rem !important;
+            border-radius: 5px !important;
+            font-size: 0.76rem !important;
+          }
+          .faq-cta-bar { 
+            margin-top: 1.25rem !important;
+            padding: 1rem 0.85rem !important;
+            border-radius: 14px !important;
+            flex-direction: column !important; 
+            text-align: center !important; 
+            gap: 0.85rem !important; 
+          }
+          .faq-cta-emoji { font-size: 1.5rem !important; }
+          .faq-cta-title { font-size: 0.95rem !important; }
+          .faq-cta-sub { font-size: 0.76rem !important; }
+          .faq-cta-actions { 
+            justify-content: center !important; 
+            width: 100% !important;
+            gap: 0.5rem !important;
+          }
+          .faq-btn-wa, .faq-btn-call {
+            padding: 0.6rem 1rem !important;
+            font-size: 0.78rem !important;
+            border-radius: 10px !important;
+            flex: 1 !important;
+            justify-content: center !important;
+          }
         }
 
         /* FAQ CTA BAR */

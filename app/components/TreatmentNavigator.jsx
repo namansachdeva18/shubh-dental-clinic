@@ -2,114 +2,108 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, Sparkle, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Sparkles, ArrowRight, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 
 const CATEGORIES = ['All', 'Orthodontics', 'Implants', 'Cosmetic', 'General & Surgery'];
 
-// Custom Bespoke Vector SVG Illustrations
+// Bespoke Luxury Animated SVG Icons
 const VectorIcons = {
-  braces: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" />
-      <path d="M4 11h16" />
-      <rect x="6.5" y="9.5" width="2" height="3" />
-      <rect x="11" y="9.5" width="2" height="3" />
-      <rect x="15.5" y="9.5" width="2" height="3" />
+  braces: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" stroke="#D67A41" />
+      <path d="M4 11h16" stroke="#F4B382" />
+      <rect x="6.5" y="9.5" width="2" height="3" fill="#D67A41" />
+      <rect x="11" y="9.5" width="2" height="3" fill="#D67A41" />
+      <rect x="15.5" y="9.5" width="2" height="3" fill="#D67A41" />
     </svg>
   ),
-  aligners: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" strokeOpacity="0.4" />
-      <path d="M3 9c0-3 2.5-5 5-5 1.5 0 2.5 1 4 2 1.5-1 2.5-2 4-2 2.5 0 5 2 5 5 0 3-2.5 5-4 7.5" />
-      <path d="M5 2h2M17 2h2" />
+  aligners: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 6.5C10 4 7 4 5 6c-2 2-2 5 0 8 1 1.5 1 3 0 5 2 0 4-1 5-3 .5-.8 1.2-1.2 2-1.2s1.5.4 2 1.2c1 2 3 3 5 3-1-2-1-3.5 0-5 2-3 2-6 0-8-2-2-5-2-7 .5z" stroke="#D67A41" />
+      <path d="M8 9.5c1-1 2.5-1.5 4-1.5s3 .5 4 1.5" stroke="#34D399" />
+      <circle cx="12" cy="13" r="1.5" fill="#F4B382" />
     </svg>
   ),
-  implants: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 2 1 3 2.5 4.5h11C19 12 20 11 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" />
-      <path d="M10 13.5v7c0 1 1 2 2 2s2-1 2-2v-7" />
-      <path d="M9 16h6M9 19h6" />
+  implants: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 6C9 6 7 7.5 7 10c0 2 1 3 2.5 4.5h5C16 13 17 12 17 10c0-2.5-2-4-5-4z" stroke="#D67A41" />
+      <path d="M10 14.5v6c0 .8.9 1.5 2 1.5s2-.7 2-1.5v-6" stroke="#D67A41" />
+      <path d="M9.5 16.5h5M9.5 19h5" stroke="#F4B382" />
+      <path d="M12 2v4" stroke="#10B981" />
     </svg>
   ),
-  sameday: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 2 1 3 2.5 4.5h11C19 12 20 11 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" />
-      <path d="M10 13.5v7c0 1 1 2 2 2s2-1 2-2v-7" />
-      <path d="M9 16h6" />
-      <path d="M19 2l-3 5h4l-4 6" strokeWidth="1.5" stroke="currentColor" />
+  sameday: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 6C9 6 7 7.5 7 10c0 2 1 3 2.5 4.5h5C16 13 17 12 17 10c0-2.5-2-4-5-4z" stroke="#D67A41" />
+      <path d="M10 14.5v6c0 .8.9 1.5 2 1.5s2-.7 2-1.5v-6" stroke="#D67A41" />
+      <path d="M19 2l-3 4.5h3.5l-3.5 5.5" stroke="#10B981" strokeWidth="2" />
     </svg>
   ),
-  veneers: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M13 7.5C12.5 6.5 11 5 9 5 6 5 5 7 5 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C18.5 14 21 12 21 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" />
-      <path d="M4 8c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5" strokeDasharray="2 3" />
-      <path d="M2 10h3M2 16h3" />
+  veneers: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M13 7.5C12.5 6.5 11 5 9 5 6 5 5 7 5 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C18.5 14 21 12 21 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" stroke="#D67A41" />
+      <path d="M4 8c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5" stroke="#F4B382" strokeDasharray="2 2" />
+      <path d="M18 4l2 2M20 2l-2 4" stroke="#F4B382" />
     </svg>
   ),
-  smileDesign: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 6.5C11.5 5.5 10 4 8 4 5 4 4 6 4 8c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 13 20 11 20 8c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" />
-      <path d="M3 18c2 2 5 3 9 3 4 0 7-1 9-3" />
-      <path d="M4 16l-2 2M20 16l2 2" />
-      <path d="M17 3l1-1M19 6l1-1" />
+  smileDesign: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 6.5C11.5 5.5 10 4 8 4 5 4 4 6 4 8c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 13 20 11 20 8c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" stroke="#D67A41" />
+      <path d="M4 17c2.5 2.5 5.5 3.5 8 3.5s5.5-1 8-3.5" stroke="#10B981" strokeWidth="2" />
+      <path d="M17 3l1-1M19 6l1-1" stroke="#F4B382" />
     </svg>
   ),
-  crowns: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" strokeOpacity="0.4" />
-      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 1 .5 2 1.5 3h13c1-1 1.5-2 1.5-3 0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" />
-      <path d="M6 2l1.5 3M11 1v4" />
+  crowns: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 1 .5 2 1.5 3h13c1-1 1.5-2 1.5-3 0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" stroke="#D67A41" />
+      <path d="M7 3l1.5 3M12 2v4M17 3l-1.5 3" stroke="#F4B382" />
+      <path d="M8 12v6c0 1 1.5 2 4 2s4-1 4-2v-6" stroke="#D67A41" />
     </svg>
   ),
-  rct: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" />
-      <path d="M8 12c1 3 0 7-1 9" />
-      <path d="M16 12c-1 3 0 7 1 9" />
-      <path d="M12 2v10M10 4h4" />
+  rct: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 6.5C10 4 7 4 5 6c-2 2-2 5 0 8 1 1.5 1 3 0 5 2 0 4-1 5-3 .5-.8 1.2-1.2 2-1.2s1.5.4 2 1.2c1 2 3 3 5 3-1-2-1-3.5 0-5 2-3 2-6 0-8-2-2-5-2-7 .5z" stroke="#D67A41" />
+      <path d="M9 11v8M15 11v8" stroke="#10B981" />
+      <circle cx="12" cy="7" r="1.5" fill="#F4B382" />
     </svg>
   ),
-  wisdom: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" transform="rotate(25 12 12)" />
-      <path d="M3 20l4-4M21 4l-4 4" />
+  wisdom: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" stroke="#D67A41" transform="rotate(15 12 12)" />
+      <path d="M4 18l3-3M20 6l-3 3" stroke="#F4B382" />
     </svg>
   ),
-  extractions: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" transform="translate(0, -2)" />
-      <path d="M7 2l2 5M17 2l-2 5" />
-      <path d="M10 21l2 2 2-2" />
+  extractions: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 6.5C10 4 7 4 5 6c-2 2-2 5 0 8 1 1.5 1 3 0 5 2 0 4-1 5-3 .5-.8 1.2-1.2 2-1.2s1.5.4 2 1.2c1 2 3 3 5 3-1-2-1-3.5 0-5 2-3 2-6 0-8-2-2-5-2-7 .5z" stroke="#D67A41" />
+      <path d="M12 10v6M9 13h6" stroke="#10B981" />
     </svg>
   ),
-  laserFillings: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" />
-      <path d="M14 8l5-5M19 3h3v3" />
-      <circle cx="14" cy="8" r="1" fill="currentColor" />
+  laserFillings: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" stroke="#D67A41" />
+      <path d="M15 7l4-4M18 3h3v3" stroke="#F4B382" />
+      <circle cx="14" cy="8" r="1.5" fill="#10B981" />
     </svg>
   ),
-  dentures: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M4 14c0-4 4-8 8-8s8 4 8 8" />
-      <path d="M4 14v1c0 3 3 5 8 5s8-2 8-5v-1" />
-      <path d="M8 14v6M12 14v6M16 14v6" />
-      <path d="M4 16h16" />
+  dentures: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M4 13c0-4 4-7 8-7s8 3 8 7" stroke="#D67A41" />
+      <path d="M5 14v1c0 2.5 3 4 7 4s7-1.5 7-4v-1" stroke="#F4B382" />
+      <path d="M8 13v4M12 13v4M16 13v4" stroke="#D67A41" />
     </svg>
   ),
-  whitening: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" />
-      <path d="M3 4h14c1 0 1.5.5 1.5 1.5S18 7 17 7H3V4z" />
-      <path d="M10 7v3M13 7v3" />
-      <path d="M18 10l1-1M19 14h2M18 17l2 2" />
+  whitening: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" stroke="#D67A41" />
+      <path d="M4 4l2 2M20 4l-2 2M12 2v2" stroke="#F4B382" />
+      <circle cx="12" cy="11" r="2" fill="#34D399" />
     </svg>
   ),
-  gumCare: (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" />
-      <path d="M2 13c3 2 6 2 10 0s7-2 10 0" />
-      <path d="M18 20l4-4M19 16l3 3" />
+  gumCare: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" stroke="#D67A41" />
+      <path d="M3 13c3 1.5 6 1.5 9 0s6-1.5 9 0" stroke="#10B981" strokeWidth="2" />
     </svg>
   )
 };
@@ -122,7 +116,8 @@ const TREATMENTS = [
     desc: 'Advanced bracket systems (Metal, Ceramic & Lingual) for precise bite & alignment correction.',
     iconKey: 'braces',
     badge: 'Prof. Dr. S. K. Yadav',
-    category: 'Orthodontics'
+    category: 'Orthodontics',
+    glowColor: 'rgba(214, 122, 65, 0.18)'
   },
   {
     id: 'invisalign-clear-aligners',
@@ -131,7 +126,8 @@ const TREATMENTS = [
     desc: 'Discreet, removable custom clear aligners crafted in-house & Invisalign certified for a wire-free smile.',
     iconKey: 'aligners',
     badge: 'In-House SkyAlign™',
-    category: 'Orthodontics'
+    category: 'Orthodontics',
+    glowColor: 'rgba(16, 185, 129, 0.18)'
   },
   {
     id: 'dental-implants',
@@ -139,17 +135,19 @@ const TREATMENTS = [
     shortTitle: 'Dental Implants',
     desc: 'Permanent titanium replacements for missing teeth, fused with jawbone for natural strength & function.',
     iconKey: 'implants',
-    badge: 'PGI Trained Experts',
-    category: 'Implants'
+    badge: 'Swiss Straumann®',
+    category: 'Implants',
+    glowColor: 'rgba(214, 122, 65, 0.18)'
   },
   {
-    id: 'same-day-implants',
-    title: 'Same Day Implants',
+    id: 'same-day-dental-implants',
+    title: 'Same-Day Fixed Implants',
     shortTitle: 'Same Day Implants',
-    desc: 'Advanced immediate loading implantology — walk out with a complete brand new smile in just one day.',
+    desc: 'Walk out with fixed permanent teeth in 24–72 hours using advanced 3D CBCT guided keyhole placement.',
     iconKey: 'sameday',
     badge: 'Immediate Loading',
-    category: 'Implants'
+    category: 'Implants',
+    glowColor: 'rgba(245, 158, 11, 0.18)'
   },
   {
     id: 'porcelain-veneers',
@@ -158,7 +156,8 @@ const TREATMENTS = [
     desc: 'Ultra-thin custom German porcelain shells to correct chips, gaps, and severe discolouration permanently.',
     iconKey: 'veneers',
     badge: 'Hollywood Smile',
-    category: 'Cosmetic'
+    category: 'Cosmetic',
+    glowColor: 'rgba(201, 168, 76, 0.18)'
   },
   {
     id: 'smile-makeover',
@@ -167,7 +166,8 @@ const TREATMENTS = [
     desc: 'Complete aesthetic transformation combining 3D digital smile design, veneers, and alignment planning.',
     iconKey: 'smileDesign',
     badge: '3D Digital Design',
-    category: 'Cosmetic'
+    category: 'Cosmetic',
+    glowColor: 'rgba(16, 185, 129, 0.18)'
   },
   {
     id: 'crowns-and-bridges',
@@ -176,7 +176,8 @@ const TREATMENTS = [
     desc: 'Metal-free Zirconia with 10-year warranty card & German ceramic for durable tooth restoration.',
     iconKey: 'crowns',
     badge: '10-Yr Warranty',
-    category: 'General & Surgery'
+    category: 'General & Surgery',
+    glowColor: 'rgba(214, 122, 65, 0.18)'
   },
   {
     id: 'root-canal-treatment',
@@ -185,7 +186,8 @@ const TREATMENTS = [
     desc: 'Modern, virtually painless rotary root canal therapy to save infected natural teeth without extraction.',
     iconKey: 'rct',
     badge: 'Painless Rotary',
-    category: 'General & Surgery'
+    category: 'General & Surgery',
+    glowColor: 'rgba(16, 185, 129, 0.18)'
   },
   {
     id: 'wisdom-tooth-surgery',
@@ -194,7 +196,8 @@ const TREATMENTS = [
     desc: 'Specialized minor oral surgery for impacted 3rd molars and wisdom tooth pain relief.',
     iconKey: 'wisdom',
     badge: 'Oral Surgery',
-    category: 'General & Surgery'
+    category: 'General & Surgery',
+    glowColor: 'rgba(214, 122, 65, 0.18)'
   },
   {
     id: 'painless-extractions',
@@ -203,7 +206,8 @@ const TREATMENTS = [
     desc: 'Gentle, atraumatic tooth extractions performed under local anaesthesia with minimal downtime.',
     iconKey: 'extractions',
     badge: 'Atraumatic Care',
-    category: 'General & Surgery'
+    category: 'General & Surgery',
+    glowColor: 'rgba(245, 158, 11, 0.18)'
   },
   {
     id: 'cosmetic-laser-fillings',
@@ -212,7 +216,8 @@ const TREATMENTS = [
     desc: 'Tooth-coloured light-cured composite resin fillings & aesthetic dental crystal jewellery.',
     iconKey: 'laserFillings',
     badge: 'Laser Cured',
-    category: 'Cosmetic'
+    category: 'Cosmetic',
+    glowColor: 'rgba(201, 168, 76, 0.18)'
   },
   {
     id: 'dentures-full-partial',
@@ -221,7 +226,8 @@ const TREATMENTS = [
     desc: 'Latest flexible dentures, acrylic full/RPD dentures, and implant-supported fixed overdentures.',
     iconKey: 'dentures',
     badge: 'Flexible & Implant',
-    category: 'General & Surgery'
+    category: 'General & Surgery',
+    glowColor: 'rgba(214, 122, 65, 0.18)'
   },
   {
     id: 'teeth-whitening',
@@ -230,7 +236,8 @@ const TREATMENTS = [
     desc: '6–10 shades brighter teeth in 45 minutes using in-clinic LED bleaching systems and take-home kits.',
     iconKey: 'whitening',
     badge: 'Instant Results',
-    category: 'Cosmetic'
+    category: 'Cosmetic',
+    glowColor: 'rgba(16, 185, 129, 0.18)'
   },
   {
     id: 'teeth-cleaning-scaling',
@@ -239,7 +246,8 @@ const TREATMENTS = [
     desc: 'Ultrasonic scaling for pyorrhoea, bleeding gums, bad breath treatment & deep periodontal maintenance.',
     iconKey: 'gumCare',
     badge: 'Ultrasonic',
-    category: 'General & Surgery'
+    category: 'General & Surgery',
+    glowColor: 'rgba(16, 185, 129, 0.18)'
   }
 ];
 
@@ -256,12 +264,12 @@ export default function TreatmentNavigator() {
         
         {/* Section Header */}
         <div className="section-header bento-header text-center">
-          <div className="section-badge badge-gold">
-            <Sparkles size={13} style={{ marginRight: 4 }} />
-            Clinical Facilities &amp; Specialities
+          <div className="bento-pill-badge">
+            <Sparkles size={13} className="sparkle-icon" aria-hidden="true" />
+            <span>Clinical Facilities &amp; Specialities</span>
           </div>
-          <h2 id="treatments-heading" className="font-heading">
-            Advanced <span className="text-gradient-copper">Treatments</span>
+          <h2 id="treatments-heading" className="bento-main-heading font-heading">
+            Advanced <span className="copper-gradient-heading">Treatments</span>
           </h2>
           <p className="bento-header-desc">
             PGI-trained clinical excellence across orthodontic, implant, and aesthetic dental disciplines.
@@ -281,7 +289,7 @@ export default function TreatmentNavigator() {
           ))}
         </div>
 
-        {/* Bento Grid (Desktop 3-4 Col, Mobile Compact 2-Col) */}
+        {/* Bento Interactive Grid */}
         <motion.div layout className="bento-treatments-grid">
           <AnimatePresence mode="popLayout">
             {filteredTreatments.map((t, i) => {
@@ -290,34 +298,52 @@ export default function TreatmentNavigator() {
                 <motion.div
                   key={t.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 28, scale: 0.94 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: '-40px' }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ 
+                    duration: 0.45, 
+                    delay: (i % 2) * 0.08,
+                    ease: [0.16, 1, 0.3, 1] 
+                  }}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                  whileTap={{ scale: 0.97 }}
                 >
                   <Link
                     href={`/treatments/${t.id}`}
-                    className="bento-treatment-card"
+                    className="innovative-treatment-card group"
                     aria-label={`Learn more about ${t.title}`}
                   >
-                    {/* Top Row: Luxury Vector Icon + Badge */}
-                    <div className="treatment-card-top">
-                      <div className="treatment-vector-icon">
-                        <IconComponent className="vector-svg" />
+                    {/* Animated Ambient Back-Glow */}
+                    <div 
+                      className="card-ambient-glow" 
+                      style={{ background: `radial-gradient(circle at 80% 20%, ${t.glowColor} 0%, transparent 65%)` }} 
+                    />
+
+                    {/* Top Row: Icon + Mini Action Arrow */}
+                    <div className="itc-top-bar">
+                      <div className="itc-icon-badge">
+                        <IconComponent />
+                        <span className="itc-pulse-ring" />
                       </div>
-                      <span className="treatment-pill-badge">{t.badge}</span>
+
+                      <div className="itc-action-pill">
+                        <span className="itc-action-text">EXPLORE</span>
+                        <ArrowUpRight size={13} className="itc-arrow-icon" />
+                      </div>
                     </div>
 
-                    {/* Content Body */}
-                    <div className="card-content-body">
-                      <h3 className="treatment-title">{t.shortTitle}</h3>
-                      <p className="treatment-desc hide-mobile">{t.desc}</p>
+                    {/* Title and Short Description */}
+                    <div className="itc-body">
+                      <h3 className="itc-title">{t.shortTitle}</h3>
+                      <p className="itc-desc">{t.desc}</p>
                     </div>
 
-                    {/* CTA Link */}
-                    <div className="treatment-cta-row">
-                      <span className="cta-label">EXPLORE</span>
-                      <ArrowUpRight size={14} className="cta-chevron" />
+                    {/* Bottom Micro Indicator */}
+                    <div className="itc-footer-strip">
+                      <span className="itc-badge-pill">{t.badge}</span>
+                      <span className="itc-glow-line" />
                     </div>
                   </Link>
                 </motion.div>
@@ -329,19 +355,67 @@ export default function TreatmentNavigator() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .bento-treatments-section {
-          background: #FAF8F5;
+          background: linear-gradient(180deg, #090403 0%, #150905 100%);
+          color: #FFFFFF;
           position: relative;
-          padding: 3rem 0;
+          padding: 2.75rem 0;
+          overflow: hidden;
+        }
+        .bento-treatments-section::before {
+          content: '';
+          position: absolute;
+          top: -20%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 70vw;
+          height: 350px;
+          background: radial-gradient(ellipse, rgba(214, 122, 65, 0.12) 0%, transparent 70%);
+          pointer-events: none;
         }
 
         .bento-header {
-          margin-bottom: 1.5rem !important;
+          margin-bottom: 1.25rem !important;
+          text-align: center;
         }
+
+        .bento-pill-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          background: rgba(214, 122, 65, 0.15);
+          color: #F4B382;
+          border: 1px solid rgba(214, 122, 65, 0.35);
+          padding: 0.25rem 0.85rem;
+          border-radius: 99px;
+          font-size: 0.72rem;
+          font-weight: 800;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          margin-bottom: 0.65rem;
+        }
+        .sparkle-icon { color: #D67A41; }
+
+        .bento-main-heading {
+          font-size: clamp(1.75rem, 3.5vw, 2.5rem) !important;
+          font-weight: 900 !important;
+          color: #FFFFFF !important;
+          line-height: 1.2 !important;
+          margin-bottom: 0.45rem !important;
+          letter-spacing: -0.02em !important;
+        }
+        .copper-gradient-heading {
+          background: linear-gradient(135deg, #D67A41 0%, #F4B382 50%, #EAA77C 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          display: inline-block;
+        }
+
         .bento-header-desc {
-          font-size: 1rem;
-          color: #6E5448;
-          max-width: 600px;
-          margin: 0.35rem auto 0;
+          font-size: 0.92rem;
+          color: rgba(255, 255, 255, 0.78);
+          max-width: 580px;
+          margin: 0.25rem auto 0;
+          line-height: 1.5;
         }
 
         /* FILTER BAR */
@@ -349,177 +423,305 @@ export default function TreatmentNavigator() {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.5rem;
+          gap: 0.45rem;
           flex-wrap: wrap;
           margin-bottom: 1.5rem;
         }
         .t-filter-pill {
-          background: #FFFFFF;
-          border: 1.5px solid rgba(74, 37, 24, 0.1);
-          color: #6E5448;
-          padding: 0.45rem 1rem;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(214, 122, 65, 0.2);
+          color: rgba(255, 255, 255, 0.7);
+          padding: 0.35rem 0.95rem;
           border-radius: 99px;
-          font-size: 0.82rem;
-          font-weight: 800;
+          font-size: 0.8rem;
+          font-weight: 700;
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .t-filter-pill:hover {
           border-color: #D67A41;
-          color: #D67A41;
+          color: #FFFFFF;
+          background: rgba(214, 122, 65, 0.12);
+          transform: translateY(-1px);
         }
         .t-filter-pill--active {
-          background: linear-gradient(135deg, #110805 0%, #2A150B 100%) !important;
-          color: #FFFDF9 !important;
-          border-color: #110805 !important;
-          box-shadow: 0 4px 14px rgba(17, 8, 5, 0.2);
+          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%) !important;
+          color: #FFFFFF !important;
+          border-color: #D67A41 !important;
+          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.4);
         }
 
-        /* BENTO GRID */
+        /* INNOVATIVE DARK GRID */
         .bento-treatments-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-          gap: 1.25rem;
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+          gap: 0.9rem;
         }
 
-        .bento-treatment-card {
+        .innovative-treatment-card {
+          position: relative;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          padding: 1.5rem;
+          padding: 1.15rem 1.1rem;
           height: 100%;
-          min-height: 220px;
+          min-height: 175px;
           text-decoration: none;
-          background: #FFFFFF;
-          border-radius: 22px;
-          border: 1.5px solid rgba(74, 37, 24, 0.08);
-          box-shadow: 0 8px 24px rgba(74, 37, 24, 0.03);
+          background: rgba(255, 255, 255, 0.035);
+          border-radius: 20px;
+          border: 1px solid rgba(214, 122, 65, 0.2);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+          overflow: hidden;
+          backdrop-filter: blur(10px);
           transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .bento-treatment-card:hover {
-          transform: translateY(-4px);
-          border-color: rgba(214, 122, 65, 0.4);
-          box-shadow: 0 16px 36px rgba(74, 37, 24, 0.08);
+        .innovative-treatment-card:hover {
+          background: rgba(255, 255, 255, 0.06);
+          border-color: rgba(214, 122, 65, 0.55);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(214, 122, 65, 0.2);
         }
 
-        .treatment-card-top {
+        /* AMBIENT GLOW */
+        .card-ambient-glow {
+          position: absolute;
+          inset: 0;
+          opacity: 0.5;
+          pointer-events: none;
+          transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .innovative-treatment-card:hover .card-ambient-glow {
+          opacity: 1;
+          transform: scale(1.15);
+        }
+
+        /* CARD TOP BAR */
+        .itc-top-bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 0.5rem;
-          margin-bottom: 1rem;
+          margin-bottom: 0.65rem;
+          position: relative;
+          z-index: 2;
         }
-        .treatment-vector-icon {
-          width: 44px;
-          height: 44px;
+
+        .itc-icon-badge {
+          position: relative;
+          width: 38px;
+          height: 38px;
           border-radius: 12px;
-          background: rgba(214, 122, 65, 0.1);
-          color: #D67A41;
+          background: rgba(214, 122, 65, 0.12);
+          border: 1px solid rgba(214, 122, 65, 0.3);
           display: flex;
           align-items: center;
           justify-content: center;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          transition: all 0.25s ease;
         }
-        .vector-svg {
-          width: 24px;
-          height: 24px;
+        .innovative-treatment-card:hover .itc-icon-badge {
+          transform: scale(1.12) rotate(4deg);
+          border-color: #F4B382;
+          background: rgba(214, 122, 65, 0.22);
+          box-shadow: 0 0 15px rgba(214, 122, 65, 0.4);
         }
-        .treatment-pill-badge {
-          font-size: 0.68rem;
-          font-weight: 800;
-          color: #7A340F;
-          background: #FFF8F0;
-          border: 1px solid rgba(214, 122, 65, 0.25);
-          padding: 0.2rem 0.55rem;
-          border-radius: 99px;
-          letter-spacing: 0.02em;
+        .nav-card-svg {
+          width: 22px;
+          height: 22px;
         }
 
-        .card-content-body {
+        .itc-pulse-ring {
+          position: absolute;
+          inset: -3px;
+          border-radius: 14px;
+          border: 1.5px solid rgba(244, 179, 130, 0.4);
+          opacity: 0;
+          transition: opacity 0.25s ease;
+        }
+        .innovative-treatment-card:hover .itc-pulse-ring {
+          opacity: 1;
+          animation: ringPulse 1.8s infinite;
+        }
+        @keyframes ringPulse {
+          0% { transform: scale(1); opacity: 0.6; }
+          50% { transform: scale(1.15); opacity: 0; }
+          100% { transform: scale(1); opacity: 0; }
+        }
+
+        /* ACTION PILL */
+        .itc-action-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          background: rgba(255, 255, 255, 0.05);
+          color: #F4B382;
+          padding: 0.22rem 0.55rem;
+          border-radius: 99px;
+          font-size: 0.68rem;
+          font-weight: 800;
+          letter-spacing: 0.05em;
+          border: 1px solid rgba(214, 122, 65, 0.25);
+          transition: all 0.25s ease;
+        }
+        .innovative-treatment-card:hover .itc-action-pill {
+          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
+          color: #FFFFFF;
+          border-color: #D67A41;
+          box-shadow: 0 4px 12px rgba(214, 122, 65, 0.4);
+        }
+        .itc-arrow-icon {
+          transition: transform 0.25s ease;
+        }
+        .innovative-treatment-card:hover .itc-arrow-icon {
+          transform: translate(2px, -2px);
+        }
+
+        /* CARD BODY */
+        .itc-body {
+          position: relative;
+          z-index: 2;
           flex-grow: 1;
         }
-        .treatment-title {
+        .itc-title {
           font-family: var(--font-heading);
-          font-size: 1.08rem;
-          font-weight: 900;
-          color: #0E0604;
-          margin: 0 0 0.35rem;
+          font-size: 0.95rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin: 0 0 0.2rem;
           line-height: 1.25;
+          transition: color 0.2s ease;
         }
-        .treatment-desc {
-          font-size: 0.84rem;
-          color: #6E5448;
-          line-height: 1.5;
+        .innovative-treatment-card:hover .itc-title {
+          color: #F4B382;
+        }
+        .itc-desc {
+          font-size: 0.78rem;
+          color: rgba(255, 255, 255, 0.68);
+          line-height: 1.45;
           margin: 0;
         }
 
-        .treatment-cta-row {
+        /* FOOTER STRIP */
+        .itc-footer-strip {
+          position: relative;
+          z-index: 2;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-top: 1rem;
-          padding-top: 0.75rem;
-          border-top: 1px solid rgba(74, 37, 24, 0.06);
-          color: #D67A41;
-          font-size: 0.74rem;
-          font-weight: 900;
-          letter-spacing: 0.05em;
+          margin-top: 0.65rem;
+          padding-top: 0.45rem;
+          border-top: 1px dashed rgba(255, 255, 255, 0.1);
         }
-        .cta-chevron {
-          transition: transform 0.2s ease;
+        .itc-badge-pill {
+          font-size: 0.64rem;
+          font-weight: 700;
+          color: #F4B382;
+          background: rgba(214, 122, 65, 0.14);
+          border: 1px solid rgba(214, 122, 65, 0.25);
+          padding: 0.15rem 0.5rem;
+          border-radius: 99px;
+          letter-spacing: 0.02em;
         }
-        .bento-treatment-card:hover .cta-chevron {
-          transform: translate(2px, -2px);
+        .itc-glow-line {
+          position: absolute;
+          bottom: -0.45rem;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #D67A41, transparent);
+          opacity: 0;
+          transition: opacity 0.25s ease;
+        }
+        .innovative-treatment-card:hover .itc-glow-line {
+          opacity: 1;
         }
 
         /* MOBILE COMPACT 2-COLUMN LUXURY BENTO */
         @media (max-width: 768px) {
           .bento-treatments-section {
-            padding: 2.25rem 0 3rem !important;
+            padding: 1.25rem 0 1.75rem !important;
+          }
+          .bento-header {
+            margin-bottom: 0.75rem !important;
+          }
+          .bento-main-heading {
+            font-size: 1.45rem !important;
+            margin-bottom: 0.25rem !important;
+          }
+          .bento-header-desc {
+            font-size: 0.76rem !important;
+            margin-bottom: 0.25rem !important;
           }
           .treatment-filter-bar {
-            gap: 0.35rem !important;
-            margin-bottom: 1.25rem !important;
+            gap: 0.25rem !important;
+            margin-bottom: 0.75rem !important;
             overflow-x: auto;
             justify-content: flex-start;
-            padding: 0 0.5rem 0.5rem;
+            padding: 0 0.25rem 0.25rem;
             flex-wrap: nowrap;
             scrollbar-width: none;
           }
           .treatment-filter-bar::-webkit-scrollbar { display: none; }
           .t-filter-pill {
-            padding: 0.35rem 0.75rem !important;
-            font-size: 0.74rem !important;
-            white-space: nowrap;
+            padding: 0.25rem 0.6rem !important;
+            font-size: 0.7rem !important;
           }
           .bento-treatments-grid {
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 0.65rem !important;
+            gap: 0.45rem !important;
           }
-          .bento-treatment-card {
-            padding: 1rem 0.85rem !important;
-            min-height: 140px !important;
-            border-radius: 18px !important;
+          .innovative-treatment-card {
+            padding: 0.65rem 0.6rem !important;
+            min-height: auto !important;
+            border-radius: 14px !important;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease !important;
           }
-          .treatment-vector-icon {
-            width: 34px !important;
-            height: 34px !important;
-            border-radius: 10px !important;
+          .innovative-treatment-card:active {
+            transform: scale(0.97) !important;
+            border-color: rgba(214, 122, 65, 0.6) !important;
+            box-shadow: 0 0 16px rgba(214, 122, 65, 0.3) !important;
           }
-          .vector-svg {
-            width: 18px !important;
-            height: 18px !important;
+          .itc-top-bar {
+            margin-bottom: 0.35rem !important;
           }
-          .treatment-pill-badge {
-            display: none !important; /* Hide long badge text on small 2-col to keep card compact */
+          .itc-icon-badge {
+            width: 26px !important;
+            height: 26px !important;
+            border-radius: 7px !important;
           }
-          .treatment-title {
-            font-size: 0.86rem !important;
+          .nav-card-svg {
+            width: 14px !important;
+            height: 14px !important;
+          }
+          .itc-action-pill {
+            padding: 0.12rem 0.38rem !important;
+            font-size: 0.58rem !important;
+          }
+          .itc-title {
+            font-size: 0.76rem !important;
             line-height: 1.2 !important;
+            margin: 0 0 0.25rem !important;
           }
-          .treatment-cta-row {
-            margin-top: 0.5rem !important;
-            padding-top: 0.4rem !important;
-            font-size: 0.68rem !important;
+          .itc-desc {
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+            font-size: 0.64rem !important;
+            line-height: 1.3 !important;
+            color: rgba(255, 255, 255, 0.6) !important;
+            margin: 0 !important;
+          }
+          .itc-footer-strip {
+            display: flex !important;
+            margin-top: 0.45rem !important;
+            padding-top: 0.35rem !important;
+          }
+          .itc-badge-pill {
+            font-size: 0.56rem !important;
+            padding: 0.1rem 0.4rem !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            max-width: 100% !important;
           }
         }
       `}} />

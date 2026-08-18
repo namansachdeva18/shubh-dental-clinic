@@ -156,48 +156,40 @@ export default function SmartBooking() {
                   <div className="interactive-form-header">
                     <div>
                       <span className="form-eyebrow-live">
-                        <span className="live-pulse-green" /> Live Booking
+                        <span className="live-pulse-green" /> Priority Booking
                       </span>
                       <h3 className="form-interactive-title">Select Treatment &amp; Slot</h3>
                     </div>
                     <div className="form-rating-badge">
-                      <Star size={13} fill="#F59E0B" color="#F59E0B" />
-                      <span>4.9 / 5.0 (2,400+ Reviews)</span>
+                      <Star size={12} fill="#F59E0B" color="#F59E0B" />
+                      <span>5.0★ (2,400+ Verified)</span>
                     </div>
                   </div>
 
-                  {/* Consultation Mode Selector */}
-                  <div className="form-field-block" style={{ marginBottom: '1rem' }}>
-                    <label className="field-block-label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <span>1. Consultation Mode</span>
-                      <span style={{ fontSize: '0.72rem', color: '#10B981', fontWeight: '700' }}>In-Clinic or Video</span>
-                    </label>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem' }}>
-                      <button
-                        type="button"
-                        onClick={() => setFormData({ ...formData, mode: 'In-Clinic Visit (Rohtak)' })}
-                        className={`treatment-chip ${formData.mode === 'In-Clinic Visit (Rohtak)' ? 'treatment-chip--active' : ''}`}
-                        style={{ padding: '0.6rem 0.75rem', justifyContent: 'center' }}
-                      >
-                        <MapPin size={14} />
-                        <span className="t-chip-label" style={{ fontSize: '0.8rem' }}>In-Clinic (Rohtak)</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setFormData({ ...formData, mode: 'Online Video Consultation' })}
-                        className={`treatment-chip ${formData.mode === 'Online Video Consultation' ? 'treatment-chip--active' : ''}`}
-                        style={{ padding: '0.6rem 0.75rem', justifyContent: 'center' }}
-                      >
-                        <Video size={14} color="#10B981" />
-                        <span className="t-chip-label" style={{ fontSize: '0.8rem' }}>Video Consultation</span>
-                        <span className="t-chip-badge" style={{ background: '#ECFDF5', color: '#0E744A', fontSize: '0.65rem' }}>Live</span>
-                      </button>
-                    </div>
+                  {/* Consultation Mode Segmented Toggle */}
+                  <div className="mode-segmented-bar">
+                    <button
+                      type="button"
+                      onClick={() => setFormData({ ...formData, mode: 'In-Clinic Visit (Rohtak)' })}
+                      className={`mode-seg-btn ${formData.mode === 'In-Clinic Visit (Rohtak)' ? 'mode-seg-btn--active' : ''}`}
+                    >
+                      <MapPin size={13} />
+                      <span>In-Clinic Visit (Rohtak)</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFormData({ ...formData, mode: 'Online Video Consultation' })}
+                      className={`mode-seg-btn ${formData.mode === 'Online Video Consultation' ? 'mode-seg-btn--active' : ''}`}
+                    >
+                      <Video size={13} color="#10B981" />
+                      <span>Online Video</span>
+                      <span className="mode-live-tag">Live</span>
+                    </button>
                   </div>
 
-                  {/* 2. Treatment Selector */}
+                  {/* 2. Treatment Selector (Compact Pills) */}
                   <div className="form-field-block">
-                    <label className="field-block-label">2. Select Required Care</label>
+                    <label className="field-block-label">Select Treatment</label>
                     <div className="treatment-chips-grid">
                       {TREATMENTS.map((t) => (
                         <button
@@ -206,20 +198,19 @@ export default function SmartBooking() {
                           onClick={() => setFormData({ ...formData, treatment: t.label })}
                           className={`treatment-chip ${formData.treatment === t.label ? 'treatment-chip--active' : ''}`}
                         >
-                          <span className="t-chip-icon"><t.Icon size={15} /></span>
+                          <span className="t-chip-icon"><t.Icon size={14} /></span>
                           <span className="t-chip-label">{t.label}</span>
-                          {t.badge && <span className="t-chip-badge">{t.badge}</span>}
                         </button>
                       ))}
                     </div>
                   </div>
 
-                  {/* 2. Patient Details */}
+                  {/* 3. Patient Details (Side by side) */}
                   <div className="form-inputs-row">
                     <div className="fancy-input-group">
                       <label className="fancy-input-label">Full Name *</label>
                       <div className="fancy-input-box">
-                        <User size={17} className="fancy-input-icon" />
+                        <User size={15} className="fancy-input-icon" />
                         <input
                           type="text"
                           required
@@ -231,7 +222,7 @@ export default function SmartBooking() {
                     </div>
 
                     <div className="fancy-input-group">
-                      <label className="fancy-input-label">WhatsApp Phone Number *</label>
+                      <label className="fancy-input-label">WhatsApp Number *</label>
                       <div className="fancy-input-box">
                         <span className="phone-prefix">+91</span>
                         <input
@@ -245,9 +236,9 @@ export default function SmartBooking() {
                     </div>
                   </div>
 
-                  {/* 3. Specialist Doctor Selector */}
+                  {/* 4. Specialist Doctor Selector */}
                   <div className="form-field-block">
-                    <label className="field-block-label">2. Specialist Doctor</label>
+                    <label className="field-block-label">Specialist Doctor</label>
                     <div className="doctor-select-pills">
                       {DOCTORS.map((d) => (
                         <button
@@ -256,7 +247,7 @@ export default function SmartBooking() {
                           onClick={() => setFormData({ ...formData, doctor: d.name })}
                           className={`doctor-select-card ${formData.doctor === d.name ? 'doctor-card--active' : ''}`}
                         >
-                          <span className="d-card-icon"><d.Icon size={18} /></span>
+                          <span className="d-card-icon"><d.Icon size={16} /></span>
                           <div className="d-card-info">
                             <span className="d-card-name">{d.name}</span>
                             <span className="d-card-role">{d.role}</span>
@@ -271,12 +262,12 @@ export default function SmartBooking() {
                     </div>
                   </div>
 
-                  {/* 4. Date & Time Slot */}
+                  {/* 5. Date & Time Slot */}
                   <div className="form-inputs-row">
                     <div className="fancy-input-group">
                       <label className="fancy-input-label">Preferred Date</label>
                       <div className="fancy-input-box">
-                        <Calendar size={17} className="fancy-input-icon" />
+                        <Calendar size={15} className="fancy-input-icon" />
                         <input
                           type="date"
                           value={formData.date}
@@ -295,7 +286,7 @@ export default function SmartBooking() {
                             onClick={() => setFormData({ ...formData, time: `${s.label} (${s.time})` })}
                             className={`time-slot-btn ${formData.time.includes(s.label) ? 'time-slot--active' : ''}`}
                           >
-                            <span className="time-slot-icon"><s.Icon size={14} /></span>
+                            <span className="time-slot-icon"><s.Icon size={13} /></span>
                             <span>{s.label}</span>
                           </button>
                         ))}
@@ -306,14 +297,14 @@ export default function SmartBooking() {
                   {/* Submit Button */}
                   <button type="submit" className="btn-confirm-appointment">
                     <div className="btn-glow-shimmer" />
-                    <Send size={18} />
-                    <span>Confirm &amp; Reserve My Consultation</span>
+                    <Send size={16} />
+                    <span>Confirm &amp; Reserve Consultation</span>
                   </button>
 
                   <div className="form-trust-footer">
-                    <span>🔒 100% Confidential</span>
+                    <span>🔒 Confidential</span>
                     <span>•</span>
-                    <span>⚡ Zero Advance Payment</span>
+                    <span>⚡ 0% Advance</span>
                     <span>•</span>
                     <span>📍 Rohtak Clinic</span>
                   </div>
@@ -564,16 +555,56 @@ export default function SmartBooking() {
           flex-shrink: 0;
         }
 
+        /* SEGMENTED CONSULTATION MODE BAR */
+        .mode-segmented-bar {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.35rem;
+          background: #FAF8F5;
+          padding: 0.3rem;
+          border-radius: 14px;
+          border: 1px solid rgba(74, 37, 24, 0.1);
+        }
+        .mode-seg-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.4rem;
+          padding: 0.45rem 0.65rem;
+          border-radius: 10px;
+          border: none;
+          background: transparent;
+          color: #6E5448;
+          font-size: 0.78rem;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .mode-seg-btn--active {
+          background: #FFFFFF;
+          color: #7A340F;
+          font-weight: 800;
+          box-shadow: 0 2px 8px rgba(74, 37, 24, 0.1);
+        }
+        .mode-live-tag {
+          background: #ECFDF5;
+          color: #0E744A;
+          font-size: 0.6rem;
+          font-weight: 800;
+          padding: 0.1rem 0.35rem;
+          border-radius: 99px;
+        }
+
         /* 1. TREATMENT CHIPS GRID */
         .form-field-block {
           display: flex;
           flex-direction: column;
-          gap: 0.45rem;
+          gap: 0.35rem;
           width: 100%;
           box-sizing: border-box;
         }
         .field-block-label {
-          font-size: 0.74rem;
+          font-size: 0.72rem;
           font-weight: 800;
           color: #6E5448;
           text-transform: uppercase;
@@ -583,7 +614,7 @@ export default function SmartBooking() {
         .treatment-chips-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 0.45rem;
+          gap: 0.4rem;
           width: 100%;
           box-sizing: border-box;
         }
@@ -595,8 +626,8 @@ export default function SmartBooking() {
           background: #FAF8F5;
           border: 1.5px solid rgba(74, 37, 24, 0.1);
           border-radius: 12px;
-          padding: 0.55rem 0.65rem;
-          font-size: 0.76rem;
+          padding: 0.5rem 0.6rem;
+          font-size: 0.75rem;
           font-weight: 700;
           color: #38241C;
           cursor: pointer;
@@ -910,31 +941,96 @@ export default function SmartBooking() {
 
         @media (max-width: 768px) {
           .smart-booking-section {
-            padding: 2rem 0.75rem 5rem !important;
+            padding: 1.5rem 0.5rem 1.5rem !important;
           }
           .booking-card-wrapper {
-            padding: 1.5rem 1.15rem !important;
-            border-radius: 22px !important;
+            padding: 1.25rem 0.9rem !important;
+            border-radius: 20px !important;
+          }
+          .booking-tag {
+            padding: 0.25rem 0.65rem !important;
+            font-size: 0.68rem !important;
+            margin-bottom: 0.6rem !important;
+          }
+          .booking-headline {
+            font-size: 1.45rem !important;
+            margin-bottom: 0.5rem !important;
+            line-height: 1.25 !important;
+          }
+          .booking-sub {
+            font-size: 0.8rem !important;
+            line-height: 1.45 !important;
+            margin-bottom: 0.85rem !important;
+          }
+          .booking-perks-list {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 0.45rem !important;
+            margin-bottom: 1rem !important;
+          }
+          .b-perk-card {
+            padding: 0.5rem 0.6rem !important;
+            border-radius: 12px !important;
+            gap: 0.45rem !important;
+            align-items: center !important;
+          }
+          .b-perk-icon {
+            width: 26px !important;
+            height: 26px !important;
+            border-radius: 8px !important;
+          }
+          .b-perk-icon svg {
+            width: 13px !important;
+            height: 13px !important;
+          }
+          .b-perk-title {
+            font-size: 0.72rem !important;
+            margin-bottom: 0 !important;
+            line-height: 1.2 !important;
+          }
+          .b-perk-desc {
+            display: none !important;
+          }
+          .booking-direct-actions {
+            display: none !important;
           }
           .booking-form-wrap {
-            padding: 1.35rem 1.1rem !important;
-            border-radius: 20px !important;
+            padding: 1.15rem 0.9rem !important;
+            border-radius: 18px !important;
           }
           .treatment-chips-grid {
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 0.4rem !important;
+            gap: 0.35rem !important;
           }
           .treatment-chip {
-            padding: 0.5rem 0.55rem !important;
-            font-size: 0.74rem !important;
+            padding: 0.45rem 0.5rem !important;
+            font-size: 0.72rem !important;
+            border-radius: 10px !important;
           }
           .form-inputs-row {
             grid-template-columns: 1fr !important;
-            gap: 0.75rem !important;
+            gap: 0.6rem !important;
+          }
+          .doctor-select-pills {
+            gap: 0.35rem !important;
+          }
+          .doctor-select-card {
+            padding: 0.45rem 0.65rem !important;
+            border-radius: 10px !important;
+          }
+          .d-card-name {
+            font-size: 0.76rem !important;
+          }
+          .d-card-role {
+            font-size: 0.64rem !important;
+          }
+          .time-slot-toggle {
+            height: 38px !important;
           }
           .btn-confirm-appointment {
-            padding: 0.85rem 1.25rem !important;
-            font-size: 0.88rem !important;
+            padding: 0.8rem 1.1rem !important;
+            font-size: 0.85rem !important;
+            border-radius: 12px !important;
           }
         }
       `}} />

@@ -595,8 +595,7 @@ export default function DoctorsIntro() {
             font-size: 0.92rem;
           }
           .what-patients-get-grid {
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
+            display: none !important;
           }
           .specialist-showcase-card {
             padding: 1.25rem 1rem;

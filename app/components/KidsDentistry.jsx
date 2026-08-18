@@ -770,64 +770,87 @@ export default function KidsDentistry() {
 
         @media (max-width: 768px) {
           .kids-section-root {
-            padding: 2.75rem 1rem;
+            padding: 2rem 0.85rem;
           }
           .kids-header {
-            margin-bottom: 1.75rem;
+            margin-bottom: 1.25rem;
           }
           .kids-title {
-            font-size: 1.75rem;
+            font-size: 1.45rem;
+            line-height: 1.25;
           }
           .kids-subtitle {
-            font-size: 0.92rem;
+            font-size: 0.82rem;
+            line-height: 1.45;
           }
           .what-kids-get-grid {
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.5rem !important;
+            margin-bottom: 1.5rem !important;
+          }
+          .wkg-card {
+            padding: 0.65rem 0.6rem !important;
+            border-radius: 14px !important;
+            gap: 0.45rem !important;
+            align-items: flex-start !important;
+          }
+          .wkg-icon-box {
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 8px !important;
+          }
+          .wkg-icon-box svg {
+            width: 14px !important;
+            height: 14px !important;
+          }
+          .wkg-title {
+            font-size: 0.76rem !important;
+            line-height: 1.2 !important;
+            margin-bottom: 0.15rem !important;
+          }
+          .wkg-desc {
+            font-size: 0.68rem !important;
+            line-height: 1.35 !important;
+            color: #6E5C54 !important;
           }
           .kids-services-card {
-            padding: 1.25rem 1rem;
-            border-radius: 22px;
-          }
-          .pediatric-services-grid {
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
+            display: none !important;
           }
           .kids-actions-row {
             display: none !important;
           }
 
           .polaroid-wrapper {
-            height: 330px;
-            max-width: 340px;
+            height: 300px;
+            max-width: 320px;
           }
           .polaroid-card {
-            width: 125px;
-            height: 145px;
-            padding: 0.45rem 0.45rem 1.5rem 0.45rem;
+            width: 120px;
+            height: 140px;
+            padding: 0.4rem 0.4rem 1.4rem 0.4rem;
           }
           .frame-left { top: 10px; left: 10px; }
           .frame-right { top: 15px; right: 10px; }
           .frame-center {
-            width: 130px;
-            height: 150px;
+            width: 125px;
+            height: 145px;
             left: 10px;
             bottom: 10px;
             margin-left: 0;
           }
           .frame-fourth {
-            width: 130px;
-            height: 150px;
+            width: 125px;
+            height: 145px;
             right: 10px;
             bottom: 10px;
           }
           .polaroid-caption {
-            font-size: 0.8rem;
-            bottom: 0.25rem;
+            font-size: 0.75rem;
+            bottom: 0.2rem;
           }
           .polaroid-tooth-mascot {
-            width: 75px;
-            height: 75px;
+            width: 65px;
+            height: 65px;
             bottom: -5px;
             right: -5px;
           }
