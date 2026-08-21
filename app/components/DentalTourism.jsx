@@ -125,7 +125,7 @@ export default function DentalTourism() {
           })}
         </motion.div>
 
-        {/* Streamlined Visiting Centres Ribbon */}
+        {/* Streamlined Visiting Centres Ribbon with Link to Addresses */}
         <motion.div
           className="dt-centres-container"
           initial={{ opacity: 0, y: 20 }}
@@ -134,18 +134,29 @@ export default function DentalTourism() {
           transition={{ duration: 0.5 }}
         >
           <div className="dt-centres-header">
-            <span className="dt-centres-label">
-              <MapPin size={14} style={{ color: '#D67A41' }} />
-              <span>Available Across 6 Visiting Centres in NCR &amp; Haryana</span>
-            </span>
+            <Link href="/visiting-centres" className="dt-centres-label-link" aria-label="View all visiting centres addresses">
+              <span className="dt-centres-label">
+                <MapPin size={14} style={{ color: '#D67A41' }} />
+                <span>Available Across 6 Visiting Centres in NCR &amp; Haryana</span>
+              </span>
+              <span className="dt-centres-view-all">
+                <span>View Addresses &amp; Maps</span>
+                <ArrowRight size={13} />
+              </span>
+            </Link>
           </div>
 
           <div className="dt-centres-pills">
             {CENTRES.map((c, i) => (
-              <div key={i} className={`dt-centre-pill ${c.isMain ? 'dt-centre-pill--main' : ''}`}>
+              <Link 
+                key={i} 
+                href="/visiting-centres"
+                className={`dt-centre-pill ${c.isMain ? 'dt-centre-pill--main' : ''}`}
+                aria-label={`View address for ${c.city} centre`}
+              >
                 <span className="dt-pill-city">{c.city}</span>
                 <span className="dt-pill-tag">{c.tag}</span>
-              </div>
+              </Link>
             ))}
           </div>
         </motion.div>
@@ -367,18 +378,45 @@ export default function DentalTourism() {
           box-shadow: 0 4px 14px rgba(74,37,24,0.03);
         }
         .dt-centres-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           margin-bottom: 0.85rem;
-          text-align: center;
+          width: 100%;
+        }
+        .dt-centres-label-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          text-decoration: none;
+          width: 100%;
+          max-width: 600px;
+          transition: transform 0.2s ease;
+        }
+        .dt-centres-label-link:hover {
+          transform: translateY(-1px);
         }
         .dt-centres-label {
           display: inline-flex;
           align-items: center;
           gap: 0.4rem;
-          font-size: 0.78rem;
+          font-size: 0.76rem;
           font-weight: 800;
           color: #7A340F;
           text-transform: uppercase;
           letter-spacing: 0.04em;
+        }
+        .dt-centres-view-all {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.25rem;
+          font-size: 0.72rem;
+          font-weight: 800;
+          color: #D67A41;
+          letter-spacing: 0.02em;
+          text-decoration: underline;
+          text-underline-offset: 3px;
         }
         .dt-centres-pills {
           display: flex;
@@ -396,7 +434,14 @@ export default function DentalTourism() {
           border-radius: 99px;
           padding: 0.35rem 0.85rem;
           font-size: 0.78rem;
-          transition: all 0.2s ease;
+          text-decoration: none;
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+          cursor: pointer;
+        }
+        .dt-centre-pill:hover {
+          transform: translateY(-2px);
+          border-color: #D67A41;
+          box-shadow: 0 4px 12px rgba(214,122,65,0.18);
         }
         .dt-centre-pill--main {
           background: linear-gradient(135deg, rgba(214,122,65,0.12) 0%, rgba(201,168,76,0.18) 100%);

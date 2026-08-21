@@ -266,7 +266,7 @@ html, body {
 
 /* ===== DENTAL TOURISM ===== */
 @media (max-width: 768px) {
-  .dental-tourism-section { padding: 2rem 0 !important; }
+  .dental-tourism-section { padding: 1.75rem 0 !important; }
   .dt-cta-compact { display: none !important; }
   .dt-stats-row {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -276,6 +276,19 @@ html, body {
   .dt-cta-bar {
     padding: 1rem !important;
     border-radius: 16px !important;
+  }
+  .dt-centres-label-link {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    text-align: center !important;
+  }
+  .dt-centres-pills {
+    gap: 0.35rem !important;
+  }
+  .dt-centre-pill {
+    padding: 0.3rem 0.65rem !important;
+    font-size: 0.72rem !important;
   }
 }
 
