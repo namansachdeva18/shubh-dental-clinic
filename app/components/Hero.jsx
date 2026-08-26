@@ -1460,15 +1460,14 @@ export default function Hero() {
             max-height: none;
             width: 100%;
           }
-          /* Hide floating overlay cards on mobile view */
-          .hs-doctor-panel {
-            display: none !important;
-          }
-          .hs-skyalign-card {
+          /* Hide floating overlay cards and Google rating pill on mobile view */
+          .hs-doctor-panel,
+          .hs-skyalign-card,
+          .hs-google-pill {
             display: none !important;
           }
 
-          /* On mobile, stage displays clean clinic image */
+          /* On mobile, stage displays clean, unobstructed clinic building highlight */
           .hs-stage {
             position: relative;
             width: 100%;
@@ -1476,14 +1475,18 @@ export default function Hero() {
           }
           .hs-clinic-img-wrap {
             position: relative;
-            height: 240px;
+            height: 270px;
             inset: auto;
             border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(26, 18, 8, 0.12);
           }
-          .hs-google-pill {
-            position: absolute;
-            top: 14px;
-            left: 14px;
+          .hs-clinic-img-wrap img {
+            object-fit: cover !important;
+            object-position: center 65% !important;
+          }
+          .hs-img-vignette {
+            opacity: 0.25 !important;
           }
 
           /* Trust Logos Mobile (3 on Top Line, 2 on Bottom Line — Highly Readable) */
