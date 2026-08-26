@@ -55,36 +55,7 @@ export default function SmartBooking() {
     customDate: '',
     time: 'Morning (10am–1pm)'
   });
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const dropdownRef = useRef(null);
-
-  // Close dropdown on outside click
-  useEffect(() => {
-    function handleClickOutside(e) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setIsDropdownOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  // Find currently selected treatment object
-  const allTreatments = TREATMENT_CATEGORIES.flatMap(c => c.items);
-  const currentTreatment = allTreatments.find(t => t.label === formData.treatment) || allTreatments[0];
-  const CurrentIcon = currentTreatment.Icon;
-
-  // Filter treatments for search
-  const filteredCategories = TREATMENT_CATEGORIES.map(group => ({
-    ...group,
-    items: group.items.filter(item => 
-      item.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      group.category.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  })).filter(group => group.items.length > 0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -222,123 +193,35 @@ export default function SmartBooking() {
                     </button>
                   </div>
 
-                  {/* 1. COMPACT TREATMENT SELECTOR */}
-                  <div className="form-field-block" ref={dropdownRef}>
-                    <div className="field-label-row">
-                      <span className="field-block-label">Select Treatment *</span>
-                      <span className="field-badge-hint">1-Tap Select</span>
-                    </div>
-                    
-                    <div className="inav-select-container">
-                      <button
-                        type="button"
-                        className={`inav-select-trigger ${isDropdownOpen ? 'inav-select-trigger--open' : ''}`}
-                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        aria-expanded={isDropdownOpen}
-                        aria-haspopup="listbox"
+                  {/* 1. CLEAN & LUXURY TREATMENT SELECTOR */}
+                  <div className="form-field-block">
+                    <label className="fancy-input-label" htmlFor="smart-treatment-select">
+                      Select Treatment / Procedure *
+                    </label>
+                    <div className="luxury-select-wrapper">
+                      <div className="luxury-select-icon-box">
+                        <Sparkles size={15} />
+                      </div>
+                      <select
+                        id="smart-treatment-select"
+                        className="luxury-native-select"
+                        value={formData.treatment}
+                        onChange={(e) => setFormData({ ...formData, treatment: e.target.value })}
+                        required
                       >
-                        <div className="inav-trigger-left">
-                          <div className={`inav-trigger-icon-box inav-icon-${currentTreatment.badgeType}`}>
-                            <CurrentIcon size={15} />
-                          </div>
-                          <span className="inav-trigger-title">{currentTreatment.label}</span>
-                        </div>
-
-                        <div className="inav-trigger-right">
-                          <span className={`inav-pill-badge inav-badge-${currentTreatment.badgeType}`}>
-                            {currentTreatment.badge}
-                          </span>
-                          <ChevronDown 
-                            size={14} 
-                            className={`inav-chevron ${isDropdownOpen ? 'inav-chevron--rotated' : ''}`} 
-                          />
-                        </div>
-                      </button>
-
-                      {/* Dropdown Panel */}
-                      {isDropdownOpen && (
-                        <div className="inav-dropdown-panel" role="listbox">
-                          
-                          {/* Search Filter Header */}
-                          <div className="inav-search-bar">
-                            <Search size={14} className="inav-search-icon" />
-                            <input
-                              type="text"
-                              placeholder="Search treatments..."
-                              value={searchQuery}
-                              onChange={(e) => setSearchQuery(e.target.value)}
-                              autoFocus
-                              className="inav-search-input"
-                            />
-                            {searchQuery && (
-                              <button 
-                                type="button" 
-                                className="inav-search-clear"
-                                onClick={() => setSearchQuery('')}
-                              >
-                                ✕
-                              </button>
-                            )}
-                          </div>
-
-                          {/* Grouped Options List */}
-                          <div className="inav-options-list">
-                            {filteredCategories.length > 0 ? (
-                              filteredCategories.map((catGroup, gIdx) => (
-                                <div key={gIdx} className="inav-group">
-                                  <div className="inav-group-header">{catGroup.category}</div>
-                                  <div className="inav-group-items">
-                                    {catGroup.items.map((item) => {
-                                      const ItemIcon = item.Icon;
-                                      const isSelected = formData.treatment === item.label;
-
-                                      return (
-                                        <button
-                                          key={item.id}
-                                          type="button"
-                                          role="option"
-                                          aria-selected={isSelected}
-                                          className={`inav-option-btn ${isSelected ? 'inav-option-btn--active' : ''}`}
-                                          onClick={() => {
-                                            setFormData({ ...formData, treatment: item.label });
-                                            setIsDropdownOpen(false);
-                                            setSearchQuery('');
-                                          }}
-                                        >
-                                          <div className="inav-option-left">
-                                            <div className={`inav-opt-icon inav-icon-${item.badgeType}`}>
-                                              <ItemIcon size={14} />
-                                            </div>
-                                            <div className="inav-opt-details">
-                                              <div className="inav-opt-name">{item.label}</div>
-                                            </div>
-                                          </div>
-
-                                          <div className="inav-option-right">
-                                            <span className={`inav-pill-badge inav-badge-${item.badgeType}`}>
-                                              {item.badge}
-                                            </span>
-                                            {isSelected && (
-                                              <div className="inav-check-dot">
-                                                <Check size={11} strokeWidth={3} />
-                                              </div>
-                                            )}
-                                          </div>
-                                        </button>
-                                      );
-                                    })}
-                                  </div>
-                                </div>
-                              ))
-                            ) : (
-                              <div className="inav-empty-state">
-                                No matching procedures found for &ldquo;{searchQuery}&rdquo;
-                              </div>
-                            )}
-                          </div>
-
-                        </div>
-                      )}
+                        {TREATMENT_CATEGORIES.map((catGroup, gIdx) => (
+                          <optgroup key={gIdx} label={catGroup.category}>
+                            {catGroup.items.map((item) => (
+                              <option key={item.id} value={item.label}>
+                                {item.label}
+                              </option>
+                            ))}
+                          </optgroup>
+                        ))}
+                      </select>
+                      <div className="luxury-select-chevron">
+                        <ChevronDown size={15} />
+                      </div>
                     </div>
                   </div>
 
@@ -778,215 +661,81 @@ export default function SmartBooking() {
           font-weight: 700;
         }
 
-        .inav-select-container {
+        /* ── LUXURY NATIVE SELECT (MOBILE & DESKTOP BULLETPROOF) ── */
+        .luxury-select-wrapper {
           position: relative;
-          width: 100%;
-        }
-
-        .inav-select-trigger {
-          width: 100%;
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          width: 100%;
           background: #FAF8F5;
-          border: 1.5px solid rgba(74, 37, 24, 0.12);
+          border: 1.5px solid rgba(74, 37, 24, 0.14);
           border-radius: 12px;
-          padding: 0.45rem 0.65rem;
-          cursor: pointer;
           transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-          text-align: left;
-          gap: 0.5rem;
           box-sizing: border-box;
-          min-height: 42px;
         }
-
-        .inav-select-trigger:hover,
-        .inav-select-trigger--open {
+        .luxury-select-wrapper:hover,
+        .luxury-select-wrapper:focus-within {
           background: #FFFFFF;
           border-color: #D67A41;
-          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.14);
+          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.15);
         }
 
-        .inav-trigger-left {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          min-width: 0;
-          flex: 1;
-        }
-
-        .inav-trigger-icon-box {
+        .luxury-select-icon-box {
+          position: absolute;
+          left: 0.75rem;
           width: 28px;
           height: 28px;
           border-radius: 8px;
+          background: #FFF4EC;
+          border: 1px solid rgba(214, 122, 65, 0.25);
+          color: #D67A41;
           display: flex;
           align-items: center;
           justify-content: center;
+          pointer-events: none;
           flex-shrink: 0;
         }
 
-        .inav-icon-gold { background: rgba(245, 158, 11, 0.15); color: #B45309; border: 1px solid rgba(245, 158, 11, 0.3); }
-        .inav-icon-copper { background: rgba(214, 122, 65, 0.18); color: #9A4616; border: 1px solid rgba(214, 122, 65, 0.35); }
-        .inav-icon-purple { background: rgba(168, 85, 247, 0.15); color: #7E22CE; border: 1px solid rgba(168, 85, 247, 0.3); }
-        .inav-icon-blue { background: rgba(59, 130, 246, 0.15); color: #1D4ED8; border: 1px solid rgba(59, 130, 246, 0.3); }
-        .inav-icon-teal { background: rgba(20, 184, 166, 0.15); color: #0F766E; border: 1px solid rgba(20, 184, 166, 0.3); }
-        .inav-icon-green { background: rgba(16, 185, 129, 0.15); color: #047857; border: 1px solid rgba(16, 185, 129, 0.3); }
-        .inav-icon-gray { background: rgba(100, 116, 139, 0.15); color: #475569; border: 1px solid rgba(100, 116, 139, 0.3); }
-
-        .inav-trigger-title {
-          font-family: var(--font-heading);
-          font-size: 0.82rem;
-          font-weight: 800;
-          color: #110805;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        .inav-trigger-right {
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-          flex-shrink: 0;
-        }
-
-        .inav-pill-badge {
-          font-size: 0.58rem;
-          font-weight: 800;
-          padding: 0.12rem 0.45rem;
-          border-radius: 99px;
-          white-space: nowrap;
-        }
-        .inav-badge-gold { background: #FEF9EB; color: #92400E; border: 1px solid rgba(245, 158, 11, 0.25); }
-        .inav-badge-copper { background: #FDF3EB; color: #9A4616; border: 1px solid rgba(214, 122, 65, 0.25); }
-        .inav-badge-purple { background: #FAF5FF; color: #6B21A8; border: 1px solid rgba(168, 85, 247, 0.25); }
-        .inav-badge-blue { background: #EFF6FF; color: #1E40AF; border: 1px solid rgba(59, 130, 246, 0.25); }
-        .inav-badge-teal { background: #F0FDFA; color: #115E59; border: 1px solid rgba(20, 184, 166, 0.25); }
-        .inav-badge-green { background: #ECFDF5; color: #065F46; border: 1px solid rgba(16, 185, 129, 0.25); }
-        .inav-badge-gray { background: #F8FAFC; color: #334155; border: 1px solid rgba(100, 116, 139, 0.25); }
-
-        .inav-chevron {
-          color: #D67A41;
-          transition: transform 0.22s ease;
-        }
-        .inav-chevron--rotated {
-          transform: rotate(180deg);
-        }
-
-        .inav-dropdown-panel {
-          position: absolute;
-          top: calc(100% + 4px);
-          left: 0;
-          right: 0;
-          background: #FFFFFF;
-          border: 1.5px solid rgba(214, 122, 65, 0.35);
-          border-radius: 16px;
-          box-shadow: 0 16px 40px rgba(17, 8, 5, 0.25);
-          z-index: 50;
-          max-height: 280px;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .inav-search-bar {
-          display: flex;
-          align-items: center;
-          gap: 0.45rem;
-          padding: 0.5rem 0.75rem;
-          border-bottom: 1px solid rgba(74, 37, 24, 0.08);
-          background: #FAF8F5;
-        }
-        .inav-search-icon { color: #D67A41; flex-shrink: 0; }
-        .inav-search-input {
+        .luxury-native-select {
           width: 100%;
-          border: none;
+          padding: 0.7rem 2.2rem 0.7rem 3.1rem;
+          font-size: 0.86rem;
+          font-weight: 700;
+          color: #110805;
           background: transparent;
-          font-size: 0.78rem;
+          border: none;
+          border-radius: 12px;
+          outline: none;
+          cursor: pointer;
+          font-family: inherit;
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .luxury-native-select optgroup {
+          font-weight: 800;
+          color: #8C370B;
+          background: #FAF8F5;
+          font-size: 0.85rem;
+          padding: 0.4rem;
+        }
+
+        .luxury-native-select option {
           font-weight: 600;
           color: #110805;
-          outline: none;
-        }
-        .inav-search-clear {
-          background: transparent;
-          border: none;
-          font-size: 0.75rem;
-          color: #A89B95;
-          cursor: pointer;
-        }
-
-        .inav-options-list {
-          overflow-y: auto;
-          max-height: 220px;
+          background: #FFFFFF;
+          font-size: 0.88rem;
           padding: 0.35rem;
         }
 
-        .inav-group { margin-bottom: 0.35rem; }
-        .inav-group-header {
-          font-size: 0.62rem;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          color: #A85A2E;
-          padding: 0.25rem 0.45rem 0.1rem;
-        }
-        .inav-group-items {
-          display: flex;
-          flex-direction: column;
-          gap: 0.15rem;
-        }
-        .inav-option-btn {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          background: transparent;
-          border: 1px solid transparent;
-          border-radius: 8px;
-          padding: 0.38rem 0.5rem;
-          cursor: pointer;
-          transition: all 0.15s ease;
-          text-align: left;
-          gap: 0.4rem;
-        }
-        .inav-option-btn:hover {
-          background: #FFF8F0;
-          border-color: rgba(214, 122, 65, 0.2);
-        }
-        .inav-option-btn--active {
-          background: linear-gradient(135deg, #FFF5EB 0%, #FFEEDD 100%) !important;
-          border-color: #D67A41 !important;
-        }
-        .inav-option-left {
-          display: flex;
-          align-items: center;
-          gap: 0.45rem;
-          min-width: 0;
-          flex: 1;
-        }
-        .inav-opt-icon {
-          width: 24px;
-          height: 24px;
-          border-radius: 6px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-        .inav-opt-name {
-          font-size: 0.76rem;
-          font-weight: 700;
-          color: #110805;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        .inav-check-dot {
-          width: 14px;
-          height: 14px;
-          border-radius: 50%;
-          background: #D67A41;
-          color: #FFFFFF;
+        .luxury-select-chevron {
+          position: absolute;
+          right: 0.75rem;
+          color: #D67A41;
+          pointer-events: none;
           display: flex;
           align-items: center;
           justify-content: center;
