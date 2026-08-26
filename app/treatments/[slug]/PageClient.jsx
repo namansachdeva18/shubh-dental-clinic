@@ -706,7 +706,7 @@ export default function PageClient({ treatment }) {
               <div className="why-clinic-grid">
                 {(treatment.whyChooseClinic || [
                   'PGI Chandigarh & Rohtak trained specialist clinical leadership.',
-                  'Over 20+ years of dedicated hands-on dental and orthodontic experience.',
+                  'Over 30+ years of dedicated hands-on dental and orthodontic experience.',
                   'In-house digital 3D scanning and manufacturing lab.',
                   'Hospital-grade sterilization with class-B vacuum autoclaving.'
                 ]).map((point, idx) => (

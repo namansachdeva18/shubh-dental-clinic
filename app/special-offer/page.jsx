@@ -52,7 +52,7 @@ export default function SpecialOfferPage() {
       id: 'aligners',
       title: 'Invisalign® & Clear Aligners',
       tagline: 'Virtually Invisible Smile Transformation Without Brackets or Food Restrictions',
-      desc: 'Custom medical-grade transparent aligners planned directly by Prof. Dr. S. K. Yadav (Ex-PGI Chandigarh, 35,000+ cases).',
+      desc: 'Custom medical-grade transparent aligners planned directly by Prof. Dr. S. K. Yadav (Ex-PGI Chandigarh, 5,000+ cases).',
       icon: Sparkles,
       badge: 'Up to 20% OFF',
       savingsTag: 'Save up to ₹25,000 on Aligner Packages',
@@ -94,7 +94,7 @@ export default function SpecialOfferPage() {
       id: 'braces',
       title: 'Damon® Self-Ligating & Aesthetic Braces',
       tagline: 'Faster Alignment with 40% Less Friction & Fewer Clinic Adjustments',
-      desc: 'Next-generation low-friction self-ligating braces and tooth-colored ceramic brackets with 35,000+ completed clinical cases.',
+      desc: 'Next-generation low-friction self-ligating braces and tooth-colored ceramic brackets with 5,000+ completed clinical cases.',
       icon: Award,
       badge: 'Up to 20% OFF',
       savingsTag: 'Low-Friction Biological Tooth Movement',
@@ -108,7 +108,7 @@ export default function SpecialOfferPage() {
       ],
       bestFor: 'Teens & adults with severe crowding, misaligned bites, protruding teeth, or complex orthodontic cases.',
       duration: '12 to 24 months with gentle biological forces and faster progress',
-      specialist: 'Prof. Dr. S. K. Yadav (MDS Orthodontics, 20+ Years Experience)',
+      specialist: 'Prof. Dr. S. K. Yadav (MDS Orthodontics, 30+ Years Experience)',
       whatsappMsg: 'Hi Shubh Dental! I want to claim the Limited-Time Offer for Damon & Ceramic Braces at Shubh Dental Clinic.'
     },
     {

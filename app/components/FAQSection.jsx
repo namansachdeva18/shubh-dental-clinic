@@ -12,7 +12,7 @@ export default function FAQSection() {
   const faqs = [
     {
       q: 'Who is the best orthodontist in Rohtak?',
-      a: <><span className="text-highlight">Prof. Dr. S. K. Yadav</span> at Shubh Orthodontic &amp; Dental Clinic is widely regarded as the best orthodontist in Rohtak, Haryana. He holds an <span className="text-highlight">MDS in Orthodontics from PGI Chandigarh</span>, is a Certified Invisalign® Provider and a Fellow of the World Federation of Orthodontists (WFO, USA). With over 35,000+ completed braces and aligner cases, 27,000+ implants, and a 5.0-star Google rating, you are in the most trusted hands in Haryana.</>
+      a: <><span className="text-highlight">Prof. Dr. S. K. Yadav</span> at Shubh Orthodontic &amp; Dental Clinic is widely regarded as the best orthodontist in Rohtak, Haryana. He holds an <span className="text-highlight">MDS in Orthodontics from PGI Chandigarh</span>, is a Certified Invisalign® Provider and a Fellow of the World Federation of Orthodontists (WFO, USA). With over 5,000+ completed braces and aligner cases, 3,000+ implants, and a 5.0-star Google rating, you are in the most trusted hands in Haryana.</>
     },
     {
       q: 'How much do braces cost in Rohtak?',
@@ -24,7 +24,7 @@ export default function FAQSection() {
     },
     {
       q: 'Why should I choose Prof. Dr. S. K. Yadav for my braces or clear aligners?',
-      a: <><span className="text-highlight">Prof. Dr. S. K. Yadav</span> holds an MDS in Orthodontics from PGI Chandigarh with <span className="text-highlight">over 20 years of clinical experience</span>. He is a <span className="text-highlight">Certified Invisalign® &amp; SkyAlign™ Provider</span> and a Fellow of the World Federation of Orthodontists (WFO, USA). With <span className="text-highlight">35,000+ completed braces and aligners cases</span>, you receive elite, specialized orthodontic care.</>
+      a: <><span className="text-highlight">Prof. Dr. S. K. Yadav</span> holds an MDS in Orthodontics from PGI Chandigarh with <span className="text-highlight">over 20 years of clinical experience</span>. He is a <span className="text-highlight">Certified Invisalign® &amp; SkyAlign™ Provider</span> and a Fellow of the World Federation of Orthodontists (WFO, USA). With <span className="text-highlight">5,000+ completed braces and aligners cases</span>, you receive elite, specialized orthodontic care.</>
     },
     {
       q: 'What is SkyAlign™ and how is it different from Invisalign®?',

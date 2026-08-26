@@ -338,29 +338,6 @@ export default function KidsDentistry() {
 
         </div>
 
-        {/* 3. QUICK TRUST RIBBON */}
-        <div className="kids-trust-strip">
-          <div className="trust-cell">
-            <strong>100%</strong>
-            <span>Fear-Free Environment</span>
-          </div>
-          <div className="trust-divider" />
-          <div className="trust-cell">
-            <strong>Age 1+</strong>
-            <span>First Checkup &amp; Guidance</span>
-          </div>
-          <div className="trust-divider" />
-          <div className="trust-cell">
-            <strong>Ex-PGI</strong>
-            <span>Specialist Orthodontic Care</span>
-          </div>
-          <div className="trust-divider" />
-          <div className="trust-cell">
-            <strong>No Pain</strong>
-            <span>Gentle Child Protocols</span>
-          </div>
-        </div>
-
       </div>
 
       {/* LUXURY COMPACT CSS */}
@@ -368,7 +345,7 @@ export default function KidsDentistry() {
         .kids-section-root {
           background: #FAF8F5;
           color: #2D2420;
-          padding: 3rem 1.5rem;
+          padding: 2.25rem 1.5rem 1.25rem;
           position: relative;
           overflow: hidden;
           box-sizing: border-box;

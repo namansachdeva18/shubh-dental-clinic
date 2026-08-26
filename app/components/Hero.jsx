@@ -86,41 +86,35 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            {/* Certification & Recognition Trust Badges */}
+            {/* Certification & Recognition Prominent Brand Logos (3 in Row 1, 2 in Row 2 — Big & Crisp) */}
             <motion.div className="hs-trust-strip" variants={fadeUp}>
               <div className="hs-trust-header">
                 <span className="hs-trust-dot" />
                 <span className="hs-trust-label">Certified &amp; Recognised By</span>
               </div>
-              <div className="hs-trust-badges">
-                <div className="hs-trust-row hs-trust-row-1">
-                  <div className="hs-trust-badge hs-badge-invisalign" title="Certified Invisalign Provider">
-                    <img src="/invisalign-logo.png" alt="Invisalign Logo" className="hs-badge-img" />
-                    <span>Invisalign® Provider</span>
+              <div className="hs-trust-logos-container">
+                <div className="hs-trust-row hs-trust-row-top">
+                  <div className="hs-logo-item">
+                    <img src="/invisalign-logo.png" alt="Invisalign Provider" className="hs-brand-logo hs-logo-invisalign" title="Certified Invisalign® Provider" />
                   </div>
-                  <div className="hs-trust-badge hs-badge-wfo" title="Fellow World Federation of Orthodontists USA">
-                    <img src="/wfo-logo.png" alt="WFO USA Logo" className="hs-badge-img" />
-                    <span>WFO USA Fellow</span>
+                  <div className="hs-logo-item">
+                    <img src="/wfo-logo.png" alt="World Federation of Orthodontists" className="hs-brand-logo hs-logo-wfo" title="World Federation of Orthodontists (USA) Fellow" />
                   </div>
-                  <div className="hs-trust-badge hs-badge-damon" title="Official Damon Braces Provider">
-                    <img src="/damon-logo.png" alt="Damon Braces Logo" className="hs-badge-img" />
-                    <span>Damon® Provider</span>
+                  <div className="hs-logo-item">
+                    <img src="/damon-logo.png" alt="Damon Braces" className="hs-brand-logo hs-logo-damon" title="Damon® Braces Certified Provider" />
                   </div>
                 </div>
-                <div className="hs-trust-row hs-trust-row-2">
-                  <div className="hs-trust-badge hs-badge-osstem" title="Osstem Implants Certified Provider">
-                    <img src="/osstem-implant.jpeg" alt="Osstem Implants Logo" className="hs-badge-img" />
-                    <span>Osstem® Implants Certified</span>
+                <div className="hs-trust-row hs-trust-row-bottom">
+                  <div className="hs-logo-item">
+                    <img src="/osstem-implant.jpeg" alt="Osstem Implants" className="hs-brand-logo hs-logo-osstem" title="Osstem® Dental Implants Certified" />
                   </div>
-                  <div className="hs-trust-badge hs-badge-ios" title="Indian Orthodontic Society Endorsed">
-                    <img src="/ios-logo.png" alt="IOS Logo" className="hs-badge-img" />
-                    <span>IOS Endorsed</span>
+                  <div className="hs-logo-item">
+                    <img src="/ios-logo.png" alt="Indian Orthodontic Society" className="hs-brand-logo hs-logo-ios" title="Indian Orthodontic Society Endorsed" />
                   </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Micro-stats strip: 4 Luxury Clinical Impact Cards */}
             <motion.div className="hs-stats-innovative" variants={fadeUp}>
               
               {/* Card 1: Patients Impacted */}
@@ -137,7 +131,7 @@ export default function Hero() {
 
                 <div className="hs-stat-content">
                   <div className="hs-stat-val">
-                    <AnimatedCounter target={350000} suffix="+" duration={2200} />
+                    <AnimatedCounter target={250000} suffix="+" duration={2200} />
                   </div>
                   <div className="hs-stat-label">PATIENTS IMPACTED</div>
                   <div className="hs-stat-sub">Across Haryana &amp; NCR</div>
@@ -159,7 +153,7 @@ export default function Hero() {
 
                 <div className="hs-stat-content">
                   <div className="hs-stat-val">
-                    <AnimatedCounter target={20} suffix="+" duration={2000} /> <span className="hs-stat-unit">Yrs</span>
+                    <AnimatedCounter target={30} suffix="+" duration={2000} /> <span className="hs-stat-unit">Years</span>
                   </div>
                   <div className="hs-stat-label">CLINICAL MASTERY</div>
                   <div className="hs-stat-sub">Ex-PGI Senior Resident</div>
@@ -604,108 +598,102 @@ export default function Hero() {
           box-shadow: 0 12px 30px rgba(214,122,65,0.3);
         }
 
-        /* ── Certification Trust Badge Strip ── */
+        /* ── Certification Trust Logos (3 on Line 1, 2 on Line 2 — Big & Clean) ── */
         .hs-trust-strip {
           display: flex;
           flex-direction: column;
-          gap: 8px;
-          margin-top: 1.75rem;
-          margin-bottom: 0.5rem;
+          gap: 14px;
+          margin-top: 1.85rem;
+          margin-bottom: 0.85rem;
         }
 
         .hs-trust-header {
           display: flex;
           align-items: center;
-          gap: 7px;
+          gap: 8px;
         }
 
         .hs-trust-dot {
-          width: 6px;
-          height: 6px;
+          width: 7px;
+          height: 7px;
           border-radius: 50%;
           background: #D67A41;
-          box-shadow: 0 0 8px rgba(214, 122, 65, 0.7);
+          box-shadow: 0 0 10px rgba(214, 122, 65, 0.8);
         }
 
         .hs-trust-label {
           font-family: var(--font-body, sans-serif);
-          font-size: 0.7rem;
+          font-size: 0.78rem;
           font-weight: 800;
           text-transform: uppercase;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.1em;
           color: #6E5B54;
         }
 
-        .hs-trust-badges {
+        .hs-trust-logos-container {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 16px;
+          padding: 4px 0;
         }
 
         .hs-trust-row {
           display: flex;
           align-items: center;
-          gap: 8px;
-          flex-wrap: wrap;
+          gap: 28px;
         }
 
-        .hs-trust-badge {
-          display: inline-flex;
+        .hs-trust-row-top {
+          justify-content: flex-start;
+        }
+
+        .hs-trust-row-bottom {
+          justify-content: flex-start;
+          gap: 32px;
+        }
+
+        .hs-logo-item {
+          display: flex;
           align-items: center;
-          gap: 6px;
-          background: rgba(255, 255, 255, 0.92);
-          border: 1px solid rgba(74, 37, 24, 0.1);
-          color: #2D1810;
-          padding: 6px 14px;
-          border-radius: 99px;
-          font-family: var(--font-body, sans-serif);
-          font-size: 0.76rem;
-          font-weight: 700;
-          letter-spacing: 0.01em;
-          box-shadow: 0 2px 8px rgba(74, 37, 24, 0.04);
-          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          cursor: default;
+          justify-content: center;
         }
 
-        .hs-trust-badge:hover {
-          transform: translateY(-2px);
-          background: #FFFFFF;
-          border-color: rgba(214, 122, 65, 0.4);
-          box-shadow: 0 8px 20px rgba(214, 122, 65, 0.14);
-          color: #B85922;
-        }
-
-        .hs-badge-img {
-          height: 16px;
+        .hs-brand-logo {
           width: auto;
-          max-width: 26px;
           object-fit: contain;
-          border-radius: 2px;
-          flex-shrink: 0;
-          transition: transform 0.25s ease;
+          transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+          cursor: pointer;
+          filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.05));
         }
 
-        .hs-trust-badge:hover .hs-badge-img {
-          transform: scale(1.15);
+        .hs-logo-invisalign {
+          height: 64px;
+          max-width: 220px;
         }
 
-        /* Color accents for each badge */
-        .hs-badge-invisalign .hs-badge-icon {
-          color: #D67A41;
+        .hs-logo-wfo {
+          height: 68px;
+          max-width: 190px;
         }
-        .hs-badge-wfo .hs-badge-icon {
-          color: #2475AC;
+
+        .hs-logo-damon {
+          height: 60px;
+          max-width: 200px;
         }
-        .hs-badge-damon .hs-badge-icon {
-          color: #813C9E;
+
+        .hs-logo-osstem {
+          height: 66px;
+          max-width: 200px;
         }
-        .hs-badge-osstem .hs-badge-icon {
-          color: #059669;
+
+        .hs-logo-ios {
+          height: 72px;
+          max-width: 110px;
         }
-        .hs-badge-ios .hs-badge-icon {
-          color: #C67607;
+
+        .hs-brand-logo:hover {
+          transform: translateY(-4px) scale(1.08);
+          filter: drop-shadow(0 8px 18px rgba(214, 122, 65, 0.25));
         }
 
         .hs-btn-ghost {
@@ -1498,62 +1486,95 @@ export default function Hero() {
             left: 14px;
           }
 
-          /* Trust Badges Mobile (3 Above, 2 Down Symmetrical Layout) */
+          /* Trust Logos Mobile (3 on Top Line, 2 on Bottom Line — Highly Readable) */
           .hs-trust-strip {
-            margin-top: 1.25rem;
-            margin-bottom: 0.75rem;
+            margin-top: 1.35rem;
+            margin-bottom: 0.85rem;
             width: 100%;
           }
-          .hs-trust-badges {
+          .hs-trust-logos-container {
             display: flex !important;
             flex-direction: column !important;
-            gap: 6px !important;
+            gap: 14px !important;
             width: 100% !important;
           }
-          .hs-trust-row {
-            display: flex !important;
-            gap: 6px !important;
+          .hs-trust-row-top {
+            display: grid !important;
+            grid-template-columns: 1.25fr 1fr 1.2fr !important;
+            align-items: center !important;
+            justify-items: center !important;
+            gap: 10px !important;
             width: 100% !important;
           }
-          .hs-trust-row-1 {
+          .hs-trust-row-bottom {
             display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 5px !important;
-          }
-          .hs-trust-row-2 {
-            display: grid !important;
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 6px !important;
+            grid-template-columns: 1.4fr 0.9fr !important;
+            align-items: center !important;
+            justify-items: center !important;
+            gap: 16px !important;
             width: 85% !important;
             margin: 0 auto !important;
           }
-          .hs-trust-badge {
+          .hs-logo-item {
+            width: 100% !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            padding: 5px 6px !important;
-            font-size: 0.67rem !important;
-            gap: 4px !important;
-            white-space: nowrap !important;
-            text-align: center !important;
-            border-radius: 99px !important;
           }
-          .hs-badge-img {
-            height: 13px !important;
-            max-width: 18px !important;
+          .hs-brand-logo {
+            width: 100% !important;
+            object-fit: contain !important;
+          }
+          .hs-logo-invisalign {
+            height: 52px !important;
+            max-width: 155px !important;
+          }
+          .hs-logo-wfo {
+            height: 56px !important;
+            max-width: 130px !important;
+          }
+          .hs-logo-damon {
+            height: 48px !important;
+            max-width: 145px !important;
+          }
+          .hs-logo-osstem {
+            height: 54px !important;
+            max-width: 150px !important;
+          }
+          .hs-logo-ios {
+            height: 58px !important;
+            max-width: 80px !important;
           }
           @media (max-width: 420px) {
-            .hs-trust-row-2 {
-              width: 100% !important;
+            .hs-trust-logos-container {
+              gap: 12px !important;
             }
-            .hs-trust-badge {
-              padding: 4px 3px !important;
-              font-size: 0.61rem !important;
-              gap: 3px !important;
+            .hs-trust-row-top {
+              gap: 10px !important;
             }
-            .hs-badge-img {
-              height: 11px !important;
-              max-width: 15px !important;
+            .hs-trust-row-bottom {
+              width: 92% !important;
+              gap: 16px !important;
+            }
+            .hs-logo-invisalign {
+              height: 46px !important;
+              max-width: 135px !important;
+            }
+            .hs-logo-wfo {
+              height: 48px !important;
+              max-width: 115px !important;
+            }
+            .hs-logo-damon {
+              height: 42px !important;
+              max-width: 125px !important;
+            }
+            .hs-logo-osstem {
+              height: 48px !important;
+              max-width: 130px !important;
+            }
+            .hs-logo-ios {
+              height: 50px !important;
+              max-width: 70px !important;
             }
           }
 

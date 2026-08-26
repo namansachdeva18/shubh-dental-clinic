@@ -1,48 +1,8 @@
 'use client';
 import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Sparkles, CheckCircle2, ShieldCheck, ArrowRight, 
-  Calendar, MessageSquare, Clock, Award, Star, Zap, Check
-} from 'lucide-react';
+import { Zap, ChevronLeft, ChevronRight } from 'lucide-react';
 import BeforeAfterSlider from './BeforeAfterSlider';
-
-const IMPLANT_OPTIONS = [
-  {
-    id: 'single-implant',
-    name: 'Single & Multi-Tooth Implants',
-    badge: '★ Immediate / Keyhole Placement',
-    tagline: 'Permanent replacement for missing teeth without trimming or damaging adjacent natural teeth.',
-    price: 'Starting ₹18,000',
-    timeline: 'Same-Day / 24 Hours',
-    highlights: [
-      'Preserves natural jawbone & facial youthfulness',
-      'Flapless 3D keyhole surgery — zero scalpels & zero stitches',
-      'High-translucency biocompatible zirconia ceramic crown',
-      'Full natural chewing power from day one'
-    ],
-    ctaText: 'Explore Single Implants',
-    link: '/treatments/dental-implants'
-  },
-  {
-    id: 'full-mouth',
-    name: 'Full Mouth Fixed Teeth (All-on-4/6)',
-    badge: '💎 Full Arch Same-Day Rehab',
-    tagline: 'Permanent full-arch fixed teeth in 24–72 hours for loose dentures or severely broken teeth.',
-    price: 'Starting ₹1,25,000 / arch',
-    timeline: '24–72 Hours Fixed',
-    highlights: [
-      'Walk out with fixed permanent teeth in just 1 trip',
-      'Permanently eliminates loose dentures & adhesive glues',
-      'Medical-grade Swiss titanium framework for lifetime stability',
-      'Includes verified 10-year international manufacturer warranty'
-    ],
-    ctaText: 'Explore Full Mouth Implants',
-    link: '/treatments/same-day-dental-implants'
-  }
-];
 
 const CLINIC_IMPLANT_PERKS = [
   {
@@ -70,33 +30,33 @@ const CLINIC_IMPLANT_PERKS = [
 const CLINICAL_CASES = [
   {
     id: 'implant-case-1',
-    label: 'Front Tooth (24h)',
-    duration: '24 Hrs',
+    label: 'Single / Front Tooth Immediate Implant (24 Hours)',
     beforeSrc: '/front-before.webp',
     afterSrc: '/front-after.webp',
-    beforeAlt: 'Immediate implant showing missing front tooth',
-    afterAlt: 'Immediate implant showing restored front tooth',
+    beforeAlt: 'Immediate dental implant restoration before',
+    afterAlt: 'Immediate dental implant restoration after',
   },
   {
     id: 'implant-case-2',
-    label: 'Full Mouth (72h)',
-    duration: 'Same-Day Fixed',
+    label: 'Full Mouth Same-Day Fixed Teeth Rehabilitation',
     beforeSrc: '/fullarch-before.webp',
     afterSrc: '/fullarch-after.webp',
-    beforeAlt: 'Full mouth rehabilitation implant treatment before',
-    afterAlt: 'Full mouth rehabilitation implant treatment after',
+    beforeAlt: 'Full arch rehabilitation implant treatment before',
+    afterAlt: 'Full arch rehabilitation implant treatment after',
   }
 ];
 
 export default function ImplantsHero() {
-  const [selectedSystem, setSelectedSystem] = useState('single-implant');
-  const [selectedCase, setSelectedCase] = useState(CLINICAL_CASES[0]);
+  const [activeCaseIdx, setActiveCaseIdx] = useState(0);
+  const activeCase = CLINICAL_CASES[activeCaseIdx];
 
-  const activeSystem = IMPLANT_OPTIONS.find(o => o.id === selectedSystem) || IMPLANT_OPTIONS[0];
+  const handlePrev = () => {
+    setActiveCaseIdx((prev) => (prev === 0 ? CLINICAL_CASES.length - 1 : prev - 1));
+  };
 
-  const whatsappUrl = 'https://wa.me/918685048414?text=' + encodeURIComponent(
-    'Hi Dr. Yadav! I would like to book a 3D CBCT Scan & Implant Consultation for missing teeth at Shubh Dental Clinic.'
-  );
+  const handleNext = () => {
+    setActiveCaseIdx((prev) => (prev === CLINICAL_CASES.length - 1 ? 0 : prev + 1));
+  };
 
   return (
     <section id="implants" className="implants-section-root" aria-label="Dental Implants and Same Day Teeth">
@@ -114,7 +74,7 @@ export default function ImplantsHero() {
           </h2>
 
           <p className="implants-subtitle">
-            Walk in with missing or failing teeth — walk out with fixed, functional teeth in just 24 hours. Led by <strong>Prof. Dr. S. K. Yadav (27,000+ successful implants)</strong>.
+            Walk in with missing or failing teeth — walk out with fixed, functional teeth in just 24 hours. Led by <strong>Prof. Dr. S. K. Yadav (3,000+ successful implants)</strong>.
           </p>
         </div>
 
@@ -131,10 +91,58 @@ export default function ImplantsHero() {
           ))}
         </div>
 
+        {/* BEFORE / AFTER RESULT SLIDER SHOWCASE */}
+        <div className="implants-showcase-box">
+          <div className="slider-stage-wrapper">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCase.id}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+                className="slider-centered-container"
+              >
+                <div className="slider-frame">
+                  <BeforeAfterSlider
+                    beforeSrc={activeCase.beforeSrc}
+                    afterSrc={activeCase.afterSrc}
+                    beforeAlt={activeCase.beforeAlt}
+                    afterAlt={activeCase.afterAlt}
+                  />
+
+                  {/* Navigation Arrows */}
+                  <button 
+                    type="button" 
+                    className="slider-nav-btn slider-nav-prev" 
+                    onClick={handlePrev}
+                    aria-label="Previous result"
+                  >
+                    <ChevronLeft size={22} />
+                  </button>
+
+                  <button 
+                    type="button" 
+                    className="slider-nav-btn slider-nav-next" 
+                    onClick={handleNext}
+                    aria-label="Next result"
+                  >
+                    <ChevronRight size={22} />
+                  </button>
+
+                  <div className="slider-instruction-tag">
+                    <span>⟵ Drag slider to compare results ⟶</span>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
         {/* QUICK TRUST BAR */}
         <div className="implants-quick-trust">
           <div className="trust-stat">
-            <strong>27,000+</strong>
+            <strong>3,000+</strong>
             <span>Implants Placed</span>
           </div>
           <div className="trust-stat-sep" />
@@ -160,7 +168,7 @@ export default function ImplantsHero() {
         .implants-section-root {
           background: linear-gradient(180deg, #090403 0%, #140804 100%);
           color: #FFFFFF;
-          padding: 2.25rem 1.25rem;
+          padding: 1.5rem 1.25rem 2rem 1.25rem;
           position: relative;
           overflow: hidden;
           width: 100%;
@@ -178,7 +186,7 @@ export default function ImplantsHero() {
         .implants-compact-header {
           text-align: center;
           max-width: 780px;
-          margin: 0 auto 1.25rem;
+          margin: 0 auto 0.85rem;
         }
 
         .implants-pill-badge {
@@ -277,212 +285,77 @@ export default function ImplantsHero() {
           padding: 1.35rem 1.5rem;
           margin-bottom: 1.25rem;
           box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+          max-width: 860px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
-        .implants-split-grid {
-          display: grid;
-          grid-template-columns: 1.2fr 0.8fr;
-          gap: 1.75rem;
-          align-items: center;
+        .slider-stage-wrapper {
+          position: relative;
+          width: 100%;
         }
 
-        .system-tab-switch {
-          display: flex;
-          gap: 0.5rem;
-          background: rgba(0, 0, 0, 0.35);
-          padding: 0.35rem;
-          border-radius: 14px;
-          border: 1px solid rgba(214, 122, 65, 0.2);
-          margin-bottom: 1rem;
+        .slider-centered-container {
+          width: 100%;
         }
 
-        .switch-tab {
-          flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.65rem;
-          padding: 0.55rem 0.85rem;
-          border-radius: 10px;
-          border: none;
-          background: transparent;
-          color: rgba(255, 255, 255, 0.7);
-          font-size: 0.85rem;
-          font-weight: 800;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-        .switch-tab--active {
-          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
-          color: #FFFFFF;
-          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.35);
-        }
-        .switch-tab-badge {
-          font-size: 0.7rem;
-          font-weight: 700;
-          background: rgba(0, 0, 0, 0.25);
-          padding: 0.12rem 0.45rem;
-          border-radius: 99px;
-        }
-
-        .system-headline-row {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          margin-bottom: 0.4rem;
-          flex-wrap: wrap;
-        }
-        .system-quality-tag {
-          font-size: 0.7rem;
-          font-weight: 800;
-          color: #34D399;
-          background: rgba(16, 185, 129, 0.12);
-          border: 1px solid rgba(16, 185, 129, 0.25);
-          padding: 0.18rem 0.6rem;
-          border-radius: 99px;
-        }
-        .system-time-tag {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.3rem;
-          font-size: 0.74rem;
-          color: #F4B382;
-        }
-
-        .system-display-name {
-          font-size: 1.3rem;
-          font-weight: 900;
-          color: #FFFFFF;
-          margin: 0 0 0.25rem;
-        }
-        .system-display-tagline {
-          font-size: 0.82rem;
-          color: rgba(255, 255, 255, 0.72);
-          line-height: 1.45;
-          margin-bottom: 0.75rem;
-        }
-
-        .system-points-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0.5rem 0.75rem;
-          margin-bottom: 1rem;
-        }
-        .system-point {
-          display: flex;
-          align-items: flex-start;
-          gap: 0.45rem;
-          font-size: 0.78rem;
-          color: rgba(255, 255, 255, 0.85);
-          line-height: 1.35;
-        }
-        .point-check {
-          color: #D67A41;
-          flex-shrink: 0;
-          margin-top: 1px;
-        }
-
-        .implants-cta-row {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          background: rgba(0, 0, 0, 0.3);
-          border: 1px solid rgba(214, 122, 65, 0.2);
-          border-radius: 14px;
-          padding: 0.65rem 0.95rem;
-          gap: 0.75rem;
-          flex-wrap: wrap;
-        }
-        .price-label {
-          display: block;
-          font-size: 0.68rem;
-          color: rgba(255, 255, 255, 0.65);
-          text-transform: uppercase;
-        }
-        .price-val {
-          font-family: var(--font-heading);
-          font-size: 1.15rem;
-          color: #F4B382;
-          font-weight: 900;
-        }
-
-        .action-buttons-group {
-          display: flex;
-          align-items: center;
-          gap: 0.45rem;
-        }
-        .btn-book-implant, .btn-wa-implant {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.35rem;
-          padding: 0.55rem 0.85rem;
-          border-radius: 10px;
-          font-size: 0.78rem;
-          font-weight: 800;
-          text-decoration: none;
-          transition: all 0.2s ease;
-        }
-        .btn-book-implant {
-          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
-          color: #FFFFFF;
-          box-shadow: 0 4px 12px rgba(214, 122, 65, 0.3);
-        }
-        .btn-book-implant:hover { transform: translateY(-1px); }
-        .btn-wa-implant {
-          background: rgba(37, 211, 102, 0.15);
-          color: #25D366;
-          border: 1px solid rgba(37, 211, 102, 0.3);
-        }
-        .btn-wa-implant:hover { background: rgba(37, 211, 102, 0.25); }
-
-        /* RIGHT PROOF COL */
-        .implants-proof-col {
-          background: rgba(0, 0, 0, 0.35);
-          border: 1px solid rgba(214, 122, 65, 0.2);
+        .slider-frame {
+          position: relative;
           border-radius: 18px;
-          padding: 0.85rem;
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
+          overflow: hidden;
+          border: 1.5px solid rgba(214, 122, 65, 0.3);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+          background: #000;
         }
-        .case-tabs-bar {
-          display: flex;
-          gap: 0.35rem;
-        }
-        .case-tab-pill {
-          flex: 1;
-          padding: 0.35rem 0.5rem;
-          background: transparent;
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          border-radius: 8px;
-          color: rgba(255, 255, 255, 0.7);
+
+        .slider-instruction-tag {
+          position: absolute;
+          bottom: 12px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: rgba(0, 0, 0, 0.75);
+          backdrop-filter: blur(6px);
+          border: 1px solid rgba(214, 122, 65, 0.4);
+          color: #F4B382;
           font-size: 0.72rem;
           font-weight: 700;
+          letter-spacing: 0.04em;
+          padding: 0.3rem 0.85rem;
+          border-radius: 99px;
+          pointer-events: none;
+          z-index: 20;
+          white-space: nowrap;
+        }
+
+        .slider-nav-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 25;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: rgba(0, 0, 0, 0.65);
+          backdrop-filter: blur(4px);
+          border: 1.5px solid rgba(214, 122, 65, 0.4);
+          color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           cursor: pointer;
           transition: all 0.2s ease;
         }
-        .case-tab-pill--active {
+        .slider-nav-btn:hover {
           background: #D67A41;
-          color: #FFFFFF;
-          border-color: #D67A41;
+          border-color: #F4B382;
+          transform: translateY(-50%) scale(1.1);
         }
-
-        .case-slider-container {
-          border-radius: 12px;
-          overflow: hidden;
-          background: #0E0704;
+        .slider-nav-prev {
+          left: 12px;
         }
-        .case-verified-bar {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          font-size: 0.7rem;
-          color: rgba(255, 255, 255, 0.7);
-          padding: 0.15rem 0.25rem 0;
+        .slider-nav-next {
+          right: 12px;
         }
-        .verified-text { color: #34D399; font-weight: 700; }
-        .verified-time { color: #F4B382; font-weight: 800; }
 
         /* ── TRUST BAR ───────────────────────────────── */
         .implants-quick-trust {
@@ -517,17 +390,9 @@ export default function ImplantsHero() {
           background: rgba(214, 122, 65, 0.2);
         }
 
-        /* ── RESPONSIVE RULES ────────────────────────── */
         @media (max-width: 900px) {
           .implants-perks-strip {
             grid-template-columns: repeat(2, 1fr);
-          }
-          .implants-split-grid {
-            grid-template-columns: 1fr;
-            gap: 1.25rem;
-          }
-          .system-points-grid {
-            grid-template-columns: 1fr;
           }
         }
 
@@ -563,34 +428,6 @@ export default function ImplantsHero() {
           .implants-showcase-box {
             padding: 0.85rem;
             border-radius: 18px;
-          }
-          .switch-tab {
-            padding: 0.45rem 0.55rem;
-            font-size: 0.75rem;
-            flex-direction: column;
-            gap: 0.2rem;
-          }
-          .switch-tab-badge {
-            font-size: 0.65rem;
-          }
-          .system-display-name {
-            font-size: 1.15rem;
-          }
-          .system-display-tagline {
-            font-size: 0.76rem;
-            margin-bottom: 0.5rem;
-          }
-          .system-point {
-            font-size: 0.74rem;
-          }
-          .implants-cta-row {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 0.5rem;
-          }
-          .action-buttons-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
           }
           .implants-quick-trust {
             display: none;

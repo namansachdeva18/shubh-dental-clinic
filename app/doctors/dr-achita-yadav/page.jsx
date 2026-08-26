@@ -50,7 +50,7 @@ export default function DrAchitaYadavPage() {
                 BDS, MDS, MFOMP
               </motion.div>
               <motion.p variants={fadeUp} style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
-                Dr. (Prof.) Achla Yadav is a premier <strong>Cosmetic Dentist &amp; Consultant Oral Pathologist</strong> with over 18 years of clinical and academic mastery. Having served as a <strong>Professor at Panjab University</strong>, <strong>Dental Surgeon at ESIC (Hisar)</strong>, and <strong>Professor at DJ Dental College</strong>, she has crafted over <strong>15,000+ cosmetic smiles</strong> and treated over <strong>3,50,000+ patients</strong> with gentle, pain-free dental care.
+                Dr. (Prof.) Achla Yadav is a premier <strong>Cosmetic Dentist &amp; Consultant Oral Pathologist</strong> with over 18 years of clinical and academic mastery. Having served as a <strong>Professor at Panjab University</strong>, <strong>Dental Surgeon at ESIC (Hisar)</strong>, and <strong>Professor at DJ Dental College</strong>, she has crafted over <strong>15,000+ cosmetic smiles</strong> and treated over <strong>2,50,000+ patients</strong> with gentle, pain-free dental care.
               </motion.p>
               
               <motion.div variants={fadeUp} style={{ display: 'flex', gap: '2.5rem', marginBottom: '3rem', paddingBottom: '2rem', borderBottom: '1px solid rgba(255,255,255,0.12)', flexWrap: 'wrap' }}>
@@ -63,7 +63,7 @@ export default function DrAchitaYadavPage() {
                   <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Cosmetic Smiles</div>
                 </div>
                 <div>
-                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-gold)' }}>3,50,000+</div>
+                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-gold)' }}>2,50,000+</div>
                   <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Patients Treated</div>
                 </div>
                 <div>

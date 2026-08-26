@@ -101,7 +101,7 @@ export default function ContactSection() {
                 </p>
                 <div className="card-action-links">
                   <a
-                    href="https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8"
+                    href="https://maps.app.goo.gl/EvRq96h9HMgYJYAw7"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-map-directions"
@@ -247,7 +247,7 @@ export default function ContactSection() {
                   </div>
 
                   <a
-                    href="https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8"
+                    href="https://maps.app.goo.gl/EvRq96h9HMgYJYAw7"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-open-google-maps"
@@ -263,8 +263,8 @@ export default function ContactSection() {
                   <iframe
                     title="Shubh Orthodontic & Dental Clinic Google Maps Location"
                     src={mapMode === 'satellite' 
-                      ? "https://maps.google.com/maps?q=28.8955,76.6044113&t=k&z=17&ie=UTF8&iwloc=&output=embed"
-                      : "https://maps.google.com/maps?q=28.8955,76.6044113&t=m&z=17&ie=UTF8&iwloc=&output=embed"
+                      ? "https://maps.google.com/maps?q=28.891128,76.621873&t=k&z=17&hl=en&ie=UTF8&output=embed"
+                      : "https://maps.google.com/maps?q=28.891128,76.621873&t=m&z=17&hl=en&ie=UTF8&output=embed"
                     }
                     width="100%"
                     height="100%"
@@ -284,7 +284,7 @@ export default function ContactSection() {
                 </div>
 
                 <a
-                  href="https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8"
+                  href="https://maps.app.goo.gl/EvRq96h9HMgYJYAw7"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-strip-navigate"

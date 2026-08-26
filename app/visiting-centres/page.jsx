@@ -27,7 +27,7 @@ const CENTRES = [
     services: ['Orthodontics', 'Dental Implants', 'Clear Aligners', 'Cosmetic Dentistry', 'Root Canal'],
     timing: 'Mon–Sat: 9:30 AM – 8:00 PM',
     phone: '+91-8685048414',
-    mapUrl: 'https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8',
+    mapUrl: 'https://maps.app.goo.gl/EvRq96h9HMgYJYAw7',
   },
   {
     name: 'Delhi',
@@ -119,7 +119,7 @@ export default function VisitingCentresPage() {
           addressRegion: 'Haryana',
           addressCountry: 'IN'
         },
-        hasMap: 'https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8',
+        hasMap: 'https://maps.app.goo.gl/EvRq96h9HMgYJYAw7',
         openingHours: 'Mo-Sa 09:30-20:00',
       })}} />
 
@@ -150,7 +150,7 @@ export default function VisitingCentresPage() {
             </div>
             <div className="vc-hero-trust">
               <div className="vc-trust-item">⭐ 5.0 Google Rating</div>
-              <div className="vc-trust-item">🩺 20+ Years Experience</div>
+              <div className="vc-trust-item">🩺 30+ Years Experience</div>
               <div className="vc-trust-item">🎓 Ex-PGI Chandigarh</div>
               <div className="vc-trust-item">✨ 11,000+ Patients Treated</div>
             </div>

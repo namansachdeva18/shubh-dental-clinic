@@ -1,646 +1,958 @@
 'use client';
+import { useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { MapPin, Globe, CreditCard, Plane, PhoneCall, Sparkles, Clock, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { 
+  MapPin, Globe, CreditCard, Plane, PhoneCall, Sparkles, 
+  Clock, ShieldCheck, ArrowRight, CheckCircle2, Video, 
+  BadgePercent, Calendar, Compass, ArrowUpRight, Check, Star
+} from 'lucide-react';
 
-const STATS = [
-  { val: '18+', label: 'Countries Served', Icon: Globe, color: '#2563EB' },
-  { val: '70%', label: 'Avg. Cost Savings', Icon: Sparkles, color: '#D67A41' },
-  { val: '6', label: 'Visiting Centres', Icon: MapPin, color: '#059669' },
-  { val: '0%', label: 'Interest EMI', Icon: CreditCard, color: '#8B5CF6' },
+const GLOBAL_COUNTRIES = [
+  { flag: '🇺🇸', name: 'USA', label: 'United States' },
+  { flag: '🇬🇧', name: 'UK', label: 'United Kingdom' },
+  { flag: '🇦🇪', name: 'UAE', label: 'Dubai & Gulf' },
+  { flag: '🇨🇦', name: 'Canada', label: 'Canada' },
+  { flag: '🇦🇺', name: 'Australia', label: 'Australia' },
+  { flag: '🇪🇺', name: 'Europe', label: 'Germany & EU' },
 ];
 
-const NRI_PERKS = [
+const STATS = [
+  { val: '18+', label: 'Countries Served', sub: 'Global NRI Trust', Icon: Globe, badgeType: 'copper' },
+  { val: '70–80%', label: 'Cost Savings', sub: 'vs USA, UK & Australia', Icon: BadgePercent, badgeType: 'gold' },
+  { val: '24–72h', label: 'Express Implants', sub: 'Same-Day Fixed Teeth', Icon: Clock, badgeType: 'green' },
+  { val: '6 Centres', label: 'NCR & Haryana', sub: 'Rohtak HQ + 5 Hubs', Icon: MapPin, badgeType: 'copper' },
+];
+
+const NRI_WORKFLOW_STEPS = [
   {
+    num: '01',
+    title: 'Free Virtual 3D Video Consult',
+    desc: 'Share your OPG X-rays or digital photos. Dr. S. K. Yadav conducts a 1-on-1 video call to finalize your transparent digital treatment plan and exact schedule before you book flights.',
+    icon: Video,
+    tag: 'Pre-Travel Planning'
+  },
+  {
+    num: '02',
+    title: 'Priority Airport & Fast-Track Arrival',
+    desc: 'Delhi IGI Airport is just ~75 mins away via the seamless Rohtak-Delhi Express Corridor. Pre-arranged priority slots ensure zero waiting room delay upon your arrival.',
+    icon: Plane,
+    tag: 'Zero Waiting Time'
+  },
+  {
+    num: '03',
+    title: 'Same-Day 3D Guided Treatment',
+    desc: 'Using Swiss Straumann® implants, US Invisalign® & in-house SkyAlign™ 3D scanning, complex implants and aligners are completed in record chair time with surgical precision.',
     icon: ShieldCheck,
-    title: 'World-Class at 70% Less',
-    desc: 'FDA-approved Swiss & Osstem® implants and US Invisalign® aligners at true Indian value prices.',
-    color: '#D67A41',
+    tag: 'FDA-Approved Tech'
   },
   {
-    icon: Clock,
-    title: 'Express Fast-Track Visits',
-    desc: 'Digital 3D scans & treatment planning finalized before you fly, minimizing chair time in Rohtak & NCR.',
-    color: '#059669',
+    num: '04',
+    title: 'Permanent Warranty & Tele-Followup',
+    desc: 'Receive official manufacturer warranty passports (up to Lifetime on Implants / 10-Yr on Zirconia) and seamless digital tele-reviews once you return home safely.',
+    icon: CheckCircle2,
+    tag: 'Global Aftercare'
+  }
+];
+
+const COST_COMPARISON = [
+  {
+    treatment: 'Swiss Straumann® Dental Implant (Per Tooth)',
+    usUkPrice: '$3,500 – $5,000 (₹3.5L – ₹5L)',
+    shubhPrice: '₹35,000 – ₹55,000 ($420 – $660)',
+    savings: 'Save ~85%'
   },
   {
-    icon: Globe,
-    title: 'Virtual Consult & Concierge',
-    desc: 'Free video consultation, customized timeline planning, and dedicated appointment coordination.',
-    color: '#2563EB',
+    treatment: 'Full Mouth Same-Day Fixed Teeth (All-on-4/6)',
+    usUkPrice: '$25,000 – $40,000 (₹25L – ₹40L)',
+    shubhPrice: '₹2,50,000 – ₹4,50,000 ($3,000 – $5,400)',
+    savings: 'Save ~80%'
   },
+  {
+    treatment: 'Invisalign® & SkyAlign™ Clear Aligners',
+    usUkPrice: '$5,000 – $8,000 (₹4.5L – ₹7L)',
+    shubhPrice: '₹65,000 – ₹1,80,000 ($780 – $2,150)',
+    savings: 'Save ~75%'
+  },
+  {
+    treatment: 'Full Arch Porcelain / Zirconia Veneers (Per Tooth)',
+    usUkPrice: '$1,200 – $2,500 (₹1.2L – ₹2.5L)',
+    shubhPrice: '₹8,000 – ₹16,000 ($95 – $190)',
+    savings: 'Save ~85%'
+  }
 ];
 
 const CENTRES = [
-  { city: 'Rohtak', area: 'Delhi Bypass Rd', tag: 'Main Clinic', isMain: true },
-  { city: 'Delhi', area: 'Rohini Sec 9', tag: 'NCR' },
-  { city: 'Gurugram', area: 'Malibu Town Sec 47', tag: 'NCR' },
-  { city: 'Panipat', area: 'Model Town', tag: 'Haryana' },
-  { city: 'Sonepat', area: 'Prabhu Nagar', tag: 'Haryana' },
-  { city: 'Fatehabad', area: 'Model Town', tag: 'Haryana' },
+  { city: 'Rohtak', area: 'Delhi Bypass Rd', tag: 'Super-Specialty HQ', isMain: true },
+  { city: 'Delhi', area: 'Rohini Sec 9', tag: 'NCR Visiting' },
+  { city: 'Gurugram', area: 'Malibu Town Sec 47', tag: 'NCR Visiting' },
+  { city: 'Panipat', area: 'Model Town', tag: 'Haryana Visiting' },
+  { city: 'Sonepat', area: 'Prabhu Nagar', tag: 'Haryana Visiting' },
+  { city: 'Fatehabad', area: 'Model Town', tag: 'Haryana Visiting' },
 ];
 
-const fadeUp = { hidden: { y: 24, opacity: 0 }, show: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 60, damping: 20 } } };
-const stagger = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } } };
-
 export default function DentalTourism() {
+  const [activeTab, setActiveTab] = useState('workflow'); // 'workflow' | 'cost'
+
   return (
-    <section id="tourism" className="dental-tourism-section" aria-label="Dental Tourism and NRI Care">
+    <section 
+      id="tourism" 
+      className="dt-luxury-root" 
+      aria-label="Global Dental Tourism & NRI Care"
+    >
       <div id="dental-tourism" style={{ position: 'relative', top: '-80px', height: '0', pointerEvents: 'none' }} />
-      
-      {/* Background ambient lighting */}
-      <div className="dt-ambient-1" aria-hidden="true" />
-      <div className="dt-ambient-2" aria-hidden="true" />
 
-      <div className="container" style={{ position: 'relative', zIndex: 5 }}>
+      {/* Ambient background illumination */}
+      <div className="dt-glow-orb dt-glow-orb--top" aria-hidden="true" />
+      <div className="dt-glow-orb dt-glow-orb--bottom" aria-hidden="true" />
 
-        {/* Section Header */}
-        <motion.div
-          className="dt-header"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={stagger}
-        >
-          <motion.div variants={fadeUp} className="dt-badge">
-            <Plane size={14} className="dt-plane-icon" />
-            <span>GLOBAL DENTAL TOURISM &amp; NRI CARE</span>
-          </motion.div>
+      <div className="container" style={{ position: 'relative', zIndex: 3 }}>
 
-          <motion.h2 variants={fadeUp} className="dt-title">
+        {/* ── HEADER ── */}
+        <div className="dt-header text-center">
+          
+          <div className="dt-pill-badge">
+            <Plane size={13} className="dt-plane-pulse" aria-hidden="true" />
+            <span>GLOBAL DENTAL TOURISM &amp; NRI CONCIERGE</span>
+          </div>
+
+          <h2 className="dt-heading font-heading">
             World-Class Care,{' '}
-            <span className="dt-title-accent">Just a Flight Away</span>
-          </motion.h2>
+            <span className="copper-gradient-heading">Just a Flight Away</span>
+          </h2>
 
-          <motion.p variants={fadeUp} className="dt-subtitle">
-            Trusted by patients across USA, UK, UAE &amp; Australia for PGI-specialist implants and aligners with priority travel coordination.
-          </motion.p>
-        </motion.div>
+          <p className="dt-subheading">
+            Trusted by NRI &amp; international patients across 18+ countries for Ex-PGI Senior Specialist implants, aligners, and full smile makeovers at a fraction of global healthcare costs.
+          </p>
 
-        {/* Compact Stats Ribbon */}
-        <motion.div
-          className="dt-stats-ribbon"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={stagger}
-        >
+          {/* Global Origin Countries Ribbon */}
+          <div className="dt-flags-bar" aria-label="International Patients Origin Hubs">
+            <span className="dt-flags-label">Welcoming Patients From:</span>
+            <div className="dt-flags-list">
+              {GLOBAL_COUNTRIES.map((c, idx) => (
+                <div key={idx} className="dt-flag-pill" title={`Patients from ${c.label}`}>
+                  <span className="dt-flag-emoji">{c.flag}</span>
+                  <span className="dt-flag-name">{c.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── 4 COMPACT LUXURY METRIC TILES ── */}
+        <div className="dt-stats-grid">
           {STATS.map((s, i) => {
             const Icon = s.Icon;
             return (
-              <motion.div key={i} variants={fadeUp} className="dt-stat-box">
-                <div className="dt-stat-icon-wrap" style={{ color: s.color, backgroundColor: `${s.color}14`, borderColor: `${s.color}25` }}>
+              <div key={i} className="dt-stat-card">
+                <div className={`dt-stat-icon-wrap dt-icon-${s.badgeType}`}>
                   <Icon size={18} />
                 </div>
-                <div className="dt-stat-text-wrap">
-                  <span className="dt-stat-val">{s.val}</span>
-                  <span className="dt-stat-label">{s.label}</span>
+                <div className="dt-stat-content">
+                  <div className="dt-stat-val">{s.val}</div>
+                  <div className="dt-stat-label">{s.label}</div>
+                  <div className="dt-stat-sub">{s.sub}</div>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
-        {/* 3 Core NRI Advantages */}
-        <motion.div
-          className="dt-perks-grid"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={stagger}
-        >
-          {NRI_PERKS.map((perk, i) => {
-            const Icon = perk.icon;
-            return (
-              <motion.div key={i} variants={fadeUp} className="dt-perk-card">
-                <div className="dt-perk-header">
-                  <div className="dt-perk-icon" style={{ color: perk.color, backgroundColor: `${perk.color}15`, borderColor: `${perk.color}30` }}>
-                    <Icon size={20} />
+        {/* ── INTERACTIVE TAB SELECTOR: WORKFLOW vs COST ADVANTAGE ── */}
+        <div className="dt-tab-nav-wrapper">
+          <div className="dt-tab-nav">
+            <button
+              type="button"
+              onClick={() => setActiveTab('workflow')}
+              className={`dt-tab-btn ${activeTab === 'workflow' ? 'dt-tab-btn--active' : ''}`}
+            >
+              <Compass size={15} />
+              <span>4-Step Seamless NRI Journey</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('cost')}
+              className={`dt-tab-btn ${activeTab === 'cost' ? 'dt-tab-btn--active' : ''}`}
+            >
+              <BadgePercent size={15} />
+              <span>Global Cost Advantage &amp; Savings Matrix</span>
+            </button>
+          </div>
+        </div>
+
+        {/* ── TAB CONTENT ── */}
+        <div className="dt-tab-content-panel">
+          {activeTab === 'workflow' ? (
+            /* WORKFLOW TAB: 4-Step Visual Journey */
+            <div className="dt-workflow-grid">
+              {NRI_WORKFLOW_STEPS.map((step, idx) => {
+                const Icon = step.icon;
+                return (
+                  <div key={idx} className="dt-workflow-card">
+                    <div className="dt-step-top">
+                      <span className="dt-step-num">{step.num}</span>
+                      <span className="dt-step-tag">{step.tag}</span>
+                    </div>
+
+                    <div className="dt-step-body">
+                      <div className="dt-step-icon-box">
+                        <Icon size={20} />
+                      </div>
+                      <h3 className="dt-step-title font-heading">{step.title}</h3>
+                      <p className="dt-step-desc">{step.desc}</p>
+                    </div>
+
+                    <div className="dt-step-glow" />
                   </div>
-                  <h3 className="dt-perk-title">{perk.title}</h3>
+                );
+              })}
+            </div>
+          ) : (
+            /* COST SAVINGS TAB: Transparent Global Matrix */
+            <div className="dt-cost-matrix-wrapper">
+              <div className="dt-cost-matrix-intro">
+                <div className="dt-cost-intro-title">
+                  <Star size={16} fill="#F59E0B" color="#F59E0B" />
+                  <span>Equal FDA-Approved European &amp; US Clinical Standards · 70–80% Genuine Price Advantage</span>
                 </div>
-                <p className="dt-perk-desc">{perk.desc}</p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                <p className="dt-cost-intro-desc">
+                  Patients travel from the US, UK, and Gulf, enjoy a 5-star trip to India, complete entire implant or aligner rehabilitations, and still save thousands of dollars compared to domestic clinic quotes.
+                </p>
+              </div>
 
-        {/* Streamlined Visiting Centres Ribbon with Link to Addresses */}
-        <motion.div
-          className="dt-centres-container"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="dt-centres-header">
-            <Link href="/visiting-centres" className="dt-centres-label-link" aria-label="View all visiting centres addresses">
-              <span className="dt-centres-label">
-                <MapPin size={14} style={{ color: '#D67A41' }} />
-                <span>Available Across 6 Visiting Centres in NCR &amp; Haryana</span>
-              </span>
-              <span className="dt-centres-view-all">
-                <span>View Addresses &amp; Maps</span>
-                <ArrowRight size={13} />
-              </span>
+              <div className="dt-cost-table">
+                <div className="dt-cost-row dt-cost-row--header">
+                  <div className="dt-col dt-col-proc">Procedure</div>
+                  <div className="dt-col dt-col-intl">US / UK / Gulf Clinic</div>
+                  <div className="dt-col dt-col-shubh">Shubh Dental (PGI Specialist)</div>
+                  <div className="dt-col dt-col-save">Net Savings</div>
+                </div>
+
+                {COST_COMPARISON.map((row, rIdx) => (
+                  <div key={rIdx} className="dt-cost-row">
+                    <div className="dt-col dt-col-proc">
+                      <strong>{row.treatment}</strong>
+                    </div>
+                    <div className="dt-col dt-col-intl">
+                      <span className="dt-price-strike">{row.usUkPrice}</span>
+                    </div>
+                    <div className="dt-col dt-col-shubh">
+                      <span className="dt-price-highlight">{row.shubhPrice}</span>
+                    </div>
+                    <div className="dt-col dt-col-save">
+                      <span className="dt-save-badge">{row.savings}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* ── VISITING CENTRES NETWORK STRIP (ORGANIZED 6-CENTRE GRID) ── */}
+        <div className="dt-centres-strip-card">
+          <div className="dt-centres-strip-top">
+            <div className="dt-centres-strip-left">
+              <div className="dt-centres-icon-box">
+                <MapPin size={18} />
+              </div>
+              <div>
+                <h4 className="dt-centres-strip-title font-heading">
+                  Seamless Regional Care: 6 Strategic Centres in NCR &amp; Haryana
+                </h4>
+                <p className="dt-centres-strip-desc">
+                  Fly into Delhi IGI Airport and consult at our Delhi/Gurugram hubs or visit our flagship Rohtak Super-Specialty Hospital.
+                </p>
+              </div>
+            </div>
+
+            <Link href="/visiting-centres" className="dt-centres-view-btn">
+              <span>View Addresses &amp; Maps</span>
+              <ArrowUpRight size={14} />
             </Link>
           </div>
 
-          <div className="dt-centres-pills">
+          <div className="dt-centres-grid">
             {CENTRES.map((c, i) => (
               <Link 
                 key={i} 
                 href="/visiting-centres"
-                className={`dt-centre-pill ${c.isMain ? 'dt-centre-pill--main' : ''}`}
-                aria-label={`View address for ${c.city} centre`}
+                className={`dt-centre-tile ${c.isMain ? 'dt-centre-tile--main' : ''}`}
+                aria-label={`View clinical schedule for ${c.city}`}
               >
-                <span className="dt-pill-city">{c.city}</span>
-                <span className="dt-pill-tag">{c.tag}</span>
+                <div className="dt-tile-left">
+                  <div className={`dt-tile-pin ${c.isMain ? 'dt-tile-pin--main' : ''}`}>
+                    <MapPin size={13} />
+                  </div>
+                  <div className="dt-tile-info">
+                    <span className="dt-tile-city">{c.city}</span>
+                    <span className="dt-tile-area">{c.area}</span>
+                  </div>
+                </div>
+
+                <span className={`dt-tile-badge ${c.isMain ? 'dt-tile-badge--main' : ''}`}>
+                  {c.tag}
+                </span>
               </Link>
             ))}
           </div>
-        </motion.div>
-
-        {/* Compact Action Footer Bar */}
-        <motion.div
-          className="dt-cta-compact"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <div className="dt-cta-compact-left">
-            <span className="dt-cta-prompt">Planning your visit from abroad or another state?</span>
-            <span className="dt-cta-subtext">📹 <strong>Free 1-on-1 Online Video Consultation</strong> &amp; custom treatment plan before you travel.</span>
-          </div>
-          <div className="dt-cta-compact-btns">
-            <a href="#book" className="dt-btn-action-primary">
-              <span>Book Video Consult</span>
-              <ArrowRight size={15} />
-            </a>
-            <a
-              href="https://wa.me/918685048414?text=Hi! I'm an NRI / outstation patient interested in booking an Online Video Consultation with Dr. S. K. Yadav."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="dt-btn-action-wa"
-            >
-              <PhoneCall size={15} />
-              <span>NRI Video Desk</span>
-            </a>
-          </div>
-        </motion.div>
+        </div>
 
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        .dental-tourism-section {
+        .dt-luxury-root {
           background: #FAF8F5;
-          padding: 3rem 0;
+          padding: 3.5rem 0 2.5rem;
           position: relative;
           overflow: hidden;
         }
 
-        .dt-ambient-1 {
+        .dt-glow-orb {
           position: absolute;
-          top: -10%;
-          right: -10%;
-          width: 45vw;
-          height: 45vw;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
-          filter: blur(80px);
+          filter: blur(100px);
           pointer-events: none;
         }
-        .dt-ambient-2 {
-          position: absolute;
-          bottom: -10%;
-          left: -10%;
+        .dt-glow-orb--top {
+          top: -8%;
+          right: -5%;
           width: 40vw;
           height: 40vw;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(214,122,65,0.08) 0%, transparent 70%);
-          filter: blur(80px);
-          pointer-events: none;
+          background: radial-gradient(circle, rgba(214, 122, 65, 0.12) 0%, transparent 70%);
+        }
+        .dt-glow-orb--bottom {
+          bottom: -10%;
+          left: -5%;
+          width: 35vw;
+          height: 35vw;
+          background: radial-gradient(circle, rgba(201, 168, 76, 0.10) 0%, transparent 70%);
         }
 
-        /* HEADER */
+        /* ── HEADER ── */
         .dt-header {
-          text-align: center;
-          max-width: 780px;
-          margin: 0 auto 1.75rem;
+          max-width: 820px;
+          margin: 0 auto 2.2rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
-        .dt-badge {
+
+        .dt-pill-badge {
           display: inline-flex;
           align-items: center;
           gap: 0.45rem;
-          background: rgba(37,99,235,0.08);
-          color: #1D4ED8;
-          padding: 0.35rem 1rem;
+          background: rgba(214, 122, 65, 0.12);
+          color: #9A4616;
+          padding: 0.35rem 0.95rem;
           border-radius: 99px;
           font-size: 0.72rem;
           font-weight: 800;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.06em;
           text-transform: uppercase;
-          border: 1px solid rgba(37,99,235,0.2);
+          border: 1px solid rgba(214, 122, 65, 0.28);
           margin-bottom: 1rem;
         }
-        .dt-title {
-          font-family: var(--font-heading);
-          font-size: clamp(1.8rem, 3.8vw, 2.75rem);
+
+        .dt-plane-pulse {
+          color: #D67A41;
+          animation: dtPlaneFly 3s ease-in-out infinite alternate;
+        }
+        @keyframes dtPlaneFly {
+          0% { transform: translateY(0) rotate(0deg); }
+          100% { transform: translateY(-3px) rotate(8deg); }
+        }
+
+        .dt-heading {
+          font-size: clamp(2rem, 3.8vw, 2.85rem);
           font-weight: 900;
           color: #0E0604;
-          line-height: 1.2;
-          margin-bottom: 0.75rem;
+          line-height: 1.18;
+          margin-bottom: 0.85rem;
           letter-spacing: -0.02em;
         }
-        .dt-title-accent {
-          background: linear-gradient(135deg, #2563EB 0%, #D67A41 100%);
+
+        .copper-gradient-heading {
+          background: linear-gradient(135deg, #7A340F 0%, #D67A41 50%, #C9A84C 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
-        .dt-subtitle {
-          font-size: 0.98rem;
-          color: #4A2015;
+
+        .dt-subheading {
+          font-size: 0.96rem;
+          color: #5A3E33;
           line-height: 1.65;
-          max-width: 680px;
-          margin: 0 auto;
+          max-width: 720px;
+          margin: 0 auto 1.4rem;
         }
 
-        /* STATS RIBBON */
-        .dt-stats-ribbon {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1rem;
-          margin-bottom: 2rem;
-        }
-        .dt-stat-box {
-          background: #FFFFFF;
-          border-radius: 18px;
-          padding: 1rem 1.25rem;
-          border: 1px solid rgba(214,122,65,0.15);
-          box-shadow: 0 4px 16px rgba(74,37,24,0.04);
-          display: flex;
-          align-items: center;
-          gap: 0.85rem;
-          transition: all 0.3s ease;
-        }
-        .dt-stat-box:hover {
-          transform: translateY(-3px);
-          border-color: rgba(214,122,65,0.35);
-          box-shadow: 0 10px 24px rgba(214,122,65,0.1);
-        }
-        .dt-stat-icon-wrap {
-          width: 40px;
-          height: 40px;
-          border-radius: 11px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid;
-          flex-shrink: 0;
-        }
-        .dt-stat-text-wrap {
-          display: flex;
-          flex-direction: column;
-        }
-        .dt-stat-val {
-          font-family: var(--font-heading);
-          font-size: 1.45rem;
-          font-weight: 900;
-          color: #110805;
-          line-height: 1.1;
-        }
-        .dt-stat-label {
-          font-size: 0.72rem;
-          font-weight: 700;
-          color: #6E5B54;
-          letter-spacing: 0.02em;
-        }
-
-        /* PERKS GRID */
-        .dt-perks-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.25rem;
-          margin-bottom: 2rem;
-        }
-        .dt-perk-card {
-          background: #FFFFFF;
-          border-radius: 20px;
-          padding: 1.5rem;
-          border: 1.5px solid rgba(214,122,65,0.12);
-          box-shadow: 0 6px 20px rgba(74,37,24,0.04);
-          transition: all 0.3s ease;
-        }
-        .dt-perk-card:hover {
-          transform: translateY(-4px);
-          border-color: rgba(214,122,65,0.35);
-          box-shadow: 0 12px 30px rgba(74,37,24,0.08);
-        }
-        .dt-perk-header {
+        /* FLAGS BAR */
+        .dt-flags-bar {
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          margin-bottom: 0.65rem;
-        }
-        .dt-perk-icon {
-          width: 38px;
-          height: 38px;
-          border-radius: 10px;
-          display: flex;
-          align-items: center;
+          flex-wrap: wrap;
           justify-content: center;
-          border: 1px solid;
-          flex-shrink: 0;
-        }
-        .dt-perk-title {
-          font-family: var(--font-heading);
-          font-size: 1.05rem;
-          font-weight: 800;
-          color: #110805;
-          line-height: 1.3;
-          margin: 0;
-        }
-        .dt-perk-desc {
-          font-size: 0.85rem;
-          color: #554A44;
-          line-height: 1.6;
-          margin: 0;
+          background: rgba(255, 255, 255, 0.8);
+          padding: 0.4rem 1rem;
+          border-radius: 99px;
+          border: 1px solid rgba(214, 122, 65, 0.18);
+          box-shadow: 0 4px 14px rgba(74, 37, 24, 0.04);
         }
 
-        /* CENTRES RIBBON */
-        .dt-centres-container {
-          background: #FFFFFF;
-          border-radius: 20px;
-          padding: 1.25rem 1.5rem;
-          border: 1px solid rgba(214,122,65,0.15);
-          margin-bottom: 2rem;
-          box-shadow: 0 4px 14px rgba(74,37,24,0.03);
-        }
-        .dt-centres-header {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 0.85rem;
-          width: 100%;
-        }
-        .dt-centres-label-link {
-          display: inline-flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
-          text-decoration: none;
-          width: 100%;
-          max-width: 600px;
-          transition: transform 0.2s ease;
-        }
-        .dt-centres-label-link:hover {
-          transform: translateY(-1px);
-        }
-        .dt-centres-label {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-size: 0.76rem;
+        .dt-flags-label {
+          font-size: 0.72rem;
           font-weight: 800;
           color: #7A340F;
           text-transform: uppercase;
           letter-spacing: 0.04em;
         }
-        .dt-centres-view-all {
+
+        .dt-flags-list {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          flex-wrap: wrap;
+        }
+
+        .dt-flag-pill {
           display: inline-flex;
           align-items: center;
-          gap: 0.25rem;
+          gap: 0.3rem;
+          background: #FAF8F5;
+          border: 1px solid rgba(74, 37, 24, 0.1);
+          padding: 0.18rem 0.55rem;
+          border-radius: 99px;
           font-size: 0.72rem;
-          font-weight: 800;
-          color: #D67A41;
-          letter-spacing: 0.02em;
-          text-decoration: underline;
-          text-underline-offset: 3px;
+          font-weight: 700;
+          color: #38241C;
         }
-        .dt-centres-pills {
+
+        /* ── STATS GRID ── */
+        .dt-stats-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1rem;
+          margin-bottom: 2.2rem;
+        }
+
+        .dt-stat-card {
+          background: #FFFFFF;
+          border-radius: 18px;
+          padding: 1.1rem 1.25rem;
+          border: 1.5px solid rgba(214, 122, 65, 0.14);
+          box-shadow: 0 4px 18px rgba(74, 37, 24, 0.04);
+          display: flex;
+          align-items: center;
+          gap: 0.85rem;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dt-stat-card:hover {
+          transform: translateY(-3px);
+          border-color: #D67A41;
+          box-shadow: 0 10px 25px rgba(214, 122, 65, 0.12);
+        }
+
+        .dt-stat-icon-wrap {
+          width: 42px;
+          height: 42px;
+          border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.65rem;
-          flex-wrap: wrap;
+          flex-shrink: 0;
         }
-        .dt-centre-pill {
+
+        .dt-icon-copper {
+          background: rgba(214, 122, 65, 0.14);
+          color: #9A4616;
+          border: 1px solid rgba(214, 122, 65, 0.3);
+        }
+        .dt-icon-gold {
+          background: rgba(245, 158, 11, 0.14);
+          color: #B45309;
+          border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .dt-icon-green {
+          background: rgba(16, 185, 129, 0.14);
+          color: #047857;
+          border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .dt-stat-content {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .dt-stat-val {
+          font-family: var(--font-heading);
+          font-size: 1.45rem;
+          font-weight: 900;
+          color: #0E0604;
+          line-height: 1.1;
+        }
+
+        .dt-stat-label {
+          font-size: 0.78rem;
+          font-weight: 800;
+          color: #38241C;
+        }
+
+        .dt-stat-sub {
+          font-size: 0.66rem;
+          color: #7A5B4C;
+        }
+
+        /* ── TAB NAV ── */
+        .dt-tab-nav-wrapper {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 1.5rem;
+        }
+
+        .dt-tab-nav {
+          display: inline-flex;
+          background: rgba(74, 37, 24, 0.07);
+          padding: 0.35rem;
+          border-radius: 99px;
+          border: 1px solid rgba(214, 122, 65, 0.18);
+          gap: 0.35rem;
+        }
+
+        .dt-tab-btn {
           display: inline-flex;
           align-items: center;
           gap: 0.45rem;
-          background: #FAF8F5;
-          border: 1px solid rgba(214,122,65,0.2);
+          padding: 0.55rem 1.25rem;
           border-radius: 99px;
-          padding: 0.35rem 0.85rem;
-          font-size: 0.78rem;
-          text-decoration: none;
-          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+          border: none;
+          background: transparent;
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: #6E5448;
           cursor: pointer;
+          transition: all 0.22s ease;
         }
-        .dt-centre-pill:hover {
-          transform: translateY(-2px);
+
+        .dt-tab-btn--active {
+          background: #FFFFFF;
+          color: #7A340F;
+          font-weight: 800;
+          box-shadow: 0 4px 14px rgba(74, 37, 24, 0.1);
+        }
+
+        /* ── TAB CONTENT PANEL ── */
+        .dt-tab-content-panel {
+          margin-bottom: 2.2rem;
+        }
+
+        /* 1. WORKFLOW GRID */
+        .dt-workflow-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1rem;
+        }
+
+        .dt-workflow-card {
+          background: #FFFFFF;
+          border-radius: 20px;
+          padding: 1.5rem 1.3rem;
+          border: 1.5px solid rgba(214, 122, 65, 0.14);
+          box-shadow: 0 6px 20px rgba(74, 37, 24, 0.04);
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dt-workflow-card:hover {
+          transform: translateY(-4px);
           border-color: #D67A41;
-          box-shadow: 0 4px 12px rgba(214,122,65,0.18);
+          box-shadow: 0 14px 30px rgba(214, 122, 65, 0.12);
         }
-        .dt-centre-pill--main {
-          background: linear-gradient(135deg, rgba(214,122,65,0.12) 0%, rgba(201,168,76,0.18) 100%);
-          border-color: rgba(214,122,65,0.4);
+
+        .dt-step-top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1rem;
         }
-        .dt-pill-city {
+
+        .dt-step-num {
+          font-family: var(--font-heading);
+          font-size: 1.25rem;
+          font-weight: 900;
+          color: #D67A41;
+          line-height: 1;
+        }
+
+        .dt-step-tag {
+          font-size: 0.65rem;
+          font-weight: 800;
+          background: #FAF8F5;
+          border: 1px solid rgba(214, 122, 65, 0.2);
+          color: #7A340F;
+          padding: 0.15rem 0.45rem;
+          border-radius: 99px;
+          text-transform: uppercase;
+        }
+
+        .dt-step-icon-box {
+          width: 38px;
+          height: 38px;
+          border-radius: 10px;
+          background: linear-gradient(135deg, rgba(214, 122, 65, 0.14) 0%, rgba(201, 168, 76, 0.18) 100%);
+          color: #9A4616;
+          border: 1px solid rgba(214, 122, 65, 0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 0.85rem;
+        }
+
+        .dt-step-title {
+          font-size: 0.98rem;
           font-weight: 800;
           color: #110805;
+          margin-bottom: 0.5rem;
+          line-height: 1.3;
         }
-        .dt-pill-tag {
-          font-size: 0.68rem;
-          font-weight: 700;
+
+        .dt-step-desc {
+          font-size: 0.78rem;
+          color: #554A44;
+          line-height: 1.55;
+          margin: 0;
+        }
+
+        /* 2. COST SAVINGS MATRIX */
+        .dt-cost-matrix-wrapper {
+          background: #FFFFFF;
+          border-radius: 22px;
+          padding: 1.75rem;
+          border: 1.5px solid rgba(214, 122, 65, 0.16);
+          box-shadow: 0 8px 25px rgba(74, 37, 24, 0.05);
+        }
+
+        .dt-cost-matrix-intro {
+          margin-bottom: 1.25rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid rgba(74, 37, 24, 0.08);
+        }
+
+        .dt-cost-intro-title {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem;
+          font-size: 0.88rem;
+          font-weight: 800;
           color: #7A340F;
-          background: rgba(214,122,65,0.12);
-          padding: 0.1rem 0.45rem;
-          border-radius: 99px;
+          margin-bottom: 0.35rem;
         }
-        .dt-centre-pill--main .dt-pill-tag {
+
+        .dt-cost-intro-desc {
+          font-size: 0.82rem;
+          color: #554A44;
+          margin: 0;
+          line-height: 1.55;
+        }
+
+        .dt-cost-table {
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+
+        .dt-cost-row {
+          display: grid;
+          grid-template-columns: 2fr 1.5fr 1.5fr 1fr;
+          align-items: center;
+          padding: 0.75rem 1rem;
+          border-radius: 12px;
+          background: #FAF8F5;
+          border: 1px solid rgba(74, 37, 24, 0.07);
+          gap: 0.75rem;
+        }
+
+        .dt-cost-row--header {
+          background: #110805;
+          color: #FFFFFF;
+          font-size: 0.74rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          border: none;
+        }
+
+        .dt-col-proc { font-size: 0.84rem; color: #110805; }
+        .dt-col-intl { font-size: 0.8rem; color: #7A5B4C; }
+        .dt-col-shubh { font-size: 0.85rem; font-weight: 800; color: #047857; }
+        .dt-col-save { text-align: right; }
+
+        .dt-price-strike {
+          text-decoration: line-through;
+          color: #9CA3AF;
+        }
+
+        .dt-price-highlight {
+          color: #7A340F;
+          font-weight: 800;
+        }
+
+        .dt-save-badge {
+          background: #ECFDF5;
+          color: #047857;
+          border: 1px solid rgba(16, 185, 129, 0.3);
+          padding: 0.2rem 0.6rem;
+          border-radius: 99px;
+          font-size: 0.72rem;
+          font-weight: 800;
+          white-space: nowrap;
+        }
+
+        /* ── STRATEGIC CENTRES NETWORK STRIP (ORGANIZED 6-CARD GRID) ── */
+        .dt-centres-strip-card {
+          background: #FFFFFF;
+          border-radius: 22px;
+          padding: 1.4rem 1.6rem;
+          border: 1.5px solid rgba(214, 122, 65, 0.18);
+          box-shadow: 0 8px 24px rgba(74, 37, 24, 0.05);
+          margin-bottom: 0;
+        }
+
+        .dt-centres-strip-top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1.25rem;
+          margin-bottom: 1.15rem;
+          flex-wrap: wrap;
+        }
+
+        .dt-centres-strip-left {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          flex: 1;
+          min-width: 260px;
+        }
+
+        .dt-centres-icon-box {
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: rgba(214, 122, 65, 0.14);
+          color: #D67A41;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          border: 1px solid rgba(214, 122, 65, 0.28);
+        }
+
+        .dt-centres-strip-title {
+          font-size: 0.96rem;
+          font-weight: 800;
+          color: #110805;
+          margin: 0 0 0.15rem;
+          line-height: 1.25;
+        }
+
+        .dt-centres-strip-desc {
+          font-size: 0.74rem;
+          color: #6E5448;
+          margin: 0;
+          line-height: 1.4;
+        }
+
+        .dt-centres-view-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          background: rgba(214, 122, 65, 0.1);
+          color: #9A4616;
+          border: 1px solid rgba(214, 122, 65, 0.28);
+          padding: 0.45rem 0.95rem;
+          border-radius: 99px;
+          font-size: 0.76rem;
+          font-weight: 800;
+          text-decoration: none;
+          transition: all 0.22s ease;
+          flex-shrink: 0;
+          white-space: nowrap;
+        }
+
+        .dt-centres-view-btn:hover {
+          background: #D67A41;
+          color: #FFFFFF;
+          border-color: #D67A41;
+        }
+
+        /* Symmetric 3-column / 2-column Grid */
+        .dt-centres-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.65rem;
+        }
+
+        .dt-centre-tile {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background: #FAF8F5;
+          border: 1px solid rgba(74, 37, 24, 0.1);
+          border-radius: 12px;
+          padding: 0.6rem 0.85rem;
+          text-decoration: none;
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+          gap: 0.5rem;
+        }
+
+        .dt-centre-tile:hover {
+          transform: translateY(-2px);
+          border-color: #D67A41;
+          background: #FFF9F4;
+          box-shadow: 0 4px 12px rgba(214, 122, 65, 0.12);
+        }
+
+        .dt-centre-tile--main {
+          background: linear-gradient(135deg, #FFF6EE 0%, #FFEDE0 100%);
+          border: 1.5px solid #D67A41;
+          box-shadow: 0 2px 10px rgba(214, 122, 65, 0.1);
+        }
+
+        .dt-tile-left {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          min-width: 0;
+        }
+
+        .dt-tile-pin {
+          width: 24px;
+          height: 24px;
+          border-radius: 6px;
+          background: rgba(214, 122, 65, 0.12);
+          color: #D67A41;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        .dt-tile-pin--main {
           background: #D67A41;
           color: #FFFFFF;
         }
 
-        /* COMPACT CTA */
-        .dt-cta-compact {
-          background: linear-gradient(135deg, #140A06 0%, #261309 100%);
-          border-radius: 20px;
-          padding: 1.5rem 2rem;
-          border: 1.5px solid rgba(214,122,65,0.25);
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1.5rem;
-          box-shadow: 0 16px 40px rgba(17,8,5,0.15);
-        }
-        .dt-cta-compact-left {
+        .dt-tile-info {
           display: flex;
           flex-direction: column;
-          gap: 0.2rem;
-        }
-        .dt-cta-prompt {
-          font-family: var(--font-heading);
-          font-size: 1.05rem;
-          font-weight: 800;
-          color: #FFFFFF;
-        }
-        .dt-cta-subtext {
-          font-size: 0.82rem;
-          color: rgba(244,179,130,0.85);
-        }
-        .dt-cta-compact-btns {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          flex-shrink: 0;
-        }
-        .dt-btn-action-primary {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          background: linear-gradient(135deg, #D67A41 0%, #B85C24 100%);
-          color: #FFFFFF;
-          padding: 0.75rem 1.4rem;
-          border-radius: 99px;
-          font-family: var(--font-heading);
-          font-size: 0.85rem;
-          font-weight: 800;
-          text-decoration: none;
-          box-shadow: 0 6px 18px rgba(214,122,65,0.35);
-          transition: all 0.25s ease;
-        }
-        .dt-btn-action-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 10px 24px rgba(214,122,65,0.45);
-        }
-        .dt-btn-action-wa {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.45rem;
-          background: rgba(37,211,102,0.12);
-          color: #25D366;
-          border: 1.5px solid rgba(37,211,102,0.35);
-          padding: 0.75rem 1.3rem;
-          border-radius: 99px;
-          font-family: var(--font-heading);
-          font-size: 0.85rem;
-          font-weight: 800;
-          text-decoration: none;
-          transition: all 0.25s ease;
-        }
-        .dt-btn-action-wa:hover {
-          background: rgba(37,211,102,0.22);
-          transform: translateY(-2px);
+          min-width: 0;
         }
 
-        /* RESPONSIVE MOBILE OPTIMIZATIONS (< 768px) */
+        .dt-tile-city {
+          font-family: var(--font-heading);
+          font-size: 0.82rem;
+          font-weight: 800;
+          color: #110805;
+          line-height: 1.2;
+        }
+
+        .dt-tile-area {
+          font-size: 0.65rem;
+          color: #7A5B4C;
+          line-height: 1.2;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .dt-tile-badge {
+          font-size: 0.6rem;
+          font-weight: 800;
+          color: #7A340F;
+          background: rgba(214, 122, 65, 0.14);
+          border: 1px solid rgba(214, 122, 65, 0.25);
+          padding: 0.12rem 0.45rem;
+          border-radius: 99px;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+
+        .dt-tile-badge--main {
+          background: #D67A41;
+          color: #FFFFFF;
+          border: none;
+        }
+
+        /* ── RESPONSIVE BREAKPOINTS ── */
         @media (max-width: 1024px) {
-          .dt-perks-grid { grid-template-columns: 1fr; }
-          .dt-stats-ribbon { grid-template-columns: repeat(2, 1fr); }
-          .dt-cta-compact { flex-direction: column; text-align: center; }
-          .dt-cta-compact-btns { justify-content: center; width: 100%; }
+          .dt-stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .dt-workflow-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
         }
 
         @media (max-width: 768px) {
-          .dental-tourism-section {
-            padding: 2.25rem 0 !important;
+          .dt-luxury-root {
+            padding: 3rem 0;
           }
-          .dt-header {
-            margin-bottom: 1.25rem !important;
+          .dt-heading {
+            font-size: 1.85rem;
           }
-          .dt-title {
-            font-size: clamp(1.5rem, 5.5vw, 1.9rem) !important;
-            margin-bottom: 0.5rem !important;
-          }
-          .dt-subtitle {
-            font-size: 0.85rem !important;
-            line-height: 1.55 !important;
-          }
-
-          /* Compact 2x2 Stats */
-          .dt-stats-ribbon {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 0.5rem !important;
-            margin-bottom: 1rem !important;
-          }
-          .dt-stat-box {
-            padding: 0.65rem 0.85rem !important;
-            border-radius: 14px !important;
-            gap: 0.6rem !important;
-          }
-          .dt-stat-icon-wrap {
-            width: 32px !important;
-            height: 32px !important;
-            border-radius: 8px !important;
-          }
-          .dt-stat-icon-wrap svg {
-            width: 15px !important;
-            height: 15px !important;
-          }
-          .dt-stat-val {
-            font-size: 1.25rem !important;
-          }
-          .dt-stat-label {
-            font-size: 0.65rem !important;
-          }
-
-          /* Perks in compact single column */
-          .dt-perks-grid {
-            grid-template-columns: 1fr !important;
-            gap: 0.65rem !important;
-            margin-bottom: 1rem !important;
-          }
-          .dt-perk-card {
-            padding: 1rem !important;
-            border-radius: 16px !important;
-          }
-          .dt-perk-header {
-            margin-bottom: 0.35rem !important;
-            gap: 0.6rem !important;
-          }
-          .dt-perk-icon {
-            width: 32px !important;
-            height: 32px !important;
-            border-radius: 8px !important;
-          }
-          .dt-perk-title {
-            font-size: 0.95rem !important;
-          }
-          .dt-perk-desc {
-            font-size: 0.8rem !important;
-            line-height: 1.5 !important;
-          }
-
-          /* Centres in compact scrolling or wrap pills */
-          .dt-centres-container {
-            padding: 0.85rem 1rem !important;
-            border-radius: 16px !important;
-            margin-bottom: 1rem !important;
-          }
-          .dt-centres-header {
-            margin-bottom: 0.6rem !important;
-          }
-          .dt-centres-label {
-            font-size: 0.72rem !important;
-          }
-          .dt-centres-pills {
-            gap: 0.4rem !important;
-          }
-          .dt-centre-pill {
-            padding: 0.25rem 0.65rem !important;
-            font-size: 0.72rem !important;
-          }
-          .dt-pill-tag {
-            font-size: 0.62rem !important;
-            padding: 0.05rem 0.35rem !important;
-          }
-
-          /* Compact CTA hidden on mobile view */
-          .dt-cta-compact {
+          /* Hide NRI workflow / cost tab cards on mobile as requested */
+          .dt-tab-nav-wrapper,
+          .dt-tab-content-panel {
             display: none !important;
+          }
+          .dt-cost-row {
+            grid-template-columns: 1fr;
+            gap: 0.35rem;
+          }
+          .dt-cost-row--header {
+            display: none;
+          }
+          .dt-col-save {
+            text-align: left;
+          }
+          .dt-centres-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+          }
+          .dt-centres-strip-card {
+            padding: 1.15rem 1rem;
+            border-radius: 18px;
+            margin-top: 1.5rem;
+          }
+        }
+
+        @media (max-width: 580px) {
+          .dt-stats-grid {
+            grid-template-columns: 1fr;
+          }
+          .dt-workflow-grid {
+            grid-template-columns: 1fr;
+          }
+          .dt-tab-nav {
+            flex-direction: column;
+            border-radius: 16px;
+            width: 100%;
+          }
+          .dt-tab-btn {
+            width: 100%;
+            justify-content: center;
+          }
+          .dt-centres-grid {
+            grid-template-columns: 1fr;
+          }
+          .dt-centres-view-btn {
+            width: 100%;
+            justify-content: center;
+            padding: 0.55rem;
           }
         }
       `}} />

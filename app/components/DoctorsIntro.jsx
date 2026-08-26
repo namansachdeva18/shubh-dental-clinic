@@ -17,11 +17,11 @@ const DOCTORS = [
     badge: '🏅 Certified Invisalign® Provider · Ex-SR PGI Chandigarh',
     photo: '/dr-sk-yadav.webp',
     alt: 'Dr. (Prof.) S. K. Yadav — Consultant Orthodontist & Implant Specialist',
-    tagline: '20+ years of clinical mastery in braces, clear aligners, dental implants, and smile transformations.',
+    tagline: '30+ years of clinical mastery in braces, clear aligners, dental implants, and smile transformations.',
     stats: [
-      { val: '35,000+', label: 'Braces Cases' },
-      { val: '27,000+', label: 'Implants Placed' },
-      { val: '3,50,000+', label: 'Patients Treated' }
+      { val: '5,000+', label: 'Braces Cases' },
+      { val: '3,000+', label: 'Implants Placed' },
+      { val: '2,50,000+', label: 'Patients Treated' }
     ],
     highlights: [
       'Ex. Senior Resident, PGI Chandigarh',
@@ -43,7 +43,7 @@ const DOCTORS = [
     stats: [
       { val: '18+', label: 'Years Experience' },
       { val: '15,000+', label: 'Cosmetic Smiles' },
-      { val: '3,50,000+', label: 'Patients Treated' }
+      { val: '2,50,000+', label: 'Patients Treated' }
     ],
     highlights: [
       'Certified Cosmetic Dentist & Smile Makeover Specialist',
@@ -97,8 +97,8 @@ const WHAT_PATIENTS_GET = [
   },
   {
     Icon: DoctorVectors.masterCases,
-    title: '35,000+ Proven Cases',
-    desc: 'Decades of hands-on clinical mastery handling complex braces, aligners, and 27,000+ implants.'
+    title: '5,000+ Proven Braces & Implants',
+    desc: 'Decades of hands-on clinical mastery handling 5,000+ braces, aligners, and 3,000+ implants.'
   },
   {
     Icon: DoctorVectors.aiDiagnostics,
@@ -124,7 +124,7 @@ export default function DoctorsIntro() {
         <div className="doctors-header">
           <div className="doctors-pill-badge">
             <ShieldCheck size={14} className="shield-icon" aria-hidden="true" />
-            <span>Haryana's Most Trusted Dental Specialists</span>
+            <span>Haryana&apos;s Most Trusted Dental Specialists</span>
           </div>
 
           <h2 className="doctors-title font-heading">
@@ -133,7 +133,7 @@ export default function DoctorsIntro() {
           </h2>
 
           <p className="doctors-subtitle">
-            With <strong>35,000+ braces &amp; aligner cases</strong>, <strong>27,000+ dental implants</strong>, and over <strong>3,50,000+ patients treated</strong>, our PGI-trained specialists bring rare clinical expertise directly to you in Rohtak.
+            With <strong>5,000+ braces &amp; aligner cases</strong>, <strong>3,000+ dental implants</strong>, and over <strong>2,50,000+ patients treated</strong>, our PGI-trained specialists bring rare clinical expertise directly to you in Rohtak.
           </p>
         </div>
 

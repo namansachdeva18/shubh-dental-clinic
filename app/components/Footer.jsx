@@ -22,7 +22,7 @@ export default function Footer() {
             </div>
 
             <p className="footer-brand-desc">
-              Rohtak&apos;s premier specialized orthodontic & dental care center led by <strong>Prof. Dr. S. K. Yadav</strong> (MDS Orthodontics, Ex-PGI Chandigarh). Over 20+ years of transforming smiles with braces, Invisalign, and implants.
+              Rohtak&apos;s premier specialized orthodontic & dental care center led by <strong>Prof. Dr. S. K. Yadav</strong> (MDS Orthodontics, Ex-PGI Chandigarh). Over 30+ years of transforming smiles with braces, Invisalign, and implants.
             </p>
 
             <div className="footer-open-pill">

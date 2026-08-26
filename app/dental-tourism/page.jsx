@@ -365,7 +365,7 @@ export default function DentalTourism() {
               <h3 className="dt-cred-name font-heading">Prof. Dr. S. K. Yadav</h3>
               <p className="dt-cred-degree">BDS, MDS (Orthodontics — Ex-PGI Chandigarh) · Fellow WFO (USA)</p>
               <p className="dt-cred-text">
-                Over 20+ years of clinical excellence treating overseas patients from North America, Europe, Australia, and the Middle East with globally certified protocols.
+                Over 30+ years of clinical excellence treating overseas patients from North America, Europe, Australia, and the Middle East with globally certified protocols.
               </p>
             </div>
           </div>

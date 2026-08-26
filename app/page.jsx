@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import Hero from './components/Hero';
 import ReviewsTicker from './components/ReviewsTicker';
 import QuickNavBar from './components/QuickNavBar';
+import DoctorsCardIntro from './components/DoctorsCardIntro';
 
 // Below the fold — lazy loaded for faster initial page load
 const TreatmentNavigator = dynamic(() => import('./components/TreatmentNavigator'));
@@ -11,7 +12,6 @@ const AlignerHero = dynamic(() => import('./components/AlignerHero'));
 const ImplantsHero = dynamic(() => import('./components/ImplantsHero'));
 const KidsDentistry = dynamic(() => import('./components/KidsDentistry'));
 const DentalTourism = dynamic(() => import('./components/DentalTourism'));
-const DoctorsIntro = dynamic(() => import('./components/DoctorsIntro'));
 const AboutSection = dynamic(() => import('./components/AboutSection'));
 const PatientGallery = dynamic(() => import('./components/PatientGallery'));
 const Testimonials = dynamic(() => import('./components/Testimonials'));
@@ -27,7 +27,7 @@ const SCHEMA_LOCAL_BUSINESS = {
   '@id': 'https://www.shubhdentalclinicrohtak.in',
   name: 'Shubh Orthodontic and Dental Clinic',
   alternateName: 'Shubh Dental Clinic Rohtak',
-  description: 'Best Orthodontist & Dental Clinic in Rohtak, Haryana. Prof. Dr. S. K. Yadav — MDS Orthodontics, Ex-PGI Chandigarh, Certified Invisalign Provider, Fellow WFO USA. 35,000+ braces cases, 27,000+ dental implants, 3,50,000+ patients treated. Clear aligners, same-day implants, veneers, kids dentistry.',
+  description: 'Best Orthodontist & Dental Clinic in Rohtak, Haryana. Prof. Dr. S. K. Yadav — MDS Orthodontics, Ex-PGI Chandigarh, Certified Invisalign Provider, Fellow WFO USA. 5,000+ braces cases, 3,000+ dental implants, 2,50,000+ patients treated. Clear aligners, same-day implants, veneers, kids dentistry.',
   url: 'https://www.shubhdentalclinicrohtak.in',
   telephone: ['+91-8685048414', '01262-469393'],
   email: 'sky20083@gmail.com',
@@ -39,17 +39,17 @@ const SCHEMA_LOCAL_BUSINESS = {
     postalCode: '124001',
     addressCountry: 'IN',
   },
-  geo: { '@type': 'GeoCoordinates', latitude: 28.8955, longitude: 76.6066 },
+  geo: { '@type': 'GeoCoordinates', latitude: 28.891128, longitude: 76.621873 },
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '09:30', closes: '20:00' },
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Sunday'], opens: '00:00', closes: '00:00' },
   ],
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', bestRating: '5', worstRating: '1', reviewCount: '114' },
-  sameAs: ['https://www.facebook.com/sodcrohtak/', 'https://www.instagram.com/dr.s.k._yadav_orthodontist', 'https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8'],
+  sameAs: ['https://www.facebook.com/sodcrohtak/', 'https://www.instagram.com/dr.s.k._yadav_orthodontist', 'https://maps.app.goo.gl/EvRq96h9HMgYJYAw7'],
   priceRange: '₹₹',
   currenciesAccepted: 'INR',
   paymentAccepted: 'Cash, Credit Card, Debit Card, UPI',
-  hasMap: 'https://maps.app.goo.gl/HW4Ve1Cf2Ye728CX8',
+  hasMap: 'https://maps.app.goo.gl/EvRq96h9HMgYJYAw7',
   medicalSpecialty: ['Orthodontics', 'Prosthodontics', 'Restorative Dentistry', 'Cosmetic Dentistry', 'Implantology', 'Pedodontics'],
 };
 
@@ -83,7 +83,7 @@ const SCHEMA_FAQ = {
     {
       '@type': 'Question',
       name: 'Who is the best orthodontist in Rohtak?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Prof. Dr. S. K. Yadav at Shubh Orthodontic & Dental Clinic is widely considered the best orthodontist in Rohtak, Haryana. He holds an MDS in Orthodontics from PGI Chandigarh, is a Certified Invisalign Provider, Fellow WFO USA, and has completed over 35,000+ braces and aligner cases with a 5.0-star Google rating.' }
+      acceptedAnswer: { '@type': 'Answer', text: 'Prof. Dr. S. K. Yadav at Shubh Orthodontic & Dental Clinic is widely considered the best orthodontist in Rohtak, Haryana. He holds an MDS in Orthodontics from PGI Chandigarh, is a Certified Invisalign Provider, Fellow WFO USA, and has completed over 5,000+ braces and aligner cases, 3,000+ implants, with a 5.0-star Google rating.' }
     },
     {
       '@type': 'Question',
@@ -125,10 +125,13 @@ export default function HomePage() {
       <Hero />
       <ReviewsTicker />
 
-      {/* Quick Navigation */}
-      <section className="container" style={{ paddingTop: '2.5rem', paddingBottom: '1rem' }}>
+      {/* Quick Navigation Directory */}
+      <section className="container" style={{ paddingTop: '2.5rem', paddingBottom: '0.75rem' }}>
         <QuickNavBar />
       </section>
+
+      {/* Doctors In Scrubs Showcase (Directly after Quick Directory) */}
+      <DoctorsCardIntro />
 
       {/* 1. FLAGSHIP SPECIALIZATIONS */}
       <AlignerHero />
@@ -141,10 +144,7 @@ export default function HomePage() {
       {/* 3. NICHE AUDIENCE — Dental Tourism & NRI Care */}
       <DentalTourism />
 
-      {/* 4. CLINICAL MASTERY — Senior Doctors */}
-      <DoctorsIntro hideCards={true} />
-
-      {/* 5. CLINICAL & HOSPITAL TECHNOLOGY STANDARDS */}
+      {/* 4. CLINICAL & HOSPITAL TECHNOLOGY STANDARDS */}
       <AboutSection />
 
       {/* 6. VERIFIED PROOF — Smile Gallery & Reviews */}

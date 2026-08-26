@@ -107,7 +107,7 @@ export default function TreatmentPage({ params }) {
         image: `${baseUrl}/clinic-front.webp`,
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Opposite Swami Nitanand School, Delhi Bypass Chowk',
+          streetAddress: 'Tilak Nagar, Lane 9 Corner, Opposite Swami Nitanand Public School, Delhi Bypass Road',
           addressLocality: 'Rohtak',
           addressRegion: 'Haryana',
           postalCode: '124001',
@@ -115,8 +115,8 @@ export default function TreatmentPage({ params }) {
         },
         geo: {
           '@type': 'GeoCoordinates',
-          latitude: '28.8955',
-          longitude: '76.6066'
+          latitude: '28.891128',
+          longitude: '76.621873'
         },
         openingHoursSpecification: [
           {

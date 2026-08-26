@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, ArrowRight, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 
-const CATEGORIES = ['All', 'Orthodontics', 'Implants', 'Cosmetic', 'General & Surgery'];
+const CATEGORIES = ['All', 'Cosmetic', 'General & Surgery'];
 
 // Bespoke Luxury Animated SVG Icons
 const VectorIcons = {
@@ -109,46 +109,6 @@ const VectorIcons = {
 };
 
 const TREATMENTS = [
-  {
-    id: 'dental-braces',
-    title: 'Metal & Ceramic Braces',
-    shortTitle: 'Braces (Orthodontics)',
-    desc: 'Advanced bracket systems (Metal, Ceramic & Lingual) for precise bite & alignment correction.',
-    iconKey: 'braces',
-    badge: 'Prof. Dr. S. K. Yadav',
-    category: 'Orthodontics',
-    glowColor: 'rgba(214, 122, 65, 0.18)'
-  },
-  {
-    id: 'invisalign-clear-aligners',
-    title: 'SkyAlign™ & Invisalign®',
-    shortTitle: 'Clear Aligners',
-    desc: 'Discreet, removable custom clear aligners crafted in-house & Invisalign certified for a wire-free smile.',
-    iconKey: 'aligners',
-    badge: 'In-House SkyAlign™',
-    category: 'Orthodontics',
-    glowColor: 'rgba(16, 185, 129, 0.18)'
-  },
-  {
-    id: 'dental-implants',
-    title: 'Dental Implants',
-    shortTitle: 'Dental Implants',
-    desc: 'Permanent titanium replacements for missing teeth, fused with jawbone for natural strength & function.',
-    iconKey: 'implants',
-    badge: 'Swiss Straumann®',
-    category: 'Implants',
-    glowColor: 'rgba(214, 122, 65, 0.18)'
-  },
-  {
-    id: 'same-day-dental-implants',
-    title: 'Same-Day Fixed Implants',
-    shortTitle: 'Same Day Implants',
-    desc: 'Walk out with fixed permanent teeth in 24–72 hours using advanced 3D CBCT guided keyhole placement.',
-    iconKey: 'sameday',
-    badge: 'Immediate Loading',
-    category: 'Implants',
-    glowColor: 'rgba(245, 158, 11, 0.18)'
-  },
   {
     id: 'porcelain-veneers',
     title: 'Porcelain Veneers',

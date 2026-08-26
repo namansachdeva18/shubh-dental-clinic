@@ -5,7 +5,7 @@ import { Sparkles, Shield, Star, Smile, Zap, Scissors, Circle, Heart, Target } f
 
 const FEATURED = [
   { icon: Star, name: 'Invisalign / Clear Aligners', desc: 'The world\'s leading invisible aligner system. Remove to eat, no wires, virtually undetectable. Available from Prof. Dr. S. K. Yadav — Rohtak\'s only Certified Invisalign Provider. Consultations also in Delhi, Gurgaon, Panipat, Sonepat, Fatehabad.', href: '/treatments/invisalign-clear-aligners', highlight: true },
-  { icon: Shield, name: 'Dental Implants', desc: 'Permanent tooth replacement that looks, feels, and functions like a natural tooth. Titanium implant fused with jawbone. 98%+ success rate. Placed by PGI-trained specialists with 27,000+ implants.', href: '/treatments/dental-implants', highlight: true },
+  { icon: Shield, name: 'Dental Implants', desc: 'Permanent tooth replacement that looks, feels, and functions like a natural tooth. Titanium implant fused with jawbone. 98%+ success rate. Placed by PGI-trained specialists with 3,000+ implants.', href: '/treatments/dental-implants', highlight: true },
   { icon: Sparkles, name: 'Smile Makeover', desc: 'A personalised combination of treatments — whitening, veneers, aligners, bonding — to create your perfect smile. Includes digital smile design so you can preview your result before treatment.', href: '/treatments/smile-makeover', highlight: true },
 ];
 

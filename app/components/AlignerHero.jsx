@@ -1,44 +1,33 @@
 'use client';
 import { useState } from 'react';
-import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Sparkles, CheckCircle2, ShieldCheck, ArrowRight, 
-  Calendar, MessageSquare, Clock, Award, Star, Eye, Zap, ChevronRight
-} from 'lucide-react';
+import { Sparkles, ChevronLeft, ChevronRight, Calendar, MessageSquare, ArrowRight } from 'lucide-react';
+import BeforeAfterSlider from './BeforeAfterSlider';
 
-const ALIGNER_OPTIONS = [
+const ALIGNER_RESULTS = [
   {
-    id: 'invisalign',
-    name: 'Invisalign® Clear Aligners',
-    badge: '🌐 Global Gold Standard',
-    tagline: "The world's #1 orthodontic aligner system for mild to complex malocclusions.",
-    price: 'Starting ₹85,000',
-    timeline: '6–18 Months',
-    highlights: [
-      'Patented SmartTrack® multi-layer elastic polymer for gentle, precise shifts',
-      'iTero® 3D digital outcome simulation on Day 1 (visualize your end smile)',
-      'Engineered for complex bite corrections, severe crowding, and gaps',
-      'Includes original Vivera® retention trays post-treatment'
-    ],
-    ctaText: 'Explore Invisalign® Details',
-    link: '/treatments/invisalign-clear-aligners'
+    id: 'case-crowding',
+    label: 'Case 1 · Crowding',
+    system: 'SkyAlign™ Clear Aligners',
+    beforeSrc: '/case-1-before.webp',
+    afterSrc: '/case-1-after.webp',
+    duration: '9 Months'
   },
   {
-    id: 'skyalign',
-    name: 'SkyAlign™ Clear Aligners',
-    badge: '★ Best Value · In-House Precision',
-    tagline: 'Custom 3D-fabricated in our Rohtak digital lab under direct supervision of Prof. Dr. S. K. Yadav.',
-    price: 'Starting ₹45,000',
-    timeline: '4–12 Months',
-    highlights: [
-      'Custom 3D-printed in Rohtak — zero import waiting times & instant delivery',
-      'Ultra-clear German medical-grade biocompatible polymer',
-      'Same-day replacement aligners printed if trays are ever lost or damaged',
-      'Up to 40% more affordable than international brands with identical clinical outcome'
-    ],
-    ctaText: 'Explore SkyAlign™ Details',
-    link: '/treatments/skyalign-clear-aligners'
+    id: 'case-spacing',
+    label: 'Case 2 · Spacing & Gaps',
+    system: 'Invisalign® Clear Aligners',
+    beforeSrc: '/front-before.webp',
+    afterSrc: '/front-after.webp',
+    duration: '7 Months'
+  },
+  {
+    id: 'case-deepbite',
+    label: 'Case 3 · Deep Bite',
+    system: 'Full Arch Realignment',
+    beforeSrc: '/fullarch-before.webp',
+    afterSrc: '/fullarch-after.webp',
+    duration: '12 Months'
   }
 ];
 
@@ -56,7 +45,7 @@ const WHY_CHOOSE_US_PERKS = [
   {
     icon: '👨‍⚕️',
     title: 'Ex-PGI Orthodontist Supervision',
-    desc: 'Planned directly by Prof. Dr. S. K. Yadav (Ex-PGI Chandigarh, Fellow WFO USA, 35k+ cases).'
+    desc: 'Planned directly by Prof. Dr. S. K. Yadav (Ex-PGI Chandigarh, Fellow WFO USA, 5,000+ cases).'
   },
   {
     icon: '💳',
@@ -66,20 +55,24 @@ const WHY_CHOOSE_US_PERKS = [
 ];
 
 export default function AlignerHero() {
-  const [selectedSystem, setSelectedSystem] = useState('invisalign');
-  const activeSystem = ALIGNER_OPTIONS.find(o => o.id === selectedSystem) || ALIGNER_OPTIONS[0];
+  const [activeCaseIdx, setActiveCaseIdx] = useState(0);
+  const activeCase = ALIGNER_RESULTS[activeCaseIdx];
 
-  const whatsappUrl = 'https://wa.me/918685048414?text=' + encodeURIComponent(
-    'Hi Dr. Yadav! I would like to check my candidacy and book a 3D Digital Scan for Clear Aligners at Shubh Dental Clinic.'
-  );
+  const handlePrev = () => {
+    setActiveCaseIdx((prev) => (prev === 0 ? ALIGNER_RESULTS.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setActiveCaseIdx((prev) => (prev === ALIGNER_RESULTS.length - 1 ? 0 : prev + 1));
+  };
 
   return (
     <section id="aligners" className="aligner-section-root" aria-label="Clear Aligners and Invisible Braces">
       <div id="braces" style={{ position: 'relative', top: '-80px', height: '0', pointerEvents: 'none' }} />
-      
+
       <div className="aligner-container">
-        
-        {/* COMPACT LUXURY HEADER */}
+
+        {/* HEADER */}
         <div className="aligner-compact-header">
           <div className="aligner-pill-badge">
             <Sparkles size={13} className="sparkle-icon" aria-hidden="true" />
@@ -91,11 +84,11 @@ export default function AlignerHero() {
           </h2>
 
           <p className="aligner-subtitle">
-            Say goodbye to painful metal brackets. Get a discreet, comfortable smile makeover with custom clear aligners planned by <strong>Prof. Dr. S. K. Yadav (35,000+ smiles treated)</strong>.
+            Say goodbye to painful metal brackets. Get a discreet, comfortable smile makeover with custom clear aligners planned by <strong>Prof. Dr. S. K. Yadav (5,000+ smiles treated)</strong>.
           </p>
         </div>
 
-        {/* 4-PILLAR KEY BENEFITS ROW (SLIM & HIGH DENSITY) */}
+        {/* 4 VALUE PILLARS */}
         <div className="aligner-perks-strip">
           {WHY_CHOOSE_US_PERKS.map((perk, idx) => (
             <div key={idx} className="perk-capsule">
@@ -108,113 +101,61 @@ export default function AlignerHero() {
           ))}
         </div>
 
-        {/* INTEGRATED SYSTEM SELECTOR & COMPARISON CARD */}
+        {/* BEFORE / AFTER RESULT SLIDER SHOWCASE */}
         <div className="aligner-showcase-box">
-          
-          {/* TAB HEADER */}
-          <div className="system-tab-switch" role="tablist">
-            {ALIGNER_OPTIONS.map((opt) => (
-              <button
-                key={opt.id}
-                type="button"
-                role="tab"
-                aria-selected={selectedSystem === opt.id}
-                className={`switch-tab ${selectedSystem === opt.id ? 'switch-tab--active' : ''}`}
-                onClick={() => setSelectedSystem(opt.id)}
-              >
-                <span className="switch-tab-title">{opt.name}</span>
-                <span className="switch-tab-badge">{opt.price}</span>
-              </button>
-            ))}
-          </div>
 
-          {/* TAB CONTENT WITH DYNAMIC ACCENT */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeSystem.id}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-              className="system-card-content"
-            >
-              {/* Left Details */}
-              <div className="system-main-info">
-                <div className="system-headline-row">
-                  <span className="system-quality-tag">{activeSystem.badge}</span>
-                  <div className="system-time-tag">
-                    <Clock size={13} />
-                    <span>Duration: <strong>{activeSystem.timeline}</strong></span>
+          {/* SLIDER WRAPPER */}
+          <div className="slider-stage-wrapper">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCase.id}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+                className="slider-centered-container"
+              >
+                <div className="slider-frame">
+                  <BeforeAfterSlider
+                    beforeSrc={activeCase.beforeSrc}
+                    afterSrc={activeCase.afterSrc}
+                    beforeAlt={`${activeCase.label} Before`}
+                    afterAlt={`${activeCase.label} After`}
+                  />
+
+                  {/* Navigation Arrows */}
+                  <button 
+                    type="button" 
+                    className="slider-nav-btn slider-nav-prev" 
+                    onClick={handlePrev}
+                    aria-label="Previous result"
+                  >
+                    <ChevronLeft size={22} />
+                  </button>
+
+                  <button 
+                    type="button" 
+                    className="slider-nav-btn slider-nav-next" 
+                    onClick={handleNext}
+                    aria-label="Next result"
+                  >
+                    <ChevronRight size={22} />
+                  </button>
+
+                  <div className="slider-instruction-tag">
+                    <span>⟵ Drag slider to compare results ⟶</span>
                   </div>
                 </div>
-
-                <h3 className="system-display-name font-heading">{activeSystem.name}</h3>
-                <p className="system-display-tagline">{activeSystem.tagline}</p>
-
-                <div className="system-points-grid">
-                  {activeSystem.highlights.map((h, i) => (
-                    <div key={i} className="system-point">
-                      <CheckCircle2 size={15} className="point-check" />
-                      <span>{h}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right Booking CTA Box */}
-              <div className="system-cta-block">
-                <div className="cta-pricing-header">
-                  <span className="pricing-label">Starting Investment</span>
-                  <span className="pricing-number gold-glow">{activeSystem.price}</span>
-                  <span className="pricing-emi-badge">💳 0% Interest EMI Available</span>
-                </div>
-
-                <div className="cta-action-buttons">
-                  <a href="#book" className="btn-book-scan">
-                    <Calendar size={15} />
-                    <span>Book 3D Smile Scan</span>
-                  </a>
-                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-chat-wa">
-                    <MessageSquare size={15} />
-                    <span>WhatsApp Doctor</span>
-                  </a>
-                </div>
-
-                <Link href={activeSystem.link} className="btn-full-details-link">
-                  <span>{activeSystem.ctaText}</span>
-                  <ArrowRight size={13} />
-                </Link>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* TRUST BAR RIBBON */}
-        <div className="aligner-quick-trust">
-          <div className="trust-stat">
-            <strong>35,000+</strong>
-            <span>Smiles Designed</span>
+              </motion.div>
+            </AnimatePresence>
           </div>
-          <div className="trust-stat-sep" />
-          <div className="trust-stat">
-            <strong>5.0 ★</strong>
-            <span>Verified Patient Reviews</span>
-          </div>
-          <div className="trust-stat-sep" />
-          <div className="trust-stat">
-            <strong>Ex-PGI Head</strong>
-            <span>Specialist Orthodontist</span>
-          </div>
-          <div className="trust-stat-sep" />
-          <div className="trust-stat">
-            <strong>100% Digital</strong>
-            <span>iTero® 3D Scanning</span>
-          </div>
+
         </div>
 
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .aligner-section-root {
           background: linear-gradient(180deg, #0D0705 0%, #170C08 100%);
           color: #FFFFFF;
@@ -335,9 +276,12 @@ export default function AlignerHero() {
           padding: 1.35rem 1.5rem;
           margin-bottom: 1.25rem;
           box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+          max-width: 860px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
-        .system-tab-switch {
+        .case-tab-bar {
           display: flex;
           gap: 0.5rem;
           background: rgba(0, 0, 0, 0.35);
@@ -347,175 +291,108 @@ export default function AlignerHero() {
           margin-bottom: 1.25rem;
         }
 
-        .switch-tab {
+        .case-tab-btn {
           flex: 1;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.65rem;
-          padding: 0.65rem 1rem;
+          gap: 0.5rem;
+          padding: 0.65rem 0.85rem;
           border-radius: 10px;
           border: none;
           background: transparent;
           color: rgba(255, 255, 255, 0.7);
-          font-size: 0.88rem;
+          font-size: 0.84rem;
           font-weight: 800;
           cursor: pointer;
           transition: all 0.2s ease;
         }
-        .switch-tab--active {
+        .tab-btn-icon {
+          color: #D67A41;
+          flex-shrink: 0;
+        }
+        .case-tab-btn--active {
           background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
           color: #FFFFFF;
           box-shadow: 0 4px 14px rgba(214, 122, 65, 0.35);
         }
-        .switch-tab-badge {
-          font-size: 0.72rem;
+        .case-tab-btn--active .tab-btn-icon {
+          color: #FFFFFF;
+        }
+        .case-tab-time {
+          font-size: 0.7rem;
           font-weight: 700;
           background: rgba(0, 0, 0, 0.25);
           padding: 0.15rem 0.5rem;
           border-radius: 99px;
         }
 
-        .system-card-content {
-          display: grid;
-          grid-template-columns: 1.3fr 0.85fr;
-          gap: 1.75rem;
-          align-items: center;
+        .slider-stage-wrapper {
+          position: relative;
+          width: 100%;
         }
 
-        .system-headline-row {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          margin-bottom: 0.45rem;
-          flex-wrap: wrap;
-        }
-        .system-quality-tag {
-          font-size: 0.7rem;
-          font-weight: 800;
-          color: #34D399;
-          background: rgba(16, 185, 129, 0.12);
-          border: 1px solid rgba(16, 185, 129, 0.25);
-          padding: 0.18rem 0.6rem;
-          border-radius: 99px;
-        }
-        .system-time-tag {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.3rem;
-          font-size: 0.74rem;
-          color: #F4B382;
+        .slider-centered-container {
+          width: 100%;
         }
 
-        .system-display-name {
-          font-size: 1.35rem;
-          font-weight: 900;
-          color: #FFFFFF;
-          margin: 0 0 0.3rem;
-        }
-        .system-display-tagline {
-          font-size: 0.82rem;
-          color: rgba(255, 255, 255, 0.72);
-          line-height: 1.45;
-          margin-bottom: 0.85rem;
-        }
-
-        .system-points-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0.55rem 0.85rem;
-        }
-        .system-point {
-          display: flex;
-          align-items: flex-start;
-          gap: 0.45rem;
-          font-size: 0.78rem;
-          color: rgba(255, 255, 255, 0.85);
-          line-height: 1.35;
-        }
-        .point-check {
-          color: #D67A41;
-          flex-shrink: 0;
-          margin-top: 1px;
-        }
-
-        /* RIGHT CTA BLOCK */
-        .system-cta-block {
-          background: rgba(0, 0, 0, 0.35);
-          border: 1px solid rgba(214, 122, 65, 0.22);
+        .slider-frame {
+          position: relative;
           border-radius: 18px;
-          padding: 1.15rem 1.25rem;
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-          text-align: center;
+          overflow: hidden;
+          border: 1.5px solid rgba(214, 122, 65, 0.3);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+          background: #000;
         }
-        .pricing-label {
-          display: block;
-          font-size: 0.72rem;
-          color: rgba(255, 255, 255, 0.65);
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-        }
-        .pricing-number {
-          display: block;
-          font-family: var(--font-heading);
-          font-size: 1.4rem;
-          font-weight: 900;
+
+        .slider-instruction-tag {
+          position: absolute;
+          bottom: 12px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: rgba(0, 0, 0, 0.75);
+          backdrop-filter: blur(6px);
+          border: 1px solid rgba(214, 122, 65, 0.4);
           color: #F4B382;
-          line-height: 1.1;
-          margin: 0.15rem 0;
-        }
-        .pricing-emi-badge {
-          display: inline-block;
           font-size: 0.72rem;
           font-weight: 700;
-          color: #34D399;
+          letter-spacing: 0.04em;
+          padding: 0.3rem 0.85rem;
+          border-radius: 99px;
+          pointer-events: none;
+          z-index: 20;
+          white-space: nowrap;
         }
 
-        .cta-action-buttons {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0.5rem;
-        }
-        .btn-book-scan, .btn-chat-wa {
-          display: inline-flex;
+        .slider-nav-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 25;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: rgba(0, 0, 0, 0.65);
+          backdrop-filter: blur(4px);
+          border: 1.5px solid rgba(214, 122, 65, 0.4);
+          color: #FFFFFF;
+          display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.4rem;
-          padding: 0.65rem 0.75rem;
-          border-radius: 10px;
-          font-size: 0.78rem;
-          font-weight: 800;
-          text-decoration: none;
+          cursor: pointer;
           transition: all 0.2s ease;
         }
-        .btn-book-scan {
-          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
-          color: #FFFFFF;
-          box-shadow: 0 4px 12px rgba(214, 122, 65, 0.3);
+        .slider-nav-btn:hover {
+          background: #D67A41;
+          border-color: #F4B382;
+          transform: translateY(-50%) scale(1.1);
         }
-        .btn-book-scan:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(214, 122, 65, 0.45); }
-        
-        .btn-chat-wa {
-          background: rgba(37, 211, 102, 0.15);
-          color: #25D366;
-          border: 1px solid rgba(37, 211, 102, 0.3);
+        .slider-nav-prev {
+          left: 12px;
         }
-        .btn-chat-wa:hover { background: rgba(37, 211, 102, 0.25); }
-
-        .btn-full-details-link {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.35rem;
-          font-size: 0.75rem;
-          font-weight: 700;
-          color: #F4B382;
-          text-decoration: none;
-          transition: color 0.2s ease;
+        .slider-nav-next {
+          right: 12px;
         }
-        .btn-full-details-link:hover { color: #FFFFFF; }
 
         /* ── TRUST BAR ───────────────────────────────── */
         .aligner-quick-trust {
@@ -526,6 +403,7 @@ export default function AlignerHero() {
           border: 1px solid rgba(214, 122, 65, 0.16);
           border-radius: 16px;
           padding: 0.75rem 1.5rem;
+          margin-top: 1.25rem;
         }
         .trust-stat { text-align: center; }
         .trust-stat strong {
@@ -554,13 +432,6 @@ export default function AlignerHero() {
         @media (max-width: 900px) {
           .aligner-perks-strip {
             grid-template-columns: repeat(2, 1fr);
-          }
-          .system-card-content {
-            grid-template-columns: 1fr;
-            gap: 1.25rem;
-          }
-          .system-points-grid {
-            grid-template-columns: 1fr;
           }
         }
 
@@ -597,31 +468,17 @@ export default function AlignerHero() {
             padding: 0.85rem;
             border-radius: 18px;
           }
-          .switch-tab {
+          .case-tab-bar {
+            flex-direction: column;
+            gap: 0.25rem;
+          }
+          .case-tab-btn {
             padding: 0.45rem 0.6rem;
             font-size: 0.75rem;
-            flex-direction: column;
-            gap: 0.2rem;
           }
-          .switch-tab-badge {
-            font-size: 0.65rem;
-          }
-          .system-display-name {
-            font-size: 1.15rem;
-          }
-          .system-display-tagline {
-            font-size: 0.76rem;
-            margin-bottom: 0.5rem;
-          }
-          .system-point {
-            font-size: 0.74rem;
-          }
-          .system-cta-block {
-            padding: 0.85rem;
-            border-radius: 14px;
-          }
-          .pricing-number {
-            font-size: 1.2rem;
+          .slider-nav-btn {
+            width: 32px;
+            height: 32px;
           }
           .aligner-quick-trust {
             display: none;
