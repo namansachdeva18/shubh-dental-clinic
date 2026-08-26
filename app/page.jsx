@@ -133,13 +133,13 @@ export default function HomePage() {
       {/* Doctors In Scrubs Showcase (Directly after Quick Directory) */}
       <DoctorsCardIntro />
 
-      {/* 1. FLAGSHIP SPECIALIZATIONS */}
+      {/* 1. COMPREHENSIVE ALL-TREATMENT DIRECTORY (Advanced Treatments) */}
+      <TreatmentNavigator />
+
+      {/* 2. FLAGSHIP SPECIALIZATIONS */}
       <AlignerHero />
       <KidsDentistry />
       <ImplantsHero />
-
-      {/* 2. COMPREHENSIVE ALL-TREATMENT DIRECTORY */}
-      <TreatmentNavigator />
 
       {/* 3. NICHE AUDIENCE — Dental Tourism & NRI Care */}
       <DentalTourism />
