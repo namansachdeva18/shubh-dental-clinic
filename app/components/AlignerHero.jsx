@@ -157,13 +157,15 @@ export default function AlignerHero() {
       <style dangerouslySetInnerHTML={{
         __html: `
         .aligner-section-root {
-          background: linear-gradient(180deg, #0D0705 0%, #170C08 100%);
-          color: #FFFFFF;
-          padding: 2.25rem 1.25rem;
+          background: linear-gradient(180deg, #FAF8F5 0%, #F3EDE6 100%);
+          color: #110805;
+          padding: 3rem 1.25rem;
           position: relative;
           overflow: hidden;
           width: 100%;
           box-sizing: border-box;
+          border-top: 1px solid rgba(214, 122, 65, 0.15);
+          border-bottom: 1px solid rgba(214, 122, 65, 0.15);
         }
 
         .aligner-container {
@@ -177,75 +179,77 @@ export default function AlignerHero() {
         .aligner-compact-header {
           text-align: center;
           max-width: 780px;
-          margin: 0 auto 1.25rem;
+          margin: 0 auto 1.5rem;
         }
 
         .aligner-pill-badge {
           display: inline-flex;
           align-items: center;
-          gap: 0.35rem;
-          background: rgba(214, 122, 65, 0.15);
-          color: #F4B382;
-          border: 1px solid rgba(214, 122, 65, 0.3);
-          padding: 0.25rem 0.8rem;
+          gap: 0.4rem;
+          background: rgba(214, 122, 65, 0.12);
+          color: #B85D26;
+          border: 1.5px solid rgba(214, 122, 65, 0.28);
+          padding: 0.32rem 0.95rem;
           border-radius: 99px;
-          font-size: 0.72rem;
+          font-size: 0.74rem;
           font-weight: 800;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.06em;
           text-transform: uppercase;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.65rem;
         }
         .sparkle-icon { color: #D67A41; }
 
         .aligner-title {
-          font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+          font-size: clamp(1.8rem, 3.5vw, 2.6rem);
           font-weight: 900;
-          color: #FFFFFF;
+          color: #110805;
           line-height: 1.2;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.65rem;
           letter-spacing: -0.02em;
         }
         .copper-gradient {
-          background: linear-gradient(135deg, #D67A41 0%, #F4B382 50%, #EAA77C 100%);
+          background: linear-gradient(135deg, #B85D26 0%, #D67A41 60%, #9A4616 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
 
         .aligner-subtitle {
-          font-size: 0.92rem;
-          color: rgba(255, 255, 255, 0.78);
-          line-height: 1.5;
+          font-size: 0.96rem;
+          color: #5C4337;
+          line-height: 1.6;
           margin: 0 auto;
           max-width: 680px;
         }
-        .aligner-subtitle strong { color: #F4B382; }
+        .aligner-subtitle strong { color: #9A4616; font-weight: 700; }
 
-        /* ── 4 VALUE PILLARS (HIGH DENSITY CAPSULES) ── */
+        /* ── 4 VALUE PILLARS (LIGHT LUXURY CAPSULES) ── */
         .aligner-perks-strip {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 0.75rem;
-          margin-bottom: 1.5rem;
+          gap: 0.85rem;
+          margin-bottom: 1.75rem;
         }
 
         .perk-capsule {
-          background: rgba(255, 255, 255, 0.035);
+          background: #FFFFFF;
           border: 1px solid rgba(214, 122, 65, 0.18);
           border-radius: 16px;
-          padding: 0.75rem 0.85rem;
+          padding: 0.85rem 0.95rem;
           display: flex;
           align-items: flex-start;
           gap: 0.65rem;
-          transition: transform 0.2s ease, border-color 0.2s ease;
+          box-shadow: 0 4px 14px rgba(74, 37, 24, 0.04);
+          transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
         .perk-capsule:hover {
           transform: translateY(-2px);
-          border-color: rgba(214, 122, 65, 0.4);
-          background: rgba(255, 255, 255, 0.055);
+          border-color: #D67A41;
+          background: #FFFDFB;
+          box-shadow: 0 8px 24px rgba(214, 122, 65, 0.12);
         }
 
         .perk-capsule-icon {
-          font-size: 1.15rem;
+          font-size: 1.25rem;
           flex-shrink: 0;
           line-height: 1;
           margin-top: 2px;
@@ -255,27 +259,27 @@ export default function AlignerHero() {
         }
         .perk-capsule-title {
           display: block;
-          font-size: 0.82rem;
+          font-size: 0.84rem;
           font-weight: 800;
-          color: #FFFFFF;
-          margin-bottom: 0.2rem;
+          color: #110805;
+          margin-bottom: 0.25rem;
           line-height: 1.25;
         }
         .perk-capsule-desc {
-          font-size: 0.72rem;
-          color: rgba(255, 255, 255, 0.65);
-          line-height: 1.4;
+          font-size: 0.73rem;
+          color: #6E4D3E;
+          line-height: 1.45;
           margin: 0;
         }
 
         /* ── SHOWCASE BOX ────────────────────────────── */
         .aligner-showcase-box {
-          background: rgba(255, 255, 255, 0.03);
-          border: 1.5px solid rgba(214, 122, 65, 0.25);
+          background: #FFFFFF;
+          border: 1.5px solid rgba(214, 122, 65, 0.22);
           border-radius: 24px;
-          padding: 1.35rem 1.5rem;
+          padding: 1.5rem 1.65rem;
           margin-bottom: 1.25rem;
-          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 16px 40px rgba(74, 37, 24, 0.07);
           max-width: 860px;
           margin-left: auto;
           margin-right: auto;
@@ -284,10 +288,10 @@ export default function AlignerHero() {
         .case-tab-bar {
           display: flex;
           gap: 0.5rem;
-          background: rgba(0, 0, 0, 0.35);
+          background: #F5EFEA;
           padding: 0.35rem;
           border-radius: 14px;
-          border: 1px solid rgba(214, 122, 65, 0.2);
+          border: 1px solid rgba(214, 122, 65, 0.15);
           margin-bottom: 1.25rem;
         }
 
@@ -301,7 +305,7 @@ export default function AlignerHero() {
           border-radius: 10px;
           border: none;
           background: transparent;
-          color: rgba(255, 255, 255, 0.7);
+          color: #5C4337;
           font-size: 0.84rem;
           font-weight: 800;
           cursor: pointer;
@@ -314,7 +318,7 @@ export default function AlignerHero() {
         .case-tab-btn--active {
           background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
           color: #FFFFFF;
-          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.35);
+          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.3);
         }
         .case-tab-btn--active .tab-btn-icon {
           color: #FFFFFF;
@@ -322,7 +326,7 @@ export default function AlignerHero() {
         .case-tab-time {
           font-size: 0.7rem;
           font-weight: 700;
-          background: rgba(0, 0, 0, 0.25);
+          background: rgba(255, 255, 255, 0.25);
           padding: 0.15rem 0.5rem;
           border-radius: 99px;
         }
@@ -340,8 +344,8 @@ export default function AlignerHero() {
           position: relative;
           border-radius: 18px;
           overflow: hidden;
-          border: 1.5px solid rgba(214, 122, 65, 0.3);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+          border: 1.5px solid rgba(214, 122, 65, 0.25);
+          box-shadow: 0 10px 30px rgba(74, 37, 24, 0.1);
           background: #000;
         }
 
@@ -350,7 +354,7 @@ export default function AlignerHero() {
           bottom: 12px;
           left: 50%;
           transform: translateX(-50%);
-          background: rgba(0, 0, 0, 0.75);
+          background: rgba(17, 8, 5, 0.82);
           backdrop-filter: blur(6px);
           border: 1px solid rgba(214, 122, 65, 0.4);
           color: #F4B382;
@@ -372,9 +376,9 @@ export default function AlignerHero() {
           width: 40px;
           height: 40px;
           border-radius: 50%;
-          background: rgba(0, 0, 0, 0.65);
+          background: rgba(17, 8, 5, 0.72);
           backdrop-filter: blur(4px);
-          border: 1.5px solid rgba(214, 122, 65, 0.4);
+          border: 1.5px solid rgba(214, 122, 65, 0.35);
           color: #FFFFFF;
           display: flex;
           align-items: center;
@@ -384,48 +388,15 @@ export default function AlignerHero() {
         }
         .slider-nav-btn:hover {
           background: #D67A41;
-          border-color: #F4B382;
-          transform: translateY(-50%) scale(1.1);
+          border-color: #D67A41;
+          transform: translateY(-50%) scale(1.08);
+          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.4);
         }
         .slider-nav-prev {
           left: 12px;
         }
         .slider-nav-next {
           right: 12px;
-        }
-
-        /* ── TRUST BAR ───────────────────────────────── */
-        .aligner-quick-trust {
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-          background: rgba(255, 255, 255, 0.025);
-          border: 1px solid rgba(214, 122, 65, 0.16);
-          border-radius: 16px;
-          padding: 0.75rem 1.5rem;
-          margin-top: 1.25rem;
-        }
-        .trust-stat { text-align: center; }
-        .trust-stat strong {
-          display: block;
-          font-size: 1.05rem;
-          font-weight: 900;
-          color: #F4B382;
-          font-family: var(--font-heading);
-          line-height: 1.1;
-        }
-        .trust-stat span {
-          display: block;
-          font-size: 0.68rem;
-          color: rgba(255, 255, 255, 0.65);
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-          margin-top: 0.15rem;
-        }
-        .trust-stat-sep {
-          width: 1px;
-          height: 24px;
-          background: rgba(214, 122, 65, 0.2);
         }
 
         /* ── RESPONSIVE RULES ────────────────────────── */
@@ -437,51 +408,48 @@ export default function AlignerHero() {
 
         @media (max-width: 600px) {
           .aligner-section-root {
-            padding: 1.5rem 0.75rem;
+            padding: 2rem 0.85rem;
           }
           .aligner-title {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
           }
           .aligner-subtitle {
-            font-size: 0.78rem;
+            font-size: 0.82rem;
           }
           .aligner-perks-strip {
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.45rem;
-            margin-bottom: 1rem;
+            gap: 0.5rem;
+            margin-bottom: 1.15rem;
           }
           .perk-capsule {
-            padding: 0.55rem 0.55rem;
-            border-radius: 12px;
-            gap: 0.4rem;
+            padding: 0.65rem 0.65rem;
+            border-radius: 14px;
+            gap: 0.45rem;
           }
           .perk-capsule-icon {
-            font-size: 0.95rem;
+            font-size: 1rem;
           }
           .perk-capsule-title {
-            font-size: 0.72rem;
+            font-size: 0.75rem;
           }
           .perk-capsule-desc {
             display: none;
           }
           .aligner-showcase-box {
-            padding: 0.85rem;
-            border-radius: 18px;
+            padding: 0.95rem;
+            border-radius: 20px;
           }
           .case-tab-bar {
             flex-direction: column;
             gap: 0.25rem;
           }
           .case-tab-btn {
-            padding: 0.45rem 0.6rem;
-            font-size: 0.75rem;
+            padding: 0.5rem 0.65rem;
+            font-size: 0.76rem;
           }
           .slider-nav-btn {
-            width: 32px;
-            height: 32px;
-          }
-          .aligner-quick-trust {
-            display: none;
+            width: 34px;
+            height: 34px;
           }
         }
       `}} />
