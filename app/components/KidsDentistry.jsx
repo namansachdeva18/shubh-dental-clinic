@@ -310,8 +310,8 @@ export default function KidsDentistry() {
                     src="/kids/kids-hero.png" 
                     alt="Little Champions at Shubh Dental Clinic" 
                     fill 
-                    sizes="(max-width: 768px) 150px, 200px" 
-                    style={{ objectFit: 'cover' }} 
+                    sizes="(max-width: 768px) 160px, 220px" 
+                    style={{ objectFit: 'cover', objectPosition: 'center 20%' }} 
                   />
                 </div>
                 <div className="polaroid-caption">Little Champions</div>
@@ -817,20 +817,24 @@ export default function KidsDentistry() {
             margin-left: 0;
           }
           .frame-fourth {
-            width: 120px;
-            height: 140px;
-            right: 8px;
-            bottom: 8px;
+            width: 132px;
+            height: 152px;
+            right: 6px;
+            bottom: 6px;
+          }
+          .frame-fourth .polaroid-img-wrap img {
+            object-position: center 18% !important;
           }
           .polaroid-caption {
             font-size: 0.72rem;
             bottom: 0.2rem;
           }
           .polaroid-tooth-mascot {
-            width: 60px;
-            height: 60px;
-            bottom: -5px;
-            right: -5px;
+            width: 48px;
+            height: 48px;
+            bottom: -8px;
+            right: -8px;
+            opacity: 0.85;
           }
 
           .kids-trust-strip {
