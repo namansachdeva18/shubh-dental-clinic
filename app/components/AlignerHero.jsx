@@ -88,14 +88,14 @@ export default function AlignerHero() {
           </p>
         </div>
 
-        {/* 4 VALUE PILLARS */}
+        {/* 4 VALUE PILLARS (HIGH CONTRAST LUXURY CARDS) */}
         <div className="aligner-perks-strip">
           {WHY_CHOOSE_US_PERKS.map((perk, idx) => (
-            <div key={idx} className="perk-capsule">
-              <div className="perk-capsule-icon">{perk.icon}</div>
-              <div className="perk-capsule-body">
-                <strong className="perk-capsule-title">{perk.title}</strong>
-                <p className="perk-capsule-desc">{perk.desc}</p>
+            <div key={idx} className="aligner-perk-card">
+              <div className="aligner-perk-icon-wrap">{perk.icon}</div>
+              <div className="aligner-perk-body">
+                <strong className="aligner-perk-title">{perk.title}</strong>
+                <p className="aligner-perk-desc">{perk.desc}</p>
               </div>
             </div>
           ))}
@@ -105,7 +105,7 @@ export default function AlignerHero() {
         <div className="aligner-showcase-box">
 
           {/* SLIDER WRAPPER */}
-          <div className="slider-stage-wrapper">
+          <div className="aligner-slider-stage">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCase.id}
@@ -113,9 +113,9 @@ export default function AlignerHero() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.2 }}
-                className="slider-centered-container"
+                className="aligner-slider-centered"
               >
-                <div className="slider-frame">
+                <div className="aligner-slider-frame">
                   <BeforeAfterSlider
                     beforeSrc={activeCase.beforeSrc}
                     afterSrc={activeCase.afterSrc}
@@ -126,7 +126,7 @@ export default function AlignerHero() {
                   {/* Navigation Arrows */}
                   <button 
                     type="button" 
-                    className="slider-nav-btn slider-nav-prev" 
+                    className="aligner-slider-btn aligner-slider-prev" 
                     onClick={handlePrev}
                     aria-label="Previous result"
                   >
@@ -135,14 +135,14 @@ export default function AlignerHero() {
 
                   <button 
                     type="button" 
-                    className="slider-nav-btn slider-nav-next" 
+                    className="aligner-slider-btn aligner-slider-next" 
                     onClick={handleNext}
                     aria-label="Next result"
                   >
                     <ChevronRight size={22} />
                   </button>
 
-                  <div className="slider-instruction-tag">
+                  <div className="aligner-instruction-tag">
                     <span>⟵ Drag slider to compare results ⟶</span>
                   </div>
                 </div>
@@ -157,15 +157,15 @@ export default function AlignerHero() {
       <style dangerouslySetInnerHTML={{
         __html: `
         .aligner-section-root {
-          background: linear-gradient(180deg, #FAF8F5 0%, #F3EDE6 100%);
+          background: linear-gradient(180deg, #FAF7F2 0%, #F4ECE3 100%);
           color: #110805;
-          padding: 3rem 1.25rem;
+          padding: 3.25rem 1.25rem;
           position: relative;
           overflow: hidden;
           width: 100%;
           box-sizing: border-box;
-          border-top: 1px solid rgba(214, 122, 65, 0.15);
-          border-bottom: 1px solid rgba(214, 122, 65, 0.15);
+          border-top: 1px solid rgba(214, 122, 65, 0.18);
+          border-bottom: 1px solid rgba(214, 122, 65, 0.18);
         }
 
         .aligner-container {
@@ -178,205 +178,169 @@ export default function AlignerHero() {
         /* ── HEADER ──────────────────────────────────── */
         .aligner-compact-header {
           text-align: center;
-          max-width: 780px;
-          margin: 0 auto 1.5rem;
+          max-width: 800px;
+          margin: 0 auto 1.65rem;
         }
 
         .aligner-pill-badge {
           display: inline-flex;
           align-items: center;
-          gap: 0.4rem;
-          background: rgba(214, 122, 65, 0.12);
-          color: #B85D26;
-          border: 1.5px solid rgba(214, 122, 65, 0.28);
-          padding: 0.32rem 0.95rem;
+          gap: 0.45rem;
+          background: #FFF3EB;
+          color: #A84813;
+          border: 1.5px solid rgba(214, 122, 65, 0.35);
+          padding: 0.35rem 1rem;
           border-radius: 99px;
           font-size: 0.74rem;
           font-weight: 800;
           letter-spacing: 0.06em;
           text-transform: uppercase;
-          margin-bottom: 0.65rem;
+          margin-bottom: 0.75rem;
+          box-shadow: 0 2px 8px rgba(214, 122, 65, 0.1);
         }
         .sparkle-icon { color: #D67A41; }
 
         .aligner-title {
-          font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+          font-size: clamp(1.85rem, 3.6vw, 2.65rem);
           font-weight: 900;
           color: #110805;
           line-height: 1.2;
-          margin-bottom: 0.65rem;
+          margin-bottom: 0.75rem;
           letter-spacing: -0.02em;
         }
         .copper-gradient {
-          background: linear-gradient(135deg, #B85D26 0%, #D67A41 60%, #9A4616 100%);
+          background: linear-gradient(135deg, #B85D26 0%, #D67A41 55%, #8C370B 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
 
         .aligner-subtitle {
-          font-size: 0.96rem;
-          color: #5C4337;
-          line-height: 1.6;
+          font-size: 0.98rem;
+          color: #3E271D;
+          line-height: 1.65;
           margin: 0 auto;
-          max-width: 680px;
+          max-width: 700px;
+          font-weight: 500;
         }
-        .aligner-subtitle strong { color: #9A4616; font-weight: 700; }
+        .aligner-subtitle strong { color: #9A4616; font-weight: 800; }
 
-        /* ── 4 VALUE PILLARS (LIGHT LUXURY CAPSULES) ── */
+        /* ── 4 VALUE PILLARS (SCOPED & HIGH CONTRAST) ── */
         .aligner-perks-strip {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 0.85rem;
+          gap: 0.95rem;
           margin-bottom: 1.75rem;
         }
 
-        .perk-capsule {
+        .aligner-perk-card {
           background: #FFFFFF;
-          border: 1px solid rgba(214, 122, 65, 0.18);
+          border: 1.5px solid rgba(214, 122, 65, 0.22);
           border-radius: 16px;
-          padding: 0.85rem 0.95rem;
+          padding: 0.95rem 1rem;
           display: flex;
           align-items: flex-start;
-          gap: 0.65rem;
-          box-shadow: 0 4px 14px rgba(74, 37, 24, 0.04);
-          transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+          gap: 0.75rem;
+          box-shadow: 0 4px 16px rgba(74, 37, 24, 0.05);
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .perk-capsule:hover {
-          transform: translateY(-2px);
+        .aligner-perk-card:hover {
+          transform: translateY(-3px);
           border-color: #D67A41;
           background: #FFFDFB;
-          box-shadow: 0 8px 24px rgba(214, 122, 65, 0.12);
+          box-shadow: 0 8px 24px rgba(214, 122, 65, 0.15);
         }
 
-        .perk-capsule-icon {
+        .aligner-perk-icon-wrap {
           font-size: 1.25rem;
+          width: 38px;
+          height: 38px;
+          background: #FFF4EC;
+          border: 1px solid rgba(214, 122, 65, 0.25);
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           flex-shrink: 0;
           line-height: 1;
-          margin-top: 2px;
         }
-        .perk-capsule-body {
+        .aligner-perk-body {
           flex: 1;
         }
-        .perk-capsule-title {
+        .aligner-perk-title {
           display: block;
-          font-size: 0.84rem;
+          font-size: 0.88rem;
           font-weight: 800;
-          color: #110805;
+          color: #110805 !important;
           margin-bottom: 0.25rem;
           line-height: 1.25;
         }
-        .perk-capsule-desc {
-          font-size: 0.73rem;
-          color: #6E4D3E;
+        .aligner-perk-desc {
+          font-size: 0.75rem;
+          color: #4A352B !important;
           line-height: 1.45;
           margin: 0;
+          font-weight: 500;
         }
 
         /* ── SHOWCASE BOX ────────────────────────────── */
         .aligner-showcase-box {
           background: #FFFFFF;
-          border: 1.5px solid rgba(214, 122, 65, 0.22);
+          border: 1.5px solid rgba(214, 122, 65, 0.24);
           border-radius: 24px;
           padding: 1.5rem 1.65rem;
-          margin-bottom: 1.25rem;
-          box-shadow: 0 16px 40px rgba(74, 37, 24, 0.07);
+          margin-bottom: 1rem;
+          box-shadow: 0 16px 40px rgba(74, 37, 24, 0.08);
           max-width: 860px;
           margin-left: auto;
           margin-right: auto;
         }
 
-        .case-tab-bar {
-          display: flex;
-          gap: 0.5rem;
-          background: #F5EFEA;
-          padding: 0.35rem;
-          border-radius: 14px;
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          margin-bottom: 1.25rem;
-        }
-
-        .case-tab-btn {
-          flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.5rem;
-          padding: 0.65rem 0.85rem;
-          border-radius: 10px;
-          border: none;
-          background: transparent;
-          color: #5C4337;
-          font-size: 0.84rem;
-          font-weight: 800;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-        .tab-btn-icon {
-          color: #D67A41;
-          flex-shrink: 0;
-        }
-        .case-tab-btn--active {
-          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
-          color: #FFFFFF;
-          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.3);
-        }
-        .case-tab-btn--active .tab-btn-icon {
-          color: #FFFFFF;
-        }
-        .case-tab-time {
-          font-size: 0.7rem;
-          font-weight: 700;
-          background: rgba(255, 255, 255, 0.25);
-          padding: 0.15rem 0.5rem;
-          border-radius: 99px;
-        }
-
-        .slider-stage-wrapper {
+        .aligner-slider-stage {
           position: relative;
           width: 100%;
         }
 
-        .slider-centered-container {
+        .aligner-slider-centered {
           width: 100%;
         }
 
-        .slider-frame {
+        .aligner-slider-frame {
           position: relative;
           border-radius: 18px;
           overflow: hidden;
-          border: 1.5px solid rgba(214, 122, 65, 0.25);
-          box-shadow: 0 10px 30px rgba(74, 37, 24, 0.1);
+          border: 1.5px solid rgba(214, 122, 65, 0.28);
+          box-shadow: 0 10px 30px rgba(74, 37, 24, 0.12);
           background: #000;
         }
 
-        .slider-instruction-tag {
+        .aligner-instruction-tag {
           position: absolute;
           bottom: 12px;
           left: 50%;
           transform: translateX(-50%);
-          background: rgba(17, 8, 5, 0.82);
+          background: rgba(17, 8, 5, 0.85);
           backdrop-filter: blur(6px);
           border: 1px solid rgba(214, 122, 65, 0.4);
           color: #F4B382;
-          font-size: 0.72rem;
+          font-size: 0.74rem;
           font-weight: 700;
           letter-spacing: 0.04em;
-          padding: 0.3rem 0.85rem;
+          padding: 0.35rem 0.95rem;
           border-radius: 99px;
           pointer-events: none;
           z-index: 20;
           white-space: nowrap;
         }
 
-        .slider-nav-btn {
+        .aligner-slider-btn {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
           z-index: 25;
-          width: 40px;
-          height: 40px;
+          width: 42px;
+          height: 42px;
           border-radius: 50%;
-          background: rgba(17, 8, 5, 0.72);
+          background: rgba(17, 8, 5, 0.75);
           backdrop-filter: blur(4px);
           border: 1.5px solid rgba(214, 122, 65, 0.35);
           color: #FFFFFF;
@@ -386,16 +350,16 @@ export default function AlignerHero() {
           cursor: pointer;
           transition: all 0.2s ease;
         }
-        .slider-nav-btn:hover {
+        .aligner-slider-btn:hover {
           background: #D67A41;
           border-color: #D67A41;
           transform: translateY(-50%) scale(1.08);
           box-shadow: 0 4px 14px rgba(214, 122, 65, 0.4);
         }
-        .slider-nav-prev {
+        .aligner-slider-prev {
           left: 12px;
         }
-        .slider-nav-next {
+        .aligner-slider-next {
           right: 12px;
         }
 
@@ -414,40 +378,34 @@ export default function AlignerHero() {
             font-size: 1.5rem;
           }
           .aligner-subtitle {
-            font-size: 0.82rem;
+            font-size: 0.84rem;
           }
           .aligner-perks-strip {
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.5rem;
+            gap: 0.55rem;
             margin-bottom: 1.15rem;
           }
-          .perk-capsule {
+          .aligner-perk-card {
             padding: 0.65rem 0.65rem;
             border-radius: 14px;
             gap: 0.45rem;
           }
-          .perk-capsule-icon {
+          .aligner-perk-icon-wrap {
+            width: 32px;
+            height: 32px;
             font-size: 1rem;
           }
-          .perk-capsule-title {
-            font-size: 0.75rem;
+          .aligner-perk-title {
+            font-size: 0.78rem;
           }
-          .perk-capsule-desc {
+          .aligner-perk-desc {
             display: none;
           }
           .aligner-showcase-box {
             padding: 0.95rem;
             border-radius: 20px;
           }
-          .case-tab-bar {
-            flex-direction: column;
-            gap: 0.25rem;
-          }
-          .case-tab-btn {
-            padding: 0.5rem 0.65rem;
-            font-size: 0.76rem;
-          }
-          .slider-nav-btn {
+          .aligner-slider-btn {
             width: 34px;
             height: 34px;
           }

@@ -330,11 +330,9 @@ export default function DentalTourism() {
 
         /* ── HEADER ── */
         .dt-header {
+          text-align: center;
           max-width: 820px;
-          margin: 0 auto 2.2rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+          margin: 0 auto 1.25rem;
         }
 
         .dt-pill-badge {
@@ -343,14 +341,14 @@ export default function DentalTourism() {
           gap: 0.45rem;
           background: rgba(214, 122, 65, 0.12);
           color: #9A4616;
-          padding: 0.35rem 0.95rem;
+          padding: 0.3rem 0.9rem;
           border-radius: 99px;
           font-size: 0.72rem;
           font-weight: 800;
           letter-spacing: 0.06em;
           text-transform: uppercase;
           border: 1px solid rgba(214, 122, 65, 0.28);
-          margin-bottom: 1rem;
+          margin-bottom: 0.5rem;
         }
 
         .dt-plane-pulse {
@@ -363,11 +361,11 @@ export default function DentalTourism() {
         }
 
         .dt-heading {
-          font-size: clamp(2rem, 3.8vw, 2.85rem);
+          font-size: clamp(1.85rem, 3.5vw, 2.6rem);
           font-weight: 900;
           color: #0E0604;
           line-height: 1.18;
-          margin-bottom: 0.85rem;
+          margin-bottom: 0.5rem;
           letter-spacing: -0.02em;
         }
 
@@ -378,29 +376,30 @@ export default function DentalTourism() {
         }
 
         .dt-subheading {
-          font-size: 0.96rem;
+          font-size: 0.92rem;
           color: #5A3E33;
-          line-height: 1.65;
+          line-height: 1.55;
           max-width: 720px;
-          margin: 0 auto 1.4rem;
+          margin: 0 auto 0.9rem;
         }
 
         /* FLAGS BAR */
         .dt-flags-bar {
           display: flex;
           align-items: center;
-          gap: 0.75rem;
+          gap: 0.65rem;
           flex-wrap: wrap;
           justify-content: center;
-          background: rgba(255, 255, 255, 0.8);
-          padding: 0.4rem 1rem;
+          background: rgba(255, 255, 255, 0.9);
+          padding: 0.35rem 0.95rem;
           border-radius: 99px;
-          border: 1px solid rgba(214, 122, 65, 0.18);
-          box-shadow: 0 4px 14px rgba(74, 37, 24, 0.04);
+          border: 1px solid rgba(214, 122, 65, 0.22);
+          box-shadow: 0 4px 14px rgba(74, 37, 24, 0.05);
+          margin-bottom: 1.25rem;
         }
 
         .dt-flags-label {
-          font-size: 0.72rem;
+          font-size: 0.7rem;
           font-weight: 800;
           color: #7A340F;
           text-transform: uppercase;
@@ -410,7 +409,7 @@ export default function DentalTourism() {
         .dt-flags-list {
           display: flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.35rem;
           flex-wrap: wrap;
         }
 
@@ -419,44 +418,44 @@ export default function DentalTourism() {
           align-items: center;
           gap: 0.3rem;
           background: #FAF8F5;
-          border: 1px solid rgba(74, 37, 24, 0.1);
-          padding: 0.18rem 0.55rem;
+          border: 1px solid rgba(74, 37, 24, 0.12);
+          padding: 0.16rem 0.5rem;
           border-radius: 99px;
-          font-size: 0.72rem;
+          font-size: 0.7rem;
           font-weight: 700;
           color: #38241C;
         }
 
-        /* ── STATS GRID ── */
+        /* ── STATS GRID (COMPACT & DARK LUXURY CARDS) ── */
         .dt-stats-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 1rem;
-          margin-bottom: 2.2rem;
+          gap: 0.75rem;
+          margin-bottom: 1.25rem;
         }
 
         .dt-stat-card {
-          background: #FFFFFF;
-          border-radius: 18px;
-          padding: 1.1rem 1.25rem;
-          border: 1.5px solid rgba(214, 122, 65, 0.14);
-          box-shadow: 0 4px 18px rgba(74, 37, 24, 0.04);
+          background: linear-gradient(145deg, #170C08 0%, #0F0604 100%);
+          border-radius: 16px;
+          padding: 0.85rem 1rem;
+          border: 1.5px solid rgba(214, 122, 65, 0.28);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22), 0 0 14px rgba(214, 122, 65, 0.06);
           display: flex;
           align-items: center;
-          gap: 0.85rem;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          gap: 0.75rem;
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .dt-stat-card:hover {
-          transform: translateY(-3px);
+          transform: translateY(-2px);
           border-color: #D67A41;
-          box-shadow: 0 10px 25px rgba(214, 122, 65, 0.12);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), 0 0 18px rgba(214, 122, 65, 0.16);
         }
 
         .dt-stat-icon-wrap {
-          width: 42px;
-          height: 42px;
-          border-radius: 12px;
+          width: 38px;
+          height: 38px;
+          border-radius: 10px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -464,19 +463,19 @@ export default function DentalTourism() {
         }
 
         .dt-icon-copper {
-          background: rgba(214, 122, 65, 0.14);
-          color: #9A4616;
-          border: 1px solid rgba(214, 122, 65, 0.3);
+          background: rgba(214, 122, 65, 0.18);
+          color: #F4B382;
+          border: 1px solid rgba(214, 122, 65, 0.35);
         }
         .dt-icon-gold {
-          background: rgba(245, 158, 11, 0.14);
-          color: #B45309;
-          border: 1px solid rgba(245, 158, 11, 0.3);
+          background: rgba(245, 158, 11, 0.18);
+          color: #FBBF24;
+          border: 1px solid rgba(245, 158, 11, 0.35);
         }
         .dt-icon-green {
-          background: rgba(16, 185, 129, 0.14);
-          color: #047857;
-          border: 1px solid rgba(16, 185, 129, 0.3);
+          background: rgba(16, 185, 129, 0.18);
+          color: #34D399;
+          border: 1px solid rgba(16, 185, 129, 0.35);
         }
 
         .dt-stat-content {
@@ -486,48 +485,48 @@ export default function DentalTourism() {
 
         .dt-stat-val {
           font-family: var(--font-heading);
-          font-size: 1.45rem;
+          font-size: 1.35rem;
           font-weight: 900;
-          color: #0E0604;
+          color: #F4B382;
           line-height: 1.1;
         }
 
         .dt-stat-label {
           font-size: 0.78rem;
           font-weight: 800;
-          color: #38241C;
+          color: #FFFFFF;
         }
 
         .dt-stat-sub {
-          font-size: 0.66rem;
-          color: #7A5B4C;
+          font-size: 0.65rem;
+          color: rgba(255, 255, 255, 0.65);
         }
 
         /* ── TAB NAV ── */
         .dt-tab-nav-wrapper {
           display: flex;
           justify-content: center;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.25rem;
         }
 
         .dt-tab-nav {
           display: inline-flex;
           background: rgba(74, 37, 24, 0.07);
-          padding: 0.35rem;
+          padding: 0.3rem;
           border-radius: 99px;
           border: 1px solid rgba(214, 122, 65, 0.18);
-          gap: 0.35rem;
+          gap: 0.3rem;
         }
 
         .dt-tab-btn {
           display: inline-flex;
           align-items: center;
           gap: 0.45rem;
-          padding: 0.55rem 1.25rem;
+          padding: 0.5rem 1.15rem;
           border-radius: 99px;
           border: none;
           background: transparent;
-          font-size: 0.82rem;
+          font-size: 0.8rem;
           font-weight: 700;
           color: #6E5448;
           cursor: pointer;
@@ -543,22 +542,22 @@ export default function DentalTourism() {
 
         /* ── TAB CONTENT PANEL ── */
         .dt-tab-content-panel {
-          margin-bottom: 2.2rem;
+          margin-bottom: 1.5rem;
         }
 
         /* 1. WORKFLOW GRID */
         .dt-workflow-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 1rem;
+          gap: 0.75rem;
         }
 
         .dt-workflow-card {
-          background: #FFFFFF;
-          border-radius: 20px;
-          padding: 1.5rem 1.3rem;
-          border: 1.5px solid rgba(214, 122, 65, 0.14);
-          box-shadow: 0 6px 20px rgba(74, 37, 24, 0.04);
+          background: linear-gradient(145deg, #170C08 0%, #0F0604 100%);
+          border-radius: 18px;
+          padding: 1.25rem 1.15rem;
+          border: 1.5px solid rgba(214, 122, 65, 0.24);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
           display: flex;
           flex-direction: column;
           position: relative;
@@ -567,95 +566,102 @@ export default function DentalTourism() {
         }
 
         .dt-workflow-card:hover {
-          transform: translateY(-4px);
+          transform: translateY(-3px);
           border-color: #D67A41;
-          box-shadow: 0 14px 30px rgba(214, 122, 65, 0.12);
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 16px rgba(214, 122, 65, 0.15);
         }
 
         .dt-step-top {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 1rem;
+          margin-bottom: 0.85rem;
         }
 
         .dt-step-num {
           font-family: var(--font-heading);
           font-size: 1.25rem;
           font-weight: 900;
-          color: #D67A41;
+          color: #F4B382;
           line-height: 1;
         }
 
         .dt-step-tag {
-          font-size: 0.65rem;
+          font-size: 0.62rem;
           font-weight: 800;
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.2);
-          color: #7A340F;
+          background: rgba(214, 122, 65, 0.2);
+          border: 1px solid rgba(214, 122, 65, 0.35);
+          color: #F4B382;
           padding: 0.15rem 0.45rem;
           border-radius: 99px;
           text-transform: uppercase;
         }
 
+        .dt-step-body {
+          display: flex;
+          flex-direction: column;
+          gap: 0.45rem;
+        }
+
         .dt-step-icon-box {
-          width: 38px;
-          height: 38px;
+          width: 36px;
+          height: 36px;
           border-radius: 10px;
-          background: linear-gradient(135deg, rgba(214, 122, 65, 0.14) 0%, rgba(201, 168, 76, 0.18) 100%);
-          color: #9A4616;
-          border: 1px solid rgba(214, 122, 65, 0.3);
+          background: rgba(214, 122, 65, 0.15);
+          color: #F4B382;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 0.85rem;
+          margin-bottom: 0.35rem;
+          border: 1px solid rgba(214, 122, 65, 0.3);
         }
 
         .dt-step-title {
-          font-size: 0.98rem;
+          font-size: 0.95rem;
           font-weight: 800;
-          color: #110805;
-          margin-bottom: 0.5rem;
-          line-height: 1.3;
-        }
-
-        .dt-step-desc {
-          font-size: 0.78rem;
-          color: #554A44;
-          line-height: 1.55;
+          color: #FFFFFF;
+          line-height: 1.25;
           margin: 0;
         }
 
-        /* 2. COST SAVINGS MATRIX */
+        .dt-step-desc {
+          font-size: 0.72rem;
+          color: rgba(255, 255, 255, 0.7);
+          line-height: 1.45;
+          margin: 0;
+        }
+
+        /* 2. COST MATRIX */
         .dt-cost-matrix-wrapper {
-          background: #FFFFFF;
-          border-radius: 22px;
-          padding: 1.75rem;
-          border: 1.5px solid rgba(214, 122, 65, 0.16);
-          box-shadow: 0 8px 25px rgba(74, 37, 24, 0.05);
+          background: linear-gradient(145deg, #170C08 0%, #0F0604 100%);
+          border-radius: 20px;
+          border: 1.5px solid rgba(214, 122, 65, 0.28);
+          padding: 1.35rem;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
         }
 
         .dt-cost-matrix-intro {
-          margin-bottom: 1.25rem;
-          padding-bottom: 1rem;
-          border-bottom: 1px solid rgba(74, 37, 24, 0.08);
+          margin-bottom: 1.15rem;
+          padding-bottom: 0.85rem;
+          border-bottom: 1px solid rgba(214, 122, 65, 0.2);
         }
 
         .dt-cost-intro-title {
-          display: inline-flex;
+          display: flex;
           align-items: center;
           gap: 0.45rem;
+          font-family: var(--font-heading);
           font-size: 0.88rem;
           font-weight: 800;
-          color: #7A340F;
+          color: #F4B382;
           margin-bottom: 0.35rem;
         }
 
         .dt-cost-intro-desc {
-          font-size: 0.82rem;
-          color: #554A44;
+          font-size: 0.76rem;
+          color: rgba(255, 255, 255, 0.72);
+          line-height: 1.45;
           margin: 0;
-          line-height: 1.55;
         }
 
         .dt-cost-table {
@@ -666,67 +672,61 @@ export default function DentalTourism() {
 
         .dt-cost-row {
           display: grid;
-          grid-template-columns: 2fr 1.5fr 1.5fr 1fr;
+          grid-template-columns: 2fr 1.3fr 1.5fr 1.1fr;
           align-items: center;
-          padding: 0.75rem 1rem;
-          border-radius: 12px;
-          background: #FAF8F5;
-          border: 1px solid rgba(74, 37, 24, 0.07);
-          gap: 0.75rem;
+          padding: 0.65rem 0.85rem;
+          border-radius: 10px;
+          background: rgba(255, 255, 255, 0.035);
+          border: 1px solid rgba(214, 122, 65, 0.15);
+          font-size: 0.8rem;
         }
 
         .dt-cost-row--header {
-          background: #110805;
-          color: #FFFFFF;
-          font-size: 0.74rem;
+          background: rgba(214, 122, 65, 0.15);
+          border-color: rgba(214, 122, 65, 0.3);
           font-weight: 800;
+          font-size: 0.7rem;
           text-transform: uppercase;
           letter-spacing: 0.05em;
-          border: none;
+          color: #F4B382;
         }
 
-        .dt-col-proc { font-size: 0.84rem; color: #110805; }
-        .dt-col-intl { font-size: 0.8rem; color: #7A5B4C; }
-        .dt-col-shubh { font-size: 0.85rem; font-weight: 800; color: #047857; }
-        .dt-col-save { text-align: right; }
-
+        .dt-col-proc { color: #FFFFFF; font-weight: 700; }
         .dt-price-strike {
           text-decoration: line-through;
-          color: #9CA3AF;
+          color: rgba(255, 255, 255, 0.45);
+          font-size: 0.76rem;
         }
-
         .dt-price-highlight {
-          color: #7A340F;
+          color: #F4B382;
           font-weight: 800;
         }
-
         .dt-save-badge {
-          background: #ECFDF5;
-          color: #047857;
+          display: inline-block;
+          background: rgba(16, 185, 129, 0.15);
+          color: #34D399;
           border: 1px solid rgba(16, 185, 129, 0.3);
-          padding: 0.2rem 0.6rem;
+          padding: 0.12rem 0.45rem;
           border-radius: 99px;
-          font-size: 0.72rem;
+          font-size: 0.68rem;
           font-weight: 800;
-          white-space: nowrap;
         }
 
-        /* ── STRATEGIC CENTRES NETWORK STRIP (ORGANIZED 6-CARD GRID) ── */
+        /* ── VISITING CENTRES NETWORK STRIP (DARK LUXURY CARD) ── */
         .dt-centres-strip-card {
-          background: #FFFFFF;
-          border-radius: 22px;
-          padding: 1.4rem 1.6rem;
-          border: 1.5px solid rgba(214, 122, 65, 0.18);
-          box-shadow: 0 8px 24px rgba(74, 37, 24, 0.05);
-          margin-bottom: 0;
+          background: linear-gradient(145deg, #170C08 0%, #0E0503 100%);
+          border-radius: 20px;
+          border: 1.5px solid rgba(214, 122, 65, 0.32);
+          padding: 1.25rem 1.35rem;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28), 0 0 20px rgba(214, 122, 65, 0.08);
         }
 
         .dt-centres-strip-top {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 1.25rem;
-          margin-bottom: 1.15rem;
+          gap: 1rem;
+          margin-bottom: 1rem;
           flex-wrap: wrap;
         }
 
@@ -734,34 +734,32 @@ export default function DentalTourism() {
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          flex: 1;
-          min-width: 260px;
         }
 
         .dt-centres-icon-box {
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: rgba(214, 122, 65, 0.14);
-          color: #D67A41;
+          background: rgba(214, 122, 65, 0.18);
+          color: #F4B382;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          border: 1px solid rgba(214, 122, 65, 0.28);
+          border: 1px solid rgba(214, 122, 65, 0.35);
         }
 
         .dt-centres-strip-title {
-          font-size: 0.96rem;
+          font-size: 0.94rem;
           font-weight: 800;
-          color: #110805;
+          color: #FFFFFF;
           margin: 0 0 0.15rem;
           line-height: 1.25;
         }
 
         .dt-centres-strip-desc {
           font-size: 0.74rem;
-          color: #6E5448;
+          color: rgba(255, 255, 255, 0.72);
           margin: 0;
           line-height: 1.4;
         }
@@ -770,9 +768,9 @@ export default function DentalTourism() {
           display: inline-flex;
           align-items: center;
           gap: 0.35rem;
-          background: rgba(214, 122, 65, 0.1);
-          color: #9A4616;
-          border: 1px solid rgba(214, 122, 65, 0.28);
+          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
+          color: #FFFFFF;
+          border: none;
           padding: 0.45rem 0.95rem;
           border-radius: 99px;
           font-size: 0.76rem;
@@ -781,12 +779,13 @@ export default function DentalTourism() {
           transition: all 0.22s ease;
           flex-shrink: 0;
           white-space: nowrap;
+          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.3);
         }
 
         .dt-centres-view-btn:hover {
-          background: #D67A41;
+          transform: translateY(-1px);
+          box-shadow: 0 6px 18px rgba(214, 122, 65, 0.45);
           color: #FFFFFF;
-          border-color: #D67A41;
         }
 
         /* Symmetric 3-column / 2-column Grid */
@@ -800,8 +799,8 @@ export default function DentalTourism() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          background: #FAF8F5;
-          border: 1px solid rgba(74, 37, 24, 0.1);
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(214, 122, 65, 0.2);
           border-radius: 12px;
           padding: 0.6rem 0.85rem;
           text-decoration: none;
@@ -812,14 +811,14 @@ export default function DentalTourism() {
         .dt-centre-tile:hover {
           transform: translateY(-2px);
           border-color: #D67A41;
-          background: #FFF9F4;
-          box-shadow: 0 4px 12px rgba(214, 122, 65, 0.12);
+          background: rgba(255, 255, 255, 0.08);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .dt-centre-tile--main {
-          background: linear-gradient(135deg, #FFF6EE 0%, #FFEDE0 100%);
+          background: linear-gradient(135deg, rgba(214, 122, 65, 0.25) 0%, rgba(184, 93, 38, 0.12) 100%);
           border: 1.5px solid #D67A41;
-          box-shadow: 0 2px 10px rgba(214, 122, 65, 0.1);
+          box-shadow: 0 2px 10px rgba(214, 122, 65, 0.15);
         }
 
         .dt-tile-left {
@@ -833,36 +832,25 @@ export default function DentalTourism() {
           width: 24px;
           height: 24px;
           border-radius: 6px;
-          background: rgba(214, 122, 65, 0.12);
-          color: #D67A41;
+          background: rgba(214, 122, 65, 0.18);
+          color: #F4B382;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
         }
 
-        .dt-tile-pin--main {
-          background: #D67A41;
-          color: #FFFFFF;
-        }
-
-        .dt-tile-info {
-          display: flex;
-          flex-direction: column;
-          min-width: 0;
-        }
-
         .dt-tile-city {
           font-family: var(--font-heading);
           font-size: 0.82rem;
           font-weight: 800;
-          color: #110805;
+          color: #FFFFFF;
           line-height: 1.2;
         }
 
         .dt-tile-area {
           font-size: 0.65rem;
-          color: #7A5B4C;
+          color: rgba(255, 255, 255, 0.6);
           line-height: 1.2;
           white-space: nowrap;
           overflow: hidden;
@@ -872,9 +860,9 @@ export default function DentalTourism() {
         .dt-tile-badge {
           font-size: 0.6rem;
           font-weight: 800;
-          color: #7A340F;
-          background: rgba(214, 122, 65, 0.14);
-          border: 1px solid rgba(214, 122, 65, 0.25);
+          color: #F4B382;
+          background: rgba(214, 122, 65, 0.18);
+          border: 1px solid rgba(214, 122, 65, 0.3);
           padding: 0.12rem 0.45rem;
           border-radius: 99px;
           white-space: nowrap;
@@ -887,7 +875,7 @@ export default function DentalTourism() {
           border: none;
         }
 
-        /* ── RESPONSIVE BREAKPOINTS ── */
+        /* ── RESPONSIVE BREAKPOINTS (MOBILE OPTIMIZED & COMPACT) ── */
         @media (max-width: 1024px) {
           .dt-stats-grid {
             grid-template-columns: repeat(2, 1fr);
@@ -899,60 +887,169 @@ export default function DentalTourism() {
 
         @media (max-width: 768px) {
           .dt-luxury-root {
-            padding: 3rem 0;
+            padding: 1.85rem 0.85rem 1.65rem;
+          }
+          .dt-header {
+            margin-bottom: 0.95rem;
           }
           .dt-heading {
-            font-size: 1.85rem;
+            font-size: 1.55rem;
+            margin-bottom: 0.4rem;
           }
-          /* Hide NRI workflow / cost tab cards on mobile as requested */
+          .dt-subheading {
+            font-size: 0.82rem;
+            line-height: 1.45;
+            margin-bottom: 0.75rem;
+          }
+          .dt-flags-bar {
+            padding: 0.35rem 0.75rem;
+            gap: 0.35rem;
+            margin-bottom: 0.95rem;
+          }
+          .dt-flags-label {
+            font-size: 0.66rem;
+          }
+          .dt-flag-pill {
+            font-size: 0.66rem;
+            padding: 0.12rem 0.45rem;
+          }
+
+          /* Hide NRI workflow / cost tab cards on mobile */
           .dt-tab-nav-wrapper,
           .dt-tab-content-panel {
             display: none !important;
           }
-          .dt-cost-row {
-            grid-template-columns: 1fr;
-            gap: 0.35rem;
-          }
-          .dt-cost-row--header {
-            display: none;
-          }
-          .dt-col-save {
-            text-align: left;
-          }
-          .dt-centres-grid {
+
+          /* Compact 2-column stats grid */
+          .dt-stats-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 0.5rem;
+            margin-bottom: 0.85rem;
           }
-          .dt-centres-strip-card {
-            padding: 1.15rem 1rem;
-            border-radius: 18px;
-            margin-top: 1.5rem;
+          .dt-stat-card {
+            padding: 0.65rem 0.75rem;
+            border-radius: 14px;
+            gap: 0.55rem;
           }
-        }
+          .dt-stat-icon-wrap {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+          }
+          .dt-stat-val {
+            font-size: 1.15rem;
+          }
+          .dt-stat-label {
+            font-size: 0.74rem;
+          }
+          .dt-stat-sub {
+            font-size: 0.62rem;
+          }
 
-        @media (max-width: 580px) {
-          .dt-stats-grid {
-            grid-template-columns: 1fr;
+          /* Visiting Centres Card */
+          .dt-centres-strip-card {
+            padding: 1rem 0.95rem;
+            border-radius: 18px;
+            margin-top: 0.85rem;
           }
-          .dt-workflow-grid {
-            grid-template-columns: 1fr;
-          }
-          .dt-tab-nav {
+          .dt-centres-strip-top {
             flex-direction: column;
-            border-radius: 16px;
-            width: 100%;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.85rem;
           }
-          .dt-tab-btn {
-            width: 100%;
-            justify-content: center;
+          .dt-centres-strip-title {
+            font-size: 0.88rem;
           }
-          .dt-centres-grid {
-            grid-template-columns: 1fr;
+          .dt-centres-strip-desc {
+            font-size: 0.72rem;
           }
           .dt-centres-view-btn {
             width: 100%;
             justify-content: center;
-            padding: 0.55rem;
+            padding: 0.5rem 0.85rem;
+            font-size: 0.75rem;
+          }
+
+          /* Compact 2-Column Visiting Centres Grid on Mobile (50% Height Reduction) */
+          .dt-centres-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.4rem;
+          }
+          .dt-centre-tile {
+            padding: 0.5rem 0.6rem;
+            border-radius: 10px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.3rem;
+            min-height: 62px;
+            justify-content: center;
+          }
+          .dt-tile-left {
+            width: 100%;
+            gap: 0.4rem;
+          }
+          .dt-tile-pin {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+          }
+          .dt-tile-city {
+            font-size: 0.78rem;
+          }
+          .dt-tile-area {
+            font-size: 0.62rem;
+          }
+          .dt-tile-badge {
+            font-size: 0.56rem;
+            padding: 0.1rem 0.38rem;
+            margin-top: 1px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .dt-luxury-root {
+            padding: 1.5rem 0.65rem 1.35rem;
+          }
+          .dt-heading {
+            font-size: 1.35rem;
+          }
+          .dt-stat-card {
+            padding: 0.55rem 0.6rem;
+          }
+          .dt-stat-icon-wrap {
+            width: 28px;
+            height: 28px;
+          }
+          .dt-stat-val {
+            font-size: 1rem;
+          }
+          .dt-stat-label {
+            font-size: 0.68rem;
+          }
+          .dt-stat-sub {
+            font-size: 0.56rem;
+          }
+          .dt-centres-strip-card {
+            padding: 0.85rem 0.75rem;
+          }
+          .dt-centres-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.35rem;
+          }
+          .dt-centre-tile {
+            padding: 0.45rem 0.5rem;
+            min-height: 58px;
+          }
+          .dt-tile-city {
+            font-size: 0.74rem;
+          }
+          .dt-tile-area {
+            font-size: 0.58rem;
+          }
+          .dt-tile-badge {
+            font-size: 0.52rem;
+            padding: 0.08rem 0.32rem;
           }
         }
       `}} />

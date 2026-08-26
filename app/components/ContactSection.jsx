@@ -305,7 +305,7 @@ export default function ContactSection() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .contact-section-wrapper {
-          padding: 3rem 1.5rem;
+          padding: 2.75rem 1.5rem 1rem;
           background: #FAF8F5;
           position: relative;
           overflow: hidden;
@@ -881,118 +881,150 @@ export default function ContactSection() {
         }
         @media (max-width: 640px) {
           .contact-section-wrapper {
-            padding: 1.5rem 0.75rem 2rem !important;
+            padding: 1.5rem 0.75rem 0.65rem !important;
           }
           .contact-header {
-            margin-bottom: 1.15rem !important;
+            margin-bottom: 0.85rem !important;
           }
           .contact-badge {
-            margin-bottom: 0.5rem !important;
-            padding: 0.25rem 0.75rem !important;
-            font-size: 0.68rem !important;
+            margin-bottom: 0.35rem !important;
+            padding: 0.22rem 0.7rem !important;
+            font-size: 0.66rem !important;
           }
           .contact-title {
-            font-size: 1.45rem !important;
-            margin-bottom: 0.4rem !important;
+            font-size: 1.4rem !important;
+            margin-bottom: 0.3rem !important;
           }
           .contact-subtitle {
-            font-size: 0.8rem !important;
-            line-height: 1.4 !important;
+            font-size: 0.78rem !important;
+            line-height: 1.35 !important;
+            margin-bottom: 0 !important;
           }
           .contact-details-col {
-            gap: 0.65rem !important;
+            gap: 0.45rem !important;
           }
           .contact-info-card {
-            padding: 0.75rem 0.85rem !important;
+            padding: 0.65rem 0.75rem !important;
             border-radius: 14px !important;
-            gap: 0.65rem !important;
-            align-items: center !important;
+            gap: 0.55rem !important;
+            align-items: flex-start !important;
+            border-width: 1px !important;
+            box-shadow: 0 2px 10px rgba(74, 37, 24, 0.04) !important;
           }
           .card-icon-wrap {
-            width: 32px !important;
-            height: 32px !important;
-            border-radius: 10px !important;
+            width: 30px !important;
+            height: 30px !important;
+            border-radius: 8px !important;
+            margin-top: 2px !important;
           }
           .card-icon-wrap svg {
-            width: 16px !important;
-            height: 16px !important;
+            width: 15px !important;
+            height: 15px !important;
           }
           .card-info-header {
-            margin-bottom: 0.15rem !important;
+            margin-bottom: 0.1rem !important;
           }
           .card-info-title {
-            font-size: 0.86rem !important;
+            font-size: 0.84rem !important;
           }
           .btn-copy-address {
-            padding: 0.15rem 0.45rem !important;
-            font-size: 0.65rem !important;
+            padding: 0.12rem 0.4rem !important;
+            font-size: 0.62rem !important;
           }
           .card-info-text {
-            font-size: 0.76rem !important;
-            line-height: 1.35 !important;
+            font-size: 0.74rem !important;
+            line-height: 1.3 !important;
           }
           .card-action-links {
-            margin-top: 0.35rem !important;
+            margin-top: 0.25rem !important;
           }
           .btn-map-directions {
-            font-size: 0.74rem !important;
+            font-size: 0.72rem !important;
           }
           .phone-numbers-list {
             gap: 0.15rem !important;
-            margin: 0.2rem 0 !important;
+            margin: 0.15rem 0 !important;
           }
           .phone-item {
-            font-size: 0.78rem !important;
+            font-size: 0.76rem !important;
+            gap: 0.35rem !important;
           }
           .phone-label {
-            font-size: 0.7rem !important;
+            font-size: 0.68rem !important;
           }
           .email-sub-box {
-            margin-top: 0.35rem !important;
-            padding-top: 0.35rem !important;
-            font-size: 0.76rem !important;
+            margin-top: 0.25rem !important;
+            padding-top: 0.25rem !important;
+            font-size: 0.74rem !important;
           }
           .live-open-pill {
-            padding: 0.12rem 0.45rem !important;
-            font-size: 0.64rem !important;
+            padding: 0.1rem 0.4rem !important;
+            font-size: 0.6rem !important;
           }
           .contact-actions-grid, .contact-actions-row {
             grid-template-columns: 1fr 1fr !important;
-            gap: 0.5rem !important;
+            gap: 0.45rem !important;
+            margin-top: 0.15rem !important;
           }
           .cs-btn-action-call, .cs-btn-action-wa {
-            padding: 0.65rem 0.8rem !important;
-            font-size: 0.78rem !important;
+            padding: 0.55rem 0.75rem !important;
+            font-size: 0.76rem !important;
             border-radius: 12px !important;
           }
           .innovative-map-showcase {
-            padding: 0.75rem !important;
+            padding: 0.65rem !important;
             border-radius: 18px !important;
+            margin-top: 0.5rem !important;
           }
           .map-hud-header {
             flex-direction: column !important;
             align-items: flex-start !important;
-            gap: 0.5rem !important;
+            gap: 0.4rem !important;
+            padding-bottom: 0.6rem !important;
+            margin-bottom: 0.6rem !important;
+          }
+          .hud-pin-icon {
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 7px !important;
+          }
+          .hud-name {
+            font-size: 0.88rem !important;
+          }
+          .hud-stars {
+            font-size: 0.68rem !important;
           }
           .map-view-pills {
             width: 100% !important;
             justify-content: space-between !important;
+            padding: 2px !important;
           }
           .view-pill {
             flex: 1 !important;
             justify-content: center !important;
-            font-size: 0.7rem !important;
-            padding: 0.28rem 0.5rem !important;
+            font-size: 0.68rem !important;
+            padding: 0.24rem 0.4rem !important;
+          }
+          .map-screen-frame {
+            min-height: 280px !important;
+            border-radius: 14px !important;
+          }
+          .map-iframe-wrapper {
+            min-height: 260px !important;
           }
           .map-bottom-cta-strip {
             flex-direction: column !important;
             align-items: stretch !important;
-            gap: 0.4rem !important;
+            gap: 0.35rem !important;
+            padding: 0.55rem 0.75rem !important;
+          }
+          .map-strip-info {
+            font-size: 0.7rem !important;
           }
           .btn-strip-navigate {
             justify-content: center !important;
-            font-size: 0.74rem !important;
-            padding: 0.4rem 0.8rem !important;
+            font-size: 0.72rem !important;
+            padding: 0.35rem 0.75rem !important;
           }
         }
       `}} />

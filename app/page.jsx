@@ -138,8 +138,8 @@ export default function HomePage() {
 
       {/* 2. FLAGSHIP SPECIALIZATIONS */}
       <AlignerHero />
-      <KidsDentistry />
       <ImplantsHero />
+      <KidsDentistry />
 
       {/* 3. NICHE AUDIENCE — Dental Tourism & NRI Care */}
       <DentalTourism />
