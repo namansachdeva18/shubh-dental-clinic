@@ -109,9 +109,10 @@ export default function QuickNavBar() {
               onClick={(e) => handleAnchorClick(e, '#book')}
               className="inav-quick-book-btn"
             >
-              <Calendar size={14} />
-              <span>Book Appointment</span>
-              <ArrowUpRight size={13} />
+              <Calendar size={13} />
+              <span className="inav-book-btn-text">Book Appointment</span>
+              <span className="inav-book-btn-text-mob">Book Slot</span>
+              <ArrowUpRight size={12} />
             </a>
           </div>
         </div>
@@ -206,8 +207,13 @@ export default function QuickNavBar() {
           align-items: center;
           justify-content: space-between;
           margin-bottom: 1rem;
-          gap: 0.75rem;
-          flex-wrap: wrap;
+          gap: 0.5rem;
+          flex-wrap: nowrap;
+          width: 100%;
+        }
+
+        .inav-book-btn-text-mob {
+          display: none;
         }
 
         .inav-status-pill {
@@ -439,11 +445,41 @@ export default function QuickNavBar() {
             gap: 0.5rem;
           }
           .inav-dock {
-            padding: 1rem;
+            padding: 0.85rem 0.9rem;
             border-radius: 20px;
           }
+          .inav-status-divider,
           .inav-status-sub {
-            display: none;
+            display: none !important;
+          }
+          .inav-top-bar {
+            flex-wrap: nowrap !important;
+            margin-bottom: 0.75rem;
+            gap: 0.4rem;
+          }
+          .inav-status-pill {
+            padding: 0.28rem 0.55rem !important;
+            font-size: 0.64rem !important;
+            gap: 0.3rem !important;
+            flex-shrink: 1;
+            min-width: 0;
+          }
+          .inav-status-title {
+            font-size: 0.62rem !important;
+            letter-spacing: 0.04em !important;
+          }
+          .inav-quick-book-btn {
+            padding: 0.28rem 0.65rem !important;
+            font-size: 0.68rem !important;
+            flex-shrink: 0 !important;
+            gap: 0.25rem !important;
+            box-shadow: 0 2px 8px rgba(214, 122, 65, 0.3) !important;
+          }
+          .inav-book-btn-text {
+            display: none !important;
+          }
+          .inav-book-btn-text-mob {
+            display: inline !important;
           }
         }
 
@@ -461,17 +497,6 @@ export default function QuickNavBar() {
           }
           .inav-tile-sub {
             font-size: 0.64rem;
-          }
-          .inav-top-bar {
-            margin-bottom: 0.75rem;
-          }
-          .inav-status-pill {
-            font-size: 0.68rem;
-            padding: 0.28rem 0.65rem;
-          }
-          .inav-quick-book-btn {
-            font-size: 0.72rem;
-            padding: 0.35rem 0.75rem;
           }
         }
       `}} />
