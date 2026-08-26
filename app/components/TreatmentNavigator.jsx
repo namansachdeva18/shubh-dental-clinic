@@ -212,12 +212,6 @@ const TREATMENTS = [
 ];
 
 export default function TreatmentNavigator() {
-  const [activeCategory, setActiveCategory] = useState('All');
-
-  const filteredTreatments = activeCategory === 'All' 
-    ? TREATMENTS 
-    : TREATMENTS.filter(t => t.category === activeCategory);
-
   return (
     <section id="treatments" className="bento-treatments-section" aria-labelledby="treatments-heading">
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -236,23 +230,10 @@ export default function TreatmentNavigator() {
           </p>
         </div>
 
-        {/* Interactive Category Filter Pills */}
-        <div className="treatment-filter-bar">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`t-filter-pill ${activeCategory === cat ? 't-filter-pill--active' : ''}`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
         {/* Bento Interactive Grid */}
         <motion.div layout className="bento-treatments-grid">
           <AnimatePresence mode="popLayout">
-            {filteredTreatments.map((t, i) => {
+            {TREATMENTS.map((t, i) => {
               const IconComponent = VectorIcons[t.iconKey] || VectorIcons.braces;
               return (
                 <motion.div

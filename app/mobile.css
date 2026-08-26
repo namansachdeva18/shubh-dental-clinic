@@ -32,7 +32,8 @@ html, body {
     --section-pad-y-lg: 36px;
   }
   .mobile-bottom-bar { display: block; }
-  main { padding-bottom: 70px; }
+  main { padding-bottom: 0; }
+  footer.footer-root { padding-bottom: calc(75px + env(safe-area-inset-bottom, 0px)) !important; }
 }
 
 /* ===== GENERAL MOBILE SPACING & LUXURY PROPORTIONS ===== */

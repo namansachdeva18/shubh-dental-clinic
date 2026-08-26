@@ -148,7 +148,7 @@ export default function Hero() {
                     </div>
                     <div className="hs-stat-ambient-glow" />
                   </div>
-                  <span className="hs-stat-pill-badge">PGI GOLD</span>
+                  <span className="hs-stat-pill-badge">EX-PGI MDS</span>
                 </div>
 
                 <div className="hs-stat-content">

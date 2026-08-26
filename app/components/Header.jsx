@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
-  Menu, X, Phone, MapPin, Clock, ChevronDown, Calendar, 
+  Menu, X, Phone, MapPin, Clock, ChevronDown, ChevronRight, Calendar, 
   MessageCircle, BookMarked, PhoneCall, Sparkles, UserCheck, 
   Image as ImageIcon, Building, Tag, ArrowRight, ArrowUpRight,
   Zap, Award, Globe2, Smile, Stethoscope, Compass
@@ -44,63 +44,6 @@ const NAV_TREATMENTS = [
   },
 ];
 
-const MOB_NAV_TILES = [
-  {
-    id: 'why-choose-us',
-    title: 'Why Choose Us',
-    sub: '30+ Yrs & In-House Lab',
-    badge: 'LEGACY',
-    badgeColor: 'copper',
-    icon: Award,
-    href: '/why-choose-us',
-  },
-  {
-    id: 'specialists',
-    title: 'Specialists',
-    sub: 'Prof. Dr. S.K. Yadav & Team',
-    badge: 'EX-PGI GOLD',
-    badgeColor: 'gold',
-    icon: Award,
-    href: '/doctors',
-  },
-  {
-    id: 'treatments',
-    title: 'All Treatments',
-    sub: 'Full Clinical Spectrum',
-    badge: 'EXPLORE',
-    badgeColor: 'blue',
-    icon: Stethoscope,
-    href: '/treatments',
-  },
-  {
-    id: 'centres',
-    title: 'Visiting Centres',
-    sub: '6 NCR & Haryana Hubs',
-    badge: 'NCR NETWORK',
-    badgeColor: 'gold',
-    icon: MapPin,
-    href: '/visiting-centres',
-  },
-  {
-    id: 'tourism',
-    title: 'NRI & Tourism',
-    sub: 'International Patient Care',
-    badge: 'GLOBAL NRI',
-    badgeColor: 'emerald',
-    icon: Globe2,
-    href: '/dental-tourism',
-  },
-  {
-    id: 'gallery',
-    title: 'Smile Gallery',
-    sub: 'Before & After Proof',
-    badge: '2.5L+ SMILES',
-    badgeColor: 'purple',
-    icon: ImageIcon,
-    href: '/gallery',
-  },
-];
-
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -108,6 +51,8 @@ export default function Header() {
   const [alignersOpen, setAlignersOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [mobileTreatmentsOpen, setMobileTreatmentsOpen] = useState(false);
+  const [mobileAlignersOpen, setMobileAlignersOpen] = useState(false);
+  const [mobileClinicOpen, setMobileClinicOpen] = useState(false);
   
   const megaRef = useRef(null);
   const alignersRef = useRef(null);
@@ -328,7 +273,7 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile Slide-Over Overlay */}
+        {/* Mobile Slide-Over Overlay — Elite Luxury Healthcare Navigation */}
         {mobileOpen && (
           <div className="mobile-nav-overlay" role="dialog" aria-label="Mobile navigation" aria-modal="true">
             
@@ -339,105 +284,144 @@ export default function Header() {
                   <Image src="/logo.webp?v=2" alt="Logo" width={38} height={38} style={{ objectFit: 'contain' }} />
                 </div>
                 <div className="logo-text">
-                  <span className="logo-dr-name" style={{ color: '#F4B382' }}>Prof. Dr. S. K. Yadav&apos;s</span>
-                  <span className="logo-name" style={{ fontSize: '0.98rem', color: '#FFFFFF' }}>Shubh Dental Clinic</span>
+                  <span className="logo-dr-name" style={{ color: '#9A4616' }}>Prof. Dr. S. K. Yadav&apos;s</span>
+                  <span className="logo-name" style={{ fontSize: '0.98rem', color: '#110805' }}>Shubh Dental Clinic</span>
                 </div>
               </Link>
               <button className="mob-close-btn" onClick={() => setMobileOpen(false)} aria-label="Close menu">
-                <X size={22} />
+                <X size={20} />
               </button>
             </div>
 
             <div className="mobile-nav-scroll-body">
               
-              {/* Featured Mobile Special Offer Banner Card */}
-              <Link 
-                href="/special-offer" 
-                className="mob-drawer-offer-card" 
-                onClick={() => setMobileOpen(false)}
-              >
-                <div className="mob-offer-card-top">
-                  <span className="mob-offer-tag">
-                    <Tag size={11} /> LIMITED-TIME OFFER
-                  </span>
-                  <span className="mob-offer-badge">UP TO 20% OFF</span>
+              {/* Clean Professional Nav List (Matching Laptop Navigation Exactly) */}
+              <div className="mob-nav-list-simple">
+                
+                {/* 1. Home */}
+                <Link href="/" className="mob-simple-link" onClick={() => setMobileOpen(false)}>
+                  <span>Home</span>
+                </Link>
+
+                {/* 2. Treatments Accordion */}
+                <div className="mob-simple-accordion">
+                  <button 
+                    type="button" 
+                    className="mob-simple-toggle"
+                    onClick={() => setMobileTreatmentsOpen(!mobileTreatmentsOpen)}
+                    aria-expanded={mobileTreatmentsOpen}
+                  >
+                    <span>Treatments</span>
+                    <ChevronDown size={15} className={`mob-simple-chevron ${mobileTreatmentsOpen ? 'open' : ''}`} />
+                  </button>
+
+                  {mobileTreatmentsOpen && (
+                    <div className="mob-simple-submenu">
+                      <Link href="/treatments/invisalign-clear-aligners" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        Invisalign® Clear Aligners
+                      </Link>
+                      <Link href="/treatments/skyalign-clear-aligners" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        SkyAlign™ In-House Aligners
+                      </Link>
+                      <Link href="/treatments/dental-braces" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        Dental Braces (Metal &amp; Ceramic)
+                      </Link>
+                      <Link href="/treatments/same-day-dental-implants" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        Same-Day Dental Implants
+                      </Link>
+                      <Link href="/treatments/smile-makeover" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        Smile Makeover &amp; Veneers
+                      </Link>
+                      <Link href="/treatments/root-canal-treatment" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        Root Canal Treatment (RCT)
+                      </Link>
+                      <Link href="/treatments" className="mob-simple-subitem mob-simple-subitem--all" onClick={() => setMobileOpen(false)}>
+                        View All Treatments →
+                      </Link>
+                    </div>
+                  )}
                 </div>
-                <h4 className="mob-offer-title font-heading">
-                  Special Dental Care Offer
-                </h4>
-                <p className="mob-offer-desc">
-                  Save on Aligners, Braces &amp; Implants + Free 3D Digital Scan.
-                </p>
-                <div className="mob-offer-cta">
-                  <span>Claim Offer Online</span>
-                  <ArrowRight size={13} />
+
+                {/* 3. Aligners Accordion */}
+                <div className="mob-simple-accordion">
+                  <button 
+                    type="button" 
+                    className="mob-simple-toggle"
+                    onClick={() => setMobileAlignersOpen(!mobileAlignersOpen)}
+                    aria-expanded={mobileAlignersOpen}
+                  >
+                    <span>Aligners</span>
+                    <ChevronDown size={15} className={`mob-simple-chevron ${mobileAlignersOpen ? 'open' : ''}`} />
+                  </button>
+
+                  {mobileAlignersOpen && (
+                    <div className="mob-simple-submenu">
+                      <Link href="/clear-aligners" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        Invisalign® Clear Aligners
+                      </Link>
+                      <Link href="/skyalign" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        SkyAlign™ In-House Aligners
+                      </Link>
+                    </div>
+                  )}
                 </div>
-              </Link>
 
-              {/* Quick Navigation Status Strip */}
-              <div className="mob-inav-status-strip">
-                <div className="mob-inav-status-left">
-                  <span className="mob-live-dot" />
-                  <Compass size={13} className="mob-compass-icon" />
-                  <span className="mob-status-title">QUICK NAVIGATION</span>
+                {/* 4. Clinic Accordion */}
+                <div className="mob-simple-accordion">
+                  <button 
+                    type="button" 
+                    className="mob-simple-toggle"
+                    onClick={() => setMobileClinicOpen(!mobileClinicOpen)}
+                    aria-expanded={mobileClinicOpen}
+                  >
+                    <span>Clinic</span>
+                    <ChevronDown size={15} className={`mob-simple-chevron ${mobileClinicOpen ? 'open' : ''}`} />
+                  </button>
+
+                  {mobileClinicOpen && (
+                    <div className="mob-simple-submenu">
+                      <Link href="/doctors" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        Our Specialists
+                      </Link>
+                      <Link href="/about" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        About Shubh Dental
+                      </Link>
+                      <Link href="/why-choose-us" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        Why Choose Us
+                      </Link>
+                      <Link href="/gallery" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        Smile Gallery
+                      </Link>
+                      <Link href="/visiting-centres" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
+                        Visiting Centres
+                      </Link>
+                    </div>
+                  )}
                 </div>
 
-                <a 
-                  href="#book" 
-                  onClick={() => setMobileOpen(false)}
-                  className="mob-quick-book-btn"
-                >
-                  <Calendar size={13} />
-                  <span>Book Appointment</span>
-                  <ArrowUpRight size={12} />
-                </a>
-              </div>
+                {/* 5. NRI Tourism */}
+                <Link href="/dental-tourism" className="mob-simple-link" onClick={() => setMobileOpen(false)}>
+                  <span>NRI Tourism</span>
+                </Link>
 
-              {/* 2-Column Luxury Interactive Navigation Grid (Symmetric 12-Tile Matrix) */}
-              <div className="mob-inav-grid">
-                {MOB_NAV_TILES.map((tile) => {
-                  const Icon = tile.icon;
+                {/* 6. Blog */}
+                <Link href="/blog" className="mob-simple-link" onClick={() => setMobileOpen(false)}>
+                  <span>Blog</span>
+                </Link>
 
-                  return (
-                    <Link
-                      key={tile.id}
-                      href={tile.href}
-                      className="mob-inav-tile"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      <div className="mob-tile-header">
-                        <div className={`mob-icon-box mob-icon-${tile.badgeColor}`}>
-                          <Icon size={16} strokeWidth={2.2} />
-                        </div>
-                        <span className={`mob-badge mob-badge-${tile.badgeColor}`}>
-                          {tile.badge}
-                        </span>
-                      </div>
-                      <div className="mob-tile-body">
-                        <div className="mob-tile-title font-heading">{tile.title}</div>
-                        <div className="mob-tile-sub">{tile.sub}</div>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
+                {/* 7. Contact */}
+                <Link href="/contact" className="mob-simple-link" onClick={() => setMobileOpen(false)}>
+                  <span>Contact</span>
+                </Link>
 
-              {/* Bottom Quick Contact Buttons */}
-              <div className="mob-nav-cta-group">
-                <a href="tel:+918685048414" className="mob-btn-call">
-                  <Phone size={15} />
-                  <span>Call +91-8685048414</span>
-                </a>
-                <a 
-                  href="https://wa.me/918685048414?text=Hi! I would like to book a consultation at Shubh Orthodontic & Dental Clinic."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mob-btn-wa"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <MessageCircle size={15} />
-                  <span>WhatsApp Doctors</span>
-                </a>
+                {/* 8. Special Offer Pill */}
+                <div className="mob-simple-offer-wrap">
+                  <Link href="/special-offer" className="mob-simple-offer-btn" onClick={() => setMobileOpen(false)}>
+                    <Tag size={14} />
+                    <span>Special Offer</span>
+                  </Link>
+                </div>
+
               </div>
 
             </div>
@@ -868,14 +852,14 @@ export default function Header() {
           padding: 0.4rem;
         }
 
-        /* ── LUXURY OBSIDIAN MOBILE SLIDE-OVER OVERLAY ── */
+        /* ── ELITE LIGHT THEME MOBILE SLIDE-OVER OVERLAY ── */
         .mobile-nav-overlay {
           position: fixed;
           top: 0;
           left: 0;
           right: 0;
           bottom: 0;
-          background: #0E0604;
+          background: #FAF8F5;
           z-index: 9999;
           display: flex;
           flex-direction: column;
@@ -887,15 +871,16 @@ export default function Header() {
           align-items: center;
           justify-content: space-between;
           padding: 1rem 1.25rem;
-          background: #150A06;
-          border-bottom: 1px solid rgba(214, 122, 65, 0.25);
+          background: #FFFFFF;
+          border-bottom: 1px solid rgba(214, 122, 65, 0.18);
+          box-shadow: 0 2px 10px rgba(74, 37, 24, 0.04);
           flex-shrink: 0;
         }
 
         .mob-close-btn {
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(214, 122, 65, 0.3);
-          color: #FFFFFF;
+          background: #FFF4EC;
+          border: 1px solid rgba(214, 122, 65, 0.28);
+          color: #8C370B;
           width: 36px;
           height: 36px;
           border-radius: 10px;
@@ -906,356 +891,146 @@ export default function Header() {
           transition: all 0.2s ease;
         }
         .mob-close-btn:active {
-          background: rgba(214, 122, 65, 0.3);
+          background: #FFE8D6;
           transform: scale(0.92);
         }
 
         .mobile-nav-scroll-body {
           flex: 1;
           overflow-y: auto;
-          padding: 1.1rem 1.15rem 5.5rem;
+          padding: 1rem 1rem 2.5rem;
           -webkit-overflow-scrolling: touch;
         }
 
-        .mob-drawer-offer-card {
+        /* ── SIMPLE & PROFESSIONAL MOBILE NAV LIST (MATCHING LAPTOP NAVBAR) ── */
+        .mob-nav-list-simple {
           display: flex;
           flex-direction: column;
-          gap: 0.3rem;
-          background: linear-gradient(135deg, #1A0C08 0%, #2D1409 60%, #1A0C08 100%);
-          border: 1.5px solid rgba(214, 122, 65, 0.4);
-          border-radius: 16px;
-          padding: 0.95rem 1.05rem;
-          text-decoration: none;
-          color: #FFFFFF;
-          margin-bottom: 1rem;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-        }
-        .mob-offer-card-top {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 0.15rem;
-        }
-        .mob-offer-tag {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.3rem;
-          font-size: 0.62rem;
-          font-weight: 800;
-          color: #F4B382;
-          letter-spacing: 0.05em;
-        }
-        .mob-offer-badge {
-          background: linear-gradient(135deg, #E66A1F 0%, #D67A41 100%);
-          color: #FFFFFF;
-          font-size: 0.6rem;
-          font-weight: 900;
-          padding: 0.12rem 0.5rem;
-          border-radius: 99px;
-        }
-        .mob-offer-title {
-          font-size: 0.96rem;
-          font-weight: 800;
-          color: #FFFFFF;
-          margin: 0;
-        }
-        .mob-offer-desc {
-          font-size: 0.74rem;
-          color: rgba(255, 255, 255, 0.75);
-          line-height: 1.35;
-          margin: 0;
-        }
-        .mob-offer-cta {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.3rem;
-          font-size: 0.72rem;
-          font-weight: 800;
-          color: #F4B382;
-          margin-top: 0.25rem;
+          gap: 0.35rem;
+          padding: 0.35rem 0;
         }
 
-        /* QUICK NAV STATUS STRIP */
-        .mob-inav-status-strip {
+        .mob-simple-link {
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(214, 122, 65, 0.22);
+          padding: 0.8rem 1rem;
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: #2D1E17;
+          text-decoration: none;
+          background: #FFFFFF;
+          border: 1px solid rgba(214, 122, 65, 0.14);
           border-radius: 12px;
-          padding: 0.5rem 0.75rem;
-          margin-bottom: 0.85rem;
+          transition: all 0.18s ease;
+          box-shadow: 0 1px 4px rgba(74, 37, 24, 0.02);
         }
-        .mob-inav-status-left {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
+        .mob-simple-link:active {
+          background: #FFF4EC;
+          color: #9A4616;
+          border-color: #D67A41;
         }
-        .mob-live-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #10B981;
-          box-shadow: 0 0 6px #10B981;
-        }
-        .mob-compass-icon {
-          color: #D67A41;
-        }
-        .mob-status-title {
-          font-size: 0.68rem;
-          font-weight: 800;
-          color: #F4B382;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-        }
-        .mob-quick-book-btn {
-          display: inline-flex;
-          align-items: center;
+
+        .mob-simple-accordion {
+          display: flex;
+          flex-direction: column;
           gap: 0.3rem;
-          background: linear-gradient(135deg, #D67A41 0%, #B85922 100%);
-          color: #FFFFFF;
-          padding: 0.35rem 0.75rem;
-          border-radius: 99px;
-          font-size: 0.68rem;
-          font-weight: 800;
-          text-decoration: none;
-          box-shadow: 0 2px 8px rgba(214, 122, 65, 0.35);
         }
 
-        /* ── 2-COLUMN DOCK TILES GRID ── */
-        .mob-inav-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 0.6rem;
-          margin-bottom: 1.25rem;
-        }
-
-        .mob-tile-expand-wrapper {
-          grid-column: span 2;
+        .mob-simple-toggle {
           display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-
-        .mob-inav-tile {
-          display: flex;
-          flex-direction: column;
+          align-items: center;
           justify-content: space-between;
-          background: linear-gradient(145deg, #180C08 0%, #110805 100%);
-          border: 1.5px solid rgba(214, 122, 65, 0.22);
-          border-radius: 14px;
-          padding: 0.75rem 0.8rem;
-          text-decoration: none;
-          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-          min-height: 90px;
-          box-sizing: border-box;
+          padding: 0.8rem 1rem;
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: #2D1E17;
+          background: #FFFFFF;
+          border: 1px solid rgba(214, 122, 65, 0.14);
+          border-radius: 12px;
+          cursor: pointer;
+          font-family: inherit;
           text-align: left;
           width: 100%;
-          cursor: pointer;
+          box-sizing: border-box;
+          transition: all 0.18s ease;
+          box-shadow: 0 1px 4px rgba(74, 37, 24, 0.02);
         }
-        .mob-inav-tile:active, .mob-inav-tile--active {
-          transform: scale(0.97);
+        .mob-simple-toggle:active {
+          background: #FFFDFB;
           border-color: #D67A41;
-          background: linear-gradient(145deg, #26120B 0%, #180C08 100%);
-          box-shadow: 0 4px 16px rgba(214, 122, 65, 0.25);
         }
 
-        .mob-tile-header {
+        .mob-simple-chevron {
+          color: #B85D26;
+          transition: transform 0.22s ease;
+        }
+        .mob-simple-chevron.open {
+          transform: rotate(180deg);
+        }
+
+        .mob-simple-submenu {
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+          padding: 0.5rem 0.5rem 0.5rem 1rem;
+          background: #FAF8F5;
+          border-radius: 12px;
+          border: 1px solid rgba(214, 122, 65, 0.12);
+        }
+
+        .mob-simple-subitem {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 0.45rem;
-          width: 100%;
-        }
-
-        .mob-icon-box {
-          width: 30px;
-          height: 30px;
-          border-radius: 8px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-        .mob-icon-gold {
-          background: rgba(245, 158, 11, 0.15);
-          color: #FBBF24;
-          border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-        .mob-icon-copper {
-          background: rgba(214, 122, 65, 0.16);
-          color: #F4B382;
-          border: 1px solid rgba(214, 122, 65, 0.35);
-        }
-        .mob-icon-teal {
-          background: rgba(45, 212, 191, 0.15);
-          color: #2DD4BF;
-          border: 1px solid rgba(45, 212, 191, 0.3);
-        }
-        .mob-icon-blue {
-          background: rgba(96, 165, 250, 0.15);
-          color: #60A5FA;
-          border: 1px solid rgba(96, 165, 250, 0.3);
-        }
-        .mob-icon-purple {
-          background: rgba(192, 132, 252, 0.15);
-          color: #C084FC;
-          border: 1px solid rgba(192, 132, 252, 0.3);
-        }
-        .mob-icon-emerald {
-          background: rgba(52, 211, 153, 0.15);
-          color: #34D399;
-          border: 1px solid rgba(52, 211, 153, 0.3);
-        }
-        .mob-icon-amber {
-          background: rgba(251, 191, 36, 0.15);
-          color: #FCD34D;
-          border: 1px solid rgba(251, 191, 36, 0.3);
-        }
-
-        .mob-badge {
-          font-size: 0.58rem;
-          font-weight: 800;
-          padding: 0.1rem 0.45rem;
-          border-radius: 99px;
-          letter-spacing: 0.04em;
-          text-transform: uppercase;
-        }
-        .mob-badge-gold {
-          background: rgba(245, 158, 11, 0.16);
-          color: #FBBF24;
-          border: 1px solid rgba(245, 158, 11, 0.35);
-        }
-        .mob-badge-copper {
-          background: rgba(214, 122, 65, 0.18);
-          color: #F4B382;
-          border: 1px solid rgba(214, 122, 65, 0.35);
-        }
-        .mob-badge-teal {
-          background: rgba(45, 212, 191, 0.16);
-          color: #2DD4BF;
-          border: 1px solid rgba(45, 212, 191, 0.35);
-        }
-        .mob-badge-blue {
-          background: rgba(96, 165, 250, 0.16);
-          color: #93C5FD;
-          border: 1px solid rgba(96, 165, 250, 0.35);
-        }
-        .mob-badge-purple {
-          background: rgba(192, 132, 252, 0.16);
-          color: #D8B4FE;
-          border: 1px solid rgba(192, 132, 252, 0.35);
-        }
-        .mob-badge-emerald {
-          background: rgba(52, 211, 153, 0.16);
-          color: #6EE7B7;
-          border: 1px solid rgba(52, 211, 153, 0.35);
-        }
-        .mob-badge-amber {
-          background: rgba(251, 191, 36, 0.16);
-          color: #FDE68A;
-          border: 1px solid rgba(251, 191, 36, 0.35);
-        }
-
-        .mob-tile-body {
-          display: flex;
-          flex-direction: column;
-          gap: 0.15rem;
-        }
-        .mob-tile-title {
-          font-size: 0.86rem;
-          font-weight: 800;
-          color: #FFFFFF;
-          line-height: 1.2;
-        }
-        .mob-tile-sub {
-          font-size: 0.66rem;
-          color: rgba(244, 179, 130, 0.75);
-          line-height: 1.2;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        /* ── EXPANDED TREATMENTS LIST ── */
-        .mob-treatments-expanded {
-          background: #150A06;
-          border: 1px solid rgba(214, 122, 65, 0.25);
-          border-radius: 14px;
-          padding: 0.85rem;
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-        }
-        .mob-exp-group-title {
-          font-size: 0.68rem;
-          font-weight: 800;
-          color: #D67A41;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          margin-bottom: 0.35rem;
-        }
-        .mob-exp-links-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 0.4rem;
-        }
-        .mob-exp-link {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          border-radius: 8px;
-          padding: 0.4rem 0.55rem;
-          font-size: 0.72rem;
-          color: #E6D8D2;
+          padding: 0.55rem 0.75rem;
+          font-size: 0.82rem;
           font-weight: 600;
+          color: #4A352B;
           text-decoration: none;
+          background: #FFFFFF;
+          border: 1px solid rgba(214, 122, 65, 0.1);
+          border-radius: 8px;
+          transition: all 0.18s ease;
         }
-        .mob-exp-arrow {
-          color: #D67A41;
-          flex-shrink: 0;
+        .mob-simple-subitem:active {
+          background: #FFF4EC;
+          color: #9A4616;
+          border-color: #D67A41;
+        }
+        .mob-simple-subitem--all {
+          color: #9A4616;
+          font-weight: 800;
+          background: #FFF8F3;
         }
 
-        /* ── BOTTOM CONTACT CTAS ── */
-        .mob-nav-cta-group {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 0.65rem;
-          margin-top: 1rem;
-          padding-top: 1rem;
-          border-top: 1px solid rgba(214, 122, 65, 0.2);
+        .mob-simple-offer-wrap {
+          margin-top: 0.5rem;
+          padding-top: 0.5rem;
+          border-top: 1px solid rgba(214, 122, 65, 0.12);
         }
-        .mob-btn-call {
+
+        .mob-simple-offer-btn {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 0.4rem;
-          background: rgba(214, 122, 65, 0.15);
-          color: #F4B382;
-          border: 1px solid rgba(214, 122, 65, 0.35);
-          padding: 0.75rem 0.6rem;
-          border-radius: 12px;
-          font-size: 0.74rem;
+          gap: 0.45rem;
+          width: 100%;
+          padding: 0.75rem 1rem;
+          background: #FFF3EB;
+          border: 1.5px solid rgba(214, 122, 65, 0.35);
+          color: #B85922;
+          font-size: 0.88rem;
           font-weight: 800;
+          border-radius: 99px;
           text-decoration: none;
-          text-align: center;
+          box-shadow: 0 2px 8px rgba(214, 122, 65, 0.1);
+          box-sizing: border-box;
+          transition: all 0.2s ease;
         }
-        .mob-btn-wa {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.4rem;
-          background: rgba(37, 211, 102, 0.15);
-          color: #25D366;
-          border: 1px solid rgba(37, 211, 102, 0.35);
-          padding: 0.75rem 0.6rem;
-          border-radius: 12px;
-          font-size: 0.74rem;
-          font-weight: 800;
-          text-decoration: none;
-          text-align: center;
+        .mob-simple-offer-btn:active {
+          background: #D67A41;
+          color: #FFFFFF;
+          border-color: #D67A41;
         }
 
         /* RESPONSIVE BREAKPOINTS */

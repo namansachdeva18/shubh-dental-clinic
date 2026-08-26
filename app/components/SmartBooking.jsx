@@ -113,7 +113,7 @@ export default function SmartBooking() {
               </StaggerItem>
 
               <StaggerItem className="booking-headline" variant="fadeUp">
-                Reserve Your <span className="gold-text">VIP Smile Consultation</span>
+                Book Your <span className="gold-text">VIP Smile Consultation</span>
               </StaggerItem>
 
               <StaggerItem className="booking-sub" variant="fadeUp">
@@ -200,20 +200,6 @@ export default function SmartBooking() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="booking-form-interactive">
-                  
-                  {/* Compact Header with Live Badge */}
-                  <div className="interactive-form-header">
-                    <div>
-                      <span className="form-eyebrow-live">
-                        <span className="live-pulse-green" /> Priority Booking · Instant Slot
-                      </span>
-                      <h3 className="form-interactive-title font-heading">Reserve Consultation</h3>
-                    </div>
-                    <div className="form-rating-badge">
-                      <Star size={11} fill="#F59E0B" color="#F59E0B" />
-                      <span>5.0★ (2,400+ Verified)</span>
-                    </div>
-                  </div>
 
                   {/* Consultation Mode Segmented Toggle */}
                   <div className="mode-segmented-bar">
@@ -671,33 +657,43 @@ export default function SmartBooking() {
           padding-bottom: 0.65rem;
           border-bottom: 1.5px solid rgba(74, 37, 24, 0.08);
           gap: 0.75rem;
+          flex-wrap: wrap;
+        }
+
+        .form-header-badge-row {
+          display: flex;
+          align-items: center;
+          gap: 0.45rem;
+          flex-wrap: wrap;
         }
 
         .form-eyebrow-live {
           display: inline-flex;
           align-items: center;
           gap: 0.35rem;
-          font-size: 0.65rem;
+          font-size: 0.72rem;
           font-weight: 800;
           color: #059669;
           text-transform: uppercase;
           letter-spacing: 0.04em;
-          margin-bottom: 0.15rem;
         }
         .live-pulse-green {
-          width: 6px;
-          height: 6px;
+          width: 7px;
+          height: 7px;
           border-radius: 50%;
           background: #10B981;
           box-shadow: 0 0 6px #10B981;
         }
 
-        .form-interactive-title {
-          font-size: 1.08rem;
-          font-weight: 900;
-          color: #0E0604;
-          margin: 0;
-          line-height: 1.2;
+        .form-fast-track-pill {
+          font-size: 0.64rem;
+          font-weight: 800;
+          color: #9A4616;
+          background: #FFF4EC;
+          border: 1px solid rgba(214, 122, 65, 0.28);
+          padding: 0.12rem 0.45rem;
+          border-radius: 99px;
+          white-space: nowrap;
         }
 
         .form-rating-badge {

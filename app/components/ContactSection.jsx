@@ -305,7 +305,7 @@ export default function ContactSection() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .contact-section-wrapper {
-          padding: 2.75rem 1.5rem 1rem;
+          padding: 2.75rem 1.5rem 0 !important;
           background: #FAF8F5;
           position: relative;
           overflow: hidden;
@@ -881,7 +881,7 @@ export default function ContactSection() {
         }
         @media (max-width: 640px) {
           .contact-section-wrapper {
-            padding: 1.5rem 0.75rem 0.65rem !important;
+            padding: 1.5rem 0.75rem 0 !important;
           }
           .contact-header {
             margin-bottom: 0.85rem !important;

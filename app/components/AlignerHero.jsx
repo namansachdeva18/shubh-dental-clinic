@@ -370,44 +370,76 @@ export default function AlignerHero() {
           }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           .aligner-section-root {
-            padding: 2rem 0.85rem;
+            padding: 1.25rem 0.65rem 1rem !important;
+          }
+          .aligner-compact-header {
+            margin-bottom: 0.75rem !important;
+          }
+          .aligner-pill-badge {
+            padding: 0.22rem 0.75rem !important;
+            font-size: 0.66rem !important;
+            margin-bottom: 0.35rem !important;
           }
           .aligner-title {
-            font-size: 1.5rem;
+            font-size: 1.35rem !important;
+            margin-bottom: 0.3rem !important;
           }
           .aligner-subtitle {
-            font-size: 0.84rem;
+            font-size: 0.78rem !important;
+            line-height: 1.4 !important;
           }
           .aligner-perks-strip {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.55rem;
-            margin-bottom: 1.15rem;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.4rem !important;
+            margin-bottom: 0.75rem !important;
           }
           .aligner-perk-card {
-            padding: 0.65rem 0.65rem;
-            border-radius: 14px;
-            gap: 0.45rem;
+            padding: 0.45rem 0.55rem !important;
+            border-radius: 10px !important;
+            gap: 0.35rem !important;
+            align-items: center !important;
+            min-height: 46px !important;
           }
           .aligner-perk-icon-wrap {
-            width: 32px;
-            height: 32px;
-            font-size: 1rem;
+            width: 26px !important;
+            height: 26px !important;
+            font-size: 0.85rem !important;
+            border-radius: 6px !important;
           }
           .aligner-perk-title {
-            font-size: 0.78rem;
+            font-size: 0.72rem !important;
+            margin-bottom: 0 !important;
+            line-height: 1.2 !important;
           }
           .aligner-perk-desc {
-            display: none;
+            display: none !important;
           }
           .aligner-showcase-box {
-            padding: 0.95rem;
-            border-radius: 20px;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin-bottom: 0.4rem !important;
+          }
+          .aligner-slider-frame {
+            border-radius: 14px !important;
           }
           .aligner-slider-btn {
-            width: 34px;
-            height: 34px;
+            width: 32px !important;
+            height: 32px !important;
+          }
+          .aligner-slider-prev {
+            left: 8px !important;
+          }
+          .aligner-slider-next {
+            right: 8px !important;
+          }
+          .aligner-instruction-tag {
+            font-size: 0.64rem !important;
+            padding: 0.2rem 0.65rem !important;
+            bottom: 8px !important;
           }
         }
       `}} />

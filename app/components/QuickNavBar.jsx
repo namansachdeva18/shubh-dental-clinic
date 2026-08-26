@@ -22,7 +22,7 @@ const NAV_DEPARTMENTS = [
     id: 'specialists',
     title: 'Specialists',
     sub: 'Prof. Dr. S.K. Yadav & Team',
-    badge: 'Ex-PGI Gold',
+    badge: 'Ex-PGI MDS',
     badgeColor: 'gold',
     icon: Award,
     href: '/doctors',

@@ -17,7 +17,7 @@ export default function DoctorsCardIntro() {
           
           <div className="doctors-scrub-grid">
             
-            {/* LEFT: DOCTORS SCRUB PHOTOGRAPH WITH ELEGANT FRAME & BADGES */}
+            {/* LEFT: DOCTORS SCRUB PHOTOGRAPH WITH ELEGANT FRAME */}
             <div className="doctors-photo-column">
               <div className="doctors-photo-frame">
                 <Image
@@ -28,17 +28,6 @@ export default function DoctorsCardIntro() {
                   style={{ objectFit: 'cover', objectPosition: 'center 15%' }}
                   priority
                 />
-                
-                {/* Overlay Badge */}
-                <div className="photo-trust-badge">
-                  <div className="trust-badge-icon">
-                    <Award size={18} />
-                  </div>
-                  <div className="trust-badge-text">
-                    <strong>PGI Trained Specialists</strong>
-                    <span>5,000+ Braces · 3,000+ Implants</span>
-                  </div>
-                </div>
               </div>
             </div>
 

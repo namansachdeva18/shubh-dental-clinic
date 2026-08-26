@@ -745,12 +745,12 @@ export default function KidsDentistry() {
           .doctor-kids-quote { margin: 1rem auto 0; }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
           .kids-section-root {
-            padding: 2rem 0.85rem;
+            padding: 1.65rem 0.85rem 0.5rem !important;
           }
           .kids-header {
-            margin-bottom: 1.25rem;
+            margin-bottom: 0.95rem;
           }
           .kids-title {
             font-size: 1.45rem;
@@ -763,32 +763,33 @@ export default function KidsDentistry() {
           .what-kids-get-grid {
             grid-template-columns: repeat(2, 1fr) !important;
             gap: 0.5rem !important;
-            margin-bottom: 1.5rem !important;
+            margin-bottom: 1.15rem !important;
           }
           .wkg-card {
-            padding: 0.65rem 0.6rem !important;
+            padding: 0.65rem 0.75rem !important;
             border-radius: 14px !important;
-            gap: 0.45rem !important;
-            align-items: flex-start !important;
+            gap: 0.5rem !important;
+            align-items: center !important;
+            min-height: 52px !important;
           }
           .wkg-icon-box {
-            width: 28px !important;
-            height: 28px !important;
+            width: 30px !important;
+            height: 30px !important;
             border-radius: 8px !important;
+            flex-shrink: 0 !important;
           }
           .wkg-icon-box svg {
-            width: 14px !important;
-            height: 14px !important;
+            width: 15px !important;
+            height: 15px !important;
           }
           .wkg-title {
-            font-size: 0.76rem !important;
-            line-height: 1.2 !important;
-            margin-bottom: 0.15rem !important;
+            font-size: 0.78rem !important;
+            line-height: 1.25 !important;
+            margin-bottom: 0 !important;
+            font-weight: 800 !important;
           }
           .wkg-desc {
-            font-size: 0.68rem !important;
-            line-height: 1.35 !important;
-            color: #6E5C54 !important;
+            display: none !important;
           }
           .kids-services-card {
             display: none !important;
@@ -798,36 +799,36 @@ export default function KidsDentistry() {
           }
 
           .polaroid-wrapper {
-            height: 300px;
+            height: 270px;
             max-width: 320px;
           }
           .polaroid-card {
+            width: 115px;
+            height: 135px;
+            padding: 0.35rem 0.35rem 1.3rem 0.35rem;
+          }
+          .frame-left { top: 8px; left: 8px; }
+          .frame-right { top: 12px; right: 8px; }
+          .frame-center {
             width: 120px;
             height: 140px;
-            padding: 0.4rem 0.4rem 1.4rem 0.4rem;
-          }
-          .frame-left { top: 10px; left: 10px; }
-          .frame-right { top: 15px; right: 10px; }
-          .frame-center {
-            width: 125px;
-            height: 145px;
-            left: 10px;
-            bottom: 10px;
+            left: 8px;
+            bottom: 8px;
             margin-left: 0;
           }
           .frame-fourth {
-            width: 125px;
-            height: 145px;
-            right: 10px;
-            bottom: 10px;
+            width: 120px;
+            height: 140px;
+            right: 8px;
+            bottom: 8px;
           }
           .polaroid-caption {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             bottom: 0.2rem;
           }
           .polaroid-tooth-mascot {
-            width: 65px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
             bottom: -5px;
             right: -5px;
           }
