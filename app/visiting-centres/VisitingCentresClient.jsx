@@ -20,7 +20,7 @@ const CENTRES_DATA = [
     isMain: true,
     timing: 'Mon–Sat: 9:30 AM – 8:00 PM',
     phone: '+918685048414',
-    mapUrl: 'https://maps.app.goo.gl/EvRq96h9HMgYJYAw7',
+    mapUrl: 'https://maps.app.goo.gl/XfWJCcvCVGZBzdHv6?g_st=aw',
     doctor: 'Prof. Dr. S. K. Yadav (Ex-PGI) & Dr. Achla Yadav'
   },
   {

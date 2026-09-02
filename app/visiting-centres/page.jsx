@@ -30,7 +30,7 @@ export default function VisitingCentresPage() {
           addressRegion: 'Haryana',
           addressCountry: 'IN'
         },
-        hasMap: 'https://maps.app.goo.gl/EvRq96h9HMgYJYAw7',
+        hasMap: 'https://maps.app.goo.gl/XfWJCcvCVGZBzdHv6?g_st=aw',
         openingHours: 'Mo-Sa 09:30-20:00',
       })}} />
 

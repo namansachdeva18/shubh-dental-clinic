@@ -45,11 +45,11 @@ const SCHEMA_LOCAL_BUSINESS = {
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Sunday'], opens: '00:00', closes: '00:00' },
   ],
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', bestRating: '5', worstRating: '1', reviewCount: '114' },
-  sameAs: ['https://www.facebook.com/sodcrohtak/', 'https://www.instagram.com/dr.s.k._yadav_orthodontist', 'https://maps.app.goo.gl/EvRq96h9HMgYJYAw7'],
+  sameAs: ['https://www.facebook.com/sodcrohtak/', 'https://www.instagram.com/dr.s.k._yadav_orthodontist', 'https://maps.app.goo.gl/XfWJCcvCVGZBzdHv6?g_st=aw'],
   priceRange: '₹₹',
   currenciesAccepted: 'INR',
   paymentAccepted: 'Cash, Credit Card, Debit Card, UPI',
-  hasMap: 'https://maps.app.goo.gl/EvRq96h9HMgYJYAw7',
+  hasMap: 'https://maps.app.goo.gl/XfWJCcvCVGZBzdHv6?g_st=aw',
   medicalSpecialty: ['Orthodontics', 'Prosthodontics', 'Restorative Dentistry', 'Cosmetic Dentistry', 'Implantology', 'Pedodontics'],
 };
 

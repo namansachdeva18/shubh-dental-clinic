@@ -101,7 +101,7 @@ export default function ContactSection() {
                 </p>
                 <div className="card-action-links">
                   <a
-                    href="https://maps.app.goo.gl/EvRq96h9HMgYJYAw7"
+                    href="https://maps.app.goo.gl/XfWJCcvCVGZBzdHv6?g_st=aw"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-map-directions"
@@ -247,7 +247,7 @@ export default function ContactSection() {
                   </div>
 
                   <a
-                    href="https://maps.app.goo.gl/EvRq96h9HMgYJYAw7"
+                    href="https://maps.app.goo.gl/XfWJCcvCVGZBzdHv6?g_st=aw"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-open-google-maps"
@@ -284,7 +284,7 @@ export default function ContactSection() {
                 </div>
 
                 <a
-                  href="https://maps.app.goo.gl/EvRq96h9HMgYJYAw7"
+                  href="https://maps.app.goo.gl/XfWJCcvCVGZBzdHv6?g_st=aw"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-strip-navigate"

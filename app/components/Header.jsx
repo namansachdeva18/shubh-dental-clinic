@@ -513,7 +513,7 @@ export default function Header() {
 
           {/* 5. Official Google Maps */}
           <a
-            href="https://maps.app.goo.gl/EvRq96h9HMgYJYAw7"
+            href="https://maps.app.goo.gl/XfWJCcvCVGZBzdHv6?g_st=aw"
             target="_blank"
             rel="noopener noreferrer"
             className="mobile-bar-btn"
