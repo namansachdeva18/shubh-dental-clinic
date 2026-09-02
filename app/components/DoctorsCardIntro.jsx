@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { 
   Award, ShieldCheck, GraduationCap, CheckCircle2, 
-  Sparkles, Star, ChevronRight
+  Sparkles, Star, ChevronRight, ArrowUpRight
 } from 'lucide-react';
 
 export default function DoctorsCardIntro() {
@@ -75,6 +75,13 @@ export default function DoctorsCardIntro() {
                       <span>Ex. SR PGI Chandigarh · Ex. Consultant ESI Hospital Bhiwani · Ex. Dental Surgeon ECHS Rewari · Ex. Prof. DJ Dental College</span>
                     </div>
                   </div>
+
+                  <div className="doc-tile-action-row">
+                    <Link href="/doctors#dr-sk-yadav" className="btn-doc-tile-link">
+                      <span className="btn-tile-text">Explore Dr. S. K. Yadav Profile &amp; Research</span>
+                      <ArrowUpRight size={13} className="btn-tile-arrow" />
+                    </Link>
+                  </div>
                 </div>
 
                 {/* DOCTOR 2: DR. ACHLA YADAV */}
@@ -101,6 +108,13 @@ export default function DoctorsCardIntro() {
                       <span>Ex. Asst. Professor PGI Rohtak · Ex. Dental Surgeon ECHS Rewari · Ex. Prof. DJ Dental College</span>
                     </div>
                   </div>
+
+                  <div className="doc-tile-action-row">
+                    <Link href="/doctors#dr-achla-yadav" className="btn-doc-tile-link">
+                      <span className="btn-tile-text">Explore Dr. Achla Yadav Profile &amp; Research</span>
+                      <ArrowUpRight size={13} className="btn-tile-arrow" />
+                    </Link>
+                  </div>
                 </div>
 
               </div>
@@ -108,7 +122,7 @@ export default function DoctorsCardIntro() {
               {/* ACTION BUTTONS */}
               <div className="doctors-cta-bar">
                 <Link href="/doctors" className="btn-scrubs-link">
-                  <span>Full Detailed Bios</span>
+                  <span>Full Faculty Bios &amp; Research Overviews</span>
                   <ChevronRight size={14} />
                 </Link>
               </div>
@@ -361,6 +375,54 @@ export default function DoctorsCardIntro() {
           color: #F4B382;
           flex-shrink: 0;
           margin-top: 2px;
+        }
+
+        /* Doctor Tile Direct Profile Link */
+        .doc-tile-action-row {
+          margin-top: 0.65rem;
+          padding-top: 0.55rem;
+          border-top: 1px solid rgba(214, 122, 65, 0.2);
+          display: flex;
+        }
+
+        .btn-doc-tile-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          background: linear-gradient(135deg, rgba(214, 122, 65, 0.14) 0%, rgba(214, 122, 65, 0.06) 100%);
+          border: 1px solid rgba(214, 122, 65, 0.38);
+          color: #F4B382;
+          padding: 0.55rem 0.95rem;
+          border-radius: 12px;
+          text-decoration: none;
+          font-size: 0.78rem;
+          font-weight: 750;
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-doc-tile-link:hover {
+          background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
+          border-color: #FBBF24;
+          color: #FFFFFF;
+          transform: translateY(-1px);
+          box-shadow: 0 6px 18px rgba(214, 122, 65, 0.35);
+        }
+
+        .btn-tile-text {
+          line-height: 1.2;
+        }
+
+        .btn-tile-arrow {
+          color: #F4B382;
+          transition: transform 0.2s ease, color 0.2s ease;
+          flex-shrink: 0;
+        }
+
+        .btn-doc-tile-link:hover .btn-tile-arrow {
+          color: #FFFFFF;
+          transform: translate(2px, -2px);
         }
 
         /* ── CTA BAR ─────────────────────────────────── */
