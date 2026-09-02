@@ -358,13 +358,13 @@ export default function DoctorsClient() {
                               className="doc-scholar-chip"
                               whileHover={{ scale: 1.03, y: -1 }}
                               whileTap={{ scale: 0.97 }}
-                              title={`Explore ${doc.name}'s verified research, books & scientific citations on Google Scholar`}
+                              title={`Discover published clinical science papers & global citations by ${doc.name} on Google Scholar`}
                             >
                               <div className="scholar-icon-ring">
-                                <GraduationCap size={13} className="scholar-inner-icon" />
+                                <Microscope size={13} className="scholar-inner-icon" />
                               </div>
                               <div className="scholar-chip-text-group">
-                                <span className="scholar-chip-prefix">Have a look at Academic Research:</span>
+                                <span className="scholar-chip-prefix">Discover Published Clinical Science:</span>
                                 <strong className="scholar-chip-metric">{doc.scholarTag}</strong>
                               </div>
                               <ArrowUpRight size={12} className="scholar-arrow" />
