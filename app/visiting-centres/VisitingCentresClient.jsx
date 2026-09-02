@@ -65,7 +65,7 @@ const CENTRES_DATA = [
     isMain: false,
     timing: 'By Prior Appointment',
     phone: '+918685048414',
-    mapUrl: 'https://maps.app.goo.gl/JqcRHdKJ9Nkymnf46?g_st=aw',
+    mapUrl: 'https://maps.app.goo.gl/JqcrHdkJ9Nkymnf46?g_st=aw',
     doctor: 'Prof. Dr. S. K. Yadav (Ex-SR PGI Chandigarh)'
   },
   {
