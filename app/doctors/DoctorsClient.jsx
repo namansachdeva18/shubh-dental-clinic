@@ -508,22 +508,22 @@ export default function DoctorsClient() {
 
         .doctor-card-body {
           display: grid;
-          grid-template-columns: 360px 1fr;
-          gap: 2.75rem;
-          padding: 2.75rem;
+          grid-template-columns: 310px 1fr;
+          gap: 2.25rem;
+          padding: 2.25rem;
         }
 
         /* LEFT MEDIA COLUMN & PORTRAIT STAGE */
         .doctor-media-column {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1.25rem;
         }
 
         .doctor-portrait-stage {
           position: relative;
           width: 100%;
-          height: 400px;
+          height: 330px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -532,21 +532,21 @@ export default function DoctorsClient() {
         /* Animated Halo Effects */
         .portrait-halo-ring {
           position: absolute;
-          inset: -6px;
-          border-radius: 26px;
+          inset: -3px;
+          border-radius: 20px;
           background: conic-gradient(from 0deg, #D67A41, #F4B382, #FFFFFF, #D67A41, #B85922, #D67A41);
           animation: rotateConic 8s linear infinite;
-          opacity: 0.65;
+          opacity: 0.55;
           z-index: 1;
         }
 
         .portrait-halo-blur {
           position: absolute;
-          inset: -10px;
-          border-radius: 30px;
+          inset: -5px;
+          border-radius: 22px;
           background: conic-gradient(from 0deg, #D67A41, #F4B382, #D67A41);
-          filter: blur(14px);
-          opacity: 0.35;
+          filter: blur(8px);
+          opacity: 0.25;
           animation: rotateConic 8s linear infinite;
           z-index: 0;
         }
@@ -560,11 +560,11 @@ export default function DoctorsClient() {
           position: relative;
           width: 100%;
           height: 100%;
-          border-radius: 22px;
+          border-radius: 18px;
           overflow: hidden;
           background: #1A0D08;
           z-index: 2;
-          box-shadow: 0 15px 35px rgba(26, 13, 8, 0.2);
+          box-shadow: 0 10px 25px rgba(26, 13, 8, 0.18);
         }
 
         .doctor-actual-img {
@@ -590,28 +590,28 @@ export default function DoctorsClient() {
           z-index: 3;
           display: flex;
           align-items: center;
-          gap: 6px;
-          background: rgba(22, 10, 6, 0.9);
+          gap: 5px;
+          background: rgba(22, 10, 6, 0.92);
           backdrop-filter: blur(10px);
           border: 1px solid rgba(214, 122, 65, 0.5);
           color: #FFFFFF;
-          padding: 6px 13px;
+          padding: 4px 10px;
           border-radius: 999px;
-          font-size: 0.74rem;
+          font-size: 0.69rem;
           font-weight: 700;
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
           white-space: nowrap;
         }
 
         .float-pos-top-left {
-          top: 14px;
-          left: 14px;
+          top: 10px;
+          left: 10px;
           animation: floatSlowA 4s ease-in-out infinite alternate;
         }
 
         .float-pos-bottom-right {
-          bottom: 14px;
-          right: 14px;
+          bottom: 10px;
+          right: 10px;
           animation: floatSlowB 4s ease-in-out infinite alternate;
         }
 
@@ -937,13 +937,13 @@ export default function DoctorsClient() {
         /* MOBILE RESPONSIVENESS & ANIMATIONS */
         @media (max-width: 1024px) {
           .doctor-card-body {
-            grid-template-columns: 300px 1fr;
-            gap: 2rem;
-            padding: 2rem;
+            grid-template-columns: 270px 1fr;
+            gap: 1.75rem;
+            padding: 1.75rem;
           }
 
           .doctor-portrait-stage {
-            height: 340px;
+            height: 290px;
           }
         }
 
@@ -979,29 +979,29 @@ export default function DoctorsClient() {
 
           .doctor-card-body {
             grid-template-columns: 1fr;
-            gap: 1.75rem;
-            padding: 1.35rem;
+            gap: 1.5rem;
+            padding: 1.25rem;
           }
 
           .doctor-portrait-stage {
-            height: 310px;
-            max-width: 290px;
+            height: 240px;
+            max-width: 230px;
             margin: 0 auto;
           }
 
           .portrait-float-badge {
-            font-size: 0.7rem;
-            padding: 5px 10px;
+            font-size: 0.65rem;
+            padding: 3px 8px;
           }
 
           .float-pos-top-left {
-            top: 10px;
-            left: 10px;
+            top: 8px;
+            left: 8px;
           }
 
           .float-pos-bottom-right {
-            bottom: 10px;
-            right: 10px;
+            bottom: 8px;
+            right: 8px;
           }
 
           .doc-lead-quote-box {
