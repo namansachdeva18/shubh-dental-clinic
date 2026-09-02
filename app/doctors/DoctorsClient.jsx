@@ -364,7 +364,7 @@ export default function DoctorsClient() {
                                 <GraduationCap size={13} className="scholar-inner-icon" />
                               </div>
                               <div className="scholar-chip-text-group">
-                                <span className="scholar-chip-prefix">Verified Research:</span>
+                                <span className="scholar-chip-prefix">Have a look at Academic Research:</span>
                                 <strong className="scholar-chip-metric">{doc.scholarTag}</strong>
                               </div>
                               <ArrowUpRight size={12} className="scholar-arrow" />
