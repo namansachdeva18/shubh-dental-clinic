@@ -117,7 +117,7 @@ export default function Header() {
             {/* Clinic Logo */}
             <Link href="/" className="nav-logo" aria-label="Shubh Orthodontic & Dental Clinic — Home">
               <div className="logo-icon-wrap">
-                <Image src="/logo.webp?v=2" alt="Shubh Dental Clinic Logo" width={56} height={56} priority style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <Image src="/logo.webp?v=2" alt="Shubh Dental Clinic Logo" width={64} height={64} priority style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
               <div className="logo-text">
                 <span className="logo-dr-name">Prof. Dr. S. K. Yadav&apos;s</span>
@@ -1040,11 +1040,11 @@ export default function Header() {
         }
         @media (max-width: 768px) {
           .top-bar { display: none !important; }
-          .nav-main-inner { height: auto; min-height: 64px; padding: 0.45rem 0; }
-          .logo-icon-wrap { width: 54px; height: 54px; min-width: 54px; }
-          .logo-name { font-size: 0.94rem; line-height: 1.15; }
-          .logo-dr-name { font-size: 0.62rem; line-height: 1.2; }
-          .logo-tagline { display: block; font-size: 0.6rem; line-height: 1.2; color: #D67A41; font-weight: 700; margin-top: 1px; }
+          .nav-main-inner { height: auto; min-height: 68px; padding: 0.5rem 0; }
+          .logo-icon-wrap { width: 64px; height: 64px; min-width: 64px; }
+          .logo-name { font-size: 0.98rem; font-weight: 900; line-height: 1.15; }
+          .logo-dr-name { font-size: 0.65rem; line-height: 1.2; font-weight: 750; }
+          .logo-tagline { display: block; font-size: 0.63rem; line-height: 1.2; color: #D67A41; font-weight: 750; margin-top: 1px; }
           
           .mobile-bottom-bar {
             display: block !important;
