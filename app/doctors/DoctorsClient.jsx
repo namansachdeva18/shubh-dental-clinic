@@ -1,10 +1,11 @@
 'use client';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   GraduationCap, Star, Sparkles, Check, 
-  Award, BookOpen, ShieldCheck, Microscope, ArrowUpRight
+  Award, BookOpen, ShieldCheck, Microscope, ArrowUpRight, ArrowDown, ArrowRight
 } from 'lucide-react';
 
 const DOCTOR_LIST = [
@@ -108,6 +109,23 @@ const DOCTOR_LIST = [
 ];
 
 export default function DoctorsClient() {
+  const [activeDoctor, setActiveDoctor] = useState('all');
+
+  const displayedDoctors = activeDoctor === 'all' 
+    ? DOCTOR_LIST 
+    : DOCTOR_LIST.filter(d => d.id === activeDoctor);
+
+  const handleSelectDoctor = (id) => {
+    const next = activeDoctor === id ? 'all' : id;
+    setActiveDoctor(next);
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 80);
+  };
+
   return (
     <div className="doctors-page-wrapper">
       {/* 1. HERO SECTION */}
@@ -138,6 +156,67 @@ export default function DoctorsClient() {
             <p className="doc-main-subtitle">
               Personally diagnosed and treated by PGI-trained senior professors. Over <strong>2,50,000+ satisfied patients</strong>, <strong>5,000+ orthodontic transformations</strong>, and <strong>107+ international research publications</strong>.
             </p>
+
+            {/* INTERACTIVE DOCTOR SELECTOR CARDS */}
+            <div className="doc-quick-cards-grid">
+              {DOCTOR_LIST.map((doc, idx) => {
+                const isSelected = activeDoctor === doc.id;
+                return (
+                  <motion.button
+                    key={doc.id}
+                    type="button"
+                    whileHover={{ y: -4, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => handleSelectDoctor(doc.id)}
+                    className={`doc-quick-card ${isSelected ? 'active-quick-card' : ''}`}
+                    aria-label={`View profile of ${doc.name}`}
+                  >
+                    <div className="quick-card-sheen" />
+                    
+                    <div className="quick-avatar-box">
+                      <div className="avatar-halo-ring" />
+                      <Image
+                        src={doc.photo}
+                        alt={doc.name}
+                        width={60}
+                        height={60}
+                        className="quick-avatar-img"
+                      />
+                      <div className={`avatar-status-dot ${isSelected ? 'status-active' : ''}`} />
+                    </div>
+
+                    <div className="quick-info-box">
+                      <div className="quick-badge-pill">{doc.badge}</div>
+                      <h3 className="quick-doc-name font-heading">{doc.name}</h3>
+                      <p className="quick-doc-highlight">
+                        {idx === 0 ? '20+ Yrs Exp · Ex-SR PGI Chandigarh' : '18+ Yrs Exp · Ex-PGIDS Rohtak'}
+                      </p>
+                    </div>
+
+                    <div className="quick-action-indicator">
+                      <span className="quick-action-text">{isSelected ? 'Viewing' : 'View Bio'}</span>
+                      <ArrowDown size={14} className={`quick-action-arrow ${isSelected ? 'arrow-active' : ''}`} />
+                    </div>
+                  </motion.button>
+                );
+              })}
+            </div>
+
+            {activeDoctor !== 'all' && (
+              <motion.div 
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="doc-reset-filter-row"
+              >
+                <button 
+                  type="button"
+                  onClick={() => setActiveDoctor('all')}
+                  className="btn-show-all-docs"
+                >
+                  <span>✦ Show Both Specialists</span>
+                </button>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </section>
@@ -146,8 +225,8 @@ export default function DoctorsClient() {
       <section className="doc-profiles-section">
         <div className="container">
           <div className="doc-profiles-container">
-            {DOCTOR_LIST.map((doc, index) => {
-              const isFirst = index === 0;
+            {displayedDoctors.map((doc, index) => {
+              const isFirst = doc.id === 'dr-sk-yadav';
               
               return (
                 <motion.div 
@@ -431,6 +510,204 @@ export default function DoctorsClient() {
 
         .doc-main-subtitle strong {
           color: #FFFFFF;
+        }
+
+        /* 2-CARD QUICK DOCTOR SELECTOR IN HERO */
+        .doc-quick-cards-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.25rem;
+          max-width: 860px;
+          margin: 2.25rem auto 0;
+          text-align: left;
+        }
+
+        .doc-quick-card {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          background: linear-gradient(135deg, rgba(28, 14, 8, 0.88) 0%, rgba(42, 21, 13, 0.95) 100%);
+          border: 1px solid rgba(214, 122, 65, 0.35);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          padding: 1rem 1.25rem;
+          border-radius: 20px;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          backdrop-filter: blur(12px);
+          width: 100%;
+          color: #FFFFFF;
+        }
+
+        .doc-quick-card:hover {
+          border-color: #F4B382;
+          background: linear-gradient(135deg, rgba(38, 19, 11, 0.95) 0%, rgba(56, 28, 17, 0.98) 100%);
+          box-shadow: 0 14px 36px rgba(214, 122, 65, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .active-quick-card {
+          border-color: #FBBF24 !important;
+          background: linear-gradient(135deg, rgba(46, 23, 13, 0.98) 0%, rgba(68, 34, 20, 1) 100%) !important;
+          box-shadow: 0 16px 40px rgba(251, 191, 36, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+        }
+
+        .quick-card-sheen {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+          pointer-events: none;
+        }
+
+        .quick-avatar-box {
+          position: relative;
+          width: 60px;
+          height: 60px;
+          border-radius: 16px;
+          overflow: hidden;
+          flex-shrink: 0;
+          border: 2px solid rgba(214, 122, 65, 0.4);
+          background: #1A0D08;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .active-quick-card .quick-avatar-box {
+          border-color: #FBBF24;
+          box-shadow: 0 0 14px rgba(251, 191, 36, 0.5);
+        }
+
+        .quick-avatar-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top center;
+        }
+
+        .avatar-status-dot {
+          position: absolute;
+          bottom: 3px;
+          right: 3px;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: #10B981;
+          border: 2px solid #1A0D08;
+        }
+
+        .avatar-status-dot.status-active {
+          background: #FBBF24;
+          box-shadow: 0 0 6px #FBBF24;
+        }
+
+        .quick-info-box {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          flex: 1;
+          min-width: 0;
+          text-align: left;
+        }
+
+        .quick-badge-pill {
+          font-size: 0.65rem;
+          font-weight: 750;
+          color: #F4B382;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          line-height: 1.2;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .quick-doc-name {
+          font-size: 1.08rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          line-height: 1.2;
+          margin: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .quick-doc-highlight {
+          font-size: 0.72rem;
+          color: #D6BCB2;
+          font-weight: 600;
+          margin: 0;
+          line-height: 1.2;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .quick-action-indicator {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 3px;
+          background: rgba(214, 122, 65, 0.15);
+          border: 1px solid rgba(214, 122, 65, 0.3);
+          padding: 6px 10px;
+          border-radius: 12px;
+          flex-shrink: 0;
+          transition: all 0.2s ease;
+        }
+
+        .active-quick-card .quick-action-indicator {
+          background: rgba(251, 191, 36, 0.2);
+          border-color: #FBBF24;
+        }
+
+        .quick-action-text {
+          font-size: 0.64rem;
+          font-weight: 750;
+          color: #F4B382;
+          line-height: 1;
+        }
+
+        .active-quick-card .quick-action-text {
+          color: #FBBF24;
+        }
+
+        .quick-action-arrow {
+          color: #F4B382;
+          transition: transform 0.25s ease;
+        }
+
+        .quick-action-arrow.arrow-active {
+          transform: translateY(2px);
+          color: #FBBF24;
+        }
+
+        /* Show Both Doctors Reset Pill */
+        .doc-reset-filter-row {
+          margin-top: 1.25rem;
+          display: flex;
+          justify-content: center;
+        }
+
+        .btn-show-all-docs {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          color: #FFFFFF;
+          font-size: 0.8rem;
+          font-weight: 700;
+          padding: 6px 18px;
+          border-radius: 999px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          backdrop-filter: blur(8px);
+        }
+
+        .btn-show-all-docs:hover {
+          background: #D67A41;
+          border-color: #D67A41;
+          transform: scale(1.03);
         }
 
         /* 2. PROFILES SECTION */
@@ -925,15 +1202,6 @@ export default function DoctorsClient() {
           background: linear-gradient(180deg, transparent 58%, rgba(214, 122, 65, 0.24) 58%);
         }
 
-        /* Specialties Section */
-        .doc-specialties-block {
-          background: #FCFBF8;
-          border: 1px solid rgba(214, 122, 65, 0.2);
-          border-radius: 20px;
-          padding: 1.4rem 1.6rem;
-          box-shadow: 0 4px 18px rgba(74, 37, 24, 0.03);
-        }
-
         /* MOBILE RESPONSIVENESS & ANIMATIONS */
         @media (max-width: 1024px) {
           .doctor-card-body {
@@ -959,6 +1227,27 @@ export default function DoctorsClient() {
           .doc-main-subtitle {
             font-size: 0.92rem;
             line-height: 1.6;
+          }
+
+          .doc-quick-cards-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 1.5rem;
+          }
+
+          .doc-quick-card {
+            padding: 0.85rem 1rem;
+            gap: 0.85rem;
+          }
+
+          .quick-avatar-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+          }
+
+          .quick-doc-name {
+            font-size: 0.98rem;
           }
 
           .doc-profiles-section {
