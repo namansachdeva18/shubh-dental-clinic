@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
   GraduationCap, Star, Sparkles, Check, 
-  Award, BookOpen, ShieldCheck, Microscope,
-  Smile, Zap, Heart, Activity, ArrowRight, ArrowUpRight
+  Award, BookOpen, ShieldCheck, Microscope, ArrowUpRight
 } from 'lucide-react';
 
 const DOCTOR_LIST = [
@@ -55,45 +54,6 @@ const DOCTOR_LIST = [
       { val: '2.5L+', label: 'Patients Treated', icon: Star },
       { val: '43', label: 'Research Papers', icon: BookOpen, isScholar: true },
       { val: '2', label: 'Books (Germany)', icon: GraduationCap }
-    ],
-
-    specialties: [
-      {
-        name: 'Invisalign® & SkyAlign™ Clear Aligners',
-        tag: 'Invisible 3D Teeth Straightening',
-        link: '/skyalign',
-        icon: Sparkles
-      },
-      {
-        name: 'Self-Ligating, Ceramic & Metal Braces',
-        tag: 'Comprehensive Orthodontic Bite Realignment',
-        link: '/treatments/dental-braces',
-        icon: Smile
-      },
-      {
-        name: 'Same-Day & 3D Guided Dental Implants',
-        tag: 'Permanent Flapless Teeth Replacement',
-        link: '/treatments/same-day-implants',
-        icon: ShieldCheck
-      },
-      {
-        name: 'Full Mouth Rehabilitation & Fixed Teeth',
-        tag: 'Complete Functional Smile Restoration',
-        link: '/treatments/all-on-4-implants',
-        icon: Activity
-      },
-      {
-        name: 'Dentofacial Orthopaedics & Growth Guidance',
-        tag: 'Child & Teen Overbite / Underbite Tx',
-        link: '/treatments/interceptive-orthodontics',
-        icon: GraduationCap
-      },
-      {
-        name: 'Micro-Implant (TAD) & Gummy Smile Fix',
-        tag: 'Accelerated Precision Orthodontics',
-        link: '/treatments/surgical-orthodontics',
-        icon: Zap
-      }
     ]
   },
   {
@@ -143,45 +103,6 @@ const DOCTOR_LIST = [
       { val: '64', label: 'Global Publications', icon: BookOpen, isScholar: true },
       { val: '2', label: 'Books (Germany)', icon: GraduationCap },
       { val: 'AI', label: 'Diagnostics Pioneer', icon: Microscope }
-    ],
-
-    specialties: [
-      {
-        name: 'Porcelain Veneers & E-Max Laminates',
-        tag: 'Permanent Hollywood Smile Makeovers',
-        link: '/treatments/porcelain-veneers',
-        icon: Sparkles
-      },
-      {
-        name: 'Digital Smile Designing & Gap Closures',
-        tag: 'Aesthetic Front Teeth Transformation',
-        link: '/treatments/smile-makeover',
-        icon: Smile
-      },
-      {
-        name: 'Laser & Instant Teeth Whitening',
-        tag: 'Safe Enamel Brightening & Stain Removal',
-        link: '/treatments/teeth-whitening',
-        icon: Zap
-      },
-      {
-        name: 'Painless Single-Sitting RCT (Root Canal)',
-        tag: 'Microscope & Rotary Endodontic Therapy',
-        link: '/treatments/root-canal-treatment',
-        icon: Activity
-      },
-      {
-        name: 'Gentle Paediatric (Kids) Dentistry',
-        tag: 'Child-Friendly Cavity & Milk Teeth Care',
-        link: '/treatments/kids-dentistry',
-        icon: Heart
-      },
-      {
-        name: 'Oral Pathology & AI Cancer Screening',
-        tag: 'Early Soft-Tissue & Mouth Ulcer Diagnostics',
-        link: '/treatments/oral-pathology',
-        icon: Microscope
-      }
     ]
   }
 ];
@@ -391,41 +312,6 @@ export default function DoctorsClient() {
                           <p>{doc.bioP1}</p>
                           <p>{doc.bioP2}</p>
                           <p>{doc.bioP3}</p>
-                        </div>
-                      </div>
-
-                      {/* SPECIALIZED CLINICAL FOCUS CHIPS */}
-                      <div className="doc-specialties-block">
-                        <div className="specialties-head-row">
-                          <h4 className="specialties-subheading">
-                            <Sparkles size={15} className="sub-icon" />
-                            <span>Clinical Specialties &amp; Procedures</span>
-                          </h4>
-                          <span className="specialties-badge-tag">PGI-Standard Protocol</span>
-                        </div>
-
-                        <div className="specialties-chips-grid">
-                          {doc.specialties.map((spec, sIdx) => {
-                            const SpecIcon = spec.icon || Sparkles;
-                            return (
-                              <Link 
-                                key={sIdx} 
-                                href={spec.link}
-                                className="specialty-card-chip"
-                              >
-                                <div className="chip-icon-wrap">
-                                  <SpecIcon size={16} className="chip-custom-icon" />
-                                </div>
-                                <div className="chip-content">
-                                  <strong className="chip-main-title">{spec.name}</strong>
-                                  <span className="chip-sub-tag">{spec.tag}</span>
-                                </div>
-                                <div className="chip-arrow-wrap">
-                                  <ArrowRight size={13} className="chip-arrow-icon" />
-                                </div>
-                              </Link>
-                            );
-                          })}
                         </div>
                       </div>
 
@@ -1048,141 +934,6 @@ export default function DoctorsClient() {
           box-shadow: 0 4px 18px rgba(74, 37, 24, 0.03);
         }
 
-        .specialties-head-row {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 1.1rem;
-          flex-wrap: wrap;
-          gap: 8px;
-        }
-
-        .specialties-subheading {
-          font-size: 0.88rem;
-          font-weight: 800;
-          color: #1F100B;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          margin: 0;
-        }
-
-        .specialties-badge-tag {
-          font-size: 0.72rem;
-          font-weight: 700;
-          color: #D67A41;
-          background: rgba(214, 122, 65, 0.1);
-          padding: 3px 12px;
-          border-radius: 999px;
-          border: 1px solid rgba(214, 122, 65, 0.25);
-          letter-spacing: 0.02em;
-        }
-
-        .sub-icon {
-          color: #D67A41;
-        }
-
-        .specialties-chips-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 12px 14px;
-        }
-
-        .specialty-card-chip {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          background: #FFFFFF;
-          border: 1px solid rgba(214, 122, 65, 0.22);
-          padding: 12px 14px;
-          border-radius: 16px;
-          text-decoration: none;
-          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-          box-shadow: 0 3px 12px rgba(74, 37, 24, 0.03);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .specialty-card-chip:hover {
-          background: #FFFFFF;
-          border-color: #D67A41;
-          transform: translateY(-3px) scale(1.01);
-          box-shadow: 0 8px 24px rgba(214, 122, 65, 0.18);
-        }
-
-        .chip-icon-wrap {
-          width: 34px;
-          height: 34px;
-          border-radius: 10px;
-          background: rgba(214, 122, 65, 0.1);
-          border: 1px solid rgba(214, 122, 65, 0.25);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #D67A41;
-          flex-shrink: 0;
-          transition: all 0.25s ease;
-        }
-
-        .specialty-card-chip:hover .chip-icon-wrap {
-          background: #D67A41;
-          color: #FFFFFF;
-          border-color: #D67A41;
-        }
-
-        .chip-custom-icon {
-          transition: transform 0.25s ease;
-        }
-
-        .specialty-card-chip:hover .chip-custom-icon {
-          transform: scale(1.1);
-        }
-
-        .chip-content {
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-          flex: 1;
-          min-width: 0;
-        }
-
-        .chip-main-title {
-          font-size: 0.9rem;
-          font-weight: 750;
-          color: #1F100B;
-          line-height: 1.25;
-        }
-
-        .chip-sub-tag {
-          font-size: 0.72rem;
-          color: #D67A41;
-          font-weight: 600;
-          line-height: 1.2;
-        }
-
-        .chip-arrow-wrap {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: #FAF5F0;
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #D67A41;
-          flex-shrink: 0;
-          transition: all 0.25s ease;
-        }
-
-        .specialty-card-chip:hover .chip-arrow-wrap {
-          background: #D67A41;
-          color: #FFFFFF;
-          border-color: #D67A41;
-          transform: translateX(3px);
-        }
-
         /* MOBILE RESPONSIVENESS & ANIMATIONS */
         @media (max-width: 1024px) {
           .doctor-card-body {
@@ -1251,11 +1002,6 @@ export default function DoctorsClient() {
           .float-pos-bottom-right {
             bottom: 10px;
             right: 10px;
-          }
-
-          .specialties-chips-grid {
-            grid-template-columns: 1fr;
-            gap: 8px;
           }
 
           .doc-lead-quote-box {
