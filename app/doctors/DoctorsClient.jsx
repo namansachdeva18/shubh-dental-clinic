@@ -47,6 +47,7 @@ const DOCTOR_LIST = [
     ),
     
     scholarUrl: 'https://scholar.google.com/citations?user=2RzPrMQAAAAJ&hl=en',
+    scholarTag: '43 Research Papers · 247+ Citations',
     
     stats: [
       { val: '20+', label: 'Years Mastery', icon: Award },
@@ -96,6 +97,7 @@ const DOCTOR_LIST = [
     ),
     
     scholarUrl: 'https://scholar.google.com/citations?user=70ydH9cAAAAJ&hl=en',
+    scholarTag: '64 Global Publications · 420+ Citations',
     
     stats: [
       { val: '18+', label: 'Years Experience', icon: Award },
@@ -354,15 +356,18 @@ export default function DoctorsClient() {
                               target="_blank" 
                               rel="noopener noreferrer" 
                               className="doc-scholar-chip"
-                              whileHover={{ scale: 1.04, y: -1 }}
-                              whileTap={{ scale: 0.96 }}
-                              title={`View ${doc.name}'s verified publications on Google Scholar`}
+                              whileHover={{ scale: 1.03, y: -1 }}
+                              whileTap={{ scale: 0.97 }}
+                              title={`Explore ${doc.name}'s verified research, books & scientific citations on Google Scholar`}
                             >
                               <div className="scholar-icon-ring">
-                                <GraduationCap size={12} className="scholar-inner-icon" />
+                                <GraduationCap size={13} className="scholar-inner-icon" />
                               </div>
-                              <span className="scholar-chip-label">Google Scholar</span>
-                              <ArrowUpRight size={11} className="scholar-arrow" />
+                              <div className="scholar-chip-text-group">
+                                <span className="scholar-chip-prefix">Verified Research:</span>
+                                <strong className="scholar-chip-metric">{doc.scholarTag}</strong>
+                              </div>
+                              <ArrowUpRight size={12} className="scholar-arrow" />
                             </motion.a>
                           )}
                         </div>
@@ -1062,35 +1067,35 @@ export default function DoctorsClient() {
           margin: 0;
         }
 
-        /* Luxury Dark-Themed Google Scholar Pill Chip */
+        /* Luxury Dark-Themed Academic & Research Verification Pill */
         .doc-scholar-chip {
           display: inline-flex;
           align-items: center;
-          gap: 6px;
+          gap: 8px;
           background: linear-gradient(135deg, #1C0E08 0%, #2A150D 100%);
           border: 1px solid rgba(214, 122, 65, 0.45);
-          padding: 3px 10px 3px 6px;
+          padding: 4px 12px 4px 6px;
           border-radius: 999px;
           text-decoration: none;
-          color: #F8C39F;
-          font-size: 0.73rem;
+          color: #FFFFFF;
+          font-size: 0.74rem;
           font-weight: 750;
-          transition: all 0.22s ease;
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
           line-height: 1;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
         }
 
         .doc-scholar-chip:hover {
           background: linear-gradient(135deg, #2D150B 0%, #3F1F13 100%);
           color: #FFFFFF;
           border-color: #FBBF24;
-          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          box-shadow: 0 6px 18px rgba(214, 122, 65, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
           transform: translateY(-1px);
         }
 
         .scholar-icon-ring {
-          width: 18px;
-          height: 18px;
+          width: 20px;
+          height: 20px;
           border-radius: 50%;
           background: rgba(214, 122, 65, 0.35);
           border: 1px solid rgba(214, 122, 65, 0.5);
@@ -1099,6 +1104,7 @@ export default function DoctorsClient() {
           justify-content: center;
           color: #F4B382;
           transition: all 0.2s ease;
+          flex-shrink: 0;
         }
 
         .doc-scholar-chip:hover .scholar-icon-ring {
@@ -1107,9 +1113,33 @@ export default function DoctorsClient() {
           border-color: #F4B382;
         }
 
+        .scholar-chip-text-group {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          flex-wrap: wrap;
+        }
+
+        .scholar-chip-prefix {
+          color: #D6BCB2;
+          font-weight: 600;
+          font-size: 0.71rem;
+        }
+
+        .scholar-chip-metric {
+          color: #F8C39F;
+          font-weight: 800;
+          letter-spacing: 0.01em;
+        }
+
+        .doc-scholar-chip:hover .scholar-chip-metric {
+          color: #FBBF24;
+        }
+
         .scholar-arrow {
           color: #F4B382;
           transition: transform 0.2s ease, color 0.2s ease;
+          flex-shrink: 0;
         }
 
         .doc-scholar-chip:hover .scholar-arrow {
