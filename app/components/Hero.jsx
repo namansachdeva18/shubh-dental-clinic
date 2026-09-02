@@ -153,7 +153,7 @@ export default function Hero() {
 
                 <div className="hs-stat-content">
                   <div className="hs-stat-val">
-                    <AnimatedCounter target={30} suffix="+" duration={2000} /> <span className="hs-stat-unit">Years</span>
+                    <AnimatedCounter target={20} suffix="+" duration={2000} /> <span className="hs-stat-unit">Years</span>
                   </div>
                   <div className="hs-stat-label">CLINICAL MASTERY</div>
                   <div className="hs-stat-sub">Ex-PGI Senior Resident</div>

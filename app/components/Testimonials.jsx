@@ -277,7 +277,7 @@ export default function Testimonials() {
           {/* Quick Google Review Link */}
           <div style={{ textAlign: 'center', marginTop: '1.25rem' }}>
             <a 
-              href="https://maps.app.goo.gl/EvRq96h9HMgYJYAw7" 
+              href="https://share.google/czBk3iQ0iZaOpMioe" 
               target="_blank" 
               rel="noopener noreferrer"
               className="google-trust-cta-btn"

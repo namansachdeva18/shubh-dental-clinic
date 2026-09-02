@@ -50,13 +50,13 @@ export default function DrSKYadavPage() {
                 BDS, MDS · Fellow WFO (USA)
               </motion.div>
               <motion.p variants={fadeUp} style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
-                With over 30 years of clinical and academic excellence, Prof. Dr. S. K. Yadav is Haryana&apos;s leading authority on orthodontics and dentofacial orthopaedics. He has published <strong>43 scientific papers (247+ global citations)</strong>, authored <strong>2 research books in Germany</strong>, and treated over <strong>2,50,000+ patients</strong> (including <strong>5,000+ braces &amp; aligner cases</strong> and <strong>3,000+ dental implants</strong>).
+                With over 20 years of clinical and academic excellence, Prof. Dr. S. K. Yadav is Haryana&apos;s leading authority on orthodontics and dentofacial orthopaedics. He has published <strong>43 scientific papers (247+ global citations)</strong>, authored <strong>2 research books in Germany</strong>, and treated over <strong>2,50,000+ patients</strong> (including <strong>5,000+ braces &amp; aligner cases</strong> and <strong>3,000+ dental implants</strong>).
               </motion.p>
               
               <motion.div variants={fadeUp} style={{ display: 'flex', gap: '2.5rem', marginBottom: '3rem', paddingBottom: '2rem', borderBottom: '1px solid rgba(255,255,255,0.12)', flexWrap: 'wrap' }}>
                 <div>
-                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-gold)' }}>30+</div>
-                  <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Years Exp.</div>
+                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-gold)' }}>20+</div>
+                  <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Years Mastery</div>
                 </div>
                 <div>
                   <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-gold)' }}>5,000+</div>
@@ -106,7 +106,7 @@ export default function DrSKYadavPage() {
               </motion.h2>
               <motion.div variants={fadeUp} className="prose" style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '1.05rem' }}>
                 <p style={{ marginBottom: '1.5rem' }}>
-                  Prof. Dr. S. K. Yadav is a renowned specialist in <strong>Orthodontics &amp; Dentofacial Orthopedics</strong>. He completed his Master of Dental Surgery (MDS) from the prestigious <strong>Post Graduate Institute of Medical Education and Research (PGI), Chandigarh</strong> — India&apos;s premier medical research institution.
+                  Prof. Dr. S. K. Yadav is a renowned specialist in <strong>Orthodontics &amp; Dentofacial Orthopedics</strong>. He completed his Master of Dental Surgery (MDS) from the prestigious <strong>Pt. BD sharma university of health sciences, Rohtak</strong>. He then pursued Senior Residency from <strong>Post Graduate Institute of Medical Education and Research (PGI), Chandigarh</strong> — India&apos;s premier medical research institution.
                 </p>
                 <p style={{ marginBottom: '1.5rem' }}>
                   As a <strong>Fellow of the World Federation of Orthodontists (WFO, USA)</strong> and an <strong>IOS Endorsed Orthodontist</strong>, Dr. Yadav&apos;s research has been published in elite global journals, including the <em>Journal of Clinical Orthodontics (JCO, USA)</em>, <em>Journal of Oral and Maxillofacial Pathology</em>, and <em>Contemporary Clinical Dentistry</em>. His innovations in miniscrew micro-implant anchorage and molar distalization are cited by researchers worldwide.

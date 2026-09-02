@@ -108,7 +108,7 @@ export default function SpecialOfferPage() {
       ],
       bestFor: 'Teens & adults with severe crowding, misaligned bites, protruding teeth, or complex orthodontic cases.',
       duration: '12 to 24 months with gentle biological forces and faster progress',
-      specialist: 'Prof. Dr. S. K. Yadav (MDS Orthodontics, 30+ Years Experience)',
+      specialist: 'Prof. Dr. S. K. Yadav (MDS Orthodontics, 20+ Years Experience)',
       whatsappMsg: 'Hi Shubh Dental! I want to claim the Limited-Time Offer for Damon & Ceramic Braces at Shubh Dental Clinic.'
     },
     {

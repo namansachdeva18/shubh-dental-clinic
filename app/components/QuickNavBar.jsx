@@ -11,7 +11,7 @@ const NAV_DEPARTMENTS = [
   {
     id: 'why-choose-us',
     title: 'Why Choose Us',
-    sub: '30+ Yrs & In-House Lab',
+    sub: '20+ Yrs & In-House Lab',
     badge: 'Legacy',
     badgeColor: 'copper',
     icon: Award,

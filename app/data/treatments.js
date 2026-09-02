@@ -213,7 +213,7 @@ export const treatments = [
 
     // Why Choose Shubh Dental Clinic
     whyChooseClinic: [
-      'Led by Prof. Dr. S. K. Yadav — MDS Orthodontics (Ex-PGI Chandigarh) with 30+ years of dedicated orthodontic experience.',
+      'Led by Prof. Dr. S. K. Yadav — MDS Orthodontics (Ex-PGI Chandigarh) with 20+ years of dedicated orthodontic experience.',
       'Over 5,000+ successfully completed orthodontic cases in Haryana and NCR.',
       'Full spectrum of appliance technologies: Metal, Ceramic, Damon®, Lingual, and Clear Aligners under one roof.',
       'Sterilization protocols meeting international hospital-grade barrier standards.'

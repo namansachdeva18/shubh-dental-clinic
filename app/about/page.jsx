@@ -4,20 +4,20 @@ import Testimonials from '../components/Testimonials';
 
 export const metadata = {
   title: 'About Shubh Orthodontic & Dental Clinic | Rohtak',
-  description: 'Shubh Orthodontic & Dental Clinic — founded by Prof. Dr. S. K. Yadav (MDS, Ex-PGI Chandigarh) and Dr. Achla Bharti Yadav (Ex-PGI Rohtak). 30+ years of trusted dental care in Rohtak, Haryana.',
+  description: 'Shubh Orthodontic & Dental Clinic — founded by Prof. Dr. S. K. Yadav (MDS, Ex-PGI Chandigarh) and Dr. Achla Bharti Yadav (Ex-PGI Rohtak). 20+ years of trusted dental care in Rohtak, Haryana.',
   alternates: {
     canonical: 'https://www.shubhdentalclinicrohtak.in/about',
   },
   openGraph: {
     title: 'About Us | Shubh Orthodontic & Dental Clinic Rohtak',
-    description: "Meet the specialists behind Rohtak's premier dental clinic. PGI-trained doctors with 30+ years of excellence in orthodontics, implants, and smile design.",
+    description: "Meet the specialists behind Rohtak's premier dental clinic. PGI-trained doctors with 20+ years of excellence in orthodontics, implants, and smile design.",
     url: 'https://www.shubhdentalclinicrohtak.in/about',
     images: [{ url: 'https://www.shubhdentalclinicrohtak.in/hero-image.webp', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About | Shubh Dental Clinic Rohtak',
-    description: 'PGI-trained dental specialists with 30+ years of excellence in Rohtak.',
+    description: 'PGI-trained dental specialists with 20+ years of excellence in Rohtak.',
     images: ['https://www.shubhdentalclinicrohtak.in/hero-image.webp'],
   },
 };

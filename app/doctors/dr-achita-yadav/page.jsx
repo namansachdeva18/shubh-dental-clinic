@@ -50,7 +50,7 @@ export default function DrAchitaYadavPage() {
                 BDS, MDS, MFOMP
               </motion.div>
               <motion.p variants={fadeUp} style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
-                Dr. (Prof.) Achla Yadav is a premier <strong>Cosmetic Dentist &amp; Consultant Oral Pathologist</strong> with over 18 years of clinical and academic mastery. Having served as a <strong>Professor at Panjab University</strong>, <strong>Dental Surgeon at ESIC (Hisar)</strong>, and <strong>Professor at DJ Dental College</strong>, she has crafted over <strong>15,000+ cosmetic smiles</strong> and treated over <strong>2,50,000+ patients</strong> with gentle, pain-free dental care.
+                Dr. (Prof.) Achla Yadav is a premier <strong>Cosmetic Dentist &amp; Consultant Oral Pathologist</strong> with over 18+ years of clinical and academic mastery. Having served as Assistant professor at PGIDS ROHTAK, Dental Surgeon at ECHS- REWARI, and Professor at DJ Dental College, she has crafted over <strong>15,000+ cosmetic smiles</strong> and treated over <strong>2,50,000+ patients</strong> with gentle, pain-free dental care.
               </motion.p>
               
               <motion.div variants={fadeUp} style={{ display: 'flex', gap: '2.5rem', marginBottom: '3rem', paddingBottom: '2rem', borderBottom: '1px solid rgba(255,255,255,0.12)', flexWrap: 'wrap' }}>
@@ -106,10 +106,10 @@ export default function DrAchitaYadavPage() {
               </motion.h2>
               <motion.div variants={fadeUp} className="prose" style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '1.05rem' }}>
                 <p style={{ marginBottom: '1.5rem' }}>
-                  <strong>Dr. (Prof.) Achla Yadav</strong> is a distinguished <strong>Consultant Oral Pathologist and Certified Cosmetic Dentist</strong> with over 18 years of clinical experience. She holds a Master of Dental Surgery (MDS) in Oral Pathology (MFOMP) and has dedicated her practice to precision smile aesthetics, porcelain veneers, cosmetic restorations, and gentle pediatric dentistry.
+                  <strong>Dr. (Prof.) Achla Yadav</strong> is a distinguished <strong>Consultant Oral Pathologist and Certified Cosmetic Dentist</strong> with over 18 years of clinical experience. She holds a Master of Dental Surgery (MDS) in Oral &amp; Maxillofacial Pathology from Prestigious KLE Academy of Dental Sciences, Belgaum and has dedicated her practice to precision smile aesthetics, porcelain veneers, cosmetic restorations, and gentle pediatric dentistry.
                 </p>
                 <p style={{ marginBottom: '1.5rem' }}>
-                  Her esteemed career spans premier academic and government institutions, having served as a <strong>Professor at Panjab University</strong>, <strong>Dental Surgeon at ESIC Hospital (Hisar)</strong>, and <strong>Professor at DJ Dental College</strong>. Her deep clinical acumen ensures every aesthetic transformation is biologically sound, durable, and natural-looking.
+                  Her esteemed career spans premier academic and government institutions, having served as Assistant professor at PGIDS ROHTAK, Senior Dental Surgeon at ECHS- REWARI, and Professor at DJ Dental College. Her deep clinical acumen ensures every aesthetic transformation is biologically sound, durable, and natural-looking.
                 </p>
                 <p style={{ marginBottom: '1.5rem' }}>
                   In addition to crafting thousands of radiant smiles, Dr. Achla is an active researcher who has authored <strong>64 international publications</strong> and <strong>2 academic textbooks</strong> in Germany, alongside pioneering 2026 AI deep-learning diagnostic screening for oral soft-tissue health.

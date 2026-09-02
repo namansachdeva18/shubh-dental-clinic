@@ -12,12 +12,12 @@ const DOCTORS = [
   {
     id: 'dr-sk-yadav',
     name: 'Dr. (Prof.) S. K. Yadav',
-    degrees: 'BDS, MDS · Fellow IAFO (USA) · Fellow WFO (USA)',
+    degrees: 'BDS, MDS · Fellow WFO (USA)',
     role: 'Consultant Orthodontist & Braces / Invisalign Specialist',
     badge: '🏅 Certified Invisalign® Provider · Ex-SR PGI Chandigarh',
     photo: '/dr-sk-yadav.webp',
     alt: 'Dr. (Prof.) S. K. Yadav — Consultant Orthodontist & Implant Specialist',
-    tagline: '30+ years of clinical mastery in braces, clear aligners, dental implants, and smile transformations.',
+    tagline: '20+ years of clinical mastery in braces, clear aligners, dental implants, and smile transformations.',
     stats: [
       { val: '5,000+', label: 'Braces Cases' },
       { val: '3,000+', label: 'Implants Placed' },
@@ -25,16 +25,16 @@ const DOCTORS = [
     ],
     highlights: [
       'Ex. Senior Resident, PGI Chandigarh',
-      'Ex. Consultant, PGI Haryana (Bhiwani)',
-      'Ex. Dental Surgeon, ESIC (Hisar) · Ex. Prof. DJ Dental College',
-      'Certified Invisalign® & Damon® Self-Ligating System Provider'
+      'MDS from Pt. BD Sharma UHS, Rohtak',
+      'Fellow of World Federation of Orthodontists (WFO, USA)',
+      'Certified Invisalign® & Damon® Self-Ligating Provider'
     ],
     link: '/doctors/dr-sk-yadav'
   },
   {
     id: 'dr-achla-yadav',
     name: 'Dr. (Prof.) Achla Yadav',
-    degrees: 'BDS, MDS, MFOMP',
+    degrees: 'BDS, MDS (Oral & Maxillofacial Pathology)',
     role: 'Consultant Oral Pathologist & Certified Cosmetic Dentist',
     badge: '✨ Certified Cosmetic Dentist & Smile Makeover Specialist',
     photo: '/dr-achita-yadav.webp',
@@ -47,9 +47,9 @@ const DOCTORS = [
     ],
     highlights: [
       'Certified Cosmetic Dentist & Smile Makeover Specialist',
-      'Consultant Oral Pathologist (MDS, MFOMP)',
-      'Ex. Professor, Panjab University',
-      'Ex. Dental Surgeon, ESIC (Hisar) · Ex. Prof. DJ Dental College'
+      'Ex. Assistant Professor, PGIDS ROHTAK',
+      'Ex. Dental Surgeon, ECHS- REWARI',
+      'Ex. Professor, DJ Dental College · 64 Global Publications'
     ],
     link: '/doctors/dr-achita-yadav'
   }

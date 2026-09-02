@@ -117,7 +117,7 @@ export default function Header() {
             {/* Clinic Logo */}
             <Link href="/" className="nav-logo" aria-label="Shubh Orthodontic & Dental Clinic — Home">
               <div className="logo-icon-wrap">
-                <Image src="/logo.webp?v=2" alt="Shubh Dental Clinic Logo" width={48} height={48} priority style={{ objectFit: 'contain' }} />
+                <Image src="/logo.webp?v=2" alt="Shubh Dental Clinic Logo" width={56} height={56} priority style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
               <div className="logo-text">
                 <span className="logo-dr-name">Prof. Dr. S. K. Yadav&apos;s</span>
@@ -222,7 +222,7 @@ export default function Header() {
                       <Award size={14} className="dropdown-icon" />
                       <div>
                         <strong>Why Choose Us</strong>
-                        <span>30+ years legacy &amp; in-house 3D lab</span>
+                        <span>20+ years legacy &amp; in-house 3D lab</span>
                       </div>
                     </Link>
                     <Link href="/gallery" className="dropdown-item" onClick={() => setAboutOpen(false)}>
@@ -608,8 +608,8 @@ export default function Header() {
           max-width: 100%;
         }
         .logo-icon-wrap {
-          width: 42px;
-          height: 42px;
+          width: 48px;
+          height: 48px;
           border-radius: 12px;
           display: flex;
           align-items: center;
@@ -1041,6 +1041,7 @@ export default function Header() {
         @media (max-width: 768px) {
           .top-bar { display: none !important; }
           .nav-main-inner { height: auto; min-height: 64px; padding: 0.45rem 0; }
+          .logo-icon-wrap { width: 54px; height: 54px; min-width: 54px; }
           .logo-name { font-size: 0.94rem; line-height: 1.15; }
           .logo-dr-name { font-size: 0.62rem; line-height: 1.2; }
           .logo-tagline { display: block; font-size: 0.6rem; line-height: 1.2; color: #D67A41; font-weight: 700; margin-top: 1px; }
@@ -1193,7 +1194,7 @@ export default function Header() {
           .logo-name { font-size: 0.86rem; line-height: 1.15; }
           .logo-dr-name { font-size: 0.58rem; }
           .logo-tagline { font-size: 0.56rem; }
-          .logo-icon-wrap { width: 36px; height: 36px; }
+          .logo-icon-wrap { width: 48px; height: 48px; min-width: 48px; }
           .icon-wrapper { width: 35px !important; height: 35px !important; border-radius: 10px !important; }
           .mobile-bar-btn { font-size: 0.62rem !important; }
         }

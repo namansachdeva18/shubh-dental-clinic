@@ -63,7 +63,7 @@ export const metadata = {
     card: 'summary_large_image',
     site: '@ShubhDentalRohtak',
     title: 'Shubh Orthodontic & Dental Clinic Rohtak | Certified Invisalign Provider',
-    description: 'Prof. Dr. S. K. Yadav — Rohtak\'s top orthodontist with 30+ years experience. Invisalign, Braces, Implants, Smile Makeovers.',
+    description: 'Prof. Dr. S. K. Yadav — Rohtak\'s top orthodontist with 20+ years experience. Invisalign, Braces, Implants, Smile Makeovers.',
     images: ['https://www.shubhdentalclinicrohtak.in/hero-image.webp'],
   },
   icons: {
