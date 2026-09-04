@@ -194,6 +194,57 @@ const INTRA_ORAL_BRACES_ROW_PATIENTS = INTRA_ORAL_BRACES_FOLDER_PHOTOS.map((file
   imgSrc: `/Intra oral braces/${file}`
 }));
 
+const PRE_POST_FOLDER_PHOTOS = [
+  'IMG-20260904-WA0086.jpg',
+  'IMG-20260904-WA0087.jpg',
+  'IMG-20260904-WA0088.jpg',
+  'IMG-20260904-WA0089.jpg',
+  'IMG-20260904-WA0090.jpg',
+  'IMG-20260904-WA0091.jpg',
+  'IMG-20260904-WA0092.jpg',
+  'IMG-20260904-WA0093.jpg',
+  'IMG-20260904-WA0094.jpg',
+  'IMG-20260904-WA0095.jpg',
+  'IMG-20260904-WA0096.jpg',
+  'IMG-20260904-WA0097.jpg',
+  'IMG-20260904-WA0098.jpg',
+  'IMG-20260904-WA0099.jpg',
+  'IMG-20260904-WA0100.jpg',
+  'IMG-20260904-WA0101.jpg',
+  'IMG-20260904-WA0102.jpg',
+  'IMG-20260904-WA0103.jpg',
+  'IMG-20260904-WA0104.jpg',
+  'IMG-20260904-WA0105.jpg',
+  'IMG-20260904-WA0106.jpg',
+  'IMG-20260904-WA0107.jpg',
+  'IMG-20260904-WA0108.jpg',
+  'IMG-20260904-WA0109.jpg',
+  'IMG-20260904-WA0110.jpg',
+  'IMG-20260904-WA0111.jpg',
+  'IMG-20260904-WA0112.jpg',
+  'IMG-20260904-WA0113.jpg',
+  'IMG-20260904-WA0114.jpg',
+  'IMG-20260904-WA0115.jpg',
+  'IMG-20260904-WA0116.jpg',
+  'IMG-20260904-WA0117.jpg',
+  'IMG-20260904-WA0118.jpg',
+  'IMG-20260904-WA0119.jpg',
+  'IMG-20260904-WA0120.jpg',
+  'IMG-20260904-WA0121.jpg'
+];
+
+const PRE_POST_ROW_PATIENTS = PRE_POST_FOLDER_PHOTOS.map((file, idx) => ({
+  id: `prepost-row-${idx + 1}`,
+  name: `Smile Transformation #${idx + 1}`,
+  treatment: 'Before & After Smile Transformation',
+  category: 'Smile Makeover',
+  duration: 'Complete Care',
+  age: 'Patient',
+  rating: 5,
+  story: 'Complete orthodontic and aesthetic transformation at Shubh Orthodontic & Dental Clinic.',
+  imgSrc: `/Pre Post/${file}`
+}));
+
 const CATEGORIES = ['All Cases', 'Aligners', 'Braces', 'Implants', 'Smile Makeover'];
 
 const getUnsplashUrl = (imgId) => {
@@ -219,8 +270,8 @@ export default function PatientGallery() {
   const row1 = IMPLANT_ROW_PATIENTS;
   // Row 2: ONLY photos from public/Intra oral braces folder (clean, no text written)
   const row2 = INTRA_ORAL_BRACES_ROW_PATIENTS;
-  // Row 3: Patient smiles collage
-  const row3 = COLLAGE_PATIENTS;
+  // Row 3: ONLY photos from public/Pre Post folder
+  const row3 = PRE_POST_ROW_PATIENTS;
 
   const CompactCard = ({ item, hideOverlay = false }) => (
     <div 
