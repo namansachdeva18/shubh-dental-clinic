@@ -15,8 +15,8 @@ const CLINICAL_CASES = [
     duration: '9 Months',
     doctor: 'Prof. Dr. S. K. Yadav',
     category: 'Aligners',
-    beforeSrc: '/case-1-before.webp',
-    afterSrc: '/case-1-after.webp',
+    beforeSrc: '/skyalign-before.png',
+    afterSrc: '/skyalign-after.png',
     summary: 'Achieved complete dental arch expansion and crowding alignment with 100% in-house SkyAlign™ clear aligners.',
     stars: 5
   },
@@ -29,8 +29,8 @@ const CLINICAL_CASES = [
     duration: '24 Hours',
     doctor: 'Dr. Achla Bharti Yadav',
     category: 'Implants',
-    beforeSrc: '/patient-implant.webp',
-    afterSrc: '/patient-implant.webp',
+    beforeSrc: '/samedayimplants-before.png',
+    afterSrc: '/samedayimplants-after.png',
     summary: 'Flapless 3D CBCT guided implant placement with immediate temporary crown loading within 24 hours.',
     stars: 5
   },
@@ -43,8 +43,8 @@ const CLINICAL_CASES = [
     duration: '2 Appointments',
     doctor: 'Dr. Achla Bharti Yadav',
     category: 'Smile Makeover',
-    beforeSrc: '/patient-veneer.webp',
-    afterSrc: '/patient-veneer.webp',
+    beforeSrc: '/procelian veneers -before.png',
+    afterSrc: '/procelian veneers -after.png',
     summary: 'Custom ultra-thin German porcelain veneers placed for anterior teeth alignment, shade correction, and smile line enhancement.',
     stars: 5
   },
@@ -57,8 +57,8 @@ const CLINICAL_CASES = [
     duration: '1 Hour',
     doctor: 'Dr. Achla Bharti Yadav',
     category: 'Smile Makeover',
-    beforeSrc: '/patient-whitening.webp',
-    afterSrc: '/patient-whitening.webp',
+    beforeSrc: '/teeth whitening-before.png',
+    afterSrc: '/teeth whitening-after.png',
     summary: 'Professional clinical laser teeth whitening achieving 5 shades lighter enamel instantly.',
     stars: 5
   }

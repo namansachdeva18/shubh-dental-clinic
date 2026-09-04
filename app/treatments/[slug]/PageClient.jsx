@@ -92,16 +92,6 @@ export default function PageClient({ treatment }) {
   );
   const whatsappUrl = `https://wa.me/918685048414?text=${whatsappMessage}`;
 
-  const casePair = {
-    before: treatment.slug.includes('braces') 
-      ? '/ceramic-before.png' 
-      : (treatment.caseStudy?.beforeSrc || (treatment.slug.includes('implant') ? '/fullarch-before.webp' : treatment.slug.includes('veneer') || treatment.slug.includes('smile') ? '/front-before.webp' : '/ceramic-before.png')),
-    after: treatment.slug.includes('braces') 
-      ? '/ceramic-after.png' 
-      : (treatment.caseStudy?.afterSrc || (treatment.slug.includes('implant') ? '/fullarch-after.webp' : treatment.slug.includes('veneer') || treatment.slug.includes('smile') ? '/front-after.webp' : '/ceramic-after.png')),
-    title: treatment.caseStudy?.title || `${treatment.title} Real Clinical Transformation`,
-    context: treatment.caseStudy?.context || 'Individual clinical results vary based on anatomical and biological factors.'
-  };
 
   const isTabVisible = (tabKey) => {
     return activeTab === 'all' || activeTab === tabKey;
@@ -379,32 +369,34 @@ export default function PageClient({ treatment }) {
               </div>
             </section>
 
-            {/* Clinical Results Photo Card (Ultra-compact & interactive) */}
-            <section className="treatment-content-card results-preview-card" aria-label="Clinical Transformation Results">
-              <div className="results-header-row">
-                <div>
-                  <span className="section-eyebrow">Visual Proof</span>
-                  <h2 className="card-section-title font-heading" style={{ marginBottom: '0.2rem' }}>
-                    <Sparkles className="title-icon-copper" size={16} aria-hidden="true" />
-                    <span>Clinical Transformation Results</span>
-                  </h2>
+            {/* Only Render Clinical Transformation Results IF authentic Case Study exists */}
+            {treatment.caseStudy && treatment.caseStudy.beforeSrc && treatment.caseStudy.afterSrc && (
+              <section className="treatment-content-card results-preview-card" aria-label="Clinical Transformation Results">
+                <div className="results-header-row">
+                  <div>
+                    <span className="section-eyebrow">Visual Proof</span>
+                    <h2 className="card-section-title font-heading" style={{ marginBottom: '0.2rem' }}>
+                      <Sparkles className="title-icon-copper" size={16} aria-hidden="true" />
+                      <span>Clinical Transformation Results</span>
+                    </h2>
+                  </div>
+                  <span className="results-chip-badge">Verified Case</span>
                 </div>
-                <span className="results-chip-badge">Verified Case</span>
-              </div>
 
-              <div className="results-slider-box">
-                <BeforeAfterSlider 
-                  beforeSrc={casePair.before}
-                  afterSrc={casePair.after}
-                  beforeAlt={`${treatment.title} Before Treatment`}
-                  afterAlt={`${treatment.title} After Treatment Result`}
-                />
-                <div className="results-caption-meta">
-                  <span className="results-title-text">{casePair.title}</span>
-                  <span className="results-drag-hint">↔ Drag slider to compare</span>
+                <div className="results-slider-box">
+                  <BeforeAfterSlider 
+                    beforeSrc={treatment.caseStudy.beforeSrc}
+                    afterSrc={treatment.caseStudy.afterSrc}
+                    beforeAlt={`${treatment.title} Before Treatment`}
+                    afterAlt={`${treatment.title} After Treatment Result`}
+                  />
+                  <div className="results-caption-meta">
+                    <span className="results-title-text">{treatment.caseStudy.title}</span>
+                    <span className="results-drag-hint">↔ Drag slider to compare</span>
+                  </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            )}
 
             {/* Problems Addressed */}
             {treatment.conditions && treatment.conditions.length > 0 && (
@@ -1412,7 +1404,6 @@ export default function PageClient({ treatment }) {
           color: #FFFFFF;
           line-height: 1.3;
         }
-
         /* ── CLINICAL RESULTS BEFORE & AFTER (ULTRA COMPACT) ────────────── */
         .results-preview-card {
           padding: 1rem 1.15rem;

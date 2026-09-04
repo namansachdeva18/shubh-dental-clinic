@@ -80,10 +80,10 @@ export default function Hero() {
                 Book Consult (In-Clinic / Video)
                 <ArrowRight size={18} strokeWidth={2.5} />
               </a>
-              <a href="#treatments" className="hs-btn-secondary">
+              <Link href="/treatments" className="hs-btn-secondary">
                 Explore Treatments
                 <ArrowRight size={16} strokeWidth={2} />
-              </a>
+              </Link>
             </motion.div>
 
             {/* Certification & Recognition Prominent Brand Logos (3 in Row 1, 2 in Row 2 — Big & Crisp) */}

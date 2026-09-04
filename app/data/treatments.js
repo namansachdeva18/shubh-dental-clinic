@@ -221,12 +221,12 @@ export const treatments = [
 
     // Case Study Context
     caseStudy: {
-      title: 'Class II Division 1 Severe Crowding & Overjet Correction',
-      context: '16-year-old patient with 8mm overjet, severe anterior crowding, and lip incompetence.',
-      duration: '18 months active treatment',
-      beforeSrc: '/case-1-before.webp',
-      afterSrc: '/case-1-after.webp',
-      outcome: 'Class I molar relationship achieved, natural lip seal restored, and balanced aesthetic smile arch.'
+      title: 'Fixed Metal & Ceramic Braces Realignment',
+      context: 'Adolescent patient with severe anterior crowding and high canine impaction.',
+      duration: '14 months active treatment',
+      beforeSrc: '/metal-before.png',
+      afterSrc: '/metal-after.png',
+      outcome: 'Ideal Class I canine and molar relationship with broad aesthetic smile arc.'
     },
 
     testimonials: [
@@ -472,12 +472,12 @@ export const treatments = [
     ],
 
     caseStudy: {
-      title: 'Adult Anterior Relapse & Crossbite Correction',
-      context: '28-year-old corporate consultant with lower anterior crowding and aesthetic dissatisfaction.',
-      duration: '11 months (22 aligner stages)',
-      beforeSrc: '/case-1-before.webp',
-      afterSrc: '/case-1-after.webp',
-      outcome: 'Full alignment achieved without any visible hardware or missed workdays.'
+      title: 'Invisalign® Clear Aligner Digital Smile Realignment',
+      context: 'Adult patient seeking discreet crowding, overjet, and bite realignment.',
+      duration: '10 months (20 aligner stages)',
+      beforeSrc: '/skyalign-before.png',
+      afterSrc: '/skyalign-after.png',
+      outcome: 'Complete crowding resolution and broad aesthetic dental arch without visible brackets.'
     },
 
     testimonials: [
@@ -688,12 +688,12 @@ export const treatments = [
     ],
 
     caseStudy: {
-      title: 'Anterior Spacing & Central Diastema Closure',
-      context: '22-year-old student with a 3.5mm midline gap seeking rapid, invisible correction.',
-      duration: '7 months (14 SkyAlign stages)',
-      beforeSrc: '/case-1-before.webp',
-      afterSrc: '/case-1-after.webp',
-      outcome: 'Complete gap closure and balanced smile symmetry achieved before graduation.'
+      title: 'SkyAlign™ Precision In-House Clear Aligners',
+      context: 'Severe anterior crowding treated with custom German bio-compatible 3D-printed aligners.',
+      duration: '8 months active aligners',
+      beforeSrc: '/skyalign-before.png',
+      afterSrc: '/skyalign-after.png',
+      outcome: 'Even aesthetic arch curve, ideal bite alignment, and corrected midline symmetry.'
     },
 
     testimonials: [
@@ -917,12 +917,12 @@ export const treatments = [
     ],
 
     caseStudy: {
-      title: 'Posterior Molar Replacement in a 42-Year-Old Patient',
-      context: 'Patient missing first lower right molar for 3 years with localized bone loss.',
-      duration: '4 months total timeline',
+      title: 'Full Mouth Fixed Titanium Implant Rehabilitation',
+      context: 'Complete edentulous arch restored with immediate fixed multi-unit titanium implant bridge.',
+      duration: 'Fixed prosthesis loaded in 48 hours',
       beforeSrc: '/fullarch-before.webp',
       afterSrc: '/fullarch-after.webp',
-      outcome: 'Single Osstem® implant placed with bone graft; monolithic zirconia crown restored 100% chewing function.'
+      outcome: 'Full masticatory bite force restored with natural facial profile and aesthetic gum contouring.'
     },
 
     testimonials: [
@@ -1135,12 +1135,12 @@ export const treatments = [
     ],
 
     caseStudy: {
-      title: 'Immediate Upper Central Incisor Replacement',
-      context: '31-year-old patient with fractured front tooth following a sports collision.',
-      duration: 'Same-day provisional; final zirconia crown at 14 weeks',
-      beforeSrc: '/fullarch-before.webp',
-      afterSrc: '/fullarch-after.webp',
-      outcome: 'Flawless gum margin preservation with zero downtime from work.'
+      title: 'Same-Day Immediate Loading Dental Implant',
+      context: 'Immediate post-extraction implant placement with instant aesthetic temporary crown.',
+      duration: '24 hours total turnaround',
+      beforeSrc: '/samedayimplants-before.png',
+      afterSrc: '/samedayimplants-after.png',
+      outcome: 'Zero gap period, painless flapless surgery, and immediate smile restoration.'
     },
 
     testimonials: [
@@ -1346,15 +1346,6 @@ export const treatments = [
       'Advanced rotary endodontics ensuring rapid, comfortable, single-sitting procedures.',
       'High long-term success rates with digital apex locator precision.'
     ],
-
-    caseStudy: {
-      title: 'Mandibular First Molar Complex 4-Canal RCT',
-      context: 'Patient with severe nocturnal toothache and deep decay extending into pulp.',
-      duration: 'Single 55-minute session; Zirconia crown at day 4',
-      beforeSrc: '/front-before.webp',
-      afterSrc: '/front-after.webp',
-      outcome: 'Complete pain relief, bone lesion resolution, and 100% restored biting strength.'
-    },
 
     testimonials: [
       {
@@ -1570,15 +1561,6 @@ export const treatments = [
       'Genuine manufacturer warranty cards provided with all premium Zirconia crowns.'
     ],
 
-    caseStudy: {
-      title: 'Post-RCT Molar Restoration with 3M Zirconia Crown',
-      context: 'Patient with root-canal treated lower molar needing full functional restoration.',
-      duration: '4 days total turnaround',
-      beforeSrc: '/front-before.webp',
-      afterSrc: '/front-after.webp',
-      outcome: 'Full chewing strength restored with seamless shade integration.'
-    },
-
     testimonials: [
       {
         name: 'Monika Sehrawat',
@@ -1774,12 +1756,12 @@ export const treatments = [
     ],
 
     caseStudy: {
-      title: '6-Unit Anterior E-Max Veneer Transformation',
-      context: 'Patient with severe fluorosis staining and chipped front incisors.',
-      duration: '6 days total',
-      beforeSrc: '/front-before.webp',
-      afterSrc: '/front-after.webp',
-      outcome: 'Radiant, natural-looking smile with seamless translucency.'
+      title: 'Ultra-Thin German Porcelain Veneers Smile Makeover',
+      context: 'Patient with tetracycline staining, fluorosis, and enamel wear.',
+      duration: '2 clinical sittings (5 days)',
+      beforeSrc: '/procelian veneers -before.png',
+      afterSrc: '/procelian veneers -after.png',
+      outcome: 'Luminous Hollywood smile with natural translucency and micro-texture.'
     },
 
     testimonials: [
@@ -1972,15 +1954,6 @@ export const treatments = [
       'High-resolution digital diagnostics to ensure nerve safety and minimize recovery time.'
     ],
 
-    caseStudy: {
-      title: 'Horizontal Bony Impaction with Severe Pericoronitis',
-      context: '24-year-old patient with severe right jaw pain and limited mouth opening.',
-      duration: '35-minute gentle micro-surgical removal',
-      beforeSrc: '/front-before.webp',
-      afterSrc: '/front-after.webp',
-      outcome: 'Full recovery in 4 days with complete pain resolution and healthy second molar preservation.'
-    },
-
     testimonials: [
       {
         name: 'Deepak Hooda',
@@ -2169,12 +2142,12 @@ export const treatments = [
     ],
 
     caseStudy: {
-      title: 'Pre-Wedding Smile Brightening in 26-Year-Old Bride',
-      context: 'Patient with heavy coffee staining seeking instant brightness before her wedding.',
-      duration: '45 minutes',
-      beforeSrc: '/front-before.webp',
-      afterSrc: '/front-after.webp',
-      outcome: 'Shade improved from A3.5 to B1 with zero post-treatment discomfort.'
+      title: 'In-Office Clinical Laser Teeth Whitening',
+      context: 'Severe tea/coffee staining and deep enamel discoloration.',
+      duration: '45-minute single clinical sitting',
+      beforeSrc: '/teeth whitening-before.png',
+      afterSrc: '/teeth whitening-after.png',
+      outcome: 'Enamel shade brightened by 8 VITA shades with zero post-op sensitivity.'
     },
 
     testimonials: [
@@ -2356,15 +2329,6 @@ export const treatments = [
       'PGI Rohtak trained dental team dedicated to gentle, non-aggressive preventive scaling.',
       'Autoclaved and sealed sterile instrumentation for complete patient safety.'
     ],
-
-    caseStudy: {
-      title: 'Gingivitis & Heavy Tobacco Staining Resolution',
-      context: '38-year-old patient with bleeding gums and severe nicotine tartar deposits.',
-      duration: '40 minutes',
-      beforeSrc: '/front-before.webp',
-      afterSrc: '/front-after.webp',
-      outcome: 'Gums returned to healthy pink stippled appearance within 5 days; fresh breath restored.'
-    },
 
     testimonials: [
       {
@@ -2553,12 +2517,12 @@ export const treatments = [
     ],
 
     caseStudy: {
-      title: 'Full Aesthetic Smile Makeover with Aligners & Veneers',
-      context: 'Patient with gapped, discoloured teeth and uneven gumline.',
-      duration: '4 months combined treatment',
-      beforeSrc: '/front-before.webp',
-      afterSrc: '/front-after.webp',
-      outcome: 'Radiant, natural smile line with balanced facial aesthetics.'
+      title: 'Complete Digital Aesthetic Smile Transformation',
+      context: 'Multi-tooth cosmetic enhancement combining porcelain veneers and shade harmony.',
+      duration: '2 appointments',
+      beforeSrc: '/procelian veneers -before.png',
+      afterSrc: '/procelian veneers -after.png',
+      outcome: 'Symmetrical, radiant smile line customized to facial proportions.'
     },
 
     testimonials: [
@@ -2743,12 +2707,12 @@ export const treatments = [
     ],
 
     caseStudy: {
-      title: 'Immediate Chipped Front Incisor Repair',
-      context: '19-year-old college student with fractured upper incisor corner.',
-      duration: '35 minutes',
-      beforeSrc: '/front-before.webp',
-      afterSrc: '/front-after.webp',
-      outcome: 'Invisible repair with 100% natural tooth shape restored in one appointment.'
+      title: 'Cosmetic Composite Edge Bonding & Gap Closure',
+      context: 'Anterior tooth gap and incisal wear restored conservatively.',
+      duration: 'Single 45-minute visit',
+      beforeSrc: '/cosmetic laser filling- before.png',
+      afterSrc: '/cosmetic laser filling- after.png',
+      outcome: 'Natural tooth anatomy recreated with zero drilling of healthy enamel.'
     },
 
     testimonials: [
@@ -2932,12 +2896,12 @@ export const treatments = [
     ],
 
     caseStudy: {
-      title: 'Adult Anterior Crowding Correction with Lingual Braces',
-      context: '34-year-old corporate director requiring comprehensive realignment with zero visible hardware.',
-      duration: '16 months',
-      beforeSrc: '/case-1-before.webp',
-      afterSrc: '/case-1-after.webp',
-      outcome: 'Perfect Class I bite alignment achieved with 100% aesthetic discretion.'
+      title: '100% Invisible Custom Lingual Braces (Behind the Teeth)',
+      context: 'Adult patient requiring fixed orthodontic correction with complete facial invisibility.',
+      duration: '12 months',
+      beforeSrc: '/lingualbraces-before.png',
+      afterSrc: '/lingualbraces-after.png',
+      outcome: 'Fully corrected bite and straight smile arch with brackets completely hidden on inner surfaces.'
     },
 
     testimonials: [
@@ -3132,15 +3096,6 @@ export const treatments = [
       'Aesthetic wax try-in stage ensures you approve your smile before final curing.'
     ],
 
-    caseStudy: {
-      title: 'Complete Dual-Arch Functional Denture Rehabilitation',
-      context: '68-year-old patient with worn, ill-fitting old dentures and sunken cheeks.',
-      duration: '8 days',
-      beforeSrc: '/fullarch-before.webp',
-      afterSrc: '/fullarch-after.webp',
-      outcome: 'Natural facial profile restored with secure, comfortable chewing.'
-    },
-
     testimonials: [
       {
         name: 'Ramphal Sharma',
@@ -3314,15 +3269,6 @@ export const treatments = [
       'PGI Rohtak trained specialist ensuring gentle, bone-preserving technique.',
       'Immediate planning for tooth replacement so you never have to live with a gap.'
     ],
-
-    caseStudy: {
-      title: 'Atraumatic Premolar Extraction with Socket Preservation',
-      context: 'Fractured lower premolar preserved with bone graft for future implant.',
-      duration: '25 minutes',
-      beforeSrc: '/front-before.webp',
-      afterSrc: '/front-after.webp',
-      outcome: 'Painless extraction with 100% bone ridge height maintained for implant placement.'
-    },
 
     testimonials: [
       {
@@ -3503,12 +3449,12 @@ export const treatments = [
     ],
 
     caseStudy: {
-      title: 'Old Silver Amalgam Replacement with Composite Resin',
-      context: 'Patient with dark amalgam filling causing aesthetic dissatisfaction and recurrent edge decay.',
-      duration: '30 minutes',
-      beforeSrc: '/front-before.webp',
-      afterSrc: '/front-after.webp',
-      outcome: 'Invisible natural restoration with healthy sealed margins.'
+      title: 'Cosmetic Laser Composite Tooth Restoration',
+      context: 'Anterior tooth cavity and chipped edge restored with nano-hybrid composite.',
+      duration: '30-minute single appointment',
+      beforeSrc: '/cosmetic laser filling- before.png',
+      afterSrc: '/cosmetic laser filling- after.png',
+      outcome: 'Seamless enamel shade match, invisible margins, and restored bite edge.'
     },
 
     testimonials: [

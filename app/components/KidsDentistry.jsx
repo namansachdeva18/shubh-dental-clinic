@@ -589,81 +589,89 @@ export default function KidsDentistry() {
         .polaroid-wrapper {
           position: relative;
           width: 100%;
-          height: 380px;
-          max-width: 440px;
+          height: 450px;
+          max-width: 480px;
         }
 
         .polaroid-card {
           position: absolute;
           background: #FFFFFF;
-          padding: 0.65rem 0.65rem 2rem 0.65rem;
-          border-radius: 8px;
-          box-shadow: 0 12px 30px rgba(17, 8, 5, 0.12), 0 4px 10px rgba(214, 122, 65, 0.08);
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          width: 180px;
-          height: 200px;
+          padding: 0.75rem 0.75rem 2.25rem 0.75rem;
+          border-radius: 12px;
+          box-shadow: 0 16px 36px rgba(17, 8, 5, 0.14), 0 4px 12px rgba(214, 122, 65, 0.1);
+          border: 1.5px solid rgba(214, 122, 65, 0.2);
+          width: 228px;
+          height: 252px;
           cursor: pointer;
+          transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .polaroid-card:hover {
+          border-color: #D67A41;
+          box-shadow: 0 24px 50px rgba(17, 8, 5, 0.22), 0 8px 20px rgba(214, 122, 65, 0.25);
         }
 
         .polaroid-img-wrap {
           position: relative;
           width: 100%;
           height: 100%;
-          border-radius: 4px;
+          border-radius: 8px;
           overflow: hidden;
           background: #F4F1EC;
+          box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
         }
 
         .polaroid-caption {
           position: absolute;
-          bottom: 0.5rem;
+          bottom: 0.55rem;
           left: 0;
           width: 100%;
           text-align: center;
           font-family: 'Caveat', cursive, var(--font-heading, sans-serif);
-          font-size: 1.05rem;
-          color: #4A3E39;
-          font-weight: 700;
+          font-size: 1.18rem;
+          color: #2E1B13;
+          font-weight: 800;
+          letter-spacing: 0.01em;
         }
 
         .frame-left {
-          top: 15px;
-          left: 15px;
+          top: 0px;
+          left: 6px;
           z-index: 2;
         }
 
         .frame-right {
-          top: 25px;
-          right: 20px;
-          z-index: 2;
+          top: 10px;
+          right: 6px;
+          z-index: 3;
         }
 
         .frame-center {
-          bottom: 20px;
-          left: 35px;
-          width: 175px;
-          height: 195px;
+          bottom: 4px;
+          left: 18px;
+          width: 224px;
+          height: 248px;
           z-index: 5;
-          box-shadow: 0 16px 36px rgba(17, 8, 5, 0.18), 0 6px 14px rgba(214, 122, 65, 0.12);
+          box-shadow: 0 20px 42px rgba(17, 8, 5, 0.2), 0 6px 16px rgba(214, 122, 65, 0.15);
         }
 
         .frame-fourth {
-          bottom: 10px;
-          right: 30px;
-          width: 175px;
-          height: 195px;
+          bottom: 0px;
+          right: 12px;
+          width: 232px;
+          height: 256px;
           z-index: 6;
-          box-shadow: 0 16px 36px rgba(17, 8, 5, 0.18), 0 6px 14px rgba(214, 122, 65, 0.12);
+          box-shadow: 0 20px 42px rgba(17, 8, 5, 0.2), 0 6px 16px rgba(214, 122, 65, 0.15);
         }
 
         .polaroid-tooth-mascot {
           position: absolute;
-          bottom: -10px;
-          right: -10px;
+          bottom: -15px;
+          right: -15px;
           width: 120px;
           height: 120px;
           z-index: 8;
           pointer-events: none;
+          filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
         }
 
         .doctor-kids-quote {
@@ -799,35 +807,37 @@ export default function KidsDentistry() {
           }
 
           .polaroid-wrapper {
-            height: 270px;
-            max-width: 320px;
+            height: 310px;
+            max-width: 360px;
           }
           .polaroid-card {
-            width: 115px;
-            height: 135px;
-            padding: 0.35rem 0.35rem 1.3rem 0.35rem;
+            width: 146px;
+            height: 168px;
+            padding: 0.45rem 0.45rem 1.6rem 0.45rem;
+            border-radius: 9px;
+            box-shadow: 0 10px 24px rgba(17, 8, 5, 0.16), 0 3px 8px rgba(214, 122, 65, 0.12);
           }
-          .frame-left { top: 8px; left: 8px; }
-          .frame-right { top: 12px; right: 8px; }
+          .frame-left { top: 4px; left: 4px; }
+          .frame-right { top: 8px; right: 4px; }
           .frame-center {
-            width: 120px;
-            height: 140px;
+            width: 150px;
+            height: 172px;
             left: 8px;
-            bottom: 8px;
+            bottom: 4px;
             margin-left: 0;
           }
           .frame-fourth {
-            width: 132px;
-            height: 152px;
-            right: 6px;
-            bottom: 6px;
+            width: 156px;
+            height: 178px;
+            right: 4px;
+            bottom: 2px;
           }
           .frame-fourth .polaroid-img-wrap img {
             object-position: center 18% !important;
           }
           .polaroid-caption {
-            font-size: 0.72rem;
-            bottom: 0.2rem;
+            font-size: 0.82rem;
+            bottom: 0.28rem;
           }
           .polaroid-tooth-mascot {
             width: 48px;

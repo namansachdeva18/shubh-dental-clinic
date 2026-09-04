@@ -172,35 +172,8 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Aligners Dropdown */}
-              <div
-                className="nav-link-group"
-                onMouseEnter={() => setAlignersOpen(true)}
-                onMouseLeave={() => setAlignersOpen(false)}
-                ref={alignersRef}
-              >
-                <button className="nav-link nav-link-has-sub" aria-expanded={alignersOpen} aria-haspopup="true">
-                  Aligners <ChevronDown size={13} className={`nav-chevron${alignersOpen ? ' open' : ''}`} aria-hidden="true" />
-                </button>
-                {alignersOpen && (
-                  <div className="dropdown-menu-simple" role="menu">
-                    <Link href="/clear-aligners" className="dropdown-item" onClick={() => setAlignersOpen(false)}>
-                      <Sparkles size={14} className="dropdown-icon" />
-                      <div>
-                        <strong>Invisalign® Clear Aligners</strong>
-                        <span>Global gold standard aligners</span>
-                      </div>
-                    </Link>
-                    <Link href="/skyalign" className="dropdown-item" onClick={() => setAlignersOpen(false)}>
-                      <Sparkles size={14} className="dropdown-icon" />
-                      <div>
-                        <strong>SkyAlign™ In-House</strong>
-                        <span>Custom German polymer aligners</span>
-                      </div>
-                    </Link>
-                  </div>
-                )}
-              </div>
+              {/* SkyAlign Direct Nav Link */}
+              <Link href="/skyalign" className="nav-link">SkyAlign</Link>
 
               {/* About & Clinic Dropdown */}
               <div
@@ -254,7 +227,6 @@ export default function Header() {
               </div>
 
               <Link href="/dental-tourism" className="nav-link">NRI Tourism</Link>
-              <Link href="/blog" className="nav-link">Blog</Link>
               <Link href="/contact" className="nav-link">Contact</Link>
 
               {/* Special Offer Badge Pill (Matching Reference) */}
@@ -338,55 +310,37 @@ export default function Header() {
                   </div>
 
                   {mobileTreatmentsOpen && (
-                    <div className="mob-simple-submenu">
-                      <Link href="/treatments/invisalign-clear-aligners" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
-                        Invisalign® Clear Aligners
-                      </Link>
-                      <Link href="/treatments/skyalign-clear-aligners" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
-                        SkyAlign™ In-House Aligners
-                      </Link>
-                      <Link href="/treatments/dental-braces" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
-                        Dental Braces (Metal &amp; Ceramic)
-                      </Link>
-                      <Link href="/treatments/same-day-dental-implants" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
-                        Same-Day Dental Implants
-                      </Link>
-                      <Link href="/treatments/smile-makeover" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
-                        Smile Makeover &amp; Veneers
-                      </Link>
-                      <Link href="/treatments/root-canal-treatment" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
-                        Root Canal Treatment (RCT)
-                      </Link>
+                    <div className="mob-simple-submenu mob-treatments-submenu-compact">
+                      {NAV_TREATMENTS.map((group, gIdx) => (
+                        <div key={gIdx} className="mob-treatment-cat-group">
+                          <span className="mob-treatment-cat-label">{group.group}</span>
+                          <div className="mob-treatment-items-grid">
+                            {group.items.map((item, iIdx) => (
+                              <Link
+                                key={iIdx}
+                                href={item.href}
+                                className="mob-treatment-compact-item"
+                                onClick={() => setMobileOpen(false)}
+                              >
+                                <span className="mob-treatment-dot" />
+                                <span className="mob-treatment-item-name">{item.name}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
                       <Link href="/treatments" className="mob-simple-subitem mob-simple-subitem--all" onClick={() => setMobileOpen(false)}>
-                        View All Treatments →
+                        <span>View All Treatments Directory</span>
+                        <ChevronRight size={14} />
                       </Link>
                     </div>
                   )}
                 </div>
 
-                {/* 3. Aligners Accordion */}
-                <div className="mob-simple-accordion">
-                  <button
-                    type="button"
-                    className="mob-simple-toggle"
-                    onClick={() => setMobileAlignersOpen(!mobileAlignersOpen)}
-                    aria-expanded={mobileAlignersOpen}
-                  >
-                    <span>Aligners</span>
-                    <ChevronDown size={15} className={`mob-simple-chevron ${mobileAlignersOpen ? 'open' : ''}`} />
-                  </button>
-
-                  {mobileAlignersOpen && (
-                    <div className="mob-simple-submenu">
-                      <Link href="/clear-aligners" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
-                        Invisalign® Clear Aligners
-                      </Link>
-                      <Link href="/skyalign" className="mob-simple-subitem" onClick={() => setMobileOpen(false)}>
-                        SkyAlign™ In-House Aligners
-                      </Link>
-                    </div>
-                  )}
-                </div>
+                {/* 3. SkyAlign Direct Nav Link */}
+                <Link href="/skyalign" className="mob-simple-link" onClick={() => setMobileOpen(false)}>
+                  <span>SkyAlign</span>
+                </Link>
 
                 {/* 4. Clinic Accordion */}
                 <div className="mob-simple-accordion">
@@ -426,12 +380,7 @@ export default function Header() {
                   <span>NRI Tourism</span>
                 </Link>
 
-                {/* 6. Blog */}
-                <Link href="/blog" className="mob-simple-link" onClick={() => setMobileOpen(false)}>
-                  <span>Blog</span>
-                </Link>
-
-                {/* 7. Contact */}
+                {/* 6. Contact */}
                 <Link href="/contact" className="mob-simple-link" onClick={() => setMobileOpen(false)}>
                   <span>Contact</span>
                 </Link>
@@ -1045,6 +994,71 @@ export default function Header() {
           border: 1px solid rgba(214, 122, 65, 0.12);
         }
 
+        .mob-treatments-submenu-compact {
+          padding: 0.65rem 0.6rem !important;
+          gap: 0.6rem !important;
+        }
+
+        .mob-treatment-cat-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+
+        .mob-treatment-cat-label {
+          font-size: 0.66rem;
+          font-weight: 800;
+          color: #B85D26;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          padding-left: 0.2rem;
+          margin-bottom: 0.1rem;
+        }
+
+        .mob-treatment-items-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.3rem;
+        }
+
+        .mob-treatment-compact-item {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          padding: 0.42rem 0.55rem;
+          background: #FFFFFF;
+          border: 1px solid rgba(214, 122, 65, 0.12);
+          border-radius: 8px;
+          text-decoration: none;
+          box-shadow: 0 1px 3px rgba(74, 37, 24, 0.02);
+          transition: all 0.15s ease;
+          min-height: 38px;
+          box-sizing: border-box;
+        }
+        .mob-treatment-compact-item:active {
+          background: #FFF4EC;
+          border-color: #D67A41;
+          transform: scale(0.98);
+        }
+        .mob-treatment-dot {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: #D67A41;
+          flex-shrink: 0;
+        }
+        .mob-treatment-item-name {
+          font-size: 0.74rem;
+          font-weight: 700;
+          color: #2D1E17;
+          line-height: 1.2;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+
         .mob-simple-subitem {
           display: flex;
           align-items: center;
@@ -1107,8 +1121,8 @@ export default function Header() {
         }
         @media (max-width: 768px) {
           .top-bar { display: none !important; }
-          .nav-main-inner { height: auto; min-height: 68px; padding: 0.5rem 0; }
-          .logo-icon-wrap { width: 64px; height: 64px; min-width: 64px; }
+          .nav-main-inner { height: 68px !important; min-height: 68px !important; padding: 0 !important; }
+          .logo-icon-wrap { width: 56px !important; height: 56px !important; min-width: 56px !important; }
           .logo-name { font-size: 0.98rem; font-weight: 900; line-height: 1.15; }
           .logo-dr-name { font-size: 0.65rem; line-height: 1.2; font-weight: 750; }
           .logo-tagline { display: block; font-size: 0.63rem; line-height: 1.2; color: #D67A41; font-weight: 750; margin-top: 1px; }

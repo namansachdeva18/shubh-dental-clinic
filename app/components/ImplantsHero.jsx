@@ -31,8 +31,8 @@ const CLINICAL_CASES = [
   {
     id: 'implant-case-1',
     label: 'Single / Front Tooth Immediate Implant (24 Hours)',
-    beforeSrc: '/front-before.webp',
-    afterSrc: '/front-after.webp',
+    beforeSrc: '/samedayimplants-before.png',
+    afterSrc: '/samedayimplants-after.png',
     beforeAlt: 'Immediate dental implant restoration before',
     afterAlt: 'Immediate dental implant restoration after',
   },

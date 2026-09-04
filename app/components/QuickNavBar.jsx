@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { 
   Sparkles, Zap, Award, Image as ImageIcon, 
-  Globe2, Calendar, Smile, 
+  Globe2, Calendar, Smile, MapPin,
   Compass, Stethoscope, ArrowUpRight
 } from 'lucide-react';
 
@@ -59,13 +59,13 @@ const NAV_DEPARTMENTS = [
     isAnchor: false,
   },
   {
-    id: 'gallery',
-    title: 'Smile Gallery',
-    sub: 'Before & After Proof',
-    badge: '2.5L+ Smiles',
-    badgeColor: 'purple',
-    icon: ImageIcon,
-    href: '/gallery',
+    id: 'contact',
+    title: 'Contact Clinic',
+    sub: 'Delhi Bypass Rd, Rohtak',
+    badge: 'Find Us',
+    badgeColor: 'emerald',
+    icon: MapPin,
+    href: '/contact',
     isAnchor: false,
   },
 ];
