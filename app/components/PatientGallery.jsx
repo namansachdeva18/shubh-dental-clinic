@@ -522,8 +522,14 @@ export default function PatientGallery() {
             {/* Glowing Interactive Live Pill */}
             <div className="tooth-interactive-pill">
               <span className="live-sparkle-pulse">✨</span>
-              <span className="pill-text">Tap any portrait to inspect clinical smile</span>
-              <span className="pill-count">48 Smiles</span>
+              <span className="pill-text">
+                <span className="pill-text-desktop">A Living Mosaic of Happy Smiles • Tap any portrait to view</span>
+                <span className="pill-text-mobile">Happy Smiles • Tap to view</span>
+              </span>
+              <span className="pill-count">
+                <Sparkles size={11} className="pill-sparkle-icon" />
+                <span>Happy Us</span>
+              </span>
             </div>
           </div>
         </div>
@@ -1109,7 +1115,7 @@ export default function PatientGallery() {
           display: inline-flex;
           align-items: center;
           gap: 0.65rem;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(250, 246, 240, 0.9) 100%);
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 246, 240, 0.92) 100%);
           border: 1.5px solid rgba(214, 122, 65, 0.35);
           padding: 0.5rem 1.25rem;
           border-radius: 99px;
@@ -1120,12 +1126,21 @@ export default function PatientGallery() {
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
           user-select: none;
+          max-width: 95%;
+          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .tooth-interactive-pill:hover {
+          transform: translateY(-2px);
+          border-color: #D67A41;
+          box-shadow: 0 14px 30px rgba(17, 8, 5, 0.12), 0 0 25px rgba(214, 122, 65, 0.25);
         }
 
         .live-sparkle-pulse {
           color: #D67A41;
           font-size: 1.05rem;
           animation: sparklePulse 2.2s infinite;
+          flex-shrink: 0;
         }
         @keyframes sparklePulse {
           0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(214, 122, 65, 0.5)); }
@@ -1136,16 +1151,36 @@ export default function PatientGallery() {
           font-size: 0.85rem;
           font-weight: 700;
           color: #2A150D;
+          white-space: nowrap;
+        }
+
+        .pill-text-desktop {
+          display: inline;
+        }
+
+        .pill-text-mobile {
+          display: none;
         }
 
         .pill-count {
           background: linear-gradient(135deg, #7A340F, #A84D1C);
           color: #FFFFFF;
-          font-size: 0.7rem;
+          font-size: 0.72rem;
           font-weight: 900;
-          padding: 0.2rem 0.6rem;
+          padding: 0.25rem 0.65rem;
           border-radius: 99px;
           letter-spacing: 0.03em;
+          white-space: nowrap;
+          flex-shrink: 0;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          box-shadow: 0 2px 8px rgba(122, 52, 15, 0.25);
+        }
+
+        .pill-sparkle-icon {
+          color: #FDE68A;
+          animation: emblemPulse 2s infinite ease-in-out;
         }
 
         /* COOL IMPROVISED HEADER AREA (DARK HIGH-CONTRAST) */
@@ -1713,6 +1748,23 @@ export default function PatientGallery() {
             font-size: 0.72rem;
             margin-top: 1.25rem;
           }
+          .tooth-interactive-pill {
+            padding: 0.4rem 0.9rem;
+            gap: 0.45rem;
+            margin-top: 1.5rem;
+            max-width: 96%;
+          }
+          .pill-text-desktop {
+            display: none;
+          }
+          .pill-text-mobile {
+            display: inline;
+            font-size: 0.78rem;
+          }
+          .pill-count {
+            font-size: 0.66rem;
+            padding: 0.2rem 0.5rem;
+          }
           .scroll-left-slow, .scroll-right-slow {
             animation-duration: 25s;
           }
@@ -1738,6 +1790,17 @@ export default function PatientGallery() {
           .compact-patient-card {
             width: 105px !important;
             height: 78px !important;
+          }
+          .tooth-interactive-pill {
+            padding: 0.35rem 0.75rem;
+            gap: 0.35rem;
+          }
+          .pill-text-mobile {
+            font-size: 0.72rem;
+          }
+          .pill-count {
+            font-size: 0.6rem;
+            padding: 0.18rem 0.45rem;
           }
         }
       `}} />
