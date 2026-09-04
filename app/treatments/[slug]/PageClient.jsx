@@ -144,26 +144,8 @@ export default function PageClient({ treatment }) {
           
           <p className="hero-sub-title">{treatment.subtitle}</p>
 
-          {/* Doctor Lead Ribbon */}
-          <div className="hero-doctor-badge">
-            <div className="hero-doc-avatar-wrap">
-              <Image 
-                src={treatment.doctorPhoto || '/dr-sk-yadav.webp'} 
-                alt={treatment.doctor}
-                width={48}
-                height={48}
-                className="hero-doc-avatar-img"
-              />
-            </div>
-            <div className="hero-doc-details">
-              <span className="hero-doc-label">Specialist Oversight</span>
-              <strong className="hero-doc-name">{treatment.doctor}</strong>
-              <span className="hero-doc-degree">{treatment.doctorDegree || 'MDS Specialist'}</span>
-            </div>
-          </div>
-
           <p className="hero-overview-text">
-            {treatment.heroValueProp || treatment.overview}
+            {treatment.overview ? (treatment.overview.length > 220 ? treatment.overview.substring(0, 217).replace(/\s+\S*$/, '') + '...' : treatment.overview) : (treatment.heroValueProp || '')}
           </p>
 
           {/* CTAs Group */}
@@ -1016,12 +998,13 @@ export default function PageClient({ treatment }) {
 
         /* ── HERO STAGE ──────────────────────────────── */
         .treatment-hero-card {
-          background: linear-gradient(145deg, #1A0D08 0%, #2D1710 100%);
+          background: radial-gradient(circle at 85% 15%, rgba(214, 122, 65, 0.28) 0%, transparent 60%),
+                      linear-gradient(145deg, #170C08 0%, #26120B 60%, #120704 100%);
           border-radius: 28px;
-          padding: 3rem 2.5rem;
+          padding: 2.75rem 2.5rem;
           color: #FFFFFF;
-          box-shadow: 0 25px 60px rgba(17, 8, 5, 0.22);
-          border: 1.5px solid rgba(214, 122, 65, 0.28);
+          box-shadow: 0 25px 60px rgba(17, 8, 5, 0.35), 0 0 40px rgba(214, 122, 65, 0.12);
+          border: 1.5px solid rgba(214, 122, 65, 0.32);
           margin-bottom: 1.5rem;
           position: relative;
           overflow: hidden;
@@ -1031,20 +1014,35 @@ export default function PageClient({ treatment }) {
         .treatment-hero-card::before {
           content: '';
           position: absolute;
-          top: -60px;
-          right: -60px;
-          width: 280px;
-          height: 280px;
-          background: radial-gradient(circle, rgba(214,122,65,0.18) 0%, transparent 70%);
+          top: -40%;
+          right: -20%;
+          width: 380px;
+          height: 380px;
+          background: radial-gradient(circle, rgba(244, 179, 130, 0.22) 0%, rgba(214, 122, 65, 0.08) 50%, transparent 75%);
           border-radius: 50%;
           pointer-events: none;
+          animation: floatAura 8s ease-in-out infinite alternate;
+        }
+        .treatment-hero-card::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 5%;
+          right: 5%;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(214, 122, 65, 0.5), transparent);
+          pointer-events: none;
+        }
+        @keyframes floatAura {
+          0% { transform: translateY(0) scale(1); opacity: 0.8; }
+          100% { transform: translateY(20px) scale(1.1); opacity: 1; }
         }
 
         .hero-top-badges {
           display: flex;
           align-items: center;
-          gap: 0.75rem;
-          margin-bottom: 1.25rem;
+          gap: 0.65rem;
+          margin-bottom: 1.15rem;
           flex-wrap: wrap;
         }
 
@@ -1054,7 +1052,7 @@ export default function PageClient({ treatment }) {
           gap: 0.4rem;
           background: rgba(214, 122, 65, 0.22);
           color: #F4B382;
-          padding: 0.35rem 0.9rem;
+          padding: 0.35rem 0.85rem;
           border-radius: 99px;
           font-size: 0.75rem;
           font-weight: 800;
@@ -2303,82 +2301,474 @@ export default function PageClient({ treatment }) {
 
         @media (max-width: 768px) {
           .treatment-page-wrapper {
-            padding: 1.25rem 0.85rem 6.5rem;
+            padding: 0.65rem 0.65rem 5.5rem;
+          }
+          
+          /* ULTRA COMPACT HERO STAGE */
+          .treatment-breadcrumbs {
+            margin-bottom: 0.65rem;
+            font-size: 0.72rem;
+            gap: 0.35rem;
           }
           .treatment-hero-card {
-            padding: 1.75rem 1.25rem;
-            border-radius: 20px;
+            padding: 1.15rem 1rem 1rem;
+            border-radius: 18px;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 12px 30px rgba(17, 8, 5, 0.28);
+          }
+          .treatment-hero-card::before {
+            width: 220px;
+            height: 220px;
+            right: -30%;
+            top: -30%;
+          }
+          .hero-top-badges {
+            margin-bottom: 0.5rem;
+            gap: 0.4rem;
+          }
+          .treatment-category-badge {
+            padding: 0.22rem 0.55rem;
+            font-size: 0.65rem;
+          }
+          .hero-trust-chip {
+            padding: 0.22rem 0.55rem;
+            font-size: 0.65rem;
           }
           .hero-main-title {
-            font-size: 1.75rem;
+            font-size: 1.35rem;
+            line-height: 1.2;
+            margin-bottom: 0.35rem;
           }
           .hero-sub-title {
-            font-size: 0.95rem;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            margin-bottom: 0.65rem;
+          }
+          .hero-overview-text {
+            font-size: 0.82rem;
+            line-height: 1.5;
+            margin-bottom: 0.85rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
           }
           .hero-actions-group {
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.45rem;
             width: 100%;
           }
-          .btn-hero-primary, .btn-hero-call, .btn-hero-whatsapp {
-            width: 100%;
+          .btn-hero-primary {
+            grid-column: 1 / -1;
+            padding: 0.65rem 1rem;
+            font-size: 0.84rem;
+            border-radius: 10px;
             justify-content: center;
           }
-          .trust-strip-grid {
-            grid-template-columns: 1fr;
-            gap: 0.85rem;
+          .btn-hero-call, .btn-hero-whatsapp {
+            padding: 0.55rem 0.75rem;
+            font-size: 0.78rem;
+            border-radius: 10px;
+            justify-content: center;
           }
+
+          /* ULTRA COMPACT TRUST STRIP - 2x2 MICRO GRID */
+          .treatment-trust-strip {
+            padding: 0.75rem 0.85rem;
+            border-radius: 14px;
+            margin-bottom: 0.75rem;
+          }
+          .trust-strip-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem 0.75rem;
+          }
+          .trust-strip-item {
+            gap: 0.5rem;
+          }
+          .trust-strip-item strong {
+            font-size: 0.76rem;
+            line-height: 1.2;
+          }
+          .trust-strip-item span {
+            font-size: 0.66rem;
+            line-height: 1.2;
+          }
+
+          /* INNOVATIVE HORIZONTAL PILL SWITCHER */
           .mobile-section-switcher {
             display: flex;
+            gap: 0.35rem;
+            margin-bottom: 0.75rem;
+            padding: 0.2rem 0.1rem 0.35rem;
+            position: sticky;
+            top: 60px;
+            z-index: 20;
+            background: rgba(250, 248, 245, 0.94);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
           }
+          .m-switch-btn {
+            padding: 0.4rem 0.7rem;
+            font-size: 0.72rem;
+            border-radius: 99px;
+          }
+
+          /* ULTRA COMPACT CONTENT CARD */
           .treatment-content-card {
-            padding: 1.5rem 1.15rem;
-            border-radius: 20px;
-            margin-bottom: 1.25rem;
+            padding: 1rem 0.85rem;
+            border-radius: 16px;
+            margin-bottom: 0.75rem;
           }
+          .section-eyebrow, .section-eyebrow-center {
+            font-size: 0.65rem;
+            margin-bottom: 0.2rem;
+          }
+          .card-section-title, .card-section-title-center {
+            font-size: 1.15rem;
+            margin-bottom: 0.85rem;
+            gap: 0.45rem;
+          }
+          .clinical-text-block p {
+            font-size: 0.85rem;
+            line-height: 1.55;
+          }
+          .section-intro-text {
+            font-size: 0.8rem;
+            line-height: 1.45;
+            margin-bottom: 0.85rem;
+          }
+
+          /* SNAPSHOT: 2-COLUMN DENSE MICRO METRICS */
           .metrics-grid {
-            grid-template-columns: 1fr;
-            gap: 0.85rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.45rem;
           }
+          .metric-box {
+            padding: 0.65rem 0.6rem;
+            border-radius: 12px;
+            gap: 0.5rem;
+          }
+          .metric-icon-wrap {
+            font-size: 1.2rem;
+          }
+          .metric-label {
+            font-size: 0.62rem;
+            margin-bottom: 0.15rem;
+          }
+          .metric-value {
+            font-size: 0.78rem;
+            line-height: 1.25;
+          }
+
+          /* CONDITIONS: COMPACT 2-COLUMN CHIPS */
           .conditions-grid {
             grid-template-columns: 1fr;
-            gap: 0.75rem;
+            gap: 0.4rem;
           }
+          .condition-item-box {
+            padding: 0.55rem 0.75rem;
+            font-size: 0.78rem;
+            border-radius: 10px;
+            gap: 0.5rem;
+          }
+
+          /* CANDIDACY: TIGHTER CARDS */
           .candidacy-split-grid {
             grid-template-columns: 1fr;
-            gap: 1rem;
+            gap: 0.65rem;
           }
-          .alternatives-cards-list {
-            grid-template-columns: 1fr;
+          .candidacy-box {
+            padding: 0.75rem 0.85rem;
+            border-radius: 12px;
           }
+          .c-box-header h3 {
+            font-size: 0.88rem;
+          }
+          .candidacy-box p {
+            font-size: 0.8rem;
+            line-height: 1.45;
+          }
+          .alt-card {
+            padding: 0.65rem 0.75rem;
+            border-radius: 10px;
+          }
+          .alt-card strong {
+            font-size: 0.82rem;
+          }
+          .alt-card p {
+            font-size: 0.76rem;
+          }
+
+          /* COMPARISON TABLE ON MOBILE */
+          .comparison-table-wrapper {
+            max-height: 320px;
+          }
+          .comparison-table th, .comparison-table td {
+            padding: 0.55rem 0.65rem;
+            font-size: 0.74rem;
+          }
+
+          /* PROCESS STEPS: STREAMLINED TIMELINE */
+          .process-step-item {
+            gap: 0.65rem;
+            margin-bottom: 0.75rem;
+          }
+          .step-number-bubble {
+            width: 28px;
+            height: 28px;
+            font-size: 0.75rem;
+          }
+          .step-content-card {
+            padding: 0.75rem 0.85rem;
+            border-radius: 12px;
+          }
+          .step-title {
+            font-size: 0.88rem;
+            margin-bottom: 0.25rem;
+          }
+          .step-desc {
+            font-size: 0.78rem;
+            line-height: 1.45;
+          }
+
+          /* TECH & BENEFITS: DENSE 2-COL MICRO TILES */
           .tech-cards-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.45rem;
           }
-          .benefits-split-container {
-            grid-template-columns: 1fr;
+          .tech-box {
+            padding: 0.65rem 0.6rem;
+            border-radius: 12px;
+          }
+          .tech-name {
+            font-size: 0.76rem;
+          }
+          .tech-purpose {
+            font-size: 0.7rem;
+            line-height: 1.35;
           }
           .benefits-cards-grid {
             grid-template-columns: 1fr;
+            gap: 0.45rem;
           }
+          .benefit-pill-card {
+            padding: 0.65rem 0.75rem;
+            border-radius: 12px;
+            gap: 0.6rem;
+          }
+          .b-card-title {
+            font-size: 0.82rem;
+          }
+          .b-card-desc {
+            font-size: 0.74rem;
+            line-height: 1.35;
+          }
+          .b-col-list li {
+            font-size: 0.78rem;
+            padding: 0.35rem 0;
+          }
+
+          /* TIMELINE & COMFORT TILES */
+          .timeline-cards-grid {
+            grid-template-columns: 1fr;
+            gap: 0.45rem;
+          }
+          .t-card {
+            padding: 0.65rem 0.75rem;
+            border-radius: 12px;
+          }
+          .t-card strong {
+            font-size: 0.8rem;
+          }
+          .t-card p {
+            font-size: 0.74rem;
+          }
+          .comfort-grid {
+            grid-template-columns: 1fr;
+            gap: 0.45rem;
+          }
+          .comfort-box {
+            padding: 0.65rem 0.75rem;
+            border-radius: 12px;
+          }
+          .comfort-box h4 {
+            font-size: 0.8rem;
+          }
+          .comfort-box p {
+            font-size: 0.74rem;
+          }
+
+          /* PRICING CARD COMPACT */
+          .pricing-card-header {
+            flex-direction: column;
+            gap: 0.65rem;
+          }
+          .pricing-rate-tag {
+            padding: 0.5rem 0.85rem;
+            border-radius: 12px;
+          }
+          .cost-label {
+            font-size: 0.64rem;
+          }
+          .cost-amount {
+            font-size: 1.1rem;
+          }
+          .factors-heading {
+            font-size: 0.78rem;
+          }
+          .factors-list li {
+            font-size: 0.74rem;
+            line-height: 1.4;
+          }
+          .emi-highlight-banner {
+            padding: 0.65rem 0.75rem;
+            border-radius: 12px;
+            gap: 0.6rem;
+          }
+          .emi-highlight-banner strong {
+            font-size: 0.78rem;
+          }
+          .emi-highlight-banner p {
+            font-size: 0.7rem;
+          }
+          .btn-estimate {
+            padding: 0.65rem 1rem;
+            font-size: 0.82rem;
+            border-radius: 10px;
+          }
+
+          /* WHY CLINIC GRID */
           .why-clinic-grid {
             grid-template-columns: 1fr;
+            gap: 0.45rem;
           }
+          .why-item {
+            padding: 0.55rem 0.7rem;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            gap: 0.6rem;
+          }
+
+          /* MEDICAL REVIEWER TILE */
           .reviewer-inner {
-            flex-direction: column;
-            text-align: center;
-            gap: 1.25rem;
+            flex-direction: row;
+            text-align: left;
+            gap: 0.75rem;
+            align-items: center;
+          }
+          .reviewer-avatar-wrap {
+            width: 58px;
+            height: 58px;
+          }
+          .reviewer-badge {
+            font-size: 0.65rem;
+            margin-bottom: 0.2rem;
+          }
+          .reviewer-name {
+            font-size: 0.96rem;
+          }
+          .reviewer-credentials, .reviewer-role {
+            font-size: 0.72rem;
+            line-height: 1.35;
           }
           .reviewer-footer-meta {
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
+            gap: 0.35rem;
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
           }
-          .testimonials-grid {
-            grid-template-columns: 1fr;
+          .reviewer-profile-link {
+            font-size: 0.72rem;
+          }
+
+          /* FAQS ACCORDION */
+          .treatment-faq-question {
+            padding: 0.75rem 0.85rem;
+          }
+          .faq-q-text {
+            font-size: 0.84rem;
+          }
+          .faq-answer {
+            padding: 0 0.85rem 0.75rem;
+            font-size: 0.78rem;
+            line-height: 1.45;
+          }
+
+          /* RELATED TREATMENTS */
+          .related-treatments-section {
+            padding: 1rem 0.85rem;
+            border-radius: 16px;
+            margin-bottom: 0.75rem;
+          }
+          .related-title {
+            font-size: 0.95rem;
+            margin-bottom: 0.65rem;
+          }
+          .related-pills-row {
+            gap: 0.4rem;
+          }
+          .related-treatment-pill {
+            padding: 0.45rem 0.8rem;
+            font-size: 0.76rem;
+            border-radius: 8px;
+          }
+
+          /* LOCAL CLINIC INFO */
+          .treatment-local-info-card {
+            padding: 1.25rem 1rem;
+            border-radius: 18px;
+            margin-bottom: 0.75rem;
           }
           .local-info-inner {
             grid-template-columns: 1fr;
+            gap: 1rem;
           }
+          .local-heading {
+            font-size: 1.15rem;
+          }
+          .local-desc {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            margin-bottom: 0.85rem;
+          }
+          .local-details-list {
+            gap: 0.65rem;
+          }
+          .local-detail-item {
+            gap: 0.55rem;
+          }
+          .local-detail-item strong {
+            font-size: 0.76rem;
+          }
+          .local-detail-item span {
+            font-size: 0.72rem;
+          }
+          .map-badge-card {
+            padding: 1rem;
+            border-radius: 14px;
+          }
+          .map-badge-card h4 {
+            font-size: 0.88rem;
+          }
+          .map-badge-card p {
+            font-size: 0.76rem;
+            margin-bottom: 0.85rem;
+          }
+          .btn-map-directions {
+            padding: 0.55rem 0.85rem;
+            font-size: 0.76rem;
+          }
+
           .mobile-sticky-action-bar {
             display: flex;
+            padding: 0.5rem 0.75rem env(safe-area-inset-bottom, 0.5rem);
+            gap: 0.45rem;
+          }
+          .sticky-btn {
+            padding: 0.6rem 0.35rem;
+            font-size: 0.76rem;
           }
         }
       `}} />
