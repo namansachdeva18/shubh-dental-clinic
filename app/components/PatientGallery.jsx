@@ -1192,9 +1192,9 @@ export default function PatientGallery() {
           .scroll-left-slow, .scroll-right-slow {
             animation-duration: 25s;
           }
-          /* Hide 3rd row on mobile so the whole gallery fits effortlessly in 1 viewport */
+          /* Ensure all 3 rows are visible on mobile */
           .collage-marquee-row:nth-child(3) {
-            display: none !important;
+            display: flex !important;
           }
         }
         @media (max-width: 420px) {
