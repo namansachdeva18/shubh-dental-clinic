@@ -14,7 +14,7 @@
  *     <Card />
  *   </ScrollReveal>
  */
-import { m } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const variants = {
   fadeUp: {
@@ -49,7 +49,7 @@ export default function ScrollReveal({
   style,
   as = 'div',
 }) {
-  const Tag = m[as] || m.div;
+  const Tag = motion[as] || motion.div;
 
   return (
     <Tag
@@ -82,7 +82,7 @@ export function StaggerReveal({
   style,
 }) {
   return (
-    <m.div
+    <motion.div
       className={className}
       style={style}
       initial="hidden"
@@ -97,7 +97,7 @@ export function StaggerReveal({
       }}
     >
       {children}
-    </m.div>
+    </motion.div>
   );
 }
 
@@ -119,12 +119,12 @@ export function StaggerItem({
   };
 
   return (
-    <m.div
+    <motion.div
       className={className}
       style={{ ...style, willChange: 'transform, opacity' }}
       variants={itemVariants}
     >
       {children}
-    </m.div>
+    </motion.div>
   );
 }

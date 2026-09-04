@@ -272,7 +272,7 @@ export default function BookingModal() {
             </motion.div>
           </div>
 
-          <style jsx global>{`
+          <style dangerouslySetInnerHTML={{ __html: `
             .booking-modal-overlay {
               position: fixed;
               inset: 0;
@@ -572,7 +572,7 @@ export default function BookingModal() {
             .bm-input-wrapper:has(select)::after {
               opacity: 1;
             }
-          `}</style>
+          `}} />
         </div>
       )}
     </AnimatePresence>
