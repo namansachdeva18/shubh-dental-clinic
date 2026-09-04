@@ -1578,30 +1578,31 @@ export default function SpecialOfferPage() {
           box-shadow: 0 10px 24px rgba(230, 106, 31, 0.55);
         }
 
-        /* ── 5. CLINIC AUTHORITY BENTO ── */
+        /* ── 5. CLINIC AUTHORITY BENTO (COMPACTED) ── */
         .clinic-authority-section {
-          padding: 3rem 0;
+          padding: 2.25rem 0;
           background: #FAF8F5;
         }
         .authority-bento-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 1.25rem;
+          gap: 0.95rem;
         }
         .bento-card {
           background: #FFFFFF;
           border: 1.5px solid rgba(74, 37, 24, 0.1);
-          border-radius: 20px;
-          padding: 1.75rem;
-          box-shadow: 0 6px 20px rgba(74, 37, 24, 0.04);
-          transition: all 0.25s ease;
+          border-radius: 16px;
+          padding: 1.15rem 1.25rem;
+          box-shadow: 0 4px 14px rgba(74, 37, 24, 0.03);
+          transition: all 0.22s ease;
         }
         .bento-card:hover {
-          transform: translateY(-3px);
+          transform: translateY(-2px);
           border-color: #D67A41;
+          box-shadow: 0 8px 22px rgba(214, 122, 65, 0.12);
         }
         .bento-doctors {
-          border-color: rgba(214, 122, 65, 0.3);
+          border-color: rgba(214, 122, 65, 0.28);
           background: linear-gradient(180deg, #FFFDFB 0%, #FFFFFF 100%);
         }
 
@@ -1609,12 +1610,12 @@ export default function SpecialOfferPage() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 0.75rem;
+          margin-bottom: 0.5rem;
         }
         .bento-icon-gold {
-          width: 38px;
-          height: 38px;
-          border-radius: 10px;
+          width: 32px;
+          height: 32px;
+          border-radius: 8px;
           background: #FFF1E8;
           color: #D67A41;
           display: flex;
@@ -1622,24 +1623,25 @@ export default function SpecialOfferPage() {
           justify-content: center;
         }
         .bento-tag {
-          font-size: 0.72rem;
+          font-size: 0.68rem;
           font-weight: 800;
           color: #B85922;
           background: #FFF3EB;
-          padding: 0.2rem 0.55rem;
+          padding: 0.15rem 0.5rem;
           border-radius: 99px;
         }
         .bento-title {
           font-family: var(--font-heading);
-          font-size: 1.15rem;
+          font-size: 1.02rem;
           font-weight: 800;
           color: #110805;
-          margin: 0 0 0.45rem;
+          margin: 0 0 0.3rem;
+          line-height: 1.3;
         }
         .bento-desc {
-          font-size: 0.86rem;
+          font-size: 0.81rem;
           color: #5A4840;
-          line-height: 1.55;
+          line-height: 1.48;
           margin: 0;
         }
         .bento-desc strong { color: #110805; }
@@ -1862,9 +1864,10 @@ export default function SpecialOfferPage() {
           }
           .authority-bento-grid {
             grid-template-columns: 1fr;
+            gap: 0.85rem;
           }
           .bento-card {
-            padding: 1.35rem;
+            padding: 0.95rem 1rem;
           }
         }
 
