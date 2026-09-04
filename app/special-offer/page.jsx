@@ -172,7 +172,7 @@ export default function SpecialOfferPage() {
     setIsSubmitting(true);
     const voucherCode = 'SHUBH-20-VIP';
 
-    // 1. Submit lead immediately to Web3Forms
+    // Submit lead to Web3Forms
     try {
       await submitToWeb3Forms({
         name: formData.name,
@@ -189,10 +189,6 @@ export default function SpecialOfferPage() {
 
     setIsSubmitting(false);
     setSubmitted(true);
-
-    // 2. Open WhatsApp for instant patient connection
-    const msg = `Hello Shubh Dental Clinic! 🏷️ I am claiming the 20% OFF SMILE PRIVILEGE PASS (Voucher: ${voucherCode}).\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Treatment: ${formData.treatment}\n⏰ Preferred Slot: ${formData.timing}\n\nPlease confirm my complimentary 3D Scan & 20% Concession appointment.`;
-    window.open(`https://wa.me/918685048414?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   const handleQuickTabClaim = (treatment) => {
@@ -322,65 +318,98 @@ export default function SpecialOfferPage() {
                 </span>
               </div>
 
-              {/* Fast 2-Field Lead Capture Form */}
-              <form onSubmit={handleClaimSubmit} className="voucher-claim-form">
-                <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
-                <input type="hidden" name="subject" value="New 20% Privilege Lead from Special Offer Page" />
-                <input type="hidden" name="from_name" value="Shubh Dental Clinic Website" />
-                <div className="v-form-group">
-                  <label htmlFor="lead-name">Your Full Name</label>
-                  <input 
-                    id="lead-name"
-                    type="text" 
-                    required 
-                    placeholder="e.g., Rohit Sharma" 
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  />
+              {/* Lead Capture Form or Success Confirmation */}
+              {submitted ? (
+                <div className="voucher-success-box">
+                  <div className="success-icon-wrap">
+                    <CheckCircle2 size={42} className="success-check-icon" />
+                  </div>
+                  <h4 className="success-heading">20% Privilege Pass Reserved!</h4>
+                  <p className="success-desc">
+                    Thank you, <strong>{formData.name}</strong>. Your 20% concession slot for <strong>{formData.treatment}</strong> has been secured and sent to our specialist desk.
+                  </p>
+                  <div className="claimed-code-badge">
+                    <span>VOUCHER CODE:</span>
+                    <strong>SHUBH-20-VIP</strong>
+                  </div>
+                  <p className="success-subtext">
+                    Our patient coordinator will contact you at <strong>{formData.phone}</strong> shortly to confirm your complimentary 3D Scan appointment.
+                  </p>
+                  <div className="success-actions">
+                    <a href="tel:+918685048414" className="btn-success-call">
+                      <Phone size={15} /> Call Clinic Directly (+91 86850 48414)
+                    </a>
+                    <button 
+                      onClick={() => {
+                        setSubmitted(false);
+                        setFormData({ ...formData, name: '', phone: '' });
+                      }}
+                      className="btn-success-reset"
+                    >
+                      Book Another Consultation
+                    </button>
+                  </div>
                 </div>
+              ) : (
+                <form onSubmit={handleClaimSubmit} className="voucher-claim-form">
+                  <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+                  <input type="hidden" name="subject" value="New 20% Privilege Lead from Special Offer Page" />
+                  <input type="hidden" name="from_name" value="Shubh Dental Clinic Website" />
+                  <div className="v-form-group">
+                    <label htmlFor="lead-name">Your Full Name</label>
+                    <input 
+                      id="lead-name"
+                      type="text" 
+                      required 
+                      placeholder="e.g., Rohit Sharma" 
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    />
+                  </div>
 
-                <div className="v-form-group">
-                  <label htmlFor="lead-phone">WhatsApp Mobile Number</label>
-                  <input 
-                    id="lead-phone"
-                    type="tel" 
-                    required 
-                    placeholder="10-digit mobile number" 
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  />
-                </div>
+                  <div className="v-form-group">
+                    <label htmlFor="lead-phone">Mobile / Contact Number</label>
+                    <input 
+                      id="lead-phone"
+                      type="tel" 
+                      required 
+                      placeholder="10-digit mobile number" 
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    />
+                  </div>
 
-                <div className="v-form-group">
-                  <label htmlFor="lead-treatment">Treatment of Interest</label>
-                  <select 
-                    id="lead-treatment"
-                    value={formData.treatment}
-                    onChange={(e) => setFormData({ ...formData, treatment: e.target.value })}
-                  >
-                    {TREATMENTS_DATA.map((t, idx) => (
-                      <option key={idx} value={t.title}>{t.title}</option>
-                    ))}
-                  </select>
-                </div>
+                  <div className="v-form-group">
+                    <label htmlFor="lead-treatment">Treatment of Interest</label>
+                    <select 
+                      id="lead-treatment"
+                      value={formData.treatment}
+                      onChange={(e) => setFormData({ ...formData, treatment: e.target.value })}
+                    >
+                      {TREATMENTS_DATA.map((t, idx) => (
+                        <option key={idx} value={t.title}>{t.title}</option>
+                      ))}
+                    </select>
+                  </div>
 
-                <button type="submit" className="btn-voucher-claim" disabled={isSubmitting}>
-                  <Sparkles size={17} />
-                  <span>{isSubmitting ? 'Securing Your 20% Slot...' : 'Claim 20% Voucher via WhatsApp'}</span>
-                  <ArrowRight size={17} />
-                </button>
+                  <button type="submit" className="btn-voucher-claim" disabled={isSubmitting}>
+                    <Sparkles size={17} />
+                    <span>{isSubmitting ? 'Securing Your 20% Slot...' : 'Claim 20% Privilege Voucher Now'}</span>
+                    <ArrowRight size={17} />
+                  </button>
 
-                <div className="voucher-call-alt">
-                  <span>Prefer calling immediately?</span>
-                  <a href="tel:+918685048414" className="alt-call-link">
-                    <Phone size={13} /> +91 86850 48414
-                  </a>
-                </div>
+                  <div className="voucher-call-alt">
+                    <span>Prefer calling immediately?</span>
+                    <a href="tel:+918685048414" className="alt-call-link">
+                      <Phone size={13} /> +91 86850 48414
+                    </a>
+                  </div>
 
-                <p className="voucher-guarantee-micro">
-                  🔒 Free Consultation · No Advance Payment · Instant Confirmation
-                </p>
-              </form>
+                  <p className="voucher-guarantee-micro">
+                    🔒 Free Consultation · No Advance Payment · Instant Confirmation
+                  </p>
+                </form>
+              )}
 
             </div>
           </div>
@@ -1079,6 +1108,110 @@ export default function SpecialOfferPage() {
           color: rgba(255, 255, 255, 0.55);
           text-align: center;
           margin: 0;
+        }
+
+        /* Voucher Success Confirmation Styles */
+        .voucher-success-box {
+          text-align: center;
+          padding: 1rem 0.5rem 0.5rem;
+          animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: scale(0.96); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        .success-icon-wrap {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 58px;
+          height: 58px;
+          border-radius: 50%;
+          background: rgba(16, 185, 129, 0.2);
+          border: 1.5px solid #10B981;
+          margin-bottom: 0.85rem;
+        }
+        .success-check-icon {
+          color: #10B981;
+        }
+        .success-heading {
+          font-family: var(--font-heading);
+          font-size: 1.25rem;
+          font-weight: 850;
+          color: #FFFFFF;
+          margin: 0 0 0.5rem;
+        }
+        .success-desc {
+          font-size: 0.86rem;
+          color: rgba(255, 255, 255, 0.85);
+          line-height: 1.5;
+          margin: 0 0 0.85rem;
+        }
+        .claimed-code-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem;
+          background: rgba(214, 122, 65, 0.25);
+          border: 1.5px dashed #FF924A;
+          border-radius: 99px;
+          padding: 0.45rem 1.15rem;
+          margin-bottom: 0.85rem;
+        }
+        .claimed-code-badge span {
+          font-size: 0.7rem;
+          font-weight: 800;
+          color: #FFB380;
+          letter-spacing: 0.05em;
+        }
+        .claimed-code-badge strong {
+          font-size: 1rem;
+          color: #FFFFFF;
+          letter-spacing: 0.08em;
+        }
+        .success-subtext {
+          font-size: 0.78rem;
+          color: rgba(255, 255, 255, 0.65);
+          line-height: 1.45;
+          margin: 0 0 1.15rem;
+        }
+        .success-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 0.65rem;
+        }
+        .btn-success-call {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.45rem;
+          background: #10B981;
+          color: #FFFFFF;
+          font-size: 0.88rem;
+          font-weight: 800;
+          padding: 0.75rem 1rem;
+          border-radius: 12px;
+          text-decoration: none;
+          box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+          transition: all 0.2s ease;
+        }
+        .btn-success-call:hover {
+          background: #059669;
+          transform: translateY(-2px);
+        }
+        .btn-success-reset {
+          background: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.78rem;
+          font-weight: 700;
+          padding: 0.5rem;
+          border-radius: 9px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .btn-success-reset:hover {
+          border-color: rgba(255, 255, 255, 0.5);
+          color: #FFFFFF;
         }
 
         /* ── SECTION COMMON STYLES (COMPACT) ── */
