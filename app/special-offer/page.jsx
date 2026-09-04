@@ -9,6 +9,7 @@ import {
   Calculator, Percent, BadgeCheck, AlertCircle, HeartHandshake, Eye
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from '../lib/web3forms';
 
 const TREATMENTS_DATA = [
   {
@@ -147,7 +148,7 @@ const FAQS_DATA = [
 ];
 
 export default function SpecialOfferPage() {
-  const [activeTreatmentTab, setActiveTreatmentTab] = useState(0);
+  const [activeTreatmentFilter, setActiveTreatmentFilter] = useState('all');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -158,21 +159,55 @@ export default function SpecialOfferPage() {
   const [submitted, setSubmitted] = useState(false);
   const [previewModalImg, setPreviewModalImg] = useState(null);
 
-  const currentTreatment = TREATMENTS_DATA[activeTreatmentTab];
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const displayedTreatments = activeTreatmentFilter === 'all' 
+    ? TREATMENTS_DATA 
+    : TREATMENTS_DATA.filter(t => t.id === activeTreatmentFilter);
+  const currentTreatment = displayedTreatments[0] || TREATMENTS_DATA[0];
 
-  const handleClaimSubmit = (e) => {
+  const handleClaimSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
 
+    setIsSubmitting(true);
     const voucherCode = 'SHUBH-20-VIP';
-    const msg = `Hello Shubh Dental Clinic! 🏷️ I am claiming the 20% OFF SMILE PRIVILEGE PASS (Voucher: ${voucherCode}).\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Treatment: ${formData.treatment}\n⏰ Preferred Slot: ${formData.timing}\n\nPlease confirm my complimentary 3D Scan & 20% Concession appointment.`;
-    
-    window.open(`https://wa.me/918685048414?text=${encodeURIComponent(msg)}`, '_blank');
+
+    // 1. Submit lead immediately to Web3Forms
+    try {
+      await submitToWeb3Forms({
+        name: formData.name,
+        phone: formData.phone,
+        treatment: formData.treatment,
+        timing: formData.timing,
+        source: 'Special Offer Page (20% OFF Pass)',
+        voucher: voucherCode,
+        message: `Claimed 20% OFF Privilege Pass for ${formData.treatment}. Preferred slot: ${formData.timing}`
+      });
+    } catch (err) {
+      console.error('Lead recording error:', err);
+    }
+
+    setIsSubmitting(false);
     setSubmitted(true);
+
+    // 2. Open WhatsApp for instant patient connection
+    const msg = `Hello Shubh Dental Clinic! 🏷️ I am claiming the 20% OFF SMILE PRIVILEGE PASS (Voucher: ${voucherCode}).\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Treatment: ${formData.treatment}\n⏰ Preferred Slot: ${formData.timing}\n\nPlease confirm my complimentary 3D Scan & 20% Concession appointment.`;
+    window.open(`https://wa.me/918685048414?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   const handleQuickTabClaim = (treatment) => {
     const voucherCode = 'SHUBH-20-VIP';
+
+    // Submit quick enquiry to Web3Forms
+    submitToWeb3Forms({
+      name: 'Quick Ad Visitor',
+      phone: 'Via WhatsApp Direct',
+      treatment: treatment.title,
+      source: 'Special Offer Page (Quick Tab Claim)',
+      voucher: voucherCode,
+      message: `Visitor clicked Quick Claim for ${treatment.title}`
+    });
+
     const msg = `Hello Shubh Dental Clinic! 🏷️ I want to claim the 20% OFF PRIVILEGE PASS for *${treatment.title}* (Voucher: ${voucherCode}). Please check my eligibility and reserve a complimentary 3D Scan slot.`;
     window.open(`https://wa.me/918685048414?text=${encodeURIComponent(msg)}`, '_blank');
   };
@@ -289,6 +324,9 @@ export default function SpecialOfferPage() {
 
               {/* Fast 2-Field Lead Capture Form */}
               <form onSubmit={handleClaimSubmit} className="voucher-claim-form">
+                <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+                <input type="hidden" name="subject" value="New 20% Privilege Lead from Special Offer Page" />
+                <input type="hidden" name="from_name" value="Shubh Dental Clinic Website" />
                 <div className="v-form-group">
                   <label htmlFor="lead-name">Your Full Name</label>
                   <input 
@@ -326,9 +364,9 @@ export default function SpecialOfferPage() {
                   </select>
                 </div>
 
-                <button type="submit" className="btn-voucher-claim">
+                <button type="submit" className="btn-voucher-claim" disabled={isSubmitting}>
                   <Sparkles size={17} />
-                  <span>Claim 20% Voucher via WhatsApp</span>
+                  <span>{isSubmitting ? 'Securing Your 20% Slot...' : 'Claim 20% Voucher via WhatsApp'}</span>
                   <ArrowRight size={17} />
                 </button>
 
@@ -350,140 +388,129 @@ export default function SpecialOfferPage() {
         </div>
       </section>
 
-      {/* ── 3. INTERACTIVE TREATMENT PRIVILEGE MATRIX (Least Space, Most Content) ── */}
-      <section className="section treatments-matrix-section">
+      {/* ── 3. ALL TREATMENT PRIVILEGE CARDS (All 6 Displayed) ── */}
+      <section className="section treatments-matrix-section" id="all-treatments">
         <div className="container">
           
           <div className="section-head-compact text-center">
-            <span className="mini-sub-badge">SELECT YOUR TREATMENT</span>
+            <span className="mini-sub-badge">ALL ELIGIBLE PROCEDURES</span>
             <h2 className="section-title-compact">
-              Explore 20% Concessions by Procedure
+              Explore 20% Concessions on All Treatments
             </h2>
             <p className="section-desc-compact">
-              Tap any treatment tab below to view included clinical benefits, savings, and 0% EMI financing.
+              All treatments include complimentary 3D scans, 0% EMI financing, and direct PGI MDS specialist oversight.
             </p>
           </div>
 
-          {/* Horizontal Scrollable/Segmented Tab Bar */}
+          {/* Quick Filter Bar */}
           <div className="matrix-tabs-container">
             <div className="matrix-tabs-track">
-              {TREATMENTS_DATA.map((item, idx) => (
+              <button
+                onClick={() => setActiveTreatmentFilter('all')}
+                className={`matrix-tab-btn ${activeTreatmentFilter === 'all' ? 'tab-active' : ''}`}
+              >
+                <span>⭐ All Treatments (6)</span>
+                {activeTreatmentFilter === 'all' && <span className="tab-active-dot" />}
+              </button>
+              {TREATMENTS_DATA.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => {
-                    setActiveTreatmentTab(idx);
-                    setFormData(prev => ({ ...prev, treatment: item.title }));
-                  }}
-                  className={`matrix-tab-btn ${activeTreatmentTab === idx ? 'tab-active' : ''}`}
+                  onClick={() => setActiveTreatmentFilter(item.id)}
+                  className={`matrix-tab-btn ${activeTreatmentFilter === item.id ? 'tab-active' : ''}`}
                 >
                   <span>{item.tabName}</span>
-                  {activeTreatmentTab === idx && <span className="tab-active-dot" />}
+                  {activeTreatmentFilter === item.id && <span className="tab-active-dot" />}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Active Treatment Card Showcase */}
-          <div className="matrix-display-card">
-            <div className="matrix-card-grid">
-              
-              {/* Left Details */}
-              <div className="matrix-info-col">
-                <div className="matrix-badge-row">
-                  <span className="privilege-discount-pill">
-                    <Percent size={13} /> FLAT 20% OFF
-                  </span>
-                  <span className="privilege-savings-pill">
-                    {currentTreatment.savings}
-                  </span>
-                  <span className="privilege-emi-pill">
-                    {currentTreatment.emi} (0% EMI)
+          {/* ALL 6 CARDS DISPLAYED DIRECTLY HERE */}
+          <div className="treatments-all-grid">
+            {displayedTreatments.map((treatment) => (
+              <div key={treatment.id} className="treatment-privilege-card">
+                
+                {/* Card Top Strip */}
+                <div className="tc-header-row">
+                  <span className="tc-tab-tag">{treatment.tabName}</span>
+                  <span className="tc-discount-badge">
+                    <Percent size={12} /> 20% OFF
                   </span>
                 </div>
 
-                <h3 className="matrix-treatment-title">{currentTreatment.title}</h3>
-                <p className="matrix-treatment-tagline">{currentTreatment.tagline}</p>
+                {/* Treatment Title & Tagline */}
+                <h3 className="tc-title">{treatment.title}</h3>
+                <p className="tc-tagline">{treatment.tagline}</p>
 
-                {/* Supervising Doctor */}
-                <div className="matrix-doctor-tag">
-                  <Stethoscope size={15} className="doc-icon" />
-                  <span>Supervised by: <strong>{currentTreatment.specialist}</strong></span>
+                {/* Doctor Credential */}
+                <div className="tc-doctor-row">
+                  <Stethoscope size={14} className="tc-doc-icon" />
+                  <span>{treatment.specialist}</span>
                 </div>
 
-                {/* Inclusions Check List */}
-                <div className="matrix-inclusions-box">
-                  <h4 className="inc-heading">What&apos;s Included In Your 20% Privilege Pass:</h4>
-                  <ul className="inc-list">
-                    {currentTreatment.inclusions.map((inc, i) => (
-                      <li key={i} className="inc-item">
-                        <Check size={14} className="check-gold" />
-                        <span>{inc}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Real Clinical Split Before / After Preview */}
+                <div className="tc-preview-box">
+                  <div className="tc-split-img">
+                    <Image 
+                      src={treatment.beforeImg} 
+                      alt={`${treatment.title} Before`} 
+                      fill
+                      sizes="(max-width: 768px) 45vw, 200px"
+                      style={{ objectFit: 'cover' }}
+                    />
+                    <span className="tc-img-tag before">BEFORE</span>
+                  </div>
+                  <div className="tc-split-img">
+                    <Image 
+                      src={treatment.afterImg} 
+                      alt={`${treatment.title} After`} 
+                      fill
+                      sizes="(max-width: 768px) 45vw, 200px"
+                      style={{ objectFit: 'cover' }}
+                    />
+                    <span className="tc-img-tag after">AFTER</span>
+                  </div>
                 </div>
 
-                <div className="matrix-candidacy-note">
-                  <strong>Best suited for:</strong> {currentTreatment.bestFor}
+                {/* Savings & 0% EMI Bar */}
+                <div className="tc-pricing-strip">
+                  <div className="tc-price-pill">
+                    <span className="p-badge-sub">Savings:</span>
+                    <strong className="p-badge-val">{treatment.savings}</strong>
+                  </div>
+                  <div className="tc-price-pill emi">
+                    <span className="p-badge-sub">0% EMI:</span>
+                    <strong className="p-badge-val">{treatment.emi}</strong>
+                  </div>
                 </div>
 
-                {/* Action Row */}
-                <div className="matrix-action-row">
+                {/* Core Inclusions Check Bullets */}
+                <ul className="tc-inclusions-list">
+                  {treatment.inclusions.slice(0, 3).map((inc, i) => (
+                    <li key={i} className="tc-inc-item">
+                      <Check size={13} className="tc-check-icon" />
+                      <span>{inc}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* 1-Tap Claim Action */}
+                <div className="tc-action-row">
                   <button 
-                    onClick={() => handleQuickTabClaim(currentTreatment)}
-                    className="matrix-claim-btn"
+                    onClick={() => handleQuickTabClaim(treatment)}
+                    className="tc-claim-btn"
                   >
-                    <MessageSquare size={16} />
-                    <span>Claim 20% Pass for {currentTreatment.tabName.split(' ')[1]}</span>
-                    <ArrowRight size={15} />
+                    <MessageSquare size={15} />
+                    <span>Claim 20% Pass</span>
+                    <ArrowRight size={14} />
                   </button>
-
-                  <a href="tel:+918685048414" className="matrix-call-btn">
-                    <Phone size={15} />
-                    <span>Call Specialist</span>
+                  <a href="tel:+918685048414" className="tc-call-btn" title="Call doctor desk">
+                    <Phone size={14} />
                   </a>
                 </div>
 
               </div>
-
-              {/* Right Visual & Real Smile Preview */}
-              <div className="matrix-visual-col">
-                <div className="matrix-preview-frame">
-                  <div className="preview-top-bar">
-                    <span className="preview-label">REAL PATIENT RESULT</span>
-                    <span className="preview-tag">Verified Clinical Case</span>
-                  </div>
-                  
-                  <div className="before-after-split">
-                    <div className="split-img-box">
-                      <Image 
-                        src={currentTreatment.beforeImg} 
-                        alt={`${currentTreatment.title} Before`} 
-                        fill
-                        sizes="(max-width: 768px) 50vw, 220px"
-                        style={{ objectFit: 'cover' }}
-                      />
-                      <span className="split-badge before">BEFORE</span>
-                    </div>
-                    <div className="split-img-box">
-                      <Image 
-                        src={currentTreatment.afterImg} 
-                        alt={`${currentTreatment.title} After`} 
-                        fill
-                        sizes="(max-width: 768px) 50vw, 220px"
-                        style={{ objectFit: 'cover' }}
-                      />
-                      <span className="split-badge after">AFTER</span>
-                    </div>
-                  </div>
-
-                  <div className="preview-bottom-note">
-                    <span>✨ Authentic clinical result treated at Shubh Dental Clinic</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+            ))}
           </div>
 
         </div>
@@ -1141,240 +1168,222 @@ export default function SpecialOfferPage() {
           background: #FF8F4D;
         }
 
-        .matrix-display-card {
-          background: #FFFFFF;
-          border: 1.5px solid rgba(214, 122, 65, 0.25);
-          border-radius: 24px;
-          padding: 2.25rem;
-          box-shadow: 0 12px 35px rgba(74, 37, 24, 0.06);
-          position: relative;
-        }
-        .matrix-card-grid {
+        /* ── 3. ALL TREATMENT PRIVILEGE CARDS GRID ── */
+        .treatments-all-grid {
           display: grid;
-          grid-template-columns: 1.18fr 0.82fr;
-          gap: 2.25rem;
-          align-items: center;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.35rem;
+          margin-top: 1.5rem;
         }
 
-        .matrix-badge-row {
+        .treatment-privilege-card {
+          background: #FFFFFF;
+          border: 1.5px solid rgba(214, 122, 65, 0.22);
+          border-radius: 20px;
+          padding: 1.35rem;
+          box-shadow: 0 10px 25px rgba(74, 37, 24, 0.05);
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .treatment-privilege-card:hover {
+          transform: translateY(-4px);
+          border-color: #D67A41;
+          box-shadow: 0 16px 36px rgba(214, 122, 65, 0.16);
+        }
+
+        .tc-header-row {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
-          flex-wrap: wrap;
-          margin-bottom: 0.75rem;
+          justify-content: space-between;
+          margin-bottom: 0.65rem;
         }
-        .privilege-discount-pill {
+
+        .tc-tab-tag {
+          font-size: 0.78rem;
+          font-weight: 800;
+          color: #B85922;
+          background: rgba(214, 122, 65, 0.1);
+          padding: 0.25rem 0.65rem;
+          border-radius: 99px;
+        }
+
+        .tc-discount-badge {
           display: inline-flex;
           align-items: center;
           gap: 0.25rem;
           background: #10B981;
           color: #FFFFFF;
-          font-size: 0.74rem;
+          font-size: 0.72rem;
           font-weight: 900;
-          padding: 0.25rem 0.65rem;
-          border-radius: 99px;
-        }
-        .privilege-savings-pill {
-          background: rgba(230, 106, 31, 0.12);
-          color: #B85922;
-          border: 1px solid rgba(230, 106, 31, 0.3);
-          font-size: 0.74rem;
-          font-weight: 800;
-          padding: 0.25rem 0.65rem;
-          border-radius: 99px;
-        }
-        .privilege-emi-pill {
-          background: #F4EBE1;
-          color: #110805;
-          font-size: 0.74rem;
-          font-weight: 800;
-          padding: 0.25rem 0.65rem;
+          padding: 0.2rem 0.55rem;
           border-radius: 99px;
         }
 
-        .matrix-treatment-title {
+        .tc-title {
           font-family: var(--font-heading);
-          font-size: 1.5rem;
+          font-size: 1.18rem;
           font-weight: 800;
           color: #110805;
           margin: 0 0 0.35rem;
           line-height: 1.25;
         }
-        .matrix-treatment-tagline {
-          font-size: 0.9rem;
-          color: #6E5A50;
-          margin: 0 0 0.85rem;
-          line-height: 1.45;
-        }
 
-        .matrix-doctor-tag {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.45rem;
-          background: #FAF7F4;
-          border: 1px solid rgba(74, 37, 24, 0.1);
-          padding: 0.35rem 0.75rem;
-          border-radius: 10px;
-          font-size: 0.78rem;
-          color: #4A3E39;
-          margin-bottom: 1.15rem;
-        }
-        .matrix-doctor-tag strong { color: #B85922; }
-        .doc-icon { color: #D67A41; }
-
-        .matrix-inclusions-box {
-          background: #FFF9F5;
-          border: 1.5px solid rgba(214, 122, 65, 0.2);
-          border-radius: 16px;
-          padding: 1.15rem;
-          margin-bottom: 1rem;
-        }
-        .inc-heading {
+        .tc-tagline {
           font-size: 0.82rem;
-          font-weight: 800;
-          color: #110805;
+          color: #6E5A50;
+          line-height: 1.45;
           margin: 0 0 0.65rem;
-          text-transform: uppercase;
+          flex-grow: 1;
+        }
+
+        .tc-doctor-row {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.75rem;
+          color: #8C6F62;
+          font-weight: 700;
+          background: #FAF7F4;
+          padding: 0.3rem 0.65rem;
+          border-radius: 8px;
+          margin-bottom: 0.85rem;
+        }
+        .tc-doc-icon { color: #D67A41; flex-shrink: 0; }
+
+        .tc-preview-box {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.5rem;
+          margin-bottom: 0.85rem;
+          border-radius: 12px;
+          overflow: hidden;
+        }
+
+        .tc-split-img {
+          position: relative;
+          height: 125px;
+          border-radius: 10px;
+          overflow: hidden;
+          background: #000;
+        }
+
+        .tc-img-tag {
+          position: absolute;
+          bottom: 0.35rem;
+          left: 0.35rem;
+          font-size: 0.6rem;
+          font-weight: 900;
+          padding: 0.15rem 0.45rem;
+          border-radius: 4px;
+          z-index: 2;
           letter-spacing: 0.04em;
         }
-        .inc-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
+        .tc-img-tag.before { background: rgba(17, 8, 5, 0.85); color: #FFFFFF; }
+        .tc-img-tag.after { background: #10B981; color: #FFFFFF; }
+
+        .tc-pricing-strip {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 0.85rem;
+        }
+        .tc-price-pill {
+          flex: 1;
           display: flex;
           flex-direction: column;
-          gap: 0.45rem;
+          background: #FFF9F5;
+          border: 1px solid rgba(214, 122, 65, 0.25);
+          padding: 0.35rem 0.6rem;
+          border-radius: 10px;
         }
-        .inc-item {
+        .tc-price-pill.emi {
+          background: #F4EBE1;
+          border-color: rgba(74, 37, 24, 0.15);
+        }
+        .p-badge-sub {
+          font-size: 0.65rem;
+          color: #8C6F62;
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+        .p-badge-val {
+          font-size: 0.82rem;
+          font-weight: 850;
+          color: #B85922;
+        }
+        .tc-price-pill.emi .p-badge-val { color: #110805; }
+
+        .tc-inclusions-list {
+          list-style: none;
+          padding: 0;
+          margin: 0 0 1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.35rem;
+        }
+        .tc-inc-item {
           display: flex;
           align-items: flex-start;
-          gap: 0.45rem;
-          font-size: 0.84rem;
+          gap: 0.4rem;
+          font-size: 0.78rem;
           color: #382C26;
           font-weight: 600;
-          line-height: 1.4;
+          line-height: 1.35;
         }
-        .check-gold { color: #10B981; flex-shrink: 0; margin-top: 2px; }
-
-        .matrix-candidacy-note {
-          font-size: 0.82rem;
-          color: #5A4840;
-          line-height: 1.5;
-          margin-bottom: 1.35rem;
+        .tc-check-icon {
+          color: #10B981;
+          flex-shrink: 0;
+          margin-top: 2px;
         }
 
-        .matrix-action-row {
+        .tc-action-row {
           display: flex;
           align-items: center;
-          gap: 0.85rem;
-          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-top: auto;
         }
-        .matrix-claim-btn {
+        .tc-claim-btn {
+          flex: 1;
           display: inline-flex;
           align-items: center;
-          gap: 0.45rem;
+          justify-content: center;
+          gap: 0.4rem;
           background: linear-gradient(135deg, #E66A1F 0%, #D67A41 100%);
           color: #FFFFFF;
-          font-size: 0.92rem;
+          font-size: 0.85rem;
           font-weight: 800;
-          padding: 0.85rem 1.4rem;
-          border-radius: 12px;
+          padding: 0.75rem 0.9rem;
+          border-radius: 11px;
           border: none;
           cursor: pointer;
-          box-shadow: 0 6px 18px rgba(230, 106, 31, 0.35);
+          box-shadow: 0 4px 14px rgba(230, 106, 31, 0.35);
           transition: all 0.2s ease;
           font-family: inherit;
         }
-        .matrix-claim-btn:hover {
+        .tc-claim-btn:hover {
           transform: translateY(-2px);
-          box-shadow: 0 10px 24px rgba(230, 106, 31, 0.5);
+          box-shadow: 0 8px 20px rgba(230, 106, 31, 0.5);
         }
-
-        .matrix-call-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
+        .tc-call-btn {
+          width: 38px;
+          height: 38px;
+          border-radius: 11px;
           background: #FFFFFF;
           border: 1.5px solid rgba(74, 37, 24, 0.18);
           color: #110805;
-          font-size: 0.88rem;
-          font-weight: 750;
-          padding: 0.85rem 1.25rem;
-          border-radius: 12px;
-          text-decoration: none;
-          transition: all 0.2s ease;
-        }
-        .matrix-call-btn:hover {
-          border-color: #B85922;
-          color: #B85922;
-        }
-
-        /* Right Visual Column */
-        .matrix-preview-frame {
-          background: #FAF8F5;
-          border: 1.5px solid rgba(214, 122, 65, 0.25);
-          border-radius: 20px;
-          overflow: hidden;
-          padding: 1rem;
-        }
-        .preview-top-bar {
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          margin-bottom: 0.75rem;
+          justify-content: center;
+          text-decoration: none;
+          flex-shrink: 0;
+          transition: all 0.2s ease;
         }
-        .preview-label {
-          font-size: 0.72rem;
-          font-weight: 900;
-          color: #B85922;
-          letter-spacing: 0.05em;
-        }
-        .preview-tag {
-          font-size: 0.68rem;
-          font-weight: 700;
-          color: #6E5A50;
-          background: #EDE4D8;
-          padding: 0.15rem 0.5rem;
-          border-radius: 99px;
-        }
-
-        .before-after-split {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0.65rem;
-        }
-        .split-img-box {
-          position: relative;
-          height: 180px;
-          border-radius: 14px;
-          overflow: hidden;
-          border: 1px solid rgba(74, 37, 24, 0.1);
-        }
-        .split-badge {
-          position: absolute;
-          bottom: 0.5rem;
-          left: 0.5rem;
-          font-size: 0.64rem;
-          font-weight: 900;
-          padding: 0.2rem 0.55rem;
-          border-radius: 6px;
-          z-index: 2;
-          letter-spacing: 0.05em;
-        }
-        .split-badge.before {
-          background: rgba(17, 8, 5, 0.85);
-          color: #FFFFFF;
-        }
-        .split-badge.after {
-          background: #10B981;
-          color: #FFFFFF;
-        }
-        .preview-bottom-note {
-          font-size: 0.74rem;
-          color: #6E5A50;
-          text-align: center;
-          margin-top: 0.65rem;
-          font-weight: 600;
+        .tc-call-btn:hover {
+          border-color: #D67A41;
+          color: #D67A41;
         }
 
         /* ── 4. SAVINGS & EMI ESTIMATOR ── */
@@ -1749,9 +1758,9 @@ export default function SpecialOfferPage() {
             grid-template-columns: 1fr;
             gap: 2rem;
           }
-          .matrix-card-grid {
-            grid-template-columns: 1fr;
-            gap: 1.75rem;
+          .treatments-all-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.15rem;
           }
           .calc-content-grid {
             grid-template-columns: 1fr;
@@ -1798,15 +1807,13 @@ export default function SpecialOfferPage() {
           .treatments-matrix-section {
             padding: 2.25rem 0;
           }
-          .matrix-display-card {
-            padding: 1.35rem 1.15rem;
-            border-radius: 20px;
+          .treatments-all-grid {
+            grid-template-columns: 1fr;
+            gap: 1.15rem;
           }
-          .matrix-treatment-title {
-            font-size: 1.3rem;
-          }
-          .split-img-box {
-            height: 140px;
+          .treatment-privilege-card {
+            padding: 1.15rem;
+            border-radius: 18px;
           }
           .calc-card-wrapper {
             padding: 1.75rem 1.25rem;
@@ -1825,13 +1832,12 @@ export default function SpecialOfferPage() {
             font-size: 0.78rem;
             padding: 0.45rem 0.85rem;
           }
-          .matrix-claim-btn {
-            width: 100%;
-            justify-content: center;
+          .tc-action-row {
+            flex-direction: row;
           }
-          .matrix-call-btn {
-            width: 100%;
-            justify-content: center;
+          .tc-claim-btn {
+            font-size: 0.82rem;
+            padding: 0.7rem 0.75rem;
           }
         }
       `}} />

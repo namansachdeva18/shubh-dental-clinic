@@ -7,6 +7,7 @@ import {
   Wind, Activity
 } from 'lucide-react';
 import ScrollReveal, { StaggerReveal, StaggerItem } from './ScrollReveal';
+import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from '../lib/web3forms';
 
 const TREATMENT_CATEGORIES = [
   {
@@ -65,17 +66,39 @@ export default function SmartBooking() {
     customDate: '',
     time: 'Morning (10am–1pm)'
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
     
+    setIsSubmitting(true);
     const finalDate = formData.dateType === 'Custom' ? (formData.customDate || 'Earliest Available') : formData.dateType;
+
+    // 1. Post lead to Web3Forms
+    try {
+      await submitToWeb3Forms({
+        name: formData.name,
+        phone: formData.phone,
+        treatment: formData.treatment,
+        date: finalDate,
+        timing: formData.time,
+        mode: formData.mode,
+        source: 'Homepage Smart Booking Section (#book)',
+        message: `Patient requested ${formData.mode} on ${finalDate} (${formData.time}) for ${formData.treatment}`
+      });
+    } catch (err) {
+      console.error('Web3Forms submit error:', err);
+    }
+
+    setIsSubmitting(false);
+    setSubmitted(true);
+
+    // 2. Open WhatsApp for immediate booking coordination
     const msg = `Hello Shubh Dental Clinic! I would like to reserve my VIP consultation.\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n📍 Mode: ${formData.mode}\n✨ Treatment: ${formData.treatment}\n📅 Preferred Date: ${finalDate}\n⏰ Preferred Slot: ${formData.time}`;
     const url = `https://wa.me/918685048414?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
-    setSubmitted(true);
   };
 
   return (
@@ -181,6 +204,9 @@ export default function SmartBooking() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="booking-form-interactive">
+                  <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+                  <input type="hidden" name="subject" value="New Consultation Booking from Website (Homepage)" />
+                  <input type="hidden" name="from_name" value="Shubh Dental Clinic Lead Desk" />
 
                   {/* Consultation Mode Segmented Toggle */}
                   <div className="mode-segmented-bar">
@@ -334,10 +360,10 @@ export default function SmartBooking() {
                   </div>
 
                   {/* High-Converting Glowing Action Button */}
-                  <button type="submit" className="btn-confirm-appointment">
+                  <button type="submit" className="btn-confirm-appointment" disabled={isSubmitting}>
                     <div className="btn-glow-shimmer" />
                     <Send size={15} />
-                    <span>Confirm &amp; Reserve VIP Consultation</span>
+                    <span>{isSubmitting ? 'Reserving Your Slot...' : 'Confirm & Reserve VIP Consultation'}</span>
                   </button>
 
                   <div className="form-trust-footer">

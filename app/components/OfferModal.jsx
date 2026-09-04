@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Tag, ShieldCheck, CheckCircle2, Sparkles, Send, Phone, ArrowRight, User, Stethoscope, Clock } from 'lucide-react';
+import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from '../lib/web3forms';
 
 const TREATMENTS = [
   'Invisalign & Clear Aligners',
@@ -77,19 +78,32 @@ export default function OfferModal() {
     }, 400);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
     setIsSubmitting(true);
 
+    // 1. Post lead to Web3Forms
+    try {
+      await submitToWeb3Forms({
+        name: formData.name,
+        phone: formData.phone,
+        treatment: formData.treatment,
+        timing: formData.timing,
+        source: 'Global Special Offer / Booking Modal',
+        voucher: 'SHUBH-20-VIP',
+        message: `Claimed Special Offer for ${formData.treatment} (${formData.timing})`
+      });
+    } catch (err) {
+      console.error('Web3Forms submit error:', err);
+    }
+
     const msg = `Hello Shubh Dental Clinic! 🏷️ I would like to CLAIM THE LIMITED-TIME OFFER (Up to 20% OFF + Complimentary Consultation).\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Treatment of Interest: ${formData.treatment}\n⏰ Preferred Slot: ${formData.timing}\n📍 Location: Tilak Nagar, Rohtak`;
     const waUrl = `https://wa.me/918685048414?text=${encodeURIComponent(msg)}`;
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      window.open(waUrl, '_blank');
-    }, 600);
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    window.open(waUrl, '_blank');
   };
 
   return (
@@ -150,6 +164,9 @@ export default function OfferModal() {
                   </div>
 
                   <form onSubmit={handleSubmit} className="offer-form">
+                    <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+                    <input type="hidden" name="subject" value="New Offer / Appointment Claim from Global Modal" />
+                    <input type="hidden" name="from_name" value="Shubh Dental Clinic Website" />
                     <div className="offer-input-group">
                       <label htmlFor="offer-name">Full Name *</label>
                       <div className="offer-input-wrap">

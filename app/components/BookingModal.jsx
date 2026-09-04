@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, User, Phone, Stethoscope, ChevronRight, Sparkles } from 'lucide-react';
+import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from '../lib/web3forms';
 
 export default function BookingModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,15 +48,27 @@ export default function BookingModal() {
     }, 500);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.name || !formData.phone) return;
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-    }, 1500);
+    // Submit to Web3Forms
+    try {
+      await submitToWeb3Forms({
+        name: formData.name,
+        phone: formData.phone,
+        treatment: formData.treatment,
+        date: formData.date,
+        source: 'Standard Booking Modal (#standard-book)',
+        message: `Consultation requested for ${formData.treatment} on ${formData.date}`
+      });
+    } catch (err) {
+      console.error('Web3Forms submit error:', err);
+    }
+
+    setIsSubmitting(false);
+    setIsSuccess(true);
   };
 
   const handleChange = (e) => {
@@ -145,6 +158,9 @@ export default function BookingModal() {
                     animate="visible"
                     variants={containerVariants}
                   >
+                    <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+                    <input type="hidden" name="subject" value="New Consultation Request from Booking Modal" />
+                    <input type="hidden" name="from_name" value="Shubh Dental Clinic Website" />
                     <motion.div className="bm-input-group" variants={itemVariants}>
                       <div className="bm-input-wrapper">
                         <User className="bm-icon" size={18} />
