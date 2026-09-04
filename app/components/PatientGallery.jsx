@@ -273,7 +273,7 @@ export default function PatientGallery() {
   // Row 3: ONLY photos from public/Pre Post folder
   const row3 = PRE_POST_ROW_PATIENTS;
 
-  const CompactCard = ({ item, hideOverlay = false }) => (
+  const CompactCard = ({ item }) => (
     <div 
       className="compact-patient-card"
       onClick={() => setSelectedPatient(item)}
@@ -288,11 +288,6 @@ export default function PatientGallery() {
           style={{ objectFit: 'cover' }}
         />
       </div>
-      {!hideOverlay && (
-        <div className="compact-card-overlay">
-          <span className="compact-card-treatment">{item.category}</span>
-        </div>
-      )}
     </div>
   );
 
@@ -407,10 +402,10 @@ export default function PatientGallery() {
                   <div className="collage-marquee-row">
                     <div className="collage-marquee-track scroll-right-slow">
                       <div className="collage-marquee-group">
-                        {row2.map(item => <CompactCard key={`r2-a-${item.id}`} item={item} hideOverlay={true} />)}
+                        {row2.map(item => <CompactCard key={`r2-a-${item.id}`} item={item} />)}
                       </div>
                       <div className="collage-marquee-group">
-                        {row2.map(item => <CompactCard key={`r2-b-${item.id}`} item={item} hideOverlay={true} />)}
+                        {row2.map(item => <CompactCard key={`r2-b-${item.id}`} item={item} />)}
                       </div>
                     </div>
                   </div>
@@ -496,99 +491,39 @@ export default function PatientGallery() {
 
       </div>
 
-      {/* Patient Success Story Lightbox / Modal */}
+      {/* Subtle Photo Lightbox (displays ONLY the complete photograph without any writing) */}
       <AnimatePresence>
         {selectedPatient && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="lightbox-overlay"
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="subtle-photo-lightbox-overlay"
             onClick={() => setSelectedPatient(null)}
           >
+            {/* Subtle floating close button */}
+            <button 
+              className="subtle-lightbox-close-btn" 
+              onClick={() => setSelectedPatient(null)}
+              aria-label="Close photo"
+            >
+              <X size={22} strokeWidth={2.2} />
+            </button>
+
             <motion.div 
-              initial={{ scale: 0.9, y: 50, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.9, y: 50, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="patient-modal-card"
+              initial={{ scale: 0.94, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.94, opacity: 0 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="subtle-photo-lightbox-container"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
-              <button className="modal-close-btn" onClick={() => setSelectedPatient(null)}>
-                <X size={20} />
-              </button>
-
-              <div className="modal-content-grid">
-                
-                {/* Left Side: Photo Frame */}
-                <div className="modal-photo-pane">
-                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '350px' }}>
-                    <Image 
-                      src={selectedPatient.imgSrc || getUnsplashUrl(selectedPatient.imgId)} 
-                      alt={selectedPatient.name} 
-                      className="modal-patient-img"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </div>
-                  <div className="smile-heart-badge">
-                    <Heart size={16} fill="currentColor" />
-                    <span>Happy Patient</span>
-                  </div>
-                </div>
-
-                {/* Right Side: Detailed Story & Metrics */}
-                <div className="modal-info-pane">
-                  <div className="modal-badge-row">
-                    <span className="modal-treatment-tag">{selectedPatient.treatment}</span>
-                    <span className="modal-verified-badge">✓ Verified Case</span>
-                  </div>
-
-                  <h3 className="modal-patient-title">
-                    {selectedPatient.name} <span className="modal-patient-age">({selectedPatient.age} yrs)</span>
-                  </h3>
-
-                  <div className="stars-row" style={{ display: 'flex', gap: '3px', margin: '0.5rem 0 1.25rem' }}>
-                    {[...Array(selectedPatient.rating)].map((_, i) => (
-                      <Star key={i} size={18} fill="#F59E0B" stroke="none" />
-                    ))}
-                  </div>
-
-                  {/* Testimonial Quote */}
-                  <div className="modal-quote-box">
-                    <span className="quote-mark-icon">&ldquo;</span>
-                    <p className="modal-quote-text">{selectedPatient.story}</p>
-                  </div>
-
-                  {/* Clinical Specs */}
-                  <div className="clinical-specs-table">
-                    <div className="spec-row">
-                      <span className="spec-label">Treatment Area</span>
-                      <span className="spec-val font-heading">{selectedPatient.category}</span>
-                    </div>
-                    <div className="spec-row">
-                      <span className="spec-label">Time Duration</span>
-                      <span className="spec-val font-heading">{selectedPatient.duration}</span>
-                    </div>
-                    <div className="spec-row">
-                      <span className="spec-label">Clinical Provider</span>
-                      <span className="spec-val font-heading">Shubh Dental Specialists</span>
-                    </div>
-                  </div>
-
-                  {/* Footer Action */}
-                  <a 
-                    href="#book" 
-                    className="modal-action-cta btn-gold" 
-                    onClick={() => setSelectedPatient(null)}
-                  >
-                    Start Your Transformation <ArrowRight size={16} />
-                  </a>
-
-                </div>
-              </div>
+              <img 
+                src={selectedPatient.imgSrc || getUnsplashUrl(selectedPatient.imgId)} 
+                alt={selectedPatient.name || "Patient photograph"} 
+                className="subtle-photo-full"
+              />
             </motion.div>
           </motion.div>
         )}
@@ -1128,216 +1063,70 @@ export default function PatientGallery() {
           color: var(--accent-gold);
         }
 
-        /* MODAL / LIGHTBOX WINDOW */
-        .lightbox-overlay {
+        /* SUBTLE FULL PHOTO LIGHTBOX */
+        .subtle-photo-lightbox-overlay {
           position: fixed;
           inset: 0;
-          background: rgba(17, 8, 5, 0.85);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
+          background: rgba(10, 5, 3, 0.88);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
           z-index: 10000;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 1.5rem;
+          cursor: zoom-out;
         }
 
-        .patient-modal-card {
-          width: 100%;
-          max-width: 900px;
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.3);
-          border-radius: 32px;
-          overflow: hidden;
-          box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
-          position: relative;
-        }
-
-        .modal-close-btn {
-          position: absolute;
-          top: 1.25rem;
-          right: 1.25rem;
-          width: 38px;
-          height: 38px;
+        .subtle-lightbox-close-btn {
+          position: fixed;
+          top: 1.5rem;
+          right: 1.5rem;
+          width: 44px;
+          height: 44px;
           border-radius: 50%;
-          background: #FFFFFF;
-          border: 1px solid rgba(214, 122, 65, 0.2);
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.25);
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--text-primary);
+          color: #FFFFFF;
           cursor: pointer;
-          z-index: 10;
-          transition: all 0.3s ease;
+          z-index: 10001;
+          transition: all 0.25s ease;
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
         }
 
-        .modal-close-btn:hover {
-          background: #D67A41;
+        .subtle-lightbox-close-btn:hover {
+          background: rgba(255, 255, 255, 0.25);
           color: #FFFFFF;
-          transform: rotate(90deg);
+          transform: scale(1.08);
         }
 
-        .modal-content-grid {
-          display: grid;
-          grid-template-columns: 1.1fr 1.3fr;
-          min-height: 500px;
-        }
-
-        .modal-photo-pane {
+        .subtle-photo-lightbox-container {
           position: relative;
-          background: #1A0D08;
-          min-height: 400px;
+          max-width: 92vw;
+          max-height: 88vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: default;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: #000000;
         }
 
-        .modal-patient-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+        .subtle-photo-full {
+          max-width: 92vw;
+          max-height: 88vh;
+          width: auto;
+          height: auto;
+          object-fit: contain;
           display: block;
-        }
-
-        .smile-heart-badge {
-          position: absolute;
-          top: 1.25rem;
-          left: 1.25rem;
-          background: rgba(214, 122, 65, 0.9);
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
-          color: #FFFFFF;
-          padding: 0.45rem 1rem;
-          border-radius: 99px;
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-size: 0.78rem;
-          font-weight: 700;
-        }
-
-        .modal-info-pane {
-          padding: 3rem 2.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .modal-badge-row {
-          display: flex;
-          gap: 0.75rem;
-          margin-bottom: 0.75rem;
-        }
-
-        .modal-treatment-tag {
-          font-size: 0.78rem;
-          font-weight: 800;
-          color: #D67A41;
-          background: rgba(214, 122, 65, 0.1);
-          padding: 0.3rem 0.85rem;
-          border-radius: 99px;
-          border: 1px solid rgba(214, 122, 65, 0.25);
-        }
-
-        .modal-verified-badge {
-          font-size: 0.78rem;
-          font-weight: 700;
-          color: #10B981;
-        }
-
-        .modal-patient-title {
-          font-family: var(--font-heading);
-          font-size: 2rem;
-          font-weight: 800;
-          color: var(--text-primary);
-          line-height: 1.15;
-        }
-
-        .modal-patient-age {
-          font-size: 1.2rem;
-          color: var(--text-secondary);
-          font-weight: 500;
-        }
-
-        .modal-quote-box {
-          position: relative;
-          background: #FFFFFF;
-          padding: 1.5rem 1.75rem;
-          border-radius: 20px;
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          margin-bottom: 1.5rem;
-        }
-
-        .quote-mark-icon {
-          position: absolute;
-          top: -0.25rem;
-          left: 0.5rem;
-          font-size: 3rem;
-          color: rgba(214, 122, 65, 0.15);
-          font-family: serif;
-          line-height: 1;
-        }
-
-        .modal-quote-text {
-          font-size: 1rem;
-          color: var(--text-secondary);
-          line-height: 1.6;
-          font-style: italic;
-          position: relative;
-          z-index: 2;
-        }
-
-        .clinical-specs-table {
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-          margin-bottom: 2rem;
-          padding-bottom: 1.5rem;
-          border-bottom: 1px dashed rgba(214, 122, 65, 0.2);
-        }
-
-        .spec-row {
-          display: flex;
-          justify-content: space-between;
-          font-size: 0.9rem;
-        }
-
-        .spec-label {
-          color: var(--text-muted);
-        }
-
-        .spec-val {
-          font-weight: 700;
-          color: var(--text-primary);
-        }
-
-        .modal-action-cta {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.75rem;
-          padding: 1rem 2rem;
-          border-radius: 99px;
-          font-family: var(--font-heading);
-          font-weight: 700;
-          font-size: 1rem;
-          text-decoration: none;
-          transition: all 0.4s ease;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          text-align: center;
-        }
-
-        @media (max-width: 992px) {
-          .cases-interactive-grid {
-            grid-template-columns: 1fr;
-          }
-          .modal-content-grid {
-            grid-template-columns: 1fr;
-          }
-          .modal-photo-pane {
-            min-height: 300px;
-          }
-          .modal-info-pane {
-            padding: 2rem 1.5rem;
-          }
+          user-select: none;
         }
 
         @media (max-width: 768px) {
