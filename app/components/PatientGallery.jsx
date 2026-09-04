@@ -245,6 +245,57 @@ const PRE_POST_ROW_PATIENTS = PRE_POST_FOLDER_PHOTOS.map((file, idx) => ({
   imgSrc: `/Pre Post/${file}`
 }));
 
+const TEETH_COLLAGE_PHOTOS = [
+  'IMG-20260904-WA0038.jpg',
+  'IMG-20260904-WA0039.jpg',
+  'IMG-20260904-WA0040.jpg',
+  'IMG-20260904-WA0041.jpg',
+  'IMG-20260904-WA0042.jpg',
+  'IMG-20260904-WA0043.jpg',
+  'IMG-20260904-WA0044.jpg',
+  'IMG-20260904-WA0045.jpg',
+  'IMG-20260904-WA0046.jpg',
+  'IMG-20260904-WA0047.jpg',
+  'IMG-20260904-WA0048.jpg',
+  'IMG-20260904-WA0049.jpg',
+  'IMG-20260904-WA0050.jpg',
+  'IMG-20260904-WA0051.jpg',
+  'IMG-20260904-WA0052.jpg',
+  'IMG-20260904-WA0053.jpg',
+  'IMG-20260904-WA0054.jpg',
+  'IMG-20260904-WA0055.jpg',
+  'IMG-20260904-WA0056.jpg',
+  'IMG-20260904-WA0057.jpg',
+  'IMG-20260904-WA0058.jpg',
+  'IMG-20260904-WA0059.jpg',
+  'IMG-20260904-WA0060.jpg',
+  'IMG-20260904-WA0061.jpg',
+  'IMG-20260904-WA0062.jpg',
+  'IMG-20260904-WA0063.jpg',
+  'IMG-20260904-WA0064.jpg',
+  'IMG-20260904-WA0065.jpg',
+  'IMG-20260904-WA0066.jpg',
+  'IMG-20260904-WA0067.jpg',
+  'IMG-20260904-WA0068.jpg',
+  'IMG-20260904-WA0069.jpg',
+  'IMG-20260904-WA0070.jpg',
+  'IMG-20260904-WA0071.jpg',
+  'IMG-20260904-WA0072.jpg',
+  'IMG-20260904-WA0073.jpg',
+  'IMG-20260904-WA0074.jpg',
+  'IMG-20260904-WA0075.jpg',
+  'IMG-20260904-WA0076.jpg',
+  'IMG-20260904-WA0077.jpg',
+  'IMG-20260904-WA0078.jpg',
+  'IMG-20260904-WA0079.jpg',
+  'IMG-20260904-WA0080.jpg',
+  'IMG-20260904-WA0081.jpg',
+  'IMG-20260904-WA0082.jpg',
+  'IMG-20260904-WA0083.jpg',
+  'IMG-20260904-WA0084.jpg',
+  'IMG-20260904-WA0085.jpg'
+];
+
 const CATEGORIES = ['All Cases', 'Aligners', 'Braces', 'Implants', 'Smile Makeover'];
 
 const getUnsplashUrl = (imgId) => {
@@ -291,6 +342,30 @@ export default function PatientGallery() {
     </div>
   );
 
+  const ToothTile = ({ file, index }) => (
+    <div 
+      className="tooth-tile-card"
+      onClick={() => setSelectedPatient({
+        id: `tooth-${index}`,
+        imgSrc: `/Collage/${file}`,
+        name: `Happy Patient #${index + 1}`
+      })}
+      title="Tap to view full photo"
+    >
+      <div className="tooth-tile-inner">
+        <Image 
+          src={`/Collage/${file}`} 
+          alt={`Patient Smile #${index + 1}`}
+          fill
+          sizes="(max-width: 600px) 35px, 55px"
+          className="tooth-tile-img"
+          style={{ objectFit: 'cover' }}
+        />
+        <div className="tooth-tile-glow" />
+      </div>
+    </div>
+  );
+
   return (
     <section id="gallery" className="section patient-gallery-section" aria-label="Patient Smile Transformations">
       {/* Background Vectors & Subtle Animations */}
@@ -304,8 +379,164 @@ export default function PatientGallery() {
 
       <div className="container" style={{ position: 'relative', zIndex: 10 }}>
         
-        {/* Cool Improvised Section Header */}
-        <div className="section-header text-center" style={{ maxWidth: '880px', margin: '0 auto' }}>
+        {/* INNOVATIVE TEETH-SHAPED COLLAGE (Contains ALL 48 Photos from public/Collage) */}
+        <div className="teeth-shaped-mosaic-section">
+          <div className="tooth-mosaic-header text-center">
+            <div className="cool-live-badge tooth-mosaic-badge">
+              <span className="cool-pulse-dot" aria-hidden="true" />
+              <span>48 PATIENT SMILES • 1 ICONIC FOUNDATION</span>
+            </div>
+            <h3 className="tooth-mosaic-heading">
+              The Living Tooth of <span className="cool-title-highlight">Happy Smiles</span>
+            </h3>
+            <p className="tooth-mosaic-subtext">
+              48 authentic patient transformations sculpted into our signature anatomical molar tooth. Tap any smiling portrait to view in full resolution.
+            </p>
+          </div>
+
+          <div className="tooth-mosaic-artboard">
+            {/* Background Anatomical Molar Tooth SVG Outline with Glowing Aura */}
+            <div className="tooth-backdrop-aura" aria-hidden="true">
+              <svg viewBox="0 0 540 620" className="tooth-backdrop-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="toothGradientFill" x1="270" y1="0" x2="270" y2="620" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.85" />
+                    <stop offset="50%" stopColor="#FAF6F0" stopOpacity="0.6" />
+                    <stop offset="100%" stopColor="#D67A41" stopOpacity="0.15" />
+                  </linearGradient>
+                  <linearGradient id="toothGoldBorder" x1="0" y1="0" x2="540" y2="620" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#D67A41" />
+                    <stop offset="50%" stopColor="#C9A84C" />
+                    <stop offset="100%" stopColor="#D67A41" />
+                  </linearGradient>
+                  <filter id="toothGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="10" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+                <path 
+                  d="M 270 50 C 230 20, 160 15, 110 45 C 60 75, 35 130, 30 190 C 25 250, 35 310, 60 360 C 85 400, 110 430, 120 450 C 130 480, 140 530, 155 580 C 165 605, 195 605, 205 580 C 215 540, 230 490, 270 440 C 310 490, 325 540, 335 580 C 345 605, 375 605, 385 580 C 400 530, 410 480, 420 450 C 430 430, 455 400, 480 360 C 505 310, 515 250, 510 190 C 505 130, 480 75, 430 45 C 380 15, 310 20, 270 50 Z" 
+                  fill="url(#toothGradientFill)"
+                  stroke="url(#toothGoldBorder)"
+                  strokeWidth="2.5"
+                  filter="url(#toothGlow)"
+                  className="tooth-silhouette-path"
+                />
+                <path 
+                  d="M 270 75 C 235 45, 175 40, 130 65 C 85 90, 60 140, 55 195 C 50 250, 60 300, 80 345 C 105 385, 125 415, 135 435"
+                  fill="none"
+                  stroke="rgba(214, 122, 65, 0.25)"
+                  strokeWidth="1.5"
+                  strokeDasharray="5 5"
+                />
+                <path 
+                  d="M 270 75 C 305 45, 365 40, 410 65 C 455 90, 480 140, 485 195 C 490 250, 480 300, 460 345 C 435 385, 415 415, 405 435"
+                  fill="none"
+                  stroke="rgba(214, 122, 65, 0.25)"
+                  strokeWidth="1.5"
+                  strokeDasharray="5 5"
+                />
+              </svg>
+            </div>
+
+            {/* Tooth Mosaic Grid - 7 Precision Rows of 48 Patient Smiles */}
+            <div className="tooth-mosaic-grid">
+              {/* Row 1: Cusps (3 left + Center Fissure Emblem + 3 right = 6) */}
+              <div className="tooth-mosaic-row tooth-row-1">
+                <div className="tooth-cusp-group tooth-cusp-left">
+                  {TEETH_COLLAGE_PHOTOS.slice(0, 3).map((f, i) => (
+                    <ToothTile key={`t-r1-l-${i}`} file={f} index={i} />
+                  ))}
+                </div>
+                <div className="tooth-cusp-fissure">
+                  <div className="tooth-fissure-emblem" title="Rooted in Dental Excellence">
+                    <Sparkles size={16} />
+                  </div>
+                </div>
+                <div className="tooth-cusp-group tooth-cusp-right">
+                  {TEETH_COLLAGE_PHOTOS.slice(3, 6).map((f, i) => (
+                    <ToothTile key={`t-r1-r-${i}`} file={f} index={3 + i} />
+                  ))}
+                </div>
+              </div>
+
+              {/* Row 2: Upper Crown (8 continuous tiles) */}
+              <div className="tooth-mosaic-row tooth-row-2">
+                {TEETH_COLLAGE_PHOTOS.slice(6, 14).map((f, i) => (
+                  <ToothTile key={`t-r2-${i}`} file={f} index={6 + i} />
+                ))}
+              </div>
+
+              {/* Row 3: Crown Equator - Widest (9 continuous tiles) */}
+              <div className="tooth-mosaic-row tooth-row-3">
+                {TEETH_COLLAGE_PHOTOS.slice(14, 23).map((f, i) => (
+                  <ToothTile key={`t-r3-${i}`} file={f} index={14 + i} />
+                ))}
+              </div>
+
+              {/* Row 4: Cervical Line / Waist (7 continuous tiles) */}
+              <div className="tooth-mosaic-row tooth-row-4">
+                {TEETH_COLLAGE_PHOTOS.slice(23, 30).map((f, i) => (
+                  <ToothTile key={`t-r4-${i}`} file={f} index={23 + i} />
+                ))}
+              </div>
+
+              {/* Row 5: Upper Roots Bifurcation (4 left + Furcation Arch + 4 right = 8) */}
+              <div className="tooth-mosaic-row tooth-row-5">
+                <div className="tooth-root-branch tooth-root-left">
+                  {TEETH_COLLAGE_PHOTOS.slice(30, 34).map((f, i) => (
+                    <ToothTile key={`t-r5-l-${i}`} file={f} index={30 + i} />
+                  ))}
+                </div>
+                <div className="tooth-furcation-gap" />
+                <div className="tooth-root-branch tooth-root-right">
+                  {TEETH_COLLAGE_PHOTOS.slice(34, 38).map((f, i) => (
+                    <ToothTile key={`t-r5-r-${i}`} file={f} index={34 + i} />
+                  ))}
+                </div>
+              </div>
+
+              {/* Row 6: Mid Roots (3 left + Gap + 3 right = 6) */}
+              <div className="tooth-mosaic-row tooth-row-6">
+                <div className="tooth-root-branch tooth-root-left">
+                  {TEETH_COLLAGE_PHOTOS.slice(38, 41).map((f, i) => (
+                    <ToothTile key={`t-r6-l-${i}`} file={f} index={38 + i} />
+                  ))}
+                </div>
+                <div className="tooth-furcation-gap wide" />
+                <div className="tooth-root-branch tooth-root-right">
+                  {TEETH_COLLAGE_PHOTOS.slice(41, 44).map((f, i) => (
+                    <ToothTile key={`t-r6-r-${i}`} file={f} index={41 + i} />
+                  ))}
+                </div>
+              </div>
+
+              {/* Row 7: Root Apices (2 left + Gap + 2 right = 4) */}
+              <div className="tooth-mosaic-row tooth-row-7">
+                <div className="tooth-root-branch tooth-root-left">
+                  {TEETH_COLLAGE_PHOTOS.slice(44, 46).map((f, i) => (
+                    <ToothTile key={`t-r7-l-${i}`} file={f} index={44 + i} />
+                  ))}
+                </div>
+                <div className="tooth-furcation-gap extra-wide" />
+                <div className="tooth-root-branch tooth-root-right">
+                  {TEETH_COLLAGE_PHOTOS.slice(46, 48).map((f, i) => (
+                    <ToothTile key={`t-r7-r-${i}`} file={f} index={46 + i} />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Note */}
+            <div className="tooth-mosaic-footer">
+              <Sparkles size={14} className="footer-sparkle-icon" />
+              <span>Tap any smiling portrait to view full photograph</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Section Header */}
+        <div className="section-header text-center" style={{ maxWidth: '880px', margin: '4rem auto 0' }}>
           <div className="cool-live-badge">
             <span className="cool-pulse-dot" aria-hidden="true" />
             <span>REAL PATIENT SMILES VERIFIED</span>
@@ -636,12 +867,232 @@ export default function PatientGallery() {
           box-shadow: 0 4px 12px rgba(17, 8, 5, 0.08);
         }
 
-        .gallery-filter-bar {
+        /* ══════════════════════════════════════════════════════════
+           INNOVATIVE TEETH SHAPED MOSAIC COLLAGE
+        ══════════════════════════════════════════════════════════ */
+        .teeth-shaped-mosaic-section {
+          position: relative;
+          margin: 1.5rem auto 3.5rem auto;
+          max-width: 860px;
+          width: 100%;
+        }
+
+        .tooth-mosaic-header {
+          margin-bottom: 2rem;
+        }
+
+        .tooth-mosaic-badge {
+          background: rgba(214, 122, 65, 0.12) !important;
+          border-color: rgba(214, 122, 65, 0.4) !important;
+          color: #8A3D14 !important;
+        }
+
+        .tooth-mosaic-heading {
+          font-family: var(--font-heading);
+          font-size: clamp(1.85rem, 3.8vw, 2.75rem);
+          font-weight: 900;
+          color: #0E0604;
+          margin: 0.5rem 0 0.5rem;
+          letter-spacing: -0.02em;
+          line-height: 1.15;
+        }
+
+        .tooth-mosaic-subtext {
+          font-size: 1rem;
+          color: #4A3A33;
+          max-width: 640px;
+          margin: 0 auto;
+          line-height: 1.6;
+        }
+
+        .tooth-mosaic-artboard {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 3rem 1.5rem 2.5rem;
+          margin: 0 auto;
+          border-radius: 36px;
+          background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.96) 0%, rgba(250, 246, 240, 0.82) 55%, rgba(242, 234, 222, 0.5) 100%);
+          border: 1.5px solid rgba(214, 122, 65, 0.22);
+          box-shadow: 
+            0 25px 60px rgba(17, 8, 5, 0.06),
+            0 0 45px rgba(214, 122, 65, 0.08);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          overflow: hidden;
+        }
+
+        /* SVG Glow Aura */
+        .tooth-backdrop-aura {
+          position: absolute;
+          inset: 0;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.65rem;
-          flex-wrap: wrap;
+          pointer-events: none;
+          z-index: 1;
+          opacity: 0.55;
+        }
+
+        .tooth-backdrop-svg {
+          width: 95%;
+          max-width: 580px;
+          height: auto;
+          filter: drop-shadow(0 0 25px rgba(214, 122, 65, 0.28));
+          animation: toothAuraBreathe 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes toothAuraBreathe {
+          0% { transform: scale(0.985); opacity: 0.5; }
+          100% { transform: scale(1.015); opacity: 0.7; }
+        }
+
+        /* 7-Row Precision Grid */
+        .tooth-mosaic-grid {
+          position: relative;
+          z-index: 3;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: var(--tooth-gap, 8px);
+          --tile-size: clamp(28px, 4.2vw, 50px);
+          --tooth-gap: clamp(4px, 0.65vw, 8px);
+        }
+
+        .tooth-mosaic-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: var(--tooth-gap, 8px);
+          width: 100%;
+          flex-wrap: nowrap !important;
+        }
+
+        .tooth-cusp-group {
+          display: flex;
+          align-items: center;
+          gap: var(--tooth-gap, 8px);
+          flex-shrink: 0 !important;
+        }
+
+        .tooth-cusp-fissure {
+          width: calc(var(--tile-size) * 3 + var(--tooth-gap) * 2);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0 !important;
+        }
+
+        .tooth-fissure-emblem {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #FDE68A 0%, #D67A41 100%);
+          color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 16px rgba(214, 122, 65, 0.55);
+          animation: emblemPulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes emblemPulse {
+          0%, 100% { transform: scale(1); box-shadow: 0 0 12px rgba(214, 122, 65, 0.4); }
+          50% { transform: scale(1.12); box-shadow: 0 0 22px rgba(214, 122, 65, 0.8); }
+        }
+
+        .tooth-root-branch {
+          display: flex;
+          align-items: center;
+          gap: var(--tooth-gap, 8px);
+          flex-shrink: 0 !important;
+        }
+
+        .tooth-furcation-gap {
+          width: calc(var(--tile-size) * 1 + var(--tooth-gap) * 1);
+          flex-shrink: 0 !important;
+        }
+
+        .tooth-furcation-gap.wide {
+          width: calc(var(--tile-size) * 3 + var(--tooth-gap) * 2);
+        }
+
+        .tooth-furcation-gap.extra-wide {
+          width: calc(var(--tile-size) * 5 + var(--tooth-gap) * 4);
+        }
+
+        /* Individual Photo Tile */
+        .tooth-tile-card {
+          width: var(--tile-size);
+          height: var(--tile-size);
+          border-radius: 12px;
+          overflow: hidden;
+          position: relative;
+          cursor: pointer;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+          border: 1.5px solid rgba(214, 122, 65, 0.3);
+          background: #FFFFFF;
+          transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+          flex-shrink: 0;
+        }
+
+        .tooth-tile-card:hover {
+          transform: translateY(-7px) scale(1.25);
+          z-index: 50;
+          border-color: #D67A41;
+          box-shadow: 0 18px 35px rgba(17, 8, 5, 0.3), 0 0 22px rgba(214, 122, 65, 0.5);
+        }
+
+        .tooth-tile-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+
+        .tooth-tile-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.45s ease;
+        }
+
+        .tooth-tile-card:hover .tooth-tile-img {
+          transform: scale(1.1);
+        }
+
+        .tooth-tile-glow {
+          position: absolute;
+          inset: 0;
+          border-radius: 10px;
+          box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.6);
+          pointer-events: none;
+        }
+
+        .tooth-mosaic-footer {
+          margin-top: 1.85rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: #8C6A58;
+          letter-spacing: 0.02em;
+          position: relative;
+          z-index: 3;
+        }
+
+        .footer-sparkle-icon {
+          color: #D67A41;
+          animation: spinSlow 6s linear infinite;
+        }
+
+        @keyframes spinSlow {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
 
         /* COOL IMPROVISED HEADER AREA (DARK HIGH-CONTRAST) */
@@ -1189,6 +1640,26 @@ export default function PatientGallery() {
             gap: 0.45rem;
             padding-right: 0.45rem;
           }
+          /* Teeth Shaped Collage Mobile Adjustments */
+          .teeth-shaped-mosaic-section {
+            margin: 0.5rem auto 2.5rem auto;
+          }
+          .tooth-mosaic-artboard {
+            padding: 2rem 0.5rem 1.75rem;
+            border-radius: 24px;
+          }
+          .tooth-tile-card {
+            border-radius: 8px;
+            border-width: 1px;
+          }
+          .tooth-fissure-emblem {
+            width: 24px;
+            height: 24px;
+          }
+          .tooth-mosaic-footer {
+            font-size: 0.72rem;
+            margin-top: 1.25rem;
+          }
           .scroll-left-slow, .scroll-right-slow {
             animation-duration: 25s;
           }
@@ -1198,6 +1669,12 @@ export default function PatientGallery() {
           }
         }
         @media (max-width: 420px) {
+          .tooth-mosaic-artboard {
+            padding: 1.5rem 0.25rem 1.25rem;
+          }
+          .tooth-mosaic-subtext {
+            font-size: 0.88rem;
+          }
           .cool-chips-row {
             gap: 0.25rem !important;
           }
