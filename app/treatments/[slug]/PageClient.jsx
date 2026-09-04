@@ -664,38 +664,7 @@ export default function PageClient({ treatment }) {
               </div>
             </section>
 
-            {/* 20. Real Cases Slider */}
-            <section id="cases" className="treatment-content-card">
-              <div className="section-header-row">
-                <div>
-                  <span className="section-eyebrow">Real Patient Transformations</span>
-                  <h2 className="card-section-title font-heading">
-                    <ImageIcon className="title-icon-gold" aria-hidden="true" />
-                    <span>Clinical Outcome Preview</span>
-                  </h2>
-                </div>
-                <span className="case-verified-badge">
-                  <ShieldCheck size={14} aria-hidden="true" /> Verified Clinic Case
-                </span>
-              </div>
 
-              <p className="section-intro-text">
-                {casePair.context} Slide horizontally to observe the anatomical and aesthetic improvement.
-              </p>
-
-              <div className="slider-wrapper-box">
-                <BeforeAfterSlider
-                  beforeSrc={casePair.before}
-                  afterSrc={casePair.after}
-                  beforeAlt={`Before ${treatment.title}`}
-                  afterAlt={`After ${treatment.title}`}
-                />
-                <div className="slider-caption-bar">
-                  <span className="caption-text">{casePair.title}</span>
-                  <span className="drag-hint">↔ Drag slider left/right</span>
-                </div>
-              </div>
-            </section>
 
             {/* 21. Testimonials */}
             {treatment.testimonials && treatment.testimonials.length > 0 && (
