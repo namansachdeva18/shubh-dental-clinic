@@ -1,5 +1,5 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
@@ -11,7 +11,17 @@ import AnimatedCounter from './AnimatedCounter';
 export default function Hero() {
   const containerRef = useRef(null);
   const { scrollY } = useScroll();
-  const imageParallax = useTransform(scrollY, [0, 500], [0, -60]);
+  const rawImageParallax = useTransform(scrollY, [0, 500], [0, -60]);
+
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const imageParallax = isMobile ? 0 : rawImageParallax;
 
   const stagger = {
     hidden: { opacity: 0 },
@@ -1364,10 +1374,14 @@ export default function Hero() {
 
           /* Stack the image + cards vertically */
           .hs-right {
-            height: auto;
-            min-height: auto;
-            max-height: none;
-            width: 100%;
+            height: auto !important;
+            min-height: auto !important;
+            max-height: none !important;
+            width: 100% !important;
+            position: relative !important;
+            margin-top: 1.25rem !important;
+            margin-bottom: 0.75rem !important;
+            clear: both !important;
           }
           /* Hide floating overlay cards and Google rating pill on mobile view */
           .hs-doctor-panel,
@@ -1378,17 +1392,19 @@ export default function Hero() {
 
           /* On mobile, stage displays clean, unobstructed clinic building highlight */
           .hs-stage {
-            position: relative;
-            width: 100%;
-            height: auto;
+            position: relative !important;
+            width: 100% !important;
+            height: auto !important;
           }
           .hs-clinic-img-wrap {
-            position: relative;
-            height: 270px;
-            inset: auto;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(26, 18, 8, 0.12);
+            position: relative !important;
+            width: 100% !important;
+            height: 250px !important;
+            inset: auto !important;
+            border-radius: 18px !important;
+            overflow: hidden !important;
+            box-shadow: 0 10px 30px rgba(26, 18, 8, 0.12) !important;
+            display: block !important;
           }
           .hs-clinic-img-wrap img {
             object-fit: cover !important;
@@ -1518,8 +1534,11 @@ export default function Hero() {
 
           /* Stats mobile */
           .hs-stats-innovative {
-            gap: 10px;
-            grid-template-columns: repeat(2, 1fr);
+            gap: 10px !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            margin-top: 1.25rem !important;
+            margin-bottom: 0.5rem !important;
+            width: 100% !important;
           }
           .hs-stat-cell {
             padding: 0.85rem 0.85rem;
