@@ -308,7 +308,7 @@ export default function PageClient({ treatment }) {
             className={`m-switch-btn ${mobileTab === 'pricing' ? 'is-active' : ''}`}
             onClick={() => setMobileTab('pricing')}
           >
-            💰 Pricing &amp; Doctor
+            💰 Pricing
           </button>
         </div>
 
@@ -697,41 +697,6 @@ export default function PageClient({ treatment }) {
                     <p>{point}</p>
                   </div>
                 ))}
-              </div>
-            </section>
-
-            {/* 19. Medical Reviewer */}
-            <section id="doctor" className="treatment-content-card medical-reviewer-card">
-              <div className="reviewer-inner">
-                <div className="reviewer-photo-col">
-                  <div className="reviewer-avatar-wrap">
-                    <Image 
-                      src={treatment.doctorPhoto || '/dr-sk-yadav.webp'} 
-                      alt={treatment.doctor}
-                      width={90}
-                      height={90}
-                      className="reviewer-img"
-                    />
-                  </div>
-                </div>
-
-                <div className="reviewer-content-col">
-                  <div className="reviewer-badge">🩺 Medically Reviewed &amp; Approved</div>
-                  <h3 className="reviewer-name font-heading">{treatment.doctor}</h3>
-                  <p className="reviewer-credentials">{treatment.doctorDegree || 'MDS Dental Specialist'}</p>
-                  <p className="reviewer-role">{treatment.doctorTitle || 'Senior Clinical Specialist'} · Shubh Orthodontic &amp; Dental Clinic</p>
-                  
-                  <div className="reviewer-footer-meta">
-                    <span>Last Medically Reviewed: <strong>{treatment.medicalReviewDate || 'June 2026'}</strong></span>
-                    <Link 
-                      href={`/doctors/${treatment.doctorSlug || 'dr-sk-yadav'}`} 
-                      className="reviewer-profile-link"
-                      onClick={() => trackCTA('doctor_profile_click', { doctor: treatment.doctor, treatment_slug: treatment.slug })}
-                    >
-                      View Full Specialist Profile →
-                    </Link>
-                  </div>
-                </div>
               </div>
             </section>
 
