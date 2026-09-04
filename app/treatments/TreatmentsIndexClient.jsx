@@ -1,7 +1,6 @@
 'use client';
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Sparkles, ArrowRight, ArrowUpRight, CheckCircle2, ShieldCheck, 
   Award, Star, Zap, Clock, ChevronRight, Stethoscope, HeartPulse,
@@ -353,16 +352,11 @@ export default function TreatmentsIndexClient() {
             </div>
           ) : (
             <div className="treatments-cards-grid">
-              <AnimatePresence>
                 {filteredTreatments.map((item, idx) => (
-                  <motion.article
+                  <article
                     key={item.slug}
-                    layout
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ duration: 0.25, delay: idx * 0.03 }}
-                    className={`t-card ${item.isPremium ? 't-card--premium' : ''}`}
+                    className={`t-card t-card--fadein ${item.isPremium ? 't-card--premium' : ''}`}
+                    style={{ animationDelay: `${idx * 0.04}s` }}
                   >
                     {/* Top Meta Strip */}
                     <div className="t-card-header">
@@ -421,9 +415,8 @@ export default function TreatmentsIndexClient() {
                         <ArrowRight size={14} className="t-arrow-icon" />
                       </Link>
                     </div>
-                  </motion.article>
+                  </article>
                 ))}
-              </AnimatePresence>
             </div>
           )}
 
@@ -553,6 +546,16 @@ export default function TreatmentsIndexClient() {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 1rem;
+        }
+
+        @keyframes tCardFadeIn {
+          from { opacity: 0; transform: translateY(14px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .t-card--fadein {
+          opacity: 0;
+          animation: tCardFadeIn 0.28s ease forwards;
         }
 
         .t-card {

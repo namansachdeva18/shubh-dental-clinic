@@ -315,25 +315,23 @@ export default function Header() {
 
                 {/* 2. Treatments Row with direct link + dropdown toggle */}
                 <div className="mob-simple-accordion">
-                  <div className="mob-simple-accordion-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <div className="mob-treatments-row">
                     <Link 
                       href="/treatments" 
-                      className="mob-simple-link" 
-                      style={{ flexGrow: 1, padding: 0 }}
+                      className="mob-treatments-main-link"
                       onClick={() => setMobileOpen(false)}
                     >
                       <span>Treatments</span>
                     </Link>
                     <button
                       type="button"
-                      className="mob-chevron-btn"
+                      className="mob-treatments-chevron-btn"
                       onClick={(e) => {
                         e.stopPropagation();
                         setMobileTreatmentsOpen(!mobileTreatmentsOpen);
                       }}
                       aria-expanded={mobileTreatmentsOpen}
                       aria-label="Toggle Treatments submenu"
-                      style={{ background: 'none', border: 'none', padding: '0.4rem', color: '#8A7063', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
                     >
                       <ChevronDown size={18} className={`mob-simple-chevron ${mobileTreatmentsOpen ? 'open' : ''}`} />
                     </button>
@@ -958,6 +956,51 @@ export default function Header() {
           display: flex;
           flex-direction: column;
           gap: 0.3rem;
+        }
+
+        /* Treatments row: link + chevron in one unified bar */
+        .mob-treatments-row {
+          display: flex;
+          align-items: stretch;
+          background: #FFFFFF;
+          border: 1px solid rgba(214, 122, 65, 0.14);
+          border-radius: 12px;
+          box-shadow: 0 1px 4px rgba(74, 37, 24, 0.02);
+          overflow: hidden;
+        }
+        .mob-treatments-main-link {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          padding: 0.8rem 1rem;
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: #2D1E17;
+          text-decoration: none;
+          -webkit-tap-highlight-color: rgba(214, 122, 65, 0.12);
+          transition: background 0.18s ease, color 0.18s ease;
+        }
+        .mob-treatments-main-link:active {
+          background: #FFF4EC;
+          color: #9A4616;
+        }
+        .mob-treatments-chevron-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 48px;
+          flex-shrink: 0;
+          background: none;
+          border: none;
+          border-left: 1px solid rgba(214, 122, 65, 0.14);
+          color: #B85D26;
+          cursor: pointer;
+          padding: 0;
+          -webkit-tap-highlight-color: rgba(214, 122, 65, 0.12);
+          transition: background 0.18s ease;
+        }
+        .mob-treatments-chevron-btn:active {
+          background: #FFF4EC;
         }
 
         .mob-simple-toggle {
