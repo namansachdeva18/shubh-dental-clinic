@@ -477,29 +477,7 @@ export default function SpecialOfferPage() {
                   <span>{treatment.specialist}</span>
                 </div>
 
-                {/* Real Clinical Split Before / After Preview */}
-                <div className="tc-preview-box">
-                  <div className="tc-split-img">
-                    <Image 
-                      src={treatment.beforeImg} 
-                      alt={`${treatment.title} Before`} 
-                      fill
-                      sizes="(max-width: 768px) 45vw, 200px"
-                      style={{ objectFit: 'cover' }}
-                    />
-                    <span className="tc-img-tag before">BEFORE</span>
-                  </div>
-                  <div className="tc-split-img">
-                    <Image 
-                      src={treatment.afterImg} 
-                      alt={`${treatment.title} After`} 
-                      fill
-                      sizes="(max-width: 768px) 45vw, 200px"
-                      style={{ objectFit: 'cover' }}
-                    />
-                    <span className="tc-img-tag after">AFTER</span>
-                  </div>
-                </div>
+
 
                 {/* Savings & 0% EMI Bar */}
                 <div className="tc-pricing-strip">
