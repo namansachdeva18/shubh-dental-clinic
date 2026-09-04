@@ -346,8 +346,8 @@ export default function TreatmentsIndexClient() {
 
           {filteredTreatments.length === 0 ? (
             <div className="no-results-box">
-              <p>No treatments match your search "{searchQuery}".</p>
-              <button onClick={() => { setSelectedCategory('all'); setSearchQuery(''); }} className="reset-btn">
+              <p>No treatments found in this category.</p>
+              <button onClick={() => setSelectedCategory('all')} className="reset-btn">
                 Show All Treatments
               </button>
             </div>
@@ -815,9 +815,12 @@ export default function TreatmentsIndexClient() {
             font-size: 0.62rem;
             padding: 0.15rem 0.45rem;
           }
+          .all-treatments-root {
+            padding-bottom: 6.5rem; /* Ensure last card and buttons are never blocked by mobile fixed bottom bar */
+          }
           .t-card-link-btn {
-            padding: 0.45rem 0.75rem;
-            font-size: 0.74rem;
+            padding: 0.55rem 0.85rem;
+            font-size: 0.78rem;
           }
         }
       `}} />

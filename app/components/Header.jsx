@@ -158,6 +158,16 @@ export default function Header() {
                         </div>
                       ))}
                     </div>
+                    <div className="mega-menu-bottom-bar" style={{ padding: '0.75rem 1.5rem', background: '#F8F6F3', borderTop: '1px solid rgba(214, 122, 65, 0.15)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.8rem', color: '#6A564D' }}>Explore all 17 clinical disciplines &amp; procedures</span>
+                      <Link 
+                        href="/treatments" 
+                        onClick={() => setMegaOpen(false)}
+                        style={{ fontSize: '0.82rem', fontWeight: 700, color: '#B85D26', display: 'inline-flex', alignItems: 'center', gap: '0.35rem', textDecoration: 'none' }}
+                      >
+                        <span>View All Treatments Hub →</span>
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>
@@ -303,17 +313,31 @@ export default function Header() {
                   <span>Home</span>
                 </Link>
 
-                {/* 2. Treatments Accordion */}
+                {/* 2. Treatments Row with direct link + dropdown toggle */}
                 <div className="mob-simple-accordion">
-                  <button
-                    type="button"
-                    className="mob-simple-toggle"
-                    onClick={() => setMobileTreatmentsOpen(!mobileTreatmentsOpen)}
-                    aria-expanded={mobileTreatmentsOpen}
-                  >
-                    <span>Treatments</span>
-                    <ChevronDown size={15} className={`mob-simple-chevron ${mobileTreatmentsOpen ? 'open' : ''}`} />
-                  </button>
+                  <div className="mob-simple-accordion-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                    <Link 
+                      href="/treatments" 
+                      className="mob-simple-link" 
+                      style={{ flexGrow: 1, padding: 0 }}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <span>Treatments</span>
+                    </Link>
+                    <button
+                      type="button"
+                      className="mob-chevron-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setMobileTreatmentsOpen(!mobileTreatmentsOpen);
+                      }}
+                      aria-expanded={mobileTreatmentsOpen}
+                      aria-label="Toggle Treatments submenu"
+                      style={{ background: 'none', border: 'none', padding: '0.4rem', color: '#8A7063', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                    >
+                      <ChevronDown size={18} className={`mob-simple-chevron ${mobileTreatmentsOpen ? 'open' : ''}`} />
+                    </button>
+                  </div>
 
                   {mobileTreatmentsOpen && (
                     <div className="mob-simple-submenu">
