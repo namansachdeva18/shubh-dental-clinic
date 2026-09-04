@@ -286,7 +286,7 @@ export default function SpecialOfferPage() {
                   ))}
                   <span className="rating-num">5.0★ (300+ Google Reviews)</span>
                 </div>
-                <p className="doc-meta-sub">25+ Yrs Clinical Mastery · 10,000+ Smiles Corrected</p>
+                <p className="doc-meta-sub">20+ Yrs Clinical Mastery · 25,000+ Smiles Corrected</p>
               </div>
             </div>
 
@@ -548,7 +548,7 @@ export default function SpecialOfferPage() {
               </div>
               <h4 className="bento-title">Led by Esteemed MDS Specialists</h4>
               <p className="bento-desc">
-                Treatments are directly planned and performed by <strong>Prof. Dr. S. K. Yadav</strong> (Ex-Assistant Professor, PGI Chandigarh with 25+ years expertise) and <strong>Dr. Achla Yadav</strong>. You never get handed off to junior trainees.
+                Treatments are directly planned and performed by <strong>Prof. Dr. S. K. Yadav</strong> (Ex-Assistant Professor, PGI Chandigarh with 20+ years expertise) and <strong>Dr. Achla Yadav</strong>. You never get handed off to junior trainees.
               </p>
             </div>
 
