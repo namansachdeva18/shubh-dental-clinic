@@ -119,9 +119,9 @@ export default function PageClient({ treatment }) {
           <span className="crumb-current" aria-current="page">{treatment.title}</span>
         </nav>
 
-        {/* ── 02. HERO STAGE ──────────────────────────────────────────────── */}
-        <motion.section 
-          className="treatment-hero-card"
+        {/* ── 02. HERO HEADING ONLY ──────────────────────────────────────── */}
+        <motion.header 
+          className="treatment-hero-heading-only"
           initial="hidden"
           animate="show"
           variants={fadeUp}
@@ -143,43 +143,7 @@ export default function PageClient({ treatment }) {
           </h1>
           
           <p className="hero-sub-title">{treatment.subtitle}</p>
-
-          <p className="hero-overview-text">
-            {treatment.overview ? (treatment.overview.length > 220 ? treatment.overview.substring(0, 217).replace(/\s+\S*$/, '') + '...' : treatment.overview) : (treatment.heroValueProp || '')}
-          </p>
-
-          {/* CTAs Group */}
-          <div className="hero-actions-group">
-            <a 
-              href="#book" 
-              className="btn-hero-primary"
-              onClick={() => trackCTA('hero_book_consultation', { treatment_slug: treatment.slug })}
-            >
-              <Calendar size={17} aria-hidden="true" />
-              <span>Book Consultation</span>
-            </a>
-            
-            <a 
-              href="tel:+918685048414" 
-              className="btn-hero-call"
-              onClick={() => trackCTA('hero_call_click', { treatment_slug: treatment.slug })}
-            >
-              <Phone size={16} aria-hidden="true" />
-              <span>Call Clinic</span>
-            </a>
-
-            <a 
-              href={whatsappUrl}
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="btn-hero-whatsapp"
-              onClick={() => trackCTA('hero_whatsapp_click', { treatment_slug: treatment.slug })}
-            >
-              <MessageSquare size={16} aria-hidden="true" />
-              <span>WhatsApp</span>
-            </a>
-          </div>
-        </motion.section>
+        </motion.header>
 
         {/* ── 03. TRUST STRIP ─────────────────────────────────────────────── */}
         <section className="treatment-trust-strip" aria-label="Clinical Trust Signals">
@@ -961,53 +925,20 @@ export default function PageClient({ treatment }) {
           color: #110805;
         }
 
-        /* ── HERO STAGE ──────────────────────────────── */
-        .treatment-hero-card {
-          background: radial-gradient(circle at 85% 15%, rgba(214, 122, 65, 0.28) 0%, transparent 60%),
-                      linear-gradient(145deg, #170C08 0%, #26120B 60%, #120704 100%);
-          border-radius: 28px;
-          padding: 2.75rem 2.5rem;
-          color: #FFFFFF;
-          box-shadow: 0 25px 60px rgba(17, 8, 5, 0.35), 0 0 40px rgba(214, 122, 65, 0.12);
-          border: 1.5px solid rgba(214, 122, 65, 0.32);
-          margin-bottom: 1.5rem;
+        /* ── HERO HEADING ONLY ──────────────────────── */
+        .treatment-hero-heading-only {
+          padding: 0.5rem 0 1.25rem;
+          margin-bottom: 0.75rem;
           position: relative;
-          overflow: hidden;
           box-sizing: border-box;
           width: 100%;
-        }
-        .treatment-hero-card::before {
-          content: '';
-          position: absolute;
-          top: -40%;
-          right: -20%;
-          width: 380px;
-          height: 380px;
-          background: radial-gradient(circle, rgba(244, 179, 130, 0.22) 0%, rgba(214, 122, 65, 0.08) 50%, transparent 75%);
-          border-radius: 50%;
-          pointer-events: none;
-          animation: floatAura 8s ease-in-out infinite alternate;
-        }
-        .treatment-hero-card::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 5%;
-          right: 5%;
-          height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(214, 122, 65, 0.5), transparent);
-          pointer-events: none;
-        }
-        @keyframes floatAura {
-          0% { transform: translateY(0) scale(1); opacity: 0.8; }
-          100% { transform: translateY(20px) scale(1.1); opacity: 1; }
         }
 
         .hero-top-badges {
           display: flex;
           align-items: center;
           gap: 0.65rem;
-          margin-bottom: 1.15rem;
+          margin-bottom: 0.75rem;
           flex-wrap: wrap;
         }
 
@@ -1015,45 +946,46 @@ export default function PageClient({ treatment }) {
           display: inline-flex;
           align-items: center;
           gap: 0.4rem;
-          background: rgba(214, 122, 65, 0.22);
-          color: #F4B382;
+          background: rgba(214, 122, 65, 0.12);
+          color: #9A4616;
           padding: 0.35rem 0.85rem;
           border-radius: 99px;
           font-size: 0.75rem;
           font-weight: 800;
           letter-spacing: 0.05em;
           text-transform: uppercase;
-          border: 1px solid rgba(214, 122, 65, 0.35);
+          border: 1px solid rgba(214, 122, 65, 0.28);
         }
 
         .hero-trust-chip {
           display: inline-flex;
           align-items: center;
           gap: 0.4rem;
-          background: rgba(255, 255, 255, 0.08);
-          color: #FFFFFF;
+          background: #FFFFFF;
+          color: #2D2420;
           padding: 0.35rem 0.9rem;
           border-radius: 99px;
           font-size: 0.75rem;
           font-weight: 700;
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          border: 1px solid rgba(74, 37, 24, 0.12);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
         }
 
         .hero-main-title {
-          font-size: clamp(2rem, 3.8vw, 3rem);
-          font-weight: 800;
-          color: #FFFFFF;
-          line-height: 1.18;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.02em;
+          font-size: clamp(2rem, 3.8vw, 2.9rem);
+          font-weight: 900;
+          color: #110805;
+          line-height: 1.15;
+          margin-bottom: 0.5rem;
+          letter-spacing: -0.025em;
         }
 
         .hero-sub-title {
           font-size: 1.12rem;
-          color: #F4B382;
+          color: #8A4822;
           font-weight: 600;
           line-height: 1.5;
-          margin-bottom: 1.5rem;
+          margin-bottom: 0.5rem;
           max-width: 900px;
         }
 
@@ -2275,21 +2207,14 @@ export default function PageClient({ treatment }) {
             font-size: 0.72rem;
             gap: 0.35rem;
           }
-          .treatment-hero-card {
-            padding: 1.15rem 1rem 1rem;
-            border-radius: 18px;
-            margin-bottom: 0.75rem;
-            box-shadow: 0 12px 30px rgba(17, 8, 5, 0.28);
-          }
-          .treatment-hero-card::before {
-            width: 220px;
-            height: 220px;
-            right: -30%;
-            top: -30%;
+          /* ULTRA COMPACT HERO HEADING ONLY */
+          .treatment-hero-heading-only {
+            padding: 0.25rem 0.2rem 0.6rem;
+            margin-bottom: 0.5rem;
           }
           .hero-top-badges {
-            margin-bottom: 0.5rem;
-            gap: 0.4rem;
+            margin-bottom: 0.4rem;
+            gap: 0.35rem;
           }
           .treatment-category-badge {
             padding: 0.22rem 0.55rem;
@@ -2300,42 +2225,14 @@ export default function PageClient({ treatment }) {
             font-size: 0.65rem;
           }
           .hero-main-title {
-            font-size: 1.35rem;
+            font-size: 1.45rem;
             line-height: 1.2;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.25rem;
           }
           .hero-sub-title {
-            font-size: 0.8rem;
-            line-height: 1.4;
-            margin-bottom: 0.65rem;
-          }
-          .hero-overview-text {
-            font-size: 0.82rem;
-            line-height: 1.5;
-            margin-bottom: 0.85rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-          }
-          .hero-actions-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.45rem;
-            width: 100%;
-          }
-          .btn-hero-primary {
-            grid-column: 1 / -1;
-            padding: 0.65rem 1rem;
             font-size: 0.84rem;
-            border-radius: 10px;
-            justify-content: center;
-          }
-          .btn-hero-call, .btn-hero-whatsapp {
-            padding: 0.55rem 0.75rem;
-            font-size: 0.78rem;
-            border-radius: 10px;
-            justify-content: center;
+            line-height: 1.4;
+            margin-bottom: 0.35rem;
           }
 
           /* ULTRA COMPACT TRUST STRIP - 2x2 MICRO GRID */
