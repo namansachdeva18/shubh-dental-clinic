@@ -4,30 +4,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, ChevronLeft, ChevronRight, Calendar, MessageSquare, ArrowRight } from 'lucide-react';
 import BeforeAfterSlider from './BeforeAfterSlider';
 
-const ALIGNER_RESULTS = [
+const BRACES_RESULTS = [
   {
-    id: 'case-crowding',
-    label: 'Case 1 · Crowding',
-    system: 'SkyAlign™ Clear Aligners',
-    beforeSrc: '/case-1-before.webp',
-    afterSrc: '/case-1-after.webp',
-    duration: '9 Months'
+    id: 'ceramic-braces',
+    label: 'Ceramic Braces',
+    system: 'Advanced Ceramic Aesthetic Braces',
+    beforeSrc: '/ceramic-before.png',
+    afterSrc: '/ceramic-after.png',
+    duration: '10–14 Months'
   },
   {
-    id: 'case-spacing',
-    label: 'Case 2 · Spacing & Gaps',
-    system: 'Invisalign® Clear Aligners',
-    beforeSrc: '/front-before.webp',
-    afterSrc: '/front-after.webp',
-    duration: '7 Months'
-  },
-  {
-    id: 'case-deepbite',
-    label: 'Case 3 · Deep Bite',
-    system: 'Full Arch Realignment',
-    beforeSrc: '/fullarch-before.webp',
-    afterSrc: '/fullarch-after.webp',
-    duration: '12 Months'
+    id: 'metal-braces',
+    label: 'Metal Braces',
+    system: 'High-Precision Stainless Steel Braces',
+    beforeSrc: '/metal-before.png',
+    afterSrc: '/metal-after.png',
+    duration: '12–16 Months'
   }
 ];
 
@@ -56,18 +48,18 @@ const WHY_CHOOSE_US_PERKS = [
 
 export default function AlignerHero() {
   const [activeCaseIdx, setActiveCaseIdx] = useState(0);
-  const activeCase = ALIGNER_RESULTS[activeCaseIdx];
+  const activeCase = BRACES_RESULTS[activeCaseIdx];
 
   const handlePrev = () => {
-    setActiveCaseIdx((prev) => (prev === 0 ? ALIGNER_RESULTS.length - 1 : prev - 1));
+    setActiveCaseIdx((prev) => (prev === 0 ? BRACES_RESULTS.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setActiveCaseIdx((prev) => (prev === ALIGNER_RESULTS.length - 1 ? 0 : prev + 1));
+    setActiveCaseIdx((prev) => (prev === BRACES_RESULTS.length - 1 ? 0 : prev + 1));
   };
 
   return (
-    <section id="aligners" className="aligner-section-root" aria-label="Clear Aligners and Invisible Braces">
+    <section id="aligners" className="aligner-section-root" aria-label="Ceramic and Metal Braces Orthodontic Treatments">
       <div id="braces" style={{ position: 'relative', top: '-80px', height: '0', pointerEvents: 'none' }} />
 
       <div className="aligner-container">
@@ -76,15 +68,15 @@ export default function AlignerHero() {
         <div className="aligner-compact-header">
           <div className="aligner-pill-badge">
             <Sparkles size={13} className="sparkle-icon" aria-hidden="true" />
-            <span>Invisible Braces &amp; Clear Aligners</span>
+            <span>Orthodontic Transformations · 5,000+ Smiles Treated</span>
           </div>
 
           <h2 className="aligner-title font-heading">
-            Straighten Your Teeth <span className="copper-gradient">Without Braces or Wires</span>
+            Proven Smile Transformations: <span className="copper-gradient">Ceramic &amp; Metal Braces</span>
           </h2>
 
           <p className="aligner-subtitle">
-            Say goodbye to painful metal brackets. Get a discreet, comfortable smile makeover with custom clear aligners planned by <strong>Prof. Dr. S. K. Yadav (5,000+ smiles treated)</strong>.
+            Witness actual clinical before-and-after results achieved under the direct expertise of <strong>Prof. Dr. S. K. Yadav (MDS Orthodontics, Ex-PGI Chandigarh, Fellow WFO USA)</strong>.
           </p>
         </div>
 
@@ -103,6 +95,24 @@ export default function AlignerHero() {
 
         {/* BEFORE / AFTER RESULT SLIDER SHOWCASE */}
         <div className="aligner-showcase-box">
+
+          {/* TAB TOGGLE: CERAMIC (DEFAULT) & METAL (SECOND) */}
+          <div className="braces-case-tabs" role="tablist">
+            {BRACES_RESULTS.map((item, idx) => (
+              <button
+                key={item.id}
+                type="button"
+                role="tab"
+                aria-selected={activeCaseIdx === idx}
+                className={`braces-tab-btn ${activeCaseIdx === idx ? 'braces-tab-btn--active' : ''}`}
+                onClick={() => setActiveCaseIdx(idx)}
+              >
+                <span className="braces-tab-dot"></span>
+                <span className="braces-tab-name">{item.label}</span>
+                <span className="braces-tab-duration">{item.duration}</span>
+              </button>
+            ))}
+          </div>
 
           {/* SLIDER WRAPPER */}
           <div className="aligner-slider-stage">
@@ -295,6 +305,66 @@ export default function AlignerHero() {
           margin-right: auto;
         }
 
+        /* ── BRACES SWITCHER TABS ────────────────────── */
+        .braces-case-tabs {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.75rem;
+          margin-bottom: 1.25rem;
+        }
+        .braces-tab-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.55rem 1.25rem;
+          border-radius: 99px;
+          border: 1.5px solid rgba(214, 122, 65, 0.25);
+          background: #FAF8F5;
+          color: #6E5B52;
+          cursor: pointer;
+          transition: all 0.22s ease;
+          font-family: inherit;
+        }
+        .braces-tab-btn:hover {
+          border-color: #D67A41;
+          color: #110805;
+          background: #FFFFFF;
+        }
+        .braces-tab-btn--active {
+          background: linear-gradient(135deg, #180C07 0%, #2A140B 100%) !important;
+          border-color: #D67A41 !important;
+          color: #FFFFFF !important;
+          box-shadow: 0 6px 18px rgba(17, 8, 5, 0.18);
+        }
+        .braces-tab-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #D67A41;
+          flex-shrink: 0;
+        }
+        .braces-tab-btn--active .braces-tab-dot {
+          background: #34D399;
+          box-shadow: 0 0 8px #34D399;
+        }
+        .braces-tab-name {
+          font-size: 0.88rem;
+          font-weight: 800;
+        }
+        .braces-tab-duration {
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: #8C7A70;
+          background: rgba(0, 0, 0, 0.05);
+          padding: 0.15rem 0.45rem;
+          border-radius: 99px;
+        }
+        .braces-tab-btn--active .braces-tab-duration {
+          color: #F4B382;
+          background: rgba(214, 122, 65, 0.22);
+        }
+
         .aligner-slider-stage {
           position: relative;
           width: 100%;
@@ -415,6 +485,21 @@ export default function AlignerHero() {
           }
           .aligner-perk-desc {
             display: none !important;
+          }
+          .braces-case-tabs {
+            gap: 0.45rem !important;
+            margin-bottom: 0.75rem !important;
+          }
+          .braces-tab-btn {
+            padding: 0.35rem 0.85rem !important;
+            font-size: 0.76rem !important;
+          }
+          .braces-tab-name {
+            font-size: 0.78rem !important;
+          }
+          .braces-tab-duration {
+            font-size: 0.64rem !important;
+            padding: 0.1rem 0.35rem !important;
           }
           .aligner-showcase-box {
             padding: 0 !important;

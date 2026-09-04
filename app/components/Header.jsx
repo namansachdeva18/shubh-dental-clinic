@@ -2,9 +2,9 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  Menu, X, Phone, MapPin, Clock, ChevronDown, ChevronRight, Calendar, 
-  MessageCircle, BookMarked, PhoneCall, Sparkles, UserCheck, 
+import {
+  Menu, X, Phone, MapPin, Clock, ChevronDown, ChevronRight, Calendar,
+  MessageCircle, BookMarked, PhoneCall, Sparkles, UserCheck,
   Image as ImageIcon, Building, Tag, ArrowRight, ArrowUpRight,
   Zap, Award, Globe2, Smile, Stethoscope, Compass
 } from 'lucide-react';
@@ -53,7 +53,7 @@ export default function Header() {
   const [mobileTreatmentsOpen, setMobileTreatmentsOpen] = useState(false);
   const [mobileAlignersOpen, setMobileAlignersOpen] = useState(false);
   const [mobileClinicOpen, setMobileClinicOpen] = useState(false);
-  
+
   const megaRef = useRef(null);
   const alignersRef = useRef(null);
   const aboutRef = useRef(null);
@@ -77,7 +77,7 @@ export default function Header() {
     <>
       <OfferBanner />
       <header className={`site-header${scrolled ? ' scrolled' : ''}`} aria-label="Site header">
-        
+
         {/* Top Announcement Bar */}
         <div className="top-bar" aria-label="Contact information">
           <div className="container top-bar-inner">
@@ -113,7 +113,7 @@ export default function Header() {
         {/* Main Navigation Bar */}
         <div className="nav-main">
           <div className="container nav-main-inner">
-            
+
             {/* Clinic Logo */}
             <Link href="/" className="nav-logo" aria-label="Shubh Orthodontic & Dental Clinic — Home">
               <div className="logo-icon-wrap">
@@ -276,7 +276,7 @@ export default function Header() {
         {/* Mobile Slide-Over Overlay — Elite Luxury Healthcare Navigation */}
         {mobileOpen && (
           <div className="mobile-nav-overlay" role="dialog" aria-label="Mobile navigation" aria-modal="true">
-            
+
             {/* Mobile Header Bar */}
             <div className="mobile-nav-header">
               <Link href="/" className="nav-logo" onClick={() => setMobileOpen(false)}>
@@ -294,10 +294,10 @@ export default function Header() {
             </div>
 
             <div className="mobile-nav-scroll-body">
-              
+
               {/* Clean Professional Nav List (Matching Laptop Navigation Exactly) */}
               <div className="mob-nav-list-simple">
-                
+
                 {/* 1. Home */}
                 <Link href="/" className="mob-simple-link" onClick={() => setMobileOpen(false)}>
                   <span>Home</span>
@@ -305,8 +305,8 @@ export default function Header() {
 
                 {/* 2. Treatments Accordion */}
                 <div className="mob-simple-accordion">
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="mob-simple-toggle"
                     onClick={() => setMobileTreatmentsOpen(!mobileTreatmentsOpen)}
                     aria-expanded={mobileTreatmentsOpen}
@@ -344,8 +344,8 @@ export default function Header() {
 
                 {/* 3. Aligners Accordion */}
                 <div className="mob-simple-accordion">
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="mob-simple-toggle"
                     onClick={() => setMobileAlignersOpen(!mobileAlignersOpen)}
                     aria-expanded={mobileAlignersOpen}
@@ -368,8 +368,8 @@ export default function Header() {
 
                 {/* 4. Clinic Accordion */}
                 <div className="mob-simple-accordion">
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="mob-simple-toggle"
                     onClick={() => setMobileClinicOpen(!mobileClinicOpen)}
                     aria-expanded={mobileClinicOpen}
@@ -432,16 +432,16 @@ export default function Header() {
       {/* Mobile Sticky Bottom Action Bar */}
       <div className="mobile-bottom-bar" aria-label="Quick contact bar">
         <div className="mobile-bottom-bar-inner">
-          
+
           {/* 1. Book Consult */}
           <a href="#book" className="mobile-bar-btn" aria-label="Book consultation">
             <div className="icon-wrapper icon-book-wrapper">
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#D67A41" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
-                <path d="M9 16l2 2 4-4" stroke="#10B981" strokeWidth="2.2"/>
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+                <path d="M9 16l2 2 4-4" stroke="#10B981" strokeWidth="2.2" />
               </svg>
             </div>
             <span>Book<br />Consult</span>
@@ -460,8 +460,8 @@ export default function Header() {
             <div className="icon-wrapper icon-wa-wrapper">
               <span className="wa-beacon-pulse" />
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-                <path fill="#25D366" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2Z"/>
-                <path fill="#FFFFFF" d="M17.52 14.33C17.22 14.18 15.75 13.45 15.48 13.35C15.2 13.25 15 13.2 14.81 13.5C14.61 13.8 14.04 14.47 13.86 14.67C13.69 14.87 13.51 14.9 13.21 14.75C12.92 14.6 11.96 14.28 10.83 13.27C9.94 12.48 9.35 11.51 9.17 11.21C9 10.91 9.15 10.75 9.3 10.6C9.43 10.47 9.6 10.25 9.75 10.08C9.9 9.9 9.95 9.77 10.05 9.57C10.15 9.37 10.1 9.2 10.02 9.05C9.95 8.9 9.37 7.48 9.13 6.9C8.9 6.33 8.66 6.41 8.49 6.4C8.32 6.39 8.13 6.39 7.93 6.39C7.73 6.39 7.41 6.46 7.14 6.76C6.87 7.06 6.1 7.78 6.1 9.25C6.1 10.72 7.17 12.14 7.32 12.34C7.47 12.54 9.42 15.53 12.41 16.82C13.12 17.13 13.68 17.31 14.12 17.45C14.84 17.68 15.49 17.65 16.01 17.57C16.59 17.48 17.8 16.84 18.05 16.14C18.3 15.44 18.3 14.84 18.22 14.72C18.15 14.59 17.97 14.51 17.67 14.36"/>
+                <path fill="#25D366" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2Z" />
+                <path fill="#FFFFFF" d="M17.52 14.33C17.22 14.18 15.75 13.45 15.48 13.35C15.2 13.25 15 13.2 14.81 13.5C14.61 13.8 14.04 14.47 13.86 14.67C13.69 14.87 13.51 14.9 13.21 14.75C12.92 14.6 11.96 14.28 10.83 13.27C9.94 12.48 9.35 11.51 9.17 11.21C9 10.91 9.15 10.75 9.3 10.6C9.43 10.47 9.6 10.25 9.75 10.08C9.9 9.9 9.95 9.77 10.05 9.57C10.15 9.37 10.1 9.2 10.02 9.05C9.95 8.9 9.37 7.48 9.13 6.9C8.9 6.33 8.66 6.41 8.49 6.4C8.32 6.39 8.13 6.39 7.93 6.39C7.73 6.39 7.41 6.46 7.14 6.76C6.87 7.06 6.1 7.78 6.1 9.25C6.1 10.72 7.17 12.14 7.32 12.34C7.47 12.54 9.42 15.53 12.41 16.82C13.12 17.13 13.68 17.31 14.12 17.45C14.84 17.68 15.49 17.65 16.01 17.57C16.59 17.48 17.8 16.84 18.05 16.14C18.3 15.44 18.3 14.84 18.22 14.72C18.15 14.59 17.97 14.51 17.67 14.36" />
               </svg>
             </div>
             <span>WhatsApp<br />Chat</span>
@@ -474,7 +474,7 @@ export default function Header() {
             <div className="icon-wrapper icon-call-wrapper">
               <span className="call-beacon-pulse" />
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#D67A41" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
             </div>
             <span>Call<br />Now</span>
@@ -501,9 +501,9 @@ export default function Header() {
                     <stop offset="1" stopColor="#515ECF" />
                   </linearGradient>
                 </defs>
-                <rect x="2" y="2" width="20" height="20" rx="5.5" fill="url(#igBarGradSubtle)"/>
-                <circle cx="12" cy="12" r="4.5" stroke="#FFFFFF" strokeWidth="1.8"/>
-                <circle cx="17.5" cy="6.5" r="1.2" fill="#FFFFFF"/>
+                <rect x="2" y="2" width="20" height="20" rx="5.5" fill="url(#igBarGradSubtle)" />
+                <circle cx="12" cy="12" r="4.5" stroke="#FFFFFF" strokeWidth="1.8" />
+                <circle cx="17.5" cy="6.5" r="1.2" fill="#FFFFFF" />
               </svg>
             </div>
             <span>Instagram<br />Profile</span>
@@ -522,12 +522,12 @@ export default function Header() {
             <div className="icon-wrapper icon-map-wrapper">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
                 {/* Official Multi-Color Google Maps Pin */}
-                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22S19 14.25 19 9C19 5.13 15.87 2 12 2Z" fill="#EA4335"/>
-                <path d="M12 2C10.5 2 9.1 2.5 8 3.3L12 11.5L16 3.3C14.9 2.5 13.5 2 12 2Z" fill="#EA4335"/>
-                <path d="M5 9C5 11.5 6.4 14.5 8.5 17.5L12 11.5L8 3.3C6.2 4.7 5 6.7 5 9Z" fill="#FBBC04"/>
-                <path d="M12 22C12 22 8.5 17.5 8.5 17.5L12 11.5L15.5 17.5C15.5 17.5 12 22 12 22Z" fill="#34A853"/>
-                <path d="M19 9C19 6.7 17.8 4.7 16 3.3L12 11.5L15.5 17.5C17.6 14.5 19 11.5 19 9Z" fill="#4285F4"/>
-                <circle cx="12" cy="9" r="2.8" fill="#FFFFFF"/>
+                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22S19 14.25 19 9C19 5.13 15.87 2 12 2Z" fill="#EA4335" />
+                <path d="M12 2C10.5 2 9.1 2.5 8 3.3L12 11.5L16 3.3C14.9 2.5 13.5 2 12 2Z" fill="#EA4335" />
+                <path d="M5 9C5 11.5 6.4 14.5 8.5 17.5L12 11.5L8 3.3C6.2 4.7 5 6.7 5 9Z" fill="#FBBC04" />
+                <path d="M12 22C12 22 8.5 17.5 8.5 17.5L12 11.5L15.5 17.5C15.5 17.5 12 22 12 22Z" fill="#34A853" />
+                <path d="M19 9C19 6.7 17.8 4.7 16 3.3L12 11.5L15.5 17.5C17.6 14.5 19 11.5 19 9Z" fill="#4285F4" />
+                <circle cx="12" cy="9" r="2.8" fill="#FFFFFF" />
               </svg>
             </div>
             <span>Google<br />Maps</span>
