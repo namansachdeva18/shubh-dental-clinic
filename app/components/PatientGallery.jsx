@@ -102,6 +102,38 @@ const COLLAGE_PATIENTS = [
   { id: 35, name: 'Vivek Oberoi', treatment: 'Smile Makeover', category: 'Smile Makeover', duration: '45 Mins', age: '37', rating: 5, story: 'Instant shade improvement. Friendly doctors and quick service.', imgSrc: '/patient-smiles/FE121650-9A9C-449D-B559-E9D11246F33A.jpg' }
 ];
 
+const DENTAL_IMPLANT_FOLDER_PHOTOS = [
+  'IMG-20260904-WA0167.jpg',
+  'IMG-20260904-WA0168.jpg',
+  'IMG-20260904-WA0169.jpg',
+  'IMG-20260904-WA0170.jpg',
+  'IMG-20260904-WA0171.jpg',
+  'IMG-20260904-WA0172.jpg',
+  'IMG-20260904-WA0173.jpg',
+  'IMG-20260904-WA0174.jpg',
+  'IMG-20260904-WA0175.jpg',
+  'IMG-20260904-WA0176.jpg',
+  'IMG-20260904-WA0177.jpg',
+  'IMG-20260904-WA0178.jpg',
+  'IMG-20260904-WA0179.jpg',
+  'IMG-20260904-WA0180.jpg',
+  'IMG-20260904-WA0181.jpg',
+  'IMG-20260904-WA0182.jpg',
+  'IMG-20260904-WA0183.jpg'
+];
+
+const IMPLANT_ROW_PATIENTS = DENTAL_IMPLANT_FOLDER_PHOTOS.map((file, idx) => ({
+  id: `implant-row-${idx + 1}`,
+  name: `Implant Case #${idx + 1}`,
+  treatment: 'Dental Implant Restoration',
+  category: 'Implants',
+  duration: 'Fixed Placement',
+  age: 'Adult',
+  rating: 5,
+  story: 'Permanent titanium implant procedure with natural chewing restoration and aesthetic alignment.',
+  imgSrc: `/Dental Implants/${file}`
+}));
+
 const CATEGORIES = ['All Cases', 'Aligners', 'Braces', 'Implants', 'Smile Makeover'];
 
 const getUnsplashUrl = (imgId) => {
@@ -123,10 +155,10 @@ export default function PatientGallery() {
     return p.category === activeCategory;
   });
 
-  // Split into 3 columns for horizontal scroll alignment
-  const row1 = filteredCollage.slice(0, 12);
-  const row2 = filteredCollage.slice(12, 24);
-  const row3 = filteredCollage.slice(24, 35);
+  // Row 1 contains ONLY photos from the public/Dental Implants folder
+  const row1 = IMPLANT_ROW_PATIENTS;
+  const row2 = COLLAGE_PATIENTS.slice(0, 17);
+  const row3 = COLLAGE_PATIENTS.slice(17, 35);
 
   const CompactCard = ({ item }) => (
     <div 
