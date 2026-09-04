@@ -733,61 +733,7 @@ export default function PageClient({ treatment }) {
               </section>
             )}
 
-            {/* 24. Local Clinic Location */}
-            <section id="location" className="treatment-local-info-card" aria-label="Clinic Location & Hours">
-              <div className="local-info-inner">
-                <div className="local-info-col">
-                  <span className="section-eyebrow-light">Visiting Our Clinic</span>
-                  <h3 className="local-heading font-heading">Looking for {treatment.title} in Rohtak?</h3>
-                  <p className="local-desc">
-                    Shubh Orthodontic &amp; Dental Clinic provides specialist dental care from our modern facility in Rohtak, easily accessible from Delhi Bypass Chowk with dedicated on-site patient parking.
-                  </p>
 
-                  <div className="local-details-list">
-                    <div className="local-detail-item">
-                      <MapPin size={18} className="loc-icon" aria-hidden="true" />
-                      <div>
-                        <strong>Clinic Address:</strong>
-                        <span>Opposite Swami Nitanand School, Delhi Bypass Chowk, Rohtak, Haryana 124001</span>
-                      </div>
-                    </div>
-
-                    <div className="local-detail-item">
-                      <Clock size={18} className="loc-icon" aria-hidden="true" />
-                      <div>
-                        <strong>Consultation Hours:</strong>
-                        <span>Mon – Sat: 9:30 AM – 8:00 PM | Sun: 10:00 AM – 2:00 PM</span>
-                      </div>
-                    </div>
-
-                    <div className="local-detail-item">
-                      <Phone size={18} className="loc-icon" aria-hidden="true" />
-                      <div>
-                        <strong>Direct Appointments:</strong>
-                        <span>+91 86850 48414</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="local-map-cta-col">
-                  <div className="map-badge-card">
-                    <h4>📍 Central Rohtak Location</h4>
-                    <p>Near Delhi Bypass with rapid highway connectivity for patients from Sonepat, Panipat, Jhajjar, and Delhi NCR.</p>
-                    <a 
-                      href="https://maps.google.com/?q=Shubh+Orthodontic+and+Dental+Clinic+Rohtak" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="btn-map-directions"
-                      onClick={() => trackCTA('google_maps_directions_click', { treatment_slug: treatment.slug })}
-                    >
-                      <Compass size={16} aria-hidden="true" />
-                      <span>Get Driving Directions</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </section>
 
           </div>
         )}
