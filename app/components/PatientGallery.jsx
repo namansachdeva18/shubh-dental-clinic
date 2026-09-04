@@ -134,6 +134,66 @@ const IMPLANT_ROW_PATIENTS = DENTAL_IMPLANT_FOLDER_PHOTOS.map((file, idx) => ({
   imgSrc: `/Dental Implants/${file}`
 }));
 
+const INTRA_ORAL_BRACES_FOLDER_PHOTOS = [
+  'IMG-20260904-WA0122.jpg',
+  'IMG-20260904-WA0123.jpg',
+  'IMG-20260904-WA0124.jpg',
+  'IMG-20260904-WA0125.jpg',
+  'IMG-20260904-WA0126.jpg',
+  'IMG-20260904-WA0127.jpg',
+  'IMG-20260904-WA0128.jpg',
+  'IMG-20260904-WA0129.jpg',
+  'IMG-20260904-WA0130.jpg',
+  'IMG-20260904-WA0131.jpg',
+  'IMG-20260904-WA0132.jpg',
+  'IMG-20260904-WA0133.jpg',
+  'IMG-20260904-WA0134.jpg',
+  'IMG-20260904-WA0135.jpg',
+  'IMG-20260904-WA0136.jpg',
+  'IMG-20260904-WA0137.jpg',
+  'IMG-20260904-WA0138.jpg',
+  'IMG-20260904-WA0139.jpg',
+  'IMG-20260904-WA0140.jpg',
+  'IMG-20260904-WA0141.jpg',
+  'IMG-20260904-WA0142.jpg',
+  'IMG-20260904-WA0143.jpg',
+  'IMG-20260904-WA0144.jpg',
+  'IMG-20260904-WA0145.jpg',
+  'IMG-20260904-WA0146.jpg',
+  'IMG-20260904-WA0147.jpg',
+  'IMG-20260904-WA0148.jpg',
+  'IMG-20260904-WA0149.jpg',
+  'IMG-20260904-WA0150.jpg',
+  'IMG-20260904-WA0151.jpg',
+  'IMG-20260904-WA0152.jpg',
+  'IMG-20260904-WA0153.jpg',
+  'IMG-20260904-WA0154.jpg',
+  'IMG-20260904-WA0155.jpg',
+  'IMG-20260904-WA0156.jpg',
+  'IMG-20260904-WA0157.jpg',
+  'IMG-20260904-WA0158.jpg',
+  'IMG-20260904-WA0159.jpg',
+  'IMG-20260904-WA0160.jpg',
+  'IMG-20260904-WA0161.jpg',
+  'IMG-20260904-WA0162.jpg',
+  'IMG-20260904-WA0163.jpg',
+  'IMG-20260904-WA0164.jpg',
+  'IMG-20260904-WA0165.jpg',
+  'IMG-20260904-WA0166.jpg'
+];
+
+const INTRA_ORAL_BRACES_ROW_PATIENTS = INTRA_ORAL_BRACES_FOLDER_PHOTOS.map((file, idx) => ({
+  id: `braces-intra-${idx + 1}`,
+  name: `Orthodontic Case #${idx + 1}`,
+  treatment: 'Specialized Orthodontic Correction',
+  category: 'Braces',
+  duration: 'Fixed Appliance',
+  age: 'Patient',
+  rating: 5,
+  story: 'Precision clinical orthodontic alignment and bite correction monitored by Prof. Dr. S. K. Yadav.',
+  imgSrc: `/Intra oral braces/${file}`
+}));
+
 const CATEGORIES = ['All Cases', 'Aligners', 'Braces', 'Implants', 'Smile Makeover'];
 
 const getUnsplashUrl = (imgId) => {
@@ -155,12 +215,14 @@ export default function PatientGallery() {
     return p.category === activeCategory;
   });
 
-  // Row 1 contains ONLY photos from the public/Dental Implants folder
+  // Row 1: ONLY photos from public/Dental Implants folder
   const row1 = IMPLANT_ROW_PATIENTS;
-  const row2 = COLLAGE_PATIENTS.slice(0, 17);
-  const row3 = COLLAGE_PATIENTS.slice(17, 35);
+  // Row 2: ONLY photos from public/Intra oral braces folder (clean, no text written)
+  const row2 = INTRA_ORAL_BRACES_ROW_PATIENTS;
+  // Row 3: Patient smiles collage
+  const row3 = COLLAGE_PATIENTS;
 
-  const CompactCard = ({ item }) => (
+  const CompactCard = ({ item, hideOverlay = false }) => (
     <div 
       className="compact-patient-card"
       onClick={() => setSelectedPatient(item)}
@@ -175,9 +237,11 @@ export default function PatientGallery() {
           style={{ objectFit: 'cover' }}
         />
       </div>
-      <div className="compact-card-overlay">
-        <span className="compact-card-treatment">{item.category}</span>
-      </div>
+      {!hideOverlay && (
+        <div className="compact-card-overlay">
+          <span className="compact-card-treatment">{item.category}</span>
+        </div>
+      )}
     </div>
   );
 
@@ -292,10 +356,10 @@ export default function PatientGallery() {
                   <div className="collage-marquee-row">
                     <div className="collage-marquee-track scroll-right-slow">
                       <div className="collage-marquee-group">
-                        {row2.map(item => <CompactCard key={`r2-a-${item.id}`} item={item} />)}
+                        {row2.map(item => <CompactCard key={`r2-a-${item.id}`} item={item} hideOverlay={true} />)}
                       </div>
                       <div className="collage-marquee-group">
-                        {row2.map(item => <CompactCard key={`r2-b-${item.id}`} item={item} />)}
+                        {row2.map(item => <CompactCard key={`r2-b-${item.id}`} item={item} hideOverlay={true} />)}
                       </div>
                     </div>
                   </div>
