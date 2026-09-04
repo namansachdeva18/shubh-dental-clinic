@@ -523,77 +523,7 @@ export default function SpecialOfferPage() {
         </div>
       </section>
 
-      {/* ── 4. COMPACT 20% SAVINGS & 0% EMI CALCULATOR ────────── */}
-      <section className="section savings-calc-section">
-        <div className="container">
-          <div className="calc-card-wrapper">
-            <div className="calc-content-grid">
-              
-              <div className="calc-text-side">
-                <div className="calc-pill">
-                  <Calculator size={13} />
-                  <span>TRANSPARENT PRICING &amp; 0% EMI</span>
-                </div>
-                <h3 className="calc-heading">
-                  High-End Dental Care, Designed for Every Budget
-                </h3>
-                <p className="calc-desc">
-                  With your 20% Privilege Pass, premium clinical care is significantly subsidized. Benefit from 0% interest flexible payment schedules with zero paperwork stress.
-                </p>
-                <div className="calc-perks-list">
-                  <div className="calc-perk">
-                    <CheckCircle2 size={16} className="c-icon" />
-                    <span><strong>0% Interest Financing:</strong> Spread over 6, 9, or 12 relaxed months</span>
-                  </div>
-                  <div className="calc-perk">
-                    <CheckCircle2 size={16} className="c-icon" />
-                    <span><strong>Zero Hidden Costs:</strong> Complete transparent estimates upfront</span>
-                  </div>
-                  <div className="calc-perk">
-                    <CheckCircle2 size={16} className="c-icon" />
-                    <span><strong>All Insurance/TPA Assistance:</strong> Direct support for claims</span>
-                  </div>
-                </div>
-              </div>
 
-              <div className="calc-display-side">
-                <div className="calc-highlight-box">
-                  <span className="c-box-sub">EXAMPLE SAVINGS BREAKDOWN</span>
-                  <div className="c-pricing-row">
-                    <div className="price-item">
-                      <span className="p-label">Standard Clinic Package</span>
-                      <span className="p-val strike">₹1,25,000</span>
-                    </div>
-                    <div className="price-divider">➔</div>
-                    <div className="price-item highlight">
-                      <span className="p-label">With 20% Privilege Pass</span>
-                      <span className="p-val green">₹1,00,000</span>
-                    </div>
-                  </div>
-
-                  <div className="c-savings-callout">
-                    <span>🎉 Instant Net Savings: <strong>₹25,000</strong></span>
-                    <span className="c-emi-badge">Or just ₹5,555/month on 0% EMI</span>
-                  </div>
-
-                  <button 
-                    onClick={() => {
-                      const element = document.getElementById('lead-name');
-                      if (element) element.focus();
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="btn-calc-lock"
-                  >
-                    <span>Lock My 20% Concession Slot</span>
-                    <ArrowRight size={16} />
-                  </button>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── 5. CLINICAL EXCELLENCE & AUTHORITY BENTO ──────────── */}
       <section className="section clinic-authority-section">
