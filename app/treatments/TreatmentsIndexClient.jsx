@@ -10,10 +10,11 @@ import {
 const CATEGORIES = [
   { id: 'all', label: 'All Specialities', icon: '🌟' },
   { id: 'Orthodontics', label: 'Orthodontics & Aligners', icon: '✨', count: 4 },
+  { id: 'AirwayTMJ', label: 'Airway, TMJ & Sleep', icon: '🫁', count: 3 },
   { id: 'Implantology', label: 'Dental Implants', icon: '🛡️', count: 2 },
   { id: 'Cosmetic', label: 'Cosmetic & Smile Design', icon: '💎', count: 5 },
   { id: 'Restorative', label: 'Restorative Dentistry', icon: '👑', count: 2 },
-  { id: 'General', label: 'General & Oral Surgery', icon: '⚡', count: 4 }
+  { id: 'General', label: 'General & Oral Surgery', icon: '⚡', count: 5 }
 ];
 
 const TREATMENTS_DATA = [
@@ -280,6 +281,70 @@ const TREATMENTS_DATA = [
     color: '#D67A41',
     lightAccent: 'rgba(214, 122, 65, 0.15)',
     highlights: ['Atraumatic Periotome Elevation', 'Preserves Jawbone for Future Implants', 'Comfortable Local Anesthesia']
+  },
+
+  // ── AIRWAY, SLEEP & TMJ SPECIALITY ──────────────────────────────
+  {
+    slug: 'airway-orthodontics',
+    title: 'Airway Orthodontics & Craniofacial Expansion',
+    category: 'AirwayTMJ',
+    isPremium: true,
+    badge: 'Airway & Nasal Breathing',
+    tagline: 'Skeletal Maxillary Expansion & Nasal Airflow Enhancement',
+    desc: 'Led by Prof. Dr. S. K. Yadav. Treats mouth breathing, narrow jaws, and airway restrictions through orthopedic palatal expansion and MARPE micro-implants.',
+    duration: '6–18 Months',
+    recovery: 'Zero downtime',
+    doctor: 'Prof. Dr. S. K. Yadav',
+    color: '#10B981',
+    lightAccent: 'rgba(16, 185, 129, 0.15)',
+    highlights: ['Expands Nasal Floor Volume', 'MARPE Skeletal Expansion for Adults', 'Stops Habitual Mouth Breathing']
+  },
+  {
+    slug: 'sleep-apnea-treatment',
+    title: 'Sleep Apnea & Anti-Snoring Oral Appliances',
+    category: 'AirwayTMJ',
+    isPremium: true,
+    badge: 'CPAP-Alternative Therapy',
+    tagline: 'Custom Mandibular Advancement Devices (MAD)',
+    desc: 'Eliminate loud snoring and obstructive sleep apnea events with comfortable, custom-milled oral appliances that gently keep your airway open all night.',
+    duration: '1–2 Weeks Delivery',
+    recovery: 'Immediate night-one snoring relief',
+    doctor: 'Prof. Dr. S. K. Yadav',
+    color: '#3B82F6',
+    lightAccent: 'rgba(59, 130, 246, 0.15)',
+    highlights: ['Silent, Non-Electric & Compact', 'Eliminates CPAP Mask & Headgear Discomfort', 'Protects Blood Oxygen Saturation']
+  },
+  {
+    slug: 'tmj-disorder-treatment',
+    title: 'TMJ Specialist & Jaw Joint Care',
+    category: 'AirwayTMJ',
+    isPremium: true,
+    badge: 'Non-Surgical Joint Therapy',
+    tagline: 'Occlusal Splints, Neuromuscular Decompression & Bite Balancing',
+    desc: 'Relieve painful jaw clicking, morning headaches, clenching (bruxism), and locked jaw with precision-milled Michigan splints and bite realignment.',
+    duration: '4–12 Weeks',
+    recovery: 'Relief within 5–10 days',
+    doctor: 'Prof. Dr. S. K. Yadav',
+    color: '#D67A41',
+    lightAccent: 'rgba(214, 122, 65, 0.15)',
+    highlights: ['Precision Michigan Decompression Splint', 'Stops Destructive Teeth Grinding', 'Eliminates Chronic Facial & Ear Pain']
+  },
+
+  // ── LASER SURGERY ────────────────────────────────────────────────
+  {
+    slug: 'tongue-tie-release',
+    title: 'Laser Tongue Tie Release (Frenectomy)',
+    category: 'General',
+    isPremium: false,
+    badge: 'Zero-Blood Laser Release',
+    tagline: 'Painless Infant, Child & Adult Ankyloglossia Release',
+    desc: 'Free restricted tongue mobility in under 10 minutes with focused soft-tissue dental diode laser. Zero blood, zero stitches, and instant feeding restoration.',
+    duration: '5–10 Minutes',
+    recovery: 'Immediate eating & feeding',
+    doctor: 'Prof. Dr. S. K. Yadav',
+    color: '#EC4899',
+    lightAccent: 'rgba(236, 72, 153, 0.15)',
+    highlights: ['Zero Bleeding & No Stitches Needed', 'Immediate Latch Relief for Nursing Infants', 'Improves Speech & Palate Growth']
   }
 ];
 

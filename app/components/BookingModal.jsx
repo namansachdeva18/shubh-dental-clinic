@@ -190,6 +190,10 @@ export default function BookingModal() {
                           <option value="online-video-consult">📹 Online Video Consultation (All Treatments)</option>
                           <option value="invisalign">Invisalign® Clear Aligners (In-Clinic / Online)</option>
                           <option value="damon">Damon® System Braces</option>
+                          <option value="airway-orthodontics">Airway Orthodontics & Maxillary Expansion</option>
+                          <option value="sleep-apnea">Sleep Apnea & Anti-Snoring Oral Appliance</option>
+                          <option value="tmj-care">TMJ Specialist & Jaw Joint Care</option>
+                          <option value="tongue-tie">Laser Tongue Tie Release (Frenectomy)</option>
                           <option value="implants">Dental Implants</option>
                           <option value="smile-makeover">Smile Makeover / Veneers</option>
                           <option value="general">In-Clinic Dental Checkup (Rohtak)</option>

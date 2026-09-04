@@ -20,6 +20,14 @@ const NAV_TREATMENTS = [
     ]
   },
   {
+    group: 'Airway, TMJ & Sleep', items: [
+      { name: 'Airway Orthodontics', href: '/treatments/airway-orthodontics' },
+      { name: 'Sleep Apnea Treatment', href: '/treatments/sleep-apnea-treatment' },
+      { name: 'TMJ Specialist Care', href: '/treatments/tmj-disorder-treatment' },
+      { name: 'Tongue Tie Release (Laser)', href: '/treatments/tongue-tie-release' },
+    ]
+  },
+  {
     group: 'Implantology', items: [
       { name: 'Same-Day Dental Implants', href: '/treatments/same-day-dental-implants' },
       { name: 'Full Mouth Implants', href: '/treatments/dental-implants' },

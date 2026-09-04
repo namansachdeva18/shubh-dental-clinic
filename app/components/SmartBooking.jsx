@@ -3,7 +3,8 @@ import { useState, useRef, useEffect } from 'react';
 import { 
   Calendar, Clock, User, Phone, CheckCircle2, MessageSquare, 
   ShieldCheck, Sparkles, Send, Star, Award, ChevronRight, Check,
-  Stethoscope, Sun, Moon, Zap, Video, MapPin, ChevronDown, Search, Smile
+  Stethoscope, Sun, Moon, Zap, Video, MapPin, ChevronDown, Search, Smile,
+  Wind, Activity
 } from 'lucide-react';
 import ScrollReveal, { StaggerReveal, StaggerItem } from './ScrollReveal';
 
@@ -13,6 +14,15 @@ const TREATMENT_CATEGORIES = [
     items: [
       { id: 'aligners', label: 'Clear Aligners (Invisalign® & SkyAlign™)', badge: 'Most Popular', badgeType: 'gold', Icon: Sparkles, desc: 'Discreet 3D invisible teeth alignment' },
       { id: 'braces', label: 'Damon® Self-Ligating & Ceramic Braces', badge: 'High Precision', badgeType: 'copper', Icon: Award, desc: 'Advanced gentle-force bracket systems' },
+    ]
+  },
+  {
+    category: 'Airway, TMJ & Sleep Specialists',
+    items: [
+      { id: 'airway', label: 'Airway Orthodontics & Maxillary Expansion', badge: 'Breathing Care', badgeType: 'green', Icon: Wind, desc: 'Expand upper arch and nasal airway' },
+      { id: 'sleep-apnea', label: 'Sleep Apnea & Anti-Snoring Oral Devices', badge: 'CPAP Alternative', badgeType: 'blue', Icon: Moon, desc: 'Custom Mandibular Advancement Device (MAD)' },
+      { id: 'tmj', label: 'TMJ Specialist & Jaw Pain Splint Care', badge: 'Joint Relief', badgeType: 'copper', Icon: Activity, desc: 'End jaw clicking, clenching & facial pain' },
+      { id: 'tongue-tie', label: 'Laser Tongue Tie Release (Frenectomy)', badge: 'Zero Blood', badgeType: 'teal', Icon: Zap, desc: 'Quick 5-min painless laser release' },
     ]
   },
   {

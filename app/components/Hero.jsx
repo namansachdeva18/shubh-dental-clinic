@@ -41,22 +41,6 @@ export default function Hero() {
               <span>Rohtak, Haryana &mdash; Haryana&apos;s Most Trusted Dental Clinic</span>
             </motion.div>
 
-            {/* Special Offer Ribbon (Mobile & Desktop) */}
-            <motion.div variants={fadeUp} className="hs-offer-ribbon-wrap">
-              <Link href="/special-offer" className="hs-offer-ribbon" aria-label="Limited-time dental care special offer">
-                <span className="hs-offer-chip">
-                  <Tag size={11} /> 20% OFF
-                </span>
-                <span className="hs-offer-text">
-                  Limited-Time Offer · Up to 20% OFF + Free 3D Scan
-                </span>
-                <span className="hs-offer-action">
-                  <span>Claim</span>
-                  <ArrowRight size={12} />
-                </span>
-              </Link>
-            </motion.div>
-
             {/* SEO-Optimised Headline */}
             <motion.h1 className="hs-headline" variants={fadeUp}>
               Best Orthodontist &amp;<br />
@@ -215,7 +199,8 @@ export default function Hero() {
             className="hs-right"
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            style={{ y: imageParallax }}
           >
             {/* The stage */}
             <div className="hs-stage">
@@ -232,82 +217,6 @@ export default function Hero() {
                   onError={(e) => { e.target.src = '/hero-image.webp'; }}
                 />
                 <div className="hs-img-vignette" />
-              </motion.div>
-
-              {/* --- Google Rating Pill (top-left of image) --- */}
-              <motion.div
-                className="hs-google-pill"
-                initial={{ opacity: 0, y: -16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.6 }}
-              >
-                <div className="hs-stars">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={12} fill="#F59E0B" color="#F59E0B" />
-                  ))}
-                </div>
-                <span className="hs-rating-val">5.0</span>
-                <span className="hs-rating-label">Google</span>
-              </motion.div>
-
-              {/* --- Unified Doctor Panel (bottom-left, bleeds out) --- */}
-              <motion.div
-                className="hs-doctor-panel"
-                initial={{ opacity: 0, x: -32, y: 20 }}
-                animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ delay: 0.85, duration: 0.8, ease: 'easeOut' }}
-              >
-                {[
-                  {
-                    src: '/hero/portraits/doctor-sumit.webp',
-                    alt: 'Dr (Prof.) S. K. Yadav',
-                    name: 'Dr (Prof.) S. K. Yadav',
-                    role: 'BDS, MDS, Fellow WFO (USA)',
-                    tags: 'Braces & Implants Specialist',
-                  },
-                  {
-                    src: '/hero/portraits/doctor-achla.webp',
-                    alt: 'Dr (Prof.) Achla Yadav',
-                    name: 'Dr (Prof.) Achla Yadav',
-                    role: 'BDS, MDS, MIAOMP',
-                    tags: 'Consultant Oral Pathologist',
-                  },
-                ].map((dr, i) => (
-                  <div key={i} className={`hs-doc-row ${i > 0 ? 'hs-doc-row--bordered' : ''}`}>
-                    <div className="hs-doc-avatar">
-                      <Image src={dr.src} alt={dr.alt} fill style={{ objectFit: 'cover' }} sizes="48px"
-                        onError={(e) => { e.target.style.display = 'none'; }} />
-                    </div>
-                    <div className="hs-doc-info">
-                      <strong>{dr.name}</strong>
-                      <span>{dr.role}</span>
-                      <em>{dr.tags}</em>
-                    </div>
-                  </div>
-                ))}
-                <div className="hs-research-row">
-                  <GraduationCap size={15} className="hs-research-icon" />
-                  <span><strong>654+</strong> Citations · <strong>107</strong> Publications</span>
-                </div>
-              </motion.div>
-
-              {/* --- SkyAlign Card (top-right, bleed out) --- */}
-              <motion.div
-                className="hs-skyalign-card"
-                initial={{ opacity: 0, x: 32, y: -20 }}
-                animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ delay: 1.0, duration: 0.8, ease: 'easeOut' }}
-              >
-                <div className="hs-sa-img">
-                  <Image src="/invisalign.webp?v=2" alt="SkyAlign Clear Aligners" fill
-                    style={{ objectFit: 'contain' }} sizes="56px"
-                    onError={(e) => { e.target.style.display = 'none'; }} />
-                </div>
-                <div className="hs-sa-meta">
-                  <strong>SkyAlign™</strong>
-                  <span>In-House Clear Aligners</span>
-                  <em>Precision Fit · Expert Supervised</em>
-                </div>
               </motion.div>
 
             </div>

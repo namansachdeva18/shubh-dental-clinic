@@ -3485,6 +3485,806 @@ export const treatments = [
       phone: '+91 86850 48414',
       hours: 'Mon – Sat: 9:30 AM – 8:00 PM | Sun: 10:00 AM – 2:00 PM'
     }
+  },
+
+  // ── 18. AIRWAY ORTHODONTICS ───────────────────────────────────────────────
+  {
+    id: 'airway-orthodontics',
+    slug: 'airway-orthodontics',
+    title: 'Airway Orthodontics & Craniofacial Expansion',
+    shortTitle: 'Airway Orthodontics',
+    category: 'Orthodontics',
+    icon: '🫁',
+    h1: 'Airway Orthodontics in Rohtak — Maxillary Expansion & Healthy Breathing',
+    subtitle: 'Expanding Upper Arches & Nasal Airway Passage for Children and Adults',
+    heroValueProp: 'Treat mouth breathing, narrow dental arches, and craniofacial airway restrictions through custom maxillary skeletal expansion guided by Prof. Dr. S. K. Yadav.',
+    primaryKeyword: 'airway orthodontist Rohtak',
+    secondaryKeywords: ['airway orthodontics Haryana', 'mouth breathing treatment', 'palatal expansion airway', 'craniofacial orthodontist Rohtak'],
+
+    doctor: 'Prof. Dr. S. K. Yadav',
+    doctorTitle: 'Chief Orthodontist & Dentofacial Orthopedics Specialist',
+    doctorSlug: 'dr-sk-yadav',
+    doctorPhoto: '/dr-sk-yadav.webp',
+    doctorDegree: 'BDS, MDS Orthodontics (Ex-PGI Chandigarh), Fellow WFO (USA)',
+    medicalReviewDate: '2026-09-04',
+
+    breadcrumbs: [
+      { name: 'Home', url: '/' },
+      { name: 'Treatments', url: '/#services' },
+      { name: 'Orthodontics', url: '/treatments' },
+      { name: 'Airway Orthodontics', url: '/treatments/airway-orthodontics' }
+    ],
+
+    quickFacts: {
+      duration: '6–18 months active expansion & alignment',
+      visits: 'Every 4–6 weeks for clinical monitoring',
+      anaesthesia: 'Non-invasive, no surgical anaesthesia required for conventional expansion',
+      recovery: 'Zero downtime; 2–3 days mild pressure adaptation',
+      candidacy: 'Children & adults with mouth breathing, narrow palate, or sleep-disordered breathing',
+      longevity: 'Permanent skeletal & nasal airway dimensional increase'
+    },
+
+    overview: 'Airway Orthodontics goes beyond merely straightening crooked teeth; it focuses on the vital biological link between jaw structure, tongue posture, and upper airway volume. When the upper jaw (maxilla) is narrow or underdeveloped, it constricts both the roof of the mouth and the floor of the nasal cavity, forcing habitual mouth breathing, restless sleep, daytime fatigue, and compromised facial development in growing children. Led by Prof. Dr. S. K. Yadav, our airway-focused orthodontic protocols utilize rapid palatal expansion (RPE), MARPE (Mini-implant Assisted Rapid Palatal Expansion), and dentofacial orthopedics to gently expand the skeletal arch, dramatically improving nasal airflow, sleep quality, and facial aesthetics.',
+
+    conditions: [
+      'Chronic mouth breathing and dry mouth upon waking',
+      'Narrow, high-arched palate with severe dental crowding',
+      'Venous pooling / dark under-eye circles in children ("allergic shiners")',
+      'Restless sleeping, snoring, and teeth grinding (bruxism)',
+      'Crossbites and underdeveloped midface structure'
+    ],
+
+    candidacy: {
+      idealFor: 'Growing children aged 5–14 with narrow jaws or mouth breathing, and adults seeking skeletal airway expansion without invasive jaw resection.',
+      notIdealFor: 'Individuals whose nasal obstructions stem solely from severe deviated septum or massive nasal polyps (requires ENT co-management).'
+    },
+
+    alternatives: [
+      {
+        name: 'Conventional Dental Braces Only',
+        description: 'Straightens teeth within the existing narrow bone arch without expanding skeletal airway dimensions or improving nasal airflow volume.'
+      },
+      {
+        name: 'Surgically Assisted Rapid Palatal Expansion (SARPE)',
+        description: 'Invasive hospital-based surgical procedure reserved for extreme adult skeletal fusion where mini-implants are contraindicated.'
+      }
+    ],
+
+    optionsComparison: {
+      type: 'cards',
+      title: 'Airway Expansion Protocols',
+      items: [
+        {
+          name: 'Pediatric Palatal Expanders (RPE / Hyrax)',
+          description: 'Non-surgical gentle orthopedic expansion during active growth spurts that simultaneously widens nasal cavity floor volume.'
+        },
+        {
+          name: 'MARPE / MSE (Skeletal Mini-Implant Expansion)',
+          description: 'Micro-implant anchored expansion for teens and adults to split the midpalatal suture with direct bone-borne forces.'
+        },
+        {
+          name: 'Airway-Guided Clear Aligners',
+          description: 'Specialized orthodontic aligner series designed with tongue space expansion and functional mandibular advancement.'
+        }
+      ]
+    },
+
+    processSteps: [
+      {
+        step: 1,
+        title: '3D Airway & Digital Arch Assessment',
+        description: 'Comprehensive digital scanning and cephalometric analysis to measure cross-sectional airway volume and skeletal arch width.'
+      },
+      {
+        step: 2,
+        title: 'Custom Expander Fabrication & Delivery',
+        description: 'Precision laboratory-engineered expander fitted smoothly to anchor teeth or skeletal micro-implants.'
+      },
+      {
+        step: 3,
+        title: 'Controlled Orthopedic Expansion Phase',
+        description: 'Micro-turn activations gradually widen the midpalatal suture over 3–6 weeks, opening nasal passages.'
+      },
+      {
+        step: 4,
+        title: 'Stabilization & Comprehensive Tooth Alignment',
+        description: 'Retaining the newly opened skeletal width while aligning teeth into ideal functional occlusion with braces or aligners.'
+      }
+    ],
+
+    technology: [
+      {
+        name: '3D Intraoral Digital Scanners',
+        purpose: 'Provides micron-accurate digital stone-free models of the palate and dental arches.'
+      },
+      {
+        name: 'Low-Dose Digital Cephalometric Imaging',
+        purpose: 'Analyzes pharyngeal airway dimensions, adenoid space, and cranial base relationships.'
+      },
+      {
+        name: 'Custom MARPE Skeletal Screws',
+        purpose: 'Biocompatible titanium micro-implants enabling true orthopedic skeletal expansion in non-growing adults.'
+      }
+    ],
+
+    benefits: {
+      functional: [
+        'Restores natural nasal breathing, filtering and humidifying incoming air',
+        'Significantly widens upper arch room, preventing extraction of permanent teeth',
+        'Improves deep sleep architecture, morning alertness, and concentration',
+        'Elevates resting tongue posture out of the retroglossal airway space'
+      ],
+      aesthetic: [
+        'Produces a broader, fuller smile arc filling out buccal corridor shadows',
+        'Enhances midface projection and harmonizes facial profile aesthetics'
+      ]
+    },
+
+    risksAndLimitations: [
+      'Temporary mild front tooth gap (diastema) opens during midpalatal suture split — this closes naturally or with subsequent orthodontic alignment.',
+      'Slight nasal tingling or pressure sensation across the bridge of the nose for 2–3 minutes after appliance activation.'
+    ],
+
+    durationAndTimeline: {
+      consultationToBonding: '1–2 weeks from diagnostic 3D scans to appliance delivery.',
+      activeTreatment: 'Active expansion takes 4–8 weeks; bone consolidation and teeth alignment take 9–15 months.',
+      retentionPhase: 'Consolidation retention plate for 6 months followed by night retention.'
+    },
+
+    painAndComfort: {
+      anaesthesia: 'No anaesthetic needed for conventional expanders; topical spray for micro-implant expanders.',
+      expectedSensation: 'A temporary sense of tightness over the palate and upper nose during the first few days, easily relieved with mild paracetamol.',
+      whenToContact: 'Contact our team if any appliance band feels loose or if activation key turns become difficult.'
+    },
+
+    costDetails: {
+      range: '₹25,000 – ₹70,000 (Case complexity & appliance type dependent)',
+      factors: [
+        'Pediatric removable/fixed expander vs Adult MARPE skeletal system',
+        'Combined comprehensive braces or clear aligner finishing needs'
+      ],
+      emiAvailable: true,
+      emiNote: 'Zero-interest monthly payment schedules available during active treatment.'
+    },
+
+    whyChooseClinic: [
+      'Led by Prof. Dr. S. K. Yadav (Ex-PGI Chandigarh) with 20+ years of dentofacial orthopedic expertise.',
+      'Comprehensive airway focus that treats the root cause of breathing restrictions rather than just crooked teeth.',
+      'In-house digital planning with advanced 3D scanning and computer-guided micro-implant placement.'
+    ],
+
+    testimonials: [
+      {
+        name: 'Rajesh Sehgal',
+        location: 'Rohtak',
+        treatment: 'Airway Palatal Expansion',
+        review: 'My 10-year-old son was always breathing through his mouth and struggled with restless sleep. Dr. S. K. Yadav introduced an airway expansion plate. Within two months, his snoring stopped completely and his teeth have ample space to grow properly!'
+      }
+    ],
+
+    faqs: [
+      {
+        q: 'What is the best age for airway orthodontics in children?',
+        a: 'The optimal window is between ages 6 and 12, when the midpalatal suture is still cartilaginous and malleable, allowing non-surgical skeletal widening. However, with modern MARPE technology, adult airway expansion is also highly successful.'
+      },
+      {
+        q: 'How does airway orthodontics improve breathing?',
+        a: 'The roof of your mouth is also the floor of your nasal cavity. When an orthodontist widens the upper jaw skeletal arch, it directly expands the width of the nasal floor, lowering nasal airway resistance by up to 45%.'
+      }
+    ],
+
+    relatedTreatments: [
+      { slug: 'sleep-apnea-treatment', title: 'Sleep Apnea Treatment', anchor: 'Oral appliance therapy for night airway collapse' },
+      { slug: 'dental-braces', title: 'Dental Braces', anchor: 'Orthodontic tooth alignment' },
+      { slug: 'tongue-tie-release', title: 'Tongue Tie Release', anchor: 'Improve tongue mobility and palate posture' }
+    ],
+
+    localRelevance: {
+      clinicName: 'Shubh Orthodontic & Dental Clinic',
+      locality: 'Opposite Swami Nitanand School, Delhi Bypass Chowk, Rohtak',
+      serviceArea: 'Rohtak, Sonepat, Panipat, Jhajjar, Hisar, and Delhi NCR',
+      phone: '+91 86850 48414',
+      hours: 'Mon – Sat: 9:30 AM – 8:00 PM | Sun: 10:00 AM – 2:00 PM'
+    }
+  },
+
+  // ── 19. SLEEP APNEA TREATMENT ──────────────────────────────────────────────
+  {
+    id: 'sleep-apnea-treatment',
+    slug: 'sleep-apnea-treatment',
+    title: 'Sleep Apnea Treatment & Oral Appliance Therapy',
+    shortTitle: 'Sleep Apnea Treatment',
+    category: 'Orthodontics',
+    icon: '😴',
+    h1: 'Sleep Apnea & Snoring Treatment in Rohtak — Custom Oral Appliances',
+    subtitle: 'Comfortable, CPAP-Alternative Mandibular Advancement Devices (MAD)',
+    heroValueProp: 'Stop chronic snoring and obstructive sleep apnea (OSA) with custom-milled oral appliances that keep your airway open comfortably all night long.',
+    primaryKeyword: 'sleep apnea treatment Rohtak',
+    secondaryKeywords: ['snoring treatment Rohtak', 'mandibular advancement device', 'CPAP alternative dental', 'sleep dentist Haryana'],
+
+    doctor: 'Prof. Dr. S. K. Yadav',
+    doctorTitle: 'Chief Orthodontist & Sleep Dentistry Specialist',
+    doctorSlug: 'dr-sk-yadav',
+    doctorPhoto: '/dr-sk-yadav.webp',
+    doctorDegree: 'BDS, MDS Orthodontics (Ex-PGI Chandigarh), Fellow WFO (USA)',
+    medicalReviewDate: '2026-09-04',
+
+    breadcrumbs: [
+      { name: 'Home', url: '/' },
+      { name: 'Treatments', url: '/#services' },
+      { name: 'Orthodontics', url: '/treatments' },
+      { name: 'Sleep Apnea Treatment', url: '/treatments/sleep-apnea-treatment' }
+    ],
+
+    quickFacts: {
+      duration: '1–2 weeks for 3D scan & appliance precision delivery',
+      visits: '2–3 appointments for fitting & micro-titration calibration',
+      anaesthesia: 'Completely non-invasive, zero anaesthesia required',
+      recovery: 'Zero downtime; immediate night-one snoring reduction',
+      candidacy: 'Patients with chronic snoring, mild-to-moderate Obstructive Sleep Apnea, or CPAP intolerance',
+      longevity: '3–5+ years with medical-grade appliance polymers'
+    },
+
+    overview: 'Obstructive Sleep Apnea (OSA) is a serious medical condition where the soft tissues at the back of the throat collapse repeatedly during sleep, blocking airflow, dropping blood oxygen saturation, and disrupting restorative sleep cycles. Patients wake up feeling exhausted, suffer morning headaches, and carry elevated risks for hypertension and cardiovascular stress. For patients who cannot tolerate or dislike bulky, noisy CPAP masks, Shubh Dental Clinic offers medically certified Oral Appliance Therapy. Custom-milled Mandibular Advancement Devices (MAD) gently guide your lower jaw forward by fractions of a millimeter during sleep, tightening throat muscles and physically keeping your airway clear without electricity, noise, or facial straps.',
+
+    conditions: [
+      'Chronic, loud, disruptive snoring that wakes bed partners',
+      'Waking up gasping, choking, or with a parched dry mouth',
+      'Excessive daytime sleepiness, brain fog, and concentration loss',
+      'Morning headaches and unexplained fatigue',
+      'Diagnosed mild-to-moderate Obstructive Sleep Apnea (OSA)',
+      'Intolerance to continuous positive airway pressure (CPAP) therapy'
+    ],
+
+    candidacy: {
+      idealFor: 'Adults with chronic loud snoring, mild or moderate sleep apnea, and CPAP non-compliant or frequent business travelers wanting a portable solution.',
+      notIdealFor: 'Severe central sleep apnea (neurological) or individuals with severe active periodontal disease lacking sufficient teeth to anchor the oral device.'
+    },
+
+    alternatives: [
+      {
+        name: 'CPAP Machine (Continuous Positive Airway Pressure)',
+        description: 'Gold-standard for severe sleep apnea requiring pressurized air through a facial mask and tube connected to an electric compressor.'
+      },
+      {
+        name: 'UPPP / Pharyngeal Surgery',
+        description: 'Invasive hospital surgery removing throat and soft palate tissue with painful recovery and variable long-term relapse rates.'
+      }
+    ],
+
+    optionsComparison: {
+      type: 'cards',
+      title: 'Sleep Apnea Therapy Comparison',
+      items: [
+        {
+          name: 'Custom Mandibular Advancement Device (MAD)',
+          description: 'Sleek, silent dual-arch appliance that advances the lower jaw gently; silent, highly portable, and 90%+ patient compliance rate.'
+        },
+        {
+          name: 'Tongue Retaining Device (TRD)',
+          description: 'Gentle suction appliance holding the tongue forward for patients with missing posterior molars or jaw joint sensitivity.'
+        },
+        {
+          name: 'Orthodontic Maxillary Skeletal Expansion',
+          description: 'Permanent biological widening of the palate and nasal cavity to permanently enlarge anatomical airway volume.'
+        }
+      ]
+    },
+
+    processSteps: [
+      {
+        step: 1,
+        title: 'Sleep History & Airway Examination',
+        description: 'Review of existing sleep studies (polysomnography / Home Sleep Test), airway anatomy, and jaw joint health.'
+      },
+      {
+        step: 2,
+        title: 'Digital Intraoral 3D Bite Registration',
+        description: 'Precision 3D optical scan taking exact millimeter records of your ideal therapeutic airway advancement position.'
+      },
+      {
+        step: 3,
+        title: 'Appliance Fitting & Comfort Verification',
+        description: 'Delivery of your custom-fabricated German polymer appliance with smooth bite verification and adjustment guidance.'
+      },
+      {
+        step: 4,
+        title: 'Titration & Follow-up Efficacy Tracking',
+        description: 'Gradual micro-screw adjustments to maximize airway opening while ensuring complete comfort for your jaw joints and teeth.'
+      }
+    ],
+
+    technology: [
+      {
+        name: 'High-Precision 3D Intraoral Scanning',
+        purpose: 'Eliminates messy impression goop; captures micrometric occlusal contacts for a tight, comfortable custom fit.'
+      },
+      {
+        name: 'Adjustable Precision Titration Screws',
+        purpose: 'Allows 0.25mm incremental advancement so your airway opening is optimized safely without muscular joint strain.'
+      },
+      {
+        name: 'Bio-Compatible German Medical Polymer',
+        purpose: 'Hypoallergenic, ultra-thin, highly durable, and resistant to nocturnal saliva breakdown.'
+      }
+    ],
+
+    benefits: {
+      functional: [
+        'Drastically reduces or eliminates loud snoring from the very first night',
+        'Restores deep REM sleep cycles and normal nighttime oxygen saturation levels',
+        'Relieves morning brain fog, chronic exhaustion, and tension headaches',
+        'Silent, compact, zero-electricity operation perfect for frequent flights and travel'
+      ],
+      aesthetic: [
+        'Eliminates facial lines and strap marks caused by tight CPAP headgear masks',
+        'Improves facial vitality and reduces under-eye exhaustion rings'
+      ]
+    },
+
+    risksAndLimitations: [
+      'Mild morning tooth soreness or jaw stiffness during the first 1–2 weeks; resolved with simple 2-minute morning jaw exercises.',
+      'Does not replace medical consultations for complex severe central apnea.'
+    ],
+
+    durationAndTimeline: {
+      consultationToBonding: '7–10 days from 3D scan to custom appliance delivery.',
+      activeTreatment: 'Nightly wear while sleeping; titration fine-tuned over 2–4 weeks.',
+      retentionPhase: 'Annual recall checkups to evaluate appliance fit and bite stability.'
+    },
+
+    painAndComfort: {
+      anaesthesia: 'Zero anaesthesia; non-invasive oral therapy.',
+      expectedSensation: 'Very comfortable; feels similar to a slim orthodontic sports mouthguard or nighttime aligner tray.',
+      whenToContact: 'Contact our clinic if you experience persistent jaw discomfort or need micro-titration adjustments.'
+    },
+
+    costDetails: {
+      range: '₹20,000 – ₹45,000 (Based on appliance system & custom calibration)',
+      factors: [
+        'Precision multi-screw titratable MAD vs single-position device',
+        'Diagnostic 3D bite registration and follow-up titration appointments'
+      ],
+      emiAvailable: true,
+      emiNote: 'Easy installment plans available.'
+    },
+
+    whyChooseClinic: [
+      'Led by Prof. Dr. S. K. Yadav with deep postgraduate training in dentofacial orthopedics and occlusion dynamics.',
+      'Comprehensive digital workflow ensuring millimeter-precise jaw advancement that protects your TMJ joints.',
+      'Dedicated partnership with leading sleep physicians in Haryana and Delhi NCR.'
+    ],
+
+    testimonials: [
+      {
+        name: 'Virender Kadian',
+        location: 'Model Town, Rohtak',
+        treatment: 'Custom Sleep Apnea Appliance',
+        review: 'I had tried a CPAP machine for 3 months and simply could not sleep with the mask on. Dr. Yadav built a custom oral appliance that fits like a slim aligner tray. My snoring stopped immediately, my wife sleeps peacefully, and I wake up full of energy. A genuine lifesaver!'
+      }
+    ],
+
+    faqs: [
+      {
+        q: 'How does an oral appliance treat sleep apnea?',
+        a: 'The appliance gently holds your lower jaw slightly forward while you sleep. This forward position pulls your tongue and soft palate away from the back of your throat, preventing the airway collapse that causes snoring and apnea events.'
+      },
+      {
+        q: 'Can this replace my CPAP machine?',
+        a: 'For mild-to-moderate sleep apnea, international sleep medicine guidelines recognize custom mandibular advancement devices as an official, highly effective first-line CPAP alternative for non-compliant patients.'
+      }
+    ],
+
+    relatedTreatments: [
+      { slug: 'airway-orthodontics', title: 'Airway Orthodontics', anchor: 'Skeletal widening of palate and nasal airway' },
+      { slug: 'tmj-disorder-treatment', title: 'TMJ Specialist Treatment', anchor: 'Jaw joint balancing and pain relief' },
+      { slug: 'tongue-tie-release', title: 'Tongue Tie Release', anchor: 'Relieve tongue restrictions affecting airway space' }
+    ],
+
+    localRelevance: {
+      clinicName: 'Shubh Orthodontic & Dental Clinic',
+      locality: 'Opposite Swami Nitanand School, Delhi Bypass Chowk, Rohtak',
+      serviceArea: 'Rohtak, Sonepat, Jhajjar, Panipat, Bhiwani, and Delhi NCR',
+      phone: '+91 86850 48414',
+      hours: 'Mon – Sat: 9:30 AM – 8:00 PM | Sun: 10:00 AM – 2:00 PM'
+    }
+  },
+
+  // ── 20. TMJ SPECIALIST CARE ────────────────────────────────────────────────
+  {
+    id: 'tmj-disorder-treatment',
+    slug: 'tmj-disorder-treatment',
+    title: 'TMJ Specialist & Temporomandibular Joint Disorder Care',
+    shortTitle: 'TMJ Specialist Treatment',
+    category: 'Orthodontics',
+    icon: '⚡',
+    h1: 'TMJ Specialist & Jaw Pain Treatment in Rohtak — Relieve Clicking & Clenching',
+    subtitle: 'Diagnostic Occlusal Splints, Neuromuscular Decompression & Bite Balancing',
+    heroValueProp: 'End chronic jaw clicking, painful locking, facial muscle spasms, and severe clenching under the specialized orthodontic care of Prof. Dr. S. K. Yadav.',
+    primaryKeyword: 'tmj specialist Rohtak',
+    secondaryKeywords: ['tmj treatment Haryana', 'jaw clicking treatment', 'jaw joint pain dentist', 'bruxism teeth grinding splint'],
+
+    doctor: 'Prof. Dr. S. K. Yadav',
+    doctorTitle: 'Chief Orthodontist & Craniofacial Specialist',
+    doctorSlug: 'dr-sk-yadav',
+    doctorPhoto: '/dr-sk-yadav.webp',
+    doctorDegree: 'BDS, MDS Orthodontics (Ex-PGI Chandigarh), Fellow WFO (USA)',
+    medicalReviewDate: '2026-09-04',
+
+    breadcrumbs: [
+      { name: 'Home', url: '/' },
+      { name: 'Treatments', url: '/#services' },
+      { name: 'Orthodontics', url: '/treatments' },
+      { name: 'TMJ Specialist', url: '/treatments/tmj-disorder-treatment' }
+    ],
+
+    quickFacts: {
+      duration: '4–12 weeks of splint decompression & muscle relaxation',
+      visits: 'Bi-weekly calibration during acute pain phase',
+      anaesthesia: 'Non-invasive, non-surgical conservative therapy',
+      recovery: 'Significant relief within 5–10 days of splint wear',
+      candidacy: 'Patients with jaw clicking, locked jaw, facial migraine, or nocturnal teeth clenching',
+      longevity: 'Long-term joint rehabilitation and bite harmony'
+    },
+
+    overview: 'The temporomandibular joint (TMJ) connects your lower jaw to the temporal bones of your skull, acting as a complex sliding hinge. Temporomandibular disorders (TMD) arise when dental malocclusion, jaw clenching (bruxism), trauma, or disc displacement cause severe inflammation, muscle spasms, audible popping/clicking, restricted mouth opening, and chronic headaches often mistaken for migraines. At Shubh Orthodontic & Dental Clinic, Prof. Dr. S. K. Yadav applies advanced biomechanical and orthodontic principles to stabilize the jaw joint. Using precision diagnostic occlusal splints (Michigan splints / anterior deprogrammers), trigger-point muscle therapy, and restorative bite balancing, we eliminate painful joint friction and restore pain-free chewing without aggressive surgery.',
+
+    conditions: [
+      'Audible clicking, popping, or grating sounds in the jaw joints when chewing or yawning',
+      'Pain or tenderness around the jaw, temple, ear canal, and neck muscles',
+      'Inability to open the mouth fully or sudden episodes of jaw locking (open or closed)',
+      'Severe nocturnal teeth clenching and grinding leading to flattened, cracked enamel',
+      'Unexplained chronic morning tension headaches and facial pain'
+    ],
+
+    candidacy: {
+      idealFor: 'Anyone experiencing jaw joint tenderness, clicking sounds, chewing fatigue, or unmanageable clenching.',
+      notIdealFor: 'Cases of advanced bony ankylosis or rheumatoid joint destruction requiring inpatient maxillofacial total joint reconstruction.'
+    },
+
+    alternatives: [
+      {
+        name: 'Over-the-Counter Chemist Nightguards',
+        description: 'Soft rubber chemist guards frequently act as a chew toy, stimulating more clenching and worsening joint muscle fatigue.'
+      },
+      {
+        name: 'Invasive Open Joint Surgery',
+        description: 'High-risk surgical intervention; reserved exclusively as an extreme last resort when conservative protocols have been fully exhausted.'
+      }
+    ],
+
+    optionsComparison: {
+      type: 'cards',
+      title: 'TMJ Treatment Modalities',
+      items: [
+        {
+          name: 'Precision Michigan Occlusal Splint',
+          description: 'Hard acrylic laboratory-milled appliance custom-balanced to decompress the joint space and protect teeth from grinding forces.'
+        },
+        {
+          name: 'Neuromuscular Anterior Deprogrammer',
+          description: 'Specialized mini-splint that prevents posterior molar contact, breaking nocturnal muscle spasm reflexes within 48 hours.'
+        },
+        {
+          name: 'Orthodontic Bite Correction',
+          description: 'Permanent realignment of malaligned teeth to establish stable, harmonious dental occlusion that prevents joint strain.'
+        }
+      ]
+    },
+
+    processSteps: [
+      {
+        step: 1,
+        title: 'Comprehensive TMJ & Muscle Palpation',
+        description: 'Detailed clinical mapping of jaw joint movement, range of motion, deviation, joint sounds, and masticatory muscle tenderness.'
+      },
+      {
+        step: 2,
+        title: 'Digital Occlusal Analysis & 3D Scanning',
+        description: 'Precise 3D capture of bite contacts to identify occlusal interferences and eccentric jaw premature contacts.'
+      },
+      {
+        step: 3,
+        title: 'Custom Occlusal Splint Fabrication',
+        description: 'Milling a rigid, biocompatible medical splint calibrated to relax jaw muscles and decompress the articular disc.'
+      },
+      {
+        step: 4,
+        title: 'Equilibration & Long-Term Joint Stabilization',
+        description: 'Periodic fine adjustments to ensure balanced simultaneous contacts, followed by orthodontic realignment if required.'
+      }
+    ],
+
+    technology: [
+      {
+        name: 'Digital Occlusal Mapping',
+        purpose: 'Detects microscopic bite interferences that trigger clenching and overload the joint disc.'
+      },
+      {
+        name: 'Hard Acrylic Medical Milling',
+        purpose: 'Fabricates rigid splints with pinpoint accuracy, preventing the jaw muscular hyperactivity caused by soft boil-and-bite guards.'
+      },
+      {
+        name: 'Digital Range of Motion Calibration',
+        purpose: 'Quantifies maximum interincisal opening and lateral jaw excursion improvements across treatment.'
+      }
+    ],
+
+    benefits: {
+      functional: [
+        'Relieves chronic jaw pain, ear fullness, and facial muscle tension',
+        'Stops destructive enamel attrition and tooth fractures caused by night clenching',
+        'Restores comfortable wide mouth opening and pain-free eating',
+        'Decompresses the TMJ articular disc, halting progressive joint wear'
+      ],
+      aesthetic: [
+        'Relaxes hyperactive masseter muscles, softening square or strained jawline aesthetics',
+        'Prevents premature loss of vertical facial dimension caused by worn-down teeth'
+      ]
+    },
+
+    risksAndLimitations: [
+      'Patient compliance is essential: the splint must be worn strictly as prescribed (usually nightly or 24/7 during acute pain phases).',
+      'Severe long-standing disc perforations may require combined pharmacological and physiotherapeutic management.'
+    ],
+
+    durationAndTimeline: {
+      consultationToBonding: '3–5 days to deliver the custom laboratory-milled splint.',
+      activeTreatment: 'Initial pain relief occurs within 1–2 weeks; full muscle and joint stabilization takes 2–3 months.',
+      retentionPhase: 'Nightly protective splint wear or orthodontic permanent occlusion settling.'
+    },
+
+    painAndComfort: {
+      anaesthesia: 'Non-invasive; no injections needed for splint therapy.',
+      expectedSensation: 'Immediate sense of muscular relaxation across the temples and cheeks after slipping on the calibrated splint.',
+      whenToContact: 'Contact our clinic immediately if jaw lock-up occurs or sudden sharp joint pain develops.'
+    },
+
+    costDetails: {
+      range: '₹8,000 – ₹28,000 (Case-dependent)',
+      factors: [
+        'Appliance type (Anterior Deprogrammer vs Full-Arch Hard Michigan Splint)',
+        'Need for supplementary orthodontic bite equilibration or therapy'
+      ],
+      emiAvailable: true,
+      emiNote: 'Transparent pricing with installment options.'
+    },
+
+    whyChooseClinic: [
+      'Expertise of Prof. Dr. S. K. Yadav (Ex-PGI Chandigarh), combining deep orthodontic occlusal physics with joint therapy.',
+      'Evidence-based conservative protocol prioritizing non-surgical joint rehabilitation.',
+      'Fully equipped with modern digital scanners and high-precision laboratory splint milling.'
+    ],
+
+    testimonials: [
+      {
+        name: 'Sunita Sharma',
+        location: 'Rohtak',
+        treatment: 'TMJ Splint Therapy',
+        review: 'I suffered from terrible jaw pain and loud clicking whenever I chewed. Two doctors advised painkiller medicines that gave only temporary relief. Dr. S. K. Yadav accurately diagnosed my TMJ problem and made me a customized splint. Within 10 days the pain was completely gone!'
+      }
+    ],
+
+    faqs: [
+      {
+        q: 'Why does my jaw click or pop when I open my mouth?',
+        a: 'The popping sound happens when the small cartilaginous disc that cushions your jaw joint slips out of position and then snaps back onto the bone when you open your mouth. A specialist splint decompresses the joint so the disc can glide smoothly.'
+      },
+      {
+        q: 'Is surgery necessary for TMJ disorders?',
+        a: 'In over 95% of cases, surgery is completely unnecessary. Non-invasive, conservative therapies like custom hard splints, bite balancing, and muscle deprogramming provide complete long-term relief.'
+      }
+    ],
+
+    relatedTreatments: [
+      { slug: 'dental-braces', title: 'Dental Braces', anchor: 'Correct misaligned bite causing joint strain' },
+      { slug: 'sleep-apnea-treatment', title: 'Sleep Apnea Treatment', anchor: 'Relieve nocturnal airway and clenching tension' },
+      { slug: 'crowns-and-bridges', title: 'Crowns & Bridges', anchor: 'Rebuild worn chewing surfaces' }
+    ],
+
+    localRelevance: {
+      clinicName: 'Shubh Orthodontic & Dental Clinic',
+      locality: 'Opposite Swami Nitanand School, Delhi Bypass Chowk, Rohtak',
+      serviceArea: 'Rohtak, Panipat, Sonepat, Jhajjar, Jind, and Delhi NCR',
+      phone: '+91 86850 48414',
+      hours: 'Mon – Sat: 9:30 AM – 8:00 PM | Sun: 10:00 AM – 2:00 PM'
+    }
+  },
+
+  // ── 21. TONGUE TIE RELEASE (FRENECTOMY) ────────────────────────────────────
+  {
+    id: 'tongue-tie-release',
+    slug: 'tongue-tie-release',
+    title: 'Laser Tongue Tie Release (Frenectomy)',
+    shortTitle: 'Tongue Tie Release',
+    category: 'General',
+    icon: '👅',
+    h1: 'Laser Tongue Tie Release in Rohtak — Painless Infant & Adult Frenectomy',
+    subtitle: 'Gentle, Bloodless Dental Laser Release of Ankyloglossia for Infants, Kids & Adults',
+    heroValueProp: 'Free restricted tongue mobility in under 10 minutes with state-of-the-art dental laser technology. Zero bleeding, minimal discomfort, and immediate functional relief.',
+    primaryKeyword: 'tongue tie release Rohtak',
+    secondaryKeywords: ['laser frenectomy Rohtak', 'ankyloglossia treatment Haryana', 'tongue tie baby dentist', 'lip tie release Rohtak'],
+
+    doctor: 'Prof. Dr. S. K. Yadav',
+    doctorTitle: 'Chief Orthodontist & Dental Specialist',
+    doctorSlug: 'dr-sk-yadav',
+    doctorPhoto: '/dr-sk-yadav.webp',
+    doctorDegree: 'BDS, MDS (Ex-PGI Chandigarh), Fellow WFO (USA)',
+    medicalReviewDate: '2026-09-04',
+
+    breadcrumbs: [
+      { name: 'Home', url: '/' },
+      { name: 'Treatments', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Tongue Tie Release', url: '/treatments/tongue-tie-release' }
+    ],
+
+    quickFacts: {
+      duration: '5–10 minutes quick laser procedure',
+      visits: '1 single appointment + quick 1-week healing check',
+      anaesthesia: 'Gentle topical numbing gel or micro-drop local anaesthesia',
+      recovery: 'Immediate return to feeding and eating; zero stitches required',
+      candidacy: 'Infants with nursing issues, children with speech or spacing delays, and adults with restricted mobility',
+      longevity: 'Permanent lifelong release with guided myofunctional stretches'
+    },
+
+    overview: 'Tongue-tie (ankyloglossia) is a congenital condition where the lingual frenum—the short band of tissue connecting the underside of the tongue to the floor of the mouth—is unusually short, tight, or thick. This restricts normal tongue elevation and extension, leading to latching difficulties during infant breastfeeding, speech articulation delays ("r", "s", "t", "th" sounds) in toddlers, high narrow palates, mouth breathing, and chronic neck/shoulder tension in adults. At Shubh Orthodontic & Dental Clinic, we perform modern Laser Tongue Tie Release (Frenectomy). Unlike traditional surgical scissors or scalpels that cause bleeding and require uncomfortable sutures, advanced soft-tissue dental lasers vaporize the restrictive tissue band in minutes while instantly cauterizing nerve endings and capillaries—ensuring zero bleeding, zero stitches, and rapid healing.',
+
+    conditions: [
+      'Infant latching difficulties, reflux, and painful nursing for mothers',
+      'Difficulty elevating the tongue to the roof of the mouth or sticking it past the lower lip',
+      'Speech pronunciation hurdles in young children (lisping, difficulty with "r", "l", "s", "th")',
+      'Gap between front teeth (diastema) caused by a thick low-attached labial frenum (lip tie)',
+      'Impaired tongue posture leading to a narrow palate, mouth breathing, and orthodontic relapse'
+    ],
+
+    candidacy: {
+      idealFor: 'Infants struggling with nursing, toddlers with speech and feeding challenges, and adolescents or adults with restricted tongue mobility affecting palate development or sleep.',
+      notIdealFor: 'Individuals with uncontrolled systemic bleeding disorders without prior hematology clearance.'
+    },
+
+    alternatives: [
+      {
+        name: 'Traditional Surgical Scalpel / Scissor Snip',
+        description: 'Conventional method with surgical blade; causes bleeding, requires stitches, and carries higher postoperative swelling and infection risk.'
+      },
+      {
+        name: 'No Treatment (Watch & Wait)',
+        description: 'Restricted tongue posture often forces compensatory mouth breathing, dental crowding, and lifelong speech challenges.'
+      }
+    ],
+
+    optionsComparison: {
+      type: 'cards',
+      title: 'Frenectomy Techniques Compared',
+      items: [
+        {
+          name: 'Advanced Soft-Tissue Dental Laser',
+          description: 'Gold-standard precision: seals capillaries as it cuts, requires zero stitches, causes virtually no bleeding, and allows instant feeding.'
+        },
+        {
+          name: 'Conventional Surgical Blade (Scalpel)',
+          description: 'Older technique requiring scalpel incision, sutures, and several days of soreness and dietary restrictions.'
+        }
+      ]
+    },
+
+    processSteps: [
+      {
+        step: 1,
+        title: 'Functional Mobility Assessment',
+        description: 'Clinical examination of tongue elevation, extension, latching history, and speech evaluation.'
+      },
+      {
+        step: 2,
+        title: 'Gentle Topical Numbing',
+        description: 'Application of mild fruit-flavored numbing gel to make the area completely sensation-free.'
+      },
+      {
+        step: 3,
+        title: 'Precision Laser Release (3–5 Minutes)',
+        description: 'The focused dental laser gently vaporizes the restrictive frenum band with zero blood and no scalpel trauma.'
+      },
+      {
+        step: 4,
+        title: 'Immediate Functional Mobility & Stretch Instructions',
+        description: 'Immediate nursing/eating test in our clinic; demonstration of simple 10-second home stretches to prevent tissue reattachment.'
+      }
+    ],
+
+    technology: [
+      {
+        name: 'Precision Soft-Tissue Dental Diode Laser',
+        purpose: 'Provides micron-level tissue separation while photocoagulating vessels to ensure a 100% bloodless field.'
+      },
+      {
+        name: 'Topical Anaesthetic Bio-Gel',
+        purpose: 'Ensures absolute child and infant comfort without painful needle pricks.'
+      },
+      {
+        name: 'Myofunctional Guidance Stretches',
+        purpose: 'Daily post-op exercise protocols that ensure optimal tongue tone and palate resting posture.'
+      }
+    ],
+
+    benefits: {
+      functional: [
+        'Immediately restores full natural range of tongue elevation and motion',
+        'Improves infant latching and maternal nursing comfort within minutes',
+        'Helps correct lisping and speech articulation hurdles in growing children',
+        'Enables proper tongue posture against the palate, supporting natural jaw expansion'
+      ],
+      aesthetic: [
+        'Closes stubborn central diastema gaps when combined with orthodontic alignment',
+        'Promotes balanced natural facial and dentofacial arch growth'
+      ]
+    },
+
+    risksAndLimitations: [
+      'Simple post-procedure stretches must be performed at home for 2–3 weeks to prevent natural tissue reattachment during healing.'
+    ],
+
+    durationAndTimeline: {
+      consultationToBonding: 'Same-day procedure completed in a single 20-minute appointment.',
+      activeTreatment: 'Laser release takes under 5 minutes; healing occurs within 4–7 days.',
+      retentionPhase: 'Quick review checkup at 7 days.'
+    },
+
+    painAndComfort: {
+      anaesthesia: 'Topical numbing gel; micro-dose local anaesthetic if indicated.',
+      expectedSensation: 'Virtually pain-free; babies typically resume feeding immediately in our dedicated mother-child feeding area.',
+      whenToContact: 'Contact our clinic if you have questions regarding post-procedure stretching exercises.'
+    },
+
+    costDetails: {
+      range: '₹4,500 – ₹12,000 (Based on single vs dual frenum release)',
+      factors: [
+        'Lingual frenum (tongue-tie) vs Labial frenum (lip-tie) or dual release',
+        'Infant vs Adult case complexity'
+      ],
+      emiAvailable: false,
+      emiNote: 'Affordable, transparent single-sitting fee.'
+    },
+
+    whyChooseClinic: [
+      'Performs gentle, sterile dental laser frenectomies with zero blood and zero stitches.',
+      'Led by Prof. Dr. S. K. Yadav (Ex-PGI Chandigarh), integrating orthodontic airway knowledge with functional tongue posture.',
+      'Child-friendly, calm clinical environment designed to keep infants and parents relaxed.'
+    ],
+
+    testimonials: [
+      {
+        name: 'Priyanka Hooda',
+        location: 'Rohtak',
+        treatment: 'Laser Tongue Tie Release',
+        review: 'My 3-year-old had trouble pronouncing words clearly and his tongue couldn’t touch the roof of his mouth. Dr. S. K. Yadav performed the laser tongue tie release in less than 5 minutes! There was no blood, no stitches, and he was eating an ice cream happily right after. His speech has improved immensely.'
+      }
+    ],
+
+    faqs: [
+      {
+        q: 'Does laser tongue tie release hurt?',
+        a: 'No. With topical numbing gel, the procedure is virtually painless. The laser simultaneously seals nerve endings as it releases the tissue, causing far less discomfort and swelling than traditional scissor clipping.'
+      },
+      {
+        q: 'Are stitches required after laser frenectomy?',
+        a: 'Never. Because the laser cauterizes and coagulates the area instantly, no sutures are needed. The wound heals cleanly as a soft diamond-shaped patch within days.'
+      }
+    ],
+
+    relatedTreatments: [
+      { slug: 'airway-orthodontics', title: 'Airway Orthodontics', anchor: 'Expand palate compressed by restricted tongue posture' },
+      { slug: 'sleep-apnea-treatment', title: 'Sleep Apnea Treatment', anchor: 'Address sleep disordered breathing and tongue collapse' },
+      { slug: 'dental-braces', title: 'Dental Braces', anchor: 'Close anterior spacing gaps' }
+    ],
+
+    localRelevance: {
+      clinicName: 'Shubh Orthodontic & Dental Clinic',
+      locality: 'Opposite Swami Nitanand School, Delhi Bypass Chowk, Rohtak',
+      serviceArea: 'Rohtak, Sonepat, Jhajjar, Panipat, Bhiwani, and Delhi NCR',
+      phone: '+91 86850 48414',
+      hours: 'Mon – Sat: 9:30 AM – 8:00 PM | Sun: 10:00 AM – 2:00 PM'
+    }
   }
 ];
 

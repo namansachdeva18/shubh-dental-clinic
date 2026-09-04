@@ -105,6 +105,32 @@ const VectorIcons = {
       <path d="M12 7.5C11.5 6.5 10 5 8 5 5 5 4 7 4 9c0 3 2.5 5 4 7.5 1 1.5.5 3.5-.5 5.5 1.5 1 3.5.5 4.5-1.5.5-1 1-1.5 2-1.5s1.5.5 2 1.5c1 2 3 2.5 4.5 1.5-1-2-1.5-4-.5-5.5C17.5 14 20 12 20 9c0-2-1-4-4-4-2 0-3.5 1.5-4 2.5z" stroke="#D67A41" />
       <path d="M3 13c3 1.5 6 1.5 9 0s6-1.5 9 0" stroke="#10B981" strokeWidth="2" />
     </svg>
+  ),
+  airway: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M6 4h12a2 2 0 0 1 2 2v2a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6V6a2 2 0 0 1 2-2z" stroke="#D67A41" />
+      <path d="M12 14v7M9 18l3 3 3-3" stroke="#10B981" strokeWidth="2" />
+      <path d="M8 8h8" stroke="#F4B382" strokeDasharray="2 2" />
+    </svg>
+  ),
+  sleepApnea: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="#3B82F6" strokeWidth="2" />
+      <path d="M14 7h4l-4 4h4" stroke="#D67A41" strokeWidth="1.6" />
+    </svg>
+  ),
+  tmj: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <circle cx="12" cy="12" r="9" stroke="#D67A41" strokeWidth="1.8" />
+      <path d="M13 3l-3 7h4l-2 11" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+  tongueTie: () => (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="nav-card-svg">
+      <path d="M12 4v16" stroke="#EC4899" strokeWidth="2" strokeDasharray="3 3" />
+      <path d="M7 8c2.5 0 5-2 5-5 0 3 2.5 5 5 5-2.5 0-5 2-5 5 0-3-2.5-5-5-5z" fill="#D67A41" />
+      <path d="M6 16c3 0 6 3 6 5 0-2 3-5 6-5" stroke="#10B981" strokeWidth="1.8" />
+    </svg>
   )
 };
 
@@ -208,6 +234,46 @@ const TREATMENTS = [
     badge: 'Ultrasonic',
     category: 'General & Surgery',
     glowColor: 'rgba(16, 185, 129, 0.18)'
+  },
+  {
+    id: 'airway-orthodontics',
+    title: 'Airway Orthodontics',
+    shortTitle: 'Airway Orthodontics',
+    desc: 'Pediatric & adult maxillary expansion widening upper dental arches and nasal breathing passages.',
+    iconKey: 'airway',
+    badge: 'Healthy Breathing',
+    category: 'General & Surgery',
+    glowColor: 'rgba(16, 185, 129, 0.18)'
+  },
+  {
+    id: 'sleep-apnea-treatment',
+    title: 'Sleep Apnea & Snoring Care',
+    shortTitle: 'Sleep Apnea Care',
+    desc: 'Custom-milled Mandibular Advancement Devices (MAD) as a comfortable, quiet alternative to CPAP masks.',
+    iconKey: 'sleepApnea',
+    badge: 'CPAP Alternative',
+    category: 'General & Surgery',
+    glowColor: 'rgba(59, 130, 246, 0.18)'
+  },
+  {
+    id: 'tmj-disorder-treatment',
+    title: 'TMJ Specialist Care',
+    shortTitle: 'TMJ & Jaw Joint Care',
+    desc: 'End jaw clicking, locking, facial migraines, and clenching with precision Michigan decompression splints.',
+    iconKey: 'tmj',
+    badge: 'Joint Relief',
+    category: 'General & Surgery',
+    glowColor: 'rgba(214, 122, 65, 0.18)'
+  },
+  {
+    id: 'tongue-tie-release',
+    title: 'Laser Tongue Tie Release',
+    shortTitle: 'Tongue Tie Release',
+    desc: 'Gentle, 5-minute bloodless laser frenectomy for infants, children, and adults with zero stitches.',
+    iconKey: 'tongueTie',
+    badge: 'Zero-Blood Laser',
+    category: 'General & Surgery',
+    glowColor: 'rgba(236, 72, 153, 0.18)'
   }
 ];
 

@@ -119,14 +119,6 @@ export default function DoctorsCardIntro() {
 
               </div>
 
-              {/* ACTION BUTTONS */}
-              <div className="doctors-cta-bar">
-                <Link href="/doctors" className="btn-scrubs-link">
-                  <span>Full Faculty Bios &amp; Research Overviews</span>
-                  <ChevronRight size={14} />
-                </Link>
-              </div>
-
             </div>
 
           </div>
