@@ -349,7 +349,7 @@ export default function SmartBooking() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .smart-booking-section {
-          padding: 3.5rem 1.5rem;
+          padding: 1.5rem 1.5rem 0.5rem;
           background: #FAF8F5;
           position: relative;
           box-sizing: border-box;
@@ -1009,7 +1009,7 @@ export default function SmartBooking() {
 
         @media (max-width: 768px) {
           .smart-booking-section {
-            padding: 1.5rem 0.5rem !important;
+            padding: 0.75rem 0.5rem 0 !important;
           }
           .booking-card-wrapper {
             padding: 1rem 0.75rem !important;

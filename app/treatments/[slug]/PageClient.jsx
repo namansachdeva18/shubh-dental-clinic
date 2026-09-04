@@ -1,14 +1,13 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   CheckCircle2, Phone, Calendar, Sparkles, 
   ShieldCheck, Clock, Activity, ChevronDown, 
-  ChevronUp, Stethoscope, AlertCircle, ImageIcon, 
+  ChevronUp, Stethoscope, AlertCircle, 
   MessageSquare, Star, Award, CreditCard, ArrowRight, Zap,
-  Compass, MapPin, Check, Info, ShieldAlert, HeartPulse, UserCheck, Layers, ListFilter
+  Check, Info, ShieldAlert, HeartPulse, UserCheck, Layers
 } from 'lucide-react';
 import BeforeAfterSlider from '../../components/BeforeAfterSlider';
 import SmartBooking from '../../components/SmartBooking';
@@ -55,7 +54,7 @@ const FAQItem = ({ faq, index, treatmentSlug }) => {
       >
         <span className="faq-q-text">{faq.q}</span>
         <span className="faq-icon-wrap" aria-hidden="true">
-          {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+          {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </span>
       </button>
       <AnimatePresence initial={false}>
@@ -64,7 +63,7 @@ const FAQItem = ({ faq, index, treatmentSlug }) => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
             className="faq-answer-wrapper"
           >
             <div className="faq-answer">
@@ -79,13 +78,13 @@ const FAQItem = ({ faq, index, treatmentSlug }) => {
 
 // ── MAIN TREATMENT PAGE CLIENT ───────────────────────────────────────────────
 export default function PageClient({ treatment }) {
-  const [mobileTab, setMobileTab] = useState('all'); // 'all' on desktop, or 'overview' | 'procedure' | 'benefits' | 'pricing' on mobile
+  const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'procedure' | 'benefits' | 'pricing' | 'all'
 
   if (!treatment) return null;
 
   const fadeUp = {
-    hidden: { opacity: 0, y: 15 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' } }
+    hidden: { opacity: 0, y: 14 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }
   };
 
   const whatsappMessage = encodeURIComponent(
@@ -94,21 +93,37 @@ export default function PageClient({ treatment }) {
   const whatsappUrl = `https://wa.me/918685048414?text=${whatsappMessage}`;
 
   const casePair = {
-    before: treatment.caseStudy?.beforeSrc || (treatment.slug.includes('implant') ? '/fullarch-before.webp' : treatment.slug.includes('veneer') || treatment.slug.includes('smile') ? '/front-before.webp' : '/case-1-before.webp'),
-    after: treatment.caseStudy?.afterSrc || (treatment.slug.includes('implant') ? '/fullarch-after.webp' : treatment.slug.includes('veneer') || treatment.slug.includes('smile') ? '/front-after.webp' : '/case-1-after.webp'),
-    title: treatment.caseStudy?.title || `${treatment.title} Clinical Transformation`,
-    context: treatment.caseStudy?.context || 'Individual clinical outcomes vary based on personalized biological factors.'
+    before: treatment.slug.includes('braces') 
+      ? '/ceramic-before.png' 
+      : (treatment.caseStudy?.beforeSrc || (treatment.slug.includes('implant') ? '/fullarch-before.webp' : treatment.slug.includes('veneer') || treatment.slug.includes('smile') ? '/front-before.webp' : '/ceramic-before.png')),
+    after: treatment.slug.includes('braces') 
+      ? '/ceramic-after.png' 
+      : (treatment.caseStudy?.afterSrc || (treatment.slug.includes('implant') ? '/fullarch-after.webp' : treatment.slug.includes('veneer') || treatment.slug.includes('smile') ? '/front-after.webp' : '/ceramic-after.png')),
+    title: treatment.caseStudy?.title || `${treatment.title} Real Clinical Transformation`,
+    context: treatment.caseStudy?.context || 'Individual clinical results vary based on anatomical and biological factors.'
   };
 
   const isTabVisible = (tabKey) => {
-    return mobileTab === 'all' || mobileTab === tabKey;
+    return activeTab === 'all' || activeTab === tabKey;
   };
+
+  const tabs = [
+    { id: 'overview', label: 'Overview', sub: 'What & Candidacy', badge: '01', icon: Stethoscope },
+    { id: 'procedure', label: 'Procedure', sub: 'Steps & 3D Tech', badge: '02', icon: Layers },
+    { id: 'benefits', label: 'Benefits & Care', sub: 'Safety & Life', badge: '03', icon: ShieldCheck },
+    { id: 'pricing', label: 'Cost & Reviews', sub: 'EMI & Ratings', badge: '04', icon: CreditCard },
+    { id: 'all', label: 'View All', sub: 'Full Blueprint', badge: 'ALL', icon: Sparkles }
+  ];
 
   return (
     <div className="treatment-page-wrapper">
+      {/* Light warm background subtle accents */}
+      <div className="light-ambient-glow glow-1" aria-hidden="true" />
+      <div className="light-ambient-glow glow-2" aria-hidden="true" />
+
       <div className="treatment-container">
         
-        {/* ── 01. BREADCRUMB ──────────────────────────────────────────────── */}
+        {/* ── 01. BREADCRUMB (LIGHT THEME MATCHING HEADER) ────────────────── */}
         <nav aria-label="Breadcrumb" className="treatment-breadcrumbs">
           <Link href="/" onClick={() => trackCTA('breadcrumb_click', { label: 'Home' })}>Home</Link>
           <span className="crumb-separator" aria-hidden="true">/</span>
@@ -119,7 +134,7 @@ export default function PageClient({ treatment }) {
           <span className="crumb-current" aria-current="page">{treatment.title}</span>
         </nav>
 
-        {/* ── 02. HERO HEADING ONLY ──────────────────────────────────────── */}
+        {/* ── 02. HERO HEADER (ELEGANT LIGHT BACKGROUND WITH DARK ACCENTS) ─ */}
         <motion.header 
           className="treatment-hero-heading-only"
           initial="hidden"
@@ -128,12 +143,16 @@ export default function PageClient({ treatment }) {
           aria-labelledby="hero-treatment-heading"
         >
           <div className="hero-top-badges">
-            <div className="treatment-category-badge">
-              <Sparkles size={13} aria-hidden="true" />
+            <motion.div 
+              className="treatment-category-badge"
+              whileHover={{ scale: 1.04 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            >
+              <Sparkles size={11} aria-hidden="true" />
               <span>{treatment.category || 'Specialized Dentistry'}</span>
-            </div>
+            </motion.div>
             <div className="hero-trust-chip">
-              <ShieldCheck size={13} fill="#10B981" color="#fff" aria-hidden="true" />
+              <ShieldCheck size={12} className="trust-green-icon" aria-hidden="true" />
               <span>Specialist Clinical Care · Rohtak</span>
             </div>
           </div>
@@ -143,67 +162,118 @@ export default function PageClient({ treatment }) {
           </h1>
           
           <p className="hero-sub-title">{treatment.subtitle}</p>
+
+          <div className="hero-micro-action-row">
+            <motion.a 
+              href="#book" 
+              className="hero-pill-btn hero-pill-book"
+              whileHover={{ scale: 1.04, y: -1 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => trackCTA('hero_book_click', { treatment: treatment.title })}
+            >
+              <Calendar size={13} aria-hidden="true" />
+              <span>Book Consultation</span>
+            </motion.a>
+            <motion.a 
+              href={whatsappUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hero-pill-btn hero-pill-wa"
+              whileHover={{ scale: 1.04, y: -1 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => trackCTA('hero_whatsapp_click', { treatment: treatment.title })}
+            >
+              <MessageSquare size={13} aria-hidden="true" />
+              <span>Ask on WhatsApp</span>
+            </motion.a>
+            <motion.a 
+              href="tel:+918685048414" 
+              className="hero-pill-btn hero-pill-call"
+              whileHover={{ scale: 1.04, y: -1 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => trackCTA('hero_call_click', { treatment: treatment.title })}
+            >
+              <Phone size={13} aria-hidden="true" />
+              <span>Call Clinic</span>
+            </motion.a>
+          </div>
         </motion.header>
 
-        {/* ── 03. TRUST STRIP ─────────────────────────────────────────────── */}
-        <section className="treatment-trust-strip" aria-label="Clinical Trust Signals">
+        {/* ── 03. COMPACT TRUST STRIP (PREMIUM DARK CARDS ON LIGHT BG) ──── */}
+        <motion.section 
+          className="treatment-trust-strip" 
+          aria-label="Clinical Trust Signals"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, delay: 0.05 }}
+        >
           <div className="trust-strip-grid">
             <div className="trust-strip-item">
-              <Award size={18} className="trust-icon" aria-hidden="true" />
+              <Award size={15} className="trust-icon" aria-hidden="true" />
               <div>
                 <strong>Specialist-Led Care</strong>
                 <span>PGI Alumni Doctors</span>
               </div>
             </div>
             <div className="trust-strip-item">
-              <Activity size={18} className="trust-icon" aria-hidden="true" />
+              <Activity size={15} className="trust-icon" aria-hidden="true" />
               <div>
                 <strong>3D Diagnostics</strong>
                 <span>Optical Scanning &amp; CBCT</span>
               </div>
             </div>
             <div className="trust-strip-item">
-              <HeartPulse size={18} className="trust-icon" aria-hidden="true" />
+              <HeartPulse size={15} className="trust-icon" aria-hidden="true" />
               <div>
-                <strong>Personalized Planning</strong>
-                <span>Evidence-Based Protocols</span>
+                <strong>Personalized Plan</strong>
+                <span>Evidence-Based Care</span>
               </div>
             </div>
             <div className="trust-strip-item">
-              <ShieldCheck size={18} className="trust-icon" aria-hidden="true" />
+              <ShieldCheck size={15} className="trust-icon" aria-hidden="true" />
               <div>
-                <strong>Sterile Protocols</strong>
-                <span>Hospital Autoclaving</span>
+                <strong>Sterile Hospital Protocol</strong>
+                <span>Class-B Autoclaving</span>
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
-        {/* ── 04. AT A GLANCE (QUICK TREATMENT FACTS) ─────────────────────── */}
+        {/* ── 04. AT A GLANCE (QUICK TREATMENT FACTS - ULTRA COMPACT 3x2) ─── */}
         {treatment.quickFacts && (
-          <section className="treatment-content-card" aria-label="Treatment Quick Facts">
-            <div className="section-eyebrow-center">Treatment Snapshot</div>
-            <h2 className="card-section-title-center font-heading">At a Glance</h2>
+          <motion.section 
+            className="treatment-content-card snapshot-card" 
+            aria-label="Treatment Quick Facts"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: 0.1 }}
+          >
+            <div className="card-header-compact">
+              <span className="section-eyebrow">Treatment Snapshot</span>
+              <h2 className="card-section-title font-heading">
+                <span>At a Glance</span>
+              </h2>
+            </div>
 
             <div className="metrics-grid">
               <div className="metric-box">
-                <div className="metric-icon-wrap" aria-hidden="true">⏱️</div>
+                <span className="metric-icon" aria-hidden="true">⏱️</span>
                 <div className="metric-content">
-                  <span className="metric-label">Treatment Duration</span>
+                  <span className="metric-label">Duration</span>
                   <strong className="metric-value">{treatment.quickFacts.duration || 'Case-dependent'}</strong>
                 </div>
               </div>
 
               <div className="metric-box">
-                <div className="metric-icon-wrap" aria-hidden="true">🗓️</div>
+                <span className="metric-icon" aria-hidden="true">🗓️</span>
                 <div className="metric-content">
-                  <span className="metric-label">Visits Required</span>
-                  <strong className="metric-value">{treatment.quickFacts.visits || 'Personalized schedule'}</strong>
+                  <span className="metric-label">Visits</span>
+                  <strong className="metric-value">{treatment.quickFacts.visits || 'Personalized'}</strong>
                 </div>
               </div>
 
               <div className="metric-box">
-                <div className="metric-icon-wrap" aria-hidden="true">💉</div>
+                <span className="metric-icon" aria-hidden="true">💉</span>
                 <div className="metric-content">
                   <span className="metric-label">Anaesthesia</span>
                   <strong className="metric-value">{treatment.quickFacts.anaesthesia || 'Local / None'}</strong>
@@ -211,80 +281,97 @@ export default function PageClient({ treatment }) {
               </div>
 
               <div className="metric-box">
-                <div className="metric-icon-wrap" aria-hidden="true">🛡️</div>
+                <span className="metric-icon" aria-hidden="true">🛡️</span>
                 <div className="metric-content">
-                  <span className="metric-label">Recovery &amp; Downtime</span>
+                  <span className="metric-label">Downtime</span>
                   <strong className="metric-value">{treatment.quickFacts.recovery || 'Minimal'}</strong>
                 </div>
               </div>
 
               <div className="metric-box">
-                <div className="metric-icon-wrap" aria-hidden="true">🎯</div>
+                <span className="metric-icon" aria-hidden="true">🎯</span>
                 <div className="metric-content">
-                  <span className="metric-label">Primary Candidacy</span>
-                  <strong className="metric-value">{treatment.quickFacts.candidacy || 'Based on examination'}</strong>
+                  <span className="metric-label">Ideal For</span>
+                  <strong className="metric-value">{treatment.quickFacts.candidacy || 'On Evaluation'}</strong>
                 </div>
               </div>
 
               <div className="metric-box">
-                <div className="metric-icon-wrap" aria-hidden="true">⏳</div>
+                <span className="metric-icon" aria-hidden="true">⏳</span>
                 <div className="metric-content">
-                  <span className="metric-label">Longevity / Results</span>
-                  <strong className="metric-value">{treatment.quickFacts.longevity || 'Long-lasting with care'}</strong>
+                  <span className="metric-label">Longevity</span>
+                  <strong className="metric-value">{treatment.quickFacts.longevity || 'Long-lasting'}</strong>
                 </div>
               </div>
             </div>
-          </section>
+          </motion.section>
         )}
 
-        {/* ── MOBILE QUICK SEGMENTED SWITCHER (ELIMINATES SCROLL FATIGUE) ── */}
-        <div className="mobile-section-switcher" role="tablist" aria-label="Clinical Modules">
-          <button 
-            type="button"
-            className={`m-switch-btn ${mobileTab === 'all' ? 'is-active' : ''}`}
-            onClick={() => setMobileTab('all')}
-          >
-            📋 All
-          </button>
-          <button 
-            type="button"
-            className={`m-switch-btn ${mobileTab === 'overview' ? 'is-active' : ''}`}
-            onClick={() => setMobileTab('overview')}
-          >
-            🩺 Overview
-          </button>
-          <button 
-            type="button"
-            className={`m-switch-btn ${mobileTab === 'procedure' ? 'is-active' : ''}`}
-            onClick={() => setMobileTab('procedure')}
-          >
-            ⚙️ Procedure
-          </button>
-          <button 
-            type="button"
-            className={`m-switch-btn ${mobileTab === 'benefits' ? 'is-active' : ''}`}
-            onClick={() => setMobileTab('benefits')}
-          >
-            🛡️ Benefits
-          </button>
-          <button 
-            type="button"
-            className={`m-switch-btn ${mobileTab === 'pricing' ? 'is-active' : ''}`}
-            onClick={() => setMobileTab('pricing')}
-          >
-            💰 Pricing
-          </button>
+        {/* ── 05. MODERN SEGMENTED CONTROLLER / INTERACTIVE CARD SYSTEM ─── */}
+        <div className="section-segmented-controller" role="tablist" aria-label="Clinical Treatment Modules">
+          {tabs.map((tab) => {
+            const IconComp = tab.icon;
+            const isActive = activeTab === tab.id;
+            return (
+              <motion.button 
+                key={tab.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                whileHover={{ y: -3, scale: 1.02 }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: 'spring', stiffness: 450, damping: 25 }}
+                className={`segment-card-btn ${isActive ? 'is-active' : ''}`}
+                onClick={() => {
+                  setActiveTab(tab.id);
+                  trackCTA('tab_switch', { tab: tab.id, treatment: treatment.title });
+                }}
+              >
+                {/* Glowing Active Background Highlight via Framer Motion */}
+                {isActive && (
+                  <motion.div 
+                    layoutId="activeTabPill" 
+                    className="active-tab-glow-bg"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+
+                <div className="segment-card-content">
+                  <div className="segment-card-top-row">
+                    <div className="segment-card-icon-wrap">
+                      <IconComp size={15} aria-hidden="true" />
+                    </div>
+                    <span className="segment-card-badge">{tab.badge}</span>
+                  </div>
+                  <div className="segment-card-labels">
+                    <span className="segment-card-main-title">{tab.label}</span>
+                    <span className="segment-card-subtitle">{tab.sub}</span>
+                  </div>
+                </div>
+
+                {/* Subtle active indicator pip */}
+                {isActive && (
+                  <span className="active-card-pip" aria-hidden="true" />
+                )}
+              </motion.button>
+            );
+          })}
         </div>
 
         {/* ── MODULE 1: OVERVIEW, CONDITIONS & CANDIDACY ───────────────────── */}
         {isTabVisible('overview') && (
-          <div className="treatment-module-block">
+          <motion.div 
+            className="treatment-module-block"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.28, ease: 'easeOut' }}
+          >
             
-            {/* 06. What is treatment */}
+            {/* Overview & Purpose */}
             <section id="overview" className="treatment-content-card">
-              <span className="section-eyebrow">Clinical Definition &amp; Purpose</span>
+              <span className="section-eyebrow">Clinical Definition</span>
               <h2 className="card-section-title font-heading">
-                <Stethoscope className="title-icon-gold" aria-hidden="true" />
+                <Stethoscope className="title-icon-copper" size={17} aria-hidden="true" />
                 <span>What Is {treatment.title}?</span>
               </h2>
               <div className="clinical-text-block">
@@ -292,18 +379,45 @@ export default function PageClient({ treatment }) {
               </div>
             </section>
 
-            {/* 07. Problems Addressed */}
+            {/* Clinical Results Photo Card (Ultra-compact & interactive) */}
+            <section className="treatment-content-card results-preview-card" aria-label="Clinical Transformation Results">
+              <div className="results-header-row">
+                <div>
+                  <span className="section-eyebrow">Visual Proof</span>
+                  <h2 className="card-section-title font-heading" style={{ marginBottom: '0.2rem' }}>
+                    <Sparkles className="title-icon-copper" size={16} aria-hidden="true" />
+                    <span>Clinical Transformation Results</span>
+                  </h2>
+                </div>
+                <span className="results-chip-badge">Verified Case</span>
+              </div>
+
+              <div className="results-slider-box">
+                <BeforeAfterSlider 
+                  beforeSrc={casePair.before}
+                  afterSrc={casePair.after}
+                  beforeAlt={`${treatment.title} Before Treatment`}
+                  afterAlt={`${treatment.title} After Treatment Result`}
+                />
+                <div className="results-caption-meta">
+                  <span className="results-title-text">{casePair.title}</span>
+                  <span className="results-drag-hint">↔ Drag slider to compare</span>
+                </div>
+              </div>
+            </section>
+
+            {/* Problems Addressed */}
             {treatment.conditions && treatment.conditions.length > 0 && (
               <section id="conditions" className="treatment-content-card">
                 <span className="section-eyebrow">Indications</span>
                 <h2 className="card-section-title font-heading">
-                  <Activity className="title-icon-terracotta" aria-hidden="true" />
-                  <span>Problems &amp; Conditions Addressed</span>
+                  <Activity className="title-icon-copper" size={17} aria-hidden="true" />
+                  <span>Problems &amp; Conditions Treated</span>
                 </h2>
                 <div className="conditions-grid">
                   {treatment.conditions.map((item, idx) => (
                     <div key={idx} className="condition-item-box">
-                      <CheckCircle2 size={18} className="condition-check-icon" aria-hidden="true" />
+                      <CheckCircle2 size={15} className="condition-check-icon" aria-hidden="true" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -311,18 +425,18 @@ export default function PageClient({ treatment }) {
               </section>
             )}
 
-            {/* 08 & 09. Candidacy & Alternatives */}
+            {/* Candidacy & Alternatives */}
             <section id="candidacy" className="treatment-content-card">
-              <span className="section-eyebrow">Patient Candidacy Assessment</span>
+              <span className="section-eyebrow">Evaluation</span>
               <h2 className="card-section-title font-heading">
-                <UserCheck className="title-icon-gold" aria-hidden="true" />
+                <UserCheck className="title-icon-copper" size={17} aria-hidden="true" />
                 <span>Who May Benefit From {treatment.title}?</span>
               </h2>
 
               <div className="candidacy-split-grid">
                 <div className="candidacy-box c-box-suitable">
                   <div className="c-box-header">
-                    <Check size={18} className="c-icon-green" aria-hidden="true" />
+                    <Check size={15} className="c-icon-green" aria-hidden="true" />
                     <h3>Suitable Candidates</h3>
                   </div>
                   <p>{treatment.candidacy?.idealFor || treatment.idealFor}</p>
@@ -330,7 +444,7 @@ export default function PageClient({ treatment }) {
 
                 <div className="candidacy-box c-box-unsuitable">
                   <div className="c-box-header">
-                    <AlertCircle size={18} className="c-icon-amber" aria-hidden="true" />
+                    <AlertCircle size={15} className="c-icon-amber" aria-hidden="true" />
                     <h3>When Caution or Alternative Care is Advised</h3>
                   </div>
                   <p>{treatment.candidacy?.notIdealFor || treatment.notIdealFor}</p>
@@ -340,8 +454,8 @@ export default function PageClient({ treatment }) {
               {treatment.alternatives && treatment.alternatives.length > 0 && (
                 <div id="alternatives" className="alternatives-sub-section">
                   <h3 className="alternatives-sub-title">
-                    <Info size={16} aria-hidden="true" />
-                    <span>When Another Treatment May Be More Appropriate</span>
+                    <Info size={14} aria-hidden="true" />
+                    <span>Alternative Clinical Pathways</span>
                   </h3>
                   <div className="alternatives-cards-list">
                     {treatment.alternatives.map((alt, i) => (
@@ -355,19 +469,24 @@ export default function PageClient({ treatment }) {
               )}
             </section>
 
-          </div>
+          </motion.div>
         )}
 
         {/* ── MODULE 2: OPTIONS, PROCESS & TECHNOLOGY ──────────────────────── */}
         {isTabVisible('procedure') && (
-          <div className="treatment-module-block">
+          <motion.div 
+            className="treatment-module-block"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.28, ease: 'easeOut' }}
+          >
             
-            {/* 10. Options Comparison */}
+            {/* Options Comparison */}
             {treatment.optionsComparison && (
               <section id="options" className="treatment-content-card">
-                <span className="section-eyebrow">Clinical Comparison</span>
+                <span className="section-eyebrow">Options Matrix</span>
                 <h2 className="card-section-title font-heading">
-                  <Layers className="title-icon-terracotta" aria-hidden="true" />
+                  <Layers className="title-icon-copper" size={17} aria-hidden="true" />
                   <span>{treatment.optionsComparison.title || 'Treatment Options'}</span>
                 </h2>
 
@@ -379,15 +498,15 @@ export default function PageClient({ treatment }) {
                           <th>Option / System</th>
                           <th>Best For</th>
                           <th>Key Characteristics</th>
-                          <th>Comfort &amp; Maintenance</th>
+                          <th>Comfort &amp; Care</th>
                         </tr>
                       </thead>
                       <tbody>
                         {treatment.optionsComparison.items.map((row, idx) => (
                           <tr key={idx}>
                             <td className="row-title"><strong>{row.name}</strong></td>
-                            <td>{row.bestFor || 'Individualized assessment'}</td>
-                            <td>{row.visibility || row.material || row.strength || row.timeline || 'Specialist planned'}</td>
+                            <td>{row.bestFor || 'Specialist examination'}</td>
+                            <td>{row.visibility || row.material || row.strength || row.timeline || 'Custom planned'}</td>
                             <td>{row.hygiene || row.comfort || row.durability || row.dietRule || 'Standard care'}</td>
                           </tr>
                         ))}
@@ -407,16 +526,16 @@ export default function PageClient({ treatment }) {
               </section>
             )}
 
-            {/* 11. Step by step process */}
+            {/* Step-by-step Process */}
             {treatment.processSteps && treatment.processSteps.length > 0 && (
               <section id="process" className="treatment-content-card">
                 <span className="section-eyebrow">Clinical Pathway</span>
                 <h2 className="card-section-title font-heading">
-                  <Clock className="title-icon-gold" aria-hidden="true" />
+                  <Clock className="title-icon-copper" size={17} aria-hidden="true" />
                   <span>How {treatment.title} Works: Step-by-Step</span>
                 </h2>
                 <p className="section-intro-text">
-                  Every procedure follows structured diagnostic and treatment stages designed for safety, precision, and predictable outcomes.
+                  Structured stages designed for high precision, patient comfort, and predictable outcomes.
                 </p>
 
                 <div className="treatment-process-list">
@@ -435,12 +554,12 @@ export default function PageClient({ treatment }) {
               </section>
             )}
 
-            {/* 12. Diagnostics & Technology */}
+            {/* Diagnostics & Technology */}
             {treatment.technology && treatment.technology.length > 0 && (
               <section id="technology" className="treatment-content-card">
-                <span className="section-eyebrow">Advanced Clinical Infrastructure</span>
+                <span className="section-eyebrow">Technology</span>
                 <h2 className="card-section-title font-heading">
-                  <Zap className="title-icon-gold" aria-hidden="true" />
+                  <Zap className="title-icon-copper" size={17} aria-hidden="true" />
                   <span>Diagnostics &amp; Technology Used</span>
                 </h2>
 
@@ -458,19 +577,24 @@ export default function PageClient({ treatment }) {
               </section>
             )}
 
-          </div>
+          </motion.div>
         )}
 
         {/* ── MODULE 3: BENEFITS, RISKS, TIMELINE & COMFORT ────────────────── */}
         {isTabVisible('benefits') && (
-          <div className="treatment-module-block">
+          <motion.div 
+            className="treatment-module-block"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.28, ease: 'easeOut' }}
+          >
             
-            {/* 13. Benefits */}
+            {/* Benefits */}
             {treatment.benefits && (
               <section id="benefits" className="treatment-content-card">
                 <span className="section-eyebrow">Evidence-Based Value</span>
                 <h2 className="card-section-title font-heading">
-                  <ShieldCheck className="title-icon-terracotta" aria-hidden="true" />
+                  <ShieldCheck className="title-icon-copper" size={17} aria-hidden="true" />
                   <span>Benefits of {treatment.title}</span>
                 </h2>
 
@@ -478,7 +602,7 @@ export default function PageClient({ treatment }) {
                   <div className="benefits-cards-grid">
                     {treatment.benefits.map((b, idx) => (
                       <div key={idx} className="benefit-pill-card">
-                        <div className="b-check-circle" aria-hidden="true"><CheckCircle2 size={18} /></div>
+                        <div className="b-check-circle" aria-hidden="true"><CheckCircle2 size={15} /></div>
                         <div className="b-card-text">
                           <h3 className="b-card-title">{b.title}</h3>
                           {b.desc && <p className="b-card-desc">{b.desc}</p>}
@@ -493,7 +617,7 @@ export default function PageClient({ treatment }) {
                         <h3 className="b-col-heading">🦷 Functional &amp; Health Benefits</h3>
                         <ul className="b-col-list">
                           {treatment.benefits.functional.map((f, i) => (
-                            <li key={i}><Check size={16} aria-hidden="true" /> <span>{f}</span></li>
+                            <li key={i}><Check size={14} aria-hidden="true" /> <span>{f}</span></li>
                           ))}
                         </ul>
                       </div>
@@ -503,7 +627,7 @@ export default function PageClient({ treatment }) {
                         <h3 className="b-col-heading">✨ Aesthetic &amp; Confidence Benefits</h3>
                         <ul className="b-col-list">
                           {treatment.benefits.aesthetic.map((a, i) => (
-                            <li key={i}><Check size={16} aria-hidden="true" /> <span>{a}</span></li>
+                            <li key={i}><Check size={14} aria-hidden="true" /> <span>{a}</span></li>
                           ))}
                         </ul>
                       </div>
@@ -513,13 +637,13 @@ export default function PageClient({ treatment }) {
               </section>
             )}
 
-            {/* 14. Risks & Considerations */}
+            {/* Risks & Considerations */}
             {treatment.risksAndLimitations && treatment.risksAndLimitations.length > 0 && (
               <section id="risks" className="treatment-content-card">
-                <span className="section-eyebrow">Medical Transparency</span>
+                <span className="section-eyebrow">Transparency</span>
                 <h2 className="card-section-title font-heading">
-                  <ShieldAlert className="title-icon-amber" aria-hidden="true" />
-                  <span>Risks, Limitations &amp; Considerations</span>
+                  <ShieldAlert className="title-icon-amber" size={17} aria-hidden="true" />
+                  <span>Clinical Considerations</span>
                 </h2>
                 <div className="risks-list">
                   {treatment.risksAndLimitations.map((item, idx) => (
@@ -532,13 +656,13 @@ export default function PageClient({ treatment }) {
               </section>
             )}
 
-            {/* 15. Duration & Timeline */}
+            {/* Duration & Timeline */}
             {treatment.durationAndTimeline && (
               <section id="timeline" className="treatment-content-card">
-                <span className="section-eyebrow">Treatment Schedule</span>
+                <span className="section-eyebrow">Schedule</span>
                 <h2 className="card-section-title font-heading">
-                  <Clock className="title-icon-gold" aria-hidden="true" />
-                  <span>How Long Does {treatment.title} Take?</span>
+                  <Clock className="title-icon-copper" size={17} aria-hidden="true" />
+                  <span>How Long Does It Take?</span>
                 </h2>
 
                 <div className="timeline-cards-grid">
@@ -547,24 +671,24 @@ export default function PageClient({ treatment }) {
                     <p>{treatment.durationAndTimeline.consultationToBonding || 'Consultation & 3D Diagnostics'}</p>
                   </div>
                   <div className="t-card">
-                    <strong>Active Treatment</strong>
+                    <strong>Active Care</strong>
                     <p>{treatment.durationAndTimeline.activeTreatment || 'Personalized clinical treatment'}</p>
                   </div>
                   <div className="t-card">
-                    <strong>Long-Term Maintenance</strong>
-                    <p>{treatment.durationAndTimeline.retentionPhase || 'Regular check-ups'}</p>
+                    <strong>Maintenance</strong>
+                    <p>{treatment.durationAndTimeline.retentionPhase || 'Periodic recall check-ups'}</p>
                   </div>
                 </div>
               </section>
             )}
 
-            {/* 16. Pain & Comfort */}
+            {/* Pain & Comfort */}
             {treatment.painAndComfort && (
               <section id="comfort" className="treatment-content-card">
-                <span className="section-eyebrow">Patient Experience</span>
+                <span className="section-eyebrow">Comfort</span>
                 <h2 className="card-section-title font-heading">
-                  <HeartPulse className="title-icon-terracotta" aria-hidden="true" />
-                  <span>Pain &amp; Comfort</span>
+                  <HeartPulse className="title-icon-copper" size={17} aria-hidden="true" />
+                  <span>Pain &amp; Patient Experience</span>
                 </h2>
 
                 <div className="comfort-grid">
@@ -573,33 +697,38 @@ export default function PageClient({ treatment }) {
                     <p>{treatment.painAndComfort.anaesthesia}</p>
                   </div>
                   <div className="comfort-box">
-                    <h4>😌 What to Expect</h4>
+                    <h4>😌 Expected Sensation</h4>
                     <p>{treatment.painAndComfort.expectedSensation}</p>
                   </div>
                   <div className="comfort-box">
-                    <h4>📞 When to Contact the Clinic</h4>
+                    <h4>📞 Contact Support</h4>
                     <p>{treatment.painAndComfort.whenToContact}</p>
                   </div>
                 </div>
               </section>
             )}
 
-          </div>
+          </motion.div>
         )}
 
         {/* ── MODULE 4: PRICING, DOCTORS, REVIEWS, FAQS & LOCATION ─────────── */}
         {isTabVisible('pricing') && (
-          <div className="treatment-module-block">
+          <motion.div 
+            className="treatment-module-block"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.28, ease: 'easeOut' }}
+          >
             
-            {/* 17. Cost & EMI */}
+            {/* Cost & EMI */}
             {treatment.costDetails && (
               <section id="cost" className="treatment-content-card pricing-breakdown-card">
                 <div className="pricing-card-header">
                   <div>
                     <span className="section-eyebrow">Transparent Pricing</span>
                     <h2 className="card-section-title font-heading">
-                      <CreditCard className="title-icon-gold" aria-hidden="true" />
-                      <span>How Much Does {treatment.title} Cost in Rohtak?</span>
+                      <CreditCard className="title-icon-copper" size={17} aria-hidden="true" />
+                      <span>Estimated Investment</span>
                     </h2>
                   </div>
                   <div className="pricing-rate-tag">
@@ -610,7 +739,7 @@ export default function PageClient({ treatment }) {
 
                 {treatment.costDetails.factors && treatment.costDetails.factors.length > 0 && (
                   <div className="cost-factors-block">
-                    <h4 className="factors-heading">Factors Influencing Your Treatment Investment:</h4>
+                    <h4 className="factors-heading">Factors Influencing Your Cost:</h4>
                     <ul className="factors-list">
                       {treatment.costDetails.factors.map((fac, i) => (
                         <li key={i}>{fac}</li>
@@ -630,22 +759,24 @@ export default function PageClient({ treatment }) {
                 )}
 
                 <div className="pricing-cta-row">
-                  <a 
+                  <motion.a 
                     href="#book" 
                     className="btn-estimate"
+                    whileHover={{ scale: 1.03, y: -1 }}
+                    whileTap={{ scale: 0.97 }}
                     onClick={() => trackCTA('treatment_cost_cta_click', { treatment_slug: treatment.slug })}
                   >
-                    Request Personalized Treatment Estimate
-                  </a>
+                    Request Exact Cost Estimate
+                  </motion.a>
                 </div>
               </section>
             )}
 
-            {/* 18. Why Shubh Clinic */}
+            {/* Why Shubh Clinic */}
             <section className="treatment-content-card">
-              <span className="section-eyebrow">Verified Clinical Excellence</span>
+              <span className="section-eyebrow">Clinical Excellence</span>
               <h2 className="card-section-title font-heading">
-                <Award className="title-icon-gold" aria-hidden="true" />
+                <Award className="title-icon-copper" size={17} aria-hidden="true" />
                 <span>Why Choose Shubh Orthodontic &amp; Dental Clinic</span>
               </h2>
 
@@ -653,26 +784,24 @@ export default function PageClient({ treatment }) {
                 {(treatment.whyChooseClinic || [
                   'PGI Chandigarh & Rohtak trained specialist clinical leadership.',
                   'Over 20+ years of dedicated hands-on dental and orthodontic experience.',
-                  'In-house digital 3D scanning and manufacturing lab.',
+                  'In-house digital 3D scanning and treatment planning lab.',
                   'Hospital-grade sterilization with class-B vacuum autoclaving.'
                 ]).map((point, idx) => (
                   <div key={idx} className="why-item">
-                    <CheckCircle2 size={20} className="why-check" aria-hidden="true" />
+                    <CheckCircle2 size={16} className="why-check" aria-hidden="true" />
                     <p>{point}</p>
                   </div>
                 ))}
               </div>
             </section>
 
-
-
-            {/* 21. Testimonials */}
+            {/* Testimonials */}
             {treatment.testimonials && treatment.testimonials.length > 0 && (
               <section className="treatment-content-card">
-                <span className="section-eyebrow">Patient Experiences</span>
+                <span className="section-eyebrow">Patient Feedback</span>
                 <h2 className="card-section-title font-heading">
-                  <Star className="title-icon-gold" aria-hidden="true" />
-                  <span>What Patients Say About {treatment.title}</span>
+                  <Star className="title-icon-copper" size={17} aria-hidden="true" />
+                  <span>Verified Patient Experiences</span>
                 </h2>
 
                 <div className="testimonials-grid">
@@ -690,12 +819,12 @@ export default function PageClient({ treatment }) {
               </section>
             )}
 
-            {/* 22. FAQs */}
+            {/* FAQs */}
             {treatment.faqs && treatment.faqs.length > 0 && (
               <section id="faqs" className="treatment-content-card">
-                <span className="section-eyebrow">Patient Clarity</span>
+                <span className="section-eyebrow">Questions &amp; Answers</span>
                 <h2 className="card-section-title font-heading">
-                  <Sparkles className="title-icon-terracotta" aria-hidden="true" />
+                  <Sparkles className="title-icon-copper" size={17} aria-hidden="true" />
                   <span>Frequently Asked Questions</span>
                 </h2>
                 
@@ -707,10 +836,10 @@ export default function PageClient({ treatment }) {
               </section>
             )}
 
-            {/* 23. Related Treatments */}
+            {/* Related Treatments */}
             {treatment.relatedTreatments && treatment.relatedTreatments.length > 0 && (
               <section className="related-treatments-section" aria-label="Related Dental Procedures">
-                <h3 className="related-title font-heading">Related Dental Procedures</h3>
+                <h3 className="related-title font-heading">Related Procedures</h3>
                 <div className="related-pills-row">
                   {treatment.relatedTreatments.map((rel, i) => {
                     const slug = typeof rel === 'string' ? rel : rel.slug;
@@ -725,7 +854,7 @@ export default function PageClient({ treatment }) {
                         onClick={() => trackCTA('related_treatment_click', { from: treatment.slug, to: slug })}
                       >
                         <span>{anchor || title}</span>
-                        <ArrowRight size={14} aria-hidden="true" />
+                        <ArrowRight size={13} aria-hidden="true" />
                       </Link>
                     );
                   })}
@@ -733,15 +862,13 @@ export default function PageClient({ treatment }) {
               </section>
             )}
 
-
-
-          </div>
+          </motion.div>
         )}
 
       </div>
 
-      {/* ── 25. FINAL APPOINTMENT CTA + SEAMLESS SMART BOOKING ───────────── */}
-      <div id="book" className="treatment-booking-outer-wrapper" style={{ scrollMarginTop: '80px', marginTop: '2rem' }}>
+      {/* ── 25. APPOINTMENT BOOKING SECTION ─────────────────────────────── */}
+      <div id="book" className="treatment-booking-outer-wrapper">
         <SmartBooking />
       </div>
 
@@ -754,7 +881,7 @@ export default function PageClient({ treatment }) {
           className="sticky-btn sticky-wa"
           onClick={() => trackCTA('mobile_sticky_whatsapp_click', { treatment_slug: treatment.slug })}
         >
-          <MessageSquare size={16} aria-hidden="true" />
+          <MessageSquare size={15} aria-hidden="true" />
           <span>WhatsApp</span>
         </a>
 
@@ -763,7 +890,7 @@ export default function PageClient({ treatment }) {
           className="sticky-btn sticky-call"
           onClick={() => trackCTA('mobile_sticky_call_click', { treatment_slug: treatment.slug })}
         >
-          <Phone size={16} aria-hidden="true" />
+          <Phone size={15} aria-hidden="true" />
           <span>Call</span>
         </a>
 
@@ -772,35 +899,67 @@ export default function PageClient({ treatment }) {
           className="sticky-btn sticky-book"
           onClick={() => trackCTA('mobile_sticky_book_click', { treatment_slug: treatment.slug })}
         >
-          <Calendar size={16} aria-hidden="true" />
+          <Calendar size={15} aria-hidden="true" />
           <span>Book</span>
         </a>
       </aside>
 
-      {/* ── HIGH-END LUXURY CLINICAL STYLES ───────────────────────────────── */}
+      {/* ── LIGHT LUXURY BACKGROUND WITH STRIKING DARK THEMED CARDS ────────── */}
       <style dangerouslySetInnerHTML={{ __html: `
+        /* ── PAGE FOUNDATION: LIGHT ELEGANT WARM BACKGROUND ── */
         .treatment-page-wrapper {
           min-height: 100vh;
-          padding: 2.5rem 1.5rem 5rem;
-          background: #FAF8F5;
+          padding: 1.25rem 1rem 0;
+          background: #FAF8F5; /* Premium soft ivory cashmere */
           color: #2D2420;
           font-family: var(--font-body, system-ui, -apple-system, sans-serif);
           overflow-x: hidden;
           box-sizing: border-box;
+          position: relative;
+        }
+
+        /* Ambient subtle copper radial lighting on light background */
+        .light-ambient-glow {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(140px);
+          pointer-events: none;
+          z-index: 0;
+          opacity: 0.12;
+        }
+        .glow-1 {
+          top: 3%;
+          left: 45%;
+          transform: translateX(-50%);
+          width: 550px;
+          height: 380px;
+          background: radial-gradient(circle, #D67A41 0%, transparent 70%);
+        }
+        .glow-2 {
+          top: 50%;
+          right: -5%;
+          width: 450px;
+          height: 450px;
+          background: radial-gradient(circle, #F79B63 0%, transparent 70%);
         }
 
         .treatment-container {
-          max-width: 1200px;
+          max-width: 980px;
           margin: 0 auto;
           width: 100%;
           box-sizing: border-box;
+          position: relative;
+          z-index: 1;
         }
 
         .treatment-booking-outer-wrapper {
-          max-width: 1200px;
-          margin: 0 auto;
+          max-width: 980px;
+          margin: 1.5rem auto 0;
           width: 100%;
           box-sizing: border-box;
+          position: relative;
+          z-index: 1;
+          scroll-margin-top: 70px;
         }
         .treatment-booking-outer-wrapper .smart-booking-section {
           padding: 0 !important;
@@ -811,15 +970,15 @@ export default function PageClient({ treatment }) {
           padding: 0 !important;
         }
 
-        /* ── BREADCRUMBS ─────────────────────────────── */
+        /* ── BREADCRUMBS: LIGHT & CRISP ──────────────── */
         .treatment-breadcrumbs {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
-          font-size: 0.84rem;
+          gap: 0.45rem;
+          font-size: 0.8rem;
           font-weight: 700;
-          color: #8A7063;
-          margin-bottom: 1.5rem;
+          color: #8C7063;
+          margin-bottom: 0.85rem;
           flex-wrap: wrap;
         }
         .treatment-breadcrumbs a {
@@ -831,621 +990,772 @@ export default function PageClient({ treatment }) {
           color: #110805;
         }
         .crumb-separator {
-          color: #CFC2BA;
+          color: #C8B9B0;
+          font-size: 0.72rem;
         }
         .crumb-category {
-          color: #7A5B4C;
+          color: #7A5C4F;
         }
         .crumb-current {
-          color: #110805;
+          color: #1A0D08;
+          font-weight: 800;
         }
 
-        /* ── HERO HEADING ONLY ──────────────────────── */
+        /* ── HERO HEADING: CRISP TYPOGRAPHY ON LIGHT BG ─ */
         .treatment-hero-heading-only {
-          padding: 0.5rem 0 1.25rem;
+          padding: 0.25rem 0 0.85rem;
           margin-bottom: 0.75rem;
           position: relative;
-          box-sizing: border-box;
           width: 100%;
         }
 
         .hero-top-badges {
           display: flex;
           align-items: center;
-          gap: 0.65rem;
-          margin-bottom: 0.75rem;
+          gap: 0.5rem;
+          margin-bottom: 0.5rem;
           flex-wrap: wrap;
         }
 
         .treatment-category-badge {
           display: inline-flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.35rem;
           background: rgba(214, 122, 65, 0.12);
           color: #9A4616;
-          padding: 0.35rem 0.85rem;
+          padding: 0.28rem 0.75rem;
           border-radius: 99px;
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 800;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.04em;
           text-transform: uppercase;
           border: 1px solid rgba(214, 122, 65, 0.28);
+          box-shadow: 0 2px 6px rgba(214, 122, 65, 0.08);
         }
 
         .hero-trust-chip {
           display: inline-flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.35rem;
           background: #FFFFFF;
           color: #2D2420;
-          padding: 0.35rem 0.9rem;
+          padding: 0.28rem 0.75rem;
           border-radius: 99px;
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 700;
-          border: 1px solid rgba(74, 37, 24, 0.12);
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+          border: 1px solid rgba(74, 37, 24, 0.1);
+          box-shadow: 0 2px 8px rgba(74, 37, 24, 0.04);
+        }
+        .trust-green-icon {
+          color: #10B981;
         }
 
         .hero-main-title {
-          font-size: clamp(2rem, 3.8vw, 2.9rem);
+          font-size: clamp(1.75rem, 3.4vw, 2.45rem);
           font-weight: 900;
           color: #110805;
           line-height: 1.15;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.35rem;
           letter-spacing: -0.025em;
         }
 
         .hero-sub-title {
-          font-size: 1.12rem;
-          color: #8A4822;
+          font-size: clamp(0.92rem, 1.6vw, 1.05rem);
+          color: #7A4E38;
           font-weight: 600;
-          line-height: 1.5;
-          margin-bottom: 0.5rem;
-          max-width: 900px;
+          line-height: 1.45;
+          margin-bottom: 0.85rem;
+          max-width: 840px;
         }
 
-        .hero-doctor-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.85rem;
-          background: rgba(255, 255, 255, 0.06);
-          border: 1px solid rgba(214, 122, 65, 0.25);
-          padding: 0.65rem 1.15rem;
-          border-radius: 16px;
-          margin-bottom: 1.5rem;
-        }
-        .hero-doc-avatar-wrap {
-          width: 46px;
-          height: 46px;
-          border-radius: 50%;
-          overflow: hidden;
-          border: 2px solid #D67A41;
-          flex-shrink: 0;
-        }
-        .hero-doc-avatar-img {
-          object-fit: cover;
-          object-position: top;
-          width: 100%;
-          height: 100%;
-        }
-        .hero-doc-details {
-          display: flex;
-          flex-direction: column;
-        }
-        .hero-doc-label {
-          font-size: 0.68rem;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          color: #F4B382;
-          font-weight: 700;
-        }
-        .hero-doc-name {
-          font-size: 0.98rem;
-          color: #FFFFFF;
-          font-weight: 800;
-        }
-        .hero-doc-degree {
-          font-size: 0.75rem;
-          color: rgba(255,255,255,0.7);
-        }
-
-        .hero-overview-text {
-          font-size: 1.05rem;
-          color: rgba(255, 255, 255, 0.88);
-          line-height: 1.7;
-          margin-bottom: 2rem;
-          max-width: 960px;
-        }
-
-        .hero-actions-group {
+        .hero-micro-action-row {
           display: flex;
           align-items: center;
-          gap: 0.85rem;
+          gap: 0.5rem;
           flex-wrap: wrap;
         }
-        .btn-hero-primary {
+        .hero-pill-btn {
           display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.4rem;
+          padding: 0.48rem 0.95rem;
+          border-radius: 99px;
+          font-size: 0.78rem;
+          font-weight: 800;
+          text-decoration: none;
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hero-pill-book {
           background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
           color: #FFFFFF;
-          padding: 0.85rem 1.75rem;
-          border-radius: 12px;
-          font-weight: 800;
-          font-size: 0.95rem;
-          text-decoration: none;
-          box-shadow: 0 8px 24px rgba(214, 122, 65, 0.35);
-          transition: all 0.25s ease;
+          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.32);
         }
-        .btn-hero-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 12px 30px rgba(214, 122, 65, 0.5);
+        .hero-pill-wa {
+          background: #FFFFFF;
+          color: #15803D;
+          border: 1.5px solid rgba(34, 197, 94, 0.35);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
-        .btn-hero-call {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          background: rgba(255, 255, 255, 0.08);
-          color: #FFFFFF;
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          padding: 0.85rem 1.4rem;
-          border-radius: 12px;
-          font-weight: 700;
-          font-size: 0.9rem;
-          text-decoration: none;
-          transition: all 0.25s ease;
-        }
-        .btn-hero-call:hover {
-          background: rgba(255, 255, 255, 0.15);
-        }
-        .btn-hero-whatsapp {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          background: linear-gradient(135deg, #25D366 0%, #1DA851 100%);
-          color: #FFFFFF;
-          padding: 0.85rem 1.4rem;
-          border-radius: 12px;
-          font-weight: 700;
-          font-size: 0.9rem;
-          text-decoration: none;
-          box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
-          transition: all 0.25s ease;
-        }
-        .btn-hero-whatsapp:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 12px 28px rgba(37, 211, 102, 0.4);
+        .hero-pill-call {
+          background: #FFFFFF;
+          color: #2D2420;
+          border: 1.5px solid rgba(74, 37, 24, 0.12);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
-        /* ── 03. TRUST STRIP ─────────────────────────── */
+        /* ── 03. COMPACT TRUST STRIP: SLEEK DARK THEMED METALLIC CHIP ────── */
         .treatment-trust-strip {
-          background: #FFFFFF;
-          border: 1px solid rgba(214, 122, 65, 0.16);
-          border-radius: 20px;
-          padding: 1.4rem 1.75rem;
-          margin-bottom: 2rem;
-          box-shadow: 0 4px 20px rgba(74, 37, 24, 0.04);
-          width: 100%;
-          box-sizing: border-box;
+          background: linear-gradient(145deg, #18110D 0%, #0F0A08 100%);
+          border: 1.5px solid rgba(214, 122, 65, 0.28);
+          border-radius: 16px;
+          padding: 0.85rem 1.15rem;
+          margin-bottom: 0.85rem;
+          box-shadow: 0 6px 20px rgba(26, 13, 8, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.06);
         }
         .trust-strip-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 1.5rem;
+          gap: 0.85rem;
         }
         .trust-strip-item {
           display: flex;
           align-items: center;
-          gap: 0.85rem;
+          gap: 0.6rem;
         }
         .trust-icon {
-          color: #D67A41;
+          color: #F79B63;
           flex-shrink: 0;
+          filter: drop-shadow(0 2px 6px rgba(247, 155, 99, 0.3));
         }
         .trust-strip-item strong {
           display: block;
-          font-size: 0.9rem;
-          color: #110805;
+          font-size: 0.8rem;
+          color: #FFFFFF;
+          line-height: 1.25;
         }
         .trust-strip-item span {
           display: block;
-          font-size: 0.76rem;
-          color: #7A5B4C;
+          font-size: 0.68rem;
+          color: #BDB0A8;
+          line-height: 1.25;
         }
 
-        /* ── MOBILE SECTION SWITCHER ─────────────────── */
-        .mobile-section-switcher {
-          display: none;
-          gap: 0.4rem;
-          margin-bottom: 1.5rem;
+        /* ── 04. SEGMENTED CONTROLLER TABS (MAGNETIC LUXURY CARDS) ──────── */
+        .section-segmented-controller {
+          display: flex;
+          gap: 0.55rem;
+          margin-bottom: 0.85rem;
           overflow-x: auto;
-          padding-bottom: 0.4rem;
+          padding: 0.45rem 0.2rem 0.6rem;
           scrollbar-width: none;
+          position: sticky;
+          top: 60px;
+          z-index: 25;
+          background: rgba(250, 248, 245, 0.94);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          -webkit-overflow-scrolling: touch;
         }
-        .mobile-section-switcher::-webkit-scrollbar { display: none; }
-        .m-switch-btn {
-          padding: 0.55rem 0.85rem;
-          border-radius: 12px;
-          border: 1px solid rgba(214, 122, 65, 0.2);
-          background: #FFFFFF;
-          font-size: 0.78rem;
-          font-weight: 700;
-          color: #554A44;
-          white-space: nowrap;
+        .section-segmented-controller::-webkit-scrollbar { display: none; }
+
+        .segment-card-btn {
+          position: relative;
+          flex: 1 0 auto;
+          min-width: 136px;
+          padding: 0.6rem 0.85rem 0.65rem;
+          border-radius: 14px;
+          border: 1px solid rgba(214, 122, 65, 0.25);
+          background: linear-gradient(145deg, #1C130E 0%, #110A07 100%);
+          color: #D8CCC5;
           cursor: pointer;
-          transition: all 0.2s ease;
-        }
-        .m-switch-btn.is-active {
-          background: #D67A41;
-          color: #FFFFFF;
-          border-color: #D67A41;
-          box-shadow: 0 4px 12px rgba(214, 122, 65, 0.25);
+          text-align: left;
+          box-shadow: 0 4px 14px rgba(26, 13, 8, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+          transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+          outline: none;
+          user-select: none;
         }
 
-        /* ── 04. COMMON CONTENT CARDS ────────────────── */
+        .segment-card-btn:hover {
+          border-color: rgba(214, 122, 65, 0.55);
+          box-shadow: 0 6px 20px rgba(214, 122, 65, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+
+        .segment-card-btn:hover .segment-card-icon-wrap {
+          color: #F79B63;
+          background: rgba(214, 122, 65, 0.22);
+          transform: rotate(-4deg) scale(1.08);
+        }
+
+        .segment-card-btn:hover .segment-card-main-title {
+          color: #FFFFFF;
+        }
+
+        /* Framer Motion Active Glow Background */
+        .active-tab-glow-bg {
+          position: absolute;
+          inset: -1px;
+          border-radius: 14px;
+          background: linear-gradient(135deg, rgba(214, 122, 65, 0.22) 0%, rgba(140, 67, 24, 0.1) 100%);
+          border: 1.5px solid #E08244;
+          box-shadow: 0 0 18px rgba(214, 122, 65, 0.35), inset 0 0 12px rgba(214, 122, 65, 0.12);
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        .segment-card-btn.is-active {
+          border-color: #E08244;
+          background: linear-gradient(145deg, #241710 0%, #160D09 100%);
+          box-shadow: 0 6px 22px rgba(214, 122, 65, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        }
+
+        .segment-card-content {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 0.32rem;
+        }
+
+        .segment-card-top-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+        }
+
+        .segment-card-icon-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 26px;
+          height: 26px;
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(214, 122, 65, 0.2);
+          color: #C8BCB5;
+          transition: all 0.25s ease;
+        }
+
+        .segment-card-btn.is-active .segment-card-icon-wrap {
+          background: linear-gradient(135deg, #D67A41 0%, #A34816 100%);
+          border-color: #F79B63;
+          color: #FFFFFF;
+          box-shadow: 0 2px 8px rgba(214, 122, 65, 0.4);
+        }
+
+        .segment-card-badge {
+          font-size: 0.62rem;
+          font-weight: 800;
+          letter-spacing: 0.04em;
+          color: rgba(214, 122, 65, 0.7);
+          text-transform: uppercase;
+        }
+
+        .segment-card-btn.is-active .segment-card-badge {
+          color: #F79B63;
+        }
+
+        .segment-card-labels {
+          display: flex;
+          flex-direction: column;
+          line-height: 1.15;
+        }
+
+        .segment-card-main-title {
+          font-size: 0.82rem;
+          font-weight: 800;
+          color: #E6DDD7;
+          letter-spacing: -0.01em;
+          white-space: nowrap;
+          transition: color 0.2s ease;
+        }
+
+        .segment-card-btn.is-active .segment-card-main-title {
+          color: #FFFFFF;
+        }
+
+        .segment-card-subtitle {
+          font-size: 0.67rem;
+          font-weight: 500;
+          color: #9E8F86;
+          white-space: nowrap;
+          margin-top: 0.12rem;
+          transition: color 0.2s ease;
+        }
+
+        .segment-card-btn.is-active .segment-card-subtitle {
+          color: #F5B892;
+        }
+
+        /* Pulsing micro indicator pip for active card */
+        .active-card-pip {
+          position: absolute;
+          top: 6px;
+          right: 6px;
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: #34D399;
+          box-shadow: 0 0 6px #34D399;
+          z-index: 2;
+          animation: pulsePip 2s infinite ease-in-out;
+        }
+
+        @keyframes pulsePip {
+          0%, 100% { opacity: 0.4; transform: scale(0.9); }
+          50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        /* ── COMMON ULTRA-LUXURY DARK THEMED CARDS ───────────────────────── */
         .treatment-content-card {
-          background: #FFFFFF;
-          border: 1px solid rgba(214, 122, 65, 0.16);
-          border-radius: 24px;
-          padding: 2.25rem 2rem;
-          margin-bottom: 1.75rem;
-          box-shadow: 0 6px 24px rgba(74, 37, 24, 0.04);
-          scroll-margin-top: 90px;
+          background: linear-gradient(155deg, #17100C 0%, #0E0806 100%);
+          border: 1px solid rgba(214, 122, 65, 0.26);
+          border-radius: 18px;
+          padding: 1.25rem 1.35rem;
+          margin-bottom: 0.85rem;
+          color: #E8E0D9;
+          box-shadow: 0 8px 30px rgba(26, 13, 8, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+          scroll-margin-top: 85px;
           width: 100%;
           box-sizing: border-box;
+          transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .treatment-content-card:hover {
+          border-color: rgba(214, 122, 65, 0.45);
+          transform: translateY(-2px);
+          box-shadow: 0 12px 36px rgba(214, 122, 65, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        .section-eyebrow {
-          font-size: 0.74rem;
-          font-weight: 800;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: #D67A41;
-          display: block;
-          margin-bottom: 0.35rem;
+        .card-header-compact {
+          margin-bottom: 0.65rem;
         }
-        .section-eyebrow-center {
-          text-align: center;
-          font-size: 0.74rem;
+        .section-eyebrow {
+          font-size: 0.68rem;
           font-weight: 800;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.09em;
           text-transform: uppercase;
-          color: #D67A41;
-          margin-bottom: 0.35rem;
+          color: #F79B63;
+          display: block;
+          margin-bottom: 0.2rem;
         }
 
         .card-section-title {
-          font-size: 1.55rem;
+          font-size: 1.25rem;
           font-weight: 800;
-          color: #110805;
-          margin-bottom: 1.25rem;
+          color: #FFFFFF;
+          margin-bottom: 0.75rem;
           display: flex;
           align-items: center;
-          gap: 0.75rem;
-          line-height: 1.3;
-        }
-        .card-section-title-center {
-          text-align: center;
-          font-size: 1.65rem;
-          font-weight: 800;
-          color: #110805;
-          margin-bottom: 1.6rem;
+          gap: 0.5rem;
+          line-height: 1.25;
         }
 
-        .title-icon-gold { color: #D67A41; flex-shrink: 0; }
-        .title-icon-terracotta { color: #B85D26; flex-shrink: 0; }
-        .title-icon-amber { color: #D97706; flex-shrink: 0; }
+        .title-icon-copper { color: #F79B63; flex-shrink: 0; }
+        .title-icon-amber { color: #FBBF24; flex-shrink: 0; }
 
         .clinical-text-block p {
-          font-size: 1.02rem;
-          color: #4A3E39;
-          line-height: 1.75;
+          font-size: 0.88rem;
+          color: #C8BCB5;
+          line-height: 1.65;
           margin: 0;
         }
 
         .section-intro-text {
-          font-size: 0.96rem;
-          color: #6E5B52;
-          line-height: 1.65;
-          margin-bottom: 1.35rem;
+          font-size: 0.84rem;
+          color: #B0A299;
+          line-height: 1.55;
+          margin-bottom: 0.85rem;
         }
 
-        /* ── AT A GLANCE (METRICS) ───────────────────── */
+        /* ── AT A GLANCE (METRICS - COMPACT 3x2) ─────────────────────────── */
         .metrics-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.25rem;
+          gap: 0.65rem;
         }
         .metric-box {
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          border-radius: 18px;
-          padding: 1.25rem 1.1rem;
+          background: rgba(255, 255, 255, 0.035);
+          border: 1px solid rgba(214, 122, 65, 0.18);
+          border-radius: 12px;
+          padding: 0.7rem 0.8rem;
           display: flex;
           align-items: flex-start;
-          gap: 0.9rem;
-          transition: transform 0.25s ease, border-color 0.25s ease;
+          gap: 0.6rem;
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .metric-box:hover {
-          transform: translateY(-3px);
-          border-color: rgba(214, 122, 65, 0.35);
+          border-color: rgba(214, 122, 65, 0.45);
+          background: rgba(214, 122, 65, 0.08);
+          transform: translateY(-1px);
         }
-        .metric-icon-wrap {
-          font-size: 1.6rem;
+        .metric-icon {
+          font-size: 1.25rem;
           line-height: 1;
+          flex-shrink: 0;
+          margin-top: 2px;
         }
         .metric-content {
           display: flex;
           flex-direction: column;
         }
         .metric-label {
-          font-size: 0.72rem;
-          font-weight: 700;
-          color: #8A7063;
+          font-size: 0.64rem;
+          font-weight: 800;
+          color: #A3938A;
           text-transform: uppercase;
           letter-spacing: 0.04em;
-          margin-bottom: 0.25rem;
+          margin-bottom: 0.15rem;
         }
         .metric-value {
-          font-size: 0.98rem;
+          font-size: 0.84rem;
           font-weight: 800;
-          color: #110805;
-          line-height: 1.35;
+          color: #FFFFFF;
+          line-height: 1.3;
         }
 
-        /* ── 07. CONDITIONS GRID ─────────────────────── */
+        /* ── CLINICAL RESULTS BEFORE & AFTER (ULTRA COMPACT) ────────────── */
+        .results-preview-card {
+          padding: 1rem 1.15rem;
+        }
+        .results-header-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.65rem;
+          gap: 0.5rem;
+        }
+        .results-chip-badge {
+          display: inline-flex;
+          align-items: center;
+          background: rgba(16, 185, 129, 0.12);
+          color: #34D399;
+          border: 1px solid rgba(16, 185, 129, 0.3);
+          padding: 0.2rem 0.55rem;
+          border-radius: 99px;
+          font-size: 0.68rem;
+          font-weight: 800;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+        .results-slider-box {
+          border-radius: 14px;
+          overflow: hidden;
+          border: 1px solid rgba(214, 122, 65, 0.22);
+          background: #000000;
+          max-width: 580px;
+          margin: 0 auto;
+          box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+        }
+        .results-slider-box .ba-slider {
+          aspect-ratio: 16 / 10 !important;
+          min-height: 200px !important;
+          border-radius: 0 !important;
+        }
+        .results-caption-meta {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.45rem 0.85rem;
+          background: #110B08;
+          border-top: 1px solid rgba(214, 122, 65, 0.16);
+          font-size: 0.74rem;
+        }
+        .results-title-text {
+          color: #E2D7D0;
+          font-weight: 700;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .results-drag-hint {
+          color: #F79B63;
+          font-weight: 800;
+          font-size: 0.7rem;
+          flex-shrink: 0;
+          margin-left: 0.5rem;
+        }
+
+        /* ── CONDITIONS LIST ─────────────────────────────────────────────── */
         .conditions-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 1rem;
+          gap: 0.55rem;
         }
         .condition-item-box {
           display: flex;
-          align-items: flex-start;
-          gap: 0.85rem;
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          border-radius: 16px;
-          padding: 1.1rem 1.25rem;
-          font-size: 0.94rem;
+          align-items: center;
+          gap: 0.55rem;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(214, 122, 65, 0.16);
+          border-radius: 11px;
+          padding: 0.6rem 0.8rem;
+          font-size: 0.82rem;
           font-weight: 600;
-          color: #2D2420;
-          line-height: 1.5;
+          color: #E2D7D0;
+          line-height: 1.35;
+          transition: all 0.2s ease;
+        }
+        .condition-item-box:hover {
+          border-color: rgba(214, 122, 65, 0.35);
+          background: rgba(214, 122, 65, 0.06);
+          transform: translateX(2px);
         }
         .condition-check-icon {
-          color: #D67A41;
+          color: #F79B63;
           flex-shrink: 0;
-          margin-top: 2px;
         }
 
-        /* ── 08 & 09. CANDIDACY & ALTERNATIVES ───────── */
+        /* ── CANDIDACY & ALTERNATIVES ────────────────────────────────────── */
         .candidacy-split-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 1.5rem;
-          margin-bottom: 1.75rem;
+          gap: 0.75rem;
+          margin-bottom: 0.85rem;
         }
         .candidacy-box {
-          border-radius: 20px;
-          padding: 1.5rem 1.65rem;
+          border-radius: 14px;
+          padding: 0.95rem 1.05rem;
+          transition: transform 0.2s ease;
+        }
+        .candidacy-box:hover {
+          transform: translateY(-1px);
         }
         .c-box-suitable {
-          background: #F0FDF4;
-          border: 1.5px solid rgba(34, 197, 94, 0.25);
+          background: rgba(16, 185, 129, 0.1);
+          border: 1px solid rgba(16, 185, 129, 0.3);
         }
         .c-box-unsuitable {
-          background: #FEF3C7;
-          border: 1.5px solid rgba(245, 158, 11, 0.3);
+          background: rgba(245, 158, 11, 0.1);
+          border: 1px solid rgba(245, 158, 11, 0.3);
         }
         .c-box-header {
           display: flex;
           align-items: center;
-          gap: 0.55rem;
-          margin-bottom: 0.75rem;
+          gap: 0.45rem;
+          margin-bottom: 0.45rem;
         }
         .c-box-header h3 {
-          font-size: 1rem;
+          font-size: 0.86rem;
           font-weight: 800;
-          color: #110805;
+          color: #FFFFFF;
         }
-        .c-icon-green { color: #16A34A; }
-        .c-icon-amber { color: #D97706; }
+        .c-icon-green { color: #34D399; }
+        .c-icon-amber { color: #FBBF24; }
         .candidacy-box p {
-          font-size: 0.92rem;
-          color: #4A3E39;
-          line-height: 1.65;
-          margin: 0;
-        }
-
-        .alternatives-sub-section {
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.16);
-          border-radius: 18px;
-          padding: 1.4rem 1.65rem;
-        }
-        .alternatives-sub-title {
-          font-size: 0.96rem;
-          font-weight: 800;
-          color: #110805;
-          margin-bottom: 1.15rem;
-          display: flex;
-          align-items: center;
-          gap: 0.55rem;
-        }
-        .alternatives-cards-list {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 1.15rem;
-        }
-        .alt-card {
-          background: #FFFFFF;
-          border: 1px solid rgba(214, 122, 65, 0.14);
-          border-radius: 14px;
-          padding: 1.1rem 1.25rem;
-        }
-        .alt-card strong {
-          display: block;
-          font-size: 0.92rem;
-          color: #D67A41;
-          margin-bottom: 0.35rem;
-        }
-        .alt-card p {
-          font-size: 0.85rem;
-          color: #6E5B52;
+          font-size: 0.8rem;
+          color: #D6C8BE;
           line-height: 1.55;
           margin: 0;
         }
 
-        /* ── 10. OPTIONS COMPARISON ──────────────────── */
+        .alternatives-sub-section {
+          background: rgba(255, 255, 255, 0.025);
+          border: 1px solid rgba(214, 122, 65, 0.18);
+          border-radius: 14px;
+          padding: 0.95rem 1.05rem;
+        }
+        .alternatives-sub-title {
+          font-size: 0.84rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin-bottom: 0.65rem;
+          display: flex;
+          align-items: center;
+          gap: 0.45rem;
+        }
+        .alternatives-cards-list {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.65rem;
+        }
+        .alt-card {
+          background: rgba(255, 255, 255, 0.035);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 11px;
+          padding: 0.7rem 0.8rem;
+          transition: all 0.2s ease;
+        }
+        .alt-card:hover {
+          border-color: rgba(214, 122, 65, 0.3);
+          transform: translateY(-1px);
+        }
+        .alt-card strong {
+          display: block;
+          font-size: 0.82rem;
+          color: #F79B63;
+          margin-bottom: 0.2rem;
+        }
+        .alt-card p {
+          font-size: 0.76rem;
+          color: #B0A299;
+          line-height: 1.45;
+          margin: 0;
+        }
+
+        /* ── COMPARISON TABLE ────────────────────────────────────────────── */
         .comparison-table-wrapper {
           overflow-x: auto;
-          margin-top: 1rem;
+          margin-top: 0.65rem;
           width: 100%;
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          border-radius: 16px;
+          border: 1px solid rgba(214, 122, 65, 0.22);
+          border-radius: 14px;
         }
         .comparison-table {
           width: 100%;
           border-collapse: collapse;
           text-align: left;
-          font-size: 0.88rem;
+          font-size: 0.8rem;
         }
         .comparison-table th {
-          background: #FAF8F5;
-          color: #110805;
+          background: #1C120D;
+          color: #FFFFFF;
           font-weight: 800;
-          padding: 1rem 1.15rem;
-          border-bottom: 2px solid rgba(214, 122, 65, 0.25);
+          padding: 0.8rem 0.95rem;
+          border-bottom: 1px solid rgba(214, 122, 65, 0.28);
           white-space: nowrap;
         }
         .comparison-table td {
-          padding: 1rem 1.15rem;
-          border-bottom: 1px solid rgba(214, 122, 65, 0.1);
-          color: #4A3E39;
-          line-height: 1.55;
+          padding: 0.8rem 0.95rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+          color: #C8BCB5;
+          line-height: 1.5;
         }
         .comparison-table tr:hover td {
-          background: rgba(214, 122, 65, 0.03);
+          background: rgba(214, 122, 65, 0.06);
         }
         .row-title strong {
-          color: #D67A41;
+          color: #F79B63;
         }
 
         .options-cards-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.25rem;
+          gap: 0.65rem;
         }
         .option-info-card {
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.16);
-          border-radius: 18px;
-          padding: 1.4rem;
+          background: rgba(255, 255, 255, 0.035);
+          border: 1px solid rgba(214, 122, 65, 0.18);
+          border-radius: 14px;
+          padding: 0.9rem;
+          transition: all 0.22s ease;
+        }
+        .option-info-card:hover {
+          border-color: rgba(214, 122, 65, 0.4);
+          transform: translateY(-2px);
         }
         .opt-card-title {
-          font-size: 0.98rem;
+          font-size: 0.88rem;
           font-weight: 800;
-          color: #110805;
-          margin-bottom: 0.5rem;
+          color: #FFFFFF;
+          margin-bottom: 0.35rem;
         }
         .opt-card-desc {
-          font-size: 0.86rem;
-          color: #6E5B52;
-          line-height: 1.6;
+          font-size: 0.78rem;
+          color: #B0A299;
+          line-height: 1.5;
           margin: 0;
         }
 
-        /* ── 11. STEP-BY-STEP PROCESS ────────────────── */
+        /* ── STEP-BY-STEP PROCESS: ANIMATED TIMELINE ─────────────────────── */
         .treatment-process-list {
           display: flex;
           flex-direction: column;
-          gap: 1.25rem;
+          gap: 0.65rem;
         }
         .process-step-item {
           display: flex;
-          gap: 1.25rem;
+          gap: 0.75rem;
           align-items: flex-start;
+          transition: transform 0.2s ease;
+        }
+        .process-step-item:hover {
+          transform: translateX(3px);
         }
         .step-number-bubble {
-          width: 42px;
-          height: 42px;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
           color: #FFFFFF;
-          font-weight: 800;
-          font-size: 1.05rem;
+          font-weight: 900;
+          font-size: 0.84rem;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          box-shadow: 0 4px 12px rgba(214, 122, 65, 0.25);
+          box-shadow: 0 3px 10px rgba(214, 122, 65, 0.4);
         }
         .step-content-card {
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.14);
-          border-radius: 18px;
-          padding: 1.25rem 1.5rem;
+          background: rgba(255, 255, 255, 0.035);
+          border: 1px solid rgba(214, 122, 65, 0.18);
+          border-radius: 13px;
+          padding: 0.8rem 1rem;
           flex: 1;
         }
         .step-title {
-          font-size: 1.05rem;
+          font-size: 0.9rem;
           font-weight: 800;
-          color: #110805;
-          margin-bottom: 0.35rem;
+          color: #FFFFFF;
+          margin-bottom: 0.25rem;
         }
         .step-desc {
-          font-size: 0.9rem;
-          color: #554A44;
-          line-height: 1.65;
+          font-size: 0.8rem;
+          color: #BDB0A8;
+          line-height: 1.5;
           margin: 0;
         }
 
-        /* ── 12. DIAGNOSTICS & TECH ──────────────────── */
+        /* ── DIAGNOSTICS & TECH ──────────────────────────────────────────── */
         .tech-cards-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.25rem;
+          gap: 0.65rem;
         }
         .tech-box {
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.16);
-          border-radius: 18px;
-          padding: 1.4rem;
+          background: rgba(255, 255, 255, 0.035);
+          border: 1px solid rgba(214, 122, 65, 0.18);
+          border-radius: 13px;
+          padding: 0.8rem 0.9rem;
+          transition: all 0.2s ease;
+        }
+        .tech-box:hover {
+          border-color: rgba(214, 122, 65, 0.38);
+          transform: translateY(-2px);
         }
         .tech-box-header {
           display: flex;
           align-items: center;
-          gap: 0.45rem;
-          margin-bottom: 0.5rem;
+          gap: 0.35rem;
+          margin-bottom: 0.35rem;
         }
         .tech-name {
-          font-size: 0.96rem;
-          color: #110805;
+          font-size: 0.86rem;
+          color: #FFFFFF;
         }
         .tech-purpose {
-          font-size: 0.85rem;
-          color: #6E5B52;
-          line-height: 1.6;
+          font-size: 0.76rem;
+          color: #B0A299;
+          line-height: 1.45;
           margin: 0;
         }
 
-        /* ── 13. BENEFITS ────────────────────────────── */
+        /* ── BENEFITS ────────────────────────────────────────────────────── */
         .benefits-split-container {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 1.5rem;
+          gap: 0.75rem;
         }
         .benefit-col {
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          border-radius: 20px;
-          padding: 1.5rem 1.65rem;
+          background: rgba(255, 255, 255, 0.035);
+          border: 1px solid rgba(214, 122, 65, 0.18);
+          border-radius: 14px;
+          padding: 0.95rem 1.05rem;
         }
         .b-col-heading {
-          font-size: 1.02rem;
+          font-size: 0.88rem;
           font-weight: 800;
-          color: #110805;
-          margin-bottom: 1.15rem;
+          color: #FFFFFF;
+          margin-bottom: 0.65rem;
         }
         .b-col-list {
           list-style: none;
@@ -1453,205 +1763,199 @@ export default function PageClient({ treatment }) {
           margin: 0;
           display: flex;
           flex-direction: column;
-          gap: 0.85rem;
+          gap: 0.5rem;
         }
         .b-col-list li {
           display: flex;
           align-items: flex-start;
-          gap: 0.65rem;
-          font-size: 0.9rem;
-          color: #4A3E39;
-          line-height: 1.6;
+          gap: 0.55rem;
+          font-size: 0.82rem;
+          color: #C8BCB5;
+          line-height: 1.45;
         }
         .b-col-list svg {
-          color: #16A34A;
+          color: #34D399;
           flex-shrink: 0;
-          margin-top: 3px;
+          margin-top: 2px;
         }
 
         .benefits-cards-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 1.15rem;
+          gap: 0.65rem;
         }
         .benefit-pill-card {
           display: flex;
-          gap: 0.95rem;
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          border-radius: 18px;
-          padding: 1.25rem;
+          gap: 0.7rem;
+          background: rgba(255, 255, 255, 0.035);
+          border: 1px solid rgba(214, 122, 65, 0.18);
+          border-radius: 13px;
+          padding: 0.8rem 0.95rem;
+          transition: all 0.2s ease;
+        }
+        .benefit-pill-card:hover {
+          border-color: rgba(214, 122, 65, 0.4);
+          transform: translateY(-2px);
         }
         .b-check-circle {
-          color: #D67A41;
+          color: #F79B63;
           flex-shrink: 0;
         }
         .b-card-title {
-          font-size: 0.95rem;
+          font-size: 0.86rem;
           font-weight: 800;
-          color: #110805;
-          margin-bottom: 0.25rem;
+          color: #FFFFFF;
+          margin-bottom: 0.2rem;
         }
         .b-card-desc {
-          font-size: 0.85rem;
-          color: #6E5B52;
-          line-height: 1.55;
+          font-size: 0.78rem;
+          color: #B0A299;
+          line-height: 1.45;
           margin: 0;
         }
 
-        /* ── 14. RISKS & CONSIDERATIONS ──────────────── */
+        /* ── RISKS & CONSIDERATIONS ──────────────────────────────────────── */
         .risks-list {
           display: flex;
           flex-direction: column;
-          gap: 0.85rem;
+          gap: 0.5rem;
         }
         .risk-item-box {
           display: flex;
           align-items: flex-start;
-          gap: 0.85rem;
-          background: #FFFBEB;
+          gap: 0.6rem;
+          background: rgba(245, 158, 11, 0.09);
           border: 1px solid rgba(245, 158, 11, 0.25);
-          border-radius: 16px;
-          padding: 1.1rem 1.35rem;
+          border-radius: 12px;
+          padding: 0.75rem 0.95rem;
         }
         .risk-bullet {
-          font-size: 1.15rem;
+          font-size: 1rem;
           line-height: 1;
         }
         .risk-item-box p {
-          font-size: 0.9rem;
-          color: #78350F;
-          line-height: 1.6;
+          font-size: 0.8rem;
+          color: #FDE68A;
+          line-height: 1.5;
           margin: 0;
         }
 
-        /* ── 15. TIMELINE ────────────────────────────── */
-        .timeline-cards-grid {
+        /* ── TIMELINE & COMFORT ──────────────────────────────────────────── */
+        .timeline-cards-grid, .comfort-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.25rem;
+          gap: 0.65rem;
         }
-        .t-card {
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          border-radius: 18px;
-          padding: 1.4rem;
+        .t-card, .comfort-box {
+          background: rgba(255, 255, 255, 0.035);
+          border: 1px solid rgba(214, 122, 65, 0.18);
+          border-radius: 13px;
+          padding: 0.85rem 0.95rem;
+          transition: all 0.2s ease;
+        }
+        .t-card:hover, .comfort-box:hover {
+          border-color: rgba(214, 122, 65, 0.4);
+          transform: translateY(-2px);
         }
         .t-card strong {
           display: block;
-          font-size: 0.94rem;
-          color: #D67A41;
-          margin-bottom: 0.4rem;
+          font-size: 0.84rem;
+          color: #F79B63;
+          margin-bottom: 0.25rem;
         }
         .t-card p {
-          font-size: 0.86rem;
-          color: #4A3E39;
-          line-height: 1.6;
+          font-size: 0.78rem;
+          color: #BDB0A8;
+          line-height: 1.45;
           margin: 0;
-        }
-
-        /* ── 16. PAIN & COMFORT ──────────────────────── */
-        .comfort-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.25rem;
-        }
-        .comfort-box {
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          border-radius: 18px;
-          padding: 1.4rem;
         }
         .comfort-box h4 {
-          font-size: 0.94rem;
+          font-size: 0.84rem;
           font-weight: 800;
-          color: #110805;
-          margin-bottom: 0.5rem;
+          color: #FFFFFF;
+          margin-bottom: 0.25rem;
         }
         .comfort-box p {
-          font-size: 0.86rem;
-          color: #554A44;
-          line-height: 1.65;
+          font-size: 0.78rem;
+          color: #B0A299;
+          line-height: 1.45;
           margin: 0;
         }
 
-        /* ── 17. COST & EMI ──────────────────────────── */
-        .pricing-breakdown-card {
-          border-color: rgba(214, 122, 65, 0.3);
-        }
+        /* ── PRICING CARD ────────────────────────────────────────────────── */
         .pricing-card-header {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 1.5rem;
+          margin-bottom: 0.85rem;
           flex-wrap: wrap;
-          gap: 1rem;
+          gap: 0.65rem;
         }
         .pricing-rate-tag {
-          background: #FAF8F5;
-          border: 1.5px solid rgba(214, 122, 65, 0.3);
-          border-radius: 16px;
-          padding: 0.85rem 1.6rem;
+          background: rgba(214, 122, 65, 0.16);
+          border: 1.5px solid rgba(214, 122, 65, 0.4);
+          border-radius: 14px;
+          padding: 0.55rem 1.05rem;
           text-align: right;
         }
         .cost-label {
-          font-size: 0.7rem;
+          font-size: 0.66rem;
           font-weight: 800;
           text-transform: uppercase;
-          letter-spacing: 0.05em;
-          color: #8A7063;
+          letter-spacing: 0.04em;
+          color: #B0A299;
           display: block;
         }
         .cost-amount {
-          font-size: 1.35rem;
-          font-weight: 800;
-          color: #D67A41;
+          font-size: 1.25rem;
+          font-weight: 900;
+          color: #F79B63;
           display: block;
         }
 
         .cost-factors-block {
-          background: #FAF8F5;
-          border-radius: 16px;
-          padding: 1.25rem 1.5rem;
-          margin-bottom: 1.35rem;
+          background: rgba(255, 255, 255, 0.035);
+          border-radius: 12px;
+          padding: 0.8rem 1rem;
+          margin-bottom: 0.85rem;
         }
         .factors-heading {
-          font-size: 0.92rem;
+          font-size: 0.82rem;
           font-weight: 800;
-          color: #110805;
-          margin-bottom: 0.6rem;
+          color: #FFFFFF;
+          margin-bottom: 0.45rem;
         }
         .factors-list {
-          padding-left: 1.25rem;
+          padding-left: 1.1rem;
           margin: 0;
         }
         .factors-list li {
-          font-size: 0.88rem;
-          color: #554A44;
-          line-height: 1.65;
+          font-size: 0.78rem;
+          color: #BDB0A8;
+          line-height: 1.5;
         }
 
         .emi-highlight-banner {
           display: flex;
           align-items: center;
-          gap: 1.15rem;
-          background: #F0FDF4;
-          border: 1px solid rgba(34, 197, 94, 0.25);
-          border-radius: 16px;
-          padding: 1.15rem 1.4rem;
-          margin-bottom: 1.6rem;
+          gap: 0.85rem;
+          background: rgba(16, 185, 129, 0.1);
+          border: 1px solid rgba(16, 185, 129, 0.3);
+          border-radius: 13px;
+          padding: 0.75rem 0.95rem;
+          margin-bottom: 0.95rem;
         }
         .emi-icon {
-          font-size: 1.75rem;
+          font-size: 1.45rem;
         }
         .emi-highlight-banner strong {
           display: block;
-          font-size: 0.95rem;
-          color: #15803D;
+          font-size: 0.84rem;
+          color: #34D399;
         }
         .emi-highlight-banner p {
-          font-size: 0.84rem;
-          color: #166534;
+          font-size: 0.76rem;
+          color: #A7F3D0;
           margin: 0;
         }
 
@@ -1663,291 +1967,178 @@ export default function PageClient({ treatment }) {
           background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
           color: #FFFFFF;
           font-weight: 800;
-          font-size: 0.95rem;
-          padding: 0.9rem 1.85rem;
+          font-size: 0.86rem;
+          padding: 0.7rem 1.5rem;
           border-radius: 12px;
           text-decoration: none;
-          box-shadow: 0 6px 20px rgba(214, 122, 65, 0.3);
-          transition: all 0.25s ease;
-        }
-        .btn-estimate:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 10px 26px rgba(214, 122, 65, 0.45);
+          box-shadow: 0 4px 16px rgba(214, 122, 65, 0.35);
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* ── 18. WHY SHUBH DENTAL ────────────────────── */
+        /* ── WHY SHUBH DENTAL ────────────────────────────────────────────── */
         .why-clinic-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 1.15rem;
+          gap: 0.6rem;
         }
         .why-item {
           display: flex;
-          align-items: flex-start;
-          gap: 0.85rem;
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          border-radius: 16px;
-          padding: 1.15rem 1.35rem;
+          align-items: center;
+          gap: 0.6rem;
+          background: rgba(255, 255, 255, 0.035);
+          border: 1px solid rgba(214, 122, 65, 0.18);
+          border-radius: 12px;
+          padding: 0.7rem 0.9rem;
+          transition: all 0.2s ease;
+        }
+        .why-item:hover {
+          border-color: rgba(214, 122, 65, 0.35);
+          transform: translateX(2px);
         }
         .why-check {
-          color: #10B981;
+          color: #34D399;
           flex-shrink: 0;
-          margin-top: 2px;
         }
         .why-item p {
-          font-size: 0.92rem;
-          color: #2D2420;
+          font-size: 0.82rem;
+          color: #E2D7D0;
           font-weight: 600;
-          line-height: 1.55;
+          line-height: 1.45;
           margin: 0;
         }
 
-        /* ── 19. MEDICAL REVIEWER ────────────────────── */
-        .medical-reviewer-card {
-          background: linear-gradient(145deg, #1C0E09 0%, #2D1710 100%);
-          border-color: rgba(214, 122, 65, 0.3);
-          color: #FFFFFF;
-        }
-        .reviewer-inner {
-          display: flex;
-          gap: 2rem;
-          align-items: center;
-        }
-        .reviewer-avatar-wrap {
-          width: 90px;
-          height: 90px;
-          border-radius: 50%;
-          overflow: hidden;
-          border: 2.5px solid #D67A41;
-          flex-shrink: 0;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-        }
-        .reviewer-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: top;
-        }
-        .reviewer-badge {
-          display: inline-block;
-          background: rgba(16, 185, 129, 0.18);
-          color: #34D399;
-          border: 1px solid rgba(16, 185, 129, 0.35);
-          font-size: 0.74rem;
-          font-weight: 800;
-          padding: 0.25rem 0.75rem;
-          border-radius: 99px;
-          margin-bottom: 0.5rem;
-        }
-        .reviewer-name {
-          font-size: 1.35rem;
-          font-weight: 800;
-          color: #FFFFFF;
-          margin-bottom: 0.25rem;
-        }
-        .reviewer-credentials {
-          font-size: 0.88rem;
-          color: #F4B382;
-          font-weight: 600;
-          margin-bottom: 0.25rem;
-        }
-        .reviewer-role {
-          font-size: 0.8rem;
-          color: rgba(255,255,255,0.7);
-          margin-bottom: 1.15rem;
-        }
-        .reviewer-footer-meta {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
-          flex-wrap: wrap;
-          padding-top: 1rem;
-          border-top: 1px solid rgba(255,255,255,0.12);
-          font-size: 0.8rem;
-          color: rgba(255,255,255,0.65);
-        }
-        .reviewer-profile-link {
-          color: #F4B382;
-          text-decoration: none;
-          font-weight: 700;
-          transition: color 0.2s ease;
-        }
-        .reviewer-profile-link:hover {
-          color: #FFFFFF;
-        }
-
-        /* ── 20. CLINICAL CASES (BEFORE & AFTER) ─────── */
-        .section-header-row {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 1rem;
-          flex-wrap: wrap;
-          gap: 0.75rem;
-        }
-        .case-verified-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.35rem;
-          background: rgba(16, 185, 129, 0.1);
-          color: #059669;
-          border: 1px solid rgba(16, 185, 129, 0.25);
-          padding: 0.35rem 0.85rem;
-          border-radius: 99px;
-          font-size: 0.75rem;
-          font-weight: 700;
-        }
-        .slider-wrapper-box {
-          border-radius: 20px;
-          overflow: hidden;
-          border: 1px solid rgba(214, 122, 65, 0.2);
-          background: #0E0704;
-          max-width: 800px;
-          margin: 0 auto;
-          width: 100%;
-        }
-        .slider-caption-bar {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0.95rem 1.35rem;
-          background: #1A0D08;
-          color: #FFFFFF;
-          font-size: 0.86rem;
-        }
-        .drag-hint {
-          color: #F4B382;
-          font-weight: 700;
-          font-size: 0.78rem;
-        }
-
-        /* ── 21. TESTIMONIALS ────────────────────────── */
+        /* ── TESTIMONIALS ────────────────────────────────────────────────── */
         .testimonials-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 1.35rem;
+          gap: 0.65rem;
         }
         .testimonial-card-item {
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.15);
-          border-radius: 18px;
-          padding: 1.6rem;
+          background: rgba(255, 255, 255, 0.035);
+          border: 1px solid rgba(214, 122, 65, 0.18);
+          border-radius: 14px;
+          padding: 0.95rem 1.05rem;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          transition: all 0.22s ease;
+        }
+        .testimonial-card-item:hover {
+          border-color: rgba(214, 122, 65, 0.4);
+          transform: translateY(-2px);
         }
         .testimonial-stars {
-          color: #F59E0B;
-          font-size: 1.05rem;
+          color: #FBBF24;
+          font-size: 0.9rem;
           letter-spacing: 2px;
-          margin-bottom: 0.85rem;
+          margin-bottom: 0.45rem;
         }
         .t-quote {
-          font-size: 0.94rem;
-          color: #4A3E39;
-          line-height: 1.65;
+          font-size: 0.82rem;
+          color: #D6C8BE;
+          line-height: 1.55;
           font-style: italic;
-          margin-bottom: 1.35rem;
+          margin-bottom: 0.75rem;
         }
         .t-author strong {
           display: block;
-          font-size: 0.92rem;
-          color: #110805;
+          font-size: 0.82rem;
+          color: #FFFFFF;
         }
         .t-author span {
           display: block;
-          font-size: 0.78rem;
-          color: #8A7063;
+          font-size: 0.72rem;
+          color: #9C8B82;
         }
 
-        /* ── 22. FAQS ────────────────────────────────── */
+        /* ── FAQS ────────────────────────────────────────────────────────── */
         .treatment-faqs-list {
           display: flex;
           flex-direction: column;
-          gap: 0.85rem;
+          gap: 0.5rem;
         }
         .treatment-faq-item {
-          border: 1px solid rgba(214, 122, 65, 0.18);
-          border-radius: 18px;
+          border: 1px solid rgba(255, 255, 255, 0.09);
+          border-radius: 13px;
           overflow: hidden;
-          background: #FAF8F5;
-          transition: border-color 0.2s ease, background-color 0.2s ease;
+          background: rgba(255, 255, 255, 0.025);
+          transition: all 0.2s ease;
         }
         .treatment-faq-item.is-active {
           border-color: rgba(214, 122, 65, 0.45);
-          background: #FFFFFF;
+          background: rgba(214, 122, 65, 0.08);
         }
         .treatment-faq-question {
           width: 100%;
           text-align: left;
-          padding: 1.25rem 1.5rem;
+          padding: 0.85rem 1.05rem;
           background: none;
           border: none;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 1rem;
+          gap: 0.75rem;
           cursor: pointer;
-          font-size: 0.98rem;
-          font-weight: 800;
-          color: #110805;
+          font-size: 0.86rem;
+          font-weight: 700;
+          color: #FFFFFF;
         }
         .faq-icon-wrap {
-          color: #D67A41;
+          color: #F79B63;
           flex-shrink: 0;
+          transition: transform 0.2s ease;
         }
         .faq-answer-wrapper {
           overflow: hidden;
         }
         .faq-answer {
-          padding: 0 1.5rem 1.35rem;
-          border-top: 1px dashed rgba(214, 122, 65, 0.15);
-          padding-top: 0.95rem;
+          padding: 0 1.05rem 0.85rem;
+          border-top: 1px dashed rgba(214, 122, 65, 0.2);
+          padding-top: 0.65rem;
         }
         .faq-answer p {
-          font-size: 0.9rem;
-          color: #554A44;
-          line-height: 1.7;
+          font-size: 0.8rem;
+          color: #C8BCB5;
+          line-height: 1.55;
           margin: 0;
         }
 
-        /* ── 23. RELATED TREATMENTS ──────────────────── */
+        /* ── RELATED TREATMENTS ──────────────────────────────────────────── */
         .related-treatments-section {
-          background: #FFFFFF;
-          border: 1px solid rgba(214, 122, 65, 0.16);
-          border-radius: 22px;
-          padding: 1.85rem 2.25rem;
-          margin-bottom: 1.75rem;
+          background: linear-gradient(155deg, #17100C 0%, #0E0806 100%);
+          border: 1px solid rgba(214, 122, 65, 0.22);
+          border-radius: 16px;
+          padding: 0.95rem 1.15rem;
+          margin-bottom: 0.85rem;
           width: 100%;
           box-sizing: border-box;
+          box-shadow: 0 6px 24px rgba(26, 13, 8, 0.12);
         }
         .related-title {
-          font-size: 1.1rem;
+          font-size: 0.92rem;
           font-weight: 800;
-          color: #110805;
-          margin-bottom: 1.15rem;
+          color: #FFFFFF;
+          margin-bottom: 0.65rem;
         }
         .related-pills-row {
           display: flex;
           align-items: center;
-          gap: 0.85rem;
+          gap: 0.5rem;
           flex-wrap: wrap;
         }
         .related-treatment-pill {
           display: inline-flex;
           align-items: center;
-          gap: 0.45rem;
-          background: #FAF8F5;
-          border: 1px solid rgba(214, 122, 65, 0.22);
-          color: #2D2420;
-          padding: 0.6rem 1.15rem;
-          border-radius: 12px;
-          font-size: 0.85rem;
+          gap: 0.4rem;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(214, 122, 65, 0.24);
+          color: #E2D7D0;
+          padding: 0.45rem 0.85rem;
+          border-radius: 9px;
+          font-size: 0.76rem;
           font-weight: 700;
           text-decoration: none;
-          transition: all 0.2s ease;
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .related-treatment-pill:hover {
           background: #D67A41;
@@ -1956,122 +2147,9 @@ export default function PageClient({ treatment }) {
           transform: translateY(-2px);
         }
 
-        /* ── 24. LOCAL CLINIC INFORMATION ────────────── */
-        .treatment-local-info-card {
-          background: linear-gradient(145deg, #1A0D08 0%, #2D1710 100%);
-          border: 1.5px solid rgba(214, 122, 65, 0.28);
-          border-radius: 28px;
-          padding: 2.75rem 2.25rem;
-          color: #FFFFFF;
-          margin-bottom: 1.75rem;
-          width: 100%;
-          box-sizing: border-box;
-        }
-        .local-info-inner {
-          display: grid;
-          grid-template-columns: 1.2fr 0.8fr;
-          gap: 2.5rem;
-          align-items: center;
-        }
-        .section-eyebrow-light {
-          font-size: 0.74rem;
-          font-weight: 800;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: #F4B382;
-          display: block;
-          margin-bottom: 0.35rem;
-        }
-        .local-heading {
-          font-size: 1.45rem;
-          font-weight: 800;
-          color: #FFFFFF;
-          margin-bottom: 0.75rem;
-        }
-        .local-desc {
-          font-size: 0.92rem;
-          color: rgba(255,255,255,0.8);
-          line-height: 1.65;
-          margin-bottom: 1.5rem;
-        }
-        .local-details-list {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-        .local-detail-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 0.85rem;
-        }
-        .loc-icon {
-          color: #F4B382;
-          flex-shrink: 0;
-          margin-top: 3px;
-        }
-        .local-detail-item strong {
-          display: block;
-          font-size: 0.85rem;
-          color: #F4B382;
-        }
-        .local-detail-item span {
-          display: block;
-          font-size: 0.84rem;
-          color: rgba(255,255,255,0.85);
-        }
-
-        .map-badge-card {
-          background: rgba(255, 255, 255, 0.06);
-          border: 1px solid rgba(214, 122, 65, 0.25);
-          border-radius: 20px;
-          padding: 1.6rem;
-        }
-        .map-badge-card h4 {
-          font-size: 1rem;
-          font-weight: 800;
-          color: #FFFFFF;
-          margin-bottom: 0.5rem;
-        }
-        .map-badge-card p {
-          font-size: 0.85rem;
-          color: rgba(255,255,255,0.75);
-          line-height: 1.55;
-          margin-bottom: 1.25rem;
-        }
-        .btn-map-directions {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.45rem;
-          background: rgba(255, 255, 255, 0.12);
-          color: #FFFFFF;
-          border: 1px solid rgba(255, 255, 255, 0.25);
-          padding: 0.7rem 1.15rem;
-          border-radius: 12px;
-          font-size: 0.85rem;
-          font-weight: 700;
-          text-decoration: none;
-          transition: all 0.2s ease;
-        }
-        .btn-map-directions:hover {
-          background: #D67A41;
-          border-color: #D67A41;
-        }
-
-        /* ── GLOBAL UI: MOBILE STICKY CONVERSION BAR ─── */
+        /* ── GLOBAL UI: MOBILE STICKY CONVERSION BAR ─────────────────────── */
         .mobile-sticky-action-bar {
-          display: none;
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background: rgba(26, 13, 8, 0.95);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border-top: 1px solid rgba(214, 122, 65, 0.3);
-          padding: 0.65rem 1rem env(safe-area-inset-bottom, 0.65rem);
-          z-index: 999;
-          box-shadow: 0 -4px 20px rgba(0,0,0,0.25);
-          gap: 0.6rem;
+          display: none !important;
         }
         .sticky-btn {
           flex: 1;
@@ -2079,472 +2157,334 @@ export default function PageClient({ treatment }) {
           align-items: center;
           justify-content: center;
           gap: 0.35rem;
-          padding: 0.75rem 0.5rem;
+          padding: 0.58rem 0.45rem;
           border-radius: 10px;
-          font-size: 0.82rem;
+          font-size: 0.76rem;
           font-weight: 800;
           text-decoration: none;
           color: #FFFFFF;
+          transition: transform 0.15s ease;
+        }
+        .sticky-btn:active {
+          transform: scale(0.96);
         }
         .sticky-wa {
-          background: #25D366;
+          background: #15803D;
+          border: 1px solid rgba(74, 222, 128, 0.35);
         }
         .sticky-call {
-          background: rgba(255,255,255,0.12);
-          border: 1px solid rgba(255,255,255,0.2);
+          background: rgba(255,255,255,0.08);
+          border: 1px solid rgba(255,255,255,0.18);
         }
         .sticky-book {
           background: linear-gradient(135deg, #D67A41 0%, #B85D26 100%);
         }
 
-        /* ── RESPONSIVE RULES (LAPTOP, TABLET & MOBILE) ─ */
-        @media (max-width: 1024px) {
-          .treatment-page-wrapper {
-            padding: 2rem 1.25rem 5rem;
-          }
-          .trust-strip-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-          .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-          .tech-cards-grid { grid-template-columns: repeat(2, 1fr); }
-          .timeline-cards-grid { grid-template-columns: 1fr; }
-          .comfort-grid { grid-template-columns: 1fr; }
-          .local-info-inner { grid-template-columns: 1fr; gap: 1.5rem; }
-          .options-cards-grid { grid-template-columns: 1fr; }
-        }
-
+        /* ── RESPONSIVE MOBILE OPTIMIZATION (HIGH DENSITY & COMPACT) ──────── */
         @media (max-width: 768px) {
           .treatment-page-wrapper {
-            padding: 0.65rem 0.65rem 5.5rem;
+            padding: 0.5rem 0.5rem 0;
           }
-          
-          /* ULTRA COMPACT HERO STAGE */
+
           .treatment-breadcrumbs {
-            margin-bottom: 0.65rem;
             font-size: 0.72rem;
+            margin-bottom: 0.55rem;
             gap: 0.35rem;
+            padding: 0 0.15rem;
+            line-height: 1.4;
           }
-          /* ULTRA COMPACT HERO HEADING ONLY */
+
           .treatment-hero-heading-only {
-            padding: 0.25rem 0.2rem 0.6rem;
-            margin-bottom: 0.5rem;
+            padding: 0.2rem 0.15rem 0.6rem;
+            margin-bottom: 0.55rem;
           }
           .hero-top-badges {
-            margin-bottom: 0.4rem;
-            gap: 0.35rem;
+            margin-bottom: 0.45rem;
+            gap: 0.4rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
           }
-          .treatment-category-badge {
-            padding: 0.22rem 0.55rem;
-            font-size: 0.65rem;
+          .treatment-category-badge, .hero-trust-chip {
+            padding: 0.25rem 0.65rem;
+            font-size: 0.67rem;
+            border-radius: 99px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
           }
-          .hero-trust-chip {
-            padding: 0.22rem 0.55rem;
-            font-size: 0.65rem;
-          }
+
           .hero-main-title {
-            font-size: 1.45rem;
+            font-size: clamp(1.4rem, 6vw, 1.7rem);
             line-height: 1.2;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.35rem;
+            letter-spacing: -0.02em;
           }
           .hero-sub-title {
             font-size: 0.84rem;
-            line-height: 1.4;
-            margin-bottom: 0.35rem;
+            line-height: 1.42;
+            margin-bottom: 0.75rem;
+            color: #6E4937;
           }
 
-          /* ULTRA COMPACT TRUST STRIP - 2x2 MICRO GRID */
+          /* Micro Action Row: Beautifully aligned, full-width or elegant wrap */
+          .hero-micro-action-row {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            flex-wrap: wrap;
+            width: 100%;
+          }
+          .hero-pill-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            padding: 0.46rem 0.75rem;
+            font-size: 0.74rem;
+            border-radius: 99px;
+            font-weight: 800;
+            white-space: nowrap;
+            flex: 1 1 auto;
+            text-align: center;
+          }
+          .hero-pill-book {
+            flex: 1.2 1 auto;
+          }
+
+          /* Trust strip: 2x2 micro grid */
           .treatment-trust-strip {
-            padding: 0.75rem 0.85rem;
+            padding: 0.6rem 0.75rem;
+            margin-bottom: 0.55rem;
             border-radius: 14px;
-            margin-bottom: 0.75rem;
           }
           .trust-strip-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.6rem 0.75rem;
-          }
-          .trust-strip-item {
-            gap: 0.5rem;
+            gap: 0.55rem 0.7rem;
           }
           .trust-strip-item strong {
-            font-size: 0.76rem;
-            line-height: 1.2;
+            font-size: 0.74rem;
           }
           .trust-strip-item span {
-            font-size: 0.66rem;
-            line-height: 1.2;
+            font-size: 0.64rem;
           }
 
-          /* INNOVATIVE HORIZONTAL PILL SWITCHER */
-          .mobile-section-switcher {
-            display: flex;
-            gap: 0.35rem;
-            margin-bottom: 0.75rem;
-            padding: 0.2rem 0.1rem 0.35rem;
-            position: sticky;
-            top: 60px;
-            z-index: 20;
-            background: rgba(250, 248, 245, 0.94);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+          /* Section segmented card tabs on Mobile */
+          .section-segmented-controller {
+            top: 54px;
+            margin-bottom: 0.55rem;
+            padding: 0.25rem 0.15rem 0.45rem;
+            gap: 0.4rem;
           }
-          .m-switch-btn {
-            padding: 0.4rem 0.7rem;
-            font-size: 0.72rem;
-            border-radius: 99px;
+          .segment-card-btn {
+            min-width: 118px;
+            padding: 0.5rem 0.65rem 0.55rem;
+            border-radius: 12px;
+          }
+          .segment-card-icon-wrap {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+          }
+          .segment-card-icon-wrap svg {
+            width: 13px;
+            height: 13px;
+          }
+          .segment-card-main-title {
+            font-size: 0.76rem;
+          }
+          .segment-card-subtitle {
+            font-size: 0.62rem;
           }
 
-          /* ULTRA COMPACT CONTENT CARD */
+          /* Common Card on Mobile: Ultra-tight with subtle glow */
           .treatment-content-card {
-            padding: 1rem 0.85rem;
-            border-radius: 16px;
-            margin-bottom: 0.75rem;
+            padding: 0.9rem 0.8rem;
+            border-radius: 15px;
+            margin-bottom: 0.55rem;
           }
-          .section-eyebrow, .section-eyebrow-center {
-            font-size: 0.65rem;
-            margin-bottom: 0.2rem;
+          .card-section-title {
+            font-size: 1.08rem;
+            margin-bottom: 0.55rem;
           }
-          .card-section-title, .card-section-title-center {
-            font-size: 1.15rem;
-            margin-bottom: 0.85rem;
-            gap: 0.45rem;
+          .section-eyebrow {
+            font-size: 0.64rem;
           }
           .clinical-text-block p {
-            font-size: 0.85rem;
-            line-height: 1.55;
-          }
-          .section-intro-text {
-            font-size: 0.8rem;
-            line-height: 1.45;
-            margin-bottom: 0.85rem;
+            font-size: 0.82rem;
+            line-height: 1.5;
           }
 
-          /* SNAPSHOT: 2-COLUMN DENSE MICRO METRICS */
+          /* Results card on mobile */
+          .results-preview-card {
+            padding: 0.75rem 0.7rem;
+          }
+          .results-header-row {
+            margin-bottom: 0.45rem;
+          }
+          .results-slider-box .ba-slider {
+            aspect-ratio: 16 / 11 !important;
+            min-height: 175px !important;
+          }
+          .results-caption-meta {
+            padding: 0.35rem 0.65rem;
+            font-size: 0.68rem;
+          }
+          .results-drag-hint {
+            font-size: 0.64rem;
+          }
+
+          /* Snapshot: 2 columns dense */
           .metrics-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 0.45rem;
           }
           .metric-box {
-            padding: 0.65rem 0.6rem;
-            border-radius: 12px;
+            padding: 0.55rem 0.6rem;
+            border-radius: 11px;
             gap: 0.5rem;
           }
-          .metric-icon-wrap {
-            font-size: 1.2rem;
+          .metric-icon {
+            font-size: 1.15rem;
           }
           .metric-label {
-            font-size: 0.62rem;
-            margin-bottom: 0.15rem;
+            font-size: 0.6rem;
           }
           .metric-value {
             font-size: 0.78rem;
-            line-height: 1.25;
           }
 
-          /* CONDITIONS: COMPACT 2-COLUMN CHIPS */
+          /* Conditions */
           .conditions-grid {
             grid-template-columns: 1fr;
             gap: 0.4rem;
           }
           .condition-item-box {
-            padding: 0.55rem 0.75rem;
+            padding: 0.5rem 0.65rem;
             font-size: 0.78rem;
-            border-radius: 10px;
+            border-radius: 9px;
+          }
+
+          /* Candidacy */
+          .candidacy-split-grid {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+          }
+          .candidacy-box {
+            padding: 0.7rem 0.8rem;
+            border-radius: 11px;
+          }
+          .c-box-header h3 {
+            font-size: 0.8rem;
+          }
+          .candidacy-box p {
+            font-size: 0.76rem;
+          }
+          .alternatives-cards-list {
+            grid-template-columns: 1fr;
             gap: 0.5rem;
           }
 
-          /* CANDIDACY: TIGHTER CARDS */
-          .candidacy-split-grid {
-            grid-template-columns: 1fr;
-            gap: 0.65rem;
-          }
-          .candidacy-box {
-            padding: 0.75rem 0.85rem;
-            border-radius: 12px;
-          }
-          .c-box-header h3 {
-            font-size: 0.88rem;
-          }
-          .candidacy-box p {
-            font-size: 0.8rem;
-            line-height: 1.45;
-          }
-          .alt-card {
-            padding: 0.65rem 0.75rem;
-            border-radius: 10px;
-          }
-          .alt-card strong {
-            font-size: 0.82rem;
-          }
-          .alt-card p {
-            font-size: 0.76rem;
-          }
-
-          /* COMPARISON TABLE ON MOBILE */
-          .comparison-table-wrapper {
-            max-height: 320px;
-          }
-          .comparison-table th, .comparison-table td {
-            padding: 0.55rem 0.65rem;
-            font-size: 0.74rem;
-          }
-
-          /* PROCESS STEPS: STREAMLINED TIMELINE */
+          /* Process steps */
           .process-step-item {
-            gap: 0.65rem;
-            margin-bottom: 0.75rem;
+            gap: 0.6rem;
           }
           .step-number-bubble {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             font-size: 0.75rem;
           }
           .step-content-card {
-            padding: 0.75rem 0.85rem;
-            border-radius: 12px;
+            padding: 0.6rem 0.75rem;
+            border-radius: 11px;
           }
           .step-title {
-            font-size: 0.88rem;
-            margin-bottom: 0.25rem;
+            font-size: 0.84rem;
           }
           .step-desc {
-            font-size: 0.78rem;
-            line-height: 1.45;
+            font-size: 0.76rem;
           }
 
-          /* TECH & BENEFITS: DENSE 2-COL MICRO TILES */
+          /* Diagnostics & tech: 2 columns */
           .tech-cards-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 0.45rem;
           }
           .tech-box {
-            padding: 0.65rem 0.6rem;
-            border-radius: 12px;
+            padding: 0.6rem 0.65rem;
+            border-radius: 11px;
           }
           .tech-name {
             font-size: 0.76rem;
           }
           .tech-purpose {
             font-size: 0.7rem;
-            line-height: 1.35;
-          }
-          .benefits-cards-grid {
-            grid-template-columns: 1fr;
-            gap: 0.45rem;
-          }
-          .benefit-pill-card {
-            padding: 0.65rem 0.75rem;
-            border-radius: 12px;
-            gap: 0.6rem;
-          }
-          .b-card-title {
-            font-size: 0.82rem;
-          }
-          .b-card-desc {
-            font-size: 0.74rem;
-            line-height: 1.35;
-          }
-          .b-col-list li {
-            font-size: 0.78rem;
-            padding: 0.35rem 0;
           }
 
-          /* TIMELINE & COMFORT TILES */
-          .timeline-cards-grid {
+          /* Benefits */
+          .benefits-split-container, .benefits-cards-grid {
             grid-template-columns: 1fr;
-            gap: 0.45rem;
+            gap: 0.5rem;
           }
-          .t-card {
-            padding: 0.65rem 0.75rem;
-            border-radius: 12px;
-          }
-          .t-card strong {
-            font-size: 0.8rem;
-          }
-          .t-card p {
-            font-size: 0.74rem;
-          }
-          .comfort-grid {
-            grid-template-columns: 1fr;
-            gap: 0.45rem;
-          }
-          .comfort-box {
-            padding: 0.65rem 0.75rem;
-            border-radius: 12px;
-          }
-          .comfort-box h4 {
-            font-size: 0.8rem;
-          }
-          .comfort-box p {
-            font-size: 0.74rem;
+          .benefit-col, .benefit-pill-card {
+            padding: 0.7rem 0.8rem;
+            border-radius: 11px;
           }
 
-          /* PRICING CARD COMPACT */
+          /* Timeline & Comfort */
+          .timeline-cards-grid, .comfort-grid {
+            grid-template-columns: 1fr;
+            gap: 0.45rem;
+          }
+          .t-card, .comfort-box {
+            padding: 0.6rem 0.75rem;
+            border-radius: 11px;
+          }
+
+          /* Pricing */
           .pricing-card-header {
             flex-direction: column;
-            gap: 0.65rem;
+            align-items: flex-start;
+            gap: 0.5rem;
           }
           .pricing-rate-tag {
-            padding: 0.5rem 0.85rem;
-            border-radius: 12px;
-          }
-          .cost-label {
-            font-size: 0.64rem;
+            text-align: left;
+            padding: 0.4rem 0.8rem;
           }
           .cost-amount {
-            font-size: 1.1rem;
-          }
-          .factors-heading {
-            font-size: 0.78rem;
-          }
-          .factors-list li {
-            font-size: 0.74rem;
-            line-height: 1.4;
-          }
-          .emi-highlight-banner {
-            padding: 0.65rem 0.75rem;
-            border-radius: 12px;
-            gap: 0.6rem;
-          }
-          .emi-highlight-banner strong {
-            font-size: 0.78rem;
-          }
-          .emi-highlight-banner p {
-            font-size: 0.7rem;
-          }
-          .btn-estimate {
-            padding: 0.65rem 1rem;
-            font-size: 0.82rem;
-            border-radius: 10px;
+            font-size: 1.05rem;
           }
 
-          /* WHY CLINIC GRID */
+          /* Why Clinic */
           .why-clinic-grid {
             grid-template-columns: 1fr;
-            gap: 0.45rem;
+            gap: 0.4rem;
           }
           .why-item {
             padding: 0.55rem 0.7rem;
-            border-radius: 10px;
-            font-size: 0.78rem;
-            gap: 0.6rem;
+            border-radius: 9px;
+          }
+          .why-item p {
+            font-size: 0.76rem;
           }
 
-          /* MEDICAL REVIEWER TILE */
-          .reviewer-inner {
-            flex-direction: row;
-            text-align: left;
-            gap: 0.75rem;
-            align-items: center;
+          /* Testimonials */
+          .testimonials-grid {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
           }
-          .reviewer-avatar-wrap {
-            width: 58px;
-            height: 58px;
-          }
-          .reviewer-badge {
-            font-size: 0.65rem;
-            margin-bottom: 0.2rem;
-          }
-          .reviewer-name {
-            font-size: 0.96rem;
-          }
-          .reviewer-credentials, .reviewer-role {
-            font-size: 0.72rem;
-            line-height: 1.35;
-          }
-          .reviewer-footer-meta {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.35rem;
-            margin-top: 0.5rem;
-            font-size: 0.7rem;
-          }
-          .reviewer-profile-link {
-            font-size: 0.72rem;
+          .testimonial-card-item {
+            padding: 0.7rem 0.8rem;
+            border-radius: 11px;
           }
 
-          /* FAQS ACCORDION */
+          /* FAQs */
           .treatment-faq-question {
-            padding: 0.75rem 0.85rem;
-          }
-          .faq-q-text {
-            font-size: 0.84rem;
+            padding: 0.7rem 0.8rem;
+            font-size: 0.8rem;
           }
           .faq-answer {
-            padding: 0 0.85rem 0.75rem;
-            font-size: 0.78rem;
-            line-height: 1.45;
-          }
-
-          /* RELATED TREATMENTS */
-          .related-treatments-section {
-            padding: 1rem 0.85rem;
-            border-radius: 16px;
-            margin-bottom: 0.75rem;
-          }
-          .related-title {
-            font-size: 0.95rem;
-            margin-bottom: 0.65rem;
-          }
-          .related-pills-row {
-            gap: 0.4rem;
-          }
-          .related-treatment-pill {
-            padding: 0.45rem 0.8rem;
-            font-size: 0.76rem;
-            border-radius: 8px;
-          }
-
-          /* LOCAL CLINIC INFO */
-          .treatment-local-info-card {
-            padding: 1.25rem 1rem;
-            border-radius: 18px;
-            margin-bottom: 0.75rem;
-          }
-          .local-info-inner {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-          }
-          .local-heading {
-            font-size: 1.15rem;
-          }
-          .local-desc {
-            font-size: 0.8rem;
-            line-height: 1.5;
-            margin-bottom: 0.85rem;
-          }
-          .local-details-list {
-            gap: 0.65rem;
-          }
-          .local-detail-item {
-            gap: 0.55rem;
-          }
-          .local-detail-item strong {
-            font-size: 0.76rem;
-          }
-          .local-detail-item span {
-            font-size: 0.72rem;
-          }
-          .map-badge-card {
-            padding: 1rem;
-            border-radius: 14px;
-          }
-          .map-badge-card h4 {
-            font-size: 0.88rem;
-          }
-          .map-badge-card p {
-            font-size: 0.76rem;
-            margin-bottom: 0.85rem;
-          }
-          .btn-map-directions {
-            padding: 0.55rem 0.85rem;
-            font-size: 0.76rem;
-          }
-
-          .mobile-sticky-action-bar {
-            display: flex;
-            padding: 0.5rem 0.75rem env(safe-area-inset-bottom, 0.5rem);
-            gap: 0.45rem;
-          }
-          .sticky-btn {
-            padding: 0.6rem 0.35rem;
+            padding: 0 0.8rem 0.7rem;
             font-size: 0.76rem;
           }
         }

@@ -102,7 +102,7 @@ export default function Footer() {
         .footer-root {
           background: #110805;
           color: #FFFFFF;
-          padding: 4.5rem 1.5rem 2.5rem;
+          padding: 2.25rem 1.5rem 2rem;
           border-top: 1px solid rgba(214, 122, 65, 0.2);
         }
 
@@ -299,7 +299,7 @@ export default function Footer() {
 
         @media (max-width: 576px) {
           .footer-root {
-            padding: 2rem 0.85rem 1rem !important;
+            padding: 1.25rem 0.85rem 1rem !important;
           }
           .footer-top-grid {
             grid-template-columns: 1fr;
