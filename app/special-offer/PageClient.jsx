@@ -157,22 +157,86 @@ export default function SpecialOfferPageClient() {
   const [openFaq, setOpenFaq] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [previewModalImg, setPreviewModalImg] = useState(null);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const currentTreatment = TREATMENTS_DATA[0];
 
+  // Anti-Spam Security States
+  const [honeypot, setHoneypot] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [formOpenedTime, setFormOpenedTime] = useState(0);
+
+  const handlePhoneChange = (e) => {
+    const raw = e.target.value;
+    const cleanDigits = raw.replace(/\D/g, '').replace(/^(?:91|0)/, '').slice(0, 10);
+    setFormData(prev => ({ ...prev, phone: cleanDigits }));
+    setErrorMessage('');
+  };
+
+  const handleNameChange = (e) => {
+    setFormData(prev => ({ ...prev, name: e.target.value }));
+    setErrorMessage('');
+  };
+
   const handleClaimSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) return;
+    setErrorMessage('');
+
+    // ── ADVANCED SPAM FILTER 1: HONEYPOT TRAP ──
+    if (honeypot && honeypot.trim().length > 0) {
+      setIsSubmitting(false);
+      setSubmitted(true);
+      return;
+    }
+
+    // ── ADVANCED SPAM FILTER 2: NAME QUALITY CHECK ──
+    const name = (formData.name || '').trim();
+    if (name.length < 2) {
+      setErrorMessage('Please enter your full name (minimum 2 letters)');
+      return;
+    }
+    if (/\d/.test(name) || /[<>{}[\]\\\/|@$%^*+=~`]/.test(name)) {
+      setErrorMessage('Name cannot contain numbers or special characters');
+      return;
+    }
+    if (!/[aeiouyAEIOUY]/.test(name)) {
+      setErrorMessage('Please enter a genuine readable name');
+      return;
+    }
+    const spamNames = ['test', 'tester', 'fake', 'dummy', 'asdf', 'qwerty', 'admin', 'sample'];
+    if (spamNames.includes(name.toLowerCase())) {
+      setErrorMessage('Please enter your real name for clinical doctor reservation');
+      return;
+    }
+
+    // ── ADVANCED SPAM FILTER 3: STRICT INDIAN PHONE CHECK ──
+    const cleanPhone = (formData.phone || '').replace(/\D/g, '').replace(/^(?:91|0)/, '');
+    if (cleanPhone.length !== 10 || !/^[6-9]/.test(cleanPhone)) {
+      setErrorMessage('Please enter a valid 10-digit Indian mobile number (starting with 6, 7, 8, or 9)');
+      return;
+    }
+    if (/^(\d)\1{9}$/.test(cleanPhone) || /^(\d{2})\1{4}$/.test(cleanPhone)) {
+      setErrorMessage('Please enter an active contact number');
+      return;
+    }
+    if (new Set(cleanPhone.split('')).size < 4) {
+      setErrorMessage('Please verify your mobile number for accuracy');
+      return;
+    }
+
+    // ── ADVANCED SPAM FILTER 4: SUBMISSION TIMING ──
+    if (formOpenedTime > 0 && (Date.now() - formOpenedTime) < 1500) {
+      setErrorMessage('Form submitted unusually fast. Please verify details.');
+      return;
+    }
 
     setIsSubmitting(true);
     const voucherCode = 'SHUBH-20-VIP';
 
-    // Submit lead to Web3Forms
+    // Submit clean lead to Web3Forms
     try {
       await submitToWeb3Forms({
-        name: formData.name,
-        phone: formData.phone,
+        name: name,
+        phone: cleanPhone,
         treatment: formData.treatment,
         timing: formData.timing,
         source: 'Special Offer Page (20% OFF Pass)',
@@ -306,6 +370,25 @@ export default function SpecialOfferPageClient() {
               </div>
 
               {/* Lead Capture Form or Success Confirmation */}
+              {errorMessage && (
+                <div style={{
+                  background: 'rgba(239, 68, 68, 0.18)',
+                  border: '1px solid #EF4444',
+                  color: '#FECACA',
+                  padding: '0.65rem 0.85rem',
+                  borderRadius: '10px',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  marginBottom: '0.85rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.45rem'
+                }}>
+                  <AlertCircle size={15} color="#EF4444" style={{ flexShrink: 0 }} />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
               {submitted ? (
                 <div className="voucher-success-box">
                   <div className="success-icon-wrap">
@@ -338,10 +421,25 @@ export default function SpecialOfferPageClient() {
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleClaimSubmit} className="voucher-claim-form">
+                <form onSubmit={handleClaimSubmit} className="voucher-claim-form" noValidate>
                   <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
                   <input type="hidden" name="subject" value="New 20% Privilege Lead from Special Offer Page" />
                   <input type="hidden" name="from_name" value="Shubh Dental Clinic Website" />
+
+                  {/* Honeypot field for spam prevention */}
+                  <div style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', left: '-9999px', height: 0, width: 0, overflow: 'hidden' }} aria-hidden="true">
+                    <label htmlFor="voucher_hp">Do not fill this</label>
+                    <input
+                      id="voucher_hp"
+                      type="text"
+                      name="website_url_hp"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   <div className="v-form-group">
                     <label htmlFor="lead-name">Your Full Name</label>
                     <input 
@@ -350,7 +448,7 @@ export default function SpecialOfferPageClient() {
                       required 
                       placeholder="e.g., Rohit Sharma" 
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={handleNameChange}
                     />
                   </div>
 
@@ -360,9 +458,10 @@ export default function SpecialOfferPageClient() {
                       id="lead-phone"
                       type="tel" 
                       required 
+                      maxLength={10}
                       placeholder="10-digit mobile number" 
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={handlePhoneChange}
                     />
                   </div>
 
