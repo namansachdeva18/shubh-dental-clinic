@@ -618,7 +618,7 @@ export default function PatientGallery() {
                 <div className="collage-marquees-container">
                   {/* Row 1: Left */}
                   <div className="collage-marquee-row">
-                    <div className="collage-marquee-track scroll-left-slow">
+                    <div className="collage-marquee-track scroll-left-slow scroll-row-1">
                       <div className="collage-marquee-group">
                         {row1.map(item => <CompactCard key={`r1-a-${item.id}`} item={item} />)}
                       </div>
@@ -630,7 +630,7 @@ export default function PatientGallery() {
                   
                   {/* Row 2: Right */}
                   <div className="collage-marquee-row">
-                    <div className="collage-marquee-track scroll-right-slow">
+                    <div className="collage-marquee-track scroll-right-slow scroll-row-2">
                       <div className="collage-marquee-group">
                         {row2.map(item => <CompactCard key={`r2-a-${item.id}`} item={item} />)}
                       </div>
@@ -642,7 +642,7 @@ export default function PatientGallery() {
 
                   {/* Row 3: Left */}
                   <div className="collage-marquee-row">
-                    <div className="collage-marquee-track scroll-left-slow">
+                    <div className="collage-marquee-track scroll-left-slow scroll-row-3">
                       <div className="collage-marquee-group">
                         {row3.map(item => <CompactCard key={`r3-a-${item.id}`} item={item} />)}
                       </div>
@@ -1388,6 +1388,18 @@ export default function PatientGallery() {
           animation: scrollRightMarquee 140s linear infinite;
         }
 
+        .scroll-row-1 {
+          animation: scrollLeftMarquee 70s linear infinite;
+        }
+
+        .scroll-row-2 {
+          animation: scrollRightMarquee 160s linear infinite;
+        }
+
+        .scroll-row-3 {
+          animation: scrollLeftMarquee 140s linear infinite;
+        }
+
         .collage-marquee-row:hover .collage-marquee-track {
           animation-play-state: paused;
         }
@@ -1765,11 +1777,20 @@ export default function PatientGallery() {
             font-size: 0.66rem;
             padding: 0.2rem 0.5rem;
           }
+          .scroll-row-1 {
+            animation-duration: 75s !important;
+          }
+          .scroll-row-2 {
+            animation-duration: 190s !important;
+          }
+          .scroll-row-3 {
+            animation-duration: 170s !important;
+          }
           .scroll-left-slow {
-            animation-duration: 25s;
+            animation-duration: 90s;
           }
           .scroll-right-slow {
-            animation-duration: 90s;
+            animation-duration: 180s;
           }
           /* Ensure all 3 rows are visible on mobile */
           .collage-marquee-row:nth-child(3) {
@@ -1793,6 +1814,15 @@ export default function PatientGallery() {
           .compact-patient-card {
             width: 105px !important;
             height: 78px !important;
+          }
+          .scroll-row-1 {
+            animation-duration: 80s !important;
+          }
+          .scroll-row-2 {
+            animation-duration: 210s !important;
+          }
+          .scroll-row-3 {
+            animation-duration: 185s !important;
           }
           .tooth-interactive-pill {
             padding: 0.35rem 0.75rem;
