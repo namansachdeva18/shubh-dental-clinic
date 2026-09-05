@@ -1,17 +1,19 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Tag, ShieldCheck, CheckCircle2, Sparkles, Send, Phone, ArrowRight, User, Stethoscope, Clock } from 'lucide-react';
+import { X, Sparkles, CheckCircle2, ArrowRight, User, Phone, Stethoscope, Clock, MessageSquare, ShieldCheck } from 'lucide-react';
 import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from '../lib/web3forms';
+import { trackConversion, CONVERSION_EVENTS } from '../lib/conversionTracking';
 
 const TREATMENTS = [
-  'Invisalign & Clear Aligners',
-  'Dental Implants',
-  'Damon & Aesthetic Braces',
-  'Smile Makeover & Porcelain Veneers',
-  'Root Canal Treatment (RCT)',
-  'Full Mouth Rehabilitation',
-  'Other Dental Care'
+  '💡 Not Sure? Consult Doctor First (Get Tailored 20% Plan + Free 3D Scan)',
+  'Invisalign® & Clear Aligners (Flat 20% OFF)',
+  'Korean Osstem® Dental Implants (20% Concession)',
+  'Damon® & Ceramic Braces (Anniversary Special)',
+  'Smile Makeover & Porcelain Veneers (20% OFF)',
+  'Single-Sitting Painless Root Canal & Crown',
+  'Full Mouth Teeth Rehabilitation & Bite Care',
+  'General Dental Consultation & Teeth Scaling'
 ];
 
 export default function OfferModal() {
@@ -19,14 +21,20 @@ export default function OfferModal() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    treatment: 'Invisalign & Clear Aligners',
-    timing: 'Morning (10 AM - 1 PM)'
+    treatment: TREATMENTS[0],
+    timing: 'Anytime / Earliest Specialist Slot',
+    note: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
-    const handleOpen = () => setIsOpen(true);
+    const handleOpen = (e) => {
+      if (e?.detail?.treatment) {
+        setFormData(prev => ({ ...prev, treatment: e.detail.treatment }));
+      }
+      setIsOpen(true);
+    };
     const handleHash = () => {
       if (
         window.location.hash === '#book' || 
@@ -74,7 +82,13 @@ export default function OfferModal() {
     }
     setTimeout(() => {
       setIsSuccess(false);
-      setFormData({ name: '', phone: '', treatment: 'Invisalign & Clear Aligners', timing: 'Morning (10 AM - 1 PM)' });
+      setFormData({ 
+        name: '', 
+        phone: '', 
+        treatment: TREATMENTS[0], 
+        timing: 'Anytime / Earliest Specialist Slot',
+        note: '' 
+      });
     }, 400);
   };
 
@@ -83,22 +97,32 @@ export default function OfferModal() {
     if (!formData.name || !formData.phone) return;
     setIsSubmitting(true);
 
-    // 1. Post lead to Web3Forms
+    // Post lead to Web3Forms
     try {
       await submitToWeb3Forms({
         name: formData.name,
         phone: formData.phone,
         treatment: formData.treatment,
         timing: formData.timing,
-        source: 'Global Special Offer / Booking Modal',
+        source: '20% OFF Privilege Pass Popup',
         voucher: 'SHUBH-20-VIP',
-        message: `Claimed Special Offer for ${formData.treatment} (${formData.timing})`
+        message: `Unlocked 20% Privilege Offer for ${formData.treatment}. Slot: ${formData.timing}. Goal/Note: ${formData.note || 'None'}`
+      });
+
+      trackConversion(CONVERSION_EVENTS.GENERATE_LEAD, {
+        treatment: formData.treatment,
+        source: 'OfferModal',
+        voucher: 'SHUBH-20-VIP',
+      });
+      trackConversion(CONVERSION_EVENTS.OFFER_LEAD, {
+        treatment: formData.treatment,
+        voucher: 'SHUBH-20-VIP',
       });
     } catch (err) {
       console.error('Web3Forms submit error:', err);
     }
 
-    const msg = `Hello Shubh Dental Clinic! 🏷️ I would like to CLAIM THE LIMITED-TIME OFFER (Up to 20% OFF + Complimentary Consultation).\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Treatment of Interest: ${formData.treatment}\n⏰ Preferred Slot: ${formData.timing}\n📍 Location: Tilak Nagar, Rohtak`;
+    const msg = `Hello Shubh Dental Clinic! 🏷️ I want to UNLOCK MY 20% OFF PRIVILEGE PASS (Voucher: SHUBH-20-VIP).\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Treatment: ${formData.treatment}\n⏰ Preferred Slot: ${formData.timing}${formData.note ? `\n🎯 Goal / Note: ${formData.note}` : ''}\n📍 Location: Rohtak HQ`;
     const waUrl = `https://wa.me/918685048414?text=${encodeURIComponent(msg)}`;
 
     setIsSubmitting(false);
@@ -111,181 +135,160 @@ export default function OfferModal() {
       {isOpen && (
         <div className="offer-modal-overlay" onClick={closeModal} role="dialog" aria-modal="true">
           <motion.div
-            className="offer-modal-card"
+            className="clean-offer-card"
             onClick={(e) => e.stopPropagation()}
-            initial={{ opacity: 0, scale: 0.92, y: 25 }}
+            initial={{ opacity: 0, scale: 0.94, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, scale: 0.95, y: 15 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Close Button */}
-            <button className="offer-close-btn" onClick={closeModal} aria-label="Close offer modal">
-              <X size={20} />
+            {/* Top Close Button */}
+            <button className="clean-close-btn" onClick={closeModal} aria-label="Close offer modal">
+              <X size={18} />
             </button>
 
-            {/* Modal Header */}
-            <div className="offer-modal-header">
-              <div className="offer-pill-badge">
-                <Tag size={13} />
-                <span>LIMITED-TIME OFFER</span>
-              </div>
+            {!isSuccess ? (
+              <div className="clean-modal-inner">
+                {/* 1. Header with Golden Pill Badge */}
+                <div className="clean-header-block">
+                  <div className="clean-pill-badge">
+                    <Sparkles size={12} className="pill-sparkle" />
+                    <span>CLINICAL SPECIAL · 20% OFF</span>
+                  </div>
 
-              <h2 className="offer-modal-title font-heading">
-                Limited-Time Dental Care Offer
-              </h2>
+                  <h2 className="clean-main-title">
+                    Unlock Your <span className="title-gold">20% Clinical Offer</span>
+                  </h2>
 
-              <p className="offer-modal-highlight">
-                Up to 20% OFF Selected Premium Dental Treatments
-              </p>
-
-              <span className="offer-modal-consult">
-                Plus a Complimentary 3D Digital Scan &amp; Consultation
-              </span>
-            </div>
-
-            {/* Modal Body */}
-            <div className="offer-modal-body">
-              {!isSuccess ? (
-                <>
-                  <p className="offer-eligibility-note">
-                    Submit your enquiry online to check your eligibility for selected premium dental treatments. Valid for limited slots this month.
+                  <p className="clean-subtitle">
+                    Enter your details to claim instant 20% Privilege Benefits &amp; a Complimentary 3D Digital Scan (Worth ₹3,500).
                   </p>
-
-                  <div className="offer-trust-tag">
-                    <ShieldCheck size={16} className="trust-shield-icon" />
-                    <span>PGI Chandigarh &amp; Rohtak-trained specialists · Rohtak</span>
-                  </div>
-
-                  <div className="offer-form-header">
-                    <h3 className="offer-form-title font-heading">Claim My Offer</h3>
-                    <p className="offer-form-desc">
-                      Submit your details and our team will contact you to confirm treatment eligibility and consultation availability.
-                    </p>
-                  </div>
-
-                  <form onSubmit={handleSubmit} className="offer-form">
-                    <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
-                    <input type="hidden" name="subject" value="New Offer / Appointment Claim from Global Modal" />
-                    <input type="hidden" name="from_name" value="Shubh Dental Clinic Website" />
-                    <div className="offer-input-group">
-                      <label htmlFor="offer-name">Full Name *</label>
-                      <div className="offer-input-wrap">
-                        <User size={17} className="input-icon" />
-                        <input
-                          id="offer-name"
-                          type="text"
-                          required
-                          placeholder="e.g., Rajesh Sharma"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="offer-input-group">
-                      <label htmlFor="offer-phone">Mobile Number *</label>
-                      <div className="offer-input-wrap">
-                        <Phone size={17} className="input-icon" />
-                        <input
-                          id="offer-phone"
-                          type="tel"
-                          required
-                          placeholder="10-digit mobile number"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="offer-input-group">
-                      <label htmlFor="offer-treatment">Treatment of Interest *</label>
-                      <div className="offer-input-wrap select-wrap">
-                        <Stethoscope size={17} className="input-icon" />
-                        <select
-                          id="offer-treatment"
-                          value={formData.treatment}
-                          onChange={(e) => setFormData({ ...formData, treatment: e.target.value })}
-                        >
-                          {TREATMENTS.map((t) => (
-                            <option key={t} value={t}>{t}</option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="offer-input-group">
-                      <label htmlFor="offer-timing">Preferred Consultation Slot</label>
-                      <div className="offer-input-wrap select-wrap">
-                        <Clock size={17} className="input-icon" />
-                        <select
-                          id="offer-timing"
-                          value={formData.timing}
-                          onChange={(e) => setFormData({ ...formData, timing: e.target.value })}
-                        >
-                          <option value="In-Clinic Morning (10 AM - 1 PM)">🏥 In-Clinic Morning (10:00 AM – 01:00 PM)</option>
-                          <option value="In-Clinic Evening (4 PM - 8 PM)">🏥 In-Clinic Evening (04:00 PM – 08:00 PM)</option>
-                          <option value="Online Video Consultation (Zoom / WhatsApp)">📹 Online Video Consultation (Zoom / WhatsApp)</option>
-                          <option value="Earliest Available Slot">Earliest Available Specialist Slot</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="offer-submit-btn"
-                    >
-                      {isSubmitting ? (
-                        <span>Checking Eligibility...</span>
-                      ) : (
-                        <>
-                          <span>Claim My Offer Now</span>
-                          <ArrowRight size={18} />
-                        </>
-                      )}
-                    </button>
-
-                    <p className="offer-disclaimer">
-                      🔒 Your details are 100% confidential. No spam guaranteed.
-                    </p>
-                  </form>
-                </>
-              ) : (
-                /* Success View */
-                <div className="offer-success-view">
-                  <div className="success-icon-badge">
-                    <CheckCircle2 size={48} color="#10B981" />
-                  </div>
-                  <h3 className="success-title font-heading">Offer Claim Submitted!</h3>
-                  <p className="success-desc">
-                    Thank you, <strong>{formData.name}</strong>! We have received your enquiry for <strong>{formData.treatment}</strong> with the limited-time discount.
-                  </p>
-                  <p className="success-sub">
-                    Our consultation coordinator will contact you on <strong>{formData.phone}</strong> shortly to confirm your time slot and applicable savings.
-                  </p>
-                  <div className="success-actions">
-                    <a
-                      href={`https://wa.me/918685048414?text=Hi!+I+just+claimed+the+offer+for+${encodeURIComponent(formData.treatment)}.`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-success-wa"
-                    >
-                      Chat Directly on WhatsApp
-                    </a>
-                    <button onClick={closeModal} className="btn-success-close">
-                      Back to Website
-                    </button>
-                  </div>
                 </div>
-              )}
-            </div>
+
+                {/* 2. Sleek Input Form */}
+                <form onSubmit={handleSubmit} className="clean-form-list">
+                  <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+                  
+                  {/* Full Name */}
+                  <div className="clean-input-box">
+                    <User size={18} className="clean-field-icon" />
+                    <input
+                      type="text"
+                      required
+                      placeholder="Full Name *"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    />
+                  </div>
+
+                  {/* Phone */}
+                  <div className="clean-input-box">
+                    <Phone size={18} className="clean-field-icon" />
+                    <input
+                      type="tel"
+                      required
+                      placeholder="10-Digit Mobile Number *"
+                      pattern="[0-9]{10}"
+                      title="Please enter a valid 10-digit mobile number"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
+                    />
+                  </div>
+
+                  {/* Treatment */}
+                  <div className="clean-input-box select-box">
+                    <Stethoscope size={18} className="clean-field-icon" />
+                    <select
+                      value={formData.treatment}
+                      onChange={(e) => setFormData({ ...formData, treatment: e.target.value })}
+                    >
+                      {TREATMENTS.map((t) => (
+                        <option key={t} value={t}>{t}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Preferred Time */}
+                  <div className="clean-input-box select-box">
+                    <Clock size={18} className="clean-field-icon" />
+                    <select
+                      value={formData.timing}
+                      onChange={(e) => setFormData({ ...formData, timing: e.target.value })}
+                    >
+                      <option value="Anytime / Earliest Specialist Slot">Preferred Time: Anytime / First Available</option>
+                      <option value="Morning Slot (10:00 AM – 01:00 PM)">Morning: 10:00 AM – 01:00 PM</option>
+                      <option value="Evening Slot (04:00 PM – 08:00 PM)">Evening: 04:00 PM – 08:00 PM</option>
+                      <option value="Virtual Video Consultation (WhatsApp / Zoom)">Virtual Video Call (NRI &amp; Outstation)</option>
+                    </select>
+                  </div>
+
+                  {/* Optional Goal Note */}
+                  <div className="clean-input-box">
+                    <MessageSquare size={18} className="clean-field-icon" />
+                    <input
+                      type="text"
+                      placeholder="Optional: Tell us about your goal or event date"
+                      value={formData.note}
+                      onChange={(e) => setFormData({ ...formData, note: e.target.value })}
+                    />
+                  </div>
+
+                  {/* Gold Gradient Action Button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="clean-submit-gold-btn"
+                  >
+                    {isSubmitting ? (
+                      <span>Unlocking 20% Offer...</span>
+                    ) : (
+                      <>
+                        <Sparkles size={16} />
+                        <span>Unlock My 20% Offer</span>
+                        <ArrowRight size={16} />
+                      </>
+                    )}
+                  </button>
+
+                  {/* Footer Security Badges */}
+                  <div className="clean-form-footer">
+                    <div className="clean-confidential-tag">
+                      <ShieldCheck size={14} className="shield-green" />
+                      <span>100% Confidential · PGI Specialist Care in Rohtak</span>
+                    </div>
+                    <span className="clean-subtext">
+                      By submitting, you receive an instant VIP voucher directly on WhatsApp.
+                    </span>
+                  </div>
+                </form>
+              </div>
+            ) : (
+              /* Success Confirmation */
+              <div className="clean-success-container">
+                <div className="success-icon-wrap">
+                  <CheckCircle2 size={46} color="#10B981" />
+                </div>
+                <h3 className="success-heading">20% Offer Pass Unlocked!</h3>
+                <p className="success-sub">
+                  Your VIP voucher code <strong>SHUBH-20-VIP</strong> has been activated for <strong>{formData.name}</strong>.
+                </p>
+                <div className="success-perk-card">
+                  <span>✓ 20% Concession on {formData.treatment}</span>
+                  <span>✓ Free 3D iTero® / CBCT Scan (Worth ₹3,500)</span>
+                  <span>✓ Priority Slot with Prof. Dr. S. K. Yadav</span>
+                </div>
+                <button onClick={closeModal} className="clean-close-dialog-btn">
+                  Done
+                </button>
+              </div>
+            )}
           </motion.div>
 
           <style dangerouslySetInnerHTML={{ __html: `
             .offer-modal-overlay {
               position: fixed;
               inset: 0;
-              background: rgba(10, 5, 3, 0.78);
+              background: rgba(15, 7, 4, 0.78);
               backdrop-filter: blur(8px);
               -webkit-backdrop-filter: blur(8px);
               z-index: 100000;
@@ -296,27 +299,28 @@ export default function OfferModal() {
               overflow-y: auto;
             }
 
-            .offer-modal-card {
+            /* Sleek Card Styling exactly like reference */
+            .clean-offer-card {
               position: relative;
-              background: #FFFFFF;
+              background: #FCFAF7;
               width: 100%;
-              max-width: 520px;
+              max-width: 440px;
               border-radius: 28px;
+              box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(214, 122, 65, 0.2);
               overflow: hidden;
-              box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(214, 122, 65, 0.2);
               margin: auto;
             }
 
-            .offer-close-btn {
+            .clean-close-btn {
               position: absolute;
-              top: 1rem;
-              right: 1rem;
-              width: 36px;
-              height: 36px;
+              top: 1.15rem;
+              right: 1.15rem;
+              width: 32px;
+              height: 32px;
               border-radius: 50%;
-              background: rgba(255, 255, 255, 0.2);
-              border: none;
-              color: #FFFFFF;
+              background: rgba(0, 0, 0, 0.05);
+              border: 1px solid rgba(0, 0, 0, 0.08);
+              color: #4A3E39;
               display: flex;
               align-items: center;
               justify-content: center;
@@ -324,247 +328,219 @@ export default function OfferModal() {
               z-index: 10;
               transition: all 0.2s ease;
             }
-            .offer-close-btn:hover {
-              background: rgba(255, 255, 255, 0.35);
-              transform: scale(1.05);
+            .clean-close-btn:hover {
+              background: rgba(0, 0, 0, 0.12);
+              transform: scale(1.06);
             }
 
-            .offer-modal-header {
-              background: linear-gradient(145deg, #110805 0%, #2A150B 50%, #1A0B06 100%);
-              padding: 2.25rem 2rem 1.75rem;
-              color: #FFFFFF;
+            .clean-modal-inner {
+              padding: 2.2rem 1.85rem 1.85rem;
+            }
+
+            /* Header */
+            .clean-header-block {
               text-align: center;
-              position: relative;
-              border-bottom: 1px solid rgba(214, 122, 65, 0.25);
+              margin-bottom: 1.4rem;
             }
 
-            .offer-pill-badge {
+            .clean-pill-badge {
               display: inline-flex;
               align-items: center;
-              gap: 0.4rem;
-              background: rgba(214, 122, 65, 0.22);
-              border: 1px solid rgba(214, 122, 65, 0.5);
-              color: #F8B482;
-              padding: 0.35rem 0.9rem;
+              gap: 0.35rem;
+              background: #1C100B;
+              color: #E6B587;
+              padding: 0.32rem 0.85rem;
               border-radius: 99px;
-              font-size: 0.74rem;
-              font-weight: 800;
-              letter-spacing: 0.08em;
-              margin-bottom: 0.85rem;
+              font-size: 0.68rem;
+              font-weight: 850;
+              letter-spacing: 0.07em;
               text-transform: uppercase;
+              margin-bottom: 0.75rem;
+              border: 1px solid rgba(230, 181, 135, 0.25);
             }
+            .pill-sparkle { color: #E6B587; }
 
-            .offer-modal-title {
-              font-size: clamp(1.4rem, 4vw, 1.85rem);
+            .clean-main-title {
+              font-family: var(--font-heading, 'Outfit'), sans-serif;
+              font-size: clamp(1.4rem, 4.5vw, 1.72rem);
               font-weight: 800;
-              color: #FFFFFF;
-              line-height: 1.2;
-              margin-bottom: 0.6rem;
+              color: #1A0D08;
+              line-height: 1.22;
+              margin: 0 0 0.45rem;
               letter-spacing: -0.02em;
             }
 
-            .offer-modal-highlight {
-              font-size: 1.05rem;
-              font-weight: 800;
-              color: #FF8F4D;
-              line-height: 1.35;
-              margin-bottom: 0.4rem;
+            .title-gold {
+              color: #B87333;
+              background: linear-gradient(135deg, #B87333 0%, #D98845 50%, #9E5B20 100%);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
             }
 
-            .offer-modal-consult {
-              display: block;
-              font-size: 0.85rem;
-              color: rgba(255, 255, 255, 0.82);
+            .clean-subtitle {
+              font-size: 0.82rem;
+              color: #6C5D56;
+              line-height: 1.45;
+              margin: 0 auto;
+              max-width: 340px;
+            }
+
+            /* Form Fields */
+            .clean-form-list {
+              display: flex;
+              flex-direction: column;
+              gap: 0.72rem;
+            }
+
+            .clean-input-box {
+              position: relative;
+              display: flex;
+              align-items: center;
+              background: #FFFFFF;
+              border: 1.5px solid rgba(184, 115, 51, 0.25);
+              border-radius: 14px;
+              padding: 0.2rem 0.9rem;
+              transition: all 0.22s ease;
+              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            }
+            .clean-input-box:focus-within {
+              border-color: #B87333;
+              box-shadow: 0 0 0 3.5px rgba(184, 115, 51, 0.14);
+              background: #FFFFFF;
+            }
+
+            .clean-field-icon {
+              color: #9C6842;
+              flex-shrink: 0;
+              margin-right: 0.65rem;
+            }
+
+            .clean-input-box input,
+            .clean-input-box select {
+              width: 100%;
+              border: none;
+              outline: none;
+              background: transparent;
+              padding: 0.68rem 0;
+              font-size: 0.88rem;
+              font-weight: 600;
+              color: #1A0D08;
+              font-family: inherit;
+            }
+
+            .clean-input-box input::placeholder {
+              color: #96867E;
               font-weight: 500;
             }
 
-            .offer-modal-body {
-              padding: 1.75rem 2rem 2rem;
-              background: #FFFFFF;
-              max-height: 75vh;
-              overflow-y: auto;
+            .clean-input-box.select-box {
+              padding-right: 0.6rem;
+            }
+            .clean-input-box select {
+              cursor: pointer;
             }
 
-            .offer-eligibility-note {
-              font-size: 0.88rem;
-              color: #4A3E39;
-              line-height: 1.55;
-              text-align: center;
-              margin-bottom: 0.85rem;
-            }
-
-            .offer-trust-tag {
+            /* Submit Button: exact luxurious warm gold gradient */
+            .clean-submit-gold-btn {
+              width: 100%;
+              margin-top: 0.35rem;
+              padding: 0.88rem 1.2rem;
+              border-radius: 14px;
+              border: none;
+              background: linear-gradient(135deg, #A86B38 0%, #C4854E 50%, #945B2A 100%);
+              color: #FFFFFF;
+              font-size: 0.96rem;
+              font-weight: 800;
               display: flex;
               align-items: center;
               justify-content: center;
               gap: 0.45rem;
-              font-size: 0.78rem;
-              font-weight: 700;
-              color: #B85922;
-              background: #FFF3EB;
-              border: 1px solid rgba(214, 122, 65, 0.3);
-              padding: 0.45rem 0.85rem;
-              border-radius: 99px;
-              margin-bottom: 1.5rem;
-              text-align: center;
-            }
-
-            .offer-form-header {
-              text-align: center;
-              margin-bottom: 1.25rem;
-            }
-            .offer-form-title {
-              font-size: 1.35rem;
-              font-weight: 800;
-              color: #110805;
-              margin-bottom: 0.25rem;
-            }
-            .offer-form-desc {
-              font-size: 0.82rem;
-              color: #6E5C54;
-              line-height: 1.45;
-            }
-
-            .offer-form {
-              display: flex;
-              flex-direction: column;
-              gap: 1rem;
-            }
-
-            .offer-input-group {
-              display: flex;
-              flex-direction: column;
-              gap: 0.35rem;
-            }
-            .offer-input-group label {
-              font-size: 0.82rem;
-              font-weight: 700;
-              color: #2D1D16;
-            }
-
-            .offer-input-wrap {
-              position: relative;
-              display: flex;
-              align-items: center;
-            }
-            .offer-input-wrap .input-icon {
-              position: absolute;
-              left: 1rem;
-              color: #D67A41;
-              pointer-events: none;
-            }
-            .offer-input-wrap input,
-            .offer-input-wrap select {
-              width: 100%;
-              padding: 0.85rem 1rem 0.85rem 2.75rem;
-              border-radius: 14px;
-              border: 1.5px solid rgba(74, 37, 24, 0.16);
-              background: #FAF8F5;
-              font-size: 0.92rem;
-              font-weight: 600;
-              color: #110805;
-              outline: none;
-              transition: all 0.2s ease;
-              font-family: inherit;
-            }
-            .offer-input-wrap input:focus,
-            .offer-input-wrap select:focus {
-              border-color: #D67A41;
-              background: #FFFFFF;
-              box-shadow: 0 0 0 3px rgba(214, 122, 65, 0.15);
-            }
-
-            .offer-submit-btn {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              gap: 0.5rem;
-              width: 100%;
-              padding: 1rem 1.5rem;
-              border-radius: 14px;
-              border: none;
-              background: linear-gradient(135deg, #D67A41 0%, #B85922 100%);
-              color: #FFFFFF;
-              font-size: 1.05rem;
-              font-weight: 800;
               cursor: pointer;
-              box-shadow: 0 8px 24px rgba(214, 122, 65, 0.35);
-              transition: all 0.25s ease;
-              margin-top: 0.5rem;
+              box-shadow: 0 8px 22px rgba(168, 107, 56, 0.35);
+              transition: all 0.22s ease;
               font-family: inherit;
             }
-            .offer-submit-btn:hover {
+            .clean-submit-gold-btn:hover {
               transform: translateY(-2px);
-              box-shadow: 0 12px 30px rgba(214, 122, 65, 0.45);
+              box-shadow: 0 12px 28px rgba(168, 107, 56, 0.48);
+              background: linear-gradient(135deg, #B5743D 0%, #D49257 50%, #9F622F 100%);
             }
-            .offer-submit-btn:active {
+            .clean-submit-gold-btn:active {
               transform: scale(0.98);
             }
 
-            .offer-disclaimer {
-              font-size: 0.74rem;
-              color: #8C7A70;
+            /* Footer */
+            .clean-form-footer {
               text-align: center;
-              margin: 0;
-            }
-
-            /* Success State */
-            .offer-success-view {
-              text-align: center;
-              padding: 1.5rem 0.5rem;
-            }
-            .success-icon-badge {
-              margin-bottom: 1rem;
-            }
-            .success-title {
-              font-size: 1.6rem;
-              color: #0E241B;
-              margin-bottom: 0.75rem;
-            }
-            .success-desc {
-              font-size: 0.95rem;
-              color: #2D1D16;
-              line-height: 1.6;
-              margin-bottom: 0.5rem;
-            }
-            .success-sub {
-              font-size: 0.85rem;
-              color: #6E5C54;
-              line-height: 1.5;
-              margin-bottom: 1.5rem;
-            }
-            .success-actions {
+              margin-top: 0.6rem;
               display: flex;
               flex-direction: column;
-              gap: 0.75rem;
+              gap: 0.3rem;
             }
-            .btn-success-wa {
-              display: flex;
+
+            .clean-confidential-tag {
+              display: inline-flex;
               align-items: center;
               justify-content: center;
-              background: #25D366;
-              color: #FFFFFF;
-              font-weight: 800;
-              padding: 0.9rem 1.5rem;
-              border-radius: 12px;
-              text-decoration: none;
-              box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
-            }
-            .btn-success-close {
-              background: #FAF8F5;
-              border: 1px solid rgba(74, 37, 24, 0.15);
-              color: #4A3E39;
+              gap: 0.35rem;
+              font-size: 0.74rem;
               font-weight: 700;
-              padding: 0.75rem 1.25rem;
+              color: #2D6A4F;
+            }
+            .shield-green { color: #10B981; }
+
+            .clean-subtext {
+              font-size: 0.68rem;
+              color: #8C7C74;
+              line-height: 1.35;
+            }
+
+            /* Success Container */
+            .clean-success-container {
+              padding: 2.5rem 1.85rem;
+              text-align: center;
+            }
+            .success-icon-wrap { margin-bottom: 0.85rem; }
+            .success-heading {
+              font-size: 1.45rem;
+              font-weight: 800;
+              color: #1A0D08;
+              margin-bottom: 0.4rem;
+            }
+            .success-sub {
+              font-size: 0.88rem;
+              color: #5C4C44;
+              margin-bottom: 1.2rem;
+              line-height: 1.5;
+            }
+            .success-perk-card {
+              background: #F4EFEB;
+              border: 1px dashed #B87333;
               border-radius: 12px;
+              padding: 0.85rem 1rem;
+              display: flex;
+              flex-direction: column;
+              gap: 0.4rem;
+              font-size: 0.8rem;
+              font-weight: 750;
+              color: #1A0D08;
+              margin-bottom: 1.5rem;
+              text-align: left;
+            }
+            .clean-close-dialog-btn {
+              background: #1A0D08;
+              color: #FFFFFF;
+              border: none;
+              padding: 0.75rem 2rem;
+              border-radius: 99px;
+              font-weight: 800;
               cursor: pointer;
             }
 
             @media (max-width: 480px) {
-              .offer-modal-header { padding: 1.75rem 1.25rem 1.25rem; }
-              .offer-modal-body { padding: 1.25rem 1.25rem 1.5rem; }
-              .offer-modal-title { font-size: 1.35rem; }
-              .offer-modal-highlight { font-size: 0.95rem; }
+              .clean-offer-card { border-radius: 22px; max-width: 95vw; }
+              .clean-modal-inner { padding: 1.8rem 1.25rem 1.5rem; }
+              .clean-main-title { font-size: 1.32rem; }
             }
           `}} />
         </div>

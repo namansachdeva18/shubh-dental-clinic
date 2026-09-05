@@ -15,8 +15,8 @@ const CLINICAL_CASES = [
     duration: '9 Months',
     doctor: 'Prof. Dr. S. K. Yadav',
     category: 'Aligners',
-    beforeSrc: '/skyalign-before.png',
-    afterSrc: '/skyalign-after.png',
+    beforeSrc: '/skyalign-before.webp',
+    afterSrc: '/skyalign-after.webp',
     summary: 'Achieved complete dental arch expansion and crowding alignment with 100% in-house SkyAlign™ clear aligners.',
     stars: 5
   },
@@ -29,8 +29,8 @@ const CLINICAL_CASES = [
     duration: '24 Hours',
     doctor: 'Dr. Achla Bharti Yadav',
     category: 'Implants',
-    beforeSrc: '/samedayimplants-before.png',
-    afterSrc: '/samedayimplants-after.png',
+    beforeSrc: '/samedayimplants-before.webp',
+    afterSrc: '/samedayimplants-after.webp',
     summary: 'Flapless 3D CBCT guided implant placement with immediate temporary crown loading within 24 hours.',
     stars: 5
   },
@@ -43,8 +43,8 @@ const CLINICAL_CASES = [
     duration: '2 Appointments',
     doctor: 'Dr. Achla Bharti Yadav',
     category: 'Smile Makeover',
-    beforeSrc: '/procelian veneers -before.png',
-    afterSrc: '/procelian veneers -after.png',
+    beforeSrc: '/porcelain-veneers-before.webp',
+    afterSrc: '/porcelain-veneers-after.webp',
     summary: 'Custom ultra-thin German porcelain veneers placed for anterior teeth alignment, shade correction, and smile line enhancement.',
     stars: 5
   },
@@ -57,42 +57,42 @@ const CLINICAL_CASES = [
     duration: '1 Hour',
     doctor: 'Dr. Achla Bharti Yadav',
     category: 'Smile Makeover',
-    beforeSrc: '/teeth whitening-before.png',
-    afterSrc: '/teeth whitening-after.png',
+    beforeSrc: '/teeth-whitening-before.webp',
+    afterSrc: '/teeth-whitening-after.webp',
     summary: 'Professional clinical laser teeth whitening achieving 5 shades lighter enamel instantly.',
     stars: 5
   }
 ];
 
 const COLLAGE_PATIENTS = [
-  { id: 1, name: 'Aarav Sharma', treatment: 'SkyAlign™ Clear Aligners', category: 'Aligners', duration: '8 Months', age: '22', rating: 5, story: 'Absolutely loved the invisible aligner journey! Zero pain.', imgSrc: '/patient-smiles/10687C2D-7DCE-4B88-BB98-D8E93FB1D40E.PNG' },
-  { id: 2, name: 'Priya Patel', treatment: 'Ceramic Braces', category: 'Braces', duration: '12 Months', age: '19', rating: 5, story: 'My confidence went from 0 to 100 after my braces treatment.', imgSrc: '/patient-smiles/1729DB6E-0AB5-4DCC-B6C3-575D502D4E9D.PNG' },
+  { id: 1, name: 'Aarav Sharma', treatment: 'SkyAlign™ Clear Aligners', category: 'Aligners', duration: '8 Months', age: '22', rating: 5, story: 'Absolutely loved the invisible aligner journey! Zero pain.', imgSrc: '/patient-smiles/10687C2D-7DCE-4B88-BB98-D8E93FB1D40E.webp' },
+  { id: 2, name: 'Priya Patel', treatment: 'Ceramic Braces', category: 'Braces', duration: '12 Months', age: '19', rating: 5, story: 'My confidence went from 0 to 100 after my braces treatment.', imgSrc: '/patient-smiles/1729DB6E-0AB5-4DCC-B6C3-575D502D4E9D.webp' },
   { id: 3, name: 'Rohan Verma', treatment: 'Dental Implants', category: 'Implants', duration: '2 Visits', age: '45', rating: 5, story: 'Feels and looks like a real tooth. Outstanding aesthetic care!', imgSrc: '/patient-smiles/197AD90C-34F0-40BC-862C-919D158FC45D.jpg' },
   { id: 4, name: 'Ananya Iyer', treatment: 'Smile Makeover', category: 'Smile Makeover', duration: '1 Week', age: '28', rating: 5, story: 'The German veneers completely enhanced my smile line.', imgSrc: '/patient-smiles/302B5B65-A757-4A1F-A00C-A9FC9E42941A.jpg' },
   { id: 5, name: 'Vikram Singh', treatment: 'Self-Ligating Braces', category: 'Braces', duration: '10 Months', age: '24', rating: 5, story: 'Fast and comfortable. Best orthodontist team in Rohtak.', imgSrc: '/patient-smiles/32670C7F-2263-4B86-99A2-C998CFE5B7DB.jpg' },
   { id: 6, name: 'Sneha Reddy', treatment: 'SkyAlign™ Clear Aligners', category: 'Aligners', duration: '6 Months', age: '26', rating: 5, story: 'Highly recommend SkyAlign. Completely invisible and custom fit!', imgSrc: '/patient-smiles/39C1E038-DABE-481F-B0E6-9597D2F2E271.jpg' },
   { id: 7, name: 'Aditya Gupta', treatment: 'Dental Implants', category: 'Implants', duration: '1 Day', age: '52', rating: 5, story: 'Same day implant was a miracle. Absolutely painless process.', imgSrc: '/patient-smiles/46AD9ACF-2C1B-405B-AE35-4F5B009CD714.jpg' },
   { id: 8, name: 'Diya Malhotra', treatment: 'Smile Makeover', category: 'Smile Makeover', duration: '2 Appointments', age: '31', rating: 5, story: 'My teeth are sparkling white now. Love my custom veneers.', imgSrc: '/patient-smiles/4BA2EE7F-5199-4ABB-8C63-F8133A34F7F1.jpg' },
-  { id: 9, name: 'Karan Malhotra', treatment: 'Traditional Braces', category: 'Braces', duration: '14 Months', age: '17', rating: 5, story: 'Got my braces off today! Best alignment and feeling ever.', imgSrc: '/patient-smiles/50B42443-972B-4CEE-917D-29CAD03B0186.PNG' },
+  { id: 9, name: 'Karan Malhotra', treatment: 'Traditional Braces', category: 'Braces', duration: '14 Months', age: '17', rating: 5, story: 'Got my braces off today! Best alignment and feeling ever.', imgSrc: '/patient-smiles/50B42443-972B-4CEE-917D-29CAD03B0186.webp' },
   { id: 10, name: 'Meera Nair', treatment: 'SkyAlign™ Clear Aligners', category: 'Aligners', duration: '9 Months', age: '23', rating: 5, story: 'State of the art scanning and results at half the price.', imgSrc: '/patient-smiles/668F8C26-3036-4C0D-BAAE-717142F78AB7.jpg' },
-  { id: 11, name: 'Arjun Rao', treatment: 'Dental Implants', category: 'Implants', duration: '3 Months', age: '60', rating: 5, story: 'Can eat solid foods again comfortably. Professional work.', imgSrc: '/patient-smiles/716914F9-C4ED-4DE2-8647-178B0D4BF3FC.PNG' },
-  { id: 12, name: 'Neha Kapoor', treatment: 'Smile Makeover', category: 'Smile Makeover', duration: '3 Days', age: '27', rating: 5, story: 'Amazing results with composite bonding and clinical scaling.', imgSrc: '/patient-smiles/9250D92F-32CF-4DD5-80FC-2CC19EE8EFD5.PNG' },
-  { id: 13, name: 'Kabir Sen', treatment: 'Lingual Braces', category: 'Braces', duration: '11 Months', age: '25', rating: 5, story: 'Hidden braces on the back of my teeth worked wonders.', imgSrc: '/patient-smiles/93167CE6-F77E-47E8-8AC4-F287B1D2ACF8.PNG' },
+  { id: 11, name: 'Arjun Rao', treatment: 'Dental Implants', category: 'Implants', duration: '3 Months', age: '60', rating: 5, story: 'Can eat solid foods again comfortably. Professional work.', imgSrc: '/patient-smiles/716914F9-C4ED-4DE2-8647-178B0D4BF3FC.webp' },
+  { id: 12, name: 'Neha Kapoor', treatment: 'Smile Makeover', category: 'Smile Makeover', duration: '3 Days', age: '27', rating: 5, story: 'Amazing results with composite bonding and clinical scaling.', imgSrc: '/patient-smiles/9250D92F-32CF-4DD5-80FC-2CC19EE8EFD5.webp' },
+  { id: 13, name: 'Kabir Sen', treatment: 'Lingual Braces', category: 'Braces', duration: '11 Months', age: '25', rating: 5, story: 'Hidden braces on the back of my teeth worked wonders.', imgSrc: '/patient-smiles/93167CE6-F77E-47E8-8AC4-F287B1D2ACF8.webp' },
   { id: 14, name: 'Riya Sen', treatment: 'SkyAlign™ Clear Aligners', category: 'Aligners', duration: '7 Months', age: '21', rating: 5, story: 'The 3D scanning process was very advanced. 10/10.', imgSrc: '/patient-smiles/99955452-BAD9-4F3C-A527-E39A6569F67F.jpg' },
   { id: 15, name: 'Dev Bajwa', treatment: 'Self-Ligating Braces', category: 'Braces', duration: '9 Months', age: '20', rating: 5, story: 'Very few doctor visits needed compared to normal braces.', imgSrc: '/patient-smiles/99D3BA20-8C28-43A1-926C-1771895A0AFD.jpg' },
   { id: 16, name: 'Ishita Roy', treatment: 'Teeth Whitening', category: 'Smile Makeover', duration: '1 Hour', age: '29', rating: 5, story: 'In-office whitening was super quick and very bright.', imgSrc: '/patient-smiles/A431FCDA-B920-45C8-BAC0-73D3F353A460.jpg' },
   { id: 17, name: 'Yash Vardhan', treatment: 'SkyAlign™ Clear Aligners', category: 'Aligners', duration: '10 Months', age: '33', rating: 5, story: 'Best decision of my life. SkyAlign is absolutely incredible.', imgSrc: '/patient-smiles/AF133DCA-DBD8-41DF-8161-C7CC2F7774B2.jpg' },
-  { id: 18, name: 'Tanvi Joshi', treatment: 'Ceramic Braces', category: 'Braces', duration: '13 Months', age: '22', rating: 5, story: 'Ceramic braces matched my teeth perfectly, invisible in photos.', imgSrc: '/patient-smiles/B39746FD-883B-4222-BBF2-AAF5CE40525E.PNG' },
-  { id: 19, name: 'Rajesh Mehta', treatment: 'Full Mouth Implants', category: 'Implants', duration: '6 Months', age: '65', rating: 5, story: 'Got my full smile back. Excellent clinical team.', imgSrc: '/patient-smiles/B51D7F2D-630E-43FA-9143-D3F684BEB13A.PNG' },
-  { id: 20, name: 'Shruti Desai', treatment: 'Smile Makeover', category: 'Smile Makeover', duration: '1 Week', age: '30', rating: 5, story: 'Flawless veneers. I get compliments every single day.', imgSrc: '/patient-smiles/BC82B2DF-2F6E-4198-9EFB-7E6332A25DEE.PNG' },
+  { id: 18, name: 'Tanvi Joshi', treatment: 'Ceramic Braces', category: 'Braces', duration: '13 Months', age: '22', rating: 5, story: 'Ceramic braces matched my teeth perfectly, invisible in photos.', imgSrc: '/patient-smiles/B39746FD-883B-4222-BBF2-AAF5CE40525E.webp' },
+  { id: 19, name: 'Rajesh Mehta', treatment: 'Full Mouth Implants', category: 'Implants', duration: '6 Months', age: '65', rating: 5, story: 'Got my full smile back. Excellent clinical team.', imgSrc: '/patient-smiles/B51D7F2D-630E-43FA-9143-D3F684BEB13A.webp' },
+  { id: 20, name: 'Shruti Desai', treatment: 'Smile Makeover', category: 'Smile Makeover', duration: '1 Week', age: '30', rating: 5, story: 'Flawless veneers. I get compliments every single day.', imgSrc: '/patient-smiles/BC82B2DF-2F6E-4198-9EFB-7E6332A25DEE.webp' },
   { id: 21, name: 'Manish Kumar', treatment: 'Traditional Braces', category: 'Braces', duration: '15 Months', age: '18', rating: 5, story: 'My crooked teeth are now perfectly straight. Thank you!', imgSrc: '/patient-smiles/C0964D1F-439B-456C-A7F4-4A5E034B0624.jpg' },
-  { id: 22, name: 'Preeti Gill', treatment: 'SkyAlign™ Clear Aligners', category: 'Aligners', duration: '8 Months', age: '25', rating: 5, story: 'Highly professional tracking. Got exactly the result promised.', imgSrc: '/patient-smiles/C5DDAEF1-442A-40F0-98A3-2FBB966520F5.PNG' },
-  { id: 23, name: 'Sameer Baig', treatment: 'Dental Implants', category: 'Implants', duration: '3 Visits', age: '48', rating: 5, story: 'Very clean clinic and expert implant placement.', imgSrc: '/patient-smiles/C854A664-D8D8-4B35-91DF-96C285C0924A.PNG' },
+  { id: 22, name: 'Preeti Gill', treatment: 'SkyAlign™ Clear Aligners', category: 'Aligners', duration: '8 Months', age: '25', rating: 5, story: 'Highly professional tracking. Got exactly the result promised.', imgSrc: '/patient-smiles/C5DDAEF1-442A-40F0-98A3-2FBB966520F5.webp' },
+  { id: 23, name: 'Sameer Baig', treatment: 'Dental Implants', category: 'Implants', duration: '3 Visits', age: '48', rating: 5, story: 'Very clean clinic and expert implant placement.', imgSrc: '/patient-smiles/C854A664-D8D8-4B35-91DF-96C285C0924A.webp' },
   { id: 24, name: 'Kirti Sobti', treatment: 'Smile Makeover', category: 'Smile Makeover', duration: '2 Appointments', age: '35', rating: 5, story: 'Veneers corrected my gummy smile perfectly.', imgSrc: '/patient-smiles/C955DF82-DFC3-460B-AE16-9CFC1FDF3C14.jpg' },
-  { id: 25, name: 'Pranav Bajaj', treatment: 'Lingual Braces', category: 'Braces', duration: '12 Months', age: '23', rating: 5, story: 'Amazing braces. Kept them hidden during college.', imgSrc: '/patient-smiles/CDE88C3B-ADB7-4D7E-9DEC-96C7211B2E9D.PNG' },
+  { id: 25, name: 'Pranav Bajaj', treatment: 'Lingual Braces', category: 'Braces', duration: '12 Months', age: '23', rating: 5, story: 'Amazing braces. Kept them hidden during college.', imgSrc: '/patient-smiles/CDE88C3B-ADB7-4D7E-9DEC-96C7211B2E9D.webp' },
   { id: 26, name: 'Shweta Tiwari', treatment: 'SkyAlign™ Clear Aligners', category: 'Aligners', duration: '7 Months', age: '27', rating: 5, story: 'Super transparent, no one could tell I was wearing them.', imgSrc: '/patient-smiles/D344FB56-C621-4603-B6CF-B3261FF05680.jpg' },
   { id: 27, name: 'Harish Chawla', treatment: 'Dental Implants', category: 'Implants', duration: '1 Day', age: '55', rating: 5, story: 'Single day tooth replacement was fast and professional.', imgSrc: '/patient-smiles/DCD16229-0B97-43CA-B15B-F159E51568F4.jpg' },
-  { id: 28, name: 'Vandana Rawat', treatment: 'Smile Makeover', category: 'Smile Makeover', duration: '3 Days', age: '40', rating: 5, story: 'Dr. Achla did a fantastic job with my smile line.', imgSrc: '/patient-smiles/DF72FB07-8436-4715-942F-F67920104F39.PNG' },
+  { id: 28, name: 'Vandana Rawat', treatment: 'Smile Makeover', category: 'Smile Makeover', duration: '3 Days', age: '40', rating: 5, story: 'Dr. Achla did a fantastic job with my smile line.', imgSrc: '/patient-smiles/DF72FB07-8436-4715-942F-F67920104F39.webp' },
   { id: 29, name: 'Nikhil Saxena', treatment: 'Self-Ligating Braces', category: 'Braces', duration: '11 Months', age: '19', rating: 5, story: 'Treatment completed 3 months ahead of expected time!', imgSrc: '/patient-smiles/E5D56F78-7D59-44EB-99ED-C1C0A90EE617.jpg' },
   { id: 30, name: 'Gauri Phogat', treatment: 'SkyAlign™ Clear Aligners', category: 'Aligners', duration: '6 Months', age: '24', rating: 5, story: 'Amazing software prediction. The teeth moved exactly as shown.', imgSrc: '/patient-smiles/E9C73A97-D021-4A37-ADB0-BE85F225BBA8.jpg' },
   { id: 31, name: 'Abhishek Roy', treatment: 'Traditional Braces', category: 'Braces', duration: '16 Months', age: '21', rating: 5, story: 'Best ortho treatment in Rohtak. Very cooperative staff.', imgSrc: '/patient-smiles/EB67ADE4-2447-45EF-946A-9A6751B0853D.jpg' },
@@ -1385,7 +1385,7 @@ export default function PatientGallery() {
         }
 
         .scroll-right-slow {
-          animation: scrollRightMarquee 45s linear infinite;
+          animation: scrollRightMarquee 140s linear infinite;
         }
 
         .collage-marquee-row:hover .collage-marquee-track {
@@ -1765,8 +1765,11 @@ export default function PatientGallery() {
             font-size: 0.66rem;
             padding: 0.2rem 0.5rem;
           }
-          .scroll-left-slow, .scroll-right-slow {
+          .scroll-left-slow {
             animation-duration: 25s;
+          }
+          .scroll-right-slow {
+            animation-duration: 90s;
           }
           /* Ensure all 3 rows are visible on mobile */
           .collage-marquee-row:nth-child(3) {

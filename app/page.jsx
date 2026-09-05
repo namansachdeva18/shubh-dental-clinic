@@ -24,11 +24,11 @@ const ContactSection = dynamic(() => import('./components/ContactSection'));
 const SCHEMA_LOCAL_BUSINESS = {
   '@context': 'https://schema.org',
   '@type': ['Dentist', 'LocalBusiness', 'MedicalOrganization', 'MedicalClinic'],
-  '@id': 'https://www.shubhdentalclinicrohtak.in',
+  '@id': 'https://www.shubhdental.com',
   name: 'Shubh Orthodontic and Dental Clinic',
   alternateName: 'Shubh Dental Clinic Rohtak',
   description: 'Best Orthodontist & Dental Clinic in Rohtak, Haryana. Prof. Dr. S. K. Yadav — MDS Orthodontics, Ex-PGI Chandigarh, Certified Invisalign Provider, Fellow WFO USA. 5,000+ braces cases, 3,000+ dental implants, 2,50,000+ patients treated. Clear aligners, same-day implants, veneers, kids dentistry.',
-  url: 'https://www.shubhdentalclinicrohtak.in',
+  url: 'https://www.shubhdental.com',
   telephone: ['+91-8685048414', '01262-469393'],
   email: 'sky20083@gmail.com',
   address: {
@@ -42,15 +42,70 @@ const SCHEMA_LOCAL_BUSINESS = {
   geo: { '@type': 'GeoCoordinates', latitude: 28.891128, longitude: 76.621873 },
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '09:30', closes: '20:00' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Sunday'], opens: '00:00', closes: '00:00' },
   ],
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', bestRating: '5', worstRating: '1', reviewCount: '114' },
   sameAs: ['https://www.facebook.com/sodcrohtak/', 'https://www.instagram.com/dr.s.k._yadav_orthodontist', 'https://maps.app.goo.gl/XfWJCcvCVGZBzdHv6?g_st=aw'],
   priceRange: '₹₹',
   currenciesAccepted: 'INR',
   paymentAccepted: 'Cash, Credit Card, Debit Card, UPI',
   hasMap: 'https://maps.app.goo.gl/XfWJCcvCVGZBzdHv6?g_st=aw',
-  medicalSpecialty: ['Orthodontics', 'Prosthodontics', 'Restorative Dentistry', 'Cosmetic Dentistry', 'Implantology', 'Pedodontics'],
+  medicalSpecialty: ['Orthodontics', 'Prosthodontics', 'Restorative Dentistry', 'Cosmetic Dentistry', 'Implantology', 'Pedodontics', 'Oral Pathology'],
+  knowsAbout: ['Invisalign', 'Clear Aligners', 'SkyAlign', 'Dental Braces', 'Lingual Braces', 'Dental Implants', 'Same-Day Implants', 'Root Canal', 'Porcelain Veneers', 'Smile Makeover', 'Teeth Whitening', 'Wisdom Tooth Surgery', 'Pediatric Dentistry', 'Airway Orthodontics', 'TMJ Treatment'],
+  areaServed: [
+    { '@type': 'City', name: 'Rohtak', containedInPlace: { '@type': 'State', name: 'Haryana' } },
+    { '@type': 'City', name: 'Jhajjar' },
+    { '@type': 'City', name: 'Bhiwani' },
+    { '@type': 'City', name: 'Sonepat' },
+    { '@type': 'City', name: 'Panipat' },
+    { '@type': 'City', name: 'Hisar' },
+    { '@type': 'City', name: 'Jind' },
+    { '@type': 'City', name: 'Delhi' },
+    { '@type': 'City', name: 'Gurugram' },
+    { '@type': 'GeoCircle', geoMidpoint: { '@type': 'GeoCoordinates', latitude: 28.891128, longitude: 76.621873 }, geoRadius: '100000' },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Dental Treatment Offers',
+    url: 'https://www.shubhdental.com/special-offer',
+  },
+  availableService: [
+    { '@type': 'MedicalProcedure', name: 'Dental Braces', url: 'https://www.shubhdental.com/treatments/dental-braces' },
+    { '@type': 'MedicalProcedure', name: 'Invisalign Clear Aligners', url: 'https://www.shubhdental.com/treatments/invisalign-clear-aligners' },
+    { '@type': 'MedicalProcedure', name: 'SkyAlign Clear Aligners', url: 'https://www.shubhdental.com/treatments/skyalign-clear-aligners' },
+    { '@type': 'MedicalProcedure', name: 'Dental Implants', url: 'https://www.shubhdental.com/treatments/dental-implants' },
+    { '@type': 'MedicalProcedure', name: 'Same-Day Dental Implants', url: 'https://www.shubhdental.com/treatments/same-day-dental-implants' },
+    { '@type': 'MedicalProcedure', name: 'Root Canal Treatment', url: 'https://www.shubhdental.com/treatments/root-canal-treatment' },
+    { '@type': 'MedicalProcedure', name: 'Porcelain Veneers', url: 'https://www.shubhdental.com/treatments/porcelain-veneers' },
+    { '@type': 'MedicalProcedure', name: 'Smile Makeover', url: 'https://www.shubhdental.com/treatments/smile-makeover' },
+    { '@type': 'MedicalProcedure', name: 'Teeth Whitening', url: 'https://www.shubhdental.com/treatments/teeth-whitening' },
+    { '@type': 'MedicalProcedure', name: 'Wisdom Tooth Surgery', url: 'https://www.shubhdental.com/treatments/wisdom-tooth-surgery' },
+  ],
+};
+
+const SCHEMA_WEBSITE = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://www.shubhdental.com/#website',
+  name: 'Shubh Orthodontic & Dental Clinic',
+  url: 'https://www.shubhdental.com',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Shubh Orthodontic and Dental Clinic',
+    url: 'https://www.shubhdental.com',
+  },
+  inLanguage: 'en-IN',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://www.shubhdental.com/treatments?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+const SCHEMA_BREADCRUMB_HOME = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.shubhdental.com' },
+  ],
 };
 
 const SCHEMA_MEDICAL_ORG = {
@@ -120,6 +175,8 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA_LOCAL_BUSINESS) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA_MEDICAL_ORG) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA_FAQ) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA_WEBSITE) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA_BREADCRUMB_HOME) }} />
 
       {/* ── SECTION ORDER: Optimised Patient Decision Funnel ── */}
       <Hero />

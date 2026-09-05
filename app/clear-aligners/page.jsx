@@ -12,7 +12,7 @@ export const metadata = {
     'Dr S K Yadav orthodontist',
   ],
   alternates: {
-    canonical: 'https://www.shubhdentalclinicrohtak.in/clear-aligners',
+    canonical: 'https://www.shubhdental.com/clear-aligners',
   }
 };
 

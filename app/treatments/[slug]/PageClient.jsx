@@ -117,7 +117,7 @@ export default function PageClient({ treatment }) {
         <nav aria-label="Breadcrumb" className="treatment-breadcrumbs">
           <Link href="/" onClick={() => trackCTA('breadcrumb_click', { label: 'Home' })}>Home</Link>
           <span className="crumb-separator" aria-hidden="true">/</span>
-          <Link href="/#services" onClick={() => trackCTA('breadcrumb_click', { label: 'Treatments' })}>Treatments</Link>
+          <Link href="/treatments" onClick={() => trackCTA('breadcrumb_click', { label: 'Treatments' })}>Treatments</Link>
           <span className="crumb-separator" aria-hidden="true">/</span>
           <span className="crumb-category">{treatment.category || 'Specialist Care'}</span>
           <span className="crumb-separator" aria-hidden="true">/</span>

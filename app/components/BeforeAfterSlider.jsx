@@ -47,13 +47,13 @@ export default function BeforeAfterSlider({ beforeSrc, afterSrc, beforeAlt = 'Be
     >
       {/* After (base) */}
       <div style={{ position: 'absolute', inset: 0 }}>
-        <img src={afterSrc} alt={afterAlt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} draggable={false} />
+        <img src={afterSrc} alt={afterAlt} loading="lazy" decoding="async" width={1200} height={900} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} draggable={false} />
         <span style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(14,122,138,0.85)', color: '#fff', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.06em', padding: '0.25rem 0.6rem', borderRadius: '9999px' }}>AFTER</span>
       </div>
 
       {/* Before (clipped) */}
       <div style={{ position: 'absolute', inset: 0, clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}>
-        <img src={beforeSrc} alt={beforeAlt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} draggable={false} />
+        <img src={beforeSrc} alt={beforeAlt} loading="lazy" decoding="async" width={1200} height={900} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} draggable={false} />
         <span style={{ position: 'absolute', top: 12, left: 12, background: 'rgba(10,46,54,0.85)', color: '#fff', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.06em', padding: '0.25rem 0.6rem', borderRadius: '9999px' }}>BEFORE</span>
       </div>
 

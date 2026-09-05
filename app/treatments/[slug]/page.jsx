@@ -18,7 +18,7 @@ export async function generateMetadata({ params }) {
   // Construct a concise, intent-aligned meta description (under 155 characters)
   const descBase = `${treatment.title} in Rohtak by ${treatment.doctor}. ${treatment.subtitle}. Duration: ${treatment.quickFacts?.duration || treatment.duration}. Book consultation at Shubh Dental.`;
   const description = descBase.length > 155 ? descBase.substring(0, 152) + '...' : descBase;
-  const canonicalUrl = `https://www.shubhdentalclinicrohtak.in/treatments/${treatment.slug}`;
+  const canonicalUrl = `https://www.shubhdental.com/treatments/${treatment.slug}`;
 
   return {
     title: `${treatment.title} in Rohtak | ${treatment.doctor} | Shubh Dental Clinic`,
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }) {
       locale: 'en_IN',
       type: 'article',
       images: [{
-        url: 'https://www.shubhdentalclinicrohtak.in/hero-image.webp',
+        url: 'https://www.shubhdental.com/hero-image.webp',
         width: 1200,
         height: 630,
         alt: `${treatment.title} at Shubh Dental Clinic Rohtak`,
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       title: `${treatment.title} in Rohtak | Shubh Dental Clinic`,
       description,
-      images: ['https://www.shubhdentalclinicrohtak.in/hero-image.webp'],
+      images: ['https://www.shubhdental.com/hero-image.webp'],
     },
   };
 }
@@ -53,7 +53,7 @@ export default function TreatmentPage({ params }) {
   const treatment = getTreatmentById(params.slug);
   if (!treatment) notFound();
 
-  const baseUrl = 'https://www.shubhdentalclinicrohtak.in';
+  const baseUrl = 'https://www.shubhdental.com';
   const pageUrl = `${baseUrl}/treatments/${treatment.slug}`;
   const clinicId = `${baseUrl}/#clinic`;
   const doctorId = `${baseUrl}/doctors/${treatment.doctorSlug || 'dr-sk-yadav'}#doctor`;
@@ -124,12 +124,6 @@ export default function TreatmentPage({ params }) {
             dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
             opens: '09:30',
             closes: '20:00'
-          },
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Sunday'],
-            opens: '10:00',
-            closes: '14:00'
           }
         ]
       },
@@ -151,8 +145,8 @@ export default function TreatmentPage({ params }) {
         '@id': breadcrumbId,
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
-          { '@type': 'ListItem', position: 2, name: 'Treatments', item: `${baseUrl}/#services` },
-          { '@type': 'ListItem', position: 3, name: treatment.category || 'Specialist Care', item: `${baseUrl}/#services` },
+          { '@type': 'ListItem', position: 2, name: 'Treatments', item: `${baseUrl}/treatments` },
+          { '@type': 'ListItem', position: 3, name: treatment.category || 'Specialist Care', item: `${baseUrl}/treatments` },
           { '@type': 'ListItem', position: 4, name: treatment.title, item: pageUrl }
         ]
       },

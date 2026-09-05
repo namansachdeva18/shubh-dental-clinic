@@ -29,8 +29,8 @@ export const treatments = [
     // Breadcrumbs
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Orthodontics', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Orthodontics', url: '/treatments' },
       { name: 'Dental Braces', url: '/treatments/dental-braces' }
     ],
 
@@ -224,8 +224,8 @@ export const treatments = [
       title: 'Fixed Metal & Ceramic Braces Realignment',
       context: 'Adolescent patient with severe anterior crowding and high canine impaction.',
       duration: '14 months active treatment',
-      beforeSrc: '/metal-before.png',
-      afterSrc: '/metal-after.png',
+      beforeSrc: '/metal-before.webp',
+      afterSrc: '/metal-after.webp',
       outcome: 'Ideal Class I canine and molar relationship with broad aesthetic smile arc.'
     },
 
@@ -313,8 +313,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Orthodontics', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Orthodontics', url: '/treatments' },
       { name: 'Invisalign Clear Aligners', url: '/treatments/invisalign-clear-aligners' }
     ],
 
@@ -475,8 +475,8 @@ export const treatments = [
       title: 'Invisalign® Clear Aligner Digital Smile Realignment',
       context: 'Adult patient seeking discreet crowding, overjet, and bite realignment.',
       duration: '10 months (20 aligner stages)',
-      beforeSrc: '/skyalign-before.png',
-      afterSrc: '/skyalign-after.png',
+      beforeSrc: '/skyalign-before.webp',
+      afterSrc: '/skyalign-after.webp',
       outcome: 'Complete crowding resolution and broad aesthetic dental arch without visible brackets.'
     },
 
@@ -546,8 +546,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Orthodontics', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Orthodontics', url: '/treatments' },
       { name: 'SkyAlign Clear Aligners', url: '/treatments/skyalign-clear-aligners' }
     ],
 
@@ -691,8 +691,8 @@ export const treatments = [
       title: 'SkyAlign™ Precision In-House Clear Aligners',
       context: 'Severe anterior crowding treated with custom German bio-compatible 3D-printed aligners.',
       duration: '8 months active aligners',
-      beforeSrc: '/skyalign-before.png',
-      afterSrc: '/skyalign-after.png',
+      beforeSrc: '/skyalign-before.webp',
+      afterSrc: '/skyalign-after.webp',
       outcome: 'Even aesthetic arch curve, ideal bite alignment, and corrected midline symmetry.'
     },
 
@@ -753,8 +753,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Implantology', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Implantology', url: '/treatments' },
       { name: 'Dental Implants', url: '/treatments/dental-implants' }
     ],
 
@@ -902,7 +902,7 @@ export const treatments = [
     costDetails: {
       range: '₹25,000 – ₹65,000 per implant (Including titanium fixture & crown)',
       factors: [
-        'Selected implant brand system (Osstem®, Straumann®, Nobel Biocare®)',
+        'Selected Korean Osstem® implant system configuration',
         'Need for supplementary bone grafting or sinus augmentation',
         'Crown material (Porcelain-fused-to-metal vs. Full-contour monolithic Zirconia)'
       ],
@@ -991,8 +991,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Implantology', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Implantology', url: '/treatments' },
       { name: 'Same-Day Dental Implants', url: '/treatments/same-day-dental-implants' }
     ],
 
@@ -1138,8 +1138,8 @@ export const treatments = [
       title: 'Same-Day Immediate Loading Dental Implant',
       context: 'Immediate post-extraction implant placement with instant aesthetic temporary crown.',
       duration: '24 hours total turnaround',
-      beforeSrc: '/samedayimplants-before.png',
-      afterSrc: '/samedayimplants-after.png',
+      beforeSrc: '/samedayimplants-before.webp',
+      afterSrc: '/samedayimplants-after.webp',
       outcome: 'Zero gap period, painless flapless surgery, and immediate smile restoration.'
     },
 
@@ -1200,8 +1200,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'General & Restorative', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'General & Restorative', url: '/treatments' },
       { name: 'Root Canal Treatment', url: '/treatments/root-canal-treatment' }
     ],
 
@@ -1409,8 +1409,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Restorative', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Restorative', url: '/treatments' },
       { name: 'Crowns & Bridges', url: '/treatments/crowns-and-bridges' }
     ],
 
@@ -1619,8 +1619,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Cosmetic Dentistry', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Cosmetic Dentistry', url: '/treatments' },
       { name: 'Porcelain Veneers', url: '/treatments/porcelain-veneers' }
     ],
 
@@ -1759,8 +1759,8 @@ export const treatments = [
       title: 'Ultra-Thin German Porcelain Veneers Smile Makeover',
       context: 'Patient with tetracycline staining, fluorosis, and enamel wear.',
       duration: '2 clinical sittings (5 days)',
-      beforeSrc: '/procelian veneers -before.png',
-      afterSrc: '/procelian veneers -after.png',
+      beforeSrc: '/porcelain-veneers-before.webp',
+      afterSrc: '/porcelain-veneers-after.webp',
       outcome: 'Luminous Hollywood smile with natural translucency and micro-texture.'
     },
 
@@ -1822,8 +1822,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'General & Restorative', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'General & Restorative', url: '/treatments' },
       { name: 'Wisdom Tooth Surgery', url: '/treatments/wisdom-tooth-surgery' }
     ],
 
@@ -1934,7 +1934,7 @@ export const treatments = [
     },
 
     painAndComfort: {
-      anaesthesia: 'Profound local anaesthesia guarantees zero pain during the procedure.',
+      anaesthesia: 'Profound local anaesthesia provides comprehensive numbness to ensure a comfortable procedure.',
       expectedSensation: 'Feeling of vibration and pressure during sectioning, but no sharp discomfort. Prescribed pain relief and cold packs manage recovery smoothly.',
       whenToContact: 'Contact clinic if bleeding continues after 2 hours of biting on gauze or if severe throbbing pain starts on day 3 (dry socket).'
     },
@@ -2011,8 +2011,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Cosmetic Dentistry', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Cosmetic Dentistry', url: '/treatments' },
       { name: 'Teeth Whitening', url: '/treatments/teeth-whitening' }
     ],
 
@@ -2145,8 +2145,8 @@ export const treatments = [
       title: 'In-Office Clinical Laser Teeth Whitening',
       context: 'Severe tea/coffee staining and deep enamel discoloration.',
       duration: '45-minute single clinical sitting',
-      beforeSrc: '/teeth whitening-before.png',
-      afterSrc: '/teeth whitening-after.png',
+      beforeSrc: '/teeth-whitening-before.webp',
+      afterSrc: '/teeth-whitening-after.webp',
       outcome: 'Enamel shade brightened by 8 VITA shades with zero post-op sensitivity.'
     },
 
@@ -2207,8 +2207,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'General Dentistry', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'General Dentistry', url: '/treatments' },
       { name: 'Teeth Cleaning & Scaling', url: '/treatments/teeth-cleaning-scaling' }
     ],
 
@@ -2387,8 +2387,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Cosmetic Dentistry', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Cosmetic Dentistry', url: '/treatments' },
       { name: 'Smile Makeover', url: '/treatments/smile-makeover' }
     ],
 
@@ -2520,8 +2520,8 @@ export const treatments = [
       title: 'Complete Digital Aesthetic Smile Transformation',
       context: 'Multi-tooth cosmetic enhancement combining porcelain veneers and shade harmony.',
       duration: '2 appointments',
-      beforeSrc: '/procelian veneers -before.png',
-      afterSrc: '/procelian veneers -after.png',
+      beforeSrc: '/porcelain-veneers-before.webp',
+      afterSrc: '/porcelain-veneers-after.webp',
       outcome: 'Symmetrical, radiant smile line customized to facial proportions.'
     },
 
@@ -2579,8 +2579,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Cosmetic Dentistry', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Cosmetic Dentistry', url: '/treatments' },
       { name: 'Composite Bonding', url: '/treatments/composite-bonding' }
     ],
 
@@ -2710,8 +2710,8 @@ export const treatments = [
       title: 'Cosmetic Composite Edge Bonding & Gap Closure',
       context: 'Anterior tooth gap and incisal wear restored conservatively.',
       duration: 'Single 45-minute visit',
-      beforeSrc: '/cosmetic laser filling- before.png',
-      afterSrc: '/cosmetic laser filling- after.png',
+      beforeSrc: '/cosmetic-laser-filling-before.webp',
+      afterSrc: '/cosmetic-laser-filling-after.webp',
       outcome: 'Natural tooth anatomy recreated with zero drilling of healthy enamel.'
     },
 
@@ -2768,8 +2768,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Orthodontics', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Orthodontics', url: '/treatments' },
       { name: 'Lingual Braces', url: '/treatments/lingual-braces' }
     ],
 
@@ -2899,8 +2899,8 @@ export const treatments = [
       title: '100% Invisible Custom Lingual Braces (Behind the Teeth)',
       context: 'Adult patient requiring fixed orthodontic correction with complete facial invisibility.',
       duration: '12 months',
-      beforeSrc: '/lingualbraces-before.png',
-      afterSrc: '/lingualbraces-after.png',
+      beforeSrc: '/lingualbraces-before.webp',
+      afterSrc: '/lingualbraces-after.webp',
       outcome: 'Fully corrected bite and straight smile arch with brackets completely hidden on inner surfaces.'
     },
 
@@ -2957,8 +2957,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Restorative Dentistry', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Restorative Dentistry', url: '/treatments' },
       { name: 'Full & Flexible Dentures', url: '/treatments/dentures-full-partial' }
     ],
 
@@ -3149,8 +3149,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'General Dentistry', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'General Dentistry', url: '/treatments' },
       { name: 'Painless Extractions', url: '/treatments/painless-extractions' }
     ],
 
@@ -3250,7 +3250,7 @@ export const treatments = [
     },
 
     painAndComfort: {
-      anaesthesia: 'Profound local anaesthesia guarantees zero pain during extraction.',
+      anaesthesia: 'Profound local anaesthesia provides targeted numbness to ensure a comfortable extraction.',
       expectedSensation: 'Pressure sensation only; mild tenderness managed with pain medications.',
       whenToContact: 'Contact clinic if bleeding does not stop after 2 hours of gauze pressure.'
     },
@@ -3323,8 +3323,8 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
-      { name: 'Cosmetic Dentistry', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
+      { name: 'Cosmetic Dentistry', url: '/treatments' },
       { name: 'Cosmetic Laser Fillings', url: '/treatments/cosmetic-laser-fillings' }
     ],
 
@@ -3452,8 +3452,8 @@ export const treatments = [
       title: 'Cosmetic Laser Composite Tooth Restoration',
       context: 'Anterior tooth cavity and chipped edge restored with nano-hybrid composite.',
       duration: '30-minute single appointment',
-      beforeSrc: '/cosmetic laser filling- before.png',
-      afterSrc: '/cosmetic laser filling- after.png',
+      beforeSrc: '/cosmetic-laser-filling-before.webp',
+      afterSrc: '/cosmetic-laser-filling-after.webp',
       outcome: 'Seamless enamel shade match, invisible margins, and restored bite edge.'
     },
 
@@ -3510,7 +3510,7 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
       { name: 'Orthodontics', url: '/treatments' },
       { name: 'Airway Orthodontics', url: '/treatments/airway-orthodontics' }
     ],
@@ -3711,7 +3711,7 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
       { name: 'Orthodontics', url: '/treatments' },
       { name: 'Sleep Apnea Treatment', url: '/treatments/sleep-apnea-treatment' }
     ],
@@ -3913,7 +3913,7 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
       { name: 'Orthodontics', url: '/treatments' },
       { name: 'TMJ Specialist', url: '/treatments/tmj-disorder-treatment' }
     ],
@@ -4114,7 +4114,7 @@ export const treatments = [
 
     breadcrumbs: [
       { name: 'Home', url: '/' },
-      { name: 'Treatments', url: '/#services' },
+      { name: 'Treatments', url: '/treatments' },
       { name: 'Treatments', url: '/treatments' },
       { name: 'Tongue Tie Release', url: '/treatments/tongue-tie-release' }
     ],

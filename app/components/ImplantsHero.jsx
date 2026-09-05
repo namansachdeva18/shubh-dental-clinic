@@ -17,7 +17,7 @@ const CLINIC_IMPLANT_PERKS = [
   },
   {
     icon: '🛡️',
-    title: 'Swiss Straumann® & Warranty',
+    title: 'Korean Osstem® & Warranty',
     desc: 'Genuine international titanium implants with official lifetime osseointegration support.'
   },
   {
@@ -31,8 +31,8 @@ const CLINICAL_CASES = [
   {
     id: 'implant-case-1',
     label: 'Single / Front Tooth Immediate Implant (24 Hours)',
-    beforeSrc: '/samedayimplants-before.png',
-    afterSrc: '/samedayimplants-after.png',
+    beforeSrc: '/samedayimplants-before.webp',
+    afterSrc: '/samedayimplants-after.webp',
     beforeAlt: 'Immediate dental implant restoration before',
     afterAlt: 'Immediate dental implant restoration after',
   },
@@ -157,7 +157,7 @@ export default function ImplantsHero() {
           </div>
           <div className="trust-stat-sep" />
           <div className="trust-stat">
-            <strong>Swiss &amp; Osstem®</strong>
+            <strong>Korean Osstem®</strong>
             <span>Medical Titanium</span>
           </div>
         </div>

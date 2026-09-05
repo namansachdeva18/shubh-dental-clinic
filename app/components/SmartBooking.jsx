@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import ScrollReveal, { StaggerReveal, StaggerItem } from './ScrollReveal';
 import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from '../lib/web3forms';
+import { trackConversion, CONVERSION_EVENTS } from '../lib/conversionTracking';
 
 const TREATMENT_CATEGORIES = [
   {
@@ -29,7 +30,7 @@ const TREATMENT_CATEGORIES = [
   {
     category: 'Dental Implants & Replacement',
     items: [
-      { id: 'implants', label: 'Permanent Titanium Dental Implants', badge: 'Swiss Straumann®', badgeType: 'copper', Icon: ShieldCheck, desc: 'Single & multi-tooth permanent replacement' },
+      { id: 'implants', label: 'Permanent Titanium Dental Implants', badge: 'Korean Osstem®', badgeType: 'copper', Icon: ShieldCheck, desc: 'Single & multi-tooth permanent replacement' },
       { id: 'same-day', label: 'Same-Day Full Mouth Fixed Implants', badge: '24-72 Hours', badgeType: 'green', Icon: Zap, desc: 'Immediate-loading All-on-4/6 fixed teeth' },
       { id: 'crowns', label: 'Zirconia Crowns & Ceramic Bridges', badge: '10-Yr Warranty', badgeType: 'copper', Icon: Award, desc: 'Metal-free high durability restorations' },
     ]
@@ -87,6 +88,16 @@ export default function SmartBooking() {
         mode: formData.mode,
         source: 'Homepage Smart Booking Section (#book)',
         message: `Patient requested ${formData.mode} on ${finalDate} (${formData.time}) for ${formData.treatment}`
+      });
+
+      trackConversion(CONVERSION_EVENTS.GENERATE_LEAD, {
+        treatment: formData.treatment,
+        mode: formData.mode,
+        source: 'SmartBooking',
+      });
+      trackConversion(CONVERSION_EVENTS.APPOINTMENT_REQUEST, {
+        treatment: formData.treatment,
+        date: finalDate,
       });
     } catch (err) {
       console.error('Web3Forms submit error:', err);

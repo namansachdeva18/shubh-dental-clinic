@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { MessageCircle, X, Phone, ChevronUp } from 'lucide-react';
+import { trackConversion, CONVERSION_EVENTS } from '../lib/conversionTracking';
 
 export default function WhatsAppFAB() {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,12 +67,21 @@ export default function WhatsAppFAB() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="fab-action-wa"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  trackConversion(CONVERSION_EVENTS.WHATSAPP_CLICK, { source: 'WhatsAppFAB' });
+                  setIsOpen(false);
+                }}
               >
                 <MessageCircle size={18} />
                 Chat on WhatsApp
               </a>
-              <a href="tel:+918685048414" className="fab-action-call">
+              <a
+                href="tel:+918685048414"
+                className="fab-action-call"
+                onClick={() => {
+                  trackConversion(CONVERSION_EVENTS.PHONE_CLICK, { source: 'WhatsAppFAB' });
+                }}
+              >
                 <Phone size={18} />
                 Call: +91 86850 48414
               </a>

@@ -9,6 +9,7 @@ import {
   Zap, Award, Globe2, Smile, Stethoscope, Compass
 } from 'lucide-react';
 import OfferBanner from './OfferBanner';
+import { trackConversion, CONVERSION_EVENTS } from '../lib/conversionTracking';
 
 const NAV_TREATMENTS = [
   {
@@ -106,12 +107,22 @@ export default function Header() {
               </span>
             </div>
             <div className="top-bar-right">
-              <a href="tel:+918685048414" className="top-bar-item top-bar-link" aria-label="Call clinic">
+              <a 
+                href="tel:+918685048414" 
+                className="top-bar-item top-bar-link" 
+                aria-label="Call clinic"
+                onClick={() => trackConversion(CONVERSION_EVENTS.PHONE_CLICK, { source: 'HeaderPrimary' })}
+              >
                 <Phone size={12} aria-hidden="true" />
                 +91-8685048414
               </a>
               <span className="top-bar-divider" />
-              <a href="tel:01262469393" className="top-bar-item top-bar-link" aria-label="Call clinic landline">
+              <a 
+                href="tel:01262469393" 
+                className="top-bar-item top-bar-link" 
+                aria-label="Call clinic landline"
+                onClick={() => trackConversion(CONVERSION_EVENTS.PHONE_CLICK, { source: 'HeaderLandline' })}
+              >
                 01262-469393
               </a>
             </div>
@@ -181,7 +192,7 @@ export default function Header() {
               </div>
 
               {/* SkyAlign Direct Nav Link */}
-              <Link href="/skyalign" className="nav-link">SkyAlign</Link>
+              <Link href="/treatments/skyalign-clear-aligners" className="nav-link">SkyAlign</Link>
 
               {/* About & Clinic Dropdown */}
               <div
@@ -346,7 +357,7 @@ export default function Header() {
                 </div>
 
                 {/* 3. SkyAlign Direct Nav Link */}
-                <Link href="/skyalign" className="mob-simple-link" onClick={() => setMobileOpen(false)}>
+                <Link href="/treatments/skyalign-clear-aligners" className="mob-simple-link" onClick={() => setMobileOpen(false)}>
                   <span>SkyAlign</span>
                 </Link>
 

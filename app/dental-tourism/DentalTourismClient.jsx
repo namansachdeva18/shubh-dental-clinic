@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Plane, MapPin, ShieldCheck, Clock, Award, 
   ArrowRight, Video, Phone, HeartHandshake, Check, ChevronRight, Compass,
-  Car, HelpCircle, ChevronDown, CheckCircle2, Zap, ArrowUpRight
+  Car, HelpCircle, ChevronDown, CheckCircle2, Zap, ArrowUpRight, Hotel
 } from 'lucide-react';
 
 const COUNTRIES = [
@@ -36,7 +36,7 @@ const TREATMENTS = [
     priceIndia: '₹35,000 – ₹55,000 (~$420)',
     priceAbroad: '$3,500 – $5,000',
     desc: '3D CBCT guided extraction and immediate implant placement with aesthetic temporary crown so you never go toothless.',
-    highlights: ['Swiss Straumann® & Nobel Biocare®', 'Lifetime Warranty Card', 'Computer-guided keyhole surgery'],
+    highlights: ['Korean Osstem® Medical Titanium', 'Lifetime Warranty Card', 'Computer-guided keyhole surgery'],
     link: '/treatments/same-day-dental-implants'
   },
   {
@@ -126,7 +126,7 @@ const COMPARISONS = [
   {
     feature: 'Pricing & Overheads',
     rohtak: '70–80% lower than US/UK; genuine material savings without inflated metro rent',
-    metro: 'Metro corporate markup (2x to 3x higher price for identical Swiss materials)'
+    metro: 'Metro corporate markup (2x to 3x higher price for identical international materials)'
   },
   {
     feature: 'Scheduling Flexibility',
@@ -138,20 +138,12 @@ const COMPARISONS = [
 const AIRPORT_LOGISTICS = [
   {
     icon: Car,
-    title: 'Direct NH9 Expressway',
-    sub: 'Signal-Free Corridor',
-    desc: 'From Delhi IGI Airport (T3), merge directly onto NH9 expressway. Bypasses inner Delhi congestion entirely.'
+    title: 'Expressway Route (NH9)',
+    desc: 'Direct, signal-free 85 KM highway from IGI Airport T3. Zero congested metro traffic.'
   },
   {
-    icon: Clock,
-    title: '75–85 Minute Drive',
-    sub: 'Smooth Highway Journey',
-    desc: 'Direct highway drive brings you straight to our clinic doorstep at Delhi Bypass Chowk, Rohtak.'
-  },
-  {
-    icon: MapPin,
-    title: 'Hotel & Concierge Support',
-    sub: 'Walking / 5-Min Radius',
+    icon: Hotel,
+    title: 'Partner Hotel Bookings',
     desc: 'Assistance with verified premier business hotels, airport pick-up taxi arrangement, and dietary requests.'
   }
 ];
@@ -163,7 +155,7 @@ const FAQS = [
   },
   {
     q: 'Are the materials and dental implants genuine international brands?',
-    a: 'Absolutely. We use 100% genuine FDA and CE approved materials including Swiss Straumann®, Nobel Biocare®, US Invisalign®, and German Katana/Ivoclar Zirconia. Every patient receives official serialized warranty passports valid worldwide.'
+    a: 'Absolutely. We use 100% genuine FDA and CE approved materials including Korean Osstem®, US Invisalign®, and German Katana/Ivoclar Zirconia. Every patient receives official serialized warranty passports valid worldwide.'
   },
   {
     q: 'How do I start before booking my flight to India?',
@@ -183,7 +175,7 @@ export default function DentalTourismClient() {
   );
 
   return (
-    <main className="dt-cinema-root">
+    <div className="dt-cinema-root">
       {/* Dynamic Warm Ambient Backlight Glows */}
       <div className="dt-ambient-glow dt-ambient-glow-1" aria-hidden="true" />
       <div className="dt-ambient-glow dt-ambient-glow-2" aria-hidden="true" />
@@ -206,7 +198,7 @@ export default function DentalTourismClient() {
               </span>
               <span className="dt-pill dt-pill--emerald">
                 <ShieldCheck size={12} className="dt-pulse-icon" />
-                <span>PGI Specialists · US &amp; Swiss Certified</span>
+                <span>PGI Specialists · Globally Certified</span>
               </span>
             </div>
 
@@ -218,7 +210,7 @@ export default function DentalTourismClient() {
 
             <p className="dt-main-desc">
               For our NRI &amp; global patients: Experience <strong>PGI-tier surgical precision</strong>, 
-              <strong> genuine FDA-approved Swiss/US materials</strong>, and <strong>fast-track priority scheduling</strong> 
+              <strong> genuine FDA-approved Korean Osstem® &amp; US materials</strong>, and <strong>fast-track priority scheduling</strong> 
               — saving <strong>70% to 80%</strong> compared to US, UK, and UAE costs.
             </p>
 
@@ -1544,6 +1536,6 @@ export default function DentalTourismClient() {
           }
         }
       `}} />
-    </main>
+    </div>
   );
 }

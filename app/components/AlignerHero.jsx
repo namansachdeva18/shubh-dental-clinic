@@ -9,16 +9,16 @@ const BRACES_RESULTS = [
     id: 'ceramic-braces',
     label: 'Ceramic Braces',
     system: 'Advanced Ceramic Aesthetic Braces',
-    beforeSrc: '/ceramic-before.png',
-    afterSrc: '/ceramic-after.png',
+    beforeSrc: '/ceramic-before.webp',
+    afterSrc: '/ceramic-after.webp',
     duration: '10–14 Months'
   },
   {
     id: 'metal-braces',
     label: 'Metal Braces',
     system: 'High-Precision Stainless Steel Braces',
-    beforeSrc: '/metal-before.png',
-    afterSrc: '/metal-after.png',
+    beforeSrc: '/metal-before.webp',
+    afterSrc: '/metal-after.webp',
     duration: '12–16 Months'
   }
 ];

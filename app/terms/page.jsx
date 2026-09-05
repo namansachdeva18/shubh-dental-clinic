@@ -2,9 +2,8 @@ export const metadata = {
   title: 'Terms of Service | Shubh Dental Clinic Rohtak',
   description: 'Terms and conditions for using the Shubh Orthodontic & Dental Clinic website and services.',
   alternates: {
-    canonical: 'https://www.shubhdentalclinicrohtak.in/terms',
+    canonical: 'https://www.shubhdental.com/terms',
   },
-  robots: { index: false, follow: true },
 };
 
 export default function TermsPage() {

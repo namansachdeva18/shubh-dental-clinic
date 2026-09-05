@@ -83,18 +83,18 @@ const TREATMENTS_DATA = [
   // ── IMPLANTOLOGY (FLAGSHIP / SURGICAL) ───────────────────────────
   {
     slug: 'dental-implants',
-    title: 'Dental Implants (Swiss & German)',
+    title: 'Dental Implants (Korean Osstem®)',
     category: 'Implantology',
     isPremium: true,
     badge: 'Lifetime Warranty Card',
     tagline: 'Permanent Titanium Bio-Integrated Tooth Root',
-    desc: 'Genuine Swiss Straumann® & German implants placed with computer-guided keyhole surgery. Zero bone trauma, no grinding of adjacent healthy teeth.',
+    desc: 'Genuine Korean Osstem® implants placed with computer-guided keyhole surgery. Zero bone trauma, no grinding of adjacent healthy teeth.',
     duration: '3–6 Months',
     recovery: '2–4 days',
     doctor: 'Prof. Dr. S. K. Yadav',
     color: '#D67A41',
     lightAccent: 'rgba(214, 122, 65, 0.15)',
-    highlights: ['Swiss Straumann® & Nobel Biocare®', 'Computer Guided Keyhole Precision', 'Lifetime Global Warranty Card']
+    highlights: ['Korean Osstem® Medical Titanium', 'Computer Guided Keyhole Precision', 'Lifetime Global Warranty Card']
   },
   {
     slug: 'same-day-dental-implants',
@@ -358,7 +358,7 @@ export default function TreatmentsIndexClient() {
   }, [selectedCategory]);
 
   return (
-    <main className="all-treatments-root">
+    <div className="all-treatments-root">
       
       {/* ── BREADCRUMB & HEADER ─────────────────────────────────────────── */}
       <div className="treatments-header-wrap">
@@ -376,7 +376,7 @@ export default function TreatmentsIndexClient() {
             World-Class Clinical <span className="copper-gradient">Specialities</span>
           </h1>
           <p className="treatments-main-sub">
-            From premier orthodontic braces and US clear aligners to Swiss dental implants and digital smile designs. 
+            From premier orthodontic braces and US clear aligners to Korean Osstem® dental implants and digital smile designs. 
             All treatments are planned and executed under senior medical authority in Rohtak, Haryana.
           </p>
 
@@ -892,6 +892,6 @@ export default function TreatmentsIndexClient() {
           }
         }
       `}} />
-    </main>
+    </div>
   );
 }

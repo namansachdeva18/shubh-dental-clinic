@@ -434,8 +434,8 @@ export default function SkyAlignSection() {
                     <div className="case-slider-column">
                       <div className="case-slider-wrapper">
                         <BeforeAfterSlider
-                          beforeSrc="/skyalign-before.png"
-                          afterSrc="/skyalign-after.png"
+                          beforeSrc="/skyalign-before.webp"
+                          afterSrc="/skyalign-after.webp"
                           beforeAlt="Before SkyAlign"
                           afterAlt="After SkyAlign"
                         />
@@ -461,7 +461,7 @@ export default function SkyAlignSection() {
                         </div>
                         <div className="stat-pill">
                           <span className="stat-lbl">Comfort Level</span>
-                          <strong className="stat-val">100% Painless</strong>
+                          <strong className="stat-val">Maximum Comfort</strong>
                         </div>
                         <div className="stat-pill">
                           <span className="stat-lbl">Specialist</span>

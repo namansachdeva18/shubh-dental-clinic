@@ -70,7 +70,7 @@ const IRRESISTIBLE_ADVANTAGES = [
     badge: 'Patient Comfort',
     badgeColor: '#3B82F6',
     iconKey: 'laser',
-    title: '100% Painless & Fear-Free Protocols',
+    title: 'Gentle, Fear-Free & Comfortable Protocols',
     desc: 'Computerized local anesthesia, soft-tissue laser operatory, and minimally invasive keyhole implant placement with zero swelling, zero sutures, and rapid recovery.',
     points: ['Biolase® soft-tissue laser (bloodless, no cuts)', 'Same-day fixed teeth without waiting months', 'Gentle touch for both adults & children']
   },
@@ -81,7 +81,7 @@ const IRRESISTIBLE_ADVANTAGES = [
     iconKey: 'pricing',
     title: 'Honest Pricing + 0% Interest EMI',
     desc: 'No hidden charges or inflated metro consultation markups. Upfront written quotes with flexible monthly 0% EMI financing so world-class care is accessible to every family.',
-    points: ['Genuine Swiss Straumann®, US Invisalign®, German Zirconia', 'Lifetime implant warranty card with global serial IDs', 'Flexible 0% EMI plans starting at ₹2,500/mo']
+    points: ['Genuine Korean Osstem®, US Invisalign®, German Zirconia', 'Lifetime implant warranty card with global serial IDs', 'Flexible 0% EMI plans starting at ₹2,500/mo']
   },
   {
     id: 'ot-sterilization',
@@ -121,7 +121,7 @@ const CLINICAL_DIFFERENCE = [
   },
   {
     parameter: 'Materials & Warranty',
-    shubh: '100% genuine FDA/CE brands (Straumann®, Invisalign®) with serial warranty cards',
+    shubh: '100% genuine FDA/CE brands (Korean Osstem®, Invisalign®) with serial warranty cards',
     others: 'Generic unbranded duplicates with zero manufacturer replacement guarantees'
   },
   {
@@ -133,7 +133,7 @@ const CLINICAL_DIFFERENCE = [
 
 const PATIENT_TRUST_METRICS = [
   { quote: 'Got my ceramic braces done here. Completed in 11 months with zero pain. Dr. Yadav’s hand is so gentle!', author: 'Rohan Sharma', loc: 'Rohtak' },
-  { quote: 'Travelled from Gurugram for my dental implants. Saved 60% compared to metro clinics with Swiss Straumann implants.', author: 'Jasleen Kaur', loc: 'Gurugram' },
+  { quote: 'Travelled from Gurugram for my dental implants. Saved 60% compared to metro clinics with authentic Korean Osstem implants.', author: 'Jasleen Kaur', loc: 'Gurugram' },
   { quote: 'The 3D scanning lab inside the clinic was impressive. My aligners arrived in 3 days. Highly recommend!', author: 'Vikas Hooda', loc: 'Delhi NCR' }
 ];
 
@@ -219,7 +219,7 @@ export default function WhyChooseUsClient() {
   };
 
   return (
-    <main className="wcu-luxury-root">
+    <div className="wcu-luxury-root">
       
       {/* ── TOP LUXURY NAVIGATION PILL / BREADCRUMB ──────────────────────── */}
       <div className="wcu-top-nav-bar">
@@ -267,7 +267,7 @@ export default function WhyChooseUsClient() {
 
             <p className="wcu-lead">
               When it comes to your teeth and smile, experience matters. Led by <strong>Prof. Dr. S. K. Yadav (Ex-PGI Chandigarh, Fellow WFO USA)</strong>, 
-              we combine academic medical authority with in-house 3D digital technology to deliver guaranteed clinical excellence.
+              we combine academic medical authority with in-house 3D digital technology to deliver uncompromising clinical excellence.
             </p>
 
             {/* 4 Metrics (High-Density Dark Cards on Warm Ivory with Custom Innovative Glowing Pods) */}
@@ -1253,6 +1253,6 @@ export default function WhyChooseUsClient() {
           }
         }
       `}} />
-    </main>
+    </div>
   );
 }

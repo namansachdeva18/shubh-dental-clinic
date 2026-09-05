@@ -27,7 +27,7 @@ const QUICK_SPECIALTIES = [
   { label: 'Implants & Restorative', doctor: 'Dr. Achla Bharti Yadav', exp: '15+ Yrs (PGI)' }
 ];
 
-export default function ContactSection() {
+export default function ContactSection({ isPageLevel = false } = {}) {
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState('address'); // 'address' | 'transit' | 'hours' | 'online'
   const [mapMode, setMapMode] = useState('map'); // 'map' | 'satellite' | 'landmarks'
@@ -75,9 +75,15 @@ export default function ContactSection() {
             <span>CENTRAL CLINIC &amp; DIRECT DESK</span>
           </div>
 
-          <h1 className="contact-title font-heading">
-            Visit Our <span className="copper-gradient-text">World-Class Clinic</span>
-          </h1>
+          {isPageLevel ? (
+            <h1 className="contact-title font-heading">
+              Visit Our <span className="copper-gradient-text">World-Class Clinic</span>
+            </h1>
+          ) : (
+            <h2 className="contact-title font-heading">
+              Visit Our <span className="copper-gradient-text">World-Class Clinic</span>
+            </h2>
+          )}
           
           <p className="contact-subtitle">
             Delhi Bypass Road, Tilak Nagar, Rohtak — accessible in minutes from Model Town, D-Park, and Delhi-NCR expressways.
@@ -213,7 +219,7 @@ export default function ContactSection() {
                       <div className="isp-header">
                         <div className="isp-icon icon-terracotta"><MapPin size={16} /></div>
                         <div className="isp-title-wrap">
-                          <h2 className="isp-title">Clinic Address</h2>
+                          <h3 className="isp-title">Clinic Address</h3>
                           <span className="isp-sub">Tilak Nagar, Rohtak</span>
                         </div>
                         <button 
@@ -247,7 +253,7 @@ export default function ContactSection() {
                       <div className="isp-header">
                         <div className="isp-icon icon-copper"><Phone size={16} /></div>
                         <div className="isp-title-wrap">
-                          <h2 className="isp-title">Direct Helplines</h2>
+                          <h3 className="isp-title">Direct Helplines</h3>
                           <span className="isp-sub">Doctor Desk &amp; Reception</span>
                         </div>
                         <button 

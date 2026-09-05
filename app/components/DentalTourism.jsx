@@ -41,7 +41,7 @@ const NRI_WORKFLOW_STEPS = [
   {
     num: '03',
     title: 'Same-Day 3D Guided Treatment',
-    desc: 'Using Swiss Straumann® implants, US Invisalign® & in-house SkyAlign™ 3D scanning, complex implants and aligners are completed in record chair time with surgical precision.',
+    desc: 'Using genuine Korean Osstem® implants, US Invisalign® & in-house SkyAlign™ 3D scanning, complex implants and aligners are completed in record chair time with surgical precision.',
     icon: ShieldCheck,
     tag: 'FDA-Approved Tech'
   },
@@ -56,7 +56,7 @@ const NRI_WORKFLOW_STEPS = [
 
 const COST_COMPARISON = [
   {
-    treatment: 'Swiss Straumann® Dental Implant (Per Tooth)',
+    treatment: 'Korean Osstem® Dental Implant (Per Tooth)',
     usUkPrice: '$3,500 – $5,000 (₹3.5L – ₹5L)',
     shubhPrice: '₹35,000 – ₹55,000 ($420 – $660)',
     savings: 'Save ~85%'

@@ -51,7 +51,7 @@ export default function FAQSection() {
     {
       category: 'implants',
       q: 'Is root canal treatment (RCT) painful at Shubh Dental Clinic?',
-      a: <>Not at all! We use modern rotary endodontics and gentle local anesthesia techniques that make Root Canal Treatment <span className="text-highlight">100% painless and fast</span>, usually completed in just <span className="text-highlight">1 or 2 comfortable visits</span>. Most patients are surprised by how stress-free the procedure is at our clinic.</>
+      a: <>Not at all! We use modern rotary endodontics and gentle local anesthesia techniques that make Root Canal Treatment <span className="text-highlight">virtually painless and fast</span>, usually completed in just <span className="text-highlight">1 or 2 comfortable visits</span>. Most patients are surprised by how stress-free the procedure is at our clinic.</>
     },
     {
       category: 'implants',
@@ -71,7 +71,7 @@ export default function FAQSection() {
     {
       category: 'implants',
       q: 'Is the clinic suitable for children?',
-      a: <><span className="text-highlight">Dr. Achla Bharti Yadav</span> specialises in gentle, pain-free paediatric dentistry for children aged 3–16 years. We offer anxiety-free milk tooth treatments, <span className="text-highlight">preventive sealants, fluoride therapy</span>, and early orthodontic interceptive treatment in a <span className="text-highlight">completely child-friendly and calm environment</span>.</>
+      a: <><span className="text-highlight">Dr. Achla Bharti Yadav</span> specialises in gentle, anxiety-free paediatric dentistry for children aged 3–16 years. We offer comfortable milk tooth treatments, <span className="text-highlight">preventive sealants, fluoride therapy</span>, and early orthodontic interceptive treatment in a <span className="text-highlight">completely child-friendly and calm environment</span>.</>
     },
     {
       category: 'clinic',

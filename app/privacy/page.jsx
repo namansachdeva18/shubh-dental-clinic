@@ -2,9 +2,8 @@ export const metadata = {
   title: 'Privacy Policy | Shubh Dental Clinic Rohtak',
   description: 'Privacy policy and patient data protection guidelines for Shubh Orthodontic & Dental Clinic.',
   alternates: {
-    canonical: 'https://www.shubhdentalclinicrohtak.in/privacy',
+    canonical: 'https://www.shubhdental.com/privacy',
   },
-  robots: { index: false, follow: true },
 };
 
 export default function PrivacyPage() {

@@ -56,12 +56,13 @@ export default function Footer() {
           <StaggerItem className="footer-links-col" variant="fadeUp">
             <h4 className="footer-col-title font-heading">Specialized Care</h4>
             <ul className="footer-links-list">
-              <li><span>Clear Aligners & Invisalign</span></li>
-              <li><span>Metal & Ceramic Braces</span></li>
-              <li><span>SkyAlign Clear Aligners</span></li>
-              <li><span>Dental Implants & Prosthetics</span></li>
-              <li><span>Painless Root Canal Treatment</span></li>
-              <li><span>Smile Makeovers & Veneers</span></li>
+              <li><Link href="/treatments/invisalign-clear-aligners"><ChevronRight size={13} className="link-arrow" />Clear Aligners & Invisalign</Link></li>
+              <li><Link href="/treatments/dental-braces"><ChevronRight size={13} className="link-arrow" />Metal & Ceramic Braces</Link></li>
+              <li><Link href="/treatments/skyalign-clear-aligners"><ChevronRight size={13} className="link-arrow" />SkyAlign™ Clear Aligners</Link></li>
+              <li><Link href="/treatments/dental-implants"><ChevronRight size={13} className="link-arrow" />Dental Implants & Prosthetics</Link></li>
+              <li><Link href="/treatments/root-canal-treatment"><ChevronRight size={13} className="link-arrow" />Painless Root Canal (RCT)</Link></li>
+              <li><Link href="/treatments/smile-makeover"><ChevronRight size={13} className="link-arrow" />Smile Makeovers & Veneers</Link></li>
+              <li><Link href="/treatments" style={{ color: '#C9A84C', fontWeight: 600, marginTop: '4px' }}><ChevronRight size={13} className="link-arrow" />Explore All 21+ Treatments →</Link></li>
             </ul>
           </StaggerItem>
 
