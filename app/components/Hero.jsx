@@ -222,7 +222,7 @@ export default function Hero() {
                   alt="Shubh Dental Clinic, Rohtak — Advanced Orthodontics & Implant Centre"
                   fill
                   priority
-                  style={{ objectFit: 'cover' }}
+                  className="hs-clinic-hero-photo"
                   sizes="(max-width: 768px) 100vw, 55vw"
                   onError={(e) => { e.target.src = '/hero/photography/clinic-exterior.webp'; }}
                 />
@@ -854,9 +854,10 @@ export default function Hero() {
 
         /* ── RIGHT ───────────────────────────────────────────────── */
         .hs-right {
-          height: clamp(480px, 52vh, 620px);
-          min-height: 460px;
-          max-height: 640px;
+          width: 100%;
+          aspect-ratio: 1.508;
+          min-height: 380px;
+          max-height: 580px;
           position: relative;
         }
         .hs-stage {
@@ -871,16 +872,27 @@ export default function Hero() {
           inset: 0;
           border-radius: var(--hs-r-lg);
           overflow: hidden;
-          box-shadow: 0 30px 80px rgba(26,18,8,0.12);
+          background: #1A0C06;
+          box-shadow: 0 24px 60px rgba(26,18,8,0.14);
           will-change: transform;
+        }
+        .hs-clinic-hero-photo {
+          object-fit: cover;
+          object-position: center 38%;
+          width: 100% !important;
+          height: 100% !important;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hs-clinic-img-wrap:hover .hs-clinic-hero-photo {
+          transform: scale(1.02);
         }
         .hs-img-vignette {
           position: absolute;
           inset: 0;
           background: linear-gradient(
             to bottom,
-            rgba(26,18,8,0) 50%,
-            rgba(26,18,8,0.35) 100%
+            rgba(26,18,8,0) 65%,
+            rgba(26,18,8,0.28) 100%
           );
           z-index: 1;
         }
@@ -1261,8 +1273,11 @@ export default function Hero() {
             margin-bottom: 24px;
           }
           .hs-right {
-            height: 480px;
-            min-height: 440px;
+            width: 100%;
+            aspect-ratio: 1.508;
+            height: auto;
+            min-height: unset;
+            max-height: 520px;
           }
           .hs-doctor-panel {
             left: 0;
