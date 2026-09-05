@@ -135,6 +135,11 @@ export default function OfferModal() {
   // 1. AUTO-POPUP ON INITIAL SITE ENTRY (Gentle 2.2s delay, session guarded)
   useEffect(() => {
     try {
+      // Don't auto-popup on special-offer page since that page already has its own dedicated voucher form
+      if (typeof window !== 'undefined' && window.location.pathname.includes('/special-offer')) {
+        return;
+      }
+
       const hasAutoOpened = sessionStorage.getItem('shubh_lead_offer_opened_session_v4');
       if (!hasAutoOpened) {
         const timer = setTimeout(() => {
@@ -206,6 +211,11 @@ export default function OfferModal() {
       // B. Dynamic intent check on any button or anchor text
       const clickable = e.target.closest('button, a');
       if (clickable) {
+        // IMPORTANT: Never intercept actual form submit buttons!
+        if (clickable.getAttribute('type') === 'submit' || clickable.closest('form')) {
+          return;
+        }
+
         const href = clickable.getAttribute('href') || '';
         // Skip telephone, direct whatsapp, and maps
         if (
