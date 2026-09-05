@@ -218,13 +218,13 @@ export default function Hero() {
               {/* --- Main Clinic Image --- */}
               <motion.div className="hs-clinic-img-wrap">
                 <Image
-                  src="/hero/photography/clinic-exterior.webp"
+                  src="/hero/photography/clinic-exterior-v2.webp"
                   alt="Shubh Dental Clinic, Rohtak — Advanced Orthodontics & Implant Centre"
                   fill
                   priority
                   style={{ objectFit: 'cover' }}
                   sizes="(max-width: 768px) 100vw, 55vw"
-                  onError={(e) => { e.target.src = '/hero-image.webp'; }}
+                  onError={(e) => { e.target.src = '/hero/photography/clinic-exterior.webp'; }}
                 />
                 <div className="hs-img-vignette" />
               </motion.div>
