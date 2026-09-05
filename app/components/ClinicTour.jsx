@@ -15,7 +15,7 @@ export default function ClinicTour() {
     { num: 7, ext: 'webp' },
     { num: 8, ext: 'webp' },
     { num: 9, ext: 'webp' },
-    { num: '10-v2', ext: 'webp' },
+    { num: '10-hq', ext: 'webp' },
   ];
 
   const row1 = images.slice(0, 5);
