@@ -397,13 +397,8 @@ export default function OfferModal() {
       console.error('Web3Forms submit error:', err);
     }
 
-    // 2. Instant WhatsApp VIP Dispatch
-    const msg = `Hello Shubh Dental Clinic! 🏷️ I want to UNLOCK MY 20% OFF PRIVILEGE PASS (Voucher: SHUBH-20-VIP).\n\n👤 Name: ${cleanPayload.name}\n📞 Phone: +91 ${cleanPayload.phone}\n✨ Treatment: ${cleanPayload.treatment}\n⏰ Preferred Slot: ${cleanPayload.timing}${cleanPayload.note ? `\n🎯 Goal / Note: ${cleanPayload.note}` : ''}\n📍 Location: Rohtak HQ`;
-    const waUrl = `https://wa.me/918685048414?text=${encodeURIComponent(msg)}`;
-
     setIsSubmitting(false);
     setIsSuccess(true);
-    window.open(waUrl, '_blank');
   };
 
   return (
@@ -581,7 +576,7 @@ export default function OfferModal() {
                       <span>100% Confidential · PGI Specialist Care in Rohtak</span>
                     </div>
                     <span className="clean-subtext">
-                      By submitting, you receive an instant VIP voucher directly on WhatsApp.
+                      By submitting, your 20% privilege benefits are locked and our team will contact you.
                     </span>
                   </div>
                 </form>

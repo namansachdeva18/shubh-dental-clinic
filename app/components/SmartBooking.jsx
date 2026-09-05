@@ -105,11 +105,6 @@ export default function SmartBooking() {
 
     setIsSubmitting(false);
     setSubmitted(true);
-
-    // 2. Open WhatsApp for immediate booking coordination
-    const msg = `Hello Shubh Dental Clinic! I would like to reserve my VIP consultation.\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n📍 Mode: ${formData.mode}\n✨ Treatment: ${formData.treatment}\n📅 Preferred Date: ${finalDate}\n⏰ Preferred Slot: ${formData.time}`;
-    const url = `https://wa.me/918685048414?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
   };
 
   return (
