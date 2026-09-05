@@ -1,7 +1,7 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Sparkles, CheckCircle2, ArrowRight, User, Phone, Stethoscope, Clock, MessageSquare, ShieldCheck } from 'lucide-react';
+import { X, Sparkles, CheckCircle2, ArrowRight, User, Phone, Stethoscope, Clock, MessageSquare, ShieldCheck, AlertCircle } from 'lucide-react';
 import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from '../lib/web3forms';
 import { trackConversion, CONVERSION_EVENTS } from '../lib/conversionTracking';
 
@@ -16,6 +16,102 @@ const TREATMENTS = [
   'General Dental Consultation & Teeth Scaling'
 ];
 
+/**
+ * Advanced Anti-Spam Validation Engine
+ * Blocks automated scrapers, keyboard mashers, dummy digits, and injection scripts.
+ */
+function validateIndianPhone(rawPhone) {
+  const clean = (rawPhone || '').replace(/\D/g, '').replace(/^(?:91|0)/, '');
+  
+  if (!clean || clean.length !== 10) {
+    return { valid: false, message: 'Please enter a valid 10-digit mobile number' };
+  }
+  if (!/^[6-9]/.test(clean)) {
+    return { valid: false, message: 'Indian mobile number must begin with 6, 7, 8, or 9' };
+  }
+  // Check all identical digits (e.g., 9999999999, 8888888888)
+  if (/^(\d)\1{9}$/.test(clean)) {
+    return { valid: false, message: 'Please enter a genuine, active mobile number' };
+  }
+  // Check obvious sequential / test numbers
+  const sequentialPatterns = [
+    '1234567890', '0123456789', '9876543210', '8765432109', '2345678901',
+    '9812345678', '9999900000', '9876598765', '9000000000', '9898989898'
+  ];
+  if (sequentialPatterns.includes(clean)) {
+    return { valid: false, message: 'Please enter your actual contact number' };
+  }
+  // Check repeating 2-digit pairs like 9191919191, 9898989898
+  if (/^(\d{2})\1{4}$/.test(clean)) {
+    return { valid: false, message: 'Please enter a genuine contact number' };
+  }
+  // Require at least 4 distinct digits (real phone numbers have variance)
+  const uniqueDigits = new Set(clean.split('')).size;
+  if (uniqueDigits < 4) {
+    return { valid: false, message: 'Please verify mobile number for accuracy' };
+  }
+
+  return { valid: true, cleanPhone: clean };
+}
+
+function validateName(rawName) {
+  const name = (rawName || '').trim();
+  if (name.length < 2) {
+    return { valid: false, message: 'Please enter your full name (minimum 2 letters)' };
+  }
+  if (name.length > 50) {
+    return { valid: false, message: 'Name is too long (maximum 50 characters)' };
+  }
+  // Reject scripts, HTML tags, links or special characters
+  if (/[<>{}[\]\\\/|@$%^*+=~`]|\b(?:http|https|www|\.com|\.org|\.net|\.in|\.xyz)\b/i.test(name)) {
+    return { valid: false, message: 'Special characters, URLs or symbols are not allowed in name' };
+  }
+  // Reject numbers in personal names
+  if (/\d/.test(name)) {
+    return { valid: false, message: 'Name cannot contain numeric digits' };
+  }
+  // Require at least one vowel (English & Indian names always contain vowels, catches keyboard mash like "dfghjkl")
+  if (!/[aeiouyAEIOUY]/.test(name)) {
+    return { valid: false, message: 'Please enter a genuine readable name' };
+  }
+  // Block 4+ repeated characters like "Aaaaaaaa"
+  if (/(.)\1{3,}/i.test(name)) {
+    return { valid: false, message: 'Please avoid repeated characters in name' };
+  }
+  // Block common bot/fake names
+  const spamKeywords = [
+    'test', 'testing', 'tester', 'admin', 'administrator', 'fake', 'dummy', 'asdf', 
+    'asdfgh', 'qwerty', 'zxcvbnm', 'sample', 'null', 'undefined', 'anonymous', 
+    'unknown', 'nobody', 'user', 'guest', 'demo'
+  ];
+  if (spamKeywords.includes(name.toLowerCase())) {
+    return { valid: false, message: 'Please enter your real name for clinical doctor reservation' };
+  }
+
+  return { valid: true, cleanName: name };
+}
+
+function validateNote(rawNote) {
+  const note = (rawNote || '').trim();
+  if (!note) return { valid: true, cleanNote: '' };
+  
+  // Block URL injection
+  if (/(?:https?:\/\/|www\.|ftp:\/\/|[a-z0-9-]+\.(?:com|ru|top|xyz|biz|info|site|online|link|click|win|club|icu|cc))/i.test(note)) {
+    return { valid: false, message: 'External links are strictly prohibited' };
+  }
+  // Block promotional or adult/gambling spam
+  const spamTerms = [
+    'casino', 'poker', 'crypto', 'bitcoin', 'usdt', 'forex', 'viagra', 'cialis',
+    'backlink', 'seo service', 'guest post', 'ranking service', 'telegram:', 'whatsapp blast'
+  ];
+  const lower = note.toLowerCase();
+  if (spamTerms.some(term => lower.includes(term))) {
+    return { valid: false, message: 'Promotional content is not accepted' };
+  }
+
+  return { valid: true, cleanNote: note.slice(0, 300) };
+}
+
 export default function OfferModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,16 +121,46 @@ export default function OfferModal() {
     timing: 'Anytime / Earliest Specialist Slot',
     note: ''
   });
+  
+  // Anti-Spam Security States
+  const [honeypot, setHoneypot] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [formOpenedTime, setFormOpenedTime] = useState(0);
+  const [isPhoneValid, setIsPhoneValid] = useState(false);
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const modalRef = useRef(null);
 
+  // 1. AUTO-POPUP ON INITIAL SITE ENTRY (Gentle 2.2s delay, session guarded)
+  useEffect(() => {
+    try {
+      const hasAutoOpened = sessionStorage.getItem('shubh_lead_offer_opened_session_v4');
+      if (!hasAutoOpened) {
+        const timer = setTimeout(() => {
+          setIsOpen(true);
+          setFormOpenedTime(Date.now());
+          setErrorMessage('');
+          sessionStorage.setItem('shubh_lead_offer_opened_session_v4', 'true');
+        }, 2200);
+        return () => clearTimeout(timer);
+      }
+    } catch (e) {
+      // Handle private browsing mode safely
+    }
+  }, []);
+
+  // 2. UNIFORM CLICK & EVENT DELEGATION ACROSS ENTIRE WEBSITE
   useEffect(() => {
     const handleOpen = (e) => {
       if (e?.detail?.treatment) {
         setFormData(prev => ({ ...prev, treatment: e.detail.treatment }));
       }
+      setFormOpenedTime(Date.now());
+      setErrorMessage('');
       setIsOpen(true);
     };
+
     const handleHash = () => {
       if (
         window.location.hash === '#book' || 
@@ -42,43 +168,103 @@ export default function OfferModal() {
         window.location.hash === '#offer' || 
         window.location.hash === '#claim-offer'
       ) {
+        setFormOpenedTime(Date.now());
+        setErrorMessage('');
         setIsOpen(true);
       }
     };
 
     window.addEventListener('openOfferModal', handleOpen);
     window.addEventListener('hashchange', handleHash);
-    handleHash();
+    if (window.location.hash === '#book' || window.location.hash === '#offer') {
+      handleHash();
+    }
 
-    // Delegate click on ANY book button, [data-open-offer], or href="#book"
+    // Capture phase listener ensures NO component's stopPropagation prevents the modal from opening
     const handleClick = (e) => {
-      const target = e.target.closest(
-        'a[href="#book"], a[href="#booking"], a[href="#offer"], a[href="#claim-offer"], [data-open-offer], [data-open-book]'
+      // A. Match explicit booking selectors
+      const trigger = e.target.closest(
+        'a[href="#book"], a[href="#booking"], a[href="#offer"], a[href="#claim-offer"], ' +
+        '[data-open-offer], [data-open-book], [data-open-modal], ' +
+        '.sticky-btn-wa, .tc-claim-btn, .btn-header-reserve, .mobile-bar-btn, .inav-quick-book-btn, ' +
+        '.hs-btn-primary, .btn-doc-primary, .btn-kids-primary, .case-cta-btn, .case-action-btn, .btn-sky-cta'
       );
-      if (target) {
+
+      if (trigger) {
         e.preventDefault();
-        window.history.pushState(null, '', '#book');
+        e.stopPropagation();
+        const customTreatment = trigger.getAttribute('data-treatment') || trigger.dataset?.treatment;
+        if (customTreatment) {
+          setFormData(prev => ({ ...prev, treatment: customTreatment }));
+        }
+        setFormOpenedTime(Date.now());
+        setErrorMessage('');
         setIsOpen(true);
+        return;
+      }
+
+      // B. Dynamic intent check on any button or anchor text
+      const clickable = e.target.closest('button, a');
+      if (clickable) {
+        const href = clickable.getAttribute('href') || '';
+        // Skip telephone, direct whatsapp, and maps
+        if (
+          href.startsWith('tel:') || 
+          href.startsWith('mailto:') || 
+          href.includes('wa.me') || 
+          href.includes('whatsapp.com') ||
+          href.includes('maps.google')
+        ) {
+          return;
+        }
+
+        const text = (clickable.innerText || clickable.textContent || '').trim().toLowerCase();
+        const isBookingIntent = 
+          (text.includes('book') && (text.includes('appointment') || text.includes('consultation') || text.includes('slot') || text.includes('priority') || text.includes('now') || text === 'book' || text === 'book slot')) ||
+          (text.includes('claim') && (text.includes('offer') || text.includes('20%') || text.includes('pass') || text.includes('voucher') || text.includes('concession')));
+
+        const isInternalNavWithoutHash = href.startsWith('/') && !href.includes('#book') && !href.includes('#offer');
+
+        if (isBookingIntent && !isInternalNavWithoutHash) {
+          e.preventDefault();
+          e.stopPropagation();
+          setFormOpenedTime(Date.now());
+          setErrorMessage('');
+          setIsOpen(true);
+        }
       }
     };
-    document.addEventListener('click', handleClick);
+
+    document.addEventListener('click', handleClick, true);
+
+    // ESC key accessibility
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       window.removeEventListener('openOfferModal', handleOpen);
       window.removeEventListener('hashchange', handleHash);
-      document.removeEventListener('click', handleClick);
+      document.removeEventListener('click', handleClick, true);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
   const closeModal = () => {
     setIsOpen(false);
+    setErrorMessage('');
     if (
       window.location.hash === '#book' || 
       window.location.hash === '#booking' || 
       window.location.hash === '#offer' || 
       window.location.hash === '#claim-offer'
     ) {
-      history.pushState(null, '', window.location.pathname + window.location.search);
+      try {
+        history.pushState(null, '', window.location.pathname + window.location.search);
+      } catch (e) {}
     }
     setTimeout(() => {
       setIsSuccess(false);
@@ -89,40 +275,130 @@ export default function OfferModal() {
         timing: 'Anytime / Earliest Specialist Slot',
         note: '' 
       });
-    }, 400);
+      setIsPhoneValid(false);
+      setHoneypot('');
+    }, 350);
+  };
+
+  // Real-time phone input formatting & validation
+  const handlePhoneChange = (e) => {
+    const raw = e.target.value;
+    const cleanDigits = raw.replace(/\D/g, '').replace(/^(?:91|0)/, '').slice(0, 10);
+    setFormData(prev => ({ ...prev, phone: cleanDigits }));
+    setErrorMessage('');
+
+    if (cleanDigits.length === 10) {
+      const check = validateIndianPhone(cleanDigits);
+      setIsPhoneValid(check.valid);
+    } else {
+      setIsPhoneValid(false);
+    }
+  };
+
+  const handleNameChange = (e) => {
+    setFormData(prev => ({ ...prev, name: e.target.value }));
+    setErrorMessage('');
+  };
+
+  const handleNoteChange = (e) => {
+    setFormData(prev => ({ ...prev, note: e.target.value }));
+    setErrorMessage('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) return;
+    setErrorMessage('');
+
+    // ── ADVANCED SPAM FILTER 1: HONEYPOT TRAP ──
+    if (honeypot && honeypot.trim().length > 0) {
+      // Bot detected! Silently drop without sending spam to clinic
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      return;
+    }
+
+    // ── ADVANCED SPAM FILTER 2: SUBMISSION VELOCITY CHECK ──
+    // Humans take at least 1.8 seconds to fill out this form
+    if (formOpenedTime > 0 && (Date.now() - formOpenedTime) < 1800) {
+      setErrorMessage('Form submitted unusually fast. Please verify your details.');
+      return;
+    }
+
+    // ── ADVANCED SPAM FILTER 3: NAME QUALITY VALIDATION ──
+    const nameCheck = validateName(formData.name);
+    if (!nameCheck.valid) {
+      setErrorMessage(nameCheck.message);
+      return;
+    }
+
+    // ── ADVANCED SPAM FILTER 4: INDIAN PHONE STRICT VALIDATION ──
+    const phoneCheck = validateIndianPhone(formData.phone);
+    if (!phoneCheck.valid) {
+      setErrorMessage(phoneCheck.message);
+      return;
+    }
+
+    // ── ADVANCED SPAM FILTER 5: NOTE / INJECTION SANITIZATION ──
+    const noteCheck = validateNote(formData.note);
+    if (!noteCheck.valid) {
+      setErrorMessage(noteCheck.message);
+      return;
+    }
+
+    // ── ADVANCED SPAM FILTER 6: RATE LIMITING / DUPLICATE PREVENTION ──
+    try {
+      const lastSubmitTs = localStorage.getItem('shubh_last_lead_timestamp');
+      if (lastSubmitTs && (Date.now() - Number(lastSubmitTs)) < 45000) {
+        setErrorMessage('Your 20% Privilege Pass is already active! Our team is contacting you directly.');
+        return;
+      }
+    } catch (err) {}
+
     setIsSubmitting(true);
 
-    // Post lead to Web3Forms
+    const cleanPayload = {
+      name: nameCheck.cleanName,
+      phone: phoneCheck.cleanPhone,
+      treatment: formData.treatment,
+      timing: formData.timing,
+      note: noteCheck.cleanNote,
+      voucher: 'SHUBH-20-VIP',
+      source: '20% OFF Privilege Pass Popup (Calibrated Lead Engine)'
+    };
+
+    // 1. Post verified clean lead to Web3Forms with full attribution
     try {
       await submitToWeb3Forms({
-        name: formData.name,
-        phone: formData.phone,
-        treatment: formData.treatment,
-        timing: formData.timing,
-        source: '20% OFF Privilege Pass Popup',
-        voucher: 'SHUBH-20-VIP',
-        message: `Unlocked 20% Privilege Offer for ${formData.treatment}. Slot: ${formData.timing}. Goal/Note: ${formData.note || 'None'}`
+        name: cleanPayload.name,
+        phone: cleanPayload.phone,
+        treatment: cleanPayload.treatment,
+        timing: cleanPayload.timing,
+        source: cleanPayload.source,
+        voucher: cleanPayload.voucher,
+        message: `Unlocked 20% Privilege Offer for ${cleanPayload.treatment}. Slot: ${cleanPayload.timing}. Goal/Note: ${cleanPayload.note || 'None'}`
       });
 
+      // Record rate limit timestamp
+      try {
+        localStorage.setItem('shubh_last_lead_timestamp', String(Date.now()));
+      } catch (err) {}
+
+      // Fire conversion tracking
       trackConversion(CONVERSION_EVENTS.GENERATE_LEAD, {
-        treatment: formData.treatment,
+        treatment: cleanPayload.treatment,
         source: 'OfferModal',
-        voucher: 'SHUBH-20-VIP',
+        voucher: cleanPayload.voucher,
       });
       trackConversion(CONVERSION_EVENTS.OFFER_LEAD, {
-        treatment: formData.treatment,
-        voucher: 'SHUBH-20-VIP',
+        treatment: cleanPayload.treatment,
+        voucher: cleanPayload.voucher,
       });
     } catch (err) {
       console.error('Web3Forms submit error:', err);
     }
 
-    const msg = `Hello Shubh Dental Clinic! 🏷️ I want to UNLOCK MY 20% OFF PRIVILEGE PASS (Voucher: SHUBH-20-VIP).\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Treatment: ${formData.treatment}\n⏰ Preferred Slot: ${formData.timing}${formData.note ? `\n🎯 Goal / Note: ${formData.note}` : ''}\n📍 Location: Rohtak HQ`;
+    // 2. Instant WhatsApp VIP Dispatch
+    const msg = `Hello Shubh Dental Clinic! 🏷️ I want to UNLOCK MY 20% OFF PRIVILEGE PASS (Voucher: SHUBH-20-VIP).\n\n👤 Name: ${cleanPayload.name}\n📞 Phone: +91 ${cleanPayload.phone}\n✨ Treatment: ${cleanPayload.treatment}\n⏰ Preferred Slot: ${cleanPayload.timing}${cleanPayload.note ? `\n🎯 Goal / Note: ${cleanPayload.note}` : ''}\n📍 Location: Rohtak HQ`;
     const waUrl = `https://wa.me/918685048414?text=${encodeURIComponent(msg)}`;
 
     setIsSubmitting(false);
@@ -133,17 +409,29 @@ export default function OfferModal() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="offer-modal-overlay" onClick={closeModal} role="dialog" aria-modal="true">
+        <div 
+          className="offer-modal-overlay" 
+          onClick={closeModal} 
+          role="dialog" 
+          aria-modal="true"
+          aria-labelledby="offer-modal-title"
+        >
           <motion.div
+            ref={modalRef}
             className="clean-offer-card"
             onClick={(e) => e.stopPropagation()}
             initial={{ opacity: 0, scale: 0.94, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.26, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Top Close Button */}
-            <button className="clean-close-btn" onClick={closeModal} aria-label="Close offer modal">
+            <button 
+              className="clean-close-btn" 
+              onClick={closeModal} 
+              aria-label="Close offer modal"
+              type="button"
+            >
               <X size={18} />
             </button>
 
@@ -156,7 +444,7 @@ export default function OfferModal() {
                     <span>CLINICAL SPECIAL · 20% OFF</span>
                   </div>
 
-                  <h2 className="clean-main-title">
+                  <h2 className="clean-main-title" id="offer-modal-title">
                     Unlock Your <span className="title-gold">20% Clinical Offer</span>
                   </h2>
 
@@ -165,10 +453,36 @@ export default function OfferModal() {
                   </p>
                 </div>
 
+                {/* Inline Error Alert if Spam/Validation Fails */}
+                {errorMessage && (
+                  <motion.div 
+                    className="clean-alert-box"
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <AlertCircle size={15} className="alert-icon" />
+                    <span>{errorMessage}</span>
+                  </motion.div>
+                )}
+
                 {/* 2. Sleek Input Form */}
-                <form onSubmit={handleSubmit} className="clean-form-list">
+                <form onSubmit={handleSubmit} className="clean-form-list" noValidate>
                   <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
                   
+                  {/* Invisible Honeypot Field for Bot Detection */}
+                  <div style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', left: '-9999px', height: 0, width: 0, overflow: 'hidden' }} aria-hidden="true">
+                    <label htmlFor="modal_clinic_hp">Do not fill this</label>
+                    <input
+                      id="modal_clinic_hp"
+                      type="text"
+                      name="website_url_hp"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   {/* Full Name */}
                   <div className="clean-input-box">
                     <User size={18} className="clean-field-icon" />
@@ -176,31 +490,39 @@ export default function OfferModal() {
                       type="text"
                       required
                       placeholder="Full Name *"
+                      autoComplete="name"
+                      maxLength={50}
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={handleNameChange}
                     />
                   </div>
 
-                  {/* Phone */}
-                  <div className="clean-input-box">
+                  {/* Phone with Indian Prefix & Live Verification */}
+                  <div className={`clean-input-box ${isPhoneValid ? 'input-valid' : ''}`}>
                     <Phone size={18} className="clean-field-icon" />
+                    <span className="clean-country-code">🇮🇳 +91</span>
                     <input
                       type="tel"
                       required
                       placeholder="10-Digit Mobile Number *"
-                      pattern="[0-9]{10}"
-                      title="Please enter a valid 10-digit mobile number"
+                      autoComplete="tel-national"
+                      maxLength={10}
+                      inputMode="numeric"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
+                      onChange={handlePhoneChange}
                     />
+                    {isPhoneValid && (
+                      <CheckCircle2 size={16} className="clean-field-valid-icon" />
+                    )}
                   </div>
 
-                  {/* Treatment */}
+                  {/* Treatment Selection */}
                   <div className="clean-input-box select-box">
                     <Stethoscope size={18} className="clean-field-icon" />
                     <select
                       value={formData.treatment}
                       onChange={(e) => setFormData({ ...formData, treatment: e.target.value })}
+                      aria-label="Select Treatment"
                     >
                       {TREATMENTS.map((t) => (
                         <option key={t} value={t}>{t}</option>
@@ -214,6 +536,7 @@ export default function OfferModal() {
                     <select
                       value={formData.timing}
                       onChange={(e) => setFormData({ ...formData, timing: e.target.value })}
+                      aria-label="Select Preferred Time"
                     >
                       <option value="Anytime / Earliest Specialist Slot">Preferred Time: Anytime / First Available</option>
                       <option value="Morning Slot (10:00 AM – 01:00 PM)">Morning: 10:00 AM – 01:00 PM</option>
@@ -222,14 +545,15 @@ export default function OfferModal() {
                     </select>
                   </div>
 
-                  {/* Optional Goal Note */}
+                  {/* Optional Goal / Concern */}
                   <div className="clean-input-box">
                     <MessageSquare size={18} className="clean-field-icon" />
                     <input
                       type="text"
                       placeholder="Optional: Tell us about your goal or event date"
+                      maxLength={160}
                       value={formData.note}
-                      onChange={(e) => setFormData({ ...formData, note: e.target.value })}
+                      onChange={handleNoteChange}
                     />
                   </div>
 
@@ -277,7 +601,7 @@ export default function OfferModal() {
                   <span>✓ Free 3D iTero® / CBCT Scan (Worth ₹3,500)</span>
                   <span>✓ Priority Slot with Prof. Dr. S. K. Yadav</span>
                 </div>
-                <button onClick={closeModal} className="clean-close-dialog-btn">
+                <button onClick={closeModal} className="clean-close-dialog-btn" type="button">
                   Done
                 </button>
               </div>
@@ -340,7 +664,7 @@ export default function OfferModal() {
             /* Header */
             .clean-header-block {
               text-align: center;
-              margin-bottom: 1.4rem;
+              margin-bottom: 1.3rem;
             }
 
             .clean-pill-badge {
@@ -385,6 +709,25 @@ export default function OfferModal() {
               max-width: 340px;
             }
 
+            /* Inline Alert Banner */
+            .clean-alert-box {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              background: #FEF2F2;
+              border: 1px solid #FCA5A5;
+              color: #991B1B;
+              font-size: 0.78rem;
+              font-weight: 600;
+              padding: 0.55rem 0.85rem;
+              border-radius: 10px;
+              margin-bottom: 0.85rem;
+            }
+            .alert-icon {
+              color: #DC2626;
+              flex-shrink: 0;
+            }
+
             /* Form Fields */
             .clean-form-list {
               display: flex;
@@ -407,6 +750,23 @@ export default function OfferModal() {
               border-color: #B87333;
               box-shadow: 0 0 0 3.5px rgba(184, 115, 51, 0.14);
               background: #FFFFFF;
+            }
+            .clean-input-box.input-valid {
+              border-color: rgba(16, 185, 129, 0.5);
+            }
+
+            .clean-country-code {
+              font-size: 0.82rem;
+              font-weight: 700;
+              color: #7A5B43;
+              margin-right: 0.45rem;
+              letter-spacing: 0.02em;
+            }
+
+            .clean-field-valid-icon {
+              color: #10B981;
+              flex-shrink: 0;
+              margin-left: 0.4rem;
             }
 
             .clean-field-icon {

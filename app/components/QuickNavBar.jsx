@@ -106,7 +106,13 @@ export default function QuickNavBar() {
           <div className="inav-quick-cta-wrapper">
             <a 
               href="#book" 
-              onClick={(e) => handleAnchorClick(e, '#book')}
+              data-open-offer="true"
+              onClick={(e) => {
+                e.preventDefault();
+                window.dispatchEvent(new CustomEvent('openOfferModal', {
+                  detail: { treatment: '💡 Not Sure? Consult Doctor First (Get Tailored 20% Plan + Free 3D Scan)' }
+                }));
+              }}
               className="inav-quick-book-btn"
             >
               <Calendar size={13} />

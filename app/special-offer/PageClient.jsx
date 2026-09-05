@@ -189,8 +189,9 @@ export default function SpecialOfferPageClient() {
 
   const handleQuickTabClaim = (treatment) => {
     // Open the Offer Modal popup form with the selected treatment
+    const treatmentTitle = (treatment && typeof treatment === 'object' ? treatment.title : treatment) || 'Invisalign® & Clear Aligners (Flat 20% OFF)';
     window.dispatchEvent(new CustomEvent('openOfferModal', {
-      detail: { treatment: treatment.title }
+      detail: { treatment: treatmentTitle }
     }));
   };
 
@@ -467,7 +468,10 @@ export default function SpecialOfferPageClient() {
                 {/* 1-Tap Claim Action */}
                 <div className="tc-action-row">
                   <button 
+                    type="button"
                     onClick={() => handleQuickTabClaim(treatment)}
+                    data-open-offer="true"
+                    data-treatment={treatment.title}
                     className="tc-claim-btn"
                   >
                     <Sparkles size={15} />
@@ -613,8 +617,12 @@ export default function SpecialOfferPageClient() {
         </div>
         <div className="sticky-bar-actions">
           <button 
+            type="button"
             onClick={() => handleQuickTabClaim(currentTreatment)}
+            data-open-offer="true"
+            data-treatment={currentTreatment?.title || 'Invisalign® & Clear Aligners (Flat 20% OFF)'}
             className="sticky-btn-wa"
+            aria-label="Claim 20% OFF"
           >
             <Sparkles size={14} />
             <span>Claim 20% OFF</span>
