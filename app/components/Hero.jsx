@@ -218,7 +218,7 @@ export default function Hero() {
               {/* --- Main Clinic Image --- */}
               <motion.div className="hs-clinic-img-wrap">
                 <Image
-                  src="/hero/photography/clinic-exterior-hq.webp"
+                  src="/hero/photography/clinic-exterior-master.webp"
                   alt="Shubh Dental Clinic, Rohtak — Advanced Orthodontics & Implant Centre"
                   fill
                   priority
@@ -226,7 +226,7 @@ export default function Hero() {
                   unoptimized
                   className="hs-clinic-hero-photo"
                   sizes="(max-width: 768px) 100vw, 55vw"
-                  onError={(e) => { e.target.src = '/hero/photography/clinic-exterior-v2.webp'; }}
+                  onError={(e) => { e.target.src = '/hero/photography/clinic-exterior-hq.webp'; }}
                 />
                 <div className="hs-img-vignette" />
               </motion.div>
