@@ -325,11 +325,13 @@ export default function Hero() {
           padding: 6px 14px;
           border-radius: 99px;
           margin-bottom: 10px;
+          width: fit-content;
           max-width: 100%;
           box-sizing: border-box;
         }
         .hs-location-pill span {
           line-height: 1.35;
+          white-space: nowrap;
         }
 
         /* Special Offer Ribbon */
@@ -1330,9 +1332,10 @@ export default function Hero() {
             margin-bottom: 8px !important;
             font-size: 0.68rem !important;
             padding: 5px 10px !important;
-            border-radius: 12px !important;
-            display: flex !important;
-            width: 100% !important;
+            border-radius: 99px !important;
+            display: inline-flex !important;
+            width: fit-content !important;
+            max-width: 100% !important;
             box-sizing: border-box !important;
           }
 
