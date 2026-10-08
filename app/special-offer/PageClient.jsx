@@ -23,13 +23,13 @@ const TREATMENTS_DATA = [
     beforeImg: '/skyalign-before.webp',
     afterImg: '/skyalign-after.webp',
     inclusions: [
-      'Free 3D iTero® Digital Scan & Future Smile Simulation (Worth ₹3,500)',
-      'Flat 20% Concession on Selected Aligner Packages',
+      'Free OPD Consultation with Senior Specialist (Worth ₹3,500)',
+      'Free 3D iTero® Digital Scan & Future Smile Simulation',
       '0% Interest Easy EMI Options with Zero Down Payment',
       'Complimentary Set of Post-Treatment Retainers'
     ],
     bestFor: 'Gaps, crowding, forward teeth, or working professionals wanting discreet correction.',
-    waMsg: 'Hello Shubh Dental Clinic! I want to claim the 20% OFF Privilege Pass for Invisalign / SkyAlign Clear Aligners.'
+    waMsg: 'Hello Shubh Dental Clinic! I want to claim the Free OPD Consultation & Digital Scan for Invisalign / SkyAlign Clear Aligners.'
   },
   {
     id: 'implants',
@@ -42,13 +42,13 @@ const TREATMENTS_DATA = [
     beforeImg: '/samedayimplants-before.webp',
     afterImg: '/samedayimplants-after.webp',
     inclusions: [
+      'Free OPD Consultation with Senior Implantologist (Worth ₹3,500)',
       'Free 3D CBCT Bone Density Assessment & Computerized Guided Mapping',
-      'Flat 20% Concession on Premium Korean Osstem® Implants',
       '10-Year Warranty Metal-Free Zirconia Crown Included',
       'Same-Day Immediate Fixed Teeth options available'
     ],
     bestFor: 'Single or multiple missing teeth, loose dentures, difficulty chewing, failing bridges.',
-    waMsg: 'Hello Shubh Dental Clinic! I want to claim the 20% OFF Privilege Pass for Lifetime Dental Implants.'
+    waMsg: 'Hello Shubh Dental Clinic! I want to claim the Free OPD Consultation & Digital Scan for Lifetime Dental Implants.'
   },
   {
     id: 'makeover',
@@ -61,13 +61,13 @@ const TREATMENTS_DATA = [
     beforeImg: '/porcelain-veneers-before.webp',
     afterImg: '/porcelain-veneers-after.webp',
     inclusions: [
+      'Free OPD Consultation with Senior Cosmetic Specialist (Worth ₹3,500)',
       'Digital Smile Design (DSD) Photographic Aesthetic Analysis',
       'Complimentary Aesthetic Trial Mockup before permanent bonding',
-      'Flat 20% Concession on 6 to 10 Tooth Porcelain Veneer Packages',
       'Stain-Proof German E-Max Porcelain with 10+ Year Durability'
     ],
     bestFor: 'Chipped, yellow, fluorosis stained, uneven, or gummy smile correction in 2-3 visits.',
-    waMsg: 'Hello Shubh Dental Clinic! I want to claim the 20% OFF Privilege Pass for Smile Makeover & Veneers.'
+    waMsg: 'Hello Shubh Dental Clinic! I want to claim the Free OPD Consultation & Digital Scan for Smile Makeover & Veneers.'
   },
   {
     id: 'braces',
@@ -80,13 +80,13 @@ const TREATMENTS_DATA = [
     beforeImg: '/ceramic-before.webp',
     afterImg: '/ceramic-after.webp',
     inclusions: [
+      'Free OPD Consultation with Senior Orthodontist (Worth ₹3,500)',
       'Comprehensive Orthodontic Cephalometric Analysis Included',
-      'Flat 20% Fee Concession on Damon® Clear & Ceramic Systems',
       'Zero Extra Extractions Approach wherever clinically feasible',
       'Flexible monthly payment schedule with 0% interest'
     ],
     bestFor: 'Teens and adults needing precision bite alignment and straight, confident teeth.',
-    waMsg: 'Hello Shubh Dental Clinic! I want to claim the 20% OFF Privilege Pass for Damon Ceramic Braces.'
+    waMsg: 'Hello Shubh Dental Clinic! I want to claim the Free OPD Consultation & Digital Scan for Damon Ceramic Braces.'
   },
   {
     id: 'fullmouth',
@@ -99,13 +99,13 @@ const TREATMENTS_DATA = [
     beforeImg: '/samedayimplants-before.webp',
     afterImg: '/samedayimplants-after.webp',
     inclusions: [
+      'Free OPD Consultation with Multi-Specialist Panel (Worth ₹3,500)',
       'Full Mouth Diagnostic Wax-up & TMJ Occlusal Analysis',
       'Custom Master Treatment Plan combining Implants, Crowns & Laser Care',
-      'Special Full-Arch 20% Concession on Total Rehabilitation',
       'Personalized Recovery Concierge & Priority Scheduling'
     ],
     bestFor: 'Severe enamel wear, collapsed bite, chronic chewing discomfort, multiple missing teeth.',
-    waMsg: 'Hello Shubh Dental Clinic! I want to claim the 20% OFF Privilege Pass for Full Mouth Rehabilitation.'
+    waMsg: 'Hello Shubh Dental Clinic! I want to claim the Free OPD Consultation & Digital Scan for Full Mouth Rehabilitation.'
   },
   {
     id: 'rct',
@@ -118,20 +118,20 @@ const TREATMENTS_DATA = [
     beforeImg: '/skyalign-before.webp',
     afterImg: '/skyalign-after.webp',
     inclusions: [
+      'Free OPD Consultation with Senior Endodontist (Worth ₹3,500)',
       'Digital RVG Radiograph & Immediate Computerized Nerve Mapping',
       'Virtually Pain-Free Treatment with Computerized Gentle Anesthesia',
-      'Flat 20% Concession on Premium CAD/CAM Zirconia Ceramic Crown',
       'Same-Day Emergency Relief Slot Availability'
     ],
     bestFor: 'Severe toothache, sensitivity to hot/cold, deep decay, broken tooth nerve exposure.',
-    waMsg: 'Hello Shubh Dental Clinic! I want to claim the 20% OFF Privilege Pass for Painless Root Canal & Crown.'
+    waMsg: 'Hello Shubh Dental Clinic! I want to claim the Free OPD Consultation & Digital Scan for Painless Root Canal & Crown.'
   }
 ];
 
 const FAQS_DATA = [
   {
-    q: 'How does the 20% OFF Privilege Pass work?',
-    a: 'Claim via WhatsApp to receive voucher code SHUBH-20-VIP. The 20% discount is applied directly to your treatment estimate upon clinical consultation.'
+    q: 'What is included in the Free OPD Consultation & Digital Scan?',
+    a: 'You get a complimentary specialist OPD consultation + a 3D digital scan (worth ₹3,500) with zero cost, zero commitment. Use voucher code SHUBH-FREE-OPD when you visit.'
   },
   {
     q: 'Is the 3D Digital Scan really 100% free with no hidden obligation?',
@@ -230,7 +230,7 @@ export default function SpecialOfferPageClient() {
     }
 
     setIsSubmitting(true);
-    const voucherCode = 'SHUBH-20-VIP';
+    const voucherCode = 'SHUBH-FREE-OPD';
 
     // Submit clean lead to Web3Forms
     try {
@@ -239,9 +239,9 @@ export default function SpecialOfferPageClient() {
         phone: cleanPhone,
         treatment: formData.treatment,
         timing: formData.timing,
-        source: 'Special Offer Page (20% OFF Pass)',
+        source: 'Special Offer Page (Free OPD Consultation & Digital Scan)',
         voucher: voucherCode,
-        message: `Claimed 20% OFF Privilege Pass for ${formData.treatment}. Preferred slot: ${formData.timing}`
+        message: `Claimed Free OPD Consultation & Digital Scan for ${formData.treatment}. Preferred slot: ${formData.timing}`
       });
     } catch (err) {
       console.error('Lead recording error:', err);
@@ -267,7 +267,7 @@ export default function SpecialOfferPageClient() {
         <div className="urgency-container">
           <span className="urgency-pulse" />
           <span className="urgency-text">
-            <strong>AD SPECIAL:</strong> Flat 20% OFF All Premium Treatments + Free 3D Scan (Worth ₹3,500)
+            <strong>CLINICAL SPECIAL:</strong> Free OPD Consultation + 3D Digital Scan (Worth ₹3,500) — Valid This Month
           </span>
           <span className="urgency-counter">🔥 Only 4 Slots Left This Week</span>
         </div>
@@ -281,15 +281,15 @@ export default function SpecialOfferPageClient() {
           <div className="ad-hero-content">
             <div className="ad-privilege-badge">
               <Sparkles size={14} className="badge-sparkle" />
-              <span>OFFICIAL 2026 CLINICAL PRIVILEGE PASS</span>
+              <span>COMPLIMENTARY CLINICAL SPECIALIST OFFER</span>
             </div>
 
             <h1 className="ad-hero-title">
-              Flat <span className="highlight-gold">20% OFF</span> All Premium Dental Treatments
+              <span className="highlight-gold">Free OPD Consultation</span> &amp; 3D Digital Scan
             </h1>
 
             <p className="ad-hero-subtitle">
-              Co-planned by <strong>Prof. Dr. S. K. Yadav (Ex-PGI Chandigarh)</strong> &amp; <strong>Dr. Achla Bharti Yadav</strong>. Get advanced hospital-grade care at transparent, subsidized rates.
+              Co-planned by <strong>Prof. Dr. S. K. Yadav (Ex-PGI Chandigarh)</strong> &amp; <strong>Dr. Achla Bharti Yadav</strong>. Get a complimentary specialist consultation + 3D scan (worth ₹3,500) — no advance, no commitment.
             </p>
 
             {/* Value Inclusions Micro-Grid (Space Efficient) */}
@@ -350,19 +350,19 @@ export default function SpecialOfferPageClient() {
               {/* Card Header & Seal */}
               <div className="voucher-header">
                 <div className="voucher-title-wrap">
-                  <span className="voucher-chip">DIGITAL VOUCHER PASS</span>
-                  <h3 className="voucher-heading">Claim Your 20% Concession</h3>
+                  <span className="voucher-chip">COMPLIMENTARY CLINICAL OFFER</span>
+                  <h3 className="voucher-heading">Claim Free OPD &amp; Digital Scan</h3>
                 </div>
                 <div className="voucher-seal">
-                  <span className="seal-percent">20%</span>
-                  <span className="seal-off">OFF</span>
+                  <span className="seal-percent" style={{ fontSize: '0.62rem', lineHeight: 1.1 }}>FREE</span>
+                  <span className="seal-off">OPD</span>
                 </div>
               </div>
 
               <div className="voucher-code-strip">
                 <div className="code-box">
-                  <span className="code-label">PROMO CODE:</span>
-                  <strong className="code-val">SHUBH-20-VIP</strong>
+                  <span className="code-label">VOUCHER CODE:</span>
+                  <strong className="code-val">SHUBH-FREE-OPD</strong>
                 </div>
                 <span className="code-verified">
                   <BadgeCheck size={14} /> Verified Active
@@ -394,16 +394,16 @@ export default function SpecialOfferPageClient() {
                   <div className="success-icon-wrap">
                     <CheckCircle2 size={42} className="success-check-icon" />
                   </div>
-                  <h4 className="success-heading">20% Privilege Pass Reserved!</h4>
+                  <h4 className="success-heading">Free OPD Consultation Reserved!</h4>
                   <p className="success-desc">
-                    Thank you, <strong>{formData.name}</strong>. Your 20% concession slot for <strong>{formData.treatment}</strong> has been secured and sent to our specialist desk.
+                    Thank you, <strong>{formData.name}</strong>. Your complimentary OPD consultation &amp; 3D Digital Scan slot for <strong>{formData.treatment}</strong> has been secured.
                   </p>
                   <div className="claimed-code-badge">
                     <span>VOUCHER CODE:</span>
-                    <strong>SHUBH-20-VIP</strong>
+                    <strong>SHUBH-FREE-OPD</strong>
                   </div>
                   <p className="success-subtext">
-                    Our patient coordinator will contact you at <strong>{formData.phone}</strong> shortly to confirm your complimentary 3D Scan appointment.
+                    Our patient coordinator will contact you at <strong>{formData.phone}</strong> shortly to confirm your appointment.
                   </p>
                   <div className="success-actions">
                     <a href="tel:+918685048414" className="btn-success-call">
@@ -423,7 +423,7 @@ export default function SpecialOfferPageClient() {
               ) : (
                 <form onSubmit={handleClaimSubmit} className="voucher-claim-form" noValidate>
                   <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
-                  <input type="hidden" name="subject" value="New 20% Privilege Lead from Special Offer Page" />
+                  <input type="hidden" name="subject" value="New Free OPD Lead from Special Offer Page" />
                   <input type="hidden" name="from_name" value="Shubh Dental Clinic Website" />
 
                   {/* Honeypot field for spam prevention */}
@@ -480,7 +480,7 @@ export default function SpecialOfferPageClient() {
 
                   <button type="submit" className="btn-voucher-claim" disabled={isSubmitting}>
                     <Sparkles size={17} />
-                    <span>{isSubmitting ? 'Securing Your 20% Slot...' : 'Claim 20% Privilege Voucher Now'}</span>
+                    <span>{isSubmitting ? 'Reserving Free Consultation...' : 'Claim Free OPD Consultation & Digital Scan'}</span>
                     <ArrowRight size={17} />
                   </button>
 
@@ -508,12 +508,12 @@ export default function SpecialOfferPageClient() {
         <div className="container">
           
           <div className="section-head-compact text-center">
-            <span className="mini-sub-badge">ALL ELIGIBLE PROCEDURES</span>
+            <span className="mini-sub-badge">FREE CONSULTATION FOR ALL PROCEDURES</span>
             <h2 className="section-title-compact">
-              Explore 20% Concessions on All Treatments
+              Free OPD Consultation for Every Treatment
             </h2>
             <p className="section-desc-compact">
-              All treatments include complimentary 3D scans, 0% EMI financing, and direct PGI MDS specialist oversight.
+              Every treatment includes a complimentary OPD specialist consultation + 3D digital scan, 0% EMI financing, and direct PGI MDS oversight.
             </p>
           </div>
 
@@ -526,7 +526,7 @@ export default function SpecialOfferPageClient() {
                 <div className="tc-header-row">
                   <span className="tc-tab-tag">{treatment.tabName}</span>
                   <span className="tc-discount-badge">
-                    <Percent size={12} /> 20% OFF
+                    <Sparkles size={12} /> FREE OPD
                   </span>
                 </div>
 
@@ -574,7 +574,7 @@ export default function SpecialOfferPageClient() {
                     className="tc-claim-btn"
                   >
                     <Sparkles size={15} />
-                    <span>Claim 20% Pass</span>
+                    <span>Claim Free Consultation</span>
                     <ArrowRight size={14} />
                   </button>
                   <a href="tel:+918685048414" className="tc-call-btn" title="Call doctor desk">
@@ -711,7 +711,7 @@ export default function SpecialOfferPageClient() {
       {/* ── 7. STICKY MOBILE BOTTOM CONVERSION BAR ─────────────── */}
       <div className="sticky-mobile-offer-bar">
         <div className="sticky-bar-left">
-          <span className="sticky-pill">20% OFF PASS</span>
+          <span className="sticky-pill">FREE OPD</span>
           <span className="sticky-slots">4 Slots Left Today</span>
         </div>
         <div className="sticky-bar-actions">
@@ -719,12 +719,12 @@ export default function SpecialOfferPageClient() {
             type="button"
             onClick={() => handleQuickTabClaim(currentTreatment)}
             data-open-offer="true"
-            data-treatment={currentTreatment?.title || 'Invisalign® & Clear Aligners (Flat 20% OFF)'}
+            data-treatment={currentTreatment?.title || '💡 Not Sure? Consult Doctor First (Free OPD Consultation + Digital Scan)'}
             className="sticky-btn-wa"
-            aria-label="Claim 20% OFF"
+            aria-label="Claim Free OPD Consultation"
           >
             <Sparkles size={14} />
-            <span>Claim 20% OFF</span>
+            <span>Claim Free Consultation</span>
           </button>
           <a href="tel:+918685048414" className="sticky-btn-call" aria-label="Call clinic">
             <Phone size={15} />
