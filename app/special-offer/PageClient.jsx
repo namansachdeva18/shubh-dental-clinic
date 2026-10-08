@@ -479,9 +479,9 @@ export default function SpecialOfferPageClient() {
                   </div>
 
                   <button type="submit" className="btn-voucher-claim" disabled={isSubmitting}>
-                    <Sparkles size={17} />
-                    <span>{isSubmitting ? 'Reserving Free Consultation...' : 'Claim Free OPD Consultation & Digital Scan'}</span>
-                    <ArrowRight size={17} />
+                    <Sparkles size={16} />
+                    <span>{isSubmitting ? 'Reserving...' : 'Claim Free OPD & Digital Scan'}</span>
+                    <ArrowRight size={16} />
                   </button>
 
                   <div className="voucher-call-alt">
@@ -980,21 +980,28 @@ export default function SpecialOfferPageClient() {
           border-radius: 12px;
           padding: 0.5rem 0.85rem;
           margin-bottom: 1.15rem;
+          gap: 0.5rem;
+          flex-wrap: wrap;
         }
         .code-box {
           display: flex;
           align-items: center;
           gap: 0.4rem;
+          min-width: 0;
+          flex-shrink: 1;
         }
         .code-label {
           font-size: 0.68rem;
           color: rgba(255, 255, 255, 0.6);
           font-weight: 700;
+          white-space: nowrap;
+          flex-shrink: 0;
         }
         .code-val {
-          font-size: 0.88rem;
+          font-size: 0.82rem;
           color: #FDE68A;
-          letter-spacing: 0.06em;
+          letter-spacing: 0.04em;
+          white-space: nowrap;
         }
         .code-verified {
           display: inline-flex;
@@ -1003,6 +1010,8 @@ export default function SpecialOfferPageClient() {
           font-size: 0.7rem;
           font-weight: 800;
           color: #10B981;
+          white-space: nowrap;
+          flex-shrink: 0;
         }
 
         .voucher-claim-form {
@@ -1046,9 +1055,9 @@ export default function SpecialOfferPageClient() {
           gap: 0.45rem;
           background: linear-gradient(135deg, #E66A1F 0%, #D67A41 100%);
           color: #FFFFFF;
-          font-size: 0.94rem;
+          font-size: 0.9rem;
           font-weight: 800;
-          padding: 0.85rem 1.25rem;
+          padding: 0.85rem 1rem;
           border-radius: 12px;
           border: none;
           cursor: pointer;
@@ -1056,10 +1065,36 @@ export default function SpecialOfferPageClient() {
           box-shadow: 0 8px 20px rgba(230, 106, 31, 0.45);
           transition: all 0.22s ease;
           font-family: inherit;
+          white-space: nowrap;
+          min-width: 0;
+          overflow: hidden;
+        }
+        .btn-voucher-claim span {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         .btn-voucher-claim:hover {
           transform: translateY(-2px);
           box-shadow: 0 12px 26px rgba(230, 106, 31, 0.6);
+        }
+
+        @media (max-width: 420px) {
+          .btn-voucher-claim {
+            font-size: 0.82rem;
+            padding: 0.75rem 0.8rem;
+            gap: 0.3rem;
+          }
+          .voucher-card-inner {
+            padding: 1.35rem 1.1rem;
+          }
+          .voucher-heading {
+            font-size: 1.05rem;
+          }
+          .code-val {
+            font-size: 0.76rem;
+            letter-spacing: 0.02em;
+          }
         }
 
         .voucher-call-alt {
