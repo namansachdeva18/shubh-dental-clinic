@@ -6,7 +6,7 @@ import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from '../lib/web3forms';
 import { trackConversion, CONVERSION_EVENTS } from '../lib/conversionTracking';
 
 const TREATMENTS = [
-  '💡 Not Sure? Consult Doctor First (Get Tailored 20% Plan + Free 3D Scan)',
+  '💡 Not Sure? Consult Doctor First (Free OPD Consultation + Digital Scan)',
   'Invisalign® & Clear Aligners (Flat 20% OFF)',
   'Korean Osstem® Dental Implants (20% Concession)',
   'Damon® & Ceramic Braces (Anniversary Special)',
@@ -191,11 +191,26 @@ export default function OfferModal() {
       const trigger = e.target.closest(
         'a[href="#book"], a[href="#booking"], a[href="#offer"], a[href="#claim-offer"], ' +
         '[data-open-offer], [data-open-book], [data-open-modal], ' +
-        '.sticky-btn-wa, .tc-claim-btn, .btn-header-reserve, .mobile-bar-btn, .inav-quick-book-btn, ' +
+        '.sticky-btn-wa, .tc-claim-btn, .btn-header-reserve, .inav-quick-book-btn, ' +
         '.hs-btn-primary, .btn-doc-primary, .btn-kids-primary, .case-cta-btn, .case-action-btn, .btn-sky-cta'
       );
 
       if (trigger) {
+        // Never intercept real external/communication links even if they have a matched class
+        const triggerHref = trigger.getAttribute('href') || '';
+        if (
+          triggerHref.startsWith('tel:') ||
+          triggerHref.startsWith('mailto:') ||
+          triggerHref.includes('wa.me') ||
+          triggerHref.includes('whatsapp.com') ||
+          triggerHref.includes('maps.google') ||
+          triggerHref.includes('maps.app.goo.gl') ||
+          triggerHref.includes('instagram.com') ||
+          (triggerHref.startsWith('http') && !triggerHref.includes(typeof window !== 'undefined' ? window.location.hostname : ''))
+        ) {
+          return; // Let the link work normally
+        }
+
         e.preventDefault();
         e.stopPropagation();
         const customTreatment = trigger.getAttribute('data-treatment') || trigger.dataset?.treatment;
@@ -217,13 +232,16 @@ export default function OfferModal() {
         }
 
         const href = clickable.getAttribute('href') || '';
-        // Skip telephone, direct whatsapp, and maps
+        // Skip telephone, direct whatsapp, maps, instagram and all external links
         if (
           href.startsWith('tel:') || 
           href.startsWith('mailto:') || 
           href.includes('wa.me') || 
           href.includes('whatsapp.com') ||
-          href.includes('maps.google')
+          href.includes('maps.google') ||
+          href.includes('maps.app.goo.gl') ||
+          href.includes('instagram.com') ||
+          (href.startsWith('http') && !href.includes(typeof window !== 'undefined' ? window.location.hostname : ''))
         ) {
           return;
         }
@@ -359,7 +377,7 @@ export default function OfferModal() {
     try {
       const lastSubmitTs = localStorage.getItem('shubh_last_lead_timestamp');
       if (lastSubmitTs && (Date.now() - Number(lastSubmitTs)) < 45000) {
-        setErrorMessage('Your 20% Privilege Pass is already active! Our team is contacting you directly.');
+        setErrorMessage('Your Free OPD Consultation & Digital Scan request is already active! Our team is contacting you directly.');
         return;
       }
     } catch (err) {}
@@ -372,8 +390,8 @@ export default function OfferModal() {
       treatment: formData.treatment,
       timing: formData.timing,
       note: noteCheck.cleanNote,
-      voucher: 'SHUBH-20-VIP',
-      source: '20% OFF Privilege Pass Popup (Calibrated Lead Engine)'
+      voucher: 'SHUBH-FREE-OPD',
+      source: 'Free OPD Consultation & Digital Scan Popup'
     };
 
     // 1. Post verified clean lead to Web3Forms with full attribution
@@ -385,7 +403,7 @@ export default function OfferModal() {
         timing: cleanPayload.timing,
         source: cleanPayload.source,
         voucher: cleanPayload.voucher,
-        message: `Unlocked 20% Privilege Offer for ${cleanPayload.treatment}. Slot: ${cleanPayload.timing}. Goal/Note: ${cleanPayload.note || 'None'}`
+        message: `Claimed Free OPD Consultation & Digital Scan for ${cleanPayload.treatment}. Slot: ${cleanPayload.timing}. Goal/Note: ${cleanPayload.note || 'None'}`
       });
 
       // Record rate limit timestamp
@@ -446,15 +464,15 @@ export default function OfferModal() {
                 <div className="clean-header-block">
                   <div className="clean-pill-badge">
                     <Sparkles size={12} className="pill-sparkle" />
-                    <span>CLINICAL SPECIAL · 20% OFF</span>
+                    <span>CLINICAL SPECIAL · COMPLIMENTARY OPD</span>
                   </div>
 
                   <h2 className="clean-main-title" id="offer-modal-title">
-                    Unlock Your <span className="title-gold">20% Clinical Offer</span>
+                    Claim Your <span className="title-gold">Free OPD Consultation &amp; Digital Scan</span>
                   </h2>
 
                   <p className="clean-subtitle">
-                    Enter your details to claim instant 20% Privilege Benefits &amp; a Complimentary 3D Digital Scan (Worth ₹3,500).
+                    Enter your details to claim a Complimentary OPD Specialist Consultation &amp; 3D Digital Scan (Worth ₹3,500).
                   </p>
                 </div>
 
@@ -569,11 +587,11 @@ export default function OfferModal() {
                     className="clean-submit-gold-btn"
                   >
                     {isSubmitting ? (
-                      <span>Unlocking 20% Offer...</span>
+                      <span>Reserving Free Consultation...</span>
                     ) : (
                       <>
                         <Sparkles size={16} />
-                        <span>Unlock My 20% Offer</span>
+                        <span>Claim Free OPD Consultation &amp; Digital Scan</span>
                         <ArrowRight size={16} />
                       </>
                     )}
@@ -586,7 +604,7 @@ export default function OfferModal() {
                       <span>100% Confidential · PGI Specialist Care in Rohtak</span>
                     </div>
                     <span className="clean-subtext">
-                      By submitting, your 20% privilege benefits are locked and our team will contact you.
+                      By submitting, your Free OPD consultation &amp; 3D Digital Scan slot is reserved and our team will contact you.
                     </span>
                   </div>
                 </form>
@@ -597,13 +615,13 @@ export default function OfferModal() {
                 <div className="success-icon-wrap">
                   <CheckCircle2 size={46} color="#10B981" />
                 </div>
-                <h3 className="success-heading">20% Offer Pass Unlocked!</h3>
+                <h3 className="success-heading">Free OPD Consultation Reserved!</h3>
                 <p className="success-sub">
-                  Your VIP voucher code <strong>SHUBH-20-VIP</strong> has been activated for <strong>{formData.name}</strong>.
+                  Your VIP voucher code <strong>SHUBH-FREE-OPD</strong> has been activated for <strong>{formData.name}</strong>.
                 </p>
                 <div className="success-perk-card">
-                  <span>✓ 20% Concession on {formData.treatment}</span>
-                  <span>✓ Free 3D iTero® / CBCT Scan (Worth ₹3,500)</span>
+                  <span>✓ Free OPD Consultation with Senior Specialist</span>
+                  <span>✓ Complimentary 3D Digital Scan (Worth ₹3,500)</span>
                   <span>✓ Priority Slot with Prof. Dr. S. K. Yadav</span>
                 </div>
                 <button onClick={closeModal} className="clean-close-dialog-btn" type="button">

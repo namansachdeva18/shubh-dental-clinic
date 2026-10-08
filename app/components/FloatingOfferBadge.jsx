@@ -36,7 +36,7 @@ export default function FloatingOfferBadge() {
         <motion.button
           onClick={handleOpenModal}
           className="elite-pill-btn"
-          aria-label="Claim 20% Anniversary Offer"
+          aria-label="Claim Free OPD Consultation and Digital Scan"
           initial={{ scale: 0, opacity: 0, y: 15 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0, opacity: 0 }}
@@ -54,10 +54,10 @@ export default function FloatingOfferBadge() {
             <X size={10} />
           </span>
 
-          {/* Left Circular 20% Badge with subtle shine */}
+          {/* Left Circular FREE OPD Badge with subtle shine */}
           <div className="elite-pct-circle">
-            <span className="elite-pct-text">20%</span>
-            <span className="elite-pct-sub">OFF</span>
+            <span className="elite-pct-text">FREE</span>
+            <span className="elite-pct-sub">OPD</span>
           </div>
 
           {/* Center Text Block */}
@@ -178,18 +178,18 @@ export default function FloatingOfferBadge() {
 
         .elite-pct-text {
           font-family: var(--font-heading, 'Outfit'), sans-serif;
-          font-size: 0.76rem;
+          font-size: 0.62rem;
           font-weight: 900;
           color: #1A1008;
-          letter-spacing: -0.03em;
+          letter-spacing: -0.01em;
         }
 
         .elite-pct-sub {
           font-size: 0.44rem;
           font-weight: 850;
           color: #2D1A0A;
-          letter-spacing: 0.04em;
-          margin-top: -1px;
+          letter-spacing: 0.05em;
+          margin-top: 0px;
         }
 
         /* Label Block on Right */

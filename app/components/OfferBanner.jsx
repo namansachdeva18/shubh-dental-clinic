@@ -11,13 +11,13 @@ export default function OfferBanner() {
           <div className="offer-tag-capsule">
             <Tag size={11} className="offer-tag-icon" />
             <span className="hide-mobile">SPECIAL OFFER</span>
-            <span className="show-mobile">20% OFF</span>
+            <span className="show-mobile">FREE OPD</span>
           </div>
 
           <span className="offer-dot-separator hide-mobile">•</span>
 
           <span className="offer-headline-text">
-            <strong>Up to 20% OFF</strong> Selected Dental Treatments + Free 3D Scan
+            <strong>Free OPD Consultation</strong> &amp; 3D Digital Scan
           </span>
 
           <span className="offer-dot-separator hide-mobile">•</span>

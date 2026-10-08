@@ -110,7 +110,7 @@ export default function QuickNavBar() {
               onClick={(e) => {
                 e.preventDefault();
                 window.dispatchEvent(new CustomEvent('openOfferModal', {
-                  detail: { treatment: '💡 Not Sure? Consult Doctor First (Get Tailored 20% Plan + Free 3D Scan)' }
+                  detail: { treatment: '💡 Not Sure? Consult Doctor First (Free OPD Consultation + Digital Scan)' }
                 }));
               }}
               className="inav-quick-book-btn"
