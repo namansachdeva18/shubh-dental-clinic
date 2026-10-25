@@ -442,28 +442,39 @@ export default function SpecialOfferPageClient() {
             Don&apos;t hide your teeth in wedding photos or videos. Walk down the aisle with total confidence — treated by <strong>Ex-PGI Chandigarh Specialists</strong> at Rohtak&apos;s highest-rated clinic. Includes <strong>Free OPD Consultation &amp; 3D Smile Scan</strong>.
           </motion.p>
 
-          {/* Trust Badges Strip */}
+          {/* Trust Badges Strip (Consistent 2-in-1st-line, 1-in-2nd-line, 1-in-3rd-line across iPhone & Android) */}
           <motion.div 
             className="hero-badges-strip"
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.45, delay: 0.2 }}
           >
-            <div className="h-badge-item">
-              <ShieldCheck size={15} className="badge-ico gold" />
-              <span><strong>Ex-PGI Chandigarh</strong> Doctors</span>
+            {/* Line 1: 2 items side-by-side */}
+            <div className="badge-row badge-row-duo">
+              <div className="h-badge-item">
+                <ShieldCheck size={14} className="badge-ico gold" />
+                <span><strong>Ex-PGI Chandigarh</strong> Doctors</span>
+              </div>
+              <div className="h-badge-item">
+                <span className="star-rating">★ 5.0</span>
+                <span><strong>300+ Verified</strong> Reviews</span>
+              </div>
             </div>
-            <div className="h-badge-item">
-              <span className="star-rating">★ 5.0</span>
-              <span><strong>300+ Verified</strong> Patient Reviews</span>
+
+            {/* Line 2: 3rd item centered on its own line */}
+            <div className="badge-row badge-row-single">
+              <div className="h-badge-item">
+                <Award size={14} className="badge-ico gold" />
+                <span><strong>WFO (USA) Fellow</strong> Orthodontist</span>
+              </div>
             </div>
-            <div className="h-badge-item">
-              <Award size={15} className="badge-ico gold" />
-              <span><strong>WFO (USA) Fellow</strong> Orthodontist</span>
-            </div>
-            <div className="h-badge-item open-to-all">
-              <Sparkles size={13} className="badge-ico green" />
-              <span><strong>Open to Everyone:</strong> Weddings, Grooms &amp; General Patients</span>
+
+            {/* Line 3: 4th item open to everyone */}
+            <div className="badge-row badge-row-single">
+              <div className="h-badge-item open-to-all">
+                <Sparkles size={13} className="badge-ico green" />
+                <span><strong>Open to Everyone:</strong> Weddings, Grooms &amp; General Patients</span>
+              </div>
             </div>
           </motion.div>
 
@@ -1837,10 +1848,12 @@ export default function SpecialOfferPageClient() {
           text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
         .highlight-copper {
-          background: linear-gradient(135deg, #FFB380 0%, #FFA86B 40%, #FF7A29 100%);
+          background: linear-gradient(135deg, #FFDD55 0%, #FFA826 40%, #FF5500 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          filter: drop-shadow(0 2px 8px rgba(230, 106, 31, 0.4));
+          filter: drop-shadow(0 0 16px rgba(255, 170, 0, 0.7)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
+          font-weight: 950;
+          display: inline-block;
         }
 
         .hero-main-sub {
@@ -1856,32 +1869,47 @@ export default function SpecialOfferPageClient() {
           font-weight: 750;
         }
 
-        /* Hero Badges Strip */
+        /* Hero Badges Strip (Organized 3-tier structure) */
         .hero-badges-strip {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 1.65rem;
+          width: 100%;
+        }
+        .badge-row {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.55rem;
-          flex-wrap: wrap;
-          margin-bottom: 1.65rem;
+          gap: 0.5rem;
+          width: 100%;
+        }
+        .badge-row-duo {
+          flex-wrap: nowrap;
+        }
+        .badge-row-single {
+          justify-content: center;
         }
         .h-badge-item {
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           gap: 0.35rem;
           font-size: 0.74rem;
           color: #FFFFFF;
-          background: rgba(26, 13, 8, 0.65);
-          border: 1px solid rgba(214, 122, 65, 0.35);
-          padding: 0.3rem 0.75rem;
+          background: rgba(26, 13, 8, 0.72);
+          border: 1px solid rgba(214, 122, 65, 0.45);
+          padding: 0.32rem 0.8rem;
           border-radius: 99px;
-          backdrop-filter: blur(6px);
-          -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+          white-space: nowrap;
         }
         .h-badge-item.open-to-all {
-          background: rgba(6, 78, 59, 0.65);
-          border-color: rgba(52, 211, 153, 0.6);
+          background: rgba(6, 78, 59, 0.72);
+          border-color: rgba(52, 211, 153, 0.7);
           color: #D1FAE5;
         }
         .badge-ico.gold { color: #F59E0B; }
@@ -4029,9 +4057,18 @@ export default function SpecialOfferPageClient() {
             gap: 0.35rem;
             margin-bottom: 1.25rem;
           }
-          .h-badge-item {
+          .badge-row {
+            gap: 0.35rem;
+          }
+          .badge-row-duo .h-badge-item {
+            font-size: 0.65rem;
+            padding: 0.22rem 0.45rem;
+            flex: 1;
+            max-width: 175px;
+          }
+          .badge-row-single .h-badge-item {
             font-size: 0.68rem;
-            padding: 0.22rem 0.55rem;
+            padding: 0.22rem 0.65rem;
           }
           .hero-floating-glass-bar {
             flex-direction: column;
