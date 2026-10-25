@@ -494,7 +494,7 @@ export default function OfferModal() {
                 <form onSubmit={handleSubmit} className="clean-form-list" noValidate>
                   <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
                   
-                  {/* Invisible Honeypot Field for Bot Detection */}
+                  {/* Invisible Honeypot Field for Automated Bot Trapping */}
                   <div style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', left: '-9999px', height: 0, width: 0, overflow: 'hidden' }} aria-hidden="true">
                     <label htmlFor="modal_clinic_hp">Do not fill this</label>
                     <input
@@ -504,7 +504,7 @@ export default function OfferModal() {
                       value={honeypot}
                       onChange={(e) => setHoneypot(e.target.value)}
                       tabIndex={-1}
-                      autoComplete="off"
+                      autoComplete="new-password"
                     />
                   </div>
 
