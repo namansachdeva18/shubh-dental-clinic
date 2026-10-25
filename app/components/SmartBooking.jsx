@@ -83,11 +83,10 @@ export default function SmartBooking() {
         name: formData.name,
         phone: formData.phone,
         treatment: formData.treatment,
-        date: finalDate,
-        timing: formData.time,
         mode: formData.mode,
+        voucher: 'SHUBH-WEDDING-20',
         source: 'Homepage Smart Booking Section (#book)',
-        message: `Patient requested ${formData.mode} on ${finalDate} (${formData.time}) for ${formData.treatment}`
+        message: `Patient requested VIP Consultation for ${formData.treatment} (${formData.mode}) with 20% OFF Voucher`
       });
 
       trackConversion(CONVERSION_EVENTS.GENERATE_LEAD, {
@@ -298,71 +297,10 @@ export default function SmartBooking() {
                     </div>
                   </div>
 
-                  {/* 3. 1-TAP QUICK DATE & SLOT PICKER */}
-                  <div className="form-schedule-grid">
-                    
-                    {/* Quick Date Chips */}
-                    <div className="schedule-col">
-                      <label className="fancy-input-label">Preferred Date</label>
-                      <div className="quick-date-chips">
-                        <button
-                          type="button"
-                          className={`quick-chip ${formData.dateType === 'Today' ? 'quick-chip--active' : ''}`}
-                          onClick={() => setFormData({ ...formData, dateType: 'Today' })}
-                        >
-                          Today
-                        </button>
-                        <button
-                          type="button"
-                          className={`quick-chip ${formData.dateType === 'Tomorrow' ? 'quick-chip--active' : ''}`}
-                          onClick={() => setFormData({ ...formData, dateType: 'Tomorrow' })}
-                        >
-                          Tomorrow
-                        </button>
-                        <button
-                          type="button"
-                          className={`quick-chip ${formData.dateType === 'Custom' ? 'quick-chip--active' : ''}`}
-                          onClick={() => setFormData({ ...formData, dateType: 'Custom' })}
-                        >
-                          <Calendar size={11} />
-                          <span>Custom</span>
-                        </button>
-                      </div>
-                      
-                      {formData.dateType === 'Custom' && (
-                        <input
-                          type="date"
-                          value={formData.customDate}
-                          onChange={(e) => setFormData({ ...formData, customDate: e.target.value })}
-                          className="custom-date-input"
-                          autoFocus
-                        />
-                      )}
-                    </div>
-
-                    {/* Quick Time Slot Chips */}
-                    <div className="schedule-col">
-                      <label className="fancy-input-label">Preferred Slot</label>
-                      <div className="quick-slot-toggle">
-                        <button
-                          type="button"
-                          onClick={() => setFormData({ ...formData, time: 'Morning (10am–1pm)' })}
-                          className={`quick-slot-btn ${formData.time.includes('Morning') ? 'quick-slot--active' : ''}`}
-                        >
-                          <Sun size={12} />
-                          <span>Morning</span>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setFormData({ ...formData, time: 'Evening (4pm–8pm)' })}
-                          className={`quick-slot-btn ${formData.time.includes('Evening') ? 'quick-slot--active' : ''}`}
-                        >
-                          <Moon size={12} />
-                          <span>Evening</span>
-                        </button>
-                      </div>
-                    </div>
-
+                  {/* 20% OFF Activated Concession Strip */}
+                  <div className="smart-booking-voucher-strip">
+                    <span className="sb-badge">20% OFF ACTIVATED</span>
+                    <span className="sb-txt">Free OPD + 3D Scan (Worth ₹2,000) · Valid Till 15 Nov</span>
                   </div>
 
                   {/* High-Converting Glowing Action Button */}
@@ -695,12 +633,32 @@ export default function SmartBooking() {
           font-weight: 800;
           color: #6E5448;
           text-transform: uppercase;
+        .smart-booking-voucher-strip {
+          background: #2C1610;
+          color: #FFFFFF;
+          padding: 0.55rem 0.85rem;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          border: 1px solid rgba(214, 122, 65, 0.3);
+          margin-top: 0.2rem;
+        }
+        .sb-badge {
+          background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+          color: #FFFFFF;
+          font-size: 0.68rem;
+          font-weight: 900;
+          padding: 0.2rem 0.5rem;
+          border-radius: 5px;
+          flex-shrink: 0;
           letter-spacing: 0.04em;
         }
-        .field-badge-hint {
-          font-size: 0.62rem;
-          color: #D67A41;
+        .sb-txt {
+          font-size: 0.72rem;
           font-weight: 700;
+          color: rgba(255, 255, 255, 0.95);
+          line-height: 1.3;
         }
 
         /* ── LUXURY NATIVE SELECT (MOBILE & DESKTOP BULLETPROOF) ── */

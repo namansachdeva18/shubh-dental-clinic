@@ -107,11 +107,28 @@ const nextConfig = {
         ],
       },
       {
-        // Cache llms.txt
+        // Cache llms.txt for AI crawlers
         source: '/llms.txt',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=86400, s-maxage=604800' },
           { key: 'Content-Type', value: 'text/plain; charset=utf-8' },
+        ],
+      },
+      {
+        // Cache llms-full.txt for deep AI crawling
+        source: '/llms-full.txt',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, s-maxage=604800' },
+          { key: 'Content-Type', value: 'text/plain; charset=utf-8' },
+        ],
+      },
+      {
+        // Cache AI plugin manifest for ChatGPT/Claude/Gemini
+        source: '/.well-known/ai-plugin.json',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, s-maxage=604800' },
+          { key: 'Content-Type', value: 'application/json; charset=utf-8' },
+          { key: 'Access-Control-Allow-Origin', value: '*' },
         ],
       },
     ];

@@ -3,7 +3,10 @@ import { useState, useEffect } from 'react';
 import { Sparkles, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { usePathname } from 'next/navigation';
+
 export default function FloatingOfferBadge() {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
 
@@ -25,7 +28,7 @@ export default function FloatingOfferBadge() {
     setIsDismissed(true);
   };
 
-  if (isDismissed || !isVisible) return null;
+  if (pathname === '/special-offer' || isDismissed || !isVisible) return null;
 
   return (
     <>

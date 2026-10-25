@@ -17,13 +17,13 @@ export default function OfferBanner() {
           <span className="offer-dot-separator hide-mobile">•</span>
 
           <span className="offer-headline-text">
-            <strong>Free OPD Consultation</strong> &amp; 3D Digital Scan
+            <strong>Flat 20% OFF</strong> + Free OPD Consultation &amp; 3D Scan
           </span>
 
           <span className="offer-dot-separator hide-mobile">•</span>
 
-          <span className="offer-validity-text hide-mobile">
-            Valid This Month
+          <span className="offer-validity-text">
+            Valid Till 15 Nov
           </span>
         </Link>
 
@@ -159,6 +159,10 @@ export default function OfferBanner() {
           }
           .offer-headline-text {
             font-size: 0.71rem;
+          }
+          .offer-validity-text {
+            font-size: 0.68rem;
+            color: #FFB380;
           }
           .btn-claim-offer {
             font-size: 0.68rem;

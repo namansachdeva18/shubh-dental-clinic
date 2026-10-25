@@ -6,14 +6,20 @@ import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from '../lib/web3forms';
 import { trackConversion, CONVERSION_EVENTS } from '../lib/conversionTracking';
 
 const TREATMENTS = [
-  '💡 Not Sure? Consult Doctor First (Free OPD Consultation + Digital Scan)',
-  'Invisalign® & Clear Aligners (Flat 20% OFF)',
-  'Korean Osstem® Dental Implants (20% Concession)',
-  'Damon® & Ceramic Braces (Anniversary Special)',
-  'Smile Makeover & Porcelain Veneers (20% OFF)',
-  'Single-Sitting Painless Root Canal & Crown',
-  'Full Mouth Teeth Rehabilitation & Bite Care',
-  'General Dental Consultation & Teeth Scaling'
+  'Aesthetic Dental Braces — Ceramic & Self-Ligating (20% OFF)',
+  'Invisalign® & 3D Clear Aligners (20% OFF)',
+  'Lingual Invisible Braces (Behind Teeth) (20% OFF)',
+  'Complete Smile Makeover (20% OFF)',
+  'Handcrafted Porcelain Veneers — German E-max® (20% OFF)',
+  'Composite Bonding & Gap/Chip Closure (20% OFF)',
+  'Laser Teeth Whitening & Polish (45-Min Glow) (20% OFF)',
+  'Natural Zirconia & Aesthetic Ceramic Crowns (20% OFF)',
+  'Computer-Guided Dental Implants — Lifetime Warranty (20% OFF)',
+  'Same-Day Dental Implants (All-on-4/6) (20% OFF)',
+  'Microscopic / Painless Root Canal Treatment (20% OFF)',
+  'Deep Ultrasonic Cleaning & Polishing (20% OFF)',
+  'Full Mouth Comprehensive Checkup + 3D Scan (20% OFF)',
+  'Not Sure Yet — Need Free Doctor Diagnosis & Advice'
 ];
 
 /**
@@ -118,7 +124,6 @@ export default function OfferModal() {
     name: '',
     phone: '',
     treatment: TREATMENTS[0],
-    timing: 'Anytime / Earliest Specialist Slot',
     note: ''
   });
   
@@ -132,7 +137,7 @@ export default function OfferModal() {
   const [isSuccess, setIsSuccess] = useState(false);
   const modalRef = useRef(null);
 
-  // 1. AUTO-POPUP ON INITIAL SITE ENTRY (Gentle 2.2s delay, session guarded)
+  // 1. AUTO-POPUP ON INITIAL SITE ENTRY (Appears first with fast 500ms delay, session guarded)
   useEffect(() => {
     try {
       // Don't auto-popup on special-offer page since that page already has its own dedicated voucher form
@@ -147,7 +152,7 @@ export default function OfferModal() {
           setFormOpenedTime(Date.now());
           setErrorMessage('');
           sessionStorage.setItem('shubh_lead_offer_opened_session_v4', 'true');
-        }, 2200);
+        }, 500);
         return () => clearTimeout(timer);
       }
     } catch (e) {
@@ -388,10 +393,8 @@ export default function OfferModal() {
       name: nameCheck.cleanName,
       phone: phoneCheck.cleanPhone,
       treatment: formData.treatment,
-      timing: formData.timing,
-      note: noteCheck.cleanNote,
-      voucher: 'SHUBH-FREE-OPD',
-      source: 'Free OPD Consultation & Digital Scan Popup'
+      voucher: 'SHUBH-WEDDING-20',
+      source: 'Site-wide VIP Offer Modal'
     };
 
     // 1. Post verified clean lead to Web3Forms with full attribution
@@ -400,10 +403,9 @@ export default function OfferModal() {
         name: cleanPayload.name,
         phone: cleanPayload.phone,
         treatment: cleanPayload.treatment,
-        timing: cleanPayload.timing,
         source: cleanPayload.source,
         voucher: cleanPayload.voucher,
-        message: `Claimed Free OPD Consultation & Digital Scan for ${cleanPayload.treatment}. Slot: ${cleanPayload.timing}. Goal/Note: ${cleanPayload.note || 'None'}`
+        message: `Claimed 20% OFF Offer + Free OPD & 3D Scan for: ${cleanPayload.treatment}`
       });
 
       // Record rate limit timestamp
@@ -464,15 +466,15 @@ export default function OfferModal() {
                 <div className="clean-header-block">
                   <div className="clean-pill-badge">
                     <Sparkles size={12} className="pill-sparkle" />
-                    <span>CLINICAL SPECIAL · COMPLIMENTARY OPD</span>
+                    <span>💍 WEDDING SPECIAL · FLAT 20% OFF · VALID TILL 15 NOV</span>
                   </div>
 
                   <h2 className="clean-main-title" id="offer-modal-title">
-                    Claim Your <span className="title-gold">Free OPD Consultation &amp; Digital Scan</span>
+                    Claim <span className="title-gold">Flat 20% OFF</span> &amp; Free 3D Scan
                   </h2>
 
                   <p className="clean-subtitle">
-                    Enter your details to claim a Complimentary OPD Specialist Consultation &amp; 3D Digital Scan (Worth ₹3,500).
+                    Exclusive Wedding Season Concession at Shubh Dental Clinic Rohtak. Free 3D Digital Scan (Worth ₹1,500) &amp; Free OPD included. <strong>Offer strictly valid till 15 Nov</strong> — Open for brides, grooms &amp; all patients!
                   </p>
                 </div>
 
@@ -553,58 +555,43 @@ export default function OfferModal() {
                     </select>
                   </div>
 
-                  {/* Preferred Time */}
-                  <div className="clean-input-box select-box">
-                    <Clock size={18} className="clean-field-icon" />
-                    <select
-                      value={formData.timing}
-                      onChange={(e) => setFormData({ ...formData, timing: e.target.value })}
-                      aria-label="Select Preferred Time"
-                    >
-                      <option value="Anytime / Earliest Specialist Slot">Preferred Time: Anytime / First Available</option>
-                      <option value="Morning Slot (10:00 AM – 01:00 PM)">Morning: 10:00 AM – 01:00 PM</option>
-                      <option value="Evening Slot (04:00 PM – 08:00 PM)">Evening: 04:00 PM – 08:00 PM</option>
-                      <option value="Virtual Video Consultation (WhatsApp / Zoom)">Virtual Video Call (NRI &amp; Outstation)</option>
-                    </select>
-                  </div>
-
-                  {/* Optional Goal / Concern */}
-                  <div className="clean-input-box">
-                    <MessageSquare size={18} className="clean-field-icon" />
-                    <input
-                      type="text"
-                      placeholder="Optional: Tell us about your goal or event date"
-                      maxLength={160}
-                      value={formData.note}
-                      onChange={handleNoteChange}
-                    />
+                  {/* 20% OFF Activated Pill */}
+                  <div className="clean-voucher-strip">
+                    <span className="strip-badge">20% OFF ACTIVATED</span>
+                    <span className="strip-txt">Free OPD + 3D Scan (Worth ₹2,000) Free · Valid Till 15 Nov</span>
                   </div>
 
                   {/* Gold Gradient Action Button */}
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="clean-submit-gold-btn"
+                    className="clean-submit-gold-btn animated-btn-glow"
                   >
                     {isSubmitting ? (
-                      <span>Reserving Free Consultation...</span>
+                      <span>Reserving VIP Slot...</span>
                     ) : (
                       <>
                         <Sparkles size={16} />
-                        <span>Claim Free OPD Consultation &amp; Digital Scan</span>
+                        <span>Claim 20% OFF &amp; Reserve VIP Slot</span>
                         <ArrowRight size={16} />
                       </>
                     )}
                   </button>
 
+                  <div className="modal-micro-perks">
+                    <span>✓ Zero Waiting Time</span>
+                    <span>✓ No Advance Payment</span>
+                    <span>✓ Free Cancellation</span>
+                  </div>
+
                   {/* Footer Security Badges */}
                   <div className="clean-form-footer">
                     <div className="clean-confidential-tag">
                       <ShieldCheck size={14} className="shield-green" />
-                      <span>100% Confidential · PGI Specialist Care in Rohtak</span>
+                      <span>100% Confidential · Shubh Orthodontic &amp; Dental Clinic, Tilak Nagar, Rohtak</span>
                     </div>
                     <span className="clean-subtext">
-                      By submitting, your Free OPD consultation &amp; 3D Digital Scan slot is reserved and our team will contact you.
+                      By submitting, your Flat 20% Concession + Free 3D Scan voucher is reserved and our team will contact you.
                     </span>
                   </div>
                 </form>
@@ -615,14 +602,14 @@ export default function OfferModal() {
                 <div className="success-icon-wrap">
                   <CheckCircle2 size={46} color="#10B981" />
                 </div>
-                <h3 className="success-heading">Free OPD Consultation Reserved!</h3>
+                <h3 className="success-heading">Wedding Offer Voucher Locked!</h3>
                 <p className="success-sub">
-                  Your VIP voucher code <strong>SHUBH-FREE-OPD</strong> has been activated for <strong>{formData.name}</strong>.
+                  Your VIP wedding voucher code <strong>SHUBH-WEDDING-20</strong> has been activated for <strong>{formData.name}</strong>.
                 </p>
                 <div className="success-perk-card">
-                  <span>✓ Free OPD Consultation with Senior Specialist</span>
+                  <span>✓ Flat 20% OFF on Selected Major Treatment</span>
                   <span>✓ Complimentary 3D Digital Scan (Worth ₹3,500)</span>
-                  <span>✓ Priority Slot with Prof. Dr. S. K. Yadav</span>
+                  <span>✓ Priority Consultation with Prof. Dr. S. K. Yadav (Rohtak)</span>
                 </div>
                 <button onClick={closeModal} className="clean-close-dialog-btn" type="button">
                   Done
@@ -823,6 +810,33 @@ export default function OfferModal() {
               cursor: pointer;
             }
 
+            .clean-voucher-strip {
+              background: #2C1610;
+              color: #FFFFFF;
+              padding: 0.55rem 0.85rem;
+              border-radius: 10px;
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              border: 1px solid rgba(214, 122, 65, 0.3);
+            }
+            .strip-badge {
+              background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+              color: #FFFFFF;
+              font-size: 0.68rem;
+              font-weight: 900;
+              padding: 0.2rem 0.5rem;
+              border-radius: 5px;
+              flex-shrink: 0;
+              letter-spacing: 0.04em;
+            }
+            .strip-txt {
+              font-size: 0.72rem;
+              font-weight: 700;
+              color: rgba(255, 255, 255, 0.95);
+              line-height: 1.3;
+            }
+
             /* Submit Button: exact luxurious warm gold gradient */
             .clean-submit-gold-btn {
               width: 100%;
@@ -830,7 +844,7 @@ export default function OfferModal() {
               padding: 0.88rem 1.2rem;
               border-radius: 14px;
               border: none;
-              background: linear-gradient(135deg, #A86B38 0%, #C4854E 50%, #945B2A 100%);
+              background: linear-gradient(135deg, #D67A41 0%, #B85922 100%);
               color: #FFFFFF;
               font-size: 0.96rem;
               font-weight: 800;
@@ -839,14 +853,41 @@ export default function OfferModal() {
               justify-content: center;
               gap: 0.45rem;
               cursor: pointer;
-              box-shadow: 0 8px 22px rgba(168, 107, 56, 0.35);
+              box-shadow: 0 8px 22px rgba(214, 122, 65, 0.35);
               transition: all 0.22s ease;
               font-family: inherit;
             }
+            .animated-btn-glow {
+              animation: buttonPulseGlow 2.4s infinite ease-in-out;
+            }
+            @keyframes buttonPulseGlow {
+              0%, 100% {
+                box-shadow: 0 6px 20px rgba(214, 122, 65, 0.45);
+                transform: scale(1);
+              }
+              50% {
+                box-shadow: 0 8px 28px rgba(214, 122, 65, 0.7);
+                transform: scale(1.02);
+              }
+            }
             .clean-submit-gold-btn:hover {
               transform: translateY(-2px);
-              box-shadow: 0 12px 28px rgba(168, 107, 56, 0.48);
-              background: linear-gradient(135deg, #B5743D 0%, #D49257 50%, #9F622F 100%);
+              box-shadow: 0 12px 28px rgba(214, 122, 65, 0.55);
+            }
+            .clean-submit-gold-btn:active {
+              transform: scale(0.98);
+            }
+
+            .modal-micro-perks {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 0.75rem;
+              flex-wrap: wrap;
+              font-size: 0.68rem;
+              font-weight: 700;
+              color: #6C5A52;
+              margin-top: 0.35rem;
             }
             .clean-submit-gold-btn:active {
               transform: scale(0.98);
