@@ -274,6 +274,7 @@ export default function SmartBooking() {
                         <User size={14} className="fancy-input-icon" />
                         <input
                           type="text"
+                          name="name"
                           required
                           placeholder="Your Name"
                           value={formData.name}
@@ -288,6 +289,7 @@ export default function SmartBooking() {
                         <span className="phone-prefix">+91</span>
                         <input
                           type="tel"
+                          name="phone"
                           required
                           placeholder="Mobile Number"
                           value={formData.phone}

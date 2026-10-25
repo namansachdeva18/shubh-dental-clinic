@@ -1533,6 +1533,7 @@ export default function SpecialOfferPageClient() {
                       <input 
                         id="m-name"
                         type="text" 
+                        name="name"
                         required 
                         placeholder="e.g. Jasleen Kaur / Vikram Sharma" 
                         value={formData.name}
@@ -1550,6 +1551,7 @@ export default function SpecialOfferPageClient() {
                         <input 
                           id="m-phone"
                           type="tel" 
+                          name="phone"
                           required 
                           maxLength={10}
                           placeholder="10-digit mobile number" 
@@ -1564,6 +1566,7 @@ export default function SpecialOfferPageClient() {
                       <label htmlFor="m-treatment">Preferred Treatment <span className="req">*</span></label>
                       <select 
                         id="m-treatment"
+                        name="treatment"
                         value={formData.treatment}
                         onChange={(e) => setFormData(prev => ({ ...prev, treatment: e.target.value }))}
                       >

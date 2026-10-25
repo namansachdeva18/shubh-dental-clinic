@@ -513,6 +513,7 @@ export default function OfferModal() {
                     <User size={18} className="clean-field-icon" />
                     <input
                       type="text"
+                      name="name"
                       required
                       placeholder="Full Name *"
                       autoComplete="name"
@@ -528,6 +529,7 @@ export default function OfferModal() {
                     <span className="clean-country-code">🇮🇳 +91</span>
                     <input
                       type="tel"
+                      name="phone"
                       required
                       placeholder="10-Digit Mobile Number *"
                       autoComplete="tel-national"
@@ -545,6 +547,7 @@ export default function OfferModal() {
                   <div className="clean-input-box select-box">
                     <Stethoscope size={18} className="clean-field-icon" />
                     <select
+                      name="treatment"
                       value={formData.treatment}
                       onChange={(e) => setFormData({ ...formData, treatment: e.target.value })}
                       aria-label="Select Treatment"

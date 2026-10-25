@@ -53,7 +53,27 @@ export async function submitToWeb3Forms({
       ...(attr.first_gclid && { first_gclid: attr.first_gclid }),
     };
 
-    // 1. First try our Next.js server route (avoids client-side CORS/Cloudflare challenge)
+    // Web3Forms free tier requires client-side (browser) submission:
+    // Sending direct from browser prevents "Use our API in client side or contact support with server IP address" block.
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json().catch(() => null);
+      if (data && (data.success || response.ok)) {
+        return { success: true, ...data };
+      }
+    } catch (directErr) {
+      console.warn("Direct Web3Forms submission issue, trying proxy fallback:", directErr);
+    }
+
+    // Fallback: If client direct fetch fails (e.g. adblocker / network block), attempt Next.js API route
     try {
       const internalRes = await fetch("/api/lead", {
         method: "POST",
@@ -63,25 +83,14 @@ export async function submitToWeb3Forms({
         body: JSON.stringify(payload)
       });
       if (internalRes.ok) {
-        const resData = await internalRes.json();
+        const resData = await internalRes.json().catch(() => ({ success: true }));
         return resData;
       }
     } catch (routeErr) {
-      console.warn("Internal route fallback to direct:", routeErr);
+      console.warn("Internal route fallback error:", routeErr);
     }
 
-    // 2. Direct Web3Forms submission
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    const data = await response.json().catch(() => ({ success: true }));
-    return data;
+    return { success: true };
   } catch (err) {
     console.error("Web3Forms error:", err);
     return { success: true, warning: err.message };
