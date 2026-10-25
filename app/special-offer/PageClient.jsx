@@ -1378,22 +1378,8 @@ export default function SpecialOfferPageClient() {
         )}
       </AnimatePresence>
 
-      {/* ── 7. STICKY FLOATING QUICK ACTIONS BAR (MOBILE ONLY — HIDDEN ON LAPTOP/DESKTOP) ── */}
+      {/* ── 7. STICKY FLOATING QUICK ACTIONS BAR (MOBILE ONLY — CLEAN, UNIFIED & BEAUTIFULLY ALIGNED) ── */}
       <div className="floating-action-capsule-bar">
-        
-        {/* Floating Mini Claim Tag on top-right */}
-        <button 
-          type="button" 
-          onClick={() => openOfferModal(null, 'mini_floating_tag')}
-          className="mini-floating-claim-tag"
-        >
-          <Sparkles size={13} className="tag-sparkle" />
-          <div className="tag-text-wrap">
-            <span className="tag-top">Claim 20% OFF</span>
-            <span className="tag-bot">LIMITED SLOTS</span>
-          </div>
-        </button>
-
         {/* 4-Item Capsule Bar (Call, WhatsApp, Directions, Book Button) */}
         <div className="capsule-bar-body">
           <a 
@@ -1435,19 +1421,21 @@ export default function SpecialOfferPageClient() {
             <span className="action-label">Directions</span>
           </a>
 
-          {/* Primary Book CTA with '20% OFF' Badge on top */}
+          {/* Primary Book CTA with cleanly integrated Flat 20% OFF tag */}
           <div className="capsule-book-container">
-            <span className="book-discount-bubble">
-              <Sparkles size={9} /> 20% OFF
-            </span>
             <button 
               type="button" 
               onClick={() => openOfferModal(null, 'capsule_book_btn')}
               className="btn-capsule-book"
             >
-              <Calendar size={14} />
-              <span>Book</span>
-              <ArrowRight size={13} />
+              <div className="btn-book-tag">
+                <Sparkles size={10} /> 20% OFF
+              </div>
+              <div className="btn-book-main">
+                <Calendar size={14} />
+                <span>Book VIP</span>
+                <ArrowRight size={13} />
+              </div>
             </button>
           </div>
         </div>
@@ -3221,129 +3209,112 @@ export default function SpecialOfferPageClient() {
           cursor: pointer;
         }
 
-        /* ── FLOATING QUICK ACTIONS BAR (MOBILE ONLY — HIDDEN ON LAPTOP/DESKTOP) ── */
+        /* ── FLOATING QUICK ACTIONS BAR (MOBILE ONLY — CLEAN, UNIFIED & BEAUTIFULLY ALIGNED) ── */
         .floating-action-capsule-bar {
           display: none;
           position: fixed;
-          bottom: 0.85rem;
+          bottom: 1rem;
           left: 50%;
           transform: translateX(-50%);
           z-index: 9999;
           width: calc(100% - 1.5rem);
-          max-width: 420px;
-        }
-
-        /* Mini Claim Tag floating above capsule */
-        .mini-floating-claim-tag {
-          position: absolute;
-          top: -2.25rem;
-          right: 0.4rem;
-          background: linear-gradient(135deg, #D67A41 0%, #B85922 100%);
-          color: #FFFFFF;
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          border-radius: 99px;
-          padding: 0.3rem 0.8rem;
-          display: flex;
-          align-items: center;
-          gap: 0.35rem;
-          box-shadow: 0 4px 14px rgba(214, 122, 65, 0.45);
-          cursor: pointer;
-        }
-        .tag-sparkle { color: #FCD34D; }
-        .tag-text-wrap {
-          display: flex;
-          flex-direction: column;
-          text-align: left;
-        }
-        .tag-top {
-          font-size: 0.72rem;
-          font-weight: 850;
-          line-height: 1.1;
-        }
-        .tag-bot {
-          font-size: 0.55rem;
-          font-weight: 800;
-          letter-spacing: 0.05em;
-          opacity: 0.9;
+          max-width: 410px;
         }
 
         /* Capsule Body */
         .capsule-bar-body {
-          background: rgba(255, 255, 255, 0.96);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border: 1px solid rgba(74, 37, 24, 0.14);
+          background: rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(214, 122, 65, 0.28);
           border-radius: 99px;
-          padding: 0.4rem 0.55rem;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+          padding: 0.35rem 0.5rem;
+          box-shadow: 0 10px 32px rgba(26, 13, 8, 0.22), 0 2px 8px rgba(0, 0, 0, 0.08);
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 0.35rem;
+          gap: 0.25rem;
         }
         .capsule-action-item {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 0.1rem;
+          justify-content: center;
+          gap: 0.15rem;
           text-decoration: none;
           color: #4A3A33;
-          padding: 0.15rem 0.35rem;
+          padding: 0.2rem 0.4rem;
+          flex: 1;
+          min-width: 0;
+          transition: transform 0.15s ease;
+        }
+        .capsule-action-item:active {
+          transform: scale(0.94);
         }
         .action-circle {
-          width: 32px;
-          height: 32px;
+          width: 34px;
+          height: 34px;
           border-radius: 50%;
-          background: #F4EBE1;
+          background: #F5EEE6;
           color: #2C1610;
           display: flex;
           align-items: center;
           justify-content: center;
+          transition: background 0.2s ease;
         }
         .action-circle.green {
-          background: #E8F7EE;
-          color: #10B981;
+          background: #E6F7ED;
+          color: #0E854B;
         }
         .action-label {
-          font-size: 0.64rem;
+          font-size: 0.65rem;
           font-weight: 750;
+          line-height: 1;
         }
         .action-label.green-txt { color: #0E854B; }
 
-        /* Book Button with Discount Tag */
+        /* Integrated VIP Book Button */
         .capsule-book-container {
-          position: relative;
-        }
-        .book-discount-bubble {
-          position: absolute;
-          top: -0.6rem;
-          right: 0.35rem;
-          background: #2C1610;
-          color: #FCD34D;
-          font-size: 0.6rem;
-          font-weight: 900;
-          padding: 0.1rem 0.4rem;
-          border-radius: 99px;
-          border: 1px solid rgba(252, 211, 77, 0.4);
+          flex: 1.4;
           display: flex;
-          align-items: center;
-          gap: 0.2rem;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-          z-index: 2;
         }
         .btn-capsule-book {
-          display: inline-flex;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
           align-items: center;
-          gap: 0.3rem;
-          background: linear-gradient(135deg, #D67A41 0%, #B85922 100%);
+          justify-content: center;
+          background: linear-gradient(135deg, #E66A1F 0%, #D67A41 100%);
           color: #FFFFFF;
-          font-size: 0.84rem;
-          font-weight: 850;
-          padding: 0.6rem 1.05rem;
           border-radius: 99px;
           border: none;
           cursor: pointer;
-          box-shadow: 0 4px 12px rgba(214, 122, 65, 0.35);
+          padding: 0.4rem 0.75rem;
+          box-shadow: 0 4px 14px rgba(230, 106, 31, 0.45);
+          transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .btn-capsule-book:active {
+          transform: scale(0.96);
+        }
+        .btn-book-tag {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.25rem;
+          font-size: 0.58rem;
+          font-weight: 900;
+          letter-spacing: 0.05em;
+          color: #FEF08A;
+          line-height: 1;
+          margin-bottom: 0.15rem;
+          text-transform: uppercase;
+        }
+        .btn-book-main {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.8rem;
+          font-weight: 850;
+          line-height: 1;
         }
 
         /* ── MODAL DIALOG ── */
