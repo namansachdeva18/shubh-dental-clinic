@@ -415,7 +415,11 @@ export default function SpecialOfferPageClient() {
             transition={{ duration: 0.4 }}
           >
             <Sparkles size={13} className="pill-star" />
-            <span>💍 WEDDING SEASON SPECIAL · FLAT 20% OFF · VALID TILL 15 NOV</span>
+            <span className="pill-highlight-text">💍 WEDDING SPECIAL</span>
+            <span className="pill-sep">•</span>
+            <span className="pill-white-text">FLAT 20% OFF</span>
+            <span className="pill-sep">•</span>
+            <span className="pill-date-badge">TILL 15 NOV</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -1793,18 +1797,34 @@ export default function SpecialOfferPageClient() {
         .hero-pill-badge {
           display: inline-flex;
           align-items: center;
-          gap: 0.4rem;
-          background: rgba(214, 122, 65, 0.16);
-          border: 1px solid rgba(214, 122, 65, 0.45);
-          color: #FCD34D;
-          font-size: 0.7rem;
+          gap: 0.45rem;
+          background: rgba(30, 15, 9, 0.7);
+          border: 1px solid rgba(214, 122, 65, 0.55);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          font-size: 0.72rem;
           font-weight: 850;
-          letter-spacing: 0.08em;
-          padding: 0.3rem 0.85rem;
+          letter-spacing: 0.04em;
+          padding: 0.35rem 0.9rem;
           border-radius: 99px;
-          margin-bottom: 0.85rem;
+          margin-bottom: 0.95rem;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+          flex-wrap: wrap;
+          justify-content: center;
         }
-        .pill-star { color: #EAA77C; }
+        .pill-star { color: #F59E0B; }
+        .pill-highlight-text { color: #FEF08A; }
+        .pill-sep { color: rgba(255, 255, 255, 0.35); font-size: 0.65rem; }
+        .pill-white-text { color: #FFFFFF; font-weight: 900; }
+        .pill-date-badge {
+          background: #E66A1F;
+          color: #FFFFFF;
+          font-size: 0.62rem;
+          font-weight: 900;
+          padding: 0.12rem 0.45rem;
+          border-radius: 99px;
+          letter-spacing: 0.05em;
+        }
 
         .hero-main-h1 {
           font-family: var(--font-heading, 'Outfit'), sans-serif;
@@ -1814,19 +1834,26 @@ export default function SpecialOfferPageClient() {
           letter-spacing: -0.025em;
           margin: 0 0 0.85rem;
           color: #FFFFFF;
+          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
         .highlight-copper {
-          background: linear-gradient(135deg, #FFB380 0%, #D67A41 50%, #FF924A 100%);
+          background: linear-gradient(135deg, #FFB380 0%, #FFA86B 40%, #FF7A29 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
+          filter: drop-shadow(0 2px 8px rgba(230, 106, 31, 0.4));
         }
 
         .hero-main-sub {
-          font-size: 0.92rem;
-          color: rgba(255, 255, 255, 0.85);
-          line-height: 1.55;
+          font-size: 0.94rem;
+          color: #F5EEE9;
+          line-height: 1.6;
           max-width: 680px;
           margin: 0 auto 1.35rem;
+          text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+        }
+        .hero-main-sub strong {
+          color: #FFD4B2;
+          font-weight: 750;
         }
 
         /* Hero Badges Strip */
@@ -1834,7 +1861,7 @@ export default function SpecialOfferPageClient() {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.65rem;
+          gap: 0.55rem;
           flex-wrap: wrap;
           margin-bottom: 1.65rem;
         }
@@ -1843,22 +1870,25 @@ export default function SpecialOfferPageClient() {
           align-items: center;
           gap: 0.35rem;
           font-size: 0.74rem;
-          color: rgba(255, 255, 255, 0.9);
-          background: rgba(255, 255, 255, 0.06);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          padding: 0.25rem 0.65rem;
+          color: #FFFFFF;
+          background: rgba(26, 13, 8, 0.65);
+          border: 1px solid rgba(214, 122, 65, 0.35);
+          padding: 0.3rem 0.75rem;
           border-radius: 99px;
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
         }
         .h-badge-item.open-to-all {
-          background: rgba(16, 185, 129, 0.16);
-          border-color: #10B981;
-          color: #A7F3D0;
+          background: rgba(6, 78, 59, 0.65);
+          border-color: rgba(52, 211, 153, 0.6);
+          color: #D1FAE5;
         }
-        .badge-ico.gold { color: #EAA77C; }
+        .badge-ico.gold { color: #F59E0B; }
         .badge-ico.green { color: #34D399; }
         .star-rating {
-          color: #FCD34D;
-          font-weight: 850;
+          color: #FBBF24;
+          font-weight: 900;
         }
 
         /* Hero Photo Banner with Overlay Bar */
@@ -3972,22 +4002,36 @@ export default function SpecialOfferPageClient() {
             padding-bottom: 95px;
           }
           .campaign-hero-section {
-            padding: 1.5rem 0 2rem;
+            padding: 1.25rem 0 1.75rem;
+          }
+          .hero-pill-badge {
+            font-size: 0.65rem;
+            padding: 0.28rem 0.65rem;
+            gap: 0.35rem;
+            margin-bottom: 0.75rem;
+          }
+          .pill-date-badge {
+            font-size: 0.58rem;
+            padding: 0.1rem 0.38rem;
           }
           .hero-main-h1 {
-            font-size: 1.7rem;
+            font-size: 1.75rem;
+            line-height: 1.22;
+            margin-bottom: 0.7rem;
           }
           .hero-main-sub {
-            font-size: 0.86rem;
-            margin-bottom: 1rem;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin-bottom: 1.15rem;
+            padding: 0 0.25rem;
           }
           .hero-badges-strip {
-            gap: 0.45rem;
+            gap: 0.35rem;
             margin-bottom: 1.25rem;
           }
           .h-badge-item {
-            font-size: 0.7rem;
-            padding: 0.2rem 0.55rem;
+            font-size: 0.68rem;
+            padding: 0.22rem 0.55rem;
           }
           .hero-floating-glass-bar {
             flex-direction: column;
