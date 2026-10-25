@@ -463,7 +463,7 @@ export default function SpecialOfferPageClient() {
             </div>
           </motion.div>
 
-          {/* Hero Couple Image Frame with Floating Glass Bar */}
+          {/* Hero Couple Image Frame with Clean Below-Banner Strip */}
           <motion.div 
             className="hero-photo-banner-card"
             initial={{ opacity: 0, y: 20 }}
@@ -473,29 +473,31 @@ export default function SpecialOfferPageClient() {
             <div className="hero-img-container">
               <Image 
                 src="/wedding-smile-banner.webp" 
-                alt="Radiant bride and groom laughing confidently with straight white teeth" 
+                alt="Radiant bride, groom and family smiling with confidence" 
                 width={800} 
                 height={460} 
                 className="hero-main-img"
                 priority
               />
-              <div className="hero-floating-glass-bar">
-                <div className="glass-text-part">
-                  <Sparkles size={17} className="glass-sparkle" />
-                  <span className="glass-headline">Your Smile is Forever in Every Wedding Photo.</span>
-                </div>
-                <button 
-                  type="button" 
-                  onClick={() => openOfferModal(null, 'hero_glass_cta')}
-                  className="btn-glass-claim pulse-glow"
-                >
-                  <Sparkles size={14} />
-                  <div>
-                    <span className="g-btn-txt">Claim 20% OFF Voucher</span>
-                    <span className="g-btn-sub">FREE OPD + 3D SCAN TODAY</span>
-                  </div>
-                </button>
+            </div>
+            
+            {/* Sleek Dedicated Bar Placed Below Image — 0% Face Overlap */}
+            <div className="hero-floating-glass-bar">
+              <div className="glass-text-part">
+                <Sparkles size={16} className="glass-sparkle" />
+                <span className="glass-headline">Your Smile is Forever in Every Wedding Photo.</span>
               </div>
+              <button 
+                type="button" 
+                onClick={() => openOfferModal(null, 'hero_glass_cta')}
+                className="btn-glass-claim pulse-glow"
+              >
+                <Sparkles size={14} />
+                <div>
+                  <span className="g-btn-txt">Claim 20% OFF Voucher</span>
+                  <span className="g-btn-sub">FREE OPD + 3D SCAN TODAY</span>
+                </div>
+              </button>
             </div>
           </motion.div>
 
@@ -1889,16 +1891,10 @@ export default function SpecialOfferPageClient() {
           object-fit: cover;
         }
         .hero-floating-glass-bar {
-          position: absolute;
-          bottom: 0.85rem;
-          left: 0.85rem;
-          right: 0.85rem;
-          background: rgba(26, 13, 8, 0.9);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          border: 1px solid rgba(214, 122, 65, 0.35);
-          border-radius: 12px;
-          padding: 0.65rem 1rem;
+          position: relative;
+          background: linear-gradient(135deg, rgba(30, 15, 9, 0.96) 0%, rgba(42, 21, 13, 0.96) 100%);
+          border-top: 1px solid rgba(214, 122, 65, 0.4);
+          padding: 0.75rem 1.15rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -4024,12 +4020,10 @@ export default function SpecialOfferPageClient() {
           }
           .hero-floating-glass-bar {
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
+            text-align: center;
             gap: 0.55rem;
-            bottom: 0.55rem;
-            left: 0.55rem;
-            right: 0.55rem;
-            padding: 0.55rem 0.75rem;
+            padding: 0.65rem 0.85rem;
           }
           .btn-glass-claim {
             width: 100%;
