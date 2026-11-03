@@ -248,10 +248,17 @@ export default function Header() {
               <Link href="/dental-tourism" className="nav-link">NRI Tourism</Link>
               <Link href="/contact" className="nav-link">Contact</Link>
 
-              {/* Special Offer Badge Pill (Matching Reference) */}
+              {/* Special Offer Badge Pill */}
               <Link href="/special-offer" className="nav-offer-pill-btn" aria-label="Limited-time special dental offer">
                 <Tag size={13} className="nav-offer-icon" />
                 <span>Special Offer</span>
+              </Link>
+
+              {/* Panipat Offer Badge Pill */}
+              <Link href="/panipat-offer" className="nav-panipat-pill-btn" aria-label="Panipat 20% OFF Special OPD Visit Offer">
+                <span className="panipat-pill-live-dot" />
+                <span>Panipat Offer</span>
+                <span className="panipat-pill-badge">20% OFF</span>
               </Link>
 
               {/* Header CTA Button */}
@@ -405,10 +412,14 @@ export default function Header() {
                 </Link>
 
                 {/* 8. Special Offer Pill */}
-                <div className="mob-simple-offer-wrap">
+                <div className="mob-simple-offer-wrap" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <Link href="/panipat-offer" className="mob-simple-panipat-btn" onClick={() => setMobileOpen(false)}>
+                    <span className="panipat-pill-live-dot" />
+                    <span>Panipat Visit (6 Nov) — 20% OFF</span>
+                  </Link>
                   <Link href="/special-offer" className="mob-simple-offer-btn" onClick={() => setMobileOpen(false)}>
                     <Tag size={14} />
-                    <span>Special Offer</span>
+                    <span>Rohtak Special Offer</span>
                   </Link>
                 </div>
 
@@ -594,7 +605,7 @@ export default function Header() {
           gap: 0.65rem;
           text-decoration: none;
           min-width: 0;
-          flex: 1;
+          flex-shrink: 0;
           max-width: 100%;
         }
         .logo-icon-wrap {
@@ -770,6 +781,74 @@ export default function Header() {
           font-size: 0.7rem;
           color: #8A7063;
           font-weight: 500;
+        }
+
+        /* PANIPAT OFFER NAV PILL */
+        .nav-panipat-pill-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          background: linear-gradient(135deg, #FFF7ED 0%, #FEF2F2 100%);
+          border: 1.5px solid #F97316;
+          color: #C2410C;
+          padding: 0.42rem 0.8rem;
+          border-radius: 99px;
+          font-size: 0.78rem;
+          font-weight: 800;
+          text-decoration: none;
+          white-space: nowrap;
+          transition: all 0.2s ease;
+          box-shadow: 0 2px 10px rgba(249, 115, 22, 0.15);
+        }
+        .nav-panipat-pill-btn:hover {
+          background: linear-gradient(135deg, #EA580C 0%, #E11D48 100%);
+          color: #FFFFFF;
+          border-color: #EA580C;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 18px rgba(234, 88, 12, 0.3);
+        }
+        .nav-panipat-pill-btn:hover .panipat-pill-badge {
+          background: #FFFFFF;
+          color: #DC2626;
+        }
+        .panipat-pill-live-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #16A34A;
+          box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+          display: inline-block;
+          animation: pulseDot 1.8s infinite;
+        }
+        @keyframes pulseDot {
+          0% { transform: scale(0.95); opacity: 0.8; }
+          50% { transform: scale(1.3); opacity: 1; }
+          100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .panipat-pill-badge {
+          font-size: 0.65rem;
+          font-weight: 900;
+          background: #EA580C;
+          color: #FFFFFF;
+          padding: 0.15rem 0.35rem;
+          border-radius: 6px;
+          letter-spacing: 0.02em;
+          transition: all 0.2s ease;
+        }
+        .mob-simple-panipat-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.45rem;
+          background: linear-gradient(135deg, #FFF7ED 0%, #FEF2F2 100%);
+          border: 1.5px solid #F97316;
+          color: #C2410C;
+          padding: 0.75rem 1rem;
+          border-radius: 12px;
+          font-size: 0.88rem;
+          font-weight: 800;
+          text-decoration: none;
+          box-shadow: 0 2px 8px rgba(249, 115, 22, 0.15);
         }
 
         /* SPECIAL OFFER NAV PILL */
@@ -1134,7 +1213,7 @@ export default function Header() {
         }
 
         /* RESPONSIVE BREAKPOINTS */
-        @media (max-width: 1120px) {
+        @media (max-width: 1280px) {
           .nav-desktop { display: none !important; }
           .hamburger { display: block !important; }
         }
