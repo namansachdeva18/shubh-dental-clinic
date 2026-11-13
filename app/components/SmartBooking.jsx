@@ -635,6 +635,7 @@ export default function SmartBooking() {
           font-weight: 800;
           color: #6E5448;
           text-transform: uppercase;
+        }
         .smart-booking-voucher-strip {
           background: #2C1610;
           color: #FFFFFF;
@@ -1017,6 +1018,10 @@ export default function SmartBooking() {
             padding: 1rem 0.75rem !important;
             border-radius: 18px !important;
           }
+          .booking-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
           .booking-tag {
             padding: 0.25rem 0.6rem !important;
             font-size: 0.65rem !important;
@@ -1064,10 +1069,90 @@ export default function SmartBooking() {
           .booking-form-wrap {
             padding: 1rem 0.85rem !important;
             border-radius: 16px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+          }
+          .booking-form-interactive {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .form-inputs-compact-row {
+            grid-template-columns: 1fr !important;
+            gap: 0.5rem !important;
+          }
+          .mode-segmented-bar {
+            padding: 0.2rem !important;
+            gap: 0.2rem !important;
+          }
+          .mode-seg-btn {
+            padding: 0.35rem 0.4rem !important;
+            font-size: 0.68rem !important;
+            gap: 0.25rem !important;
+          }
+          .luxury-select-wrapper {
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .luxury-native-select {
+            font-size: 0.78rem !important;
+            padding-right: 2rem !important;
+            text-overflow: ellipsis !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+          }
+          .fancy-input-box {
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .fancy-input-box input {
+            font-size: 0.78rem !important;
+          }
+          .smart-booking-voucher-strip {
+            padding: 0.45rem 0.65rem !important;
+            gap: 0.4rem !important;
+            flex-wrap: wrap !important;
+          }
+          .sb-badge {
+            font-size: 0.6rem !important;
+            padding: 0.15rem 0.4rem !important;
+          }
+          .sb-txt {
+            font-size: 0.65rem !important;
+            line-height: 1.25 !important;
+          }
+          .btn-confirm-appointment {
+            font-size: 0.82rem !important;
+            padding: 0.7rem 1rem !important;
+          }
+          .form-trust-footer {
+            font-size: 0.6rem !important;
+            gap: 0.3rem !important;
           }
           .form-schedule-grid {
             grid-template-columns: 1fr !important;
             gap: 0.5rem !important;
+          }
+          .treatment-chips-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.3rem !important;
+          }
+          .treatment-chip {
+            padding: 0.4rem 0.45rem !important;
+            font-size: 0.68rem !important;
+            border-radius: 9px !important;
+          }
+          .doctor-select-card {
+            padding: 0.35rem 0.55rem !important;
+            border-radius: 9px !important;
+          }
+          .d-card-name {
+            font-size: 0.72rem !important;
+          }
+          .d-card-role {
+            font-size: 0.6rem !important;
           }
         }
       `}} />

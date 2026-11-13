@@ -242,7 +242,7 @@ const TEETH_COLLAGE_PHOTOS = [
   'IMG-20260904-WA0080.jpg',
   'IMG-20260904-WA0081.jpg',
   'IMG-20260904-WA0082.jpg',
-  'IMG-20260904-WA0083.jpg',
+  '/patient-smiles/10687C2D-7DCE-4B88-BB98-D8E93FB1D40E.webp',
   'IMG-20260904-WA0084.jpg',
   'IMG-20260904-WA0085.jpg'
 ];
@@ -1140,12 +1140,12 @@ export default function SpecialOfferPageClient() {
                     <div 
                       key={`t-r7-l-${i}`} 
                       className="tooth-tile-card"
-                      onClick={() => setActivePhoto(`/Collage/${f}`)}
+                      onClick={() => setActivePhoto(f.startsWith('/') ? f : `/Collage/${f}`)}
                       title="Tap to view smiling patient"
                     >
                       <div className="tooth-tile-inner">
                         <Image 
-                          src={`/Collage/${f}`} 
+                          src={f.startsWith('/') ? f : `/Collage/${f}`} 
                           alt="Patient smile"
                           fill
                           sizes="(max-width: 600px) 42px, 56px"

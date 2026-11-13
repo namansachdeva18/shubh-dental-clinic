@@ -291,7 +291,7 @@ const TEETH_COLLAGE_PHOTOS = [
   'IMG-20260904-WA0080.jpg',
   'IMG-20260904-WA0081.jpg',
   'IMG-20260904-WA0082.jpg',
-  'IMG-20260904-WA0083.jpg',
+  '/patient-smiles/10687C2D-7DCE-4B88-BB98-D8E93FB1D40E.webp',
   'IMG-20260904-WA0084.jpg',
   'IMG-20260904-WA0085.jpg'
 ];
@@ -342,30 +342,33 @@ export default function PatientGallery() {
     </div>
   );
 
-  const ToothTile = ({ file, index }) => (
-    <div 
-      className="tooth-tile-card"
-      style={{ animationDelay: `${((index * 170) % 3000) / 1000}s` }}
-      onClick={() => setSelectedPatient({
-        id: `tooth-${index}`,
-        imgSrc: `/Collage/${file}`,
-        name: `Happy Patient #${index + 1}`
-      })}
-      title="Tap to view full photograph"
-    >
-      <div className="tooth-tile-inner">
-        <Image 
-          src={`/Collage/${file}`} 
-          alt={`Patient Smile #${index + 1}`}
-          fill
-          sizes="(max-width: 600px) 45px, 65px"
-          className="tooth-tile-img"
-          style={{ objectFit: 'cover' }}
-        />
-        <div className="tooth-tile-glow" />
+  const ToothTile = ({ file, index }) => {
+    const src = file.startsWith('/') ? file : `/Collage/${file}`;
+    return (
+      <div 
+        className="tooth-tile-card"
+        style={{ animationDelay: `${((index * 170) % 3000) / 1000}s` }}
+        onClick={() => setSelectedPatient({
+          id: `tooth-${index}`,
+          imgSrc: src,
+          name: `Happy Patient #${index + 1}`
+        })}
+        title="Tap to view full photograph"
+      >
+        <div className="tooth-tile-inner">
+          <Image 
+            src={src} 
+            alt={`Patient Smile #${index + 1}`}
+            fill
+            sizes="(max-width: 600px) 45px, 65px"
+            className="tooth-tile-img"
+            style={{ objectFit: 'cover' }}
+          />
+          <div className="tooth-tile-glow" />
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section id="gallery" className="section patient-gallery-section" aria-label="Patient Smile Transformations">
