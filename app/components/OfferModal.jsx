@@ -6,19 +6,19 @@ import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from '../lib/web3forms';
 import { trackConversion, CONVERSION_EVENTS } from '../lib/conversionTracking';
 
 const TREATMENTS = [
-  'Aesthetic Dental Braces — Ceramic & Self-Ligating (20% OFF)',
-  'Invisalign® & 3D Clear Aligners (20% OFF)',
-  'Lingual Invisible Braces (Behind Teeth) (20% OFF)',
-  'Complete Smile Makeover (20% OFF)',
-  'Handcrafted Porcelain Veneers — German E-max® (20% OFF)',
-  'Composite Bonding & Gap/Chip Closure (20% OFF)',
-  'Laser Teeth Whitening & Polish (45-Min Glow) (20% OFF)',
-  'Natural Zirconia & Aesthetic Ceramic Crowns (20% OFF)',
-  'Computer-Guided Dental Implants — Lifetime Warranty (20% OFF)',
-  'Same-Day Dental Implants (All-on-4/6) (20% OFF)',
-  'Microscopic / Painless Root Canal Treatment (20% OFF)',
-  'Deep Ultrasonic Cleaning & Polishing (20% OFF)',
-  'Full Mouth Comprehensive Checkup + 3D Scan (20% OFF)',
+  'Aesthetic Dental Braces — Ceramic & Self-Ligating',
+  'Invisalign® & 3D Clear Aligners',
+  'Lingual Invisible Braces (Behind Teeth)',
+  'Complete Smile Makeover',
+  'Handcrafted Porcelain Veneers — German E-max®',
+  'Composite Bonding & Gap/Chip Closure',
+  'Laser Teeth Whitening & Polish (45-Min Glow)',
+  'Natural Zirconia & Aesthetic Ceramic Crowns',
+  'Computer-Guided Dental Implants — Lifetime Warranty',
+  'Same-Day Dental Implants (All-on-4/6)',
+  'Microscopic / Painless Root Canal Treatment',
+  'Deep Ultrasonic Cleaning & Polishing',
+  'Full Mouth Comprehensive Checkup',
   'Not Sure Yet — Need Free Doctor Diagnosis & Advice'
 ];
 
@@ -393,7 +393,7 @@ export default function OfferModal() {
       name: nameCheck.cleanName,
       phone: phoneCheck.cleanPhone,
       treatment: formData.treatment,
-      voucher: 'SHUBH-WEDDING-20',
+      voucher: 'FREE-OPD',
       source: 'Site-wide VIP Offer Modal'
     };
 
@@ -405,7 +405,7 @@ export default function OfferModal() {
         treatment: cleanPayload.treatment,
         source: cleanPayload.source,
         voucher: cleanPayload.voucher,
-        message: `Claimed 20% OFF Offer + Free OPD & 3D Scan for: ${cleanPayload.treatment}`
+        message: `Claimed Free OPD Consultation for: ${cleanPayload.treatment}`
       });
 
       // Record rate limit timestamp
@@ -466,15 +466,15 @@ export default function OfferModal() {
                 <div className="clean-header-block">
                   <div className="clean-pill-badge">
                     <Sparkles size={12} className="pill-sparkle" />
-                    <span>💍 WEDDING SPECIAL · FLAT 20% OFF · VALID TILL 15 NOV</span>
+                    <span>✨ SPECIAL OFFER · 100% FREE OPD CONSULTATION</span>
                   </div>
 
                   <h2 className="clean-main-title" id="offer-modal-title">
-                    Claim <span className="title-gold">Flat 20% OFF</span> &amp; Free 3D Scan
+                    Claim <span className="title-gold">Free OPD</span> Consultation
                   </h2>
 
                   <p className="clean-subtitle">
-                    Exclusive Wedding Season Concession at Shubh Dental Clinic Rohtak. Free 3D Digital Scan (Worth ₹1,500) &amp; Free OPD included. <strong>Offer strictly valid till 15 Nov</strong> — Open for brides, grooms &amp; all patients!
+                    Exclusive Consultation Offer at Shubh Dental Clinic Rohtak. Get 100% Free Doctor OPD Diagnosis with our Ex-PGI Specialists — Open for all patients!
                   </p>
                 </div>
 
@@ -558,10 +558,10 @@ export default function OfferModal() {
                     </select>
                   </div>
 
-                  {/* 20% OFF Activated Pill */}
+                  {/* Free OPD Activated Pill */}
                   <div className="clean-voucher-strip">
-                    <span className="strip-badge">20% OFF ACTIVATED</span>
-                    <span className="strip-txt">Free OPD + 3D Scan (Worth ₹2,000) Free · Valid Till 15 Nov</span>
+                    <span className="strip-badge">FREE OPD ACTIVATED</span>
+                    <span className="strip-txt">Free Doctor Consultation · Limited Time Offer</span>
                   </div>
 
                   {/* Gold Gradient Action Button */}
@@ -571,11 +571,11 @@ export default function OfferModal() {
                     className="clean-submit-gold-btn animated-btn-glow"
                   >
                     {isSubmitting ? (
-                      <span>Reserving VIP Slot...</span>
+                      <span>Reserving Free OPD Slot...</span>
                     ) : (
                       <>
                         <Sparkles size={16} />
-                        <span>Claim 20% OFF &amp; Reserve VIP Slot</span>
+                        <span>Claim Free OPD &amp; Reserve VIP Slot</span>
                         <ArrowRight size={16} />
                       </>
                     )}
@@ -594,7 +594,7 @@ export default function OfferModal() {
                       <span>100% Confidential · Shubh Orthodontic &amp; Dental Clinic, Tilak Nagar, Rohtak</span>
                     </div>
                     <span className="clean-subtext">
-                      By submitting, your Flat 20% Concession + Free 3D Scan voucher is reserved and our team will contact you.
+                      By submitting, your Free OPD Consultation voucher is reserved and our team will contact you.
                     </span>
                   </div>
                 </form>
@@ -605,13 +605,13 @@ export default function OfferModal() {
                 <div className="success-icon-wrap">
                   <CheckCircle2 size={46} color="#10B981" />
                 </div>
-                <h3 className="success-heading">Wedding Offer Voucher Locked!</h3>
+                <h3 className="success-heading">Free OPD Consultation Locked!</h3>
                 <p className="success-sub">
-                  Your VIP wedding voucher code <strong>SHUBH-WEDDING-20</strong> has been activated for <strong>{formData.name}</strong>.
+                  Your VIP voucher code <strong>FREE-OPD</strong> has been activated for <strong>{formData.name}</strong>.
                 </p>
                 <div className="success-perk-card">
-                  <span>✓ Flat 20% OFF on Selected Major Treatment</span>
-                  <span>✓ Complimentary 3D Digital Scan (Worth ₹3,500)</span>
+                  <span>✓ 100% Free Doctor OPD Consultation</span>
+                  <span>✓ Complete Dental Assessment &amp; Advice</span>
                   <span>✓ Priority Consultation with Prof. Dr. S. K. Yadav (Rohtak)</span>
                 </div>
                 <button onClick={closeModal} className="clean-close-dialog-btn" type="button">

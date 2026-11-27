@@ -84,9 +84,9 @@ export default function SmartBooking() {
         phone: formData.phone,
         treatment: formData.treatment,
         mode: formData.mode,
-        voucher: 'SHUBH-WEDDING-20',
+        voucher: 'FREE-OPD',
         source: 'Homepage Smart Booking Section (#book)',
-        message: `Patient requested VIP Consultation for ${formData.treatment} (${formData.mode}) with 20% OFF Voucher`
+        message: `Patient requested VIP Consultation for ${formData.treatment} (${formData.mode}) with Free OPD Consultation`
       });
 
       trackConversion(CONVERSION_EVENTS.GENERATE_LEAD, {
@@ -299,10 +299,10 @@ export default function SmartBooking() {
                     </div>
                   </div>
 
-                  {/* 20% OFF Activated Concession Strip */}
+                  {/* Free OPD Concession Strip */}
                   <div className="smart-booking-voucher-strip">
-                    <span className="sb-badge">20% OFF ACTIVATED</span>
-                    <span className="sb-txt">Free OPD + 3D Scan (Worth ₹2,000) · Valid Till 15 Nov</span>
+                    <span className="sb-badge">FREE OPD</span>
+                    <span className="sb-txt">100% Free Doctor OPD Consultation · Limited Time Offer</span>
                   </div>
 
                   {/* High-Converting Glowing Action Button */}

@@ -1,19 +1,19 @@
 import SpecialOfferPageClient from './PageClient';
 
 export const metadata = {
-  title: 'Wedding Smile Special Offer | Flat 20% OFF | Shubh Dental Clinic Rohtak',
-  description: 'Limited-Period Wedding Smile Festival at Shubh Orthodontic & Dental Clinic Rohtak! Get Flat 20% OFF on Clear Aligners, Ceramic Braces, Smile Makeovers & Dental Implants + Free OPD & 3D Intraoral Scan (Worth ₹2,000). Serving Rohtak, Bahadurgarh, Jhajjar, Sonipat, Panipat, Bhiwani, Hisar & Delhi NCR. Claim your VIP voucher now!',
+  title: 'Free OPD Consultation Special Offer | Shubh Dental Clinic Rohtak',
+  description: 'Special Consultation Offer at Shubh Orthodontic & Dental Clinic Rohtak! Get 100% Free OPD Doctor Consultation on Clear Aligners, Ceramic Braces, Smile Makeovers & Dental Implants. Serving Rohtak, Bahadurgarh, Jhajjar, Sonipat, Panipat, Bhiwani, Hisar & Delhi NCR. Claim your VIP voucher now!',
   keywords: [
-    'wedding smile offer Rohtak',
+    'free OPD consultation Rohtak',
     'dental clinic special offer Rohtak',
-    'clear aligners discount Rohtak',
-    'invisalign offer Rohtak Haryana',
-    'dental braces concession Rohtak',
-    'dental implants offer Jhajjar Sonipat',
-    'smile makeover discount Delhi NCR',
-    'teeth whitening wedding offer Rohtak',
+    'clear aligners consultation Rohtak',
+    'invisalign doctor Rohtak Haryana',
+    'dental braces clinic Rohtak',
+    'dental implants consultation Jhajjar Sonipat',
+    'smile makeover consultation Delhi NCR',
+    'teeth whitening doctor Rohtak',
     'best dentist near me Rohtak',
-    'orthodontist discount Haryana'
+    'orthodontist consultation Haryana'
   ],
   alternates: {
     canonical: 'https://www.shubhdental.com/special-offer',
@@ -23,18 +23,18 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: '💍 Wedding Smile Festival — Flat 20% OFF All Major Treatments | Shubh Dental Clinic',
-    description: 'Special Wedding Season Concession on Clear Aligners, Braces, Smile Makeovers & Implants + Free OPD & 3D Scan. Open for everyone in Rohtak & Haryana NCR!',
+    title: '✨ Free OPD Consultation Special Offer | Shubh Dental Clinic',
+    description: 'Special Consultation Offer on Clear Aligners, Braces, Smile Makeovers & Implants + 100% Free Doctor OPD. Open for everyone in Rohtak & Haryana NCR!',
     url: 'https://www.shubhdental.com/special-offer',
-    images: [{ url: 'https://www.shubhdental.com/wedding-smile-banner.webp', width: 1200, height: 630, alt: 'Wedding Smile Makeover Special Offer at Shubh Dental Clinic Rohtak' }],
+    images: [{ url: 'https://www.shubhdental.com/wedding-smile-banner.webp', width: 1200, height: 630, alt: 'Special Offer at Shubh Dental Clinic Rohtak' }],
     type: 'website',
     locale: 'en_IN',
     siteName: 'Shubh Orthodontic & Dental Clinic',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '💍 Wedding Smile Offer: Flat 20% OFF | Shubh Dental Clinic Rohtak',
-    description: 'Flat 20% Concession on Aligners, Braces, Smile Makeovers & Implants + Free 3D Scan.',
+    title: '✨ Free OPD Consultation: Special Offer | Shubh Dental Clinic Rohtak',
+    description: '100% Free Doctor OPD on Aligners, Braces, Smile Makeovers & Implants.',
     images: ['https://www.shubhdental.com/wedding-smile-banner.webp'],
   },
   other: {

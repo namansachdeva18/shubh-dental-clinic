@@ -17,13 +17,13 @@ export default function OfferBanner() {
           <span className="offer-dot-separator hide-mobile">•</span>
 
           <span className="offer-headline-text">
-            <strong>Flat 20% OFF</strong> + Free OPD Consultation &amp; 3D Scan
+            <strong>FREE OPD</strong> Consultation With Senior Specialists
           </span>
 
           <span className="offer-dot-separator hide-mobile">•</span>
 
           <span className="offer-validity-text">
-            Valid Till 15 Nov
+            Limited Time Offer
           </span>
         </Link>
 

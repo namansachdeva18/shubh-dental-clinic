@@ -351,7 +351,7 @@ export default function SpecialOfferPageClient() {
     }
 
     setIsSubmitting(true);
-    const voucherCode = 'SHUBH-WEDDING-20';
+    const voucherCode = 'FREE-OPD';
 
     try {
       const res = await submitToWeb3Forms({
@@ -415,11 +415,7 @@ export default function SpecialOfferPageClient() {
             transition={{ duration: 0.4 }}
           >
             <Sparkles size={13} className="pill-star" />
-            <span className="pill-highlight-text">💍 WEDDING SPECIAL</span>
-            <span className="pill-sep">•</span>
-            <span className="pill-white-text">FLAT 20% OFF</span>
-            <span className="pill-sep">•</span>
-            <span className="pill-date-badge">TILL 15 NOV</span>
+            <span className="pill-highlight-text">✨ SPECIAL CLINIC OFFER</span><span className="pill-sep">•</span><span className="pill-white-text">100% FREE OPD</span><span className="pill-sep">•</span><span className="pill-date-badge">LIMITED SLOTS</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -429,7 +425,7 @@ export default function SpecialOfferPageClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.08 }}
           >
-            Get a Flawless, Camera-Ready Smile <span className="highlight-copper">With Flat 20% OFF</span>
+            Get a Flawless, Confident Smile <span className="highlight-copper">With 100% Free OPD</span>
           </motion.h1>
 
           {/* Subheading */}
@@ -439,7 +435,7 @@ export default function SpecialOfferPageClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.15 }}
           >
-            Don&apos;t hide your teeth in wedding photos or videos. Walk down the aisle with total confidence — treated by <strong>Ex-PGI Chandigarh Specialists</strong> at Rohtak&apos;s highest-rated clinic. Includes <strong>Free OPD Consultation &amp; 3D Smile Scan</strong>.
+            Don&apos;t hide your teeth in wedding photos or videos. Walk down the aisle with total confidence — treated by <strong>Ex-PGI Chandigarh Specialists</strong> at Rohtak&apos;s highest-rated clinic. Includes <strong>100% Free Doctor OPD Consultation</strong>.
           </motion.p>
 
           {/* Trust Badges Strip (Consistent 2-in-1st-line, 1-in-2nd-line, 1-in-3rd-line across iPhone & Android) */}
@@ -569,7 +565,7 @@ export default function SpecialOfferPageClient() {
 
                     <div className="concern-cta-row">
                       <span className="concern-cta-text">
-                        Fix With 20% OFF <ArrowRight size={13} className="concern-arrow-icon" />
+                        Fix With Free OPD <ArrowRight size={13} className="concern-arrow-icon" />
                       </span>
                     </div>
                   </div>
@@ -607,7 +603,7 @@ export default function SpecialOfferPageClient() {
               <span>SPECIALIST ORTHODONTIC &amp; COSMETIC PROCEDURES</span>
             </div>
             <h2 className="catalogue-h2">
-              Popular Smile Treatments · <span className="highlight-copper-text">Flat 20% OFF</span>
+              Popular Smile Treatments · <span className="highlight-copper-text">Free Doctor OPD</span>
             </h2>
             <p className="catalogue-sub">
               Every procedure is personally diagnosed &amp; performed by Ex-PGI Specialists using digital 3D scans, painless techniques, and zero-compromise clinical materials in Rohtak.
@@ -618,7 +614,7 @@ export default function SpecialOfferPageClient() {
           <div className="not-attending-banner">
             <Sparkles size={18} className="not-attending-star" />
             <div className="not-attending-copy">
-              <strong>Not attending a wedding?</strong> You can still claim this Flat 20% OFF discount! All braces, clear aligners, dental implants, and whitening treatments are <strong>open to everyone</strong>.
+              <strong>100% Free OPD Consultation</strong> for all braces, clear aligners, dental implants, and cosmetic treatments. Open for everyone in Rohtak &amp; Haryana!
             </div>
           </div>
 
@@ -813,7 +809,7 @@ export default function SpecialOfferPageClient() {
                         className="btn-doc-tile-book"
                       >
                         <Sparkles size={12} />
-                        <span>Book Dr. Yadav (20% OFF)</span>
+                        <span>Book Dr. Yadav</span>
                       </button>
                       <Link href="/doctors#dr-sk-yadav" className="btn-doc-tile-profile" target="_blank">
                         Profile &amp; Research →
@@ -848,7 +844,7 @@ export default function SpecialOfferPageClient() {
                         className="btn-doc-tile-book"
                       >
                         <Sparkles size={12} />
-                        <span>Book Dr. Achla (20% OFF)</span>
+                        <span>Book Dr. Achla</span>
                       </button>
                       <Link href="/doctors#dr-achita-yadav" className="btn-doc-tile-profile" target="_blank">
                         Profile &amp; Research →
@@ -1571,28 +1567,28 @@ export default function SpecialOfferPageClient() {
                         onChange={(e) => setFormData(prev => ({ ...prev, treatment: e.target.value }))}
                       >
                         <optgroup label="🌟 Priority Orthodontics &amp; Invisible Braces">
-                          <option value="Aesthetic Dental Braces (Ceramic & Metal)">Aesthetic Dental Braces — Ceramic &amp; Self-Ligating (20% OFF)</option>
-                          <option value="Invisalign® & Clear Aligners">Invisalign® &amp; 3D Clear Aligners (20% OFF)</option>
-                          <option value="Lingual Invisible Braces">Lingual Invisible Braces (Behind Teeth) (20% OFF)</option>
+                          <option value="Aesthetic Dental Braces (Ceramic & Metal)">Aesthetic Dental Braces — Ceramic &amp; Self-Ligating</option>
+                          <option value="Invisalign® & Clear Aligners">Invisalign® &amp; 3D Clear Aligners</option>
+                          <option value="Lingual Invisible Braces">Lingual Invisible Braces (Behind Teeth)</option>
                         </optgroup>
                         
                         <optgroup label="💎 Cosmetic Smile Makeovers &amp; Restorations">
-                          <option value="Complete Smile Makeover">Complete Smile Makeover (20% OFF)</option>
-                          <option value="Handcrafted Porcelain Veneers (E-max®)">Handcrafted Porcelain Veneers — German E-max® (20% OFF)</option>
-                          <option value="Composite Bonding & Chip Repair">Composite Bonding &amp; Gap/Chip Closure (20% OFF)</option>
-                          <option value="Laser Teeth Whitening & Polishing">Laser Teeth Whitening &amp; Polish (45-Min Glow) (20% OFF)</option>
-                          <option value="Natural Zirconia & Aesthetic Ceramic Crowns">Natural Zirconia &amp; Aesthetic Ceramic Crowns (20% OFF)</option>
+                          <option value="Complete Smile Makeover">Complete Smile Makeover</option>
+                          <option value="Handcrafted Porcelain Veneers (E-max®)">Handcrafted Porcelain Veneers — German E-max®</option>
+                          <option value="Composite Bonding & Chip Repair">Composite Bonding &amp; Gap/Chip Closure</option>
+                          <option value="Laser Teeth Whitening & Polishing">Laser Teeth Whitening &amp; Polish (45-Min Glow)</option>
+                          <option value="Natural Zirconia & Aesthetic Ceramic Crowns">Natural Zirconia &amp; Aesthetic Ceramic Crowns</option>
                         </optgroup>
 
                         <optgroup label="🦷 Implant &amp; Surgical Care">
-                          <option value="Computer-Guided Dental Implants">Computer-Guided Dental Implants — Lifetime Warranty (20% OFF)</option>
-                          <option value="Same-Day Single / Full Mouth Implants">Same-Day Dental Implants (All-on-4/6) (20% OFF)</option>
-                          <option value="Painless Root Canal & Crown">Microscopic / Painless Root Canal Treatment (20% OFF)</option>
-                          <option value="Deep Ultrasonic Cleaning & Scaling">Deep Ultrasonic Cleaning &amp; Polishing (20% OFF)</option>
+                          <option value="Computer-Guided Dental Implants">Computer-Guided Dental Implants — Lifetime Warranty</option>
+                          <option value="Same-Day Single / Full Mouth Implants">Same-Day Dental Implants (All-on-4/6)</option>
+                          <option value="Painless Root Canal & Crown">Microscopic / Painless Root Canal Treatment</option>
+                          <option value="Deep Ultrasonic Cleaning & Scaling">Deep Ultrasonic Cleaning &amp; Polishing</option>
                         </optgroup>
 
                         <optgroup label="🩺 General &amp; Doctor Consultation">
-                          <option value="Full Mouth Dental Checkup & Scan">Full Mouth Comprehensive Checkup + 3D Scan (20% OFF)</option>
+                          <option value="Full Mouth Dental Checkup & Scan">Full Mouth Comprehensive Checkup + 3D Scan</option>
                           <option value="Not Sure Yet (Free Doctor Advice)">Not Sure Yet — Need Free Doctor Diagnosis &amp; Advice</option>
                         </optgroup>
                       </select>
@@ -1600,8 +1596,8 @@ export default function SpecialOfferPageClient() {
 
                     {/* Wedding Concession reminder tag in form */}
                     <div className="form-sub-reminder">
-                      <span className="sub-rem-badge">20% OFF ACTIVATED</span>
-                      <span className="sub-rem-text">Free OPD + 3D Scan (₹2,000) · <strong>Valid Till 15 Nov</strong></span>
+                      <span className="sub-rem-badge">FREE OPD ACTIVATED</span>
+                      <span className="sub-rem-text">100% Free Doctor Consultation · <strong>Limited Time Offer</strong></span>
                     </div>
 
                     <button 
@@ -1612,7 +1608,7 @@ export default function SpecialOfferPageClient() {
                       {isSubmitting ? 'Reserving Your VIP Slot...' : (
                         <>
                           <Sparkles size={16} />
-                          <span>Claim 20% OFF &amp; Reserve VIP Slot</span>
+                          <span>Claim Free OPD &amp; Reserve VIP Slot</span>
                           <ArrowRight size={16} />
                         </>
                       )}
@@ -1632,11 +1628,11 @@ export default function SpecialOfferPageClient() {
                   </div>
                   <h3 className="success-heading">Consultation Reserved!</h3>
                   <p className="success-paragraph">
-                    Thank you, <strong>{formData.name}</strong>. Your <strong>20% OFF Wedding Offer</strong> consultation for <strong>{formData.treatment}</strong> has been received.
+                    Thank you, <strong>{formData.name}</strong>. Your <strong>Free OPD Consultation</strong> for <strong>{formData.treatment}</strong> has been received.
                   </p>
                   <div className="active-voucher-pill">
                     <span>VOUCHER:</span>
-                    <strong>SHUBH-WEDDING-20</strong>
+                    <strong>FREE-OPD</strong>
                   </div>
                   <p className="success-coordinator-note">
                     Our patient coordinator will contact you at <strong>+91 {formData.phone}</strong> shortly to confirm your clinical time slot.
